@@ -25,7 +25,7 @@ describe.skipIf(!isLive)("Data360Client integration", () => {
   });
 
   it("lists connections", async () => {
-    const result = await getClient().connections.list({ batchSize: 5 });
+    const result = await getClient().connections.list({ connectorType: "SalesforceDotCom", batchSize: 5 });
     expect(result).toBeDefined();
   });
 });

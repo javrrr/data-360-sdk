@@ -1,11 +1,11 @@
 # data-360-sdk
 
-TypeScript SDK for the Salesforce Data 360 Connect REST API. Provides type-safe, idiomatic access to all 27 API resource categories with 185+ endpoints.
+TypeScript SDK for the Salesforce Data 360 Connect REST API. Provides type-safe, idiomatic access to all 27 API resource categories with full coverage of all 185 endpoints.
 
 ## Features
 
-- **Full API coverage** — 27 service namespaces covering all Data 360 endpoints
-- **Type-safe** — Auto-generated types from the OpenAPI 3.0.0 spec (687 schemas)
+- **Full API coverage** — 27 service namespaces, 185 endpoints, 100% spec coverage
+- **Type-safe** — Auto-generated types from the OpenAPI 3.0.0 spec (751 schemas + 247 enums)
 - **Zero HTTP dependencies** — Uses native `fetch` (Node.js 18+, browsers, React Native)
 - **Dual format** — ESM + CJS output, tree-shakeable with `sideEffects: false`
 - **Retry & backoff** — Exponential backoff with jitter, Retry-After header support
@@ -31,8 +31,11 @@ const client = new Data360Client({
   },
 });
 
-// List connections
-const connections = await client.connections.list({ batchSize: 10 });
+// List connections (connectorType is required)
+const connections = await client.connections.list({
+  connectorType: "SalesforceDotCom",
+  batchSize: 10,
+});
 
 // Get a specific segment
 const segment = await client.segments.get("MySegment");
@@ -41,6 +44,25 @@ const segment = await client.segments.get("MySegment");
 const result = await client.query.execute({
   sql: "SELECT Id, Name FROM Account__dlm LIMIT 10",
 });
+```
+
+## Types
+
+All 751 schema types and 247 enum types are exported as named types, discoverable via autocomplete:
+
+```typescript
+import type {
+  DataStreamInputRepresentation,
+  DataLakeObjectCategory,
+  RefreshConfigRefreshMode,
+} from "data-360-sdk";
+
+// Or from the types-only subpath (zero runtime cost)
+import type { DataStreamInputRepresentation } from "data-360-sdk/schemas";
+
+// Schema<> helper also available
+import type { Schema } from "data-360-sdk";
+type Input = Schema<"DataStreamInputRepresentation">;
 ```
 
 ## Authentication
@@ -67,7 +89,6 @@ const client = new Data360Client({
     accessToken: "initial-token",
     refreshToken: "refresh-token",
     refreshFn: async (refreshToken) => {
-      // Call your token refresh endpoint
       const response = await fetch("https://login.salesforce.com/services/oauth2/token", {
         method: "POST",
         body: new URLSearchParams({
@@ -110,7 +131,6 @@ const client = new Data360Client({
 const page = await client.segments.list({
   batchSize: 20,
   offset: 0,
-  orderBy: "createdDate desc",
 });
 ```
 
@@ -122,18 +142,6 @@ for await (const batch of client.segments.listAll({ batchSize: 50 })) {
     console.log(segment);
   }
 }
-```
-
-### Collect All
-
-```typescript
-import { collectAll } from "data-360-sdk";
-
-const allSegments = await collectAll({
-  httpClient, // internal — use listAll() instead for most cases
-  path: "/ssot/segments",
-  batchSize: 100,
-});
 ```
 
 ## Error Handling
@@ -177,50 +185,57 @@ const result = await client.query.executeAndWait(
 ### Manual Polling
 
 ```typescript
-const { queryId } = await client.query.execute({
+const queryResult = await client.query.execute({
   sql: "SELECT Id FROM Account__dlm",
 });
 
-// Poll status
-let status;
-do {
-  status = await client.query.getStatus(queryId);
-} while (status.status === "running");
+const queryId = queryResult.status?.queryId;
 
-// Fetch rows
-const rows = await client.query.getRows(queryId, { batchSize: 200 });
+if (queryId) {
+  // Poll status
+  let status = await client.query.getStatus(queryId);
+  while (status.completionStatus?.startsWith("Running")) {
+    await new Promise((r) => setTimeout(r, 2000));
+    status = await client.query.getStatus(queryId);
+  }
+
+  // Fetch rows
+  const rows = await client.query.getRows(queryId, { batchSize: 200 });
+}
 ```
 
 ## Available Services
 
-| Service | Namespace | Key Methods |
-|---------|-----------|-------------|
-| Activation Targets | `client.activationTargets` | list, get, create, update |
-| Activations | `client.activations` | list, create, delete, getData |
-| Calculated Insights | `client.calculatedInsights` | list, get, run |
-| Connections | `client.connections` | list, get, create, update, test, getObjectFields |
+185 endpoints across 27 service namespaces. Generated from the [Data 360 Connect API OpenAPI Spec](https://developer.salesforce.com/docs/data/connectapi/references/spec) with full coverage.
+
+| Service | Namespace | Methods |
+|---------|-----------|---------|
+| Activation Targets | `client.activationTargets` | list, get, create, update, listExternalPlatforms |
+| Activations | `client.activations` | list, getById, create, update, delete, getData |
+| Calculated Insights | `client.calculatedInsights` | list, get, create, delete, patch, run |
+| Connections | `client.connections` | list, get, create, update, put, delete, test, testById, testSchema, getObjectFields, getFields, getObjects, listObjects, getDatabaseSchemas, listDatabaseSchemas, getDatabases, listDatabases, listEndpoints, previewData, listSchema, updateSchema, listSitemap, updateSitemap, runAction, runActionById |
 | Connectors | `client.connectors` | list, get |
-| Data Action Targets | `client.dataActionTargets` | list, get, getSigningKey |
+| Data Action Targets | `client.dataActionTargets` | list, get, create, delete, getSigningKey, resetSigningKey |
 | Data Actions | `client.dataActions` | list, create |
-| Data Clean Room | `client.dataCleanRoom` | listCollaborations, acceptInvitation, rejectInvitation |
-| Data Graphs | `client.dataGraphs` | list, get, getData, refresh |
-| Data Kits | `client.dataKits` | list |
-| Data Lake Objects | `client.dataLakeObjects` | list, get |
-| Data Model Objects | `client.dataModelObjects` | list, get, create |
-| Data Spaces | `client.dataSpaces` | list, get, listMembers, addMember |
-| Data Streams | `client.dataStreams` | list, get, run |
-| Data Transforms | `client.dataTransforms` | list, get, run, cancel, retry, getRunHistory |
-| Document AI | `client.documentAi` | extractData, generateSchema, listConfigurations |
-| Identity Resolutions | `client.identityResolutions` | list, get, runNow |
-| Insights | `client.insights` | getMetadata, getCalculatedInsight |
-| Machine Learning | `client.machineLearning` | listAlerts, listConfiguredModels, predict |
+| Data Clean Room | `client.dataCleanRoom` | listCollaborations, createCollaborations, acceptInvitation, rejectInvitation, run, listJobs, listProviders, getProvider, createProviders, listProviderTemplates, listSpecifications, createSpecifications, listTemplates |
+| Data Graphs | `client.dataGraphs` | listMetadata, get, create, delete, getData, getDataById, refresh |
+| Data Kits | `client.dataKits` | list, undeploy, getDependencies, getDeploymentStatus |
+| Data Lake Objects | `client.dataLakeObjects` | list, get, create, delete, patch |
+| Data Model Objects | `client.dataModelObjects` | list, get, create, delete, patch, listRelationships, createRelationships, deleteRelationships, listMappings, getMapping, createMapping, deleteMapping, deleteFieldMappings, patchFieldMappings |
+| Data Spaces | `client.dataSpaces` | list, get, create, patch, listMembers, getMembers, addMember, updateMembers |
+| Data Streams | `client.dataStreams` | list, get, create, delete, patch, run |
+| Data Transforms | `client.dataTransforms` | list, get, create, put, delete, run, cancel, retry, refreshStatus, getRunHistory, listSchedule, updateSchedule, validate |
+| Document AI | `client.documentAi` | extractData, generateSchema, listConfigurations, getConfiguration, createConfiguration, deleteConfigurations, patchConfigurations, getGlobalConfig, run |
+| Identity Resolutions | `client.identityResolutions` | list, get, create, delete, patch, runNow |
+| Insights | `client.insights` | getMetadata, listMetadata, getCalculatedInsight |
+| Machine Learning | `client.machineLearning` | listAlerts, patchAlerts, listConfiguredModels, getConfiguredModel, deleteConfiguredModels, patchConfiguredModels, listModelArtifacts, getModelArtifact, deleteModelArtifacts, patchModelArtifacts, predict, listSetupVersions, createSetupVersions, getSetupVersions, patchSetupVersions, getPartitions, getPartition |
 | Metadata | `client.metadata` | get |
-| Private Network Routes | `client.privateNetworkRoutes` | list, get |
-| Profile | `client.profile` | list, get, getMetadata, getCalculatedInsights |
+| Private Network Routes | `client.privateNetworkRoutes` | list, get, create, delete |
+| Profile | `client.profile` | list, get, getMetadata, listMetadata, getCalculatedInsights, getChildRecords |
 | Query V1/V2 | `client.queryV1V2` | executeV1, executeV2, getNextBatch |
-| Query (SQL) | `client.query` | execute, getStatus, getRows, executeAndWait |
-| Search Index | `client.searchIndex` | list, get, getConfig |
-| Segments | `client.segments` | list, get, count, listMembers, publish, deactivate |
+| Query (SQL) | `client.query` | execute, getStatus, getRows, delete, executeAndWait |
+| Search Index | `client.searchIndex` | list, get, create, delete, patch, getConfig |
+| Segments | `client.segments` | list, get, create, delete, patch, count, countWithInput, listMembers, publish, deactivate |
 | Universal ID Lookup | `client.universalIdLookup` | lookup |
 
 ## Configuration Options

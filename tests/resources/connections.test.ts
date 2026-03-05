@@ -16,10 +16,10 @@ describe("ConnectionsService", () => {
     const httpClient = createMockHttpClient();
     const service = new ConnectionsService(httpClient);
 
-    await service.list({ batchSize: 5 });
+    await service.list({ connectorType: "SalesforceDotCom", batchSize: 5 });
 
     expect(httpClient.get).toHaveBeenCalledWith("/ssot/connections", {
-      query: { batchSize: 5, offset: undefined, orderBy: undefined },
+      query: { batchSize: 5, offset: undefined, orderBy: undefined, connectorType: "SalesforceDotCom", devName: undefined, label: undefined },
     });
   });
 
@@ -51,11 +51,11 @@ describe("ConnectionsService", () => {
     const httpClient = createMockHttpClient();
     const service = new ConnectionsService(httpClient);
 
-    await service.test({ connectionType: "S3" });
+    await service.test({ connectorType: "AwsS3", credentials: [], parameters: [], method: "Ingress" } as any);
 
     expect(httpClient.post).toHaveBeenCalledWith(
       "/ssot/connections/actions/test",
-      { connectionType: "S3" },
+      expect.objectContaining({ connectorType: "AwsS3" }),
       undefined,
     );
   });

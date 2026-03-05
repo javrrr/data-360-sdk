@@ -85,6 +85,36 @@ describe("pagination", () => {
     expect(all).toEqual([{ id: 1 }, { id: 2 }]);
   });
 
+  it("supports metadata response shape", async () => {
+    const httpClient = createMockHttpClient([
+      { metadata: [{ name: "a" }, { name: "b" }] },
+      { metadata: [] },
+    ]);
+
+    const all = await collectAll({
+      httpClient,
+      path: "/ssot/test",
+      batchSize: 10,
+    });
+
+    expect(all).toEqual([{ name: "a" }, { name: "b" }]);
+  });
+
+  it("supports records response shape", async () => {
+    const httpClient = createMockHttpClient([
+      { records: [{ id: 1 }] },
+      { records: [] },
+    ]);
+
+    const all = await collectAll({
+      httpClient,
+      path: "/ssot/test",
+      batchSize: 10,
+    });
+
+    expect(all).toEqual([{ id: 1 }]);
+  });
+
   it("supports custom item extractor", async () => {
     const httpClient = createMockHttpClient([
       { results: [{ name: "a" }] },

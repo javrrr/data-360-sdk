@@ -38,8 +38,11 @@ export type {
   PathParams,
 } from "./utils/type-helpers.js";
 
-// Generated schema types (re-export for consumer use)
+// Generated types (raw)
 export type { paths, components, operations } from "./generated/openapi.js";
+
+// All 727 named schema types — discoverable via autocomplete
+export type * from "./schemas.js";
 
 // Resource services (for advanced usage / extension)
 export { ActivationTargetsService } from "./resources/activation-targets.js";

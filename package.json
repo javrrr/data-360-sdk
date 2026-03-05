@@ -3,6 +3,26 @@
   "version": "0.1.0",
   "type": "module",
   "description": "TypeScript SDK for the Salesforce Data 360 Connect REST API",
+  "author": "javrrr",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/javrrr/data-360-sdk.git"
+  },
+  "homepage": "https://github.com/javrrr/data-360-sdk#readme",
+  "bugs": {
+    "url": "https://github.com/javrrr/data-360-sdk/issues"
+  },
+  "keywords": [
+    "salesforce",
+    "data-360",
+    "data-cloud",
+    "cdp",
+    "sdk",
+    "typescript",
+    "api",
+    "openapi",
+    "connect-api"
+  ],
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -15,6 +35,16 @@
       "require": {
         "types": "./dist/index.d.cts",
         "default": "./dist/index.cjs"
+      }
+    },
+    "./schemas": {
+      "import": {
+        "types": "./dist/schemas.d.ts",
+        "default": "./dist/schemas.js"
+      },
+      "require": {
+        "types": "./dist/schemas.d.cts",
+        "default": "./dist/schemas.cjs"
       }
     }
   },

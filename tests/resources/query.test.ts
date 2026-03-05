@@ -52,11 +52,11 @@ describe("QueryService", () => {
       get: vi.fn(async () => {
         callCount++;
         if (callCount < 3) {
-          return { status: "running", queryId: "q-123" };
+          return { completionStatus: "Running - the query is executing", queryId: "q-123" };
         }
-        return { status: "completed", queryId: "q-123" };
+        return { completionStatus: "Finished - the query execution is complete, and the results are available both in memory and persisted", queryId: "q-123" };
       }),
-      post: vi.fn(async () => ({ queryId: "q-123" })),
+      post: vi.fn(async () => ({ status: { queryId: "q-123", completionStatus: "Running - the query is executing" } })),
     } as unknown as HttpClient;
 
     const service = new QueryService(httpClient);
@@ -65,7 +65,8 @@ describe("QueryService", () => {
       { pollIntervalMs: 10 },
     );
 
-    expect(result).toEqual({ status: "completed", queryId: "q-123" });
+    expect(result.queryId).toBe("q-123");
+    expect(result.completionStatus).toContain("Finished");
     expect(httpClient.post).toHaveBeenCalledOnce();
     // get called 3 times for polling
     expect(httpClient.get).toHaveBeenCalledTimes(3);
