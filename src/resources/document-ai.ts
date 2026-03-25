@@ -43,7 +43,7 @@ export class DocumentAiService extends BaseResource {
   ): Promise<IdpConfigurationsCollectionRepresentation> {
     return this.httpClient.get(`${this.basePath}/configurations`, {
       ...options,
-      query: this.paginationQuery(params),
+      query: this.paginationQuery({ ...params, pageSizeParam: "limit" }),
     });
   }
 

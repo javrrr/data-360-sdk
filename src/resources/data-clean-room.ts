@@ -28,14 +28,14 @@ export class DataCleanRoomService extends BaseResource {
   ): Promise<DataCleanRoomCollaborationCollectionRepresentation> {
     return this.httpClient.get(`${this.basePath}/collaborations`, {
       ...options,
-      query: this.paginationQuery(params),
+      query: this.paginationQuery({ ...params, pageSizeParam: "limit" }),
     });
   }
 
   async listProviders(params?: PaginationParams, options?: RequestOptions): Promise<DataCleanRoomProviderCollectionRepresentation> {
     return this.httpClient.get(`${this.basePath}/providers`, {
       ...options,
-      query: this.paginationQuery(params),
+      query: this.paginationQuery({ ...params, pageSizeParam: "limit" }),
     });
   }
 
@@ -45,14 +45,14 @@ export class DataCleanRoomService extends BaseResource {
   ): Promise<DataCleanRoomSpecificationCollectionRepresentation> {
     return this.httpClient.get(`${this.basePath}/specifications`, {
       ...options,
-      query: this.paginationQuery(params),
+      query: this.paginationQuery({ ...params, pageSizeParam: "limit" }),
     });
   }
 
   async listTemplates(params?: PaginationParams, options?: RequestOptions): Promise<DataCleanRoomTemplateCollectionRepresentation> {
     return this.httpClient.get(`${this.basePath}/templates`, {
       ...options,
-      query: this.paginationQuery(params),
+      query: this.paginationQuery({ ...params, pageSizeParam: "limit" }),
     });
   }
 

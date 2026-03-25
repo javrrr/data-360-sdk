@@ -12,12 +12,12 @@ export class PrivateNetworkRoutesService extends BaseResource {
   async list(params?: PaginationParams, options?: RequestOptions): Promise<PrivateNetworkRouteCollectionRepresentation> {
     return this.httpClient.get(this.basePath, {
       ...options,
-      query: this.paginationQuery(params),
+      query: this.paginationQuery({ ...params, pageSizeParam: "limit" }),
     });
   }
 
   async *listAll(params?: PaginationParams, options?: RequestOptions) {
-    yield* this.paginate(this.basePath, params, options);
+    yield* this.paginate(this.basePath, { ...params, pageSizeParam: "limit" }, options);
   }
 
   async get(routeIdOrName: string, options?: RequestOptions): Promise<PrivateNetworkRouteRepresentation> {

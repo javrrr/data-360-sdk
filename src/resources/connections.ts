@@ -36,7 +36,7 @@ export class ConnectionsService extends BaseResource {
     const { connectorType, devName, label, ...pagination } = params;
     return this.httpClient.get(this.basePath, {
       ...options,
-      query: { ...this.paginationQuery(pagination), connectorType, devName, label },
+      query: { ...this.paginationQuery({ ...pagination, pageSizeParam: "limit" }), connectorType, devName, label },
     });
   }
 
@@ -45,7 +45,7 @@ export class ConnectionsService extends BaseResource {
     options?: RequestOptions,
   ) {
     const { connectorType, devName, label, ...pagination } = params;
-    yield* this.paginate(this.basePath, { ...pagination, query: { connectorType, devName, label } }, options);
+    yield* this.paginate(this.basePath, { ...pagination, pageSizeParam: "limit", query: { connectorType, devName, label } }, options);
   }
 
   async get(id: string, options?: RequestOptions): Promise<ConnectionRepresentation> {

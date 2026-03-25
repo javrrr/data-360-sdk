@@ -53,7 +53,7 @@ describe("SegmentsService", () => {
 
     expect(httpClient.get).toHaveBeenCalledWith(
       "/ssot/segments/MySegment/members",
-      { query: { batchSize: 20, offset: undefined, orderBy: undefined } },
+      { query: { limit: 20, offset: undefined, orderBy: undefined } },
     );
   });
 

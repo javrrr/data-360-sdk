@@ -61,6 +61,8 @@ export interface PaginationParams {
   offset?: number;
   /** Sort order, e.g. "createdDate desc" */
   orderBy?: string;
+  /** Query parameter name for page size — some endpoints use "limit" instead of "batchSize" */
+  pageSizeParam?: "batchSize" | "limit";
 }
 
 export interface PaginatedResponse<T> {

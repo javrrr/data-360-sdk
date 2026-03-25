@@ -115,6 +115,45 @@ describe("pagination", () => {
     expect(all).toEqual([{ id: 1 }]);
   });
 
+  it("uses limit instead of batchSize when pageSizeParam is limit", async () => {
+    const httpClient = createMockHttpClient([
+      { data: [{ id: 1 }] },
+    ]);
+
+    const pages: unknown[][] = [];
+    for await (const page of paginate({
+      httpClient,
+      path: "/ssot/test",
+      batchSize: 5,
+      pageSizeParam: "limit",
+    })) {
+      pages.push(page);
+    }
+
+    expect(httpClient.get).toHaveBeenCalledWith("/ssot/test", {
+      query: { limit: 5, offset: 0 },
+    });
+  });
+
+  it("uses batchSize by default", async () => {
+    const httpClient = createMockHttpClient([
+      { data: [{ id: 1 }] },
+    ]);
+
+    const pages: unknown[][] = [];
+    for await (const page of paginate({
+      httpClient,
+      path: "/ssot/test",
+      batchSize: 5,
+    })) {
+      pages.push(page);
+    }
+
+    expect(httpClient.get).toHaveBeenCalledWith("/ssot/test", {
+      query: { batchSize: 5, offset: 0 },
+    });
+  });
+
   it("supports custom item extractor", async () => {
     const httpClient = createMockHttpClient([
       { results: [{ name: "a" }] },

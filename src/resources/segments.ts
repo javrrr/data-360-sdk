@@ -46,7 +46,7 @@ export class SegmentsService extends BaseResource {
       `${this.basePath}/${encodeURIComponent(segmentApiName)}/members`,
       {
         ...options,
-        query: this.paginationQuery(params),
+        query: this.paginationQuery({ ...params, pageSizeParam: "limit" }),
       },
     );
   }

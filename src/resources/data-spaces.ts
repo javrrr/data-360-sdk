@@ -17,12 +17,12 @@ export class DataSpacesService extends BaseResource {
   async list(params?: PaginationParams, options?: RequestOptions): Promise<DataSpaceCollectionRepresentation> {
     return this.httpClient.get(this.basePath, {
       ...options,
-      query: this.paginationQuery(params),
+      query: this.paginationQuery({ ...params, pageSizeParam: "limit" }),
     });
   }
 
   async *listAll(params?: PaginationParams, options?: RequestOptions) {
-    yield* this.paginate(this.basePath, params, options);
+    yield* this.paginate(this.basePath, { ...params, pageSizeParam: "limit" }, options);
   }
 
   async get(idOrName: string, options?: RequestOptions): Promise<DataSpaceInfoRepresentation> {
@@ -41,7 +41,7 @@ export class DataSpacesService extends BaseResource {
       `${this.basePath}/${encodeURIComponent(idOrName)}/members`,
       {
         ...options,
-        query: this.paginationQuery(params),
+        query: this.paginationQuery({ ...params, pageSizeParam: "limit" }),
       },
     );
   }
