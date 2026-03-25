@@ -48,7 +48,7 @@ export class MachineLearningService extends BaseResource {
   ): Promise<MlConfiguredModelCollectionRepresentation> {
     return this.httpClient.get(`${this.basePath}/configured-models`, {
       ...options,
-      query: this.paginationQuery(params),
+      query: this.paginationQuery({ ...params, pageSizeParam: "limit" }),
     });
   }
 
@@ -58,7 +58,7 @@ export class MachineLearningService extends BaseResource {
   ): Promise<CdpMlModelArtifactCollectionRepresentation> {
     return this.httpClient.get(`${this.basePath}/model-artifacts`, {
       ...options,
-      query: this.paginationQuery(params),
+      query: this.paginationQuery({ ...params, pageSizeParam: "limit" }),
     });
   }
 
@@ -82,7 +82,7 @@ export class MachineLearningService extends BaseResource {
       `${this.basePath}/model-setups/${encodeURIComponent(modelSetupIdOrName)}/setup-versions`,
       {
         ...options,
-        query: this.paginationQuery(params),
+        query: this.paginationQuery({ ...params, pageSizeParam: "limit" }),
       },
     );
   }

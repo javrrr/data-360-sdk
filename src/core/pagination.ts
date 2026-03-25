@@ -44,6 +44,7 @@ export async function* paginate<T>(
     batchSize = 20,
     offset: startOffset = 0,
     orderBy,
+    pageSizeParam = "batchSize",
     query = {},
     requestOptions,
     extractItems: customExtractor,
@@ -55,7 +56,7 @@ export async function* paginate<T>(
   while (true) {
     const paginationQuery: Record<string, string | number | boolean | undefined> = {
       ...query,
-      batchSize,
+      [pageSizeParam]: batchSize,
       offset: currentOffset,
     };
 

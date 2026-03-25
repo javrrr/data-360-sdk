@@ -15,12 +15,12 @@ export class DataStreamsService extends BaseResource {
   async list(params?: PaginationParams, options?: RequestOptions): Promise<DataStreamCollectionRepresentation> {
     return this.httpClient.get(this.basePath, {
       ...options,
-      query: this.paginationQuery(params),
+      query: this.paginationQuery({ ...params, pageSizeParam: "limit" }),
     });
   }
 
   async *listAll(params?: PaginationParams, options?: RequestOptions) {
-    yield* this.paginate(this.basePath, params, options);
+    yield* this.paginate(this.basePath, { ...params, pageSizeParam: "limit" }, options);
   }
 
   async create(body: DataStreamInputRepresentation, options?: RequestOptions): Promise<DataStreamRepresentation> {

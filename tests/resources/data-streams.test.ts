@@ -12,13 +12,15 @@ function createMockHttpClient() {
 }
 
 describe("DataStreamsService", () => {
-  it("list()", async () => {
+  it("list() sends limit not batchSize", async () => {
     const httpClient = createMockHttpClient();
     const service = new DataStreamsService(httpClient);
 
     await service.list({ batchSize: 10 });
 
-    expect(httpClient.get).toHaveBeenCalled();
+    expect(httpClient.get).toHaveBeenCalledWith("/ssot/data-streams", {
+      query: { limit: 10, offset: undefined, orderBy: undefined },
+    });
   });
 
   it("create()", async () => {

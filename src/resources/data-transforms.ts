@@ -17,12 +17,12 @@ export class DataTransformsService extends BaseResource {
   async list(params?: PaginationParams, options?: RequestOptions): Promise<DataTransformCollectionRepresentation> {
     return this.httpClient.get(this.basePath, {
       ...options,
-      query: this.paginationQuery(params),
+      query: this.paginationQuery({ ...params, pageSizeParam: "limit" }),
     });
   }
 
   async *listAll(params?: PaginationParams, options?: RequestOptions) {
-    yield* this.paginate(this.basePath, params, options);
+    yield* this.paginate(this.basePath, { ...params, pageSizeParam: "limit" }, options);
   }
 
   async get(nameOrId: string, options?: RequestOptions): Promise<DataTransformRepresentation> {
@@ -65,7 +65,7 @@ export class DataTransformsService extends BaseResource {
       `${this.basePath}/${encodeURIComponent(nameOrId)}/run-history`,
       {
         ...options,
-        query: this.paginationQuery(params),
+        query: this.paginationQuery({ ...params, pageSizeParam: "limit" }),
       },
     );
   }

@@ -27,8 +27,9 @@ export abstract class BaseResource {
     params?: PaginationParams,
   ): Record<string, string | number | boolean | undefined> {
     if (!params) return {};
+    const pageSizeParam = params.pageSizeParam ?? "batchSize";
     return {
-      batchSize: params.batchSize,
+      [pageSizeParam]: params.batchSize,
       offset: params.offset,
       orderBy: params.orderBy,
     };
@@ -40,13 +41,14 @@ export abstract class BaseResource {
     params?: PaginationParams & { query?: Record<string, string | number | boolean | undefined> },
     requestOptions?: RequestOptions,
   ): AsyncGenerator<T[], void, undefined> {
-    const { batchSize, offset, orderBy, query, ...rest } = params ?? {};
+    const { batchSize, offset, orderBy, pageSizeParam, query, ...rest } = params ?? {};
     return paginate<T>({
       httpClient: this.httpClient,
       path,
       batchSize,
       offset,
       orderBy,
+      pageSizeParam,
       query,
       requestOptions: { ...rest, ...requestOptions },
     });
@@ -58,13 +60,14 @@ export abstract class BaseResource {
     params?: PaginationParams & { query?: Record<string, string | number | boolean | undefined> },
     requestOptions?: RequestOptions,
   ): Promise<T[]> {
-    const { batchSize, offset, orderBy, query, ...rest } = params ?? {};
+    const { batchSize, offset, orderBy, pageSizeParam, query, ...rest } = params ?? {};
     return collectAll<T>({
       httpClient: this.httpClient,
       path,
       batchSize,
       offset,
       orderBy,
+      pageSizeParam,
       query,
       requestOptions: { ...rest, ...requestOptions },
     });

@@ -19,7 +19,7 @@ describe("ConnectionsService", () => {
     await service.list({ connectorType: "SalesforceDotCom", batchSize: 5 });
 
     expect(httpClient.get).toHaveBeenCalledWith("/ssot/connections", {
-      query: { batchSize: 5, offset: undefined, orderBy: undefined, connectorType: "SalesforceDotCom", devName: undefined, label: undefined },
+      query: { limit: 5, offset: undefined, orderBy: undefined, connectorType: "SalesforceDotCom", devName: undefined, label: undefined },
     });
   });
 
