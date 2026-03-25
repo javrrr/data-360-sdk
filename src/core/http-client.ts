@@ -146,19 +146,19 @@ export class HttpClient {
     return this.request<T>("GET", path, options);
   }
 
-  async post<T>(path: string, body?: unknown, options?: RequestOptions): Promise<T> {
+  async post<T>(path: string, body?: unknown, options?: RequestOptions & { query?: Record<string, string | number | boolean | undefined> }): Promise<T> {
     return this.request<T>("POST", path, { ...options, body });
   }
 
-  async put<T>(path: string, body?: unknown, options?: RequestOptions): Promise<T> {
+  async put<T>(path: string, body?: unknown, options?: RequestOptions & { query?: Record<string, string | number | boolean | undefined> }): Promise<T> {
     return this.request<T>("PUT", path, { ...options, body });
   }
 
-  async patch<T>(path: string, body?: unknown, options?: RequestOptions): Promise<T> {
+  async patch<T>(path: string, body?: unknown, options?: RequestOptions & { query?: Record<string, string | number | boolean | undefined> }): Promise<T> {
     return this.request<T>("PATCH", path, { ...options, body });
   }
 
-  async delete<T>(path: string, options?: RequestOptions): Promise<T> {
+  async delete<T>(path: string, options?: RequestOptions & { query?: Record<string, string | number | boolean | undefined> }): Promise<T> {
     return this.request<T>("DELETE", path, options);
   }
 

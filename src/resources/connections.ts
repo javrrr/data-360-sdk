@@ -130,7 +130,7 @@ export class ConnectionsService extends BaseResource {
     return this.httpClient.put(`${this.basePath}/${encodeURIComponent(connectionId)}`, body, options);
   }
 
-  async delete(connectionId: string, options?: RequestOptions): Promise<void> {
+  async delete(connectionId: string, options?: RequestOptions & { query?: Record<string, string | number | boolean | undefined> }): Promise<void> {
     return this.httpClient.delete(`${this.basePath}/${encodeURIComponent(connectionId)}`, options);
   }
 

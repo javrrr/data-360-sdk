@@ -15,7 +15,20 @@ interface RawPaginatedResponse<T> {
 }
 
 function extractItems<T>(raw: RawPaginatedResponse<T>): T[] {
-  return raw.data ?? raw.metadata ?? raw.records ?? [];
+  // Check well-known keys first
+  if (raw.data) return raw.data;
+  if (raw.metadata) return raw.metadata;
+  if (raw.records) return raw.records;
+
+  // Fall back to the first array-valued property (handles collection responses
+  // like { dataStreams: [...] }, { connections: [...] }, etc.)
+  for (const value of Object.values(raw)) {
+    if (Array.isArray(value)) {
+      return value as T[];
+    }
+  }
+
+  return [];
 }
 
 export interface PaginateOptions<T> extends PaginationParams {

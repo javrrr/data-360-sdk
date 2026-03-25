@@ -79,7 +79,7 @@ export class QueryService extends BaseResource {
     );
   }
 
-  async delete(queryId: string, options?: RequestOptions): Promise<void> {
+  async delete(queryId: string, options?: RequestOptions & { query?: Record<string, string | number | boolean | undefined> }): Promise<void> {
     return this.httpClient.delete(`${this.basePath}/${encodeURIComponent(queryId)}`, options);
   }
 }

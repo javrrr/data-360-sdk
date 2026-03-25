@@ -31,7 +31,7 @@ export class PrivateNetworkRoutesService extends BaseResource {
     return this.httpClient.post(this.basePath, body, options);
   }
 
-  async delete(routeIdOrName: string, options?: RequestOptions): Promise<void> {
+  async delete(routeIdOrName: string, options?: RequestOptions & { query?: Record<string, string | number | boolean | undefined> }): Promise<void> {
     return this.httpClient.delete(`${this.basePath}/${encodeURIComponent(routeIdOrName)}`, options);
   }
 }
