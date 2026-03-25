@@ -58,7 +58,7 @@ export class DataGraphsService extends BaseResource {
     return this.httpClient.get(`${this.basePath}/data/${encodeURIComponent(dataGraphEntityName)}/${encodeURIComponent(id)}`, options);
   }
 
-  async delete(dataGraphName: string, options?: RequestOptions): Promise<void> {
+  async delete(dataGraphName: string, options?: RequestOptions & { query?: Record<string, string | number | boolean | undefined> }): Promise<void> {
     return this.httpClient.delete(`${this.basePath}/${encodeURIComponent(dataGraphName)}`, options);
   }
 }

@@ -78,7 +78,7 @@ export class DataTransformsService extends BaseResource {
     return this.httpClient.put(`${this.basePath}/${encodeURIComponent(dataTransformNameOrId)}`, body, options);
   }
 
-  async delete(dataTransformNameOrId: string, options?: RequestOptions): Promise<void> {
+  async delete(dataTransformNameOrId: string, options?: RequestOptions & { query?: Record<string, string | number | boolean | undefined> }): Promise<void> {
     return this.httpClient.delete(`${this.basePath}/${encodeURIComponent(dataTransformNameOrId)}`, options);
   }
 

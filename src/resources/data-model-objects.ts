@@ -36,7 +36,7 @@ export class DataModelObjectsService extends BaseResource {
     return this.httpClient.post(this.basePath, body, options);
   }
 
-  async delete(dataModelObjectName: string, options?: RequestOptions): Promise<void> {
+  async delete(dataModelObjectName: string, options?: RequestOptions & { query?: Record<string, string | number | boolean | undefined> }): Promise<void> {
     return this.httpClient.delete(`${this.basePath}/${encodeURIComponent(dataModelObjectName)}`, options);
   }
 

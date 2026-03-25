@@ -42,7 +42,10 @@ export class DataStreamsService extends BaseResource {
     );
   }
 
-  async delete(recordIdOrDeveloperName: string, options?: RequestOptions): Promise<void> {
+  async delete(
+    recordIdOrDeveloperName: string,
+    options?: RequestOptions & { query?: Record<string, string | number | boolean | undefined> },
+  ): Promise<void> {
     return this.httpClient.delete(`${this.basePath}/${encodeURIComponent(recordIdOrDeveloperName)}`, options);
   }
 
