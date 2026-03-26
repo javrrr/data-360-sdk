@@ -18,8 +18,11 @@ export class IdentityResolutionsService extends BaseResource {
     });
   }
 
-  async *listAll(params?: PaginationParams, options?: RequestOptions) {
-    yield* this.paginate(this.basePath, params, options);
+  async *listAll(
+    params?: PaginationParams,
+    options?: RequestOptions,
+  ): AsyncGenerator<CdpIdentityResolutionOutputRepresentation, void, undefined> {
+    yield* this.paginate<CdpIdentityResolutionOutputRepresentation>(this.basePath, params, options);
   }
 
   async get(identityResolution: string, options?: RequestOptions): Promise<CdpIdentityResolutionOutputRepresentation> {

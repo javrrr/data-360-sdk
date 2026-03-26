@@ -18,8 +18,11 @@ export class SearchIndexService extends BaseResource {
     });
   }
 
-  async *listAll(params?: PaginationParams, options?: RequestOptions) {
-    yield* this.paginate(this.basePath, params, options);
+  async *listAll(
+    params?: PaginationParams,
+    options?: RequestOptions,
+  ): AsyncGenerator<SemanticSearchDefDetailRepresentation, void, undefined> {
+    yield* this.paginate<SemanticSearchDefDetailRepresentation>(this.basePath, params, options);
   }
 
   async get(apiNameOrId: string, options?: RequestOptions): Promise<SemanticSearchDefDetailRepresentation> {

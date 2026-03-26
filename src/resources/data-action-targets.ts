@@ -17,8 +17,11 @@ export class DataActionTargetsService extends BaseResource {
     });
   }
 
-  async *listAll(params?: PaginationParams, options?: RequestOptions) {
-    yield* this.paginate(this.basePath, params, options);
+  async *listAll(
+    params?: PaginationParams,
+    options?: RequestOptions,
+  ): AsyncGenerator<CdpDataActionTargetOutputRepresentation, void, undefined> {
+    yield* this.paginate<CdpDataActionTargetOutputRepresentation>(this.basePath, params, options);
   }
 
   async get(apiName: string, options?: RequestOptions): Promise<CdpDataActionTargetOutputRepresentation> {

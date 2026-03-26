@@ -1,6 +1,7 @@
 import { BaseResource } from "./base-resource.js";
 import type { PaginationParams, RequestOptions } from "../core/types.js";
 import type {
+  CdpDataKitOutputRepresentation,
   DataKitAsyncRepresentation,
   DataKitComponentDependencyCollectionRepresentation,
   DataKitComponentDeploymentStatusRepresentation,
@@ -17,8 +18,11 @@ export class DataKitsService extends BaseResource {
     });
   }
 
-  async *listAll(params?: PaginationParams, options?: RequestOptions) {
-    yield* this.paginate(this.basePath, params, options);
+  async *listAll(
+    params?: PaginationParams,
+    options?: RequestOptions,
+  ): AsyncGenerator<CdpDataKitOutputRepresentation, void, undefined> {
+    yield* this.paginate<CdpDataKitOutputRepresentation>(this.basePath, params, options);
   }
 
   async undeploy(dataKitName: string, body: DataKitUnDeployInputRepresentation, options?: RequestOptions): Promise<DataKitAsyncRepresentation> {

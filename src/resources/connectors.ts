@@ -1,6 +1,7 @@
 import { BaseResource } from "./base-resource.js";
 import type { PaginationParams, RequestOptions } from "../core/types.js";
 import type {
+  ConnectorInfoRepresentation,
   ConnectorInfoCollectionRepresentation,
   ConnectorMetadataRepresentation,
 } from "../schemas.js";
@@ -15,8 +16,11 @@ export class ConnectorsService extends BaseResource {
     });
   }
 
-  async *listAll(params?: PaginationParams, options?: RequestOptions) {
-    yield* this.paginate(this.basePath, params, options);
+  async *listAll(
+    params?: PaginationParams,
+    options?: RequestOptions,
+  ): AsyncGenerator<ConnectorInfoRepresentation, void, undefined> {
+    yield* this.paginate<ConnectorInfoRepresentation>(this.basePath, params, options);
   }
 
   async get(connectorType: string, options?: RequestOptions): Promise<ConnectorMetadataRepresentation> {

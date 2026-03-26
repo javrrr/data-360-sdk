@@ -37,8 +37,15 @@ export class DataStreamsService extends BaseResource {
     });
   }
 
-  async *listAll(params?: PaginationParams, options?: RequestOptions) {
-    yield* this.paginate(this.basePath, { ...params, pageSizeParam: "limit" }, options);
+  async *listAll(
+    params?: PaginationParams,
+    options?: RequestOptions,
+  ): AsyncGenerator<DataStreamRepresentation, void, undefined> {
+    yield* this.paginate<DataStreamRepresentation>(
+      this.basePath,
+      { ...params, pageSizeParam: "limit" },
+      options,
+    );
   }
 
   async create(body: DataStreamCreateInput, options?: RequestOptions): Promise<DataStreamRepresentation> {

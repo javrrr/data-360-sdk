@@ -21,8 +21,15 @@ export class DataSpacesService extends BaseResource {
     });
   }
 
-  async *listAll(params?: PaginationParams, options?: RequestOptions) {
-    yield* this.paginate(this.basePath, { ...params, pageSizeParam: "limit" }, options);
+  async *listAll(
+    params?: PaginationParams,
+    options?: RequestOptions,
+  ): AsyncGenerator<DataSpaceInfoRepresentation, void, undefined> {
+    yield* this.paginate<DataSpaceInfoRepresentation>(
+      this.basePath,
+      { ...params, pageSizeParam: "limit" },
+      options,
+    );
   }
 
   async get(idOrName: string, options?: RequestOptions): Promise<DataSpaceInfoRepresentation> {
