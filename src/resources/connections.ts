@@ -5,6 +5,7 @@ import type {
   ConnectionCommandActionInputRepresentation,
   ConnectionCommandActionRepresentation,
   ConnectionCommandExistingActionInputRepresentation,
+  ConnectionCreateInput,
   ConnectionDatabaseCollectionRepresentation,
   ConnectionDbSchemaCollectionInputRepresentation,
   ConnectionDbSchemaCollectionRepresentation,
@@ -24,6 +25,7 @@ import type {
   ConnectionSitemapRepresentation,
   ConnectionTestActionRepresentation,
   ConnectionTestInputRepresentation,
+  ConnectionUpdateInput,
 } from "../schemas.js";
 
 export class ConnectionsService extends BaseResource {
@@ -55,13 +57,13 @@ export class ConnectionsService extends BaseResource {
     );
   }
 
-  async create(body: ConnectionInputRepresentation, options?: RequestOptions): Promise<ConnectionRepresentation> {
+  async create(body: ConnectionCreateInput | ConnectionInputRepresentation, options?: RequestOptions): Promise<ConnectionRepresentation> {
     return this.httpClient.post(this.basePath, body, options);
   }
 
   async update(
     id: string,
-    body: ConnectionPatchInputRepresentation,
+    body: ConnectionUpdateInput | ConnectionPatchInputRepresentation,
     options?: RequestOptions,
   ): Promise<ConnectionRepresentation> {
     return this.httpClient.patch(
@@ -126,7 +128,7 @@ export class ConnectionsService extends BaseResource {
     );
   }
 
-  async put(connectionId: string, body: ConnectionInputRepresentation, options?: RequestOptions): Promise<ConnectionRepresentation> {
+  async put(connectionId: string, body: ConnectionCreateInput | ConnectionInputRepresentation, options?: RequestOptions): Promise<ConnectionRepresentation> {
     return this.httpClient.put(`${this.basePath}/${encodeURIComponent(connectionId)}`, body, options);
   }
 

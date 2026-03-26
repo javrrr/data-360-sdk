@@ -1,0 +1,252 @@
+# Type Generation
+
+The `generate-types.ts` script produces TypeScript types from the [Data 360 Connect API OpenAPI spec](https://developer.salesforce.com/static/datacloud/connectapi/spec/cdp-connect-api-Swagger.yaml). It is the single source of truth for all generated type artifacts in the SDK.
+
+```
+npm run generate
+```
+
+## Output files
+
+| File | Contents | Editable? |
+|---|---|---|
+| `src/generated/openapi.d.ts` | Raw types produced by `openapi-typescript` with post-processing fixes | No |
+| `src/schemas.ts` | Flattened schema re-exports, enum types, schema overrides, and discriminated union types | No |
+
+Both files carry an "Auto-generated — DO NOT EDIT" header. Any manual edits will be overwritten on the next generation run.
+
+## Pipeline overview
+
+The generator runs through five steps:
+
+1. **Fetch and verify the spec** — downloads the YAML spec and checks its SHA-256 hash against `SPEC_SHA256`. If the hash doesn't match, generation fails immediately. This prevents non-deterministic diffs when the upstream spec changes without an explicit update PR.
+
+2. **Generate raw types** — feeds the parsed spec to `openapi-typescript`, then applies the empty-abstract-input-base normalization (see below).
+
+3. **Extract enum types** — walks every schema property looking for `type: string` + `enum` combinations. Each is emitted as a named string-literal union type. Naming convention: strip `Representation`/`InputRepresentation` suffix from the schema name, PascalCase the property name, and concatenate. Deduplication keeps the superset when multiple schemas produce the same enum name.
+
+4. **Flatten schemas, apply overrides, and generate discriminated unions** — walks `allOf` chains to produce flat object types (see "Schema flattening"), patches spec bugs via `SCHEMA_OVERRIDES`, validates `DISCRIMINATED_UNIONS` against the spec, and emits strict TypeScript discriminated union types.
+
+5. **Write `schemas.ts`** — assembles flattened schema re-exports, enum types, and discriminated union types into a single file.
+
+## Spec hash pinning
+
+The spec is pinned by SHA-256 hash (`SPEC_SHA256` constant). When the upstream spec changes:
+
+1. Run `npm run generate` — it will fail and print the new hash.
+2. Review the spec diff to understand what changed.
+3. Update `SPEC_SHA256` to the new hash.
+4. Run `npm run generate` again — if any post-processing configs are stale, the generator will error or warn (see sections below).
+5. Commit the hash update and regenerated files together in a dedicated update PR.
+
+## Post-processing: empty abstract input bases
+
+`openapi-typescript` emits empty object schemas as `Record<string, never>`. This is correct for leaf types, but becomes a problem for abstract base schemas used in `allOf` input models: `Record<string, never> & { ... }` is contradictory (no keys allowed, but keys required).
+
+The `EMPTY_ABSTRACT_INPUT_BASES` set lists schemas where `Record<string, never>` should be replaced with `{}`. This is applied as a regex post-processing pass on the raw generated output.
+
+**Current members:**
+
+- `ConnectorDetailsConfig`
+- `ConnectorPatchDetailsConfig`
+- `CdpDataKitDeployComponentConfig`
+- `CdpDataKitDeployBundleConfig`
+- `FormulaParametersInputRepresentation`
+
+**When to update:** if a new empty abstract schema appears in the spec and its subtypes produce type errors due to `Record<string, never>` intersections, add it to the set.
+
+## Schema flattening
+
+Schemas that use `allOf` inheritance produce deeply nested intersection types (e.g., `CdpObjectBaseInputRepresentation & DataObjectInputRepresentation & { ... }`). TypeScript displays these intersections verbatim in IntelliSense hovers and error messages, making them hard to read.
+
+The generator resolves this by walking `allOf` chains at generation time and emitting pre-flattened object types. For example, instead of:
+
+```ts
+export type DataLakeObjectInputRepresentation = Schemas["DataLakeObjectInputRepresentation"];
+// Hover shows: CdpObjectBaseInputRepresentation & { category?: ... } & { category: ...; dataspaceInfo: ... }
+```
+
+The generator emits:
+
+```ts
+export type DataLakeObjectInputRepresentation = {
+  dataSpaceName?: string;
+  description?: string;
+  label: string;
+  name: string;
+  category: "Engagement" | "Other" | "Profile";
+  dataspaceInfo: Schemas["DataSpaceInputRepresentation"][];
+  // ... all properties visible at a glance
+}
+```
+
+**What gets flattened:**
+
+- All schemas with simple `allOf` chains (no `oneOf` inside `allOf`) — currently ~330 schemas
+- Schemas listed in `SCHEMA_OVERRIDES`, even if they don't use `allOf` (forced flattening so overrides can be applied cleanly)
+
+**What doesn't get flattened:**
+
+- Schemas with `oneOf` inside `allOf` (complex polymorphic types) — these are handled by discriminated unions instead
+- Plain schemas without `allOf` and without overrides — already flat via `Schemas["X"]`
+
+**Enum intersection behavior:** when both a parent and child in an `allOf` chain define an enum for the same property, TypeScript intersection semantics narrow to the common values. The flattener matches this behavior to stay structurally compatible with the raw generated types.
+
+## Schema overrides
+
+The `SCHEMA_OVERRIDES` config in `generate-types.ts` patches spec bugs where the OpenAPI definition doesn't match the actual API behavior. Overrides are applied on top of the flattened schema properties.
+
+### Config structure
+
+```ts
+const SCHEMA_OVERRIDES: Record<string, SchemaOverride> = {
+  DataStreamInputRepresentation: {
+    note: "Why this override exists (emitted as JSDoc)",
+    makeOptional: ["mappings", "sourceFields"],
+    fieldTypes: {
+      dataLakeObjectInfo: "DataLakeObjectInputRepresentation | DataLakeObjectInputRepresentation[]",
+    },
+  },
+};
+```
+
+| Field | Purpose |
+|---|---|
+| `note` | Reason for the override. Emitted as a `@override` JSDoc comment in the generated output. |
+| `makeOptional` | Fields to relax from required to optional. Use when the spec marks a field as required but the API accepts payloads without it. |
+| `fieldTypes` | Fields whose type should be replaced. Values are TypeScript type expressions using names from `schemas.ts` (not `Schemas["..."]`), so error messages show the flattened types. |
+
+### Current overrides
+
+**`DataStreamInputRepresentation`**
+- `mappings`, `sourceFields` made optional — spec marks them required but the API does not require them for all connector types (e.g., IngestAPI data streams).
+- `dataLakeObjectInfo` type changed to `DataLakeObjectInputRepresentation | DataLakeObjectInputRepresentation[]` — spec declares array-only but the API accepts a single object.
+
+**`DataLakeObjectInputRepresentation`**
+- `recordModifiedFieldName`, `orgUnitIdentifierFieldName` made optional — spec marks them required but the API does not require them for all DLO types.
+
+### Validation
+
+Every override is validated at generation time: if the overridden schema is removed from the spec, generation fails with a clear error so stale overrides don't silently persist.
+
+### How to add a new override
+
+1. Add an entry to `SCHEMA_OVERRIDES` with a `note` explaining the spec bug.
+2. Use `makeOptional` to relax required fields, `fieldTypes` to change a field's type.
+3. Run `npm run generate` and `npm run typecheck`.
+
+## Discriminated unions
+
+The OpenAPI spec uses `oneOf` to model polymorphic input types, but doesn't always include formal `discriminator` mappings. `openapi-typescript` emits these as broad unions with `connectorType: string`, so TypeScript can't narrow the associated detail/subtype shape when a specific connector type is checked.
+
+The generator fixes this by emitting strict discriminated union types where each branch pairs a literal `connectorType` value with its corresponding schema.
+
+### Config structure
+
+The `DISCRIMINATED_UNIONS` array in `generate-types.ts` defines two kinds of config:
+
+**`property` kind** — a property's `oneOf` is narrowed by a sibling discriminator property.
+
+```ts
+{
+  kind: "property",
+  exportName: "DataStreamConnectorInput",
+  sourceSchema: "ConnectorInputRepresentation",
+  discriminatorProp: "connectorType",      // the narrowing field
+  discriminatedProp: "connectorDetails",   // the field whose type varies
+  mapping: {
+    "DataConnector": "DataConnectorDetailsConfig",
+    "IngestApi": "IngestApiConnectorDetailsConfig",
+    // ...
+  },
+}
+```
+
+Generated output:
+
+```ts
+export type DataStreamConnectorInput =
+    { connectorType: "DataConnector"; connectorDetails: Schemas["DataConnectorDetailsConfig"] }
+  | { connectorType: "IngestApi"; connectorDetails: Schemas["IngestApiConnectorDetailsConfig"] }
+  | ...;
+```
+
+**`schema` kind** — the schema's `oneOf` lists subtypes that share common base properties and add extensions. The generator reads base properties and per-subtype extension properties directly from the spec YAML and emits flat object types.
+
+```ts
+{
+  kind: "schema",
+  exportName: "ConnectionCreateInput",
+  sourceSchema: "ConnectionInputRepresentation",
+  discriminatorProp: "connectorType",
+  mapping: {
+    "IngestApi": "IngestApiConnectionInputRepresentation",
+    "SalesforceDotCom": "CrmConnectionInputRepresentation",
+    "Snowflake": "DataConnectionInputRepresentation",
+    // ...
+  },
+}
+```
+
+Generated output:
+
+```ts
+export type ConnectionCreateInput =
+    Simplify<{ connectorType: "IngestApi"; label: string; name?: string }>
+  | Simplify<{ connectorType: "SalesforceDotCom"; label: string; name?: string; organizationId: string }>
+  | Simplify<{ connectorType: "Snowflake" | "Databricks" | ...; label: string; name?: string; credentials: ...; method: ...; parameters: ... }>
+  | ...;
+```
+
+When multiple discriminator literals map to the same target schema (e.g., all DCF data connectors use `DataConnectionInputRepresentation`), they are grouped into a single branch with a union literal type.
+
+### Validation
+
+At generation time, every config entry is validated against the spec:
+
+| Check | Severity | Trigger |
+|---|---|---|
+| Source schema missing | Hard error | Schema renamed or removed in spec |
+| Mapping target schema missing | Hard error | Subtype schema renamed or removed in spec |
+| Mapping target not in spec's `oneOf` | Hard error | `property` kind only — target not a valid `oneOf` member |
+| Spec `oneOf` entry not covered by any mapping | Warning | New subtype added to spec but not yet mapped |
+
+Warnings do not fail the build. Consumers can use the raw generated types as an escape hatch until the mapping is updated.
+
+### Spec update behavior
+
+| Spec change | Effect |
+|---|---|
+| Mapped schema renamed or removed | Generation **fails** with a hard error naming the missing schema |
+| New subtype added to a `oneOf` | Generation **warns** — existing types still compile; consumers use the raw type as escape hatch until the mapping is updated |
+| Property added/removed on a base or extension schema | **Automatically picked up** — properties are read from the spec YAML, not hand-maintained |
+| Spec hash changes | Generation **fails** — forces review before accepting a new spec version (update `SPEC_SHA256`) |
+
+### How to add a new connector type
+
+1. Update `SPEC_SHA256` if the spec changed.
+2. Add the new literal-to-schema entry in the appropriate `mapping` object inside `DISCRIMINATED_UNIONS`.
+3. Run `npm run generate` and confirm no errors or warnings.
+4. Run `npm run typecheck` to verify downstream consumers compile.
+
+### Escape hatches
+
+Service method signatures accept both the strict discriminated union and the raw generated type:
+
+```ts
+async create(body: ConnectionCreateInput | ConnectionInputRepresentation, ...)
+```
+
+This lets consumers pass unknown or future connector types without waiting for a mapping update.
+
+## Type tests
+
+`scripts/type-tests.ts` contains compile-time assertions that verify the generated types work as expected. It is included in `npm run typecheck` via tsconfig includes (it is not a runtime test). It covers:
+
+- Empty abstract input base intersections compile without contradiction
+- Schema override behavior (e.g., `DataStreamInputRepresentation` accepts single DLO, optional fields are assignable without values)
+- Discriminated union narrowing (checking `connectorType` narrows `connectorDetails`)
+- Service-level composed types (`DataStreamCreateInput`) accept both discriminated and raw connector inputs
+- Connection create/update inputs accept the correct properties for each connector type
+
+When adding new overrides or discriminated union configs, add corresponding assertions here.

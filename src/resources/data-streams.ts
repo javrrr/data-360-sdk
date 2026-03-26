@@ -1,9 +1,11 @@
 import { BaseResource } from "./base-resource.js";
+import type { Simplify } from "../utils/type-helpers.js";
 import type { PaginationParams, RequestOptions } from "../core/types.js";
 import type {
-  DataLakeObjectInputRepresentation,
+  ConnectorInputRepresentation,
   DataStreamActionResponseRepresentation,
   DataStreamCollectionRepresentation,
+  DataStreamConnectorInput,
   DataStreamDetailedRepresentation,
   DataStreamInputRepresentation,
   DataStreamPatchInputRepresentation,
@@ -11,12 +13,19 @@ import type {
 } from "../schemas.js";
 
 /**
- * Runtime accepts either a single DLO object or an array for create payloads.
- * The generated OpenAPI type currently models this field as array-only.
+ * Developer-friendly create input for data streams.
+ *
+ * - `connectorInfo` uses a discriminated union so `connectorType` narrows `connectorDetails`.
+ *   For unknown / future connector types, pass `ConnectorInputRepresentation` directly.
+ * - `dataLakeObjectInfo` accepts a single DLO object or an array (inherited from the
+ *   overridden `DataStreamInputRepresentation`).
+ * - Wrapped in `Simplify` for readable IntelliSense hovers.
  */
-export type DataStreamCreateInput = Omit<DataStreamInputRepresentation, "dataLakeObjectInfo"> & {
-  dataLakeObjectInfo: DataLakeObjectInputRepresentation | DataLakeObjectInputRepresentation[];
-};
+export type DataStreamCreateInput = Simplify<
+  Omit<DataStreamInputRepresentation, "connectorInfo"> & {
+    connectorInfo: DataStreamConnectorInput | ConnectorInputRepresentation;
+  }
+>;
 
 export class DataStreamsService extends BaseResource {
   protected readonly basePath = "/ssot/data-streams";

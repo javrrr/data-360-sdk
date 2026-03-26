@@ -809,6 +809,17 @@ export type paths = {
                      *     **Available Version:** 64.0
                      */
                     offset?: number;
+                    /**
+                     * @description Order in which to sort the results based on the `createdDate`
+                     *     field. Specify the field name followed by `asc` for ascending
+                     *     order or `desc` for descending order. If you specify only the
+                     *     field name or omit the parameter, results are sorted in
+                     *     ascending order. For example, `createdDate asc` and
+                     *     `createdDate` yield the same results.
+                     *
+                     *     **Available Version:** 64.0
+                     */
+                    orderBy?: string;
                 };
                 header?: never;
                 path?: never;
@@ -9559,6 +9570,99 @@ export type paths = {
         patch?: never;
         trace?: never;
     };
+    "/ssot/metadata-entities": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get metadata entities
+         * @description Get a list of metadata entities. This endpoint provides a high-performance way to retrieve metadata for Data 360 entities. By returning only essential fields like name, type, and category, it allows you to efficiently view entities at scale. Request detailed field and relationship data only for the specific objects you need.
+         *
+         *     **Available Version:** 66.0
+         */
+        get: {
+            parameters: {
+                query?: {
+                    /**
+                     * @description Name of the data space in which the metadata is requested.
+                     *
+                     *     **Available Version:** 66.0
+                     */
+                    dataspace?: string;
+                    /**
+                     * @description Category of the metadata entity. If unspecified, all categories are returned. Supported values are:
+                     *     - `Activation_Audience`
+                     *     - `CG_Audience`
+                     *     - `Content`
+                     *     - `Directory_Table`
+                     *     - `Engagement`
+                     *     - `Profile`
+                     *     - `Related`
+                     *     - `Segment_Membership`
+                     *     - `Vector_Embedding`
+                     *
+                     *     **Available Version:** 66.0
+                     */
+                    entityCategory?: string;
+                    /**
+                     * @description Type of metadata entity. If unspecified, all types are returned. Supported values are:
+                     *     - `CalculatedInsight`
+                     *     - `DataLakeObject`
+                     *     - `DataModelObject`
+                     *
+                     *     **Available Version:** 66.0
+                     */
+                    entityType?: string;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["CdpQueryMetadataEntitiesOutputRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Metadata entities not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/ssot/private-network-routes": {
         parameters: {
             query?: never;
@@ -10656,7 +10760,7 @@ export type paths = {
                      */
                     dataspace?: string;
                     /**
-                     * @description Enter a description of the scenario that your query is used in. We'll add the workload name to log files to help when debugging.
+                     * @description Description of the scenario that your query is used in. The workload name is added to the log files to help when debugging.
                      *
                      *     **Available Version:** 63.0
                      */
@@ -10695,7 +10799,7 @@ export type paths = {
             header?: never;
             path: {
                 /**
-                 * @description The ID of the query to return status for, for example `MTAuMjIuMTQ4LjE4MTo3NDg0%2F9c77528b-78b5-a08d-f443-c05dcb8305b7`. They query's ID was returned in the POST request's `queryID` response parameter.
+                 * @description ID of the query to return status for, for example, `MTAuMjIuMTQ4LjE4MTo3NDg0%2F9c77528b-78b5-a08d-f443-c05dcb8305b7`. The query's ID was returned in the POST request's `queryID` response parameter.
                  *
                  *     **Available Version:** 63.0
                  */
@@ -10722,14 +10826,14 @@ export type paths = {
                      */
                     dataspace?: string;
                     /**
-                     * @description The number of milliseconds to wait before returning the status. If unspecified, returns the status immediately.
+                     * @description Number of milliseconds to wait before returning the status. If unspecified, returns the status immediately.
                      *     Maximum allowed value is 10,000 (10 seconds).
                      *
                      *     **Available Version:** 63.0
                      */
                     waitTimeMs?: number;
                     /**
-                     * @description Enter a description of the scenario that your query is used in. We'll add the workload name to log files to help when debugging.
+                     * @description Description of the scenario that your query is used in. The workload name is added to the log files to help when debugging.
                      *
                      *     **Available Version:** 63.0
                      */
@@ -10738,7 +10842,7 @@ export type paths = {
                 header?: never;
                 path: {
                     /**
-                     * @description The ID of the query to return status for, for example `MTAuMjIuMTQ4LjE4MTo3NDg0%2F9c77528b-78b5-a08d-f443-c05dcb8305b7`. They query's ID was returned in the POST request's `queryID` response parameter.
+                     * @description ID of the query to return status for, for example, `MTAuMjIuMTQ4LjE4MTo3NDg0%2F9c77528b-78b5-a08d-f443-c05dcb8305b7`. The query's ID was returned in the POST request's `queryID` response parameter.
                      *
                      *     **Available Version:** 63.0
                      */
@@ -10777,7 +10881,7 @@ export type paths = {
                      */
                     dataspace?: string;
                     /**
-                     * @description Enter a description of the scenario that your query is used in. We'll add the workload name to log files to help when debugging.
+                     * @description Description of the scenario that your query is used in. The workload name is added to the log files to help when debugging.
                      *
                      *     **Available Version:** 63.0
                      */
@@ -10786,7 +10890,7 @@ export type paths = {
                 header?: never;
                 path: {
                     /**
-                     * @description The ID of the query to return status for, for example `MTAuMjIuMTQ4LjE4MTo3NDg0%2F9c77528b-78b5-a08d-f443-c05dcb8305b7`. They query's ID was returned in the POST request's `queryID` response parameter.
+                     * @description ID of the query to return status for, for example, `MTAuMjIuMTQ4LjE4MTo3NDg0%2F9c77528b-78b5-a08d-f443-c05dcb8305b7`. The query's ID was returned in the POST request's `queryID` response parameter.
                      *
                      *     **Available Version:** 63.0
                      */
@@ -10816,7 +10920,7 @@ export type paths = {
             header?: never;
             path: {
                 /**
-                 * @description The ID of the query to return status for, for example `MTAuMjIuMTQ4LjE4MTo3NDg0%2F9c77528b-78b5-a08d-f443-c05dcb8305b7`. They query's ID was returned in the POST request's `queryID` response parameter.
+                 * @description ID of the query to return status for, for example, `MTAuMjIuMTQ4LjE4MTo3NDg0%2F9c77528b-78b5-a08d-f443-c05dcb8305b7`. The query's ID was returned in the POST request's `queryID` response parameter.
                  *
                  *     **Available Version:** 63.0
                  */
@@ -10859,7 +10963,7 @@ export type paths = {
                      */
                     rowLimit?: number;
                     /**
-                     * @description Enter a description of the scenario that your query is used in. We'll add the workload name to log files to help when debugging.
+                     * @description Description of the scenario that your query is used in. The workload name is added to the log files to help when debugging.
                      *
                      *     **Available Version:** 63.0
                      */
@@ -10868,7 +10972,7 @@ export type paths = {
                 header?: never;
                 path: {
                     /**
-                     * @description The ID of the query to return status for, for example `MTAuMjIuMTQ4LjE4MTo3NDg0%2F9c77528b-78b5-a08d-f443-c05dcb8305b7`. They query's ID was returned in the POST request's `queryID` response parameter.
+                     * @description ID of the query to return status for, for example, `MTAuMjIuMTQ4LjE4MTo3NDg0%2F9c77528b-78b5-a08d-f443-c05dcb8305b7`. The query's ID was returned in the POST request's `queryID` response parameter.
                      *
                      *     **Available Version:** 63.0
                      */
@@ -10928,6 +11032,27 @@ export type paths = {
                         "application/json": components["schemas"]["SemanticSearchDefDetailsRepresentation"];
                     };
                 };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description User does not have permission to access. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unprocessable entity. */
+                422: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
             };
         };
         put?: never;
@@ -10958,6 +11083,27 @@ export type paths = {
                     content: {
                         "application/json": components["schemas"]["SemanticSearchRepresentation"];
                     };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description User does not have permission to access. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unprocessable entity. */
+                422: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
                 };
             };
         };
@@ -11053,6 +11199,27 @@ export type paths = {
                         "application/json": components["schemas"]["SemanticSearchDefDetailRepresentation"];
                     };
                 };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description User does not have permission to access. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unprocessable entity. */
+                422: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
             };
         };
         put?: never;
@@ -11124,6 +11291,27 @@ export type paths = {
                     content: {
                         "application/json": components["schemas"]["SemanticSearchRepresentation"];
                     };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description User does not have permission to access. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unprocessable entity. */
+                422: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
                 };
             };
         };
@@ -21229,14 +21417,14 @@ export type components = {
          */
         AccountEngagementConnectionInputRepresentation: components["schemas"]["ConnectionInputRepresentation"] & {
             /**
-             * @description Data Stream Type of the Account Engagement connector.
+             * @description Type of data stream of the Account Engagement connector.
              *
              *     **Available Version:** 64.0
              * @enum {string}
              */
             dataStreamType: "EmailActivity" | "FormActivity" | "WebPageActivity";
             /**
-             * @description Pardot Tenant ID of the Account Engagement connector.
+             * @description Pardot tenant ID of the Account Engagement connector.
              *
              *     **Available Version:** 64.0
              */
@@ -22194,7 +22382,7 @@ export type components = {
              *     **Available Version:** 61.0
              * @enum {string}
              */
-            dataStreamType?: "ConnectorFramework" | "Events" | "External" | "IngestAPI" | "Mc" | "Mcde" | "Sfdc";
+            dataStreamType?: "AccountEngagement" | "Azure_Blob" | "Commerce_Bundle" | "Commerce_Data_Kit" | "ConnectorFramework" | "Cs" | "Events" | "Events_Package" | "External" | "FileUpload" | "Google_Cloud_Storage" | "IngestAPI" | "IngestAPI_Package" | "Mc" | "Mcde" | "Mcis" | "Package" | "PackageNDataKit" | "S3" | "S3_Arn" | "Sfdc" | "Sfdc_Bundle" | "Sfdc_Package_Kit" | "Sftp";
             /**
              * Format: int64
              * @description Number of rows added in the most recent ingestion run.
@@ -23084,13 +23272,31 @@ export type components = {
              *
              *     **Available Version:** 60.0
              */
-            datasource: string;
+            datasource?: string;
             /**
-             * @description Type of data stream. For example, `S3`, `Events`, `Azure`, `SFTP`, `SFDC_PACKAGE_KIT`, `SFDC_BUNDLE`, `INGESTAPI`, `CONNECTORSFRAMEWORK`, etc.
+             * @description Type of data stream. Possible values include:
+             *     - `AZURE`
+             *     - `COMMERCE_CLOUD-S3`
+             *     - `CONNECTORSFRAMEWORK`
+             *     - `CRM-S3`
+             *     - `DATA_CONNECTORS`
+             *     - `DATA_CONNECTORS_STREAMING`
+             *     - `DFU-BUNDLE`
+             *     - `DFU-DE`
+             *     - `EVENTS`
+             *     - `GCS`
+             *     - `INGEST_API`
+             *     - `MCIS`
+             *     - `S3`
+             *     - `SFDC`
+             *     - `SFDC_BUNDLE`
+             *     - `SFDC_PACKAGE_KIT`
+             *     - `SFTP`
+             *     - `SLACK`
              *
              *     **Available Version:** 60.0
              */
-            datastreamType: string;
+            datastreamType?: string;
             /**
              * @description Information about a DLO that you want to reuse for the deployment. Either `dataLakeObjectInfo` or `existingDataLakeObjectInfo` can be present.
              *
@@ -23164,7 +23370,25 @@ export type components = {
              */
             dataLakeObjectInfo: Record<string, never>[];
             /**
-             * @description Type of data stream.
+             * @description Type of data stream. Possible values include:
+             *     - `AZURE`
+             *     - `COMMERCE_CLOUD-S3`
+             *     - `CONNECTORSFRAMEWORK`
+             *     - `CRM-S3`
+             *     - `DATA_CONNECTORS`
+             *     - `DATA_CONNECTORS_STREAMING`
+             *     - `DFU-BUNDLE`
+             *     - `DFU-DE`
+             *     - `EVENTS`
+             *     - `GCS`
+             *     - `INGEST_API`
+             *     - `MCIS`
+             *     - `S3`
+             *     - `SFDC`
+             *     - `SFDC_BUNDLE`
+             *     - `SFDC_PACKAGE_KIT`
+             *     - `SFTP`
+             *     - `SLACK`
              *
              *     **Available Version:** 60.0
              */
@@ -24495,6 +24719,86 @@ export type components = {
              *     **Available Version:** 52.0
              */
             metadata: Record<string, never>[];
+        };
+        /**
+         * Query Metadata Entities Output
+         * @description Represents a list of metadata entities.
+         */
+        CdpQueryMetadataEntitiesOutputRepresentation: {
+            /**
+             * @description Indicates whether all metadata entities have been retrieved (`true`) or not (`false`).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            done?: boolean;
+            /**
+             * @description List of metadata entities.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            metadata?: components["schemas"]["CdpQueryMetadataEntityOutputRepresentation"][];
+            /**
+             * @description ID for the next batch of metadata entities.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            nextBatchId?: string;
+        };
+        /**
+         * Query Metadata Entity Output
+         * @description Represents a metadata entity.
+         */
+        CdpQueryMetadataEntityOutputRepresentation: {
+            /**
+             * @description Category of the metadata entity. Supported values are:
+             *     - `Activation_Audience`
+             *     - `CG_Audience`
+             *     - `Content`
+             *     - `Directory_Table`
+             *     - `Engagement`
+             *     - `Profile`
+             *     - `Related`
+             *     - `Segment_Membership`
+             *     - `Vector_Embedding`
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            category?: string;
+            /**
+             * @description Display name of the entity.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            displayName?: string;
+            /**
+             * @description Name of the entity.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            name?: string;
+            /**
+             * @description Type of metadata entity. Supported values are:
+             *     - `CalculatedInsight`
+             *     - `DataLakeObject`
+             *     - `DataModelObject`
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            type?: string;
         };
         /**
          * Query Output
@@ -30930,7 +31234,7 @@ export type components = {
              */
             rowLimit?: number;
             /**
-             * @description The SQL expression.
+             * @description SQL expression.
              *
              *     **Available Version:** 63.0
              */
@@ -30990,7 +31294,7 @@ export type components = {
              */
             progress: number;
             /**
-             * @description The `queryId` of the query for which status information is returned.
+             * @description ID of the query for which status information is returned.
              *
              *     **Filter Group:** Small
              *
@@ -30999,7 +31303,7 @@ export type components = {
             queryId: string;
             /**
              * Format: int64
-             * @description The number of rows available for extraction.
+             * @description Number of rows available for extraction.
              *
              *     **Filter Group:** Small
              *
@@ -31778,6 +32082,12 @@ export type components = {
              */
             developerName: string;
             /**
+             * @description Index configuration for the semantic search record.
+             *
+             *     **Available Version:** 64.0
+             */
+            indexConfiguration?: components["schemas"]["IndexConfigInputRepresentation"];
+            /**
              * @description Label of semantic search record to be created.
              *
              *     **Available Version:** 60.0
@@ -31849,6 +32159,89 @@ export type components = {
              *     **Available Version:** 60.0
              */
             vectorEmbeddingConfiguration: components["schemas"]["VectorEmbeddingConfigInputRepresentation"];
+        };
+        /**
+         * Index Config Input
+         * @description Represents the input for a semantic search index configuration.
+         */
+        IndexConfigInputRepresentation: {
+            /**
+             * @description Configuration of the fields for the `ContextFields__c` column of the Index DMO. Fields can come from source or related DMOs.
+             *
+             *     **Available Version:** 64.0
+             */
+            contextFieldConfiguration?: components["schemas"]["ContextFieldConfigurationInputRepresentation"][];
+            /**
+             * @description Configuration for the fields to be indexed as records. This configuration includes storage optimization, such as `TYPEAHEAD` or `STANDARD`. Fields can come from source or related DMOs.
+             *
+             *     **Available Version:** 64.0
+             */
+            recordFieldConfiguration?: components["schemas"]["RecordFieldConfigurationInputRepresentation"][];
+            /**
+             * @description Indicates whether the searchable fields are vectorized (`true`) or not (`false`).
+             *
+             *     **Available Version:** 64.0
+             */
+            shouldVectorizeSearchableFields?: boolean;
+        };
+        /**
+         * Context Field Configuration Input
+         * @description Represents the input for context field configurations.
+         */
+        ContextFieldConfigurationInputRepresentation: components["schemas"]["IndexFieldConfigurationInputRepresentation"] & Record<string, never>;
+        /**
+         * Record Field Configuration Input
+         * @description Represents the input for record field configurations.
+         */
+        RecordFieldConfigurationInputRepresentation: components["schemas"]["IndexFieldConfigurationInputRepresentation"] & {
+            /**
+             * @description List of tokenizations.
+             *
+             *     **Available Version:** 58.0
+             */
+            tokenizations?: components["schemas"]["TokenizationInputRepresentation"][];
+        };
+        /**
+         * Tokenization Input
+         * @description Represents the input for record field configuration tokenizations.
+         */
+        TokenizationInputRepresentation: {
+            /**
+             * @description Name of the tokenization, such as `TYPEAHEAD` or `STANDARD`.
+             *
+             *     **Available Version:** 64.0
+             */
+            name?: string;
+        };
+        /**
+         * Index Field Configuration Input
+         * @description Represents the input for index field configurations.
+         */
+        IndexFieldConfigurationInputRepresentation: {
+            /**
+             * @description Alias of the index field.
+             *
+             *     **Available Version:** 64.0
+             */
+            aliasName?: string;
+            /**
+             * @description Developer name of the DMO.
+             *
+             *     **Available Version:** 64.0
+             */
+            dmoDeveloperName?: string;
+            /**
+             * @description Developer name of the DMO field.
+             *
+             *     **Available Version:** 64.0
+             */
+            dmoFieldDeveloperName?: string;
+            /**
+             * @description Field relationship paths between the source DMO fields and target DMO fields.
+             *
+             *     **Available Version:** 64.0
+             */
+            relationships?: components["schemas"]["SourceTargetRelationshipInputRepresentation"][];
         };
         /**
          * Search Ranking Field Input
@@ -32226,6 +32619,22 @@ export type components = {
              */
             id: string;
             /**
+             * @description Index configuration for the semantic search record.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 64.0
+             */
+            indexConfiguration?: components["schemas"]["IndexConfigurationRepresentation"];
+            /**
+             * @description Date and time of the search index's last update.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 64.0
+             */
+            indexRefreshedOn?: string;
+            /**
              * @description The label.
              *
              *     **Filter Group:** Small
@@ -32337,6 +32746,107 @@ export type components = {
              *     **Available Version:** 60.0
              */
             version: string;
+        };
+        /**
+         * Index Configuration Output
+         * @description Represents the index configuration for a semantic search record.
+         */
+        IndexConfigurationRepresentation: {
+            /**
+             * @description Configuration of the fields for the `ContextFields__c` column of the Index DMO. Fields come from source or related DMOs.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 64.0
+             */
+            contextFieldConfiguration?: components["schemas"]["ContextFieldConfigurationRepresentation"][];
+            /**
+             * @description Configuration for the fields that are indexed as records. This configuration includes storage optimization, such as `TYPEAHEAD` or `STANDARD`. Fields come from source or related DMOs.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 64.0
+             */
+            recordFieldConfiguration?: components["schemas"]["RecordFieldConfigurationRepresentation"][];
+            /**
+             * @description Indicates whether the searchable fields are vectorized (`true`) or not (`false`).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 64.0
+             */
+            shouldVectorizeSearchableFields?: boolean;
+        };
+        /**
+         * Context Field Configuration Output
+         * @description Represents context field configurations.
+         */
+        ContextFieldConfigurationRepresentation: components["schemas"]["IndexFieldConfigurationRepresentation"] & Record<string, never>;
+        /**
+         * Record Field Configuration Output
+         * @description Represents record field configurations.
+         */
+        RecordFieldConfigurationRepresentation: components["schemas"]["IndexFieldConfigurationRepresentation"] & {
+            /**
+             * @description List of tokenizations.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 64.0
+             */
+            tokenizations?: components["schemas"]["TokenizationRepresentation"][];
+        };
+        /**
+         * Index Field Configuration Output
+         * @description Represents index field configurations.
+         */
+        IndexFieldConfigurationRepresentation: {
+            /**
+             * @description Alias of the index field.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 64.0
+             */
+            aliasName?: string;
+            /**
+             * @description Developer name of the DMO.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 64.0
+             */
+            dmoDeveloperName?: string;
+            /**
+             * @description Developer name of the DMO field.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 58.0
+             */
+            dmoFieldDeveloperName?: string;
+            /**
+             * @description Field relationship paths between the source DMO fields and target DMO fields.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 58.0
+             */
+            relationships?: components["schemas"]["FieldRelationshipsPathRepresentation"][];
+        };
+        /**
+         * Tokenization Output
+         * @description Represents record field configuration tokenizations.
+         */
+        TokenizationRepresentation: {
+            /**
+             * @description Name of the tokenization, such as `TYPEAHEAD` or `STANDARD`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 64.0
+             */
+            name?: string;
         };
         /**
          * Config Output
@@ -33143,6 +33653,12 @@ export type components = {
              *     **Available Version:** 61.0
              */
             relatedDmoName?: string;
+            /**
+             * @description Relationship cardinality between the source DMO field and target DMO field. For example, `OneToOne`, `ManyToOne`, or `OneToMany`.
+             *
+             *     **Available Version:** 64.0
+             */
+            relationshipCardinality?: string;
             /**
              * @description Field relationship paths.
              *

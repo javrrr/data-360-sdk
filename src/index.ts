@@ -31,6 +31,7 @@ export { paginate, collectAll } from "./core/pagination.js";
 
 // Type helpers
 export type {
+  Simplify,
   Schema,
   ResponseBody,
   RequestBody,
@@ -41,7 +42,7 @@ export type {
 // Generated types (raw)
 export type { paths, components, operations } from "./generated/openapi.js";
 
-// All 727 named schema types — discoverable via autocomplete
+// All named schema types + discriminated unions — discoverable via autocomplete
 export type * from "./schemas.js";
 
 // Resource services (for advanced usage / extension)
