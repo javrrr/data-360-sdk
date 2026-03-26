@@ -2,14 +2,14 @@
 /**
  * Generates TypeScript types from the Data 360 Connect API OpenAPI spec.
  *
- * Produces two files:
- *   1. src/generated/openapi.d.ts  — full generated types (paths, components, operations)
- *   2. src/schemas.ts              — named re-exports, enum types, and discriminated unions
+ * Produces three files:
+ *   1. src/generated/openapi.yaml  — the fetched spec (committed for easy diffing)
+ *   2. src/generated/openapi.d.ts  — full generated types (paths, components, operations)
+ *   3. src/schemas.ts              — named re-exports, enum types, and discriminated unions
  *
  * Usage: npm run generate
  */
 import fs from "node:fs";
-import crypto from "node:crypto";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { parse } from "yaml";
@@ -19,7 +19,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
 const SPEC_URL =
   "https://developer.salesforce.com/static/datacloud/connectapi/spec/cdp-connect-api-Swagger.yaml";
-const SPEC_SHA256 = "2fb95c3a15aecc0889b8b36d30e7cf42bafa61718c28ae3c2c3c5da90149fa41";
+const SPEC_OUTPUT = path.resolve(ROOT, "src/generated/openapi.yaml");
 const OPENAPI_OUTPUT = path.resolve(ROOT, "src/generated/openapi.d.ts");
 const SCHEMAS_OUTPUT = path.resolve(ROOT, "src/schemas.ts");
 
@@ -604,25 +604,17 @@ function flattenProps(props: Record<string, FlatProp>): string {
 async function main() {
   console.log(`Fetching spec from: ${SPEC_URL}`);
 
-  // Step 1: Fetch the spec
+  // Step 1: Fetch the spec and save it to the repo for diffing
   const response = await fetch(SPEC_URL);
   if (!response.ok) {
     console.error(`Failed to fetch spec: ${response.status} ${response.statusText}`);
     process.exit(1);
   }
   const specYaml = await response.text();
-  const specHash = crypto.createHash("sha256").update(specYaml).digest("hex");
-  if (specHash !== SPEC_SHA256) {
-    console.error(
-      [
-        "Spec hash changed. This would cause non-deterministic generated diffs.",
-        `Expected: ${SPEC_SHA256}`,
-        `Received: ${specHash}`,
-        "If this is intentional, update SPEC_SHA256 and regenerate in a dedicated update PR.",
-      ].join("\n"),
-    );
-    process.exit(1);
-  }
+
+  fs.mkdirSync(path.dirname(SPEC_OUTPUT), { recursive: true });
+  fs.writeFileSync(SPEC_OUTPUT, specYaml);
+  console.log(`Saved spec to ${path.relative(ROOT, SPEC_OUTPUT)}`);
 
   const spec = parse(specYaml) as {
     components?: { schemas?: Record<string, SpecSchemaDef> };

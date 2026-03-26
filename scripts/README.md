@@ -10,16 +10,17 @@ npm run generate
 
 | File | Contents | Editable? |
 |---|---|---|
+| `src/generated/openapi.yaml` | The fetched OpenAPI spec, saved for diffing | No |
 | `src/generated/openapi.d.ts` | Raw types produced by `openapi-typescript` with post-processing fixes | No |
 | `src/schemas.ts` | Flattened schema re-exports, enum types, schema overrides, and discriminated union types | No |
 
-Both files carry an "Auto-generated — DO NOT EDIT" header. Any manual edits will be overwritten on the next generation run.
+All three files are overwritten on every generation run. When the upstream spec changes, `git diff src/generated/openapi.yaml` shows exactly what changed in the spec before you review the generated type diffs.
 
 ## Pipeline overview
 
 The generator runs through five steps:
 
-1. **Fetch and verify the spec** — downloads the YAML spec and checks its SHA-256 hash against `SPEC_SHA256`. If the hash doesn't match, generation fails immediately. This prevents non-deterministic diffs when the upstream spec changes without an explicit update PR.
+1. **Fetch and save the spec** — downloads the YAML spec and writes it to `src/generated/openapi.yaml`. This file is committed to the repo so that `git diff` shows exactly what changed in the spec between generation runs.
 
 2. **Generate raw types** — feeds the parsed spec to `openapi-typescript`, then applies the empty-abstract-input-base normalization (see below).
 
@@ -29,15 +30,15 @@ The generator runs through five steps:
 
 5. **Write `schemas.ts`** — assembles flattened schema re-exports, enum types, and discriminated union types into a single file.
 
-## Spec hash pinning
+## Updating the spec
 
-The spec is pinned by SHA-256 hash (`SPEC_SHA256` constant). When the upstream spec changes:
+When the upstream spec changes:
 
-1. Run `npm run generate` — it will fail and print the new hash.
-2. Review the spec diff to understand what changed.
-3. Update `SPEC_SHA256` to the new hash.
-4. Run `npm run generate` again — if any post-processing configs are stale, the generator will error or warn (see sections below).
-5. Commit the hash update and regenerated files together in a dedicated update PR.
+1. Run `npm run generate` — this fetches the latest spec and overwrites `src/generated/openapi.yaml`.
+2. Run `git diff src/generated/openapi.yaml` to review what changed in the spec.
+3. If any post-processing configs are stale (renamed schemas, new `oneOf` entries), the generator will error or warn (see sections below).
+4. Run `npm run typecheck` to verify everything compiles.
+5. Commit the spec, generated types, and any config updates together in a dedicated update PR.
 
 ## Post-processing: empty abstract input bases
 
@@ -220,11 +221,11 @@ Warnings do not fail the build. Consumers can use the raw generated types as an 
 | Mapped schema renamed or removed | Generation **fails** with a hard error naming the missing schema |
 | New subtype added to a `oneOf` | Generation **warns** — existing types still compile; consumers use the raw type as escape hatch until the mapping is updated |
 | Property added/removed on a base or extension schema | **Automatically picked up** — properties are read from the spec YAML, not hand-maintained |
-| Spec hash changes | Generation **fails** — forces review before accepting a new spec version (update `SPEC_SHA256`) |
+| Spec YAML changes | Visible in `git diff src/generated/openapi.yaml` — review before committing |
 
 ### How to add a new connector type
 
-1. Update `SPEC_SHA256` if the spec changed.
+1. Run `npm run generate` to fetch the latest spec.
 2. Add the new literal-to-schema entry in the appropriate `mapping` object inside `DISCRIMINATED_UNIONS`.
 3. Run `npm run generate` and confirm no errors or warnings.
 4. Run `npm run typecheck` to verify downstream consumers compile.
