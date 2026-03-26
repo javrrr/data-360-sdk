@@ -1,13 +1,31 @@
 import { BaseResource } from "./base-resource.js";
+import type { Simplify } from "../utils/type-helpers.js";
 import type { PaginationParams, RequestOptions } from "../core/types.js";
 import type {
+  ConnectorInputRepresentation,
   DataStreamActionResponseRepresentation,
   DataStreamCollectionRepresentation,
+  DataStreamConnectorInput,
   DataStreamDetailedRepresentation,
   DataStreamInputRepresentation,
   DataStreamPatchInputRepresentation,
   DataStreamRepresentation,
 } from "../schemas.js";
+
+/**
+ * Developer-friendly create input for data streams.
+ *
+ * - `connectorInfo` uses a discriminated union so `connectorType` narrows `connectorDetails`.
+ *   For unknown / future connector types, pass `ConnectorInputRepresentation` directly.
+ * - `dataLakeObjectInfo` accepts a single DLO object or an array (inherited from the
+ *   overridden `DataStreamInputRepresentation`).
+ * - Wrapped in `Simplify` for readable IntelliSense hovers.
+ */
+export type DataStreamCreateInput = Simplify<
+  Omit<DataStreamInputRepresentation, "connectorInfo"> & {
+    connectorInfo: DataStreamConnectorInput | ConnectorInputRepresentation;
+  }
+>;
 
 export class DataStreamsService extends BaseResource {
   protected readonly basePath = "/ssot/data-streams";
@@ -23,7 +41,7 @@ export class DataStreamsService extends BaseResource {
     yield* this.paginate(this.basePath, { ...params, pageSizeParam: "limit" }, options);
   }
 
-  async create(body: DataStreamInputRepresentation, options?: RequestOptions): Promise<DataStreamRepresentation> {
+  async create(body: DataStreamCreateInput, options?: RequestOptions): Promise<DataStreamRepresentation> {
     return this.httpClient.post(this.basePath, body, options);
   }
 

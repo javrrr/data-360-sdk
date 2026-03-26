@@ -1,5 +1,11 @@
 import type { components, paths } from "../generated/openapi.js";
 
+/**
+ * Flatten a complex intersection / mapped type into a single object type.
+ * Improves IntelliSense hover display without changing assignability.
+ */
+export type Simplify<T> = { [K in keyof T]: T[K] } & {};
+
 /** Extract a schema type by its name in components.schemas */
 export type Schema<K extends keyof components["schemas"]> =
   components["schemas"][K];

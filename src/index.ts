@@ -31,6 +31,7 @@ export { paginate, collectAll } from "./core/pagination.js";
 
 // Type helpers
 export type {
+  Simplify,
   Schema,
   ResponseBody,
   RequestBody,
@@ -41,7 +42,7 @@ export type {
 // Generated types (raw)
 export type { paths, components, operations } from "./generated/openapi.js";
 
-// All 727 named schema types — discoverable via autocomplete
+// All named schema types + discriminated unions — discoverable via autocomplete
 export type * from "./schemas.js";
 
 // Resource services (for advanced usage / extension)
@@ -59,6 +60,7 @@ export { DataLakeObjectsService } from "./resources/data-lake-objects.js";
 export { DataModelObjectsService } from "./resources/data-model-objects.js";
 export { DataSpacesService } from "./resources/data-spaces.js";
 export { DataStreamsService } from "./resources/data-streams.js";
+export type { DataStreamCreateInput } from "./resources/data-streams.js";
 export { DataTransformsService } from "./resources/data-transforms.js";
 export { DocumentAiService } from "./resources/document-ai.js";
 export { IdentityResolutionsService } from "./resources/identity-resolutions.js";
