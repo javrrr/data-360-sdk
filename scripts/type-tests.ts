@@ -12,6 +12,7 @@ import type {
   DataLakeObjectInputRepresentation,
   DataStreamConnectorInput,
   DataStreamInputRepresentation,
+  DataStreamRepresentation,
   IngestApiConnectorDetailsConfig,
   IngestApiConnectorPatchDetailsConfig,
   SqlFormulaParametersInputRepresentation,
@@ -65,6 +66,21 @@ export const rawArrayDlo: DataStreamInputRepresentation = {
   dataLakeObjectInfo: [dloInput],
 };
 
+// Runtime responses include `dataSource` even though the spec currently omits it
+export const dataStreamResponseDataSourceTypecheck: DataStreamRepresentation = {
+  dataSource: "DataConnector",
+  dataLakeObjectInfo: {} as DataStreamRepresentation["dataLakeObjectInfo"],
+  recordId: "a0A000000000001",
+  status: "Active",
+};
+
+// Canonical raw field remains `datasource`
+export const rawCanonicalDatasource: DataStreamInputRepresentation = {
+  ...rawDataStreamInput,
+  datasource: "DataConnector",
+  dataLakeObjectInfo: dloInput,
+};
+
 // ── DataStreamCreateInput ──
 
 declare const baseDataStreamInput: Omit<DataStreamInputRepresentation, "connectorInfo">;
@@ -81,6 +97,14 @@ export const dataStreamCreateInputArrayDlo: DataStreamCreateInput = {
   ...baseDataStreamInput,
   connectorInfo: { connectorType: "DataConnector", connectorDetails: { name: "my-connector" } },
   dataLakeObjectInfo: [dloInput],
+};
+
+// Canonical create payload field is `datasource` (matches API request bodies)
+export const dataStreamCreateCanonicalDatasource: DataStreamCreateInput = {
+  ...baseDataStreamInput,
+  datasource: "DataConnector",
+  connectorInfo: { connectorType: "DataConnector", connectorDetails: { name: "my-connector" } },
+  dataLakeObjectInfo: dloInput,
 };
 
 // Raw ConnectorInputRepresentation accepted as escape hatch for unknown connectors

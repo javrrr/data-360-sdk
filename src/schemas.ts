@@ -2060,6 +2060,7 @@ export type DataStreamRepresentation = {
   name?: string;
   namespace?: string;
   url?: string;
+  dataSource?: string;
   dataLakeObjectInfo: Schemas["DataLakeObjectRepresentation"];
   recordId: string;
   status: "Active" | "Deleting" | "Error" | "Processing";

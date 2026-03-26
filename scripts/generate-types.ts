@@ -34,6 +34,8 @@ interface SchemaOverride {
   makeOptional?: string[];
   /** Fields whose type should be replaced. Use type names from schemas.ts (not Schemas["..."]). */
   fieldTypes?: Record<string, string>;
+  /** Optional fields to add when runtime responses include undocumented properties. */
+  addOptionalFields?: Record<string, string>;
 }
 
 /**
@@ -53,6 +55,12 @@ const SCHEMA_OVERRIDES: Record<string, SchemaOverride> = {
     makeOptional: ["mappings", "sourceFields"],
     fieldTypes: {
       dataLakeObjectInfo: "DataLakeObjectInputRepresentation | DataLakeObjectInputRepresentation[]",
+    },
+  },
+  DataStreamRepresentation: {
+    note: "Runtime list/get responses include `dataSource` although the spec omits it",
+    addOptionalFields: {
+      dataSource: "string",
     },
   },
   DataLakeObjectInputRepresentation: {
@@ -710,6 +718,11 @@ async function main() {
       }
       for (const [field, type] of Object.entries(override.fieldTypes ?? {})) {
         if (props[field]) props[field].tsType = type;
+      }
+      for (const [field, type] of Object.entries(override.addOptionalFields ?? {})) {
+        if (!props[field]) {
+          props[field] = { tsType: type, required: false };
+        }
       }
     }
 
