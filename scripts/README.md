@@ -108,6 +108,12 @@ const SCHEMA_OVERRIDES: Record<string, SchemaOverride> = {
       dataLakeObjectInfo: "DataLakeObjectInputRepresentation | DataLakeObjectInputRepresentation[]",
     },
   },
+  DataStreamRepresentation: {
+    note: "Runtime list/get includes dataSource but spec omits it",
+    addOptionalFields: {
+      dataSource: "string",
+    },
+  },
 };
 ```
 
@@ -116,6 +122,7 @@ const SCHEMA_OVERRIDES: Record<string, SchemaOverride> = {
 | `note` | Reason for the override. Emitted as a `@override` JSDoc comment in the generated output. |
 | `makeOptional` | Fields to relax from required to optional. Use when the spec marks a field as required but the API accepts payloads without it. |
 | `fieldTypes` | Fields whose type should be replaced. Values are TypeScript type expressions using names from `schemas.ts` (not `Schemas["..."]`), so error messages show the flattened types. |
+| `addOptionalFields` | Optional fields to add when runtime responses include stable keys that the spec currently omits. |
 
 ### Current overrides
 
@@ -125,6 +132,9 @@ const SCHEMA_OVERRIDES: Record<string, SchemaOverride> = {
 
 **`DataLakeObjectInputRepresentation`**
 - `recordModifiedFieldName`, `orgUnitIdentifierFieldName` made optional — spec marks them required but the API does not require them for all DLO types.
+
+**`DataStreamRepresentation`**
+- `dataSource?: string` added — runtime responses include this field, but the current spec output schema omits it.
 
 ### Validation
 

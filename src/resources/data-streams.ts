@@ -19,6 +19,7 @@ import type {
  *   For unknown / future connector types, pass `ConnectorInputRepresentation` directly.
  * - `dataLakeObjectInfo` accepts a single DLO object or an array (inherited from the
  *   overridden `DataStreamInputRepresentation`).
+ * - `datasource` is the canonical create payload key (matches API request bodies).
  * - Wrapped in `Simplify` for readable IntelliSense hovers.
  */
 export type DataStreamCreateInput = Simplify<
