@@ -23,8 +23,8 @@ export class ActivationTargetsService extends BaseResource {
   async *listAll(
     params?: PaginationParams & { filters?: string },
     options?: RequestOptions,
-  ) {
-    yield* this.paginate(this.basePath, params, options);
+  ): AsyncGenerator<ActivationTargetRepresentation, void, undefined> {
+    yield* this.paginate<ActivationTargetRepresentation>(this.basePath, params, options);
   }
 
   async get(id: string, options?: RequestOptions): Promise<ActivationTargetRepresentation> {

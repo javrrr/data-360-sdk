@@ -17,8 +17,11 @@ export class CalculatedInsightsService extends BaseResource {
     });
   }
 
-  async *listAll(params?: PaginationParams, options?: RequestOptions) {
-    yield* this.paginate(this.basePath, params, options);
+  async *listAll(
+    params?: PaginationParams,
+    options?: RequestOptions,
+  ): AsyncGenerator<CdpCalculatedInsightRepresentation, void, undefined> {
+    yield* this.paginate<CdpCalculatedInsightRepresentation>(this.basePath, params, options);
   }
 
   async get(apiName: string, options?: RequestOptions): Promise<CdpCalculatedInsightRepresentation> {

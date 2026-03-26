@@ -16,8 +16,15 @@ export class PrivateNetworkRoutesService extends BaseResource {
     });
   }
 
-  async *listAll(params?: PaginationParams, options?: RequestOptions) {
-    yield* this.paginate(this.basePath, { ...params, pageSizeParam: "limit" }, options);
+  async *listAll(
+    params?: PaginationParams,
+    options?: RequestOptions,
+  ): AsyncGenerator<PrivateNetworkRouteRepresentation, void, undefined> {
+    yield* this.paginate<PrivateNetworkRouteRepresentation>(
+      this.basePath,
+      { ...params, pageSizeParam: "limit" },
+      options,
+    );
   }
 
   async get(routeIdOrName: string, options?: RequestOptions): Promise<PrivateNetworkRouteRepresentation> {

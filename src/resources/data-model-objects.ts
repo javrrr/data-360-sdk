@@ -21,8 +21,15 @@ export class DataModelObjectsService extends BaseResource {
     });
   }
 
-  async *listAll(params?: PaginationParams, options?: RequestOptions) {
-    yield* this.paginate(this.basePath, { ...params, pageSizeParam: "limit" }, options);
+  async *listAll(
+    params?: PaginationParams,
+    options?: RequestOptions,
+  ): AsyncGenerator<DataModelObjectRepresentation, void, undefined> {
+    yield* this.paginate<DataModelObjectRepresentation>(
+      this.basePath,
+      { ...params, pageSizeParam: "limit" },
+      options,
+    );
   }
 
   async get(name: string, options?: RequestOptions): Promise<DataModelObjectRepresentation> {

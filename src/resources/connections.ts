@@ -45,9 +45,13 @@ export class ConnectionsService extends BaseResource {
   async *listAll(
     params: PaginationParams & { connectorType: string; devName?: string; label?: string },
     options?: RequestOptions,
-  ) {
+  ): AsyncGenerator<ConnectionRepresentation, void, undefined> {
     const { connectorType, devName, label, ...pagination } = params;
-    yield* this.paginate(this.basePath, { ...pagination, pageSizeParam: "limit", query: { connectorType, devName, label } }, options);
+    yield* this.paginate<ConnectionRepresentation>(
+      this.basePath,
+      { ...pagination, pageSizeParam: "limit", query: { connectorType, devName, label } },
+      options,
+    );
   }
 
   async get(id: string, options?: RequestOptions): Promise<ConnectionRepresentation> {

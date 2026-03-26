@@ -21,8 +21,15 @@ export class DataTransformsService extends BaseResource {
     });
   }
 
-  async *listAll(params?: PaginationParams, options?: RequestOptions) {
-    yield* this.paginate(this.basePath, { ...params, pageSizeParam: "limit" }, options);
+  async *listAll(
+    params?: PaginationParams,
+    options?: RequestOptions,
+  ): AsyncGenerator<DataTransformRepresentation, void, undefined> {
+    yield* this.paginate<DataTransformRepresentation>(
+      this.basePath,
+      { ...params, pageSizeParam: "limit" },
+      options,
+    );
   }
 
   async get(nameOrId: string, options?: RequestOptions): Promise<DataTransformRepresentation> {

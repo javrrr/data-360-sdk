@@ -17,8 +17,15 @@ export class DataLakeObjectsService extends BaseResource {
     });
   }
 
-  async *listAll(params?: PaginationParams, options?: RequestOptions) {
-    yield* this.paginate(this.basePath, { ...params, pageSizeParam: "limit" }, options);
+  async *listAll(
+    params?: PaginationParams,
+    options?: RequestOptions,
+  ): AsyncGenerator<DataLakeObjectRepresentation, void, undefined> {
+    yield* this.paginate<DataLakeObjectRepresentation>(
+      this.basePath,
+      { ...params, pageSizeParam: "limit" },
+      options,
+    );
   }
 
   async get(recordIdOrDeveloperName: string, options?: RequestOptions): Promise<DataLakeObjectRepresentation> {

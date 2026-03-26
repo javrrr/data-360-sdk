@@ -19,8 +19,11 @@ export class SegmentsService extends BaseResource {
     });
   }
 
-  async *listAll(params?: PaginationParams, options?: RequestOptions) {
-    yield* this.paginate(this.basePath, params, options);
+  async *listAll(
+    params?: PaginationParams,
+    options?: RequestOptions,
+  ): AsyncGenerator<CdpSegmentOutputRepresentation, void, undefined> {
+    yield* this.paginate<CdpSegmentOutputRepresentation>(this.basePath, params, options);
   }
 
   async get(segmentApiNameOrId: string, options?: RequestOptions): Promise<CdpSegmentContainerOutputRepresentation> {
