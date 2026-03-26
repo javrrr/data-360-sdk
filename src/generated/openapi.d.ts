@@ -15215,7 +15215,7 @@ export type components = {
          *     - [Data Kit Deploy Data Transform Input](?meta=type%3AData%2BKit%2BDeploy%2BData%2BTransform%2BInput)
          *     - [Data Kit Deploy Component Config For Bundle Input](?meta=type%3AData%2BKit%2BDeploy%2BComponent%2BConfig%2BFor%2BBundle%2BInput)
          */
-        CdpDataKitDeployComponentConfig: Record<string, never>;
+        CdpDataKitDeployComponentConfig: {};
         /**
          * Data Kit Deploy Component Config For DLO Input
          * @description Represents the component configuration for a data lake object (DLO).
@@ -15334,7 +15334,7 @@ export type components = {
          *     - [Data Kit Deploy Bundle Config For Ingest API Input](?meta=type%3AData%2BKit%2BDeploy%2BBundle%2BConfig%2BFor%2BIngest%2BAPI%2BInput)
          *     - [Data Kit Deploy Bundle Config For Streaming App Input](?meta=type%3AData%2BKit%2BDeploy%2BBundle%2BConfig%2BFor%2BStreaming%2BApp%2BInput)
          */
-        CdpDataKitDeployBundleConfig: Record<string, never>;
+        CdpDataKitDeployBundleConfig: {};
         /**
          * Data Kit Deploy Bundle Config For CRM Input
          * @description Represents a bundle configuration for a CRM connector type.
@@ -22388,7 +22388,7 @@ export type components = {
          * Connector Details Config Output
          * @description Abstract representation for details about a connector's configuration.
          */
-        ConnectorDetailsConfig: Record<string, never>;
+        ConnectorDetailsConfig: {};
         /**
          * Streaming Connector Patch Details Config Output
          * @description Represents the configuration details for a streaming connector.
@@ -22651,7 +22651,7 @@ export type components = {
          * Connector Patch Details Config Output
          * @description Represents the configuration details for a connector type.
          */
-        ConnectorPatchDetailsConfig: Record<string, never>;
+        ConnectorPatchDetailsConfig: {};
         /**
          * Streaming Connector Details Output
          * @description Represents the output for a streaming connector.
@@ -28301,7 +28301,7 @@ export type components = {
          * Formula Parameters Input
          * @description Represents a formula.
          */
-        FormulaParametersInputRepresentation: Record<string, never>;
+        FormulaParametersInputRepresentation: {};
         /**
          * GCS Connector Input
          * @description Represents the input details for a GCS connector.

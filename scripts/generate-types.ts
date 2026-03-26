@@ -9,6 +9,7 @@
  * Usage: npm run generate
  */
 import fs from "node:fs";
+import crypto from "node:crypto";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { parse } from "yaml";
@@ -18,8 +19,41 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
 const SPEC_URL =
   "https://developer.salesforce.com/static/datacloud/connectapi/spec/cdp-connect-api-Swagger.yaml";
+const SPEC_SHA256 = "2fb95c3a15aecc0889b8b36d30e7cf42bafa61718c28ae3c2c3c5da90149fa41";
 const OPENAPI_OUTPUT = path.resolve(ROOT, "src/generated/openapi.d.ts");
 const SCHEMAS_OUTPUT = path.resolve(ROOT, "src/schemas.ts");
+
+/**
+ * openapi-typescript emits empty object schemas as `Record<string, never>`.
+ * That becomes impossible when those schemas are abstract `allOf` bases used
+ * for input models (`Record<string, never> & { ... }`).
+ *
+ * Keep this list intentionally narrow and data-driven.
+ */
+const EMPTY_ABSTRACT_INPUT_BASES = new Set<string>([
+  "ConnectorDetailsConfig",
+  "ConnectorPatchDetailsConfig",
+  "CdpDataKitDeployComponentConfig",
+  "CdpDataKitDeployBundleConfig",
+  "FormulaParametersInputRepresentation",
+]);
+
+function normalizeEmptyAbstractInputBases(generated: string): string {
+  return generated.replace(
+    /^(\s*)([A-Za-z0-9_]+): Record<string, never>;/gm,
+    (fullMatch, indent, typeName) => {
+      if (!EMPTY_ABSTRACT_INPUT_BASES.has(typeName)) return fullMatch;
+      return `${indent}${typeName}: {};`;
+    },
+  );
+}
+
+interface PropDef { enum?: string[]; type?: string; properties?: Record<string, PropDef> }
+interface SchemaDef {
+  properties?: Record<string, PropDef>;
+  allOf?: Array<{ properties?: Record<string, PropDef> }>;
+  oneOf?: Array<{ properties?: Record<string, PropDef> }>;
+}
 
 async function main() {
   console.log(`Fetching spec from: ${SPEC_URL}`);
@@ -31,33 +65,39 @@ async function main() {
     process.exit(1);
   }
   const specYaml = await response.text();
-
-  // Step 2: Generate openapi.d.ts via openapi-typescript
-  const ast = await openapiTS(new URL(SPEC_URL), {
-    exportType: true,
-  });
-
-  const output = astToString(ast);
-
-  fs.mkdirSync(path.dirname(OPENAPI_OUTPUT), { recursive: true });
-  fs.writeFileSync(
-    OPENAPI_OUTPUT,
-    `// Auto-generated — DO NOT EDIT\n${output}`,
-  );
-  console.log(`Generated openapi.d.ts (${output.split("\n").length} lines)`);
-
-  // Step 3: Read schema names and enums from the YAML spec
-  interface PropDef { enum?: string[]; type?: string; properties?: Record<string, PropDef> }
-  interface SchemaDef {
-    properties?: Record<string, PropDef>;
-    allOf?: Array<{ properties?: Record<string, PropDef> }>;
-    oneOf?: Array<{ properties?: Record<string, PropDef> }>;
+  const specHash = crypto.createHash("sha256").update(specYaml).digest("hex");
+  if (specHash !== SPEC_SHA256) {
+    console.error(
+      [
+        "Spec hash changed. This would cause non-deterministic generated diffs.",
+        `Expected: ${SPEC_SHA256}`,
+        `Received: ${specHash}`,
+        "If this is intentional, update SPEC_SHA256 and regenerate in a dedicated update PR.",
+      ].join("\n"),
+    );
+    process.exit(1);
   }
 
   const spec = parse(specYaml) as {
     components?: { schemas?: Record<string, SchemaDef> };
   };
 
+  // Step 2: Generate openapi.d.ts via openapi-typescript
+  const ast = await openapiTS(spec as Parameters<typeof openapiTS>[0], {
+    exportType: true,
+  });
+
+  const output = astToString(ast);
+  const normalizedOutput = normalizeEmptyAbstractInputBases(output);
+
+  fs.mkdirSync(path.dirname(OPENAPI_OUTPUT), { recursive: true });
+  fs.writeFileSync(
+    OPENAPI_OUTPUT,
+    `// Auto-generated — DO NOT EDIT\n${normalizedOutput}`,
+  );
+  console.log(`Generated openapi.d.ts (${normalizedOutput.split("\n").length} lines)`);
+
+  // Step 3: Read schema names and enums from the YAML spec
   const schemas = spec.components?.schemas ?? {};
   const schemaNames = Object.keys(schemas).sort();
 
