@@ -1,6 +1,7 @@
 import { BaseResource } from "./base-resource.js";
 import type { PaginationParams, RequestOptions } from "../core/types.js";
 import type {
+  DataLakeObjectInputRepresentation,
   DataStreamActionResponseRepresentation,
   DataStreamCollectionRepresentation,
   DataStreamDetailedRepresentation,
@@ -8,6 +9,14 @@ import type {
   DataStreamPatchInputRepresentation,
   DataStreamRepresentation,
 } from "../schemas.js";
+
+/**
+ * Runtime accepts either a single DLO object or an array for create payloads.
+ * The generated OpenAPI type currently models this field as array-only.
+ */
+export type DataStreamCreateInput = Omit<DataStreamInputRepresentation, "dataLakeObjectInfo"> & {
+  dataLakeObjectInfo: DataLakeObjectInputRepresentation | DataLakeObjectInputRepresentation[];
+};
 
 export class DataStreamsService extends BaseResource {
   protected readonly basePath = "/ssot/data-streams";
@@ -23,7 +32,7 @@ export class DataStreamsService extends BaseResource {
     yield* this.paginate(this.basePath, { ...params, pageSizeParam: "limit" }, options);
   }
 
-  async create(body: DataStreamInputRepresentation, options?: RequestOptions): Promise<DataStreamRepresentation> {
+  async create(body: DataStreamCreateInput, options?: RequestOptions): Promise<DataStreamRepresentation> {
     return this.httpClient.post(this.basePath, body, options);
   }
 

@@ -59,6 +59,7 @@ export { DataLakeObjectsService } from "./resources/data-lake-objects.js";
 export { DataModelObjectsService } from "./resources/data-model-objects.js";
 export { DataSpacesService } from "./resources/data-spaces.js";
 export { DataStreamsService } from "./resources/data-streams.js";
+export type { DataStreamCreateInput } from "./resources/data-streams.js";
 export { DataTransformsService } from "./resources/data-transforms.js";
 export { DocumentAiService } from "./resources/document-ai.js";
 export { IdentityResolutionsService } from "./resources/identity-resolutions.js";
