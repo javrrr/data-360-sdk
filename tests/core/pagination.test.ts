@@ -17,24 +17,22 @@ function createMockHttpClient(responses: unknown[]): HttpClient {
 }
 
 describe("pagination", () => {
-  it("yields pages of items using offset-based pagination", async () => {
+  it("yields individual items using offset-based pagination", async () => {
     const httpClient = createMockHttpClient([
       { data: [{ id: 1 }, { id: 2 }] },
       { data: [{ id: 3 }] },
     ]);
 
-    const pages: unknown[][] = [];
-    for await (const page of paginate({
+    const items: unknown[] = [];
+    for await (const item of paginate({
       httpClient,
       path: "/ssot/test",
       batchSize: 2,
     })) {
-      pages.push(page);
+      items.push(item);
     }
 
-    expect(pages).toHaveLength(2);
-    expect(pages[0]).toEqual([{ id: 1 }, { id: 2 }]);
-    expect(pages[1]).toEqual([{ id: 3 }]);
+    expect(items).toEqual([{ id: 1 }, { id: 2 }, { id: 3 }]);
   });
 
   it("stops when empty page is returned", async () => {
@@ -43,16 +41,16 @@ describe("pagination", () => {
       { data: [] },
     ]);
 
-    const pages: unknown[][] = [];
-    for await (const page of paginate({
+    const items: unknown[] = [];
+    for await (const item of paginate({
       httpClient,
       path: "/ssot/test",
       batchSize: 10,
     })) {
-      pages.push(page);
+      items.push(item);
     }
 
-    expect(pages).toHaveLength(1);
+    expect(items).toEqual([{ id: 1 }]);
   });
 
   it("collectAll gathers all items", async () => {
@@ -120,14 +118,14 @@ describe("pagination", () => {
       { data: [{ id: 1 }] },
     ]);
 
-    const pages: unknown[][] = [];
-    for await (const page of paginate({
+    const items: unknown[] = [];
+    for await (const item of paginate({
       httpClient,
       path: "/ssot/test",
       batchSize: 5,
       pageSizeParam: "limit",
     })) {
-      pages.push(page);
+      items.push(item);
     }
 
     expect(httpClient.get).toHaveBeenCalledWith("/ssot/test", {
@@ -140,13 +138,13 @@ describe("pagination", () => {
       { data: [{ id: 1 }] },
     ]);
 
-    const pages: unknown[][] = [];
-    for await (const page of paginate({
+    const items: unknown[] = [];
+    for await (const item of paginate({
       httpClient,
       path: "/ssot/test",
       batchSize: 5,
     })) {
-      pages.push(page);
+      items.push(item);
     }
 
     expect(httpClient.get).toHaveBeenCalledWith("/ssot/test", {
@@ -168,5 +166,26 @@ describe("pagination", () => {
     });
 
     expect(all).toEqual([{ name: "a" }]);
+  });
+
+  it("strips API base prefix from absolute nextPageUrl", async () => {
+    const httpClient = createMockHttpClient([
+      {
+        data: [{ id: 1 }],
+        nextPageUrl: "https://instance.my.salesforce.com/services/data/v66.0/ssot/test?offset=1&batchSize=1",
+      },
+      { data: [{ id: 2 }] },
+    ]);
+
+    const all = await collectAll({
+      httpClient,
+      path: "/ssot/test",
+      batchSize: 1,
+    });
+
+    expect(all).toEqual([{ id: 1 }, { id: 2 }]);
+    expect(httpClient.get).toHaveBeenNthCalledWith(2, "/ssot/test?offset=1&batchSize=1", {
+      query: undefined,
+    });
   });
 });
