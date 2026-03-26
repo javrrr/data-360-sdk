@@ -88,7 +88,7 @@ const streamInput: DataStreamCreateInput = {
   },
   // Accepts either one DLO object or an array.
   dataLakeObjectInfo: {
-    name: "WebEvent__dlm",
+    name: "WebEvent__dll",
     label: "Web Event",
     category: "Engagement",
     fields: [],
