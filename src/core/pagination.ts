@@ -87,6 +87,7 @@ export async function* paginate<T>(
 
   let currentOffset = startOffset;
   let nextUrl: string | undefined;
+  let totalSize: number | undefined;
 
   while (true) {
     const paginationQuery: Record<string, string | number | boolean | undefined> = {
@@ -109,6 +110,9 @@ export async function* paginate<T>(
     });
 
     const items = customExtractor ? customExtractor(raw) : extractItems(raw);
+    if (typeof raw.totalSize === "number" && Number.isFinite(raw.totalSize) && raw.totalSize >= 0) {
+      totalSize = raw.totalSize;
+    }
 
     if (items.length === 0) {
       break;
@@ -117,16 +121,20 @@ export async function* paginate<T>(
     for (const item of items) {
       yield item;
     }
+    currentOffset += items.length;
+
+    // Safety net: stop when we have already yielded all advertised rows.
+    if (totalSize !== undefined && currentOffset >= totalSize) {
+      break;
+    }
 
     // Check for next page
     if (raw.nextPageUrl) {
       nextUrl = normalizeNextPagePath(raw.nextPageUrl);
-      currentOffset += items.length;
     } else if (items.length < batchSize) {
       // No more pages
       break;
     } else {
-      currentOffset += items.length;
       nextUrl = undefined;
     }
   }

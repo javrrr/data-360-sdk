@@ -188,4 +188,34 @@ describe("pagination", () => {
       query: undefined,
     });
   });
+
+  it("uses totalSize to avoid extra offset-based request", async () => {
+    const httpClient = createMockHttpClient([
+      { data: [{ id: 1 }, { id: 2 }], totalSize: 2 },
+    ]);
+
+    const all = await collectAll({
+      httpClient,
+      path: "/ssot/test",
+      batchSize: 2,
+    });
+
+    expect(all).toEqual([{ id: 1 }, { id: 2 }]);
+    expect(httpClient.get).toHaveBeenCalledTimes(1);
+  });
+
+  it("uses totalSize guard even when nextPageUrl is present", async () => {
+    const httpClient = createMockHttpClient([
+      { data: [{ id: 1 }], totalSize: 1, nextPageUrl: "/ssot/test?offset=1&batchSize=1" },
+    ]);
+
+    const all = await collectAll({
+      httpClient,
+      path: "/ssot/test",
+      batchSize: 1,
+    });
+
+    expect(all).toEqual([{ id: 1 }]);
+    expect(httpClient.get).toHaveBeenCalledTimes(1);
+  });
 });
