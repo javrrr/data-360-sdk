@@ -58,7 +58,14 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "lint": "eslint src/",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "release:check": "npm run typecheck && npm run test && npm run build",
+    "release:version:patch": "npm version patch",
+    "release:version:minor": "npm version minor",
+    "release:version:major": "npm version major",
+    "release:push": "git push origin main --follow-tags",
+    "release:create": "gh release create \"v$npm_package_version\" --title \"v$npm_package_version\" --generate-notes",
+    "release:run": "npm run release:check && npm run release:push && npm run release:create"
   },
   "engines": {
     "node": ">=18.0.0"

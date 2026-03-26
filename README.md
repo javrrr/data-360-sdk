@@ -5,7 +5,7 @@ TypeScript SDK for the Salesforce Data 360 Connect REST API. Provides type-safe,
 ## Features
 
 - **Full API coverage** — 27 service namespaces, 185 endpoints, 100% spec coverage
-- **Type-safe** — Auto-generated types from the OpenAPI 3.0.0 spec (751 schemas + 247 enums)
+- **Type-safe** — Auto-generated types from the OpenAPI 3.0.0 spec (763 schemas + 253 enums + discriminated input unions)
 - **Zero HTTP dependencies** — Uses native `fetch` (Node.js 18+, browsers, React Native)
 - **Dual format** — ESM + CJS output, tree-shakeable with `sideEffects: false`
 - **Retry & backoff** — Exponential backoff with jitter, Retry-After header support
@@ -48,11 +48,13 @@ const result = await client.query.execute({
 
 ## Types
 
-All 751 schema types and 247 enum types are exported as named types, discoverable via autocomplete:
+All schema and enum types are exported as named types, discoverable via autocomplete:
 
 ```typescript
 import type {
   DataStreamInputRepresentation,
+  DataStreamCreateInput,
+  ConnectionCreateInput,
   DataLakeObjectCategory,
   RefreshConfigRefreshMode,
 } from "data-360-sdk";
@@ -63,6 +65,43 @@ import type { DataStreamInputRepresentation } from "data-360-sdk/schemas";
 // Schema<> helper also available
 import type { Schema } from "data-360-sdk";
 type Input = Schema<"DataStreamInputRepresentation">;
+```
+
+### Prefer developer-facing input types
+
+Use normalized SDK input aliases when available; they provide clearer IntelliSense and stricter narrowing than raw OpenAPI shapes.
+
+```typescript
+import type {
+  ConnectionCreateInput,
+  DataStreamCreateInput,
+} from "data-360-sdk";
+
+const streamInput: DataStreamCreateInput = {
+  name: "WebEventsStream",
+  label: "Web Events",
+  datasource: "DataConnector",
+  datastreamType: "CONNECTORSFRAMEWORK",
+  connectorInfo: {
+    connectorType: "IngestApi",
+    connectorDetails: { name: "ingest-api-connector", events: ["WebEvent"] },
+  },
+  // Accepts either one DLO object or an array.
+  dataLakeObjectInfo: {
+    name: "WebEvent__dlm",
+    label: "Web Event",
+    category: "Engagement",
+    fields: [],
+  },
+  mappings: [],
+  refreshConfig: { refreshMode: "FullRefresh" },
+};
+
+const connectionInput: ConnectionCreateInput = {
+  connectorType: "SalesforceDotCom",
+  label: "CRM Connection",
+  organizationId: "00Dxx0000000001",
+};
 ```
 
 ## Authentication
@@ -137,10 +176,8 @@ const page = await client.segments.list({
 ### Async Iterator
 
 ```typescript
-for await (const batch of client.segments.listAll({ batchSize: 50 })) {
-  for (const segment of batch) {
-    console.log(segment);
-  }
+for await (const segment of client.segments.listAll({ batchSize: 50 })) {
+  console.log(segment);
 }
 ```
 
@@ -270,6 +307,30 @@ npm run typecheck   # Type check
 npm test            # Run tests
 npm run build       # Build ESM + CJS
 ```
+
+## Releasing
+
+After your PR is merged to `main`:
+
+```bash
+git checkout main
+git pull --ff-only
+```
+
+Bump version (creates version commit + git tag):
+
+```bash
+npm run release:version:patch
+# or: release:version:minor / release:version:major
+```
+
+Run checks, push `main` and tags, then create a GitHub release with auto-generated notes:
+
+```bash
+npm run release:run
+```
+
+The `Publish to npm` GitHub Action is triggered by `release.published`.
 
 ## License
 
