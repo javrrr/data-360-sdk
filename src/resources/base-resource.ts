@@ -40,7 +40,7 @@ export abstract class BaseResource {
     path: string,
     params?: PaginationParams & { query?: Record<string, string | number | boolean | undefined> },
     requestOptions?: RequestOptions,
-  ): AsyncGenerator<T[], void, undefined> {
+  ): AsyncGenerator<T, void, undefined> {
     const { batchSize, offset, orderBy, pageSizeParam, query, ...rest } = params ?? {};
     return paginate<T>({
       httpClient: this.httpClient,

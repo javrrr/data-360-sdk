@@ -44,13 +44,35 @@ export interface PaginateOptions<T> extends PaginationParams {
   extractItems?: (raw: unknown) => T[];
 }
 
+function normalizeNextPagePath(nextPageUrl: string): string {
+  const trimmed = nextPageUrl.trim();
+  let pathWithQuery = trimmed;
+
+  try {
+    // API may return a full absolute URL; HttpClient expects a path.
+    const parsed = new URL(trimmed);
+    pathWithQuery = `${parsed.pathname}${parsed.search}`;
+  } catch {
+    // Not an absolute URL, keep as-is.
+  }
+
+  // API may return "/services/data/vXX.X/..." while the client baseUrl already
+  // includes "/services/data/vXX.X".
+  const withVersionPrefix = pathWithQuery.match(/^\/services\/data\/v\d+(?:\.\d+)?(\/.*)$/);
+  if (withVersionPrefix) {
+    return withVersionPrefix[1];
+  }
+
+  return pathWithQuery;
+}
+
 /**
  * Async generator that yields pages of items from a paginated endpoint.
  * Supports both offset-based and nextPageUrl-based pagination.
  */
 export async function* paginate<T>(
   options: PaginateOptions<T>,
-): AsyncGenerator<T[], void, undefined> {
+): AsyncGenerator<T, void, undefined> {
   const {
     httpClient,
     path,
@@ -65,6 +87,7 @@ export async function* paginate<T>(
 
   let currentOffset = startOffset;
   let nextUrl: string | undefined;
+  let totalSize: number | undefined;
 
   while (true) {
     const paginationQuery: Record<string, string | number | boolean | undefined> = {
@@ -87,22 +110,31 @@ export async function* paginate<T>(
     });
 
     const items = customExtractor ? customExtractor(raw) : extractItems(raw);
+    if (typeof raw.totalSize === "number" && Number.isFinite(raw.totalSize) && raw.totalSize >= 0) {
+      totalSize = raw.totalSize;
+    }
 
     if (items.length === 0) {
       break;
     }
 
-    yield items;
+    for (const item of items) {
+      yield item;
+    }
+    currentOffset += items.length;
+
+    // Safety net: stop when we have already yielded all advertised rows.
+    if (totalSize !== undefined && currentOffset >= totalSize) {
+      break;
+    }
 
     // Check for next page
     if (raw.nextPageUrl) {
-      nextUrl = raw.nextPageUrl;
-      currentOffset += items.length;
+      nextUrl = normalizeNextPagePath(raw.nextPageUrl);
     } else if (items.length < batchSize) {
       // No more pages
       break;
     } else {
-      currentOffset += items.length;
       nextUrl = undefined;
     }
   }
@@ -115,8 +147,8 @@ export async function collectAll<T>(
   options: PaginateOptions<T>,
 ): Promise<T[]> {
   const all: T[] = [];
-  for await (const page of paginate(options)) {
-    all.push(...page);
+  for await (const item of paginate(options)) {
+    all.push(item);
   }
   return all;
 }
