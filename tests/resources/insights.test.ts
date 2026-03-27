@@ -18,20 +18,20 @@ describe("InsightsService", () => {
     expect(httpClient.get).toHaveBeenCalled();
   });
 
-  it("getCalculatedInsight()", async () => {
+  it("getCalculatedInsights()", async () => {
     const httpClient = createMockHttpClient();
     const service = new InsightsService(httpClient);
 
-    await service.getCalculatedInsight("test-ciName");
+    await service.getCalculatedInsights("test-ciName");
 
     expect(httpClient.get).toHaveBeenCalled();
   });
 
-  it("listMetadata()", async () => {
+  it("getMetadataByGet()", async () => {
     const httpClient = createMockHttpClient();
     const service = new InsightsService(httpClient);
 
-    await service.listMetadata("test-ciName");
+    await service.getMetadataByGet("test-ciName");
 
     expect(httpClient.get).toHaveBeenCalled();
   });

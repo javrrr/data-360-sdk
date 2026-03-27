@@ -65,11 +65,11 @@ describe("DataCleanRoomService", () => {
     expect(httpClient.post).toHaveBeenCalled();
   });
 
-  it("listJobs()", async () => {
+  it("listCollaborationsJobs()", async () => {
     const httpClient = createMockHttpClient();
     const service = new DataCleanRoomService(httpClient);
 
-    await service.listJobs("test-collaborationIdOrApiName");
+    await service.listCollaborationsJobs("test-collaborationIdOrApiName");
 
     expect(httpClient.get).toHaveBeenCalled();
   });
@@ -110,20 +110,20 @@ describe("DataCleanRoomService", () => {
     expect(httpClient.put).toHaveBeenCalled();
   });
 
-  it("getProvider()", async () => {
+  it("getProviders()", async () => {
     const httpClient = createMockHttpClient();
     const service = new DataCleanRoomService(httpClient);
 
-    await service.getProvider("test-providerIdOrName");
+    await service.getProviders("test-providerIdOrName");
 
     expect(httpClient.get).toHaveBeenCalled();
   });
 
-  it("listProviderTemplates()", async () => {
+  it("listProvidersTemplates()", async () => {
     const httpClient = createMockHttpClient();
     const service = new DataCleanRoomService(httpClient);
 
-    await service.listProviderTemplates("test-providerIdOrName");
+    await service.listProvidersTemplates("test-providerIdOrName");
 
     expect(httpClient.get).toHaveBeenCalled();
   });

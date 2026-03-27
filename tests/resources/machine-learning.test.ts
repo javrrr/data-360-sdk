@@ -12,22 +12,22 @@ function createMockHttpClient() {
 }
 
 describe("MachineLearningService", () => {
-  it("listAlerts()", async () => {
+  it("createAlerts()", async () => {
     const httpClient = createMockHttpClient();
     const service = new MachineLearningService(httpClient);
 
-    await service.listAlerts({ batchSize: 10 });
-
-    expect(httpClient.get).toHaveBeenCalled();
-  });
-
-  it("createAlert()", async () => {
-    const httpClient = createMockHttpClient();
-    const service = new MachineLearningService(httpClient);
-
-    await service.createAlert({ test: true } as any);
+    await service.createAlerts({ test: true } as any);
 
     expect(httpClient.post).toHaveBeenCalled();
+  });
+
+  it("patchAlerts()", async () => {
+    const httpClient = createMockHttpClient();
+    const service = new MachineLearningService(httpClient);
+
+    await service.patchAlerts("test-alertId", { test: true } as any);
+
+    expect(httpClient.patch).toHaveBeenCalled();
   });
 
   it("listConfiguredModels()", async () => {
@@ -48,31 +48,22 @@ describe("MachineLearningService", () => {
     expect(httpClient.get).toHaveBeenCalled();
   });
 
-  it("predict()", async () => {
+  it("createPredict()", async () => {
     const httpClient = createMockHttpClient();
     const service = new MachineLearningService(httpClient);
 
-    await service.predict({ test: true } as any);
+    await service.createPredict({ test: true } as any);
 
     expect(httpClient.post).toHaveBeenCalled();
   });
 
-  it("listSetupVersions()", async () => {
+  it("listModelSetupsSetupVersions()", async () => {
     const httpClient = createMockHttpClient();
     const service = new MachineLearningService(httpClient);
 
-    await service.listSetupVersions("test-modelSetupIdOrName", { batchSize: 10 });
+    await service.listModelSetupsSetupVersions("test-modelSetupIdOrName", { batchSize: 10 });
 
     expect(httpClient.get).toHaveBeenCalled();
-  });
-
-  it("patchAlerts()", async () => {
-    const httpClient = createMockHttpClient();
-    const service = new MachineLearningService(httpClient);
-
-    await service.patchAlerts("test-alertId", { test: true } as any);
-
-    expect(httpClient.patch).toHaveBeenCalled();
   });
 
   it("deleteConfiguredModels()", async () => {
@@ -111,65 +102,65 @@ describe("MachineLearningService", () => {
     expect(httpClient.patch).toHaveBeenCalled();
   });
 
-  it("createSetupVersions()", async () => {
+  it("createModelSetupsSetupVersions()", async () => {
     const httpClient = createMockHttpClient();
     const service = new MachineLearningService(httpClient);
 
-    await service.createSetupVersions("test-modelSetupIdOrName", { test: true } as any);
+    await service.createModelSetupsSetupVersions("test-modelSetupIdOrName", { test: true } as any);
 
     expect(httpClient.post).toHaveBeenCalled();
   });
 
-  it("getSetupVersions()", async () => {
+  it("getModelSetupsSetupVersions()", async () => {
     const httpClient = createMockHttpClient();
     const service = new MachineLearningService(httpClient);
 
-    await service.getSetupVersions("test-modelSetupIdOrName", "test-modelSetupVersionId");
+    await service.getModelSetupsSetupVersions("test-modelSetupIdOrName", "test-modelSetupVersionId");
 
     expect(httpClient.get).toHaveBeenCalled();
   });
 
-  it("patchSetupVersions()", async () => {
+  it("patchModelSetupsSetupVersions()", async () => {
     const httpClient = createMockHttpClient();
     const service = new MachineLearningService(httpClient);
 
-    await service.patchSetupVersions("test-modelSetupIdOrName", "test-modelSetupVersionId", { test: true } as any);
+    await service.patchModelSetupsSetupVersions("test-modelSetupIdOrName", "test-modelSetupVersionId", { test: true } as any);
 
     expect(httpClient.patch).toHaveBeenCalled();
   });
 
-  it("getPartitions()", async () => {
+  it("listModelSetupsSetupVersionsByGet() - partitions list", async () => {
     const httpClient = createMockHttpClient();
     const service = new MachineLearningService(httpClient);
 
-    await service.getPartitions("test-modelSetupIdOrName", "test-modelSetupVersionId");
+    await service.listModelSetupsSetupVersionsByGet("test-modelSetupIdOrName", "test-modelSetupVersionId");
 
     expect(httpClient.get).toHaveBeenCalled();
   });
 
-  it("getConfiguredModel()", async () => {
+  it("getConfiguredModels()", async () => {
     const httpClient = createMockHttpClient();
     const service = new MachineLearningService(httpClient);
 
-    await service.getConfiguredModel("test-configuredModelIdOrName");
+    await service.getConfiguredModels("test-configuredModelIdOrName");
 
     expect(httpClient.get).toHaveBeenCalled();
   });
 
-  it("getModelArtifact()", async () => {
+  it("getModelArtifacts()", async () => {
     const httpClient = createMockHttpClient();
     const service = new MachineLearningService(httpClient);
 
-    await service.getModelArtifact("test-modelArtifactIdOrName");
+    await service.getModelArtifacts("test-modelArtifactIdOrName");
 
     expect(httpClient.get).toHaveBeenCalled();
   });
 
-  it("getPartition()", async () => {
+  it("getModelSetupsSetupVersionsByGet() - single partition", async () => {
     const httpClient = createMockHttpClient();
     const service = new MachineLearningService(httpClient);
 
-    await service.getPartition("test-modelSetupIdOrName", "test-modelSetupVersionId", "test-modelSetupPartitionId");
+    await service.getModelSetupsSetupVersionsByGet("test-modelSetupIdOrName", "test-modelSetupVersionId", "test-modelSetupPartitionId");
 
     expect(httpClient.get).toHaveBeenCalled();
   });

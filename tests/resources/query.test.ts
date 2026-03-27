@@ -19,7 +19,7 @@ describe("QueryService", () => {
     expect(httpClient.post).toHaveBeenCalledWith(
       "/ssot/query-sql",
       { sql: "SELECT Id FROM Account" },
-      undefined,
+      { query: undefined },
     );
   });
 
@@ -31,7 +31,7 @@ describe("QueryService", () => {
 
     expect(httpClient.get).toHaveBeenCalledWith(
       "/ssot/query-sql/q-123",
-      undefined,
+      { query: undefined },
     );
   });
 
@@ -42,7 +42,7 @@ describe("QueryService", () => {
     await service.getRows("q-123", { batchSize: 50 });
 
     expect(httpClient.get).toHaveBeenCalledWith("/ssot/query-sql/q-123/rows", {
-      query: { batchSize: 50, offset: undefined, orderBy: undefined },
+      query: { batchSize: 50 },
     });
   });
 

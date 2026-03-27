@@ -11,11 +11,11 @@ function createMockHttpClient() {
 }
 
 describe("DataGraphsService", () => {
-  it("listMetadata()", async () => {
+  it("getMetadata()", async () => {
     const httpClient = createMockHttpClient();
     const service = new DataGraphsService(httpClient);
 
-    await service.listMetadata({ dataspace: "default", graphName: "myGraph" });
+    await service.getMetadata({ dataspace: "default", dataGraphEntityName: "myGraph" });
 
     expect(httpClient.get).toHaveBeenCalled();
   });
@@ -56,11 +56,11 @@ describe("DataGraphsService", () => {
     expect(httpClient.post).toHaveBeenCalled();
   });
 
-  it("getDataById()", async () => {
+  it("getDataByGet()", async () => {
     const httpClient = createMockHttpClient();
     const service = new DataGraphsService(httpClient);
 
-    await service.getDataById("test-dataGraphEntityName", "test-id");
+    await service.getDataByGet("test-id", "test-dataGraphEntityName");
 
     expect(httpClient.get).toHaveBeenCalled();
   });

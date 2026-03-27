@@ -57,11 +57,11 @@ describe("DataTransformsService", () => {
     expect(httpClient.post).toHaveBeenCalled();
   });
 
-  it("getRunHistory()", async () => {
+  it("listRunHistory()", async () => {
     const httpClient = createMockHttpClient();
     const service = new DataTransformsService(httpClient);
 
-    await service.getRunHistory("test-nameOrId", { batchSize: 10 });
+    await service.listRunHistory("test-nameOrId", { batchSize: 10 });
 
     expect(httpClient.get).toHaveBeenCalled();
   });
@@ -102,29 +102,29 @@ describe("DataTransformsService", () => {
     expect(httpClient.post).toHaveBeenCalled();
   });
 
-  it("listSchedule()", async () => {
+  it("getSchedule()", async () => {
     const httpClient = createMockHttpClient();
     const service = new DataTransformsService(httpClient);
 
-    await service.listSchedule("test-dataTransformNameOrId");
+    await service.getSchedule("test-dataTransformNameOrId");
 
     expect(httpClient.get).toHaveBeenCalled();
   });
 
-  it("updateSchedule()", async () => {
+  it("putSchedule()", async () => {
     const httpClient = createMockHttpClient();
     const service = new DataTransformsService(httpClient);
 
-    await service.updateSchedule("test-dataTransformNameOrId", { test: true } as any);
+    await service.putSchedule("test-dataTransformNameOrId", { test: true } as any);
 
     expect(httpClient.put).toHaveBeenCalled();
   });
 
-  it("validate()", async () => {
+  it("createValidation()", async () => {
     const httpClient = createMockHttpClient();
     const service = new DataTransformsService(httpClient);
 
-    await service.validate({ test: true } as any);
+    await service.createValidation({ test: true } as any);
 
     expect(httpClient.post).toHaveBeenCalled();
   });
