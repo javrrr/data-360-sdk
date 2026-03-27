@@ -1,12 +1,9 @@
-import { BaseResource } from "./base-resource.js";
-import type {
-  CdpQueryDataOutputRepresentation,
-} from "../schemas.js";
+import { UniversalIdLookupServiceBase } from "../generated/services/universal-id-lookup.base.js";
 import type { RequestOptions } from "../core/types.js";
+import type { CdpQueryDataOutputRepresentation } from "../schemas.js";
 
-export class UniversalIdLookupService extends BaseResource {
-  protected readonly basePath = "/ssot/universalIdLookup";
-
+export class UniversalIdLookupService extends UniversalIdLookupServiceBase {
+  /** Alias for get with friendlier parameter order. */
   async lookup(
     entityName: string,
     dataSourceId: string,
@@ -14,9 +11,6 @@ export class UniversalIdLookupService extends BaseResource {
     sourceRecordId: string,
     options?: RequestOptions,
   ): Promise<CdpQueryDataOutputRepresentation> {
-    return this.httpClient.get(
-      `${this.basePath}/${encodeURIComponent(entityName)}/${encodeURIComponent(dataSourceId)}/${encodeURIComponent(dataSourceObjectId)}/${encodeURIComponent(sourceRecordId)}`,
-      options,
-    );
+    return this.get(sourceRecordId, dataSourceId, dataSourceObjectId, entityName, options);
   }
 }

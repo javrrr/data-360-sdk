@@ -90,32 +90,32 @@ export class DataModelObjectsServiceBase extends BaseResource {
 
   /** GET /ssot/data-model-object-mappings — Get data model object mappings */
   async listMappings(params?: DataModelObjectsListMappingsParams, options?: RequestOptions): Promise<CdpObjectSourceTargetMapCollectionRepresentation> {
-    return this.httpClient.get(`${this.basePath}mappings`, { ...options, query: params });
+    return this.httpClient.get(`/ssot/data-model-object-mappings`, { ...options, query: params });
   }
 
   /** POST /ssot/data-model-object-mappings — Create data model object mapping */
   async createMappings(body: CdpObjectSourceTargetMapInputRepresentation, params?: DataModelObjectsCreateMappingsParams, options?: RequestOptions): Promise<CdpObjectSourceTargetMapRepresentation> {
-    return this.httpClient.post(`${this.basePath}mappings`, body, { ...options, query: params });
+    return this.httpClient.post(`/ssot/data-model-object-mappings`, body, { ...options, query: params });
   }
 
   /** DELETE /ssot/data-model-object-mappings/{objectSourceTargetMapDeveloperName} — Delete data model object mapping */
   async deleteMappings(objectSourceTargetMapDeveloperName: string, params?: DataModelObjectsDeleteMappingsParams, options?: RequestOptions): Promise<void> {
-    return this.httpClient.delete(`${this.basePath}mappings/${encodeURIComponent(objectSourceTargetMapDeveloperName)}`, { ...options, query: params });
+    return this.httpClient.delete(`/ssot/data-model-object-mappings/${encodeURIComponent(objectSourceTargetMapDeveloperName)}`, { ...options, query: params });
   }
 
   /** GET /ssot/data-model-object-mappings/{objectSourceTargetMapDeveloperName} — Get data model object mapping */
   async getMappings(objectSourceTargetMapDeveloperName: string, params?: DataModelObjectsGetMappingsParams, options?: RequestOptions): Promise<CdpObjectSourceTargetMapRepresentation> {
-    return this.httpClient.get(`${this.basePath}mappings/${encodeURIComponent(objectSourceTargetMapDeveloperName)}`, { ...options, query: params });
+    return this.httpClient.get(`/ssot/data-model-object-mappings/${encodeURIComponent(objectSourceTargetMapDeveloperName)}`, { ...options, query: params });
   }
 
   /** DELETE /ssot/data-model-object-mappings/{objectSourceTargetMapDeveloperName}/field-mappings — Delete data model object field mapping */
   async deleteMappingsFieldMappings(objectSourceTargetMapDeveloperName: string, params?: DataModelObjectsDeleteMappingsFieldMappingsParams, options?: RequestOptions): Promise<void> {
-    return this.httpClient.delete(`${this.basePath}mappings/${encodeURIComponent(objectSourceTargetMapDeveloperName)}/field-mappings`, { ...options, query: params });
+    return this.httpClient.delete(`/ssot/data-model-object-mappings/${encodeURIComponent(objectSourceTargetMapDeveloperName)}/field-mappings`, { ...options, query: params });
   }
 
   /** PATCH /ssot/data-model-object-mappings/{objectSourceTargetMapDeveloperName}/field-mappings/{fieldSourceTargetMapDeveloperName} — Delete data model object field mapping */
   async patchMappingsFieldMappings(fieldSourceTargetMapDeveloperName: string, objectSourceTargetMapDeveloperName: string, body: CdpObjectSourceTargetMapInputRepresentation, params?: DataModelObjectsPatchMappingsFieldMappingsParams, options?: RequestOptions): Promise<CdpObjectSourceTargetMapRepresentation> {
-    return this.httpClient.patch(`${this.basePath}mappings/${encodeURIComponent(objectSourceTargetMapDeveloperName)}/field-mappings/${encodeURIComponent(fieldSourceTargetMapDeveloperName)}`, body, { ...options, query: params });
+    return this.httpClient.patch(`/ssot/data-model-object-mappings/${encodeURIComponent(objectSourceTargetMapDeveloperName)}/field-mappings/${encodeURIComponent(fieldSourceTargetMapDeveloperName)}`, body, { ...options, query: params });
   }
 
   /** GET /ssot/data-model-objects — Get data model objects */

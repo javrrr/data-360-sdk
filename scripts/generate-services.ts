@@ -717,9 +717,17 @@ function emitMethodBody(method: GeneratedMethod, basePath: string): string {
     | undefined;
 
   // Build path expression
-  const relativePath = op.path.slice(basePath.length);
+  const startsWithBase = op.path.startsWith(basePath);
+  const relativePath = startsWithBase ? op.path.slice(basePath.length) : null;
   let pathExpr: string;
-  if (!relativePath || relativePath === "") {
+  if (relativePath === null) {
+    // Path is outside the basePath — use the full path directly
+    const fullTemplate = op.path.replace(
+      /\{([^}]+)\}/g,
+      (_, param) => `\${encodeURIComponent(${param})}`,
+    );
+    pathExpr = "`" + fullTemplate + "`";
+  } else if (!relativePath || relativePath === "") {
     pathExpr = "this.basePath";
   } else {
     // Replace {param} with ${encodeURIComponent(param)}

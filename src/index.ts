@@ -45,6 +45,9 @@ export type { paths, components, operations } from "./generated/openapi.js";
 // All named schema types + discriminated unions — discoverable via autocomplete
 export type * from "./schemas.js";
 
+// Generated query param interfaces — discoverable via autocomplete
+export type * from "./generated/services/index.js";
+
 // Resource services (for advanced usage / extension)
 export { ActivationTargetsService } from "./resources/activation-targets.js";
 export { ActivationsService } from "./resources/activations.js";

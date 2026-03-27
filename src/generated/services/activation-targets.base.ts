@@ -28,7 +28,7 @@ export class ActivationTargetsServiceBase extends BaseResource {
 
   /** GET /ssot/activation-external-platforms — Get activation external platforms */
   async listLPlatforms(params?: PaginationParams, options?: RequestOptions): Promise<ActivationExternalPlatformCollectionRepresentation> {
-    return this.httpClient.get(`${this.basePath}l-platforms`, {
+    return this.httpClient.get(`/ssot/activation-external-platforms`, {
       ...options,
       query: this.paginationQuery({ ...params, pageSizeParam: "limit" }),
     });
