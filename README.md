@@ -5,7 +5,7 @@ TypeScript SDK for the Salesforce Data 360 Connect REST API. Provides type-safe,
 ## Features
 
 - **Full API coverage** — 27 service namespaces, 220+ methods, generated from the OpenAPI spec
-- **Type-safe** — Auto-generated types and services from the OpenAPI 3.0.0 spec (763 schemas + 253 enums + discriminated input unions + typed query parameters)
+- **Type-safe** — Auto-generated types and services from the OpenAPI 3.0.0 spec (810 schemas + 262 enums + discriminated input unions + typed query parameters)
 - **Zero HTTP dependencies** — Uses native `fetch` (Node.js 18+, browsers, React Native)
 - **Dual format** — ESM + CJS output, tree-shakeable with `sideEffects: false`
 - **Retry & backoff** — Exponential backoff with jitter, Retry-After header support
@@ -250,7 +250,7 @@ if (queryId) {
 
 | Service | Namespace | Methods |
 |---------|-----------|---------|
-| Activation Targets | `client.activationTargets` | list, listAll, get, create, patch, update, listLPlatforms, listExternalPlatforms, listAllLPlatforms |
+| Activation Targets | `client.activationTargets` | list, listAll, get, create, patch, update, listExternalPlatforms, listAllExternalPlatforms |
 | Activations | `client.activations` | list, listAll, get, getById, create, put, update, delete, listData, getData, listAllData |
 | Calculated Insights | `client.calculatedInsights` | list, listAll, get, create, delete, patch, run |
 | Connections | `client.connections` | list, listAll, get, create, update, patch, put, delete, test, testByPost, postTest, postActions, createActionsById, createDatabaseSchemas, createDatabases, getEndpoints, createObjects, createFields, createPreview, listSchema, putSchema, getSitemap, putSitemap, listAllSchema |
@@ -259,7 +259,7 @@ if (queryId) {
 | Data Actions | `client.dataActions` | list, listAll, create |
 | Data Clean Room | `client.dataCleanRoom` | listCollaborations, listAllCollaborations, createCollaborations, acceptInvitation, rejectInvitation, run, listCollaborationsJobs, listAllCollaborationsJobs, listProviders, listAllProviders, createProviders, getProviders, listProvidersTemplates, listAllProvidersTemplates, listSpecifications, listAllSpecifications, createSpecifications, listTemplates, listAllTemplates |
 | Data Graphs | `client.dataGraphs` | get, create, delete, refresh, getData, getDataByGet, getMetadata |
-| Data Kits | `client.dataKits` | listDependencies, getDeploymentStatus, createUndeploy |
+| Data Kits | `client.dataKits` | list, create, delete, patch, createByPost, listDependencies, getDeploymentStatus, createUndeploy, listAvailableComponents, getDataKitManifest |
 | Data Lake Objects | `client.dataLakeObjects` | list, listAll, get, create, delete, patch |
 | Data Model Objects | `client.dataModelObjects` | list, listAll, get, create, delete, patch, listRelationships, listAllRelationships, createRelationships, deleteRelationships, listMappings, listAllMappings, getMappings, createMappings, deleteMappings, deleteMappingsFieldMappings, patchMappingsFieldMappings |
 | Data Spaces | `client.dataSpaces` | list, listAll, get, create, patch, listMembers, listAllMembers, putMembers, getMembers |
