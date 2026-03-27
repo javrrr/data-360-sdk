@@ -27,7 +27,7 @@ export class ActivationTargetsServiceBase extends BaseResource {
   protected readonly basePath = "/ssot/activation-targets";
 
   /** GET /ssot/activation-external-platforms — Get activation external platforms */
-  async listLPlatforms(params?: PaginationParams, options?: RequestOptions): Promise<ActivationExternalPlatformCollectionRepresentation> {
+  async listExternalPlatforms(params?: PaginationParams, options?: RequestOptions): Promise<ActivationExternalPlatformCollectionRepresentation> {
     return this.httpClient.get(`/ssot/activation-external-platforms`, {
       ...options,
       query: this.paginationQuery({ ...params, pageSizeParam: "limit" }),
@@ -58,8 +58,8 @@ export class ActivationTargetsServiceBase extends BaseResource {
     return this.httpClient.patch(`${this.basePath}/${encodeURIComponent(activationTargetId)}`, body, options);
   }
 
-  /** Async generator yielding all items from listLPlatforms */
-  async *listAllLPlatforms(params?: PaginationParams, options?: RequestOptions): AsyncGenerator<ActivationExternalPlatformRepresentation, void, undefined> {
+  /** Async generator yielding all items from listExternalPlatforms */
+  async *listAllExternalPlatforms(params?: PaginationParams, options?: RequestOptions): AsyncGenerator<ActivationExternalPlatformRepresentation, void, undefined> {
     yield* this.paginate<ActivationExternalPlatformRepresentation>(`${this.basePath}l-platforms`, { ...params, pageSizeParam: "limit" }, options);
   }
 
