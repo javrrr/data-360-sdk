@@ -1,11 +1,11 @@
 # data-360-sdk
 
-TypeScript SDK for the Salesforce Data 360 Connect REST API. Provides type-safe, idiomatic access to all 27 API resource categories with full coverage of all 185 endpoints.
+TypeScript SDK for the Salesforce Data 360 Connect REST API. Provides type-safe, idiomatic access to all 27 API resource categories with full coverage of 220+ endpoints.
 
 ## Features
 
-- **Full API coverage** — 27 service namespaces, 185 endpoints, 100% spec coverage
-- **Type-safe** — Auto-generated types from the OpenAPI 3.0.0 spec (763 schemas + 253 enums + discriminated input unions)
+- **Full API coverage** — 27 service namespaces, 220+ methods, generated from the OpenAPI spec
+- **Type-safe** — Auto-generated types and services from the OpenAPI 3.0.0 spec (763 schemas + 253 enums + discriminated input unions + typed query parameters)
 - **Zero HTTP dependencies** — Uses native `fetch` (Node.js 18+, browsers, React Native)
 - **Dual format** — ESM + CJS output, tree-shakeable with `sideEffects: false`
 - **Retry & backoff** — Exponential backoff with jitter, Retry-After header support
@@ -48,7 +48,7 @@ const result = await client.query.execute({
 
 ## Types
 
-All schema and enum types are exported as named types, discoverable via autocomplete:
+All schema, enum, and query parameter types are exported as named types, discoverable via autocomplete:
 
 ```typescript
 import type {
@@ -57,6 +57,9 @@ import type {
   ConnectionCreateInput,
   DataLakeObjectCategory,
   RefreshConfigRefreshMode,
+  // Generated query param interfaces
+  DataStreamsDeleteParams,
+  ConnectionsListParams,
 } from "data-360-sdk";
 
 // Or from the types-only subpath (zero runtime cost)
@@ -243,37 +246,37 @@ if (queryId) {
 
 ## Available Services
 
-185 endpoints across 27 service namespaces. Generated from the [Data 360 Connect API OpenAPI Spec](https://developer.salesforce.com/docs/data/connectapi/references/spec) with full coverage.
+220+ methods across 27 service namespaces. Service classes and typed query parameter interfaces are auto-generated from the [Data 360 Connect API OpenAPI Spec](https://developer.salesforce.com/docs/data/connectapi/references/spec).
 
 | Service | Namespace | Methods |
 |---------|-----------|---------|
-| Activation Targets | `client.activationTargets` | list, get, create, update, listExternalPlatforms |
-| Activations | `client.activations` | list, getById, create, update, delete, getData |
-| Calculated Insights | `client.calculatedInsights` | list, get, create, delete, patch, run |
-| Connections | `client.connections` | list, get, create, update, put, delete, test, testById, testSchema, getObjectFields, getFields, getObjects, listObjects, getDatabaseSchemas, listDatabaseSchemas, getDatabases, listDatabases, listEndpoints, previewData, listSchema, updateSchema, listSitemap, updateSitemap, runAction, runActionById |
-| Connectors | `client.connectors` | list, get |
-| Data Action Targets | `client.dataActionTargets` | list, get, create, delete, getSigningKey, resetSigningKey |
-| Data Actions | `client.dataActions` | list, create |
-| Data Clean Room | `client.dataCleanRoom` | listCollaborations, createCollaborations, acceptInvitation, rejectInvitation, run, listJobs, listProviders, getProvider, createProviders, listProviderTemplates, listSpecifications, createSpecifications, listTemplates |
-| Data Graphs | `client.dataGraphs` | listMetadata, get, create, delete, getData, getDataById, refresh |
-| Data Kits | `client.dataKits` | list, undeploy, getDependencies, getDeploymentStatus |
-| Data Lake Objects | `client.dataLakeObjects` | list, get, create, delete, patch |
-| Data Model Objects | `client.dataModelObjects` | list, get, create, delete, patch, listRelationships, createRelationships, deleteRelationships, listMappings, getMapping, createMapping, deleteMapping, deleteFieldMappings, patchFieldMappings |
-| Data Spaces | `client.dataSpaces` | list, get, create, patch, listMembers, getMembers, addMember, updateMembers |
-| Data Streams | `client.dataStreams` | list, get, create, delete, patch, run |
-| Data Transforms | `client.dataTransforms` | list, get, create, put, delete, run, cancel, retry, refreshStatus, getRunHistory, listSchedule, updateSchedule, validate |
-| Document AI | `client.documentAi` | extractData, generateSchema, listConfigurations, getConfiguration, createConfiguration, deleteConfigurations, patchConfigurations, getGlobalConfig, run |
-| Identity Resolutions | `client.identityResolutions` | list, get, create, delete, patch, runNow |
-| Insights | `client.insights` | getMetadata, listMetadata, getCalculatedInsight |
-| Machine Learning | `client.machineLearning` | listAlerts, patchAlerts, listConfiguredModels, getConfiguredModel, deleteConfiguredModels, patchConfiguredModels, listModelArtifacts, getModelArtifact, deleteModelArtifacts, patchModelArtifacts, predict, listSetupVersions, createSetupVersions, getSetupVersions, patchSetupVersions, getPartitions, getPartition |
-| Metadata | `client.metadata` | get |
-| Private Network Routes | `client.privateNetworkRoutes` | list, get, create, delete |
-| Profile | `client.profile` | list, get, getMetadata, listMetadata, getCalculatedInsights, getChildRecords |
-| Query V1/V2 | `client.queryV1V2` | executeV1, executeV2, getNextBatch |
-| Query (SQL) | `client.query` | execute, getStatus, getRows, delete, executeAndWait |
-| Search Index | `client.searchIndex` | list, get, create, delete, patch, getConfig |
-| Segments | `client.segments` | list, get, create, delete, patch, count, countWithInput, listMembers, publish, deactivate |
-| Universal ID Lookup | `client.universalIdLookup` | lookup |
+| Activation Targets | `client.activationTargets` | list, listAll, get, create, patch, update, listLPlatforms, listExternalPlatforms, listAllLPlatforms |
+| Activations | `client.activations` | list, listAll, get, getById, create, put, update, delete, listData, getData, listAllData |
+| Calculated Insights | `client.calculatedInsights` | list, listAll, get, create, delete, patch, run |
+| Connections | `client.connections` | list, listAll, get, create, update, patch, put, delete, test, testByPost, postTest, postActions, createActionsById, createDatabaseSchemas, createDatabases, getEndpoints, createObjects, createFields, createPreview, listSchema, putSchema, getSitemap, putSitemap, listAllSchema |
+| Connectors | `client.connectors` | list, listAll, get |
+| Data Action Targets | `client.dataActionTargets` | list, listAll, get, create, delete, getSigningKey, createSigningKey, resetSigningKey |
+| Data Actions | `client.dataActions` | list, listAll, create |
+| Data Clean Room | `client.dataCleanRoom` | listCollaborations, listAllCollaborations, createCollaborations, acceptInvitation, rejectInvitation, run, listCollaborationsJobs, listAllCollaborationsJobs, listProviders, listAllProviders, createProviders, getProviders, listProvidersTemplates, listAllProvidersTemplates, listSpecifications, listAllSpecifications, createSpecifications, listTemplates, listAllTemplates |
+| Data Graphs | `client.dataGraphs` | get, create, delete, refresh, getData, getDataByGet, getMetadata |
+| Data Kits | `client.dataKits` | listDependencies, getDeploymentStatus, createUndeploy |
+| Data Lake Objects | `client.dataLakeObjects` | list, listAll, get, create, delete, patch |
+| Data Model Objects | `client.dataModelObjects` | list, listAll, get, create, delete, patch, listRelationships, listAllRelationships, createRelationships, deleteRelationships, listMappings, listAllMappings, getMappings, createMappings, deleteMappings, deleteMappingsFieldMappings, patchMappingsFieldMappings |
+| Data Spaces | `client.dataSpaces` | list, listAll, get, create, patch, listMembers, listAllMembers, putMembers, getMembers |
+| Data Streams | `client.dataStreams` | list, listAll, get, create, delete, patch, run |
+| Data Transforms | `client.dataTransforms` | list, listAll, get, create, put, delete, run, cancel, retry, refreshStatus, createValidation, listRunHistory, listAllRunHistory, getSchedule, putSchedule |
+| Document AI | `client.documentAi` | extractData, generateSchema, listConfigurations, listAllConfigurations, createConfigurations, deleteConfigurations, getConfigurations, patchConfigurations, run, getGlobalConfig |
+| Identity Resolutions | `client.identityResolutions` | list, listAll, get, create, delete, patch, runNow |
+| Insights | `client.insights` | getMetadata, getMetadataByGet, getCalculatedInsights |
+| Machine Learning | `client.machineLearning` | createAlerts, patchAlerts, listConfiguredModels, listAllConfiguredModels, getConfiguredModels, deleteConfiguredModels, patchConfiguredModels, listModelArtifacts, listAllModelArtifacts, getModelArtifacts, deleteModelArtifacts, patchModelArtifacts, createPredict, listModelSetupsSetupVersions, listAllModelSetupsSetupVersions, createModelSetupsSetupVersions, getModelSetupsSetupVersions, patchModelSetupsSetupVersions, listModelSetupsSetupVersionsByGet, listAllModelSetupsSetupVersionsByGet, getModelSetupsSetupVersionsByGet |
+| Metadata | `client.metadata` | list, getEntities |
+| Private Network Routes | `client.privateNetworkRoutes` | list, listAll, get, create, delete |
+| Profile | `client.profile` | get, getByGet, getGet, getCalculatedInsights, getMetadata, getMetadataByGet |
+| Query V1/V2 | `client.queryV1V2` | create, createV2, getV2, executeV1, executeV2, getNextBatch |
+| Query (SQL) | `client.query` | create, get, delete, getRows, execute, getStatus, executeAndWait |
+| Search Index | `client.searchIndex` | list, listAll, get, create, delete, patch, getConfig |
+| Segments | `client.segments` | list, listAll, get, create, delete, patch, count, countWithInput, deactivate, deactivateByPost, publish, getMembers, listMembers |
+| Universal ID Lookup | `client.universalIdLookup` | get, lookup |
 
 ## Configuration Options
 
@@ -299,14 +302,48 @@ const client = new Data360Client({
 });
 ```
 
+## Architecture
+
+```
+src/
+  generated/
+    openapi.yaml          ← Fetched spec (committed for diffing)
+    openapi.d.ts          ← Raw types from openapi-typescript
+    services/             ← Generated base service classes
+      *.base.ts           ← One per API tag (27 files)
+      index.ts            ← Barrel export
+  schemas.ts              ← Named re-exports with overrides, enums, unions
+  resources/
+    base-resource.ts      ← Abstract base with pagination helpers
+    *.ts                  ← Final services (re-export or extend generated bases)
+  client.ts               ← Data360Client wiring all services
+  index.ts                ← Public API barrel export
+
+scripts/
+  generate-types.ts       ← Type generation (openapi.d.ts + schemas.ts)
+  generate-services.ts    ← Service generation (services/*.base.ts)
+```
+
+Services are generated from the OpenAPI spec, then optionally extended in `src/resources/` for custom types (e.g., `DataStreamCreateInput`) or convenience methods (e.g., `executeAndWait`).
+
 ## Development
 
 ```bash
-npm run generate    # Regenerate types from OpenAPI spec
+npm run generate    # Regenerate types + services from OpenAPI spec
 npm run typecheck   # Type check
 npm test            # Run tests
 npm run build       # Build ESM + CJS
 ```
+
+### Updating the SDK
+
+When the API spec changes:
+
+1. Run `npm run generate` — fetches the latest spec and regenerates types + service base classes
+2. Run `npm run typecheck` — TypeScript will flag any breaking changes in hand-written extensions
+3. Fix any compilation errors in `src/resources/` (method signatures or types that changed)
+4. Run `npm test` — verify all tests pass
+5. Run `npm run build` — produce the distributable
 
 ## Releasing
 
