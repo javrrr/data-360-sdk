@@ -39,13 +39,13 @@ describe("DataSpacesService", () => {
     expect(httpClient.get).toHaveBeenCalled();
   });
 
-  it("addMember()", async () => {
+  it("putMembers()", async () => {
     const httpClient = createMockHttpClient();
     const service = new DataSpacesService(httpClient);
 
-    await service.addMember("test-idOrName", { test: true } as any);
+    await service.putMembers("test-idOrName", { test: true } as any);
 
-    expect(httpClient.post).toHaveBeenCalled();
+    expect(httpClient.put).toHaveBeenCalled();
   });
 
   it("create()", async () => {
@@ -66,11 +66,11 @@ describe("DataSpacesService", () => {
     expect(httpClient.patch).toHaveBeenCalled();
   });
 
-  it("updateMembers()", async () => {
+  it("putMembers() - update", async () => {
     const httpClient = createMockHttpClient();
     const service = new DataSpacesService(httpClient);
 
-    await service.updateMembers("test-idOrName", { test: true } as any);
+    await service.putMembers("test-idOrName", { test: true } as any);
 
     expect(httpClient.put).toHaveBeenCalled();
   });
@@ -79,7 +79,7 @@ describe("DataSpacesService", () => {
     const httpClient = createMockHttpClient();
     const service = new DataSpacesService(httpClient);
 
-    await service.getMembers("test-idOrName", "test-dataSpaceMemberObjectName");
+    await service.getMembers("test-dataSpaceMemberObjectName", "test-idOrName");
 
     expect(httpClient.get).toHaveBeenCalled();
   });

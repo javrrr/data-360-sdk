@@ -39,11 +39,11 @@ describe("DocumentAiService", () => {
     expect(httpClient.get).toHaveBeenCalled();
   });
 
-  it("createConfiguration()", async () => {
+  it("createConfigurations()", async () => {
     const httpClient = createMockHttpClient();
     const service = new DocumentAiService(httpClient);
 
-    await service.createConfiguration({ test: true } as any);
+    await service.createConfigurations({ test: true } as any);
 
     expect(httpClient.post).toHaveBeenCalled();
   });
@@ -84,11 +84,11 @@ describe("DocumentAiService", () => {
     expect(httpClient.post).toHaveBeenCalled();
   });
 
-  it("getConfiguration()", async () => {
+  it("getConfigurations()", async () => {
     const httpClient = createMockHttpClient();
     const service = new DocumentAiService(httpClient);
 
-    await service.getConfiguration("test-idOrApiName");
+    await service.getConfigurations("test-idOrApiName");
 
     expect(httpClient.get).toHaveBeenCalled();
   });

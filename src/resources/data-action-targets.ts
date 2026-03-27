@@ -1,52 +1,15 @@
-import { BaseResource } from "./base-resource.js";
-import type { PaginationParams, RequestOptions } from "../core/types.js";
-import type {
-  CdpDataActionTargetCollectionRepresentation,
-  CdpDataActionTargetInputRepresentation,
-  CdpDataActionTargetOutputRepresentation,
-  CdpDataActionTargetSigningKeyOutputRepresentation,
-} from "../schemas.js";
+import { DataActionTargetsServiceBase } from "../generated/services/data-action-targets.base.js";
+import type { RequestOptions } from "../core/types.js";
+import type { CdpDataActionTargetSigningKeyOutputRepresentation } from "../schemas.js";
 
-export class DataActionTargetsService extends BaseResource {
-  protected readonly basePath = "/ssot/data-action-targets";
-
-  async list(params?: PaginationParams, options?: RequestOptions): Promise<CdpDataActionTargetCollectionRepresentation> {
-    return this.httpClient.get(this.basePath, {
-      ...options,
-      query: this.paginationQuery(params),
-    });
-  }
-
-  async *listAll(
-    params?: PaginationParams,
-    options?: RequestOptions,
-  ): AsyncGenerator<CdpDataActionTargetOutputRepresentation, void, undefined> {
-    yield* this.paginate<CdpDataActionTargetOutputRepresentation>(this.basePath, params, options);
-  }
-
-  async get(apiName: string, options?: RequestOptions): Promise<CdpDataActionTargetOutputRepresentation> {
-    return this.httpClient.get(
-      `${this.basePath}/${encodeURIComponent(apiName)}`,
-      options,
-    );
-  }
-
+export class DataActionTargetsService extends DataActionTargetsServiceBase {
+  /** Alias for getSigningKey — get signing key for a data action target. */
   async getSigningKey(apiName: string, options?: RequestOptions): Promise<CdpDataActionTargetSigningKeyOutputRepresentation> {
-    return this.httpClient.get(
-      `${this.basePath}/${encodeURIComponent(apiName)}/signing-key`,
-      options,
-    );
+    return this.httpClient.get(`${this.basePath}/${encodeURIComponent(apiName)}/signing-key`, options);
   }
 
-  async create(body: CdpDataActionTargetInputRepresentation, options?: RequestOptions): Promise<CdpDataActionTargetOutputRepresentation> {
-    return this.httpClient.post(this.basePath, body, options);
-  }
-
-  async delete(apiName: string, options?: RequestOptions & { query?: Record<string, string | number | boolean | undefined> }): Promise<void> {
-    return this.httpClient.delete(`${this.basePath}/${encodeURIComponent(apiName)}`, options);
-  }
-
+  /** Alias for createSigningKey — reset signing key for a data action target. */
   async resetSigningKey(apiName: string, options?: RequestOptions): Promise<CdpDataActionTargetSigningKeyOutputRepresentation> {
-    return this.httpClient.post(`${this.basePath}/${encodeURIComponent(apiName)}/signing-key`, undefined, options);
+    return this.createSigningKey(apiName, options);
   }
 }

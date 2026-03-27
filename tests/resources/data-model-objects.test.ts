@@ -57,20 +57,20 @@ describe("DataModelObjectsService", () => {
     expect(httpClient.patch).toHaveBeenCalled();
   });
 
-  it("deleteFieldMappings()", async () => {
+  it("deleteMappingsFieldMappings()", async () => {
     const httpClient = createMockHttpClient();
     const service = new DataModelObjectsService(httpClient);
 
-    await service.deleteFieldMappings("test-objectSourceTargetMapDeveloperName");
+    await service.deleteMappingsFieldMappings("test-objectSourceTargetMapDeveloperName");
 
     expect(httpClient.delete).toHaveBeenCalled();
   });
 
-  it("patchFieldMappings()", async () => {
+  it("patchMappingsFieldMappings()", async () => {
     const httpClient = createMockHttpClient();
     const service = new DataModelObjectsService(httpClient);
 
-    await service.patchFieldMappings("test-objectSourceTargetMapDeveloperName", "test-fieldSourceTargetMapDeveloperName", { test: true } as any);
+    await service.patchMappingsFieldMappings("test-fieldSourceTargetMapDeveloperName", "test-objectSourceTargetMapDeveloperName", { test: true } as any);
 
     expect(httpClient.patch).toHaveBeenCalled();
   });
@@ -111,29 +111,29 @@ describe("DataModelObjectsService", () => {
     expect(httpClient.get).toHaveBeenCalled();
   });
 
-  it("createMapping()", async () => {
+  it("createMappings()", async () => {
     const httpClient = createMockHttpClient();
     const service = new DataModelObjectsService(httpClient);
 
-    await service.createMapping({ test: true } as any);
+    await service.createMappings({ test: true } as any);
 
     expect(httpClient.post).toHaveBeenCalled();
   });
 
-  it("getMapping()", async () => {
+  it("getMappings()", async () => {
     const httpClient = createMockHttpClient();
     const service = new DataModelObjectsService(httpClient);
 
-    await service.getMapping("test-developerName");
+    await service.getMappings("test-developerName");
 
     expect(httpClient.get).toHaveBeenCalled();
   });
 
-  it("deleteMapping()", async () => {
+  it("deleteMappings()", async () => {
     const httpClient = createMockHttpClient();
     const service = new DataModelObjectsService(httpClient);
 
-    await service.deleteMapping("test-developerName");
+    await service.deleteMappings("test-developerName");
 
     expect(httpClient.delete).toHaveBeenCalled();
   });

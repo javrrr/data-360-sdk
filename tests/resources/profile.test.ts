@@ -9,20 +9,20 @@ function createMockHttpClient() {
 }
 
 describe("ProfileService", () => {
-  it("list()", async () => {
-    const httpClient = createMockHttpClient();
-    const service = new ProfileService(httpClient);
-
-    await service.list("test-dataModelName", { batchSize: 10 });
-
-    expect(httpClient.get).toHaveBeenCalled();
-  });
-
   it("get()", async () => {
     const httpClient = createMockHttpClient();
     const service = new ProfileService(httpClient);
 
-    await service.get("test-dataModelName", "test-id");
+    await service.get("test-dataModelName", { filters: "test" });
+
+    expect(httpClient.get).toHaveBeenCalled();
+  });
+
+  it("getByGet()", async () => {
+    const httpClient = createMockHttpClient();
+    const service = new ProfileService(httpClient);
+
+    await service.getByGet("test-id", "test-dataModelName");
 
     expect(httpClient.get).toHaveBeenCalled();
   });
@@ -40,25 +40,25 @@ describe("ProfileService", () => {
     const httpClient = createMockHttpClient();
     const service = new ProfileService(httpClient);
 
-    await service.getCalculatedInsights("test-dataModelName", "test-id", "test-ciName");
+    await service.getCalculatedInsights("test-ciName", "test-dataModelName", "test-id");
 
     expect(httpClient.get).toHaveBeenCalled();
   });
 
-  it("listMetadata()", async () => {
+  it("getMetadataByGet()", async () => {
     const httpClient = createMockHttpClient();
     const service = new ProfileService(httpClient);
 
-    await service.listMetadata("test-dataModelName");
+    await service.getMetadataByGet("test-dataModelName");
 
     expect(httpClient.get).toHaveBeenCalled();
   });
 
-  it("getChildRecords()", async () => {
+  it("getGet()", async () => {
     const httpClient = createMockHttpClient();
     const service = new ProfileService(httpClient);
 
-    await service.getChildRecords("test-dataModelName", "test-id", "test-childDataModelName");
+    await service.getGet("test-childDataModelName", "test-dataModelName", "test-id");
 
     expect(httpClient.get).toHaveBeenCalled();
   });

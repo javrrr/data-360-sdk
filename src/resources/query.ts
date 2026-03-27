@@ -1,43 +1,23 @@
-import { BaseResource } from "./base-resource.js";
-import type { PaginationParams, RequestOptions } from "../core/types.js";
+import { QueryServiceBase } from "../generated/services/query.base.js";
+import type { RequestOptions } from "../core/types.js";
 import type {
   QuerySqlInputRepresentation,
-  QuerySqlPageRepresentation,
   QuerySqlRepresentation,
   QuerySqlStatusRepresentation,
 } from "../schemas.js";
 
-export class QueryService extends BaseResource {
-  protected readonly basePath = "/ssot/query-sql";
-
-  async execute(
-    body: QuerySqlInputRepresentation,
-    options?: RequestOptions,
-  ): Promise<QuerySqlRepresentation> {
-    return this.httpClient.post(this.basePath, body, options);
+export class QueryService extends QueryServiceBase {
+  /** Alias for create — execute a SQL query. */
+  async execute(body: QuerySqlInputRepresentation, options?: RequestOptions): Promise<QuerySqlRepresentation> {
+    return this.create(body, undefined, options);
   }
 
+  /** Alias for get — get query status. */
   async getStatus(queryId: string, options?: RequestOptions): Promise<QuerySqlStatusRepresentation> {
-    return this.httpClient.get(
-      `${this.basePath}/${encodeURIComponent(queryId)}`,
-      options,
-    );
+    return this.get(queryId, undefined, options);
   }
 
-  async getRows(
-    queryId: string,
-    params?: PaginationParams,
-    options?: RequestOptions,
-  ): Promise<QuerySqlPageRepresentation> {
-    return this.httpClient.get(
-      `${this.basePath}/${encodeURIComponent(queryId)}/rows`,
-      {
-        ...options,
-        query: this.paginationQuery(params),
-      },
-    );
-  }
-
+  /** Execute a query and poll until completion or timeout. */
   async executeAndWait(
     body: QuerySqlInputRepresentation,
     opts?: { pollIntervalMs?: number; timeoutMs?: number },
@@ -50,7 +30,6 @@ export class QueryService extends BaseResource {
     const queryId = result.status?.queryId;
 
     if (!queryId) {
-      // Query completed synchronously
       return result.status!;
     }
 
@@ -74,12 +53,6 @@ export class QueryService extends BaseResource {
       await new Promise((resolve) => setTimeout(resolve, pollIntervalMs));
     }
 
-    throw new Error(
-      `Query ${queryId} timed out after ${timeoutMs}ms`,
-    );
-  }
-
-  async delete(queryId: string, options?: RequestOptions & { query?: Record<string, string | number | boolean | undefined> }): Promise<void> {
-    return this.httpClient.delete(`${this.basePath}/${encodeURIComponent(queryId)}`, options);
+    throw new Error(`Query ${queryId} timed out after ${timeoutMs}ms`);
   }
 }

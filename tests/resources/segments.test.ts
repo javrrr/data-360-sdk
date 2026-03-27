@@ -37,10 +37,11 @@ describe("SegmentsService", () => {
     const httpClient = createMockHttpClient();
     const service = new SegmentsService(httpClient);
 
-    await service.count("MySegment");
+    await service.count("MySegment", {} as any);
 
-    expect(httpClient.get).toHaveBeenCalledWith(
+    expect(httpClient.post).toHaveBeenCalledWith(
       "/ssot/segments/MySegment/actions/count",
+      expect.any(Object),
       undefined,
     );
   });
@@ -49,11 +50,11 @@ describe("SegmentsService", () => {
     const httpClient = createMockHttpClient();
     const service = new SegmentsService(httpClient);
 
-    await service.listMembers("MySegment", { batchSize: 20 });
+    await service.listMembers("MySegment", { fields: "Id__c" });
 
     expect(httpClient.get).toHaveBeenCalledWith(
       "/ssot/segments/MySegment/members",
-      { query: { limit: 20, offset: undefined, orderBy: undefined } },
+      { query: { fields: "Id__c" } },
     );
   });
 

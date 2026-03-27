@@ -7,7 +7,7 @@
  *   2. src/generated/openapi.d.ts  — full generated types (paths, components, operations)
  *   3. src/schemas.ts              — named re-exports, enum types, and discriminated unions
  *
- * Usage: npm run generate
+ * Usage: npm run generate  (also runs generate-services.ts afterward)
  */
 import fs from "node:fs";
 import path from "node:path";

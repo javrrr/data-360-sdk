@@ -53,7 +53,7 @@
     "dist"
   ],
   "scripts": {
-    "generate": "tsx scripts/generate-types.ts",
+    "generate": "tsx scripts/generate-types.ts && tsx scripts/generate-services.ts",
     "build": "tsup",
     "test": "vitest run",
     "test:watch": "vitest",

@@ -10,29 +10,20 @@ function createMockHttpClient() {
 }
 
 describe("DataKitsService", () => {
-  it("list()", async () => {
+  it("createUndeploy()", async () => {
     const httpClient = createMockHttpClient();
     const service = new DataKitsService(httpClient);
 
-    await service.list({ batchSize: 10 });
-
-    expect(httpClient.get).toHaveBeenCalled();
-  });
-
-  it("undeploy()", async () => {
-    const httpClient = createMockHttpClient();
-    const service = new DataKitsService(httpClient);
-
-    await service.undeploy("test-dataKitName", { test: true } as any);
+    await service.createUndeploy("test-dataKitName", { test: true } as any);
 
     expect(httpClient.post).toHaveBeenCalled();
   });
 
-  it("getDependencies()", async () => {
+  it("listDependencies()", async () => {
     const httpClient = createMockHttpClient();
     const service = new DataKitsService(httpClient);
 
-    await service.getDependencies("test-dataKitName", "test-componentName");
+    await service.listDependencies("test-componentName", "test-dataKitName");
 
     expect(httpClient.get).toHaveBeenCalled();
   });
@@ -41,7 +32,7 @@ describe("DataKitsService", () => {
     const httpClient = createMockHttpClient();
     const service = new DataKitsService(httpClient);
 
-    await service.getDeploymentStatus("test-dataKitName", "test-componentName");
+    await service.getDeploymentStatus("test-componentName", "test-dataKitName");
 
     expect(httpClient.get).toHaveBeenCalled();
   });

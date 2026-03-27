@@ -19,7 +19,7 @@ describe("ConnectionsService", () => {
     await service.list({ connectorType: "SalesforceDotCom", batchSize: 5 });
 
     expect(httpClient.get).toHaveBeenCalledWith("/ssot/connections", {
-      query: { limit: 5, offset: undefined, orderBy: undefined, connectorType: "SalesforceDotCom", devName: undefined, label: undefined },
+      query: { limit: 5, offset: undefined, orderBy: undefined, connectorType: "SalesforceDotCom" },
     });
   });
 
@@ -35,23 +35,20 @@ describe("ConnectionsService", () => {
     );
   });
 
-  it("gets object fields for a connection", async () => {
+  it("creates fields for a connection object", async () => {
     const httpClient = createMockHttpClient();
     const service = new ConnectionsService(httpClient);
 
-    await service.getObjectFields("conn-123", "Account");
+    await service.createFields("conn-123", "Account", { test: true } as any);
 
-    expect(httpClient.get).toHaveBeenCalledWith(
-      "/ssot/connections/conn-123/objects/Account/fields",
-      undefined,
-    );
+    expect(httpClient.post).toHaveBeenCalled();
   });
 
-  it("tests a connection", async () => {
+  it("tests a connection (postTest)", async () => {
     const httpClient = createMockHttpClient();
     const service = new ConnectionsService(httpClient);
 
-    await service.test({ connectorType: "AwsS3", credentials: [], parameters: [], method: "Ingress" } as any);
+    await service.postTest({ connectorType: "AwsS3", credentials: [], parameters: [], method: "Ingress" } as any);
 
     expect(httpClient.post).toHaveBeenCalledWith(
       "/ssot/connections/actions/test",
@@ -64,7 +61,7 @@ describe("ConnectionsService", () => {
     const httpClient = createMockHttpClient();
     const service = new ConnectionsService(httpClient);
 
-    await service.testById("conn-123");
+    await service.test("conn-123");
 
     expect(httpClient.post).toHaveBeenCalledWith(
       "/ssot/connections/conn-123/actions/test",

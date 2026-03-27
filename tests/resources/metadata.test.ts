@@ -9,11 +9,11 @@ function createMockHttpClient() {
 }
 
 describe("MetadataService", () => {
-  it("get()", async () => {
+  it("list()", async () => {
     const httpClient = createMockHttpClient();
     const service = new MetadataService(httpClient);
 
-    await service.get();
+    await service.list();
 
     expect(httpClient.get).toHaveBeenCalled();
   });
