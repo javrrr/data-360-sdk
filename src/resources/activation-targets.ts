@@ -14,9 +14,4 @@ export class ActivationTargetsService extends ActivationTargetsServiceBase {
   ): Promise<ActivationTargetRepresentation> {
     return this.patch(activationTargetId, body, options);
   }
-
-  /** Alias for listLPlatforms — list external activation platforms. */
-  async listExternalPlatforms(options?: RequestOptions) {
-    return this.listLPlatforms(undefined, options);
-  }
 }

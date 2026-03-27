@@ -1,5 +1,5 @@
 /**
- * Named type exports for all 763 OpenAPI schemas, 253 enum types,
+ * Named type exports for all 810 OpenAPI schemas, 262 enum types,
  * and 3 discriminated union types.
  * Auto-generated — DO NOT EDIT. Run `npm run generate` to regenerate.
  *
@@ -14,7 +14,7 @@ type Schemas = components["schemas"];
 /** Flatten intersections into a single object type for readable IntelliSense hovers. */
 type Simplify<T> = { [K in keyof T]: T[K] } & {};
 
-// ── Schema types (763) ──
+// ── Schema types (810) ──
 
 export type AbstractBucketAlgorithmRepresentation = Schemas["AbstractBucketAlgorithmRepresentation"];
 export type AccountEngagementConnectionInputRepresentation = {
@@ -833,6 +833,14 @@ export type CdpDataKitComponentInfoForDataTransformRepresentation = {
 }
 export type CdpDataKitComponents = Schemas["CdpDataKitComponents"];
 export type CdpDataKitDeployBundleConfig = Schemas["CdpDataKitDeployBundleConfig"];
+export type CdpDataKitDeployBundleConfigForAccountEngagement = {
+  dataSpaceFilterCriteriaApiConfig?: Schemas["DataSpaceFilterConditionApiConfig"][];
+  dataStreamType?: "EmailActivity" | "FormActivity" | "WebPageActivity";
+  pardotTenantId?: string;
+}
+export type CdpDataKitDeployBundleConfigForCommerce = {
+  instanceId?: string;
+}
 export type CdpDataKitDeployBundleConfigForConnectorsFramework = {
   connectionName?: string;
   dataSpaceFilterCriteriaApiConfig?: Schemas["DataSpaceFilterConditionApiConfig"][];
@@ -840,6 +848,10 @@ export type CdpDataKitDeployBundleConfigForConnectorsFramework = {
 export type CdpDataKitDeployBundleConfigForCrm = {
   dataSpaceFilterCriteriaApiConfig?: Schemas["DataSpaceFilterConditionApiConfig"][];
   orgId?: string;
+}
+export type CdpDataKitDeployBundleConfigForExternal = {
+  connectionName?: string;
+  dataSpaceFilterCriteriaApiConfig?: Schemas["DataSpaceFilterConditionApiConfig"][];
 }
 export type CdpDataKitDeployBundleConfigForIngestApi = {
   connectorName?: string;
@@ -855,15 +867,16 @@ export type CdpDataKitDeployComponentConfigCalculatedInsight = {
   apiName?: string;
   apiNameOverride?: string;
   label?: string;
-  publishInterval?: "SystemManaged" | "ExternallyManaged" | "Streaming" | "NotScheduled" | "Six" | "Twelve";
+  publishInterval?: "ExternallyManaged" | "NotScheduled" | "One" | "Six" | "Streaming" | "SystemManaged" | "Twelve" | "TwentyFour";
   publishScheduleEndDate?: string;
   publishScheduleStartDateTime?: string;
 }
 export type CdpDataKitDeployComponentConfigForBundle = {
-  bundleConfig?: Schemas["CdpDataKitDeployBundleConfig"];
+  bundleConfig?: unknown;
   bundleName?: string;
-  connectorType?: "Commerce" | "Crm" | "External" | "IngestApi" | "Mc" | "MoreConnectors" | "S3" | "StreamingApp";
+  connectorType?: "AccountEngagement" | "Commerce" | "Crm" | "External" | "IngestApi" | "MoreConnectors" | "S3" | "StreamingApp";
   forceNoRefresh?: boolean;
+  kqConfig?: Schemas["DataKitKQConfigRepresentation"][];
 }
 export type CdpDataKitDeployComponentConfigForDLO = {
   apiName?: string;
@@ -872,12 +885,74 @@ export type CdpDataKitDeployComponentConfigForDLO = {
   dataSpaceName?: string;
   label?: string;
 }
+export type CdpDataKitDeployComponentConfigForDataAction = {
+  dataSpaceName?: string;
+  developerName?: string;
+  developerNameOverride?: string;
+  label?: string;
+}
+export type CdpDataKitDeployComponentConfigForDataActionTarget = {
+  apiName?: string;
+  apiNameOverride?: string;
+  endPointUrlOverride?: string;
+  label?: string;
+}
+export type CdpDataKitDeployComponentConfigForDataSemanticSearch = {
+  apiName?: string;
+  dataKitName?: string;
+  dataSpaceName?: string;
+  label?: string;
+  name?: string;
+  searchIndexName?: string;
+}
+export type CdpDataKitDeployComponentConfigForDataShare = {
+  apiName?: string;
+  cios?: string[];
+  dataShareDeveloperName?: string;
+  dataSpaceName?: string;
+  description?: string;
+  dlos?: string[];
+  dmos?: string[];
+  label?: string;
+  templateDevName?: string;
+}
+export type CdpDataKitDeployComponentConfigForIdpConfiguration = {
+  templateDevName?: string;
+}
+export type CdpDataKitDeployComponentConfigForPredictionJob = {
+  apiName?: string;
+  dataKitName?: string;
+  dataSpaceName?: string;
+  label?: string;
+  predictionJobName?: string;
+}
+export type CdpDataKitDeployComponentConfigForTuaFramework = {
+  changeSetIdentifier?: string;
+  componentType?: "ActivationTarget" | "AnalyticsDashboard" | "AnalyticsVisualization" | "AnalyticsWorkspace" | "CalculatedInsight" | "CopyFieldEnrichment" | "CurrencyConfigObject" | "DataAction" | "DataActionTarget" | "DataCleanRoomDataSpecDef" | "DataCleanRoomProvider" | "DataConnection" | "DataCustomCode" | "DataGraph" | "DataLakeObject" | "DataModelObject" | "DataSemanticSearch" | "DataShare" | "DataStreamBundle" | "DataTransform" | "EngagementSignal" | "FiscalCalendarConfigObject" | "IdentityResolution" | "IdpConfiguration" | "InternalDataConnector" | "IrRelatedListEnrichment" | "MarketSegment" | "MarketSegmentActivation" | "MlConfiguredModel" | "MlPredictionJob" | "MlRetriever" | "PersnlBatchDecision" | "PersonalizationObjective" | "PersonalizationPoint" | "PersonalizationRecommender" | "PersonalizationSchema" | "SecondaryIndex" | "SemanticModel" | "TuaTemplatedObject";
+  dataKitDevName?: string;
+  dataSpaceName?: string;
+  developerName?: string;
+  label?: string;
+}
+export type CdpDataKitDeployComponentConfigMlConfiguredModel = {
+  apiName?: string;
+  connectorType?: "Anthropic" | "AzureOpenAI" | "Bedrock" | "Databricks" | "Generic" | "InternalEmbedding" | "OpenAI" | "OpenConnector" | "SageMaker" | "Salesforce" | "VertexAI";
+  label?: string;
+  modelType?: "Generative" | "Predictive" | "SpeechSynthesis" | "Summarization" | "Transcribe" | "Unknown";
+}
+export type CdpDataKitDeployComponentConfigMlRetriever = {
+  apiName?: string;
+  dataSpaceName?: string;
+  label?: string;
+  retrieverQueryType?: "Ensemble" | "NoCode" | "ProCode";
+}
 export type CdpDataKitDeployComponentRepresentation = Schemas["CdpDataKitDeployComponentRepresentation"];
 export type CdpDataKitDeployInputRepresentation = Schemas["CdpDataKitDeployInputRepresentation"];
 export type CdpDataKitDeployJobOutputRepresentation = Schemas["CdpDataKitDeployJobOutputRepresentation"];
 export type CdpDataKitDeployOutputRepresentation = Schemas["CdpDataKitDeployOutputRepresentation"];
 export type CdpDataKitDetails = Schemas["CdpDataKitDetails"];
-export type CdpDataKitOutputRepresentation = Schemas["CdpDataKitOutputRepresentation"];
+export type CdpDataKitMembers = Schemas["CdpDataKitMembers"];
+export type CdpDataKitMembersList = Schemas["CdpDataKitMembersList"];
 export type CdpDataKitStream = Schemas["CdpDataKitStream"];
 export type CdpDataTransformActionResponseRepresentation = {
   errors: Schemas["CdpErrorRepresentation"][];
@@ -1774,6 +1849,9 @@ export type DataConnectorRepresentation = {
   url?: string;
   outputFormat?: string;
 }
+export type DataCustomCodeInputRep = {
+  templateDevName?: string;
+}
 export type DataGraphFieldRepresentation = Schemas["DataGraphFieldRepresentation"];
 export type DataGraphIdsDmoFieldRepresentation = Schemas["DataGraphIdsDmoFieldRepresentation"];
 export type DataGraphIdsDmoRepresentation = Schemas["DataGraphIdsDmoRepresentation"];
@@ -1782,19 +1860,127 @@ export type DataGraphRelationshipRepresentation = Schemas["DataGraphRelationship
 export type DataGraphValuesDmoFieldRepresentation = Schemas["DataGraphValuesDmoFieldRepresentation"];
 export type DataGraphValuesDmoRepresentation = Schemas["DataGraphValuesDmoRepresentation"];
 export type DataKitAsyncRepresentation = Schemas["DataKitAsyncRepresentation"];
+export type DataKitComponentCollectionRepresentation = Schemas["DataKitComponentCollectionRepresentation"];
 export type DataKitComponentDependencyCollectionRepresentation = Schemas["DataKitComponentDependencyCollectionRepresentation"];
 export type DataKitComponentDependencyRepresentation = Schemas["DataKitComponentDependencyRepresentation"];
 export type DataKitComponentDeploymentStatus = Schemas["DataKitComponentDeploymentStatus"];
 export type DataKitComponentDeploymentStatusRepresentation = Schemas["DataKitComponentDeploymentStatusRepresentation"];
+export type DataKitComponentInfo = Schemas["DataKitComponentInfo"];
+export type DataKitComponentInfoBaseInputRepresentation = {
+  name?: string;
+  label?: string;
+}
+export type DataKitComponentInfoBaseRepresentation = {
+  name?: string;
+  label?: string;
+}
+export type DataKitComponentInfoBundleInputRepresentation = {
+  name?: string;
+  connectorType?: "AccountEngagement" | "Commerce" | "Crm" | "External" | "IngestApi" | "Mc" | "MoreConnectors" | "S3" | "StreamingApp";
+  streams?: Schemas["CdpDataKitStream"][];
+}
+export type DataKitComponentInfoBundleRepresentation = {
+  name?: string;
+  connectorType?: "AccountEngagement" | "Commerce" | "Crm" | "External" | "IngestApi" | "Mc" | "MoreConnectors" | "S3" | "StreamingApp";
+  streams?: Schemas["DataKitStreamRepresentation"][];
+}
+export type DataKitComponentInfoInputRepresentation = Schemas["DataKitComponentInfoInputRepresentation"];
+export type DataKitComponentInfoRepresentation = Schemas["DataKitComponentInfoRepresentation"];
+export type DataKitComponentInputRepresentation = Schemas["DataKitComponentInputRepresentation"];
+export type DataKitComponentRepresentation = Schemas["DataKitComponentRepresentation"];
+export type DataKitDefaultComponentInfo = {
+  componentType?: "ActivationTarget" | "AnalyticsDashboard" | "AnalyticsVisualization" | "AnalyticsWorkspace" | "CalculatedInsight" | "CopyFieldEnrichment" | "CurrencyConfigObject" | "DataAction" | "DataActionTarget" | "DataCleanRoomDataSpecDef" | "DataCleanRoomProvider" | "DataConnection" | "DataCustomCode" | "DataGraph" | "DataLakeObject" | "DataModelObject" | "DataSemanticSearch" | "DataShare" | "DataStreamBundle" | "DataTransform" | "EngagementSignal" | "FiscalCalendarConfigObject" | "IdentityResolution" | "IdpConfiguration" | "InternalDataConnector" | "IrRelatedListEnrichment" | "MarketSegment" | "MarketSegmentActivation" | "MlConfiguredModel" | "MlPredictionJob" | "MlRetriever" | "PersnlBatchDecision" | "PersonalizationObjective" | "PersonalizationPoint" | "PersonalizationRecommender" | "PersonalizationSchema" | "SecondaryIndex" | "SemanticModel" | "TuaTemplatedObject";
+  developerName?: string;
+  label?: string;
+}
+export type DataKitDeployActivationTargetRepresentation = {
+  componentName?: string;
+  targetDisplayName?: string;
+}
+export type DataKitDeployComponentConfigCopyField = {
+  templateDevName?: string;
+}
+export type DataKitDeployComponentConfigForIRRelatedList = {
+  developerName?: string;
+  label?: string;
+}
+export type DataKitDeployComponentConfigIdentityResolutionInput = {
+  dataKitDevName?: string;
+  dataSpaceName?: string;
+  identityResolutionDevName?: string;
+  label?: string;
+}
+export type DataKitDeployComponentConfigSemanticModelInputRepresentation = {
+  apiName?: string;
+  baseSDMs?: string[];
+  dataSpaceName?: string;
+  displayName?: string;
+}
+export type DataKitDeployDataCleanRoomMappingRepresentation = {
+  componentName?: string;
+  dataSpaceName?: string;
+}
+export type DataKitDeployDataCleanRoomProviderRepresentation = {
+  componentName?: string;
+  packageName?: string;
+}
+export type DataKitDeployDataConnectionRepresentation = {
+  name?: string;
+  newCredentials?: Schemas["DataConnectionParameterInputRepresentation"][];
+  overrideLabel?: string;
+  overrideParameters?: Schemas["DataConnectionParameterInputRepresentation"][];
+}
+export type DataKitDeployDataGraphInputRepresentation = {
+  dataSpaceName?: string;
+  label?: string;
+  name?: string;
+  primaryDMO?: string;
+  templateDevName?: string;
+}
 export type DataKitDeployDataTransformRepresentation = {
   apiName?: string;
   componentProperties?: { [key: string]: string };
+  connection?: string;
   currencyIsoCode?: string;
+  dataObjectOverrides?: Schemas["DataTransformDataObjectOverride"][];
   dataSpaceName?: string;
   dataTransformDevName?: string;
   dataTransformType?: string;
+  definitionOverrides?: Schemas["DataTransformDefinitionOverride"][];
   label?: string;
 }
+export type DataKitDeployInputRepresentation = {
+  dataSpaceName?: string;
+  label?: string;
+  name?: string;
+  templateName?: string;
+}
+export type DataKitDeployMarketActivationRepresentation = {
+  componentName?: string;
+  dataKitName?: string;
+  targetDisplayName?: string;
+}
+export type DataKitDeployMarketSegmentRepresentation = {
+  dataKitName?: string;
+  dataSpaceName?: string;
+  label?: string;
+  name?: string;
+  targetDisplayName?: string;
+  targetSegmentDeveloperName?: string;
+}
+export type DataKitDeployPersonalizationInputRepresentation = {
+  apiName?: string;
+  dataSpaceName?: string;
+  label?: string;
+  templateDeveloperName?: string;
+}
+export type DataKitDetails = Schemas["DataKitDetails"];
+export type DataKitInputRepresentation = Schemas["DataKitInputRepresentation"];
+export type DataKitKQConfigRepresentation = Schemas["DataKitKQConfigRepresentation"];
+export type DataKitOutputRepresentation = Schemas["DataKitOutputRepresentation"];
+export type DataKitPatchInputRepresentation = Schemas["DataKitPatchInputRepresentation"];
+export type DataKitRepresentation = Schemas["DataKitRepresentation"];
+export type DataKitStreamRepresentation = Schemas["DataKitStreamRepresentation"];
 export type DataKitUnDeployComponentDetails = Schemas["DataKitUnDeployComponentDetails"];
 export type DataKitUnDeployInputRepresentation = Schemas["DataKitUnDeployInputRepresentation"];
 export type DataLakeFieldInputRepresentation = Schemas["DataLakeFieldInputRepresentation"];
@@ -2050,6 +2236,7 @@ export type DataStreamInputRepresentation = {
   sourceFields?: Schemas["DataStreamSourceFieldInputRepresentation"][];
 }
 export type DataStreamPatchInputRepresentation = Schemas["DataStreamPatchInputRepresentation"];
+/** @override Runtime list/get responses include `dataSource` although the spec omits it */
 export type DataStreamRepresentation = {
   createdBy?: Schemas["CdpUserRepresentation"];
   createdDate?: string;
@@ -2060,10 +2247,10 @@ export type DataStreamRepresentation = {
   name?: string;
   namespace?: string;
   url?: string;
-  dataSource?: string;
   dataLakeObjectInfo: Schemas["DataLakeObjectRepresentation"];
   recordId: string;
   status: "Active" | "Deleting" | "Error" | "Processing";
+  dataSource?: string;
 }
 export type DataStreamSourceFieldInputRepresentation = Schemas["DataStreamSourceFieldInputRepresentation"];
 export type DataStreamSourceFieldRepresentation = Schemas["DataStreamSourceFieldRepresentation"];
@@ -2073,7 +2260,9 @@ export type DataTransformCollectionRepresentation = {
   totalSize?: number;
   dataTransforms: Schemas["DataTransformRepresentation"][];
 }
+export type DataTransformDataObjectOverride = Schemas["DataTransformDataObjectOverride"];
 export type DataTransformDefinitionInputRepresentation = Schemas["DataTransformDefinitionInputRepresentation"];
+export type DataTransformDefinitionOverride = Schemas["DataTransformDefinitionOverride"];
 export type DataTransformDefinitionRepresentation = Schemas["DataTransformDefinitionRepresentation"];
 export type DataTransformInputRepresentation = Schemas["DataTransformInputRepresentation"];
 export type DataTransformNodeInputRepresentation = Schemas["DataTransformNodeInputRepresentation"];
@@ -3604,7 +3793,7 @@ export type WeeklyScheduleRepresentation = {
   interval?: number;
 }
 
-// ── Enum types (253) ──
+// ── Enum types (262) ──
 
 export type AbstractBucketAlgorithmType = "TypographicClustering";
 export type AccountEngagementConnectionDataStreamType = "EmailActivity" | "FormActivity" | "WebPageActivity";
@@ -3658,10 +3847,15 @@ export type CdpDataGraphSourceType = "CALCULATED" | "CALCULATED_STREAMING" | "CA
 export type CdpDataKitComponentInfoForBundleConnectorType = "Commerce" | "Crm" | "External" | "IngestApi" | "Mc" | "MoreConnectors" | "S3" | "StreamingApp";
 export type CdpDataKitComponentInfoType = "DataStreamBundle" | "CalculatedInsight" | "DataLakeObject" | "DataTransform";
 export type CdpDataKitComponentsType = "CalculatedInsight" | "DataLakeObject" | "DataStreamBundle" | "DataTransform";
+export type CdpDataKitDeployBundleConfigForAccountEngagementDataStreamType = "EmailActivity" | "FormActivity" | "WebPageActivity";
 export type CdpDataKitDeployBundleConfigForStreamingAppStreamingAppDataConnectorType = "MobileApp" | "WebApp";
-export type CdpDataKitDeployComponentConfigCalculatedInsightPublishInterval = "SystemManaged" | "ExternallyManaged" | "Streaming" | "NotScheduled" | "Six" | "Twelve";
-export type CdpDataKitDeployComponentConfigForBundleConnectorType = "Commerce" | "Crm" | "External" | "IngestApi" | "Mc" | "MoreConnectors" | "S3" | "StreamingApp";
-export type CdpDataKitDeployComponentType = "ActivationTarget" | "CalculatedInsight" | "DataAction" | "DataActionTarget" | "DataConnection" | "DataGraph" | "DataLakeObject" | "DataSemanticSearch" | "DataShare" | "DataStreamBundle" | "DataTransform" | "IdentityResolution" | "MarketSegment" | "MarketSegmentActivation" | "MlConfiguredModel" | "MlPredictionJob" | "MlRetriever" | "SemanticModel";
+export type CdpDataKitDeployComponentConfigCalculatedInsightPublishInterval = "ExternallyManaged" | "NotScheduled" | "One" | "Six" | "Streaming" | "SystemManaged" | "Twelve" | "TwentyFour";
+export type CdpDataKitDeployComponentConfigForBundleConnectorType = "AccountEngagement" | "Commerce" | "Crm" | "External" | "IngestApi" | "MoreConnectors" | "S3" | "StreamingApp";
+export type CdpDataKitDeployComponentConfigForTuaFrameworkComponentType = "ActivationTarget" | "AnalyticsDashboard" | "AnalyticsVisualization" | "AnalyticsWorkspace" | "CalculatedInsight" | "CopyFieldEnrichment" | "CurrencyConfigObject" | "DataAction" | "DataActionTarget" | "DataCleanRoomDataSpecDef" | "DataCleanRoomProvider" | "DataConnection" | "DataCustomCode" | "DataGraph" | "DataLakeObject" | "DataModelObject" | "DataSemanticSearch" | "DataShare" | "DataStreamBundle" | "DataTransform" | "EngagementSignal" | "FiscalCalendarConfigObject" | "IdentityResolution" | "IdpConfiguration" | "InternalDataConnector" | "IrRelatedListEnrichment" | "MarketSegment" | "MarketSegmentActivation" | "MlConfiguredModel" | "MlPredictionJob" | "MlRetriever" | "PersnlBatchDecision" | "PersonalizationObjective" | "PersonalizationPoint" | "PersonalizationRecommender" | "PersonalizationSchema" | "SecondaryIndex" | "SemanticModel" | "TuaTemplatedObject";
+export type CdpDataKitDeployComponentConfigMlConfiguredModelConnectorType = "Anthropic" | "AzureOpenAI" | "Bedrock" | "Databricks" | "Generic" | "InternalEmbedding" | "OpenAI" | "OpenConnector" | "SageMaker" | "Salesforce" | "VertexAI";
+export type CdpDataKitDeployComponentConfigMlConfiguredModelModelType = "Generative" | "Predictive" | "SpeechSynthesis" | "Summarization" | "Transcribe" | "Unknown";
+export type CdpDataKitDeployComponentConfigMlRetrieverRetrieverQueryType = "Ensemble" | "NoCode" | "ProCode";
+export type CdpDataKitDeployComponentType = "ActivationTarget" | "AnalyticsDashboard" | "AnalyticsVisualization" | "AnalyticsWorkspace" | "CalculatedInsight" | "CopyFieldEnrichment" | "CurrencyConfigObject" | "DataAction" | "DataActionTarget" | "DataCleanRoomDataSpecDef" | "DataCleanRoomProvider" | "DataConnection" | "DataCustomCode" | "DataGraph" | "DataLakeObject" | "DataSemanticSearch" | "DataShare" | "DataStreamBundle" | "DataTransform" | "EngagementSignal" | "FiscalCalendarConfigObject" | "IdentityResolution" | "IdpConfiguration" | "InternalDataConnector" | "IrRelatedListEnrichment" | "MarketSegment" | "MarketSegmentActivation" | "MlConfiguredModel" | "MlPredictionJob" | "MlRetriever" | "PersnlBatchDecision" | "PersonalizationObjective" | "PersonalizationPoint" | "PersonalizationRecommender" | "PersonalizationSchema" | "SecondaryIndex" | "SemanticModel" | "TuaTemplatedObject";
 export type CdpIdentityResolutionConfigInputConfigurationType = "Account" | "Individual";
 export type CdpIdentityResolutionMatchCriterionOutputMatchMethodType = "Exact" | "ExactNormalized" | "Fuzzy" | "FuzzyHigh" | "FuzzyLow";
 export type CdpIdentityResolutionOutputConfigurationType = "Account" | "Individual";
@@ -3743,6 +3937,10 @@ export type DataGraphFieldDataType = "Boolean" | "Date" | "DateOnly" | "DateTime
 export type DataGraphObjectDataType = "Adg" | "AdgActivationAudience" | "AdgExternal" | "Bridge" | "Calculated" | "CalculatedRealTime" | "CalculatedStreaming" | "Curated" | "Custom" | "Derived" | "MlPrediction" | "ObjectTypeUnspecified" | "Package" | "SegmentMembership" | "Standard" | "System" | "Transform";
 export type DataGraphRelationshipCardinality = "CardinalityUnspecified" | "ManyToOne" | "OneToMany" | "OneToOne" | "Unrecognized";
 export type DatakitComponentDetailsStatus = "Active" | "Deleting" | "Error" | "Processing";
+export type DataKitComponentInfoBundleConnectorType = "AccountEngagement" | "Commerce" | "Crm" | "External" | "IngestApi" | "Mc" | "MoreConnectors" | "S3" | "StreamingApp";
+export type DataKitComponentInfoComponentType = "ActivationTarget" | "AnalyticsDashboard" | "AnalyticsVisualization" | "AnalyticsWorkspace" | "CalculatedInsight" | "CopyFieldEnrichment" | "CurrencyConfigObject" | "DataAction" | "DataActionTarget" | "DataCleanRoomDataSpecDef" | "DataCleanRoomProvider" | "DataConnection" | "DataCustomCode" | "DataGraph" | "DataLakeObject" | "DataModelObject" | "DataSemanticSearch" | "DataShare" | "DataStreamBundle" | "DataTransform" | "EngagementSignal" | "FiscalCalendarConfigObject" | "IdentityResolution" | "IdpConfiguration" | "InternalDataConnector" | "IrRelatedListEnrichment" | "MarketSegment" | "MarketSegmentActivation" | "MlConfiguredModel" | "MlPredictionJob" | "MlRetriever" | "PersnlBatchDecision" | "PersonalizationObjective" | "PersonalizationPoint" | "PersonalizationRecommender" | "PersonalizationSchema" | "SecondaryIndex" | "SemanticModel" | "TuaTemplatedObject";
+export type DataKitComponentType = "ActivationTarget" | "AnalyticsDashboard" | "AnalyticsVisualization" | "AnalyticsWorkspace" | "CalculatedInsight" | "CopyFieldEnrichment" | "CurrencyConfigObject" | "DataAction" | "DataActionTarget" | "DataCleanRoomDataSpecDef" | "DataCleanRoomProvider" | "DataConnection" | "DataCustomCode" | "DataGraph" | "DataLakeObject" | "DataModelObject" | "DataSemanticSearch" | "DataShare" | "DataStreamBundle" | "DataTransform" | "EngagementSignal" | "FiscalCalendarConfigObject" | "IdentityResolution" | "IdpConfiguration" | "InternalDataConnector" | "IrRelatedListEnrichment" | "MarketSegment" | "MarketSegmentActivation" | "MlConfiguredModel" | "MlPredictionJob" | "MlRetriever" | "PersnlBatchDecision" | "PersonalizationObjective" | "PersonalizationPoint" | "PersonalizationRecommender" | "PersonalizationSchema" | "SecondaryIndex" | "SemanticModel" | "TuaTemplatedObject";
+export type DataKitDataKitType = "None" | "Sandbox";
 export type DataKitUnDeployComponentDetailsType = "ActivationTarget" | "CalculatedInsight" | "DataAction" | "DataActionTarget" | "DataConnection" | "DataGraph" | "DataLakeObject" | "DataSemanticSearch" | "DataShare" | "DataStreamBundle" | "DataTransform" | "IdentityResolution" | "MarketSegment" | "MarketSegmentActivation" | "MlConfiguredModel" | "MlPredictionJob" | "MlRetriever" | "SemanticModel";
 export type DataLakeFieldDataType = "Boolean" | "Currency" | "Date" | "DateTime" | "Email" | "Number" | "Percent" | "Phone" | "Text" | "Unsupported" | "Url";
 export type DataLakeObjectCategory = "Directory_Table" | "Engagement" | "Insights" | "Other" | "Profile";

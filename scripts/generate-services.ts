@@ -154,6 +154,9 @@ const SERVICE_CONFIG: Record<string, ServiceConfig> = {
   },
   "Data Kits": {
     generateListAll: false,
+    methodNames: {
+      getDatakitManifest: "getDataKitManifest",
+    },
   },
   "Data Graphs": {
     generateListAll: false,
@@ -317,12 +320,38 @@ interface GeneratedMethod {
   pageSizeParam: "batchSize" | "limit";
 }
 
+/** Length of the longest common character prefix between two strings. */
+function longestCommonPrefixLength(a: string, b: string): number {
+  let i = 0;
+  while (i < a.length && i < b.length && a[i] === b[i]) i++;
+  return i;
+}
+
 function deriveMethodName(
   op: ParsedOperation,
   basePath: string,
   isCollectionResponse: boolean,
 ): { name: string; isListEndpoint: boolean } {
-  const suffix = op.path.slice(basePath.length);
+  // When the path shares the basePath, strip it. Otherwise strip only the
+  // longest common prefix so method names stay short (e.g. "-mappings" instead
+  // of "data-model-object-mappings").
+  let suffix: string;
+  if (op.path.startsWith(basePath)) {
+    suffix = op.path.slice(basePath.length);
+  } else {
+    let lcpLen = longestCommonPrefixLength(basePath, op.path);
+    // If the LCP splits mid-word (neither side is at a `/` or `-` boundary),
+    // truncate back to the last `/` to preserve full URL segments.
+    const charAfter = op.path[lcpLen];
+    const charBefore = op.path[lcpLen - 1];
+    if (
+      charAfter && charAfter !== "/" && charAfter !== "-" &&
+      charBefore && charBefore !== "/" && charBefore !== "-"
+    ) {
+      lcpLen = op.path.lastIndexOf("/", lcpLen - 1) + 1;
+    }
+    suffix = op.path.slice(lcpLen);
+  }
 
   // Remove path parameter segments for pattern matching
   const segments = suffix

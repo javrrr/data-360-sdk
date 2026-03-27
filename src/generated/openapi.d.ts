@@ -4802,6 +4802,536 @@ export type paths = {
         patch?: never;
         trace?: never;
     };
+    "/ssot/data-kits": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get data kits
+         * @description Get a list of data kits by namespace.
+         *
+         *     **Available Version:** 63.0
+         */
+        get: {
+            parameters: {
+                query?: {
+                    /**
+                     * @description Namespace prefix of the data kit package.
+                     *
+                     *     **Available Version:** 63.0
+                     */
+                    namespace?: string;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["DataKitOutputRepresentation"];
+                    };
+                };
+                /** @description Bad Request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not Found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        /**
+         * Create data kit
+         * @description Create a standard data kit.
+         *
+         *     **Available Version:** 63.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["DataKitInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["DataKitRepresentation"];
+                    };
+                };
+                /** @description Bad Request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not Found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-kits/available-components": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get data kit available components
+         * @description Get a list of available components within data kits by component type.
+         *
+         *     **Available Version:** 63.0
+         */
+        get: {
+            parameters: {
+                query?: {
+                    /**
+                     * @description Type of components to return. These values are supported:
+                     *     - `DataStreamBundle`
+                     *     - `CalculatedInsight`
+                     *     - `DataLakeObject`
+                     *     - `DataTransform`
+                     *     - `EngagementSignal`
+                     *     - `PersonalizationObjective`
+                     *     - `PersonalizationRecommender`
+                     *     - `PersonalizationPoint`
+                     *     - `PersonalizationSchema`
+                     *
+                     *     **Available Version:** 63.0
+                     */
+                    componentType?: string;
+                    /**
+                     * @description Developer name of the data kit.
+                     *
+                     *     **Available Version:** 63.0
+                     */
+                    dataKitDevName?: string;
+                    /**
+                     * @description Maximum number of available components to return from `1` through `200`. By default, `200` components are returned.
+                     *
+                     *     **Available Version:** 63.0
+                     */
+                    limit?: number;
+                    /**
+                     * @description Number of records to skip before returning results. If unspecified, no rows are skipped.
+                     *
+                     *     **Available Version:** 63.0
+                     */
+                    offset?: number;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["DataKitComponentCollectionRepresentation"];
+                    };
+                };
+                /** @description Bad Request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not Found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-kits/{dataKitDevName}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Deploy data kit components
+         * @description Deploy multiple components from a specific data kit.
+         *
+         *     **Available Version:** 64.0
+         *
+         *     ><span style="color:blue">**Note:**</span>
+         *     >See [Supported Component Types for Data Kit Deployment](https://developer.salesforce.com/docs/data/connectapi/guide/deploy-data-kit-payloads.html) for the complete list of component types and their corresponding payload configurations.
+         */
+        post: {
+            parameters: {
+                query: {
+                    /**
+                     * @description Specifies asynchronous data kit deployment. Must be set to `true`; other values are not currently supported.
+                     *
+                     *     **Available Version:** 64.0
+                     */
+                    asyncMode: boolean;
+                    /**
+                     * @description Name of the data space to which to deploy the data kit components. If unspecified, the `default` data space is used.
+                     *
+                     *     **Available Version:** 64.0
+                     */
+                    dataspace?: string;
+                };
+                header?: never;
+                path: {
+                    /**
+                     * @description Developer name of the data kit.
+                     *
+                     *     **Available Version:** 64.0
+                     */
+                    dataKitDevName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["CdpDataKitDeployInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["DataKitAsyncRepresentation"];
+                    };
+                };
+                /** @description Invalid data in the deployment request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not Found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        /**
+         * Delete data kit
+         * @description Delete a data kit.
+         *
+         *     **Available Version:** 64.0
+         */
+        delete: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description Developer name of the data kit.
+                     *
+                     *     **Available Version:** 63.0
+                     */
+                    dataKitDevName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Bad Request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description PackageKitDefinition does not exist: *dataKitDevName* */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        options?: never;
+        head?: never;
+        /**
+         * Update data kit components
+         * @description Update the components of an existing data kit. Updating components is a destructive sync: newly provided components replace the existing set, and any omitted components are removed.
+         *
+         *     **Available Version:** 64.0
+         */
+        patch: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description Developer name of the data kit.
+                     *
+                     *     **Available Version:** 63.0
+                     */
+                    dataKitDevName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["DataKitPatchInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["DataKitRepresentation"];
+                    };
+                };
+                /** @description Bad Request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not Found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        trace?: never;
+    };
+    "/ssot/datakit/{dataKitDevName}/manifest": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get data kit manifest
+         * @description Get a list of all member components and dependencies for a data kit.
+         *
+         *     **Available Version:** 63.0
+         */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description Developer name of the data kit or name of the `DataPackageKitDefinition`.
+                     *
+                     *     **Available Version:** 63.0
+                     */
+                    dataKitDevName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["CdpDataKitMembersList"];
+                    };
+                };
+                /** @description Bad Request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not Found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/ssot/data-kits/{dataKitName}/undeploy": {
         parameters: {
             query?: never;
@@ -15365,6 +15895,417 @@ export type components = {
          */
         CdpDataGraphActionResponseRepresentation: components["schemas"]["CdpActionResponseBaseRepresentation"];
         /**
+         * Data Kit Output
+         * @description Represents data kit details.
+         */
+        DataKitRepresentation: {
+            /**
+             * @description List of components in the data kit.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             */
+            components?: components["schemas"]["DataKitComponentRepresentation"][];
+            /**
+             * @description Developer name of the data kit.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             */
+            devName?: string;
+            /**
+             * @description Label of the data kit.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             */
+            label?: string;
+        };
+        /**
+         * Data Kit Collection Output
+         * @description Represents a list of data kits.
+         */
+        DataKitOutputRepresentation: {
+            /**
+             * @description List of data kits.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             */
+            dataKitDetails?: components["schemas"]["DataKitDetails"][];
+        };
+        /**
+         * Data Kit Details Output
+         * @description Represents the details of a data kit.
+         */
+        DataKitDetails: {
+            /**
+             * @description List of data kit components.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             */
+            components?: components["schemas"]["DataKitComponentInfo"][];
+            /**
+             * @description Developer name of the data kit.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             */
+            developerName?: string;
+            /**
+             * @description Label of the data kit.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             */
+            label?: string;
+            /**
+             * @description Publishing sequence for the data kit components.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             */
+            publishingSequence?: components["schemas"]["DataKitDefaultComponentInfo"][];
+        };
+        /**
+         * Data Kit Component Info Output
+         * @description Represents a component of a data kit.
+         */
+        DataKitComponentInfo: {
+            /**
+             * @description Type of data kit component.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             * @enum {string}
+             */
+            componentType?: "ActivationTarget" | "AnalyticsDashboard" | "AnalyticsVisualization" | "AnalyticsWorkspace" | "CalculatedInsight" | "CopyFieldEnrichment" | "CurrencyConfigObject" | "DataAction" | "DataActionTarget" | "DataCleanRoomDataSpecDef" | "DataCleanRoomProvider" | "DataConnection" | "DataCustomCode" | "DataGraph" | "DataLakeObject" | "DataModelObject" | "DataSemanticSearch" | "DataShare" | "DataStreamBundle" | "DataTransform" | "EngagementSignal" | "FiscalCalendarConfigObject" | "IdentityResolution" | "IdpConfiguration" | "InternalDataConnector" | "IrRelatedListEnrichment" | "MarketSegment" | "MarketSegmentActivation" | "MlConfiguredModel" | "MlPredictionJob" | "MlRetriever" | "PersnlBatchDecision" | "PersonalizationObjective" | "PersonalizationPoint" | "PersonalizationRecommender" | "PersonalizationSchema" | "SecondaryIndex" | "SemanticModel" | "TuaTemplatedObject";
+            /**
+             * @description Developer name of the data kit component.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             */
+            developerName?: string;
+            /**
+             * @description Label of the data kit component.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             */
+            label?: string;
+        };
+        /**
+         * Data Kit Default Component Info Output
+         * @description Represents information about the default data kit component.
+         */
+        DataKitDefaultComponentInfo: components["schemas"]["DataKitComponentInfo"] & Record<string, never>;
+        /**
+         * Data Kit Input
+         * @description Represents the input for creating a new data kit.
+         */
+        DataKitInputRepresentation: {
+            /**
+             * @description List of components to be included in the data kit.
+             *
+             *     **Available Version:** 63.0
+             */
+            components: components["schemas"]["DataKitComponentInputRepresentation"][];
+            /**
+             * @description Developer name of the data kit.
+             *
+             *     **Available Version:** 63.0
+             */
+            dataKitDevName: string;
+            /**
+             * @description Type of data kit.
+             *
+             *     **Available Version:** 63.0
+             * @enum {string}
+             */
+            dataKitType?: "None" | "Sandbox";
+            /**
+             * @description Name of the data space for the data kit creation.
+             *
+             *     **Available Version:** 63.0
+             */
+            dataSpaceName?: string;
+            /**
+             * @description Label of the data kit.
+             *
+             *     **Available Version:** 63.0
+             */
+            label: string;
+        };
+        /**
+         * Data Kit Component Input
+         * @description Represents the input for a data kit component.
+         */
+        DataKitComponentInputRepresentation: {
+            /**
+             * @description Information about the data kit component. Use the component info input object that corresponds to the component type:
+             *     - `DataStreamBundle`: Data Kit Component Info Bundle Input
+             *     - All others: Data Kit Component Info Base Input
+             *
+             *     **Available Version:** 63.0
+             */
+            info?: components["schemas"]["DataKitComponentInfoBundleInputRepresentation"] | components["schemas"]["DataKitComponentInfoBaseInputRepresentation"];
+            /**
+             * @description Type of the data kit component.
+             *
+             *     **Available Version:** 63.0
+             * @enum {string}
+             */
+            type?: "ActivationTarget" | "AnalyticsDashboard" | "AnalyticsVisualization" | "AnalyticsWorkspace" | "CalculatedInsight" | "CopyFieldEnrichment" | "CurrencyConfigObject" | "DataAction" | "DataActionTarget" | "DataCleanRoomDataSpecDef" | "DataCleanRoomProvider" | "DataConnection" | "DataCustomCode" | "DataGraph" | "DataLakeObject" | "DataModelObject" | "DataSemanticSearch" | "DataShare" | "DataStreamBundle" | "DataTransform" | "EngagementSignal" | "FiscalCalendarConfigObject" | "IdentityResolution" | "IdpConfiguration" | "InternalDataConnector" | "IrRelatedListEnrichment" | "MarketSegment" | "MarketSegmentActivation" | "MlConfiguredModel" | "MlPredictionJob" | "MlRetriever" | "PersnlBatchDecision" | "PersonalizationObjective" | "PersonalizationPoint" | "PersonalizationRecommender" | "PersonalizationSchema" | "SecondaryIndex" | "SemanticModel" | "TuaTemplatedObject";
+        };
+        /**
+         * Data Kit Component Info Input
+         * @description Represents the abstract base class for data kit component information.
+         */
+        DataKitComponentInfoInputRepresentation: {
+            /**
+             * @description Name of the data kit component.
+             *
+             *     **Available Version:** 63.0
+             */
+            name?: string;
+        };
+        /**
+         * Data Kit Component Info Base Input
+         * @description Represents the input for data kit component information.
+         */
+        DataKitComponentInfoBaseInputRepresentation: components["schemas"]["DataKitComponentInfoInputRepresentation"] & {
+            /**
+             * @description Label of the data kit component.
+             *
+             *     **Available Version:** 63.0
+             */
+            label?: string;
+        };
+        /**
+         * Data Kit Component Info Bundle Input
+         * @description Represents the input for bundle-specific component information.
+         */
+        DataKitComponentInfoBundleInputRepresentation: components["schemas"]["DataKitComponentInfoInputRepresentation"] & {
+            /**
+             * @description Type of data kit bundle connector.
+             *
+             *     **Available Version:** 63.0
+             * @enum {string}
+             */
+            connectorType?: "AccountEngagement" | "Commerce" | "Crm" | "External" | "IngestApi" | "Mc" | "MoreConnectors" | "S3" | "StreamingApp";
+            /**
+             * @description List of data streams.
+             *
+             *     **Available Version:** 63.0
+             */
+            streams?: components["schemas"]["CdpDataKitStream"][];
+        };
+        /**
+         * Data Kit Component Output
+         * @description Represents a data kit component.
+         */
+        DataKitComponentRepresentation: {
+            /**
+             * @description Information about the data kit component. The endpoint returns the component info output object that corresponds to the component type:
+             *     - `DataStreamBundle`: Data Kit Component Info Bundle Output
+             *     - All others: Data Kit Component Info Base Output
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             */
+            info?: components["schemas"]["DataKitComponentInfoBundleRepresentation"] | components["schemas"]["DataKitComponentInfoBaseRepresentation"];
+            /**
+             * @description Type of data kit component.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             * @enum {string}
+             */
+            type?: "ActivationTarget" | "AnalyticsDashboard" | "AnalyticsVisualization" | "AnalyticsWorkspace" | "CalculatedInsight" | "CopyFieldEnrichment" | "CurrencyConfigObject" | "DataAction" | "DataActionTarget" | "DataCleanRoomDataSpecDef" | "DataCleanRoomProvider" | "DataConnection" | "DataCustomCode" | "DataGraph" | "DataLakeObject" | "DataModelObject" | "DataSemanticSearch" | "DataShare" | "DataStreamBundle" | "DataTransform" | "EngagementSignal" | "FiscalCalendarConfigObject" | "IdentityResolution" | "IdpConfiguration" | "InternalDataConnector" | "IrRelatedListEnrichment" | "MarketSegment" | "MarketSegmentActivation" | "MlConfiguredModel" | "MlPredictionJob" | "MlRetriever" | "PersnlBatchDecision" | "PersonalizationObjective" | "PersonalizationPoint" | "PersonalizationRecommender" | "PersonalizationSchema" | "SecondaryIndex" | "SemanticModel" | "TuaTemplatedObject";
+        };
+        /**
+         * Data Kit Component Info Base Output
+         * @description Represents information about a data kit component.
+         */
+        DataKitComponentInfoBaseRepresentation: components["schemas"]["DataKitComponentInfoRepresentation"] & {
+            /**
+             * @description Label of the data kit component.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             */
+            label?: string;
+        };
+        /**
+         * Data Kit Component Info Bundle Output
+         * @description Represents bundle-specific component information.
+         */
+        DataKitComponentInfoBundleRepresentation: components["schemas"]["DataKitComponentInfoRepresentation"] & {
+            /**
+             * @description Type of data kit bundle connector.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             * @enum {string}
+             */
+            connectorType?: "AccountEngagement" | "Commerce" | "Crm" | "External" | "IngestApi" | "Mc" | "MoreConnectors" | "S3" | "StreamingApp";
+            /**
+             * @description List of data streams.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             */
+            streams?: components["schemas"]["DataKitStreamRepresentation"][];
+        };
+        /**
+         * Data Kit Stream Output
+         * @description Represents a single stream in a data kit's data stream bundle.
+         */
+        DataKitStreamRepresentation: {
+            /**
+             * @description Developer name of the data kit stream.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             */
+            devName?: string;
+            /**
+             * @description External record ID.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             */
+            externalRecordIdentifier?: string;
+            /**
+             * @description List of field API names.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             */
+            fieldApiNames?: string[];
+            /**
+             * @description Label of the data kit stream.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             */
+            label?: string;
+        };
+        /**
+         * Data Kit Component Info Output
+         * @description Represents information about a data kit component.
+         */
+        DataKitComponentInfoRepresentation: {
+            /**
+             * @description Name of the data kit component.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             */
+            name?: string;
+        };
+        /**
+         * Data Kit Component Collection Output
+         * @description Represents a list of data kit components.
+         */
+        DataKitComponentCollectionRepresentation: {
+            /**
+             * @description List of data kit components.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             */
+            components?: components["schemas"]["DataKitComponentRepresentation"][];
+            /**
+             * @description External record ID for `DataStreamBundle` component types.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 62.0
+             */
+            externalRecordIdentifier?: string;
+        };
+        /**
+         * Data Kit Patch Input
+         * @description Represents the input for updating a data kit.
+         */
+        DataKitPatchInputRepresentation: {
+            /**
+             * @description List of data kit components.
+             *
+             *     **Available Version:** 63.0
+             */
+            components: components["schemas"]["DataKitComponentInputRepresentation"][];
+        };
+        /**
+         * Data Kit Members Collection Output
+         * @description Represents a list of members for one data kit.
+         */
+        CdpDataKitMembersList: {
+            /**
+             * @description List of data kit members.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             */
+            dataKitMembers?: components["schemas"]["CdpDataKitMembers"][];
+        };
+        /**
+         * Data Kit Members Output
+         * @description Represents the data kit member details for one component.
+         */
+        CdpDataKitMembers: {
+            /**
+             * @description List of component developer names.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             */
+            developerName?: string[];
+            /**
+             * @description List of component entity names.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             */
+            entityName?: string;
+            /**
+             * @description List of component entity IDs.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             */
+            id?: string[];
+        };
+        /**
          * Data Kit Deploy Input
          * @description Represents input for deploying a data kit.
          */
@@ -15382,59 +16323,155 @@ export type components = {
          */
         CdpDataKitDeployComponentRepresentation: {
             /**
-             * @description Configuration of the component.
+             * @description Configuration of the component. Use the input object that corresponds to the component type.
+             *
+             *     For example, use the Data Kit Deploy Component Config For DLO Input for the `DataLakeObject` component type.
+             *     - Use the Data Kit Deploy Personalization Input for all personalization-related component types, such as `PersonalizationObjective`, `PersonalizationPoint`, `PersonalizationRecommender`, and `PersonalizationSchema`.
+             *     - Use the Data Kit Deploy Input for all others.
+             *
+             *     See [Supported Component Types for Data Kit Deployment](https://developer.salesforce.com/docs/data/connectapi/guide/deploy-data-kit-payloads.html) for the complete list of component types and their corresponding payload configurations.
              *
              *     **Available Version:** 57.0
              */
-            config: components["schemas"]["CdpDataKitDeployComponentConfig"];
+            config: components["schemas"]["CdpDataKitDeployComponentConfigForBundle"] | components["schemas"]["CdpDataKitDeployComponentConfigForDLO"] | components["schemas"]["CdpDataKitDeployComponentConfigCalculatedInsight"] | components["schemas"]["CdpDataKitDeployComponentConfigForDataAction"] | components["schemas"]["CdpDataKitDeployComponentConfigForDataActionTarget"] | components["schemas"]["CdpDataKitDeployComponentConfigForDataSemanticSearch"] | components["schemas"]["CdpDataKitDeployComponentConfigForDataShare"] | components["schemas"]["CdpDataKitDeployComponentConfigForIdpConfiguration"] | components["schemas"]["CdpDataKitDeployComponentConfigForPredictionJob"] | components["schemas"]["CdpDataKitDeployComponentConfigForTuaFramework"] | components["schemas"]["CdpDataKitDeployComponentConfigMlConfiguredModel"] | components["schemas"]["CdpDataKitDeployComponentConfigMlRetriever"] | components["schemas"]["DataCustomCodeInputRep"] | components["schemas"]["DataKitDeployActivationTargetRepresentation"] | components["schemas"]["DataKitDeployComponentConfigCopyField"] | components["schemas"]["DataKitDeployComponentConfigForIRRelatedList"] | components["schemas"]["DataKitDeployComponentConfigIdentityResolutionInput"] | components["schemas"]["DataKitDeployComponentConfigSemanticModelInputRepresentation"] | components["schemas"]["DataKitDeployDataCleanRoomMappingRepresentation"] | components["schemas"]["DataKitDeployDataCleanRoomProviderRepresentation"] | components["schemas"]["DataKitDeployDataConnectionRepresentation"] | components["schemas"]["DataKitDeployDataGraphInputRepresentation"] | components["schemas"]["DataKitDeployDataTransformRepresentation"] | components["schemas"]["DataKitDeployMarketActivationRepresentation"] | components["schemas"]["DataKitDeployMarketSegmentRepresentation"] | components["schemas"]["DataKitDeployPersonalizationInputRepresentation"] | components["schemas"]["DataKitDeployInputRepresentation"];
             /**
              * @description Type of component.
              *
              *     **Available Version:** 57.0
              * @enum {string}
              */
-            type: "ActivationTarget" | "CalculatedInsight" | "DataAction" | "DataActionTarget" | "DataConnection" | "DataGraph" | "DataLakeObject" | "DataSemanticSearch" | "DataShare" | "DataStreamBundle" | "DataTransform" | "IdentityResolution" | "MarketSegment" | "MarketSegmentActivation" | "MlConfiguredModel" | "MlPredictionJob" | "MlRetriever" | "SemanticModel";
+            type: "ActivationTarget" | "AnalyticsDashboard" | "AnalyticsVisualization" | "AnalyticsWorkspace" | "CalculatedInsight" | "CopyFieldEnrichment" | "CurrencyConfigObject" | "DataAction" | "DataActionTarget" | "DataCleanRoomDataSpecDef" | "DataCleanRoomProvider" | "DataConnection" | "DataCustomCode" | "DataGraph" | "DataLakeObject" | "DataSemanticSearch" | "DataShare" | "DataStreamBundle" | "DataTransform" | "EngagementSignal" | "FiscalCalendarConfigObject" | "IdentityResolution" | "IdpConfiguration" | "InternalDataConnector" | "IrRelatedListEnrichment" | "MarketSegment" | "MarketSegmentActivation" | "MlConfiguredModel" | "MlPredictionJob" | "MlRetriever" | "PersnlBatchDecision" | "PersonalizationObjective" | "PersonalizationPoint" | "PersonalizationRecommender" | "PersonalizationSchema" | "SecondaryIndex" | "SemanticModel" | "TuaTemplatedObject";
         };
         /**
          * Data Kit Deploy Component Config Input
-         * @description Base class for the data kit component configuration types. Abstract parent of:
-         *     - [Data Kit Deploy Component Config For DLO Input](?meta=type%3AData%2BKit%2BDeploy%2BComponent%2BConfig%2BFor%2BDLO%2BInput)
-         *     - [Data Kit Deploy Component Config Calculated Insight Input](?meta=type%3AData%2BKit%2BDeploy%2BComponent%2BConfig%2BCalculated%2BInsight%2BInput)
-         *     - [Data Kit Deploy Data Transform Input](?meta=type%3AData%2BKit%2BDeploy%2BData%2BTransform%2BInput)
-         *     - [Data Kit Deploy Component Config For Bundle Input](?meta=type%3AData%2BKit%2BDeploy%2BComponent%2BConfig%2BFor%2BBundle%2BInput)
+         * @description - Data Kit Deploy Component Config For Bundle Input
+         *     - Data Kit Deploy Component Config For DLO Input
+         *     - Data Kit Deploy Component Config Calculated Insight Input
+         *     - Data Kit Deploy Component Config For Data Action Input
+         *     - Data Kit Deploy Component Config For Data Action Target Input
+         *     - Data Kit Deploy Component Config For Data Semantic Search Input
+         *     - Data Kit Deploy Component Config For Data Share Input
+         *     - Data Kit Deploy Component Config For Idp Configuration Input
+         *     - Data Kit Deploy Component Config For Prediction Job Input
+         *     - Data Kit Deploy Component Config For Tua Framework Input
+         *     - Data Kit Deploy Component Config Ml Configured Model Input
+         *     - Data Kit Deploy Component Config Ml Retriever Input
+         *     - Data Kit Deploy Data Custom Code Input
+         *     - Data Kit Deploy Activation Target Input
+         *     - Data Kit Deploy Component Config Copy Field Input
+         *     - Data Kit Deploy Component Config For IR Related List Input
+         *     - Data Kit Deploy Component Config Identity Resolution Input
+         *     - Data Kit Deploy Component Config Semantic Model Input
+         *     - Data Kit Deploy Data Clean Room Provider Input
+         *     - Data Kit Deploy Data Connection Input
+         *     - Data Kit Deploy Data Graph Input
+         *     - Data Kit Deploy Data Transform Input
+         *     - Data Kit Deploy Market Activation Input
+         *     - Data Kit Deploy Market Segment Input
+         *     - Data Kit Deploy Personalization Input
          */
         CdpDataKitDeployComponentConfig: {};
         /**
+         * Data Kit Deploy Input
+         * @description Represents the basic input component configuration for data kit objects.
+         */
+        DataKitDeployInputRepresentation: components["schemas"]["CdpDataKitDeployComponentConfig"] & {
+            /**
+             * @description Name of the data space to deploy the data kit component in.
+             *
+             *     **Available Version:** 63.0
+             */
+            dataSpaceName?: string;
+            /**
+             * @description Label of the data kit component.
+             *
+             *     **Available Version:** 63.0
+             */
+            label?: string;
+            /**
+             * @description API name of the data kit component.
+             *
+             *     **Available Version:** 63.0
+             */
+            name?: string;
+            /**
+             * @description Developer name of the template.
+             *
+             *     **Available Version:** 63.0
+             */
+            templateName?: string;
+        };
+        /**
+         * Data Kit Deploy Component Config For Bundle Input
+         * @description Represents the input component configuration for data kit bundles.
+         */
+        CdpDataKitDeployComponentConfigForBundle: components["schemas"]["CdpDataKitDeployComponentConfig"] & {
+            /**
+             * @description Configuration for the bundle. Use the bundle config input object that corresponds to the connector type.
+             *
+             *     For example, use the Data Kit Deploy Bundle Config For Account Engagement Input for the `AccountEngagement` connector type.
+             *     - Use the Data Kit Deploy Bundle Config For Connectors Framework Input for the `MoreConnectors` and `S3` connector types.
+             *
+             *     **Available Version:** 57.0
+             */
+            bundleConfig?: components["schemas"]["CdpDataKitDeployBundleConfigForAccountEngagement"] | components["schemas"]["CdpDataKitDeployBundleConfigForCommerce"] | components["schemas"]["CdpDataKitDeployBundleConfigForConnectorsFramework"] | components["schemas"]["CdpDataKitDeployBundleConfigForCrm"] | components["schemas"]["CdpDataKitDeployBundleConfigForExternal"] | components["schemas"]["CdpDataKitDeployBundleConfigForIngestApi"] | components["schemas"]["CdpDataKitDeployBundleConfigForStreamingApp"];
+            /**
+             * @description Name of the bundle.
+             *
+             *     **Available Version:** 57.0
+             */
+            bundleName?: string;
+            /**
+             * @description Connector type for the bundle.
+             *
+             *     **Available Version:** 57.0
+             * @enum {string}
+             */
+            connectorType?: "AccountEngagement" | "Commerce" | "Crm" | "External" | "IngestApi" | "MoreConnectors" | "S3" | "StreamingApp";
+            /**
+             * @description Indicates whether to force a no refresh configuration on the data stream (`true`) or not (`false`).
+             *
+             *     **Available Version:** 57.0
+             */
+            forceNoRefresh?: boolean;
+            /**
+             * @description List of key qualifier configurations applied on data stream templates of the bundle.
+             *
+             *     **Available Version:** 63.0
+             */
+            kqConfig?: components["schemas"]["DataKitKQConfigRepresentation"][];
+        };
+        /**
          * Data Kit Deploy Component Config For DLO Input
-         * @description Represents the component configuration for a data lake object (DLO).
+         * @description Represents the input component configuration for DLOs.
          */
         CdpDataKitDeployComponentConfigForDLO: components["schemas"]["CdpDataKitDeployComponentConfig"] & {
             /**
-             * @description API name for the data lake object.
+             * @description API name of the DLO.
              *
              *     **Available Version:** 60.0
              */
             apiName?: string;
             /**
-             * @description Developer name for the data source object.
+             * @description Developer name of the DLO.
              *
              *     **Available Version:** 60.0
              */
             dataSourceObjectDevName?: string;
             /**
-             * @description Data space filter criteria for adding filters while deploying a data lake object.
+             * @description Data space filter criteria for adding filters while deploying a DLO.
              *
              *     **Available Version:** 60.0
              */
             dataSpaceFilterCriteriaApiConfig?: components["schemas"]["DataSpaceFilterConditionApiConfig"][];
             /**
-             * @description Data space name for the data transform creation.
+             * @description Name of the data space to deploy the data kit component in.
              *
              *     **Available Version:** 60.0
              */
             dataSpaceName?: string;
             /**
-             * @description Label name for the data lake object.
+             * @description Label name of the DLO.
              *
              *     **Available Version:** 60.0
              */
@@ -15442,7 +16479,7 @@ export type components = {
         };
         /**
          * Data Kit Deploy Component Config Calculated Insight Input
-         * @description Represents the component configuration for calculated insights.
+         * @description Represents the input component configuration for calculated insights.
          */
         CdpDataKitDeployComponentConfigCalculatedInsight: components["schemas"]["CdpDataKitDeployComponentConfig"] & {
             /**
@@ -15469,7 +16506,7 @@ export type components = {
              *     **Available Version:** 59.0
              * @enum {string}
              */
-            publishInterval?: "SystemManaged" | "ExternallyManaged" | "Streaming" | "NotScheduled" | "Six" | "Twelve";
+            publishInterval?: "ExternallyManaged" | "NotScheduled" | "One" | "Six" | "Streaming" | "SystemManaged" | "Twelve" | "TwentyFour";
             /**
              * @description Calculated insight publish schedule end date. The expected format is `yyyy-MM-dd`.
              *
@@ -15484,45 +16521,824 @@ export type components = {
             publishScheduleStartDateTime?: string;
         };
         /**
-         * Data Kit Deploy Component Config For Bundle Input
-         * @description Represents the component configuration for bundles.
+         * Data Kit Deploy Component Config For Data Action Input
+         * @description Represents the input component configuration for data actions.
          */
-        CdpDataKitDeployComponentConfigForBundle: components["schemas"]["CdpDataKitDeployComponentConfig"] & {
+        CdpDataKitDeployComponentConfigForDataAction: components["schemas"]["CdpDataKitDeployComponentConfig"] & {
             /**
-             * @description Configuration for the bundle.
+             * @description Name of the data space to deploy the data kit component in.
              *
-             *     **Available Version:** 57.0
+             *     **Available Version:** 63.0
              */
-            bundleConfig?: components["schemas"]["CdpDataKitDeployBundleConfig"];
+            dataSpaceName?: string;
             /**
-             * @description Name of the bundle.
+             * @description Developer name of the data action.
              *
-             *     **Available Version:** 57.0
+             *     **Available Version:** 63.0
              */
-            bundleName?: string;
+            developerName?: string;
             /**
-             * @description Connector type for the bundle.
+             * @description Developer name of the data action override.
              *
-             *     **Available Version:** 57.0
+             *     **Available Version:** 63.0
+             */
+            developerNameOverride?: string;
+            /**
+             * @description Label of the data action object.
+             *
+             *     **Available Version:** 63.0
+             */
+            label?: string;
+        };
+        /**
+         * Data Kit Deploy Component Config For Data Action Target Input
+         * @description Represents the input component configuration for data action targets.
+         */
+        CdpDataKitDeployComponentConfigForDataActionTarget: components["schemas"]["CdpDataKitDeployComponentConfig"] & {
+            /**
+             * @description API name of the data action target.
+             *
+             *     **Available Version:** 63.0
+             */
+            apiName?: string;
+            /**
+             * @description API name of the data action target override.
+             *
+             *     **Available Version:** 63.0
+             */
+            apiNameOverride?: string;
+            /**
+             * @description API name of the data action target endpoint URL override.
+             *
+             *     **Available Version:** 63.0
+             */
+            endPointUrlOverride?: string;
+            /**
+             * @description Label of the data action target object.
+             *
+             *     **Available Version:** 63.0
+             */
+            label?: string;
+        };
+        /**
+         * Data Kit Deploy Component Config For Data Semantic Search Input
+         * @description Represents the input component configuration for data semantic search.
+         */
+        CdpDataKitDeployComponentConfigForDataSemanticSearch: components["schemas"]["CdpDataKitDeployComponentConfig"] & {
+            /**
+             * @description API name of the semantic search object.
+             *
+             *     **Available Version:** 63.0
+             */
+            apiName?: string;
+            /**
+             * @description Developer name of the data kit.
+             *
+             *     **Available Version:** 63.0
+             */
+            dataKitName?: string;
+            /**
+             * @description Name of the data space to deploy the data kit component in.
+             *
+             *     **Available Version:** 63.0
+             */
+            dataSpaceName?: string;
+            /**
+             * @description Label of the semantic search object.
+             *
+             *     **Available Version:** 63.0
+             */
+            label?: string;
+            /**
+             * @description Name of the specific semantic search instance.
+             *
+             *     **Available Version:** 63.0
+             */
+            name?: string;
+            /**
+             * @description Developer name of the underlying search index used by this component.
+             *
+             *     **Available Version:** 63.0
+             */
+            searchIndexName?: string;
+        };
+        /**
+         * Data Kit Deploy Component Config For Data Share Input
+         * @description Represents the input component configuration for data shares.
+         */
+        CdpDataKitDeployComponentConfigForDataShare: components["schemas"]["CdpDataKitDeployComponentConfig"] & {
+            /**
+             * @description Definition name of the target data share.
+             *
+             *     **Available Version:** 63.0
+             */
+            apiName?: string;
+            /**
+             * @description Developer names of the calculated insight objects.
+             *
+             *     **Available Version:** 63.0
+             */
+            cios?: string[];
+            /**
+             * @description Definition name of the source data share.
+             *
+             *     **Available Version:** 63.0
+             */
+            dataShareDeveloperName?: string;
+            /**
+             * @description Name of the data space to deploy the data kit component in.
+             *
+             *     **Available Version:** 63.0
+             */
+            dataSpaceName?: string;
+            /**
+             * @description Description for the data share.
+             *
+             *     **Available Version:** 63.0
+             */
+            description?: string;
+            /**
+             * @description Developer names of the DLOs.
+             *
+             *     **Available Version:** 63.0
+             */
+            dlos?: string[];
+            /**
+             * @description Developer names of the DMOs.
+             *
+             *     **Available Version:** 63.0
+             */
+            dmos?: string[];
+            /**
+             * @description Label of the data share.
+             *
+             *     **Available Version:** 63.0
+             */
+            label?: string;
+            /**
+             * @description Template developer name of the data share template that's used for creating the share in the data kit.
+             *
+             *     **Available Version:** 63.0
+             */
+            templateDevName?: string;
+        };
+        /**
+         * Data Kit Deploy Component Config For Idp Configuration Input
+         * @description Represents the input component configuration for Document AI.
+         */
+        CdpDataKitDeployComponentConfigForIdpConfiguration: components["schemas"]["CdpDataKitDeployComponentConfig"] & {
+            /**
+             * @description Developer name of the Document AI template.
+             *
+             *     **Available Version:** 63.0
+             */
+            templateDevName?: string;
+        };
+        /**
+         * Data Kit Deploy Component Config For Prediction Job Input
+         * @description Represents the input component configuration for ML prediction jobs.
+         */
+        CdpDataKitDeployComponentConfigForPredictionJob: components["schemas"]["CdpDataKitDeployComponentConfig"] & {
+            /**
+             * @description API name of the ML prediction job object.
+             *
+             *     **Available Version:** 63.0
+             */
+            apiName?: string;
+            /**
+             * @description Developer name of the data kit.
+             *
+             *     **Available Version:** 63.0
+             */
+            dataKitName?: string;
+            /**
+             * @description Name of the data space to deploy the data kit component in.
+             *
+             *     **Available Version:** 63.0
+             */
+            dataSpaceName?: string;
+            /**
+             * @description Label of the ML prediction job object.
+             *
+             *     **Available Version:** 63.0
+             */
+            label?: string;
+            /**
+             * @description Developer name of the specific prediction job.
+             *
+             *     **Available Version:** 63.0
+             */
+            predictionJobName?: string;
+        };
+        /**
+         * Data Kit Deploy Component Config For Tua Framework Input
+         * @description Represents the input component configuration for TUA objects.
+         */
+        CdpDataKitDeployComponentConfigForTuaFramework: components["schemas"]["CdpDataKitDeployComponentConfig"] & {
+            /**
+             * @description Unique ID for the change set.
+             *
+             *     **Available Version:** 63.0
+             */
+            changeSetIdentifier?: string;
+            /**
+             * @description Type of TUA object component.
+             *
+             *     **Available Version:** 63.0
              * @enum {string}
              */
-            connectorType?: "Commerce" | "Crm" | "External" | "IngestApi" | "Mc" | "MoreConnectors" | "S3" | "StreamingApp";
+            componentType?: "ActivationTarget" | "AnalyticsDashboard" | "AnalyticsVisualization" | "AnalyticsWorkspace" | "CalculatedInsight" | "CopyFieldEnrichment" | "CurrencyConfigObject" | "DataAction" | "DataActionTarget" | "DataCleanRoomDataSpecDef" | "DataCleanRoomProvider" | "DataConnection" | "DataCustomCode" | "DataGraph" | "DataLakeObject" | "DataModelObject" | "DataSemanticSearch" | "DataShare" | "DataStreamBundle" | "DataTransform" | "EngagementSignal" | "FiscalCalendarConfigObject" | "IdentityResolution" | "IdpConfiguration" | "InternalDataConnector" | "IrRelatedListEnrichment" | "MarketSegment" | "MarketSegmentActivation" | "MlConfiguredModel" | "MlPredictionJob" | "MlRetriever" | "PersnlBatchDecision" | "PersonalizationObjective" | "PersonalizationPoint" | "PersonalizationRecommender" | "PersonalizationSchema" | "SecondaryIndex" | "SemanticModel" | "TuaTemplatedObject";
             /**
-             * @description Indicates whether to force a no refresh configuration on the data stream (`true`) or not (`false`).
+             * @description Developer name of the data kit.
              *
-             *     **Available Version:** 57.0
+             *     **Available Version:** 63.0
              */
-            forceNoRefresh?: boolean;
+            dataKitDevName?: string;
+            /**
+             * @description Name of the data space to deploy the data kit component in.
+             *
+             *     **Available Version:** 63.0
+             */
+            dataSpaceName?: string;
+            /**
+             * @description Developer name of the TUA object.
+             *
+             *     **Available Version:** 63.0
+             */
+            developerName?: string;
+            /**
+             * @description Label of the TUA object.
+             *
+             *     **Available Version:** 63.0
+             */
+            label?: string;
+        };
+        /**
+         * Data Kit Deploy Component Config Ml Configured Model Input
+         * @description Represents the input component configuration for ML configured models.
+         */
+        CdpDataKitDeployComponentConfigMlConfiguredModel: components["schemas"]["CdpDataKitDeployComponentConfig"] & {
+            /**
+             * @description API name of the ML configured model.
+             *
+             *     **Available Version:** 63.0
+             */
+            apiName?: string;
+            /**
+             * @description Type of ML configured model connector.
+             *
+             *     **Available Version:** 63.0
+             * @enum {string}
+             */
+            connectorType?: "Anthropic" | "AzureOpenAI" | "Bedrock" | "Databricks" | "Generic" | "InternalEmbedding" | "OpenAI" | "OpenConnector" | "SageMaker" | "Salesforce" | "VertexAI";
+            /**
+             * @description Label of the ML configured model.
+             *
+             *     **Available Version:** 63.0
+             */
+            label?: string;
+            /**
+             * @description Type of ML configured model.
+             *
+             *     **Available Version:** 63.0
+             * @enum {string}
+             */
+            modelType?: "Generative" | "Predictive" | "SpeechSynthesis" | "Summarization" | "Transcribe" | "Unknown";
+        };
+        /**
+         * Data Kit Deploy Component Config Ml Retriever Input
+         * @description Represents the input component configuration for ML retrievers.
+         */
+        CdpDataKitDeployComponentConfigMlRetriever: components["schemas"]["CdpDataKitDeployComponentConfig"] & {
+            /**
+             * @description API name of the retriever.
+             *
+             *     **Available Version:** 63.0
+             */
+            apiName?: string;
+            /**
+             * @description Name of the data space to deploy the data kit component in.
+             *
+             *     **Available Version:** 63.0
+             */
+            dataSpaceName?: string;
+            /**
+             * @description Label of the retriever.
+             *
+             *     **Available Version:** 63.0
+             */
+            label?: string;
+            /**
+             * @description Query type of the retriever.
+             *
+             *     **Available Version:** 63.0
+             * @enum {string}
+             */
+            retrieverQueryType?: "Ensemble" | "NoCode" | "ProCode";
+        };
+        /**
+         * Data Kit Deploy Data Custom Code Input
+         * @description Represents the input component configuration for data custom code.
+         */
+        DataCustomCodeInputRep: components["schemas"]["CdpDataKitDeployComponentConfig"] & {
+            /**
+             * @description Developer name of the custom code template.
+             *
+             *     **Available Version:** 63.0
+             */
+            templateDevName?: string;
+        };
+        /**
+         * Data Kit Deploy Activation Target Input
+         * @description Represents the input component configuration for activation targets.
+         */
+        DataKitDeployActivationTargetRepresentation: components["schemas"]["CdpDataKitDeployComponentConfig"] & {
+            /**
+             * @description Developer name of the activation target.
+             *
+             *     **Available Version:** 63.0
+             */
+            componentName?: string;
+            /**
+             * @description Label of the activation target.
+             *
+             *     **Available Version:** 63.0
+             */
+            targetDisplayName?: string;
+        };
+        /**
+         * Data Kit Deploy Component Config Copy Field Input
+         * @description Represents the input component configuration for copy field enrichments.
+         */
+        DataKitDeployComponentConfigCopyField: components["schemas"]["CdpDataKitDeployComponentConfig"] & {
+            /**
+             * @description Developer name of the copy field enrichment template.
+             *
+             *     **Available Version:** 63.0
+             */
+            templateDevName?: string;
+        };
+        /**
+         * Data Kit Deploy Component Config For IR Related List Input
+         * @description Represents the input component configuration for IR-related lists.
+         */
+        DataKitDeployComponentConfigForIRRelatedList: components["schemas"]["CdpDataKitDeployComponentConfig"] & {
+            /**
+             * @description Developer name of the IR-related list.
+             *
+             *     **Available Version:** 63.0
+             */
+            developerName?: string;
+            /**
+             * @description Label of the IR-related list.
+             *
+             *     **Available Version:** 63.0
+             */
+            label?: string;
+        };
+        /**
+         * Data Kit Deploy Component Config Identity Resolution Input
+         * @description Represents the input component configuration for identity resolutions.
+         */
+        DataKitDeployComponentConfigIdentityResolutionInput: components["schemas"]["CdpDataKitDeployComponentConfig"] & {
+            /**
+             * @description Developer name of the data kit.
+             *
+             *     **Available Version:** 63.0
+             */
+            dataKitDevName?: string;
+            /**
+             * @description Name of the data space to deploy the data kit component in.
+             *
+             *     **Available Version:** 63.0
+             */
+            dataSpaceName?: string;
+            /**
+             * @description Developer name of the identity resolution.
+             *
+             *     **Available Version:** 63.0
+             */
+            identityResolutionDevName?: string;
+            /**
+             * @description Label of the identity resolution.
+             *
+             *     **Available Version:** 63.0
+             */
+            label?: string;
+        };
+        /**
+         * Data Kit Deploy Component Config Semantic Model Input
+         * @description Represents the input component configuration for semantic search models.
+         */
+        DataKitDeployComponentConfigSemanticModelInputRepresentation: components["schemas"]["CdpDataKitDeployComponentConfig"] & {
+            /**
+             * @description API name of the semantic search model.
+             *
+             *     **Available Version:** 63.0
+             */
+            apiName?: string;
+            /**
+             * @description Base SDM API names of the semantic search model.
+             *
+             *     **Available Version:** 63.0
+             */
+            baseSDMs?: string[];
+            /**
+             * @description Name of the data space to deploy the data kit component in.
+             *
+             *     **Available Version:** 63.0
+             */
+            dataSpaceName?: string;
+            /**
+             * @description Label of the semantic search model.
+             *
+             *     **Available Version:** 63.0
+             */
+            displayName?: string;
+        };
+        /**
+         * Data Kit Deploy Data Clean Room Mapping Input
+         * @description Represents the input component configuration for data clean room specification mapping.
+         */
+        DataKitDeployDataCleanRoomMappingRepresentation: components["schemas"]["CdpDataKitDeployComponentConfig"] & {
+            /**
+             * @description Name of the data kit component.
+             *
+             *     **Available Version:** 63.0
+             */
+            componentName?: string;
+            /**
+             * @description Name of the data space to deploy the data kit component in.
+             *
+             *     **Available Version:** 63.0
+             */
+            dataSpaceName?: string;
+        };
+        /**
+         * Data Kit Deploy Data Clean Room Provider Input
+         * @description Represents the input component configuration for data clean room providers.
+         */
+        DataKitDeployDataCleanRoomProviderRepresentation: components["schemas"]["CdpDataKitDeployComponentConfig"] & {
+            /**
+             * @description Developer name of the data clean room provider.
+             *
+             *     **Available Version:** 63.0
+             */
+            componentName?: string;
+            /**
+             * @description Label of the data clean room provider.
+             *
+             *     **Available Version:** 63.0
+             */
+            packageName?: string;
+        };
+        /**
+         * Data Kit Deploy Data Connection Input
+         * @description Represents the input component configuration for data connections.
+         */
+        DataKitDeployDataConnectionRepresentation: components["schemas"]["CdpDataKitDeployComponentConfig"] & {
+            /**
+             * @description Developer name of the connection.
+             *
+             *     **Available Version:** 63.0
+             */
+            name?: string;
+            /**
+             * @description Connection credentials to use in the target org.
+             *
+             *     **Available Version:** 63.0
+             */
+            newCredentials?: components["schemas"]["DataConnectionParameterInputRepresentation"][];
+            /**
+             * @description Override label to use in the target org.
+             *
+             *     **Available Version:** 63.0
+             */
+            overrideLabel?: string;
+            /**
+             * @description Connection parameters to override in the target org.
+             *
+             *     **Available Version:** 63.0
+             */
+            overrideParameters?: components["schemas"]["DataConnectionParameterInputRepresentation"][];
+        };
+        /**
+         * Data Kit Deploy Data Graph Input
+         * @description Represents the input component configuration for data graphs.
+         */
+        DataKitDeployDataGraphInputRepresentation: components["schemas"]["CdpDataKitDeployComponentConfig"] & {
+            /**
+             * @description Name of the data space to deploy the data kit component in.
+             *
+             *     **Available Version:** 63.0
+             */
+            dataSpaceName?: string;
+            /**
+             * @description Label of the data graph.
+             *
+             *     **Available Version:** 63.0
+             */
+            label?: string;
+            /**
+             * @description Developer name of the data graph.
+             *
+             *     **Available Version:** 63.0
+             */
+            name?: string;
+            /**
+             * @description Developer name of the primary DMO.
+             *
+             *     **Available Version:** 63.0
+             */
+            primaryDMO?: string;
+            /**
+             * @description Developer name of the data graph template.
+             *
+             *     **Available Version:** 63.0
+             */
+            templateDevName?: string;
+        };
+        /**
+         * Data Kit Deploy Data Transform Input
+         * @description Represents the input component configuration for data transforms.
+         */
+        DataKitDeployDataTransformRepresentation: components["schemas"]["CdpDataKitDeployComponentConfig"] & {
+            /**
+             * @description API Name of the data transform.
+             *
+             *     **Available Version:** 63.0
+             */
+            apiName?: string;
+            /**
+             * @description Component properties for different data transform types.
+             *
+             *     **Available Version:** 63.0
+             */
+            componentProperties?: {
+                [key: string]: string;
+            };
+            /**
+             * @description Specific connection utilized for DLO-based transforms.
+             *
+             *     **Available Version:** 63.0
+             */
+            connection?: string;
+            /**
+             * @description Currency ISO code for data transform creation.
+             *
+             *     **Available Version:** 63.0
+             */
+            currencyIsoCode?: string;
+            /**
+             * @description Overrides for specific input and output data object names defined in the transform.
+             *
+             *     **Available Version:** 63.0
+             */
+            dataObjectOverrides?: components["schemas"]["DataTransformDataObjectOverride"][];
+            /**
+             * @description Name of the data space to deploy the data kit component in.
+             *
+             *     **Available Version:** 63.0
+             */
+            dataSpaceName?: string;
+            /**
+             * @description Developer name of the data transform.
+             *
+             *     **Available Version:** 63.0
+             */
+            dataTransformDevName?: string;
+            /**
+             * @description Type of data transform.
+             *
+             *     **Available Version:** 63.0
+             */
+            dataTransformType?: string;
+            /**
+             * @description Specific name or label overrides for data definitions sourced from the origin organization.
+             *
+             *     **Available Version:** 63.0
+             */
+            definitionOverrides?: components["schemas"]["DataTransformDefinitionOverride"][];
+            /**
+             * @description Label of the data transform.
+             *
+             *     **Available Version:** 63.0
+             */
+            label?: string;
+        };
+        /**
+         * Data Transform Definition Override Input
+         * @description Represents the input for data transform definition overrides.
+         */
+        DataTransformDefinitionOverride: {
+            /**
+             * @description Updated or replaced definition developer name.
+             *
+             *     **Available Version:** 63.0
+             */
+            devName?: string;
+            /**
+             * @description Updated or replaced definition label.
+             *
+             *     **Available Version:** 63.0
+             */
+            label?: string;
+            /**
+             * @description Definition developer name in the data kit template.
+             *
+             *     **Available Version:** 63.0
+             */
+            templateDevName?: string;
+        };
+        /**
+         * Data Transform Data Object Override Input
+         * @description Represents the input for data transform object overrides.
+         */
+        DataTransformDataObjectOverride: {
+            /**
+             * @description Name of the data transform object in the publishing org.
+             *
+             *     **Available Version:** 63.0
+             */
+            nameOfObjInPublishingOrg?: string;
+            /**
+             * @description Name of the data transform object in the subscriber org.
+             *
+             *     **Available Version:** 63.0
+             */
+            nameOfObjInSubscriberOrg?: string;
+        };
+        /**
+         * Data Kit Deploy Market Activation Input
+         * @description Represents the input component configuration for market activations.
+         */
+        DataKitDeployMarketActivationRepresentation: components["schemas"]["CdpDataKitDeployComponentConfig"] & {
+            /**
+             * @description Developer name of the activation.
+             *
+             *     **Available Version:** 63.0
+             */
+            componentName?: string;
+            /**
+             * @description Developer name of the data kit.
+             *
+             *     **Available Version:** 63.0
+             */
+            dataKitName?: string;
+            /**
+             * @description Label of the activation.
+             *
+             *     **Available Version:** 63.0
+             */
+            targetDisplayName?: string;
+        };
+        /**
+         * Data Kit Deploy Market Segment Input
+         * @description Represents the input component configuration for market segments.
+         */
+        DataKitDeployMarketSegmentRepresentation: components["schemas"]["CdpDataKitDeployComponentConfig"] & {
+            /**
+             * @description Developer name of the data kit.
+             *
+             *     **Available Version:** 63.0
+             */
+            dataKitName?: string;
+            /**
+             * @description Name of the data space to deploy the data kit component in.
+             *
+             *     **Available Version:** 63.0
+             */
+            dataSpaceName?: string;
+            /**
+             * @description Label of the market segment.
+             *
+             *     **Available Version:** 63.0
+             */
+            label?: string;
+            /**
+             * @description Developer name of the market segment.
+             *
+             *     **Available Version:** 63.0
+             */
+            name?: string;
+            /**
+             * @description Target label for the market segment.
+             *
+             *     **Available Version:** 63.0
+             */
+            targetDisplayName?: string;
+            /**
+             * @description Target developer name for the market segment.
+             *
+             *     **Available Version:** 63.0
+             */
+            targetSegmentDeveloperName?: string;
+        };
+        /**
+         * Data Kit Deploy Personalization Input
+         * @description Represents the input component configuration for personalization objects.
+         */
+        DataKitDeployPersonalizationInputRepresentation: components["schemas"]["CdpDataKitDeployComponentConfig"] & {
+            /**
+             * @description API name of the personalization object.
+             *
+             *     **Available Version:** 63.0
+             */
+            apiName?: string;
+            /**
+             * @description Name of the data space to deploy the data kit component in.
+             *
+             *     **Available Version:** 63.0
+             */
+            dataSpaceName?: string;
+            /**
+             * @description Label of the personalization object.
+             *
+             *     **Available Version:** 63.0
+             */
+            label?: string;
+            /**
+             * @description Developer name of the personalization object template.
+             *
+             *     **Available Version:** 63.0
+             */
+            templateDeveloperName?: string;
+        };
+        /**
+         * Data Kit KQ Config Input
+         * @description Represents the input for key qualifier (KQ) configurations.
+         */
+        DataKitKQConfigRepresentation: {
+            /**
+             * @description Name of the data source object field on which the KQ field is defined.
+             *
+             *     **Available Version:** 63.0
+             */
+            dataSourceField?: string;
+            /**
+             * @description Name of the data source object on which the KQ field is defined.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             */
+            dataSourceObject?: string;
+            /**
+             * @description Value of the KQ field.
+             *
+             *     **Available Version:** 63.0
+             */
+            value?: string;
         };
         /**
          * Data Kit Deploy Bundle Config Input
          * @description Base class for a bundle configuration. Abstract parent of:
-         *     - [Data Kit Deploy Bundle Config For CRM Input](?meta=type%3AData%2BKit%2BDeploy%2BBundle%2BConfig%2BFor%2BCRM%2BInput)
-         *     - [Data Kit Deploy Bundle Config For Connectors Framework Input](?meta=type%3AData%2BKit%2BDeploy%2BBundle%2BConfig%2BFor%2BConnectors%2BFramework%2BInput)
-         *     - [Data Kit Deploy Bundle Config For Ingest API Input](?meta=type%3AData%2BKit%2BDeploy%2BBundle%2BConfig%2BFor%2BIngest%2BAPI%2BInput)
-         *     - [Data Kit Deploy Bundle Config For Streaming App Input](?meta=type%3AData%2BKit%2BDeploy%2BBundle%2BConfig%2BFor%2BStreaming%2BApp%2BInput)
+         *     - Data Kit Deploy Bundle Config For Account Engagement Input
+         *     - Data Kit Deploy Bundle Config For Commerce Input
+         *     - Data Kit Deploy Bundle Config For CRM Input
+         *     - Data Kit Deploy Bundle Config For Connectors Framework Input
+         *     - Data Kit Deploy Bundle Config For External Input
+         *     - Data Kit Deploy Bundle Config For Ingest API Input
+         *     - Data Kit Deploy Bundle Config For Streaming App Input
          */
         CdpDataKitDeployBundleConfig: {};
+        /**
+         * Data Kit Deploy Bundle Config For Account Engagement Input
+         * @description Represents the bundle configuration for an account engagement connector type.
+         */
+        CdpDataKitDeployBundleConfigForAccountEngagement: components["schemas"]["CdpDataKitDeployBundleConfig"] & {
+            /**
+             * @description API configuration for the data space filer criteria.
+             *
+             *     **Available Version:** 63.0
+             */
+            dataSpaceFilterCriteriaApiConfig?: components["schemas"]["DataSpaceFilterConditionApiConfig"][];
+            /**
+             * @description Type of data stream.
+             *
+             *     **Available Version:** 63.0
+             * @enum {string}
+             */
+            dataStreamType?: "EmailActivity" | "FormActivity" | "WebPageActivity";
+            /**
+             * @description Pardot tenant ID of the connector.
+             *
+             *     **Available Version:** 63.0
+             */
+            pardotTenantId?: string;
+        };
+        /**
+         * Data Kit Deploy Bundle Config For Commerce Input
+         * @description Represents the bundle configuration for a Commerce Cloud connector type.
+         */
+        CdpDataKitDeployBundleConfigForCommerce: components["schemas"]["CdpDataKitDeployBundleConfig"] & {
+            /**
+             * @description Instance ID of the B2C Commerce Instance
+             *
+             *     **Available Version:** 63.0
+             */
+            instanceId?: string;
+        };
         /**
          * Data Kit Deploy Bundle Config For CRM Input
          * @description Represents a bundle configuration for a CRM connector type.
@@ -15547,7 +17363,7 @@ export type components = {
          */
         CdpDataKitDeployBundleConfigForConnectorsFramework: components["schemas"]["CdpDataKitDeployBundleConfig"] & {
             /**
-             * @description Connection API name for the connectors framework.
+             * @description APi name of the connection.
              *
              *     **Available Version:** 60.0
              */
@@ -15556,6 +17372,24 @@ export type components = {
              * @description API configuration for the data space filter criteria.
              *
              *     **Available Version:** 61.0
+             */
+            dataSpaceFilterCriteriaApiConfig?: components["schemas"]["DataSpaceFilterConditionApiConfig"][];
+        };
+        /**
+         * Data Kit Deploy Bundle Config For External Input
+         * @description Represents the bundle configuration for an external connector type.
+         */
+        CdpDataKitDeployBundleConfigForExternal: components["schemas"]["CdpDataKitDeployBundleConfig"] & {
+            /**
+             * @description API name of the connection.
+             *
+             *     **Available Version:** 63.0
+             */
+            connectionName?: string;
+            /**
+             * @description API configuration for the data space filter criteria.
+             *
+             *     **Available Version:** 63.0
              */
             dataSpaceFilterCriteriaApiConfig?: components["schemas"]["DataSpaceFilterConditionApiConfig"][];
         };
@@ -15583,7 +17417,7 @@ export type components = {
          */
         CdpDataKitDeployBundleConfigForStreamingApp: components["schemas"]["CdpDataKitDeployBundleConfig"] & {
             /**
-             * @description Connector API name for the streaming app connector.
+             * @description API name of the streaming app connector.
              *
              *     **Available Version:** 60.0
              */
@@ -15595,26 +17429,12 @@ export type components = {
              */
             dataSpaceFilterCriteriaApiConfig?: components["schemas"]["DataSpaceFilterConditionApiConfig"][];
             /**
-             * @description Type of the streaming app connector.
+             * @description Type of streaming app connector.
              *
              *     **Available Version:** 60.0
              * @enum {string}
              */
             streamingAppDataConnectorType?: "MobileApp" | "WebApp";
-        };
-        /**
-         * Data Kit Output
-         * @description Represents the output for data kit details.
-         */
-        CdpDataKitOutputRepresentation: {
-            /**
-             * @description List of data kits.
-             *
-             *     **Filter Group:** Small
-             *
-             *     **Available Version:** 57.0
-             */
-            dataKitDetails: components["schemas"]["CdpDataKitDetails"][];
         };
         /**
          * Data Kit Details Output
@@ -15963,56 +17783,6 @@ export type components = {
              * @enum {string}
              */
             status: "Active" | "Deleting" | "Error" | "Processing";
-        };
-        /**
-         * Data Kit Deploy Data Transform Input
-         * @description Represents the component configuration for a data transform.
-         */
-        DataKitDeployDataTransformRepresentation: components["schemas"]["CdpDataKitDeployComponentConfig"] & {
-            /**
-             * @description API name of the data transform in the target org.
-             *
-             *     **Available Version:** 60.0
-             */
-            apiName?: string;
-            /**
-             * @description Component properties for different data transform types.
-             *
-             *     **Available Version:** 60.0
-             */
-            componentProperties?: {
-                [key: string]: string;
-            };
-            /**
-             * @description Currency ISO code for the data transform creation.
-             *
-             *     **Available Version:** 61.0
-             */
-            currencyIsoCode?: string;
-            /**
-             * @description Name of the data space for the data transform creation.
-             *
-             *     **Available Version:** 60.0
-             */
-            dataSpaceName?: string;
-            /**
-             * @description Developer name of the data transform.
-             *
-             *     **Available Version:** 60.0
-             */
-            dataTransformDevName?: string;
-            /**
-             * @description Type of data transform.
-             *
-             *     **Available Version:** 60.0
-             */
-            dataTransformType?: string;
-            /**
-             * @description Label of the data transform in the target org.
-             *
-             *     **Available Version:** 60.0
-             */
-            label?: string;
         };
         /**
          * Data Kit Component Dependency Collection Output
