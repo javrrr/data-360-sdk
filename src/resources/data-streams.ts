@@ -12,6 +12,12 @@ import type {
   DataStreamRepresentation,
 } from "../schemas.js";
 
+export interface DataStreamDeleteOptions {
+  /** Whether to delete the associated data lake objects (DLOs). Defaults to `false`. */
+  shouldDeleteDataLakeObject?: boolean;
+  [key: string]: string | number | boolean | undefined;
+}
+
 /**
  * Developer-friendly create input for data streams.
  *
@@ -70,7 +76,7 @@ export class DataStreamsService extends BaseResource {
 
   async delete(
     recordIdOrDeveloperName: string,
-    options?: RequestOptions & { query?: Record<string, string | number | boolean | undefined> },
+    options?: RequestOptions & { query?: DataStreamDeleteOptions },
   ): Promise<void> {
     return this.httpClient.delete(`${this.basePath}/${encodeURIComponent(recordIdOrDeveloperName)}`, options);
   }
