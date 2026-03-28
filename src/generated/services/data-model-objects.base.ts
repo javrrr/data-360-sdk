@@ -89,12 +89,12 @@ export class DataModelObjectsServiceBase extends BaseResource {
   protected readonly basePath = "/ssot/data-model-objects";
 
   /** GET /ssot/data-model-object-mappings — Get data model object mappings */
-  async listMappings(params?: DataModelObjectsListMappingsParams, options?: RequestOptions): Promise<CdpObjectSourceTargetMapCollectionRepresentation> {
+  async listMappings(params: DataModelObjectsListMappingsParams, options?: RequestOptions): Promise<CdpObjectSourceTargetMapCollectionRepresentation> {
     return this.httpClient.get(`/ssot/data-model-object-mappings`, { ...options, query: params });
   }
 
   /** POST /ssot/data-model-object-mappings — Create data model object mapping */
-  async createMappings(body: CdpObjectSourceTargetMapInputRepresentation, params?: DataModelObjectsCreateMappingsParams, options?: RequestOptions): Promise<CdpObjectSourceTargetMapRepresentation> {
+  async createMappings(body: CdpObjectSourceTargetMapInputRepresentation, params: DataModelObjectsCreateMappingsParams, options?: RequestOptions): Promise<CdpObjectSourceTargetMapRepresentation> {
     return this.httpClient.post(`/ssot/data-model-object-mappings`, body, { ...options, query: params });
   }
 
@@ -166,7 +166,7 @@ export class DataModelObjectsServiceBase extends BaseResource {
   }
 
   /** Async generator yielding all items from listMappings */
-  async *listAllMappings(params?: PaginationParams & DataModelObjectsListMappingsParams, options?: RequestOptions): AsyncGenerator<CdpObjectSourceTargetMapRepresentation, void, undefined> {
+  async *listAllMappings(params: PaginationParams & DataModelObjectsListMappingsParams, options?: RequestOptions): AsyncGenerator<CdpObjectSourceTargetMapRepresentation, void, undefined> {
     const { batchSize, offset, orderBy, ...query } = params ?? {};
     yield* this.paginate<CdpObjectSourceTargetMapRepresentation>(`${this.basePath}mappings`, { batchSize, offset, orderBy, pageSizeParam: "batchSize", query }, options);
   }

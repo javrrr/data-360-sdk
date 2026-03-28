@@ -67,7 +67,7 @@ export class DataGraphsServiceBase extends BaseResource {
   }
 
   /** GET /ssot/data-graphs/data/{dataGraphEntityName} — Get data graph data by entity name */
-  async getData(dataGraphEntityName: string, params?: DataGraphsGetDataParams, options?: RequestOptions): Promise<CdpQueryOutputRepresentation> {
+  async getData(dataGraphEntityName: string, params: DataGraphsGetDataParams, options?: RequestOptions): Promise<CdpQueryOutputRepresentation> {
     return this.httpClient.get(`${this.basePath}/data/${encodeURIComponent(dataGraphEntityName)}`, { ...options, query: params });
   }
 

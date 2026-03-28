@@ -62,7 +62,7 @@ export class ProfileServiceBase extends BaseResource {
   protected readonly basePath = "/ssot/profile";
 
   /** GET /ssot/profile/{dataModelName} — Get profile data model object */
-  async get(dataModelName: string, params?: ProfileGetParams, options?: RequestOptions): Promise<CdpQueryOutputRepresentation> {
+  async get(dataModelName: string, params: ProfileGetParams, options?: RequestOptions): Promise<CdpQueryOutputRepresentation> {
     return this.httpClient.get(`${this.basePath}/${encodeURIComponent(dataModelName)}`, { ...options, query: params });
   }
 

@@ -71,7 +71,7 @@ export class QueryServiceBase extends BaseResource {
   }
 
   /** GET /ssot/query-sql/{queryId}/rows — Get SQL query rows */
-  async getRows(queryId: string, params?: QueryGetRowsParams, options?: RequestOptions): Promise<QuerySqlPageRepresentation> {
+  async getRows(queryId: string, params: QueryGetRowsParams, options?: RequestOptions): Promise<QuerySqlPageRepresentation> {
     return this.httpClient.get(`${this.basePath}/${encodeURIComponent(queryId)}/rows`, { ...options, query: params });
   }
 }

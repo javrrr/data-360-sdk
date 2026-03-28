@@ -52,7 +52,7 @@ export class ConnectionsServiceBase extends BaseResource {
   protected readonly basePath = "/ssot/connections";
 
   /** GET /ssot/connections — Get connections */
-  async list(params?: PaginationParams & ConnectionsListParams, options?: RequestOptions): Promise<ConnectionCollectionRepresentation> {
+  async list(params: PaginationParams & ConnectionsListParams, options?: RequestOptions): Promise<ConnectionCollectionRepresentation> {
     const { batchSize, offset, orderBy, ...query } = params ?? {};
     return this.httpClient.get(this.basePath, {
       ...options,
@@ -161,7 +161,7 @@ export class ConnectionsServiceBase extends BaseResource {
   }
 
   /** Async generator yielding all items from list */
-  async *listAll(params?: PaginationParams & ConnectionsListParams, options?: RequestOptions): AsyncGenerator<ConnectionRepresentation, void, undefined> {
+  async *listAll(params: PaginationParams & ConnectionsListParams, options?: RequestOptions): AsyncGenerator<ConnectionRepresentation, void, undefined> {
     const { batchSize, offset, orderBy, ...query } = params ?? {};
     yield* this.paginate<ConnectionRepresentation>(this.basePath, { batchSize, offset, orderBy, pageSizeParam: "limit", query }, options);
   }

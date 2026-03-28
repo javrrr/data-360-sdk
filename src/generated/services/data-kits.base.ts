@@ -85,12 +85,12 @@ export class DataKitsServiceBase extends BaseResource {
   }
 
   /** POST /ssot/data-kits/{dataKitDevName} — Deploy data kit components */
-  async createByPost(dataKitDevName: string, body: CdpDataKitDeployInputRepresentation, params?: DataKitsCreateByPostParams, options?: RequestOptions): Promise<DataKitAsyncRepresentation> {
+  async createByPost(dataKitDevName: string, body: CdpDataKitDeployInputRepresentation, params: DataKitsCreateByPostParams, options?: RequestOptions): Promise<DataKitAsyncRepresentation> {
     return this.httpClient.post(`${this.basePath}/${encodeURIComponent(dataKitDevName)}`, body, { ...options, query: params });
   }
 
   /** GET /ssot/data-kits/{dataKitName}/components/{componentName}/dependencies — Get data kit component dependency */
-  async listDependencies(componentName: string, dataKitName: string, params?: DataKitsListDependenciesParams, options?: RequestOptions): Promise<DataKitComponentDependencyCollectionRepresentation> {
+  async listDependencies(componentName: string, dataKitName: string, params: DataKitsListDependenciesParams, options?: RequestOptions): Promise<DataKitComponentDependencyCollectionRepresentation> {
     return this.httpClient.get(`${this.basePath}/${encodeURIComponent(dataKitName)}/components/${encodeURIComponent(componentName)}/dependencies`, { ...options, query: params });
   }
 
@@ -100,7 +100,7 @@ export class DataKitsServiceBase extends BaseResource {
   }
 
   /** POST /ssot/data-kits/{dataKitName}/undeploy — Undeploy data kit component */
-  async createUndeploy(dataKitName: string, body: DataKitUnDeployInputRepresentation, params?: DataKitsCreateUndeployParams, options?: RequestOptions): Promise<DataKitAsyncRepresentation> {
+  async createUndeploy(dataKitName: string, body: DataKitUnDeployInputRepresentation, params: DataKitsCreateUndeployParams, options?: RequestOptions): Promise<DataKitAsyncRepresentation> {
     return this.httpClient.post(`${this.basePath}/${encodeURIComponent(dataKitName)}/undeploy`, body, { ...options, query: params });
   }
 
