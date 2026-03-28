@@ -694,8 +694,9 @@ function generateService(
       pageSizeParam,
     };
 
-    // Attach query param interface name
+    // Attach query param interface name and whether it has required fields
     (genMethod as any).queryParamInterfaceName = queryParamInterfaceName;
+    (genMethod as any).hasRequiredQueryParams = nonPaginationQueryParams.some((p) => p.required);
 
     methods.push(genMethod);
 
@@ -719,6 +720,7 @@ function generateService(
         };
         (listAllMethod as any).itemType = itemType;
         (listAllMethod as any).queryParamInterfaceName = queryParamInterfaceName;
+        (listAllMethod as any).hasRequiredQueryParams = nonPaginationQueryParams.some((p) => p.required);
         (listAllMethod as any).listMethodName = methodName;
         listAllMethods.push(listAllMethod);
         seenMethodNames.add(listAllName);
@@ -789,10 +791,12 @@ function emitMethodBody(method: GeneratedMethod, basePath: string): string {
 
   // Query params (non-pagination)
   const hasPagination = method.isListEndpoint && op.paginationQueryParams.length > 0;
+  const hasRequiredQuery = (method as any).hasRequiredQueryParams as boolean;
+  const optionalMark = hasRequiredQuery ? "" : "?";
   if (queryInterfaceName && hasPagination) {
-    params.push(`params?: PaginationParams & ${queryInterfaceName}`);
+    params.push(`params${optionalMark}: PaginationParams & ${queryInterfaceName}`);
   } else if (queryInterfaceName) {
-    params.push(`params?: ${queryInterfaceName}`);
+    params.push(`params${optionalMark}: ${queryInterfaceName}`);
   } else if (hasPagination) {
     params.push(`params?: PaginationParams`);
   }
@@ -933,8 +937,10 @@ function emitListAllMethod(
     params.push(`${p.name}: string`);
   }
 
+  const hasRequiredQuery = (method as any).hasRequiredQueryParams as boolean;
+  const optionalMark = hasRequiredQuery ? "" : "?";
   if (queryInterfaceName) {
-    params.push(`params?: PaginationParams & ${queryInterfaceName}`);
+    params.push(`params${optionalMark}: PaginationParams & ${queryInterfaceName}`);
   } else {
     params.push("params?: PaginationParams");
   }
