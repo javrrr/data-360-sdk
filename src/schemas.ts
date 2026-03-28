@@ -3297,12 +3297,13 @@ export type SemanticSearchDefDetailsRepresentation = {
   totalSize?: number;
   semanticSearchDefinitionDetails: Schemas["SemanticSearchDefDetailRepresentation"][];
 }
+/** @override Spec bugs: processingType missing from spec but required by API; attachment/transcribe fields are only required for document/PDF search indexes, not structured DMO search */
 export type SemanticSearchInputRepresentation = {
   id?: string;
   name?: string;
   namespace?: string;
   activationStatus?: string;
-  attachmentDmoDeveloperName: string;
+  attachmentDmoDeveloperName?: string;
   chunkDmoDeveloperName: string;
   chunkDmoName: string;
   chunkingConfiguration: Schemas["ChunkingConfigInputRepresentation"];
@@ -3313,14 +3314,15 @@ export type SemanticSearchInputRepresentation = {
   rankingConfigurations?: Schemas["SearchRankingFieldInputRepresentation"][];
   searchType: string;
   sourceDmoDeveloperName: string;
-  transcribeDmoDeveloperName: string;
-  transcribeDmoName: string;
-  transcribeDmoId: string;
+  transcribeDmoDeveloperName?: string;
+  transcribeDmoName?: string;
+  transcribeDmoId?: string;
   transformConfigurations: Schemas["TransformConfigInputRepresentation"][];
   vectorDmoDeveloperName: string;
   vectorDmoName: string;
   vectorEmbedding: Schemas["VectorEmbeddingInputRepresentation"];
   vectorEmbeddingConfiguration: Schemas["VectorEmbeddingConfigInputRepresentation"];
+  processingType: "NEAR_REALTIME" | "REALTIME";
 }
 export type SemanticSearchRepresentation = {
   currentPageUrl?: string;

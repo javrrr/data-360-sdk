@@ -36,6 +36,8 @@ interface SchemaOverride {
   fieldTypes?: Record<string, string>;
   /** Optional fields to add when runtime responses include undocumented properties. */
   addOptionalFields?: Record<string, string>;
+  /** Required fields to add when the API requires them but the spec omits them. */
+  addRequiredFields?: Record<string, string>;
 }
 
 /**
@@ -66,6 +68,18 @@ const SCHEMA_OVERRIDES: Record<string, SchemaOverride> = {
   DataLakeObjectInputRepresentation: {
     note: "Spec bugs: recordModifiedFieldName and orgUnitIdentifierFieldName are not required for all DLO types",
     makeOptional: ["recordModifiedFieldName", "orgUnitIdentifierFieldName"],
+  },
+  SemanticSearchInputRepresentation: {
+    note: "Spec bugs: processingType missing from spec but required by API; attachment/transcribe fields are only required for document/PDF search indexes, not structured DMO search",
+    makeOptional: [
+      "attachmentDmoDeveloperName",
+      "transcribeDmoDeveloperName",
+      "transcribeDmoName",
+      "transcribeDmoId",
+    ],
+    addRequiredFields: {
+      processingType: '"NEAR_REALTIME" | "REALTIME"',
+    },
   },
 };
 
@@ -722,6 +736,11 @@ async function main() {
       for (const [field, type] of Object.entries(override.addOptionalFields ?? {})) {
         if (!props[field]) {
           props[field] = { tsType: type, required: false };
+        }
+      }
+      for (const [field, type] of Object.entries(override.addRequiredFields ?? {})) {
+        if (!props[field]) {
+          props[field] = { tsType: type, required: true };
         }
       }
     }
