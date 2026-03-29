@@ -3312,7 +3312,7 @@ export type SemanticSearchInputRepresentation = {
   indexConfiguration?: Schemas["IndexConfigInputRepresentation"];
   label: string;
   rankingConfigurations?: Schemas["SearchRankingFieldInputRepresentation"][];
-  searchType: string;
+  searchType: "HYBRID" | "VECTOR";
   sourceDmoDeveloperName: string;
   transcribeDmoDeveloperName?: string;
   transcribeDmoName?: string;

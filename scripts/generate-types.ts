@@ -77,6 +77,9 @@ const SCHEMA_OVERRIDES: Record<string, SchemaOverride> = {
       "transcribeDmoName",
       "transcribeDmoId",
     ],
+    fieldTypes: {
+      searchType: '"HYBRID" | "VECTOR"',
+    },
     addRequiredFields: {
       processingType: '"NEAR_REALTIME" | "REALTIME"',
     },
