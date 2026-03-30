@@ -2072,7 +2072,16 @@ export type DataModelObjectRepresentation = {
   type?: "DataLakeObject" | "DataModelObject";
   status?: "Active" | "Error" | "Inactive" | "Processing";
 }
-export type DataObjectFieldInputRepresentation = Schemas["DataObjectFieldInputRepresentation"];
+/** @override Spec bugs: API expects `dataType` instead of `type` for field data type; isDynamicLookup missing but required for PATCH to work */
+export type DataObjectFieldInputRepresentation = {
+  isPrimaryKey: boolean;
+  keyQualifierFieldName: string;
+  label: string;
+  name: string;
+  type?: "Boolean" | "Date" | "DateOnly" | "DateTime" | "Email" | "Number" | "Percent" | "Phone" | "Text" | "Url";
+  dataType: "Boolean" | "Date" | "DateOnly" | "DateTime" | "Email" | "Number" | "Percent" | "Phone" | "Text" | "Url";
+  isDynamicLookup: boolean;
+}
 export type DataObjectFieldRepresentation = Schemas["DataObjectFieldRepresentation"];
 export type DataObjectInputRepresentation = {
   dataSpaceName?: string;
