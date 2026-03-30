@@ -69,6 +69,14 @@ const SCHEMA_OVERRIDES: Record<string, SchemaOverride> = {
     note: "Spec bugs: recordModifiedFieldName and orgUnitIdentifierFieldName are not required for all DLO types",
     makeOptional: ["recordModifiedFieldName", "orgUnitIdentifierFieldName"],
   },
+  DataObjectFieldInputRepresentation: {
+    note: "Spec bugs: API expects `dataType` instead of `type` for field data type; isDynamicLookup missing but required for PATCH to work",
+    makeOptional: ["type"],
+    addRequiredFields: {
+      dataType: '"Boolean" | "Date" | "DateOnly" | "DateTime" | "Email" | "Number" | "Percent" | "Phone" | "Text" | "Url"',
+      isDynamicLookup: "boolean",
+    },
+  },
   SemanticSearchInputRepresentation: {
     note: "Spec bugs: processingType missing from spec but required by API; attachment/transcribe fields are only required for document/PDF search indexes, not structured DMO search",
     makeOptional: [
