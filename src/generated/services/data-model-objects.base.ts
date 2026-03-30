@@ -168,7 +168,7 @@ export class DataModelObjectsServiceBase extends BaseResource {
   /** Async generator yielding all items from listMappings */
   async *listAllMappings(params: PaginationParams & DataModelObjectsListMappingsParams, options?: RequestOptions): AsyncGenerator<CdpObjectSourceTargetMapRepresentation, void, undefined> {
     const { batchSize, offset, orderBy, ...query } = params ?? {};
-    yield* this.paginate<CdpObjectSourceTargetMapRepresentation>(`${this.basePath}mappings`, { batchSize, offset, orderBy, pageSizeParam: "batchSize", query }, options);
+    yield* this.paginate<CdpObjectSourceTargetMapRepresentation>(`/ssot/data-model-object-mappings`, { batchSize, offset, orderBy, pageSizeParam: "batchSize", query }, options);
   }
 
   /** Async generator yielding all items from list */

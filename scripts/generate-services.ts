@@ -911,9 +911,16 @@ function emitListAllMethod(
   const pageSizeParam = method.pageSizeParam;
 
   // Build path expression
-  const relativePath = op.path.slice(basePath.length);
+  const startsWithBase = op.path.startsWith(basePath);
+  const relativePath = startsWithBase ? op.path.slice(basePath.length) : null;
   let pathExpr: string;
-  if (!relativePath) {
+  if (relativePath === null) {
+    const fullTemplate = op.path.replace(
+      /\{([^}]+)\}/g,
+      (_, param) => `\${encodeURIComponent(${param})}`,
+    );
+    pathExpr = "`" + fullTemplate + "`";
+  } else if (!relativePath) {
     pathExpr = "this.basePath";
   } else {
     const pathTemplate = relativePath.replace(

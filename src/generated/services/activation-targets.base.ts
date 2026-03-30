@@ -60,7 +60,7 @@ export class ActivationTargetsServiceBase extends BaseResource {
 
   /** Async generator yielding all items from listExternalPlatforms */
   async *listAllExternalPlatforms(params?: PaginationParams, options?: RequestOptions): AsyncGenerator<ActivationExternalPlatformRepresentation, void, undefined> {
-    yield* this.paginate<ActivationExternalPlatformRepresentation>(`${this.basePath}l-platforms`, { ...params, pageSizeParam: "limit" }, options);
+    yield* this.paginate<ActivationExternalPlatformRepresentation>(`/ssot/activation-external-platforms`, { ...params, pageSizeParam: "limit" }, options);
   }
 
   /** Async generator yielding all items from list */
