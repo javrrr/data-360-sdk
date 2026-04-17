@@ -19,6 +19,9 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
 const SPEC_URL =
   "https://developer.salesforce.com/static/datacloud/connectapi/spec/cdp-connect-api-Swagger.yaml";
+/** Page that links to the spec — required as Referer or the CDN returns 404 (hotlink protection). */
+const SPEC_REFERER =
+  "https://developer.salesforce.com/docs/data/connectapi/references/spec";
 const SPEC_OUTPUT = path.resolve(ROOT, "src/generated/openapi.yaml");
 const OPENAPI_OUTPUT = path.resolve(ROOT, "src/generated/openapi.d.ts");
 const SCHEMAS_OUTPUT = path.resolve(ROOT, "src/schemas.ts");
@@ -638,7 +641,9 @@ async function main() {
   console.log(`Fetching spec from: ${SPEC_URL}`);
 
   // Step 1: Fetch the spec and save it to the repo for diffing
-  const response = await fetch(SPEC_URL);
+  const response = await fetch(SPEC_URL, {
+    headers: { Referer: SPEC_REFERER },
+  });
   if (!response.ok) {
     console.error(`Failed to fetch spec: ${response.status} ${response.statusText}`);
     process.exit(1);
