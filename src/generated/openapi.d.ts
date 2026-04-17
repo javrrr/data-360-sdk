@@ -495,7 +495,7 @@ export type paths = {
             header?: never;
             path: {
                 /**
-                 * @description Unique identifier of a specific activation target, such as the ID or developer name.
+                 * @description Unique identifier of a specific activation, such as the ID or developer name.
                  *
                  *     **Available Version:** 60.0
                  */
@@ -515,7 +515,7 @@ export type paths = {
                 header?: never;
                 path: {
                     /**
-                     * @description Unique identifier of a specific activation target, such as the ID or developer name.
+                     * @description Unique identifier of a specific activation, such as the ID or developer name.
                      *
                      *     **Available Version:** 60.0
                      */
@@ -576,7 +576,7 @@ export type paths = {
                 header?: never;
                 path: {
                     /**
-                     * @description Unique identifier of a specific activation target, such as the ID or developer name.
+                     * @description Unique identifier of a specific activation, such as the ID or developer name.
                      *
                      *     **Available Version:** 60.0
                      */
@@ -642,7 +642,7 @@ export type paths = {
                 header?: never;
                 path: {
                     /**
-                     * @description Unique identifier of a specific activation target, such as the ID or developer name.
+                     * @description Unique identifier of a specific activation, such as the ID or developer name.
                      *
                      *     **Available Version:** 60.0
                      */
@@ -666,13 +666,93 @@ export type paths = {
         patch?: never;
         trace?: never;
     };
+    "/ssot/activations/{activationId}/actions/publish": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Publish a Batch DMO activation
+         * @description Initiate an on-demand publish job for a Batch data model object (DMO) activation.
+         *
+         *     **Available Version:** 66.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description Unique identifier of a specific activation, such as the market segment activation ID or developer name.
+                     *
+                     *     **Available Version:** 66.0
+                     */
+                    activationId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["ActivationPublishActionInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ActivationPublishActionRepresentation"];
+                    };
+                };
+                /** @description The server could not process the request as the parameters or payload are incorrect. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description The session ID or OAuth token has expired or is invalid. Or, if the request is made by a guest user, the resource isn’t accessible to guest users. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description The request has been refused. Verify that the context user has the appropriate permissions to access the requested data, or that the context user is not an external user. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description The server could not find the requested resource. Verify the URL is correct. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/ssot/activations/{activationId}/data": {
         parameters: {
             query?: never;
             header?: never;
             path: {
                 /**
-                 * @description Unique identifier of a specific activation target, such as the ID or developer name.
+                 * @description Unique identifier of a specific activation, such as the ID or developer name.
                  *
                  *     **Available Version:** 61.0
                  */
@@ -681,7 +761,7 @@ export type paths = {
             cookie?: never;
         };
         /**
-         * Get audience DMO activation records
+         * Get Audience DMO activation records
          * @description Query activation data. Get a list of all activation records from Audience data model objects (DMOs).
          *
          *     **Available Version:** 61.0
@@ -718,7 +798,7 @@ export type paths = {
                 };
                 path: {
                     /**
-                     * @description Unique identifier of a specific activation target, such as the ID or developer name.
+                     * @description Unique identifier of a specific activation, such as the ID or developer name.
                      *
                      *     **Available Version:** 61.0
                      */
@@ -13008,13 +13088,13 @@ export type components = {
              *
              *     **Available Version:** 60.0
              */
-            activationTargetSubjectConfig: components["schemas"]["ActivationTargetSubjectConfigInputRepresentation"];
+            activationTargetSubjectConfig?: components["schemas"]["ActivationTargetSubjectConfigInputRepresentation"];
             /**
              * @description Limiting expression configuration for the activation.
              *
              *     **Available Version:** 63.0
              */
-            attributeLimitingExpressionConfig: components["schemas"]["AttributeLimitingExpressionInputConfigRepresentation"];
+            attributeLimitingExpressionConfig?: components["schemas"]["AttributeLimitingExpressionInputConfigRepresentation"];
             /**
              * @description Additional attributes for the activation. The `activateOn` attribute must be present.
              *
@@ -13032,7 +13112,7 @@ export type components = {
              *
              *     **Available Version:** 63.0
              */
-            curatedEntity: components["schemas"]["CuratedEntityInputRepresentation"];
+            curatedEntity?: components["schemas"]["CuratedEntityInputRepresentation"];
             /**
              * @description Customer file source for the activation target.
              *
@@ -13051,13 +13131,13 @@ export type components = {
              *
              *     **Available Version:** 63.0
              */
-            dataSourcesConfig: components["schemas"]["ActivationDataSourceConfigInputRepresentation"][];
+            dataSourcesConfig?: components["schemas"]["ActivationDataSourceConfigInputRepresentation"][];
             /**
              * @description Name of the data space for the activation.
              *
              *     **Available Version:** 60.0
              */
-            dataSpaceName: string;
+            dataSpaceName?: string;
             /**
              * @description Description of the activation.
              *
@@ -13075,7 +13155,7 @@ export type components = {
              *
              *     **Available Version:** 63.0
              */
-            limitValue: number;
+            limitValue?: number;
             /**
              * @description Segment ID of the segment the activation needs to be created against. Either marketSegmentId or segmentApiName must be present.
              *
@@ -13087,7 +13167,7 @@ export type components = {
              *
              *     **Available Version:** 60.0
              */
-            name: string;
+            name?: string;
             /**
              * @description Indicates the refresh type for the activation, (`Full` or `Incremental`).
              *
@@ -13243,7 +13323,7 @@ export type components = {
              *
              *     **Available Version:** 60.0
              */
-            connector: components["schemas"]["DataConnectorInputRepresentation"];
+            connector?: components["schemas"]["DataConnectorInputRepresentation"];
             /**
              * @description Name of the data space for the activation target.
              *
@@ -13255,13 +13335,13 @@ export type components = {
              *
              *     **Available Version:** 60.0
              */
-            description: string;
+            description?: string;
             /**
              * @description Indicates whether communication capping is enabled (`true`) or not (`false`).
              *
              *     **Available Version:** 60.0
              */
-            isCappingEnabled: boolean;
+            isCappingEnabled?: boolean;
             /**
              * @description Egress properties for the activation target, which are applicable only for file-based activation targets.
              *
@@ -13280,7 +13360,7 @@ export type components = {
              *     **Available Version:** 60.0
              * @enum {string}
              */
-            platformType: "AmazonS3" | "AzureBlob" | "DataCloud" | "ExternalPlatform" | "GoogleCloudStorage" | "SalesforceMarketingCloud" | "Sftp";
+            platformType?: "AmazonS3" | "AzureBlob" | "DataCloud" | "ExternalPlatform" | "GoogleCloudStorage" | "SalesforceMarketingCloud" | "Sftp";
         };
         /**
          * Activation Target Subject Config Input
@@ -13329,6 +13409,42 @@ export type components = {
              *     **Available Version:** 63.0
              */
             queryPathConfig?: components["schemas"]["QueryPathConfigListRepresentation"];
+        };
+        /**
+         * Activation Publish Action Input
+         * @description Represents a Batch DMO activation publish job input.
+         */
+        ActivationPublishActionInputRepresentation: {
+            /**
+             * @description Indicates whether the activation publish type is a full refresh (`true`) or incremental (`false`).
+             *
+             *     ><span style="color:blue">**Note:**</span>
+             *     >Execution behavior varies by DMO configuration.
+             *     >
+             *     >**For Full Refresh DMOs**: Always performs a full refresh, regardless of this value.
+             *     >
+             *     >**For Incremental DMOs**:
+             *     >- *Initial publish (day 0)*: Always performs a full refresh, regardless of this value.
+             *     >- *Subsequent publishes*: Defaults to incremental if `false` or omitted. Set to `true` to force a full refresh.
+             *
+             *     **Available Version:** 66.0
+             */
+            fullRefresh?: boolean;
+        };
+        /**
+         * Activation Publish Action Output
+         * @description Represents output for a Batch DMO activation publish job.
+         */
+        ActivationPublishActionRepresentation: components["schemas"]["CdpActionResponseBaseRepresentation"] & {
+            /**
+             * @description Publish status of the activation.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             * @enum {string}
+             */
+            publishStatus?: "Error" | "NotSupported" | "PartnerError" | "PartnerProcessing" | "Publishing" | "Queued" | "SegmentError" | "Skipped" | "Success";
         };
         /**
          * Aggregate Input
@@ -14015,13 +14131,13 @@ export type components = {
              *
              *     **Available Version:** 60.0
              */
-            orgUnitIdentifierFieldName: string;
+            orgUnitIdentifierFieldName?: string;
             /**
              * @description Name of the record modified field.
              *
              *     **Available Version:** 60.0
              */
-            recordModifiedFieldName: string;
+            recordModifiedFieldName?: string;
         };
         /**
          * Data Lake Object Patch Input
@@ -14033,7 +14149,7 @@ export type components = {
              *
              *     **Available Version:** 60.0
              */
-            fields: components["schemas"]["DataLakeFieldInputRepresentation"][];
+            fields?: components["schemas"]["DataLakeFieldInputRepresentation"][];
             /**
              * @description Label of the DLO.
              *
@@ -14112,7 +14228,7 @@ export type components = {
              *
              *     **Available Version:** 60.0
              */
-            cancelAction: string;
+            cancelAction?: string;
             /**
              * @description URL to refresh the status of the action.
              *
@@ -14136,7 +14252,7 @@ export type components = {
              *
              *     **Available Version:** 60.0
              */
-            runAction: string;
+            runAction?: string;
         };
         /**
          * Boolean Comparison Input
@@ -15135,7 +15251,7 @@ export type components = {
              *
              *     **Available Version:** 62.0
              */
-            publishScheduleEndDate: string;
+            publishScheduleEndDate?: string;
             /**
              * @description Indicates how frequently the calculated insight is processed. Required for calculated insights. Don't use with streaming insights.
              *
@@ -15404,7 +15520,7 @@ export type components = {
              *
              *     **Available Version:** 62.0
              */
-            externalRecordIdentifier: string;
+            externalRecordIdentifier?: string;
             /**
              * @description Data action target name.
              *
@@ -15430,7 +15546,7 @@ export type components = {
              *     **Available Version:** 62.0
              * @enum {string}
              */
-            statusErrorCode: "CreateFailed" | "DeleteFailed" | "ProcessingFailed";
+            statusErrorCode?: "CreateFailed" | "DeleteFailed" | "ProcessingFailed";
             /**
              * @description Sub type
              *
@@ -15439,7 +15555,7 @@ export type components = {
              *     **Available Version:** 62.0
              * @enum {string}
              */
-            subType: "Grpc" | "Rest";
+            subType?: "Grpc" | "Rest";
             /**
              * @description Data action target type.
              *
@@ -15594,7 +15710,7 @@ export type components = {
              *
              *     **Available Version:** 62.0
              */
-            externalRecordIdentifier: string;
+            externalRecordIdentifier?: string;
             /**
              * @description Data action target name.
              *
@@ -15607,7 +15723,7 @@ export type components = {
              *     **Available Version:** 62.0
              * @enum {string}
              */
-            subType: "Grpc" | "Rest";
+            subType?: "Grpc" | "Rest";
             /**
              * @description Data action target type.
              *
@@ -15850,20 +15966,20 @@ export type components = {
              *
              *     **Available Version:** 62.0
              */
-            eventTriggerCondition: string;
+            eventTriggerCondition?: string;
             /**
              * @description Data action's external record identifier.
              *
              *     **Available Version:** 62.0
              */
-            externalRecordIdentifier: string;
+            externalRecordIdentifier?: string;
             /**
              * @description `true` if the data action is a real time action, otherwise `false`.
              *
              *
              *     **Available Version:** 62.0
              */
-            isRealTimeAction: boolean;
+            isRealTimeAction?: boolean;
             /**
              * @description Data action's master label.
              *
@@ -15875,19 +15991,19 @@ export type components = {
              *
              *     **Available Version:** 62.0
              */
-            shouldProcessDayZero: boolean;
+            shouldProcessDayZero?: boolean;
             /**
              * @description If `true`, the related event is triggered only the first time that the data action is used. If `false`, the event is triggered each time the data action is used.
              *
              *     **Available Version:** 62.0
              */
-            shouldTriggerEventOnlyFirstTime: boolean;
+            shouldTriggerEventOnlyFirstTime?: boolean;
             /**
              * @description Data action subscriber key.
              *
              *     **Available Version:** 62.0
              */
-            subscriberKey: string;
+            subscriberKey?: string;
         };
         /**
          * Data Graph Action Response Output
@@ -18046,7 +18162,7 @@ export type components = {
              *
              *     **Available Version:** 62.0
              */
-            prefix: string;
+            prefix?: string;
             /**
              * @description Status of the data space.
              *
@@ -18083,7 +18199,7 @@ export type components = {
              *
              *     **Available Version:** 61.0
              */
-            filter: components["schemas"]["DataSpaceFilterRepresentation"];
+            filter?: components["schemas"]["DataSpaceFilterRepresentation"];
             /**
              * @description Developer name of the data space member.
              *
@@ -19239,7 +19355,7 @@ export type components = {
              *
              *     **Available Version:** 63.0
              */
-            databaseSchemas: string[];
+            databaseSchemas?: string[];
         };
         /**
          * Connection Database Collection Output
@@ -19541,7 +19657,7 @@ export type components = {
              *
              *     **Available Version:** 63.0
              */
-            releaseLevel: string;
+            releaseLevel?: string;
         };
         /**
          * Connector Feature Output
@@ -20140,7 +20256,7 @@ export type components = {
              *
              *     **Available Version:** 59.0
              */
-            dataGraphMetadata: components["schemas"]["CdpQueryDataGraphMetadataRepresentation"][];
+            dataGraphMetadata?: components["schemas"]["CdpQueryDataGraphMetadataRepresentation"][];
         };
         /**
          * Data Graph Query Metadata Output
@@ -20859,7 +20975,7 @@ export type components = {
              *
              *     **Available Version:** 62.0
              */
-            actionConditionExpression: string;
+            actionConditionExpression?: string;
             /**
              * @description The action conditions.
              *
@@ -20932,7 +21048,7 @@ export type components = {
              *
              *     **Available Version:** 62.0
              */
-            description: string;
+            description?: string;
             /**
              * @description Developer name of the data action.
              *
@@ -20948,7 +21064,7 @@ export type components = {
              *
              *     **Available Version:** 62.0
              */
-            eventTriggerCondition: string;
+            eventTriggerCondition?: string;
             /**
              * @description Data action's external record identifier.
              *
@@ -20956,7 +21072,7 @@ export type components = {
              *
              *     **Available Version:** 62.0
              */
-            externalRecordIdentifier: string;
+            externalRecordIdentifier?: string;
             /**
              * @description Indicates whether the data action is a real-time action (`true`) or not (`false`).
              *
@@ -20964,7 +21080,7 @@ export type components = {
              *
              *     **Available Version:** 62.0
              */
-            isRealTimeAction: boolean;
+            isRealTimeAction?: boolean;
             /**
              * @description Date and time that the most recent data action status was set.
              *
@@ -20981,7 +21097,7 @@ export type components = {
              *     **Available Version:** 62.0
              * @enum {string}
              */
-            lastActionStatusErrorCode: "CreateFailed" | "DeleteFailed" | "ProcessingFailed";
+            lastActionStatusErrorCode?: "CreateFailed" | "DeleteFailed" | "ProcessingFailed";
             /**
              * @description Data action's master label.
              *
@@ -21005,7 +21121,7 @@ export type components = {
              *
              *     **Available Version:** 62.0
              */
-            subscriberKey: string;
+            subscriberKey?: string;
         };
         /**
          * Data Action Condition Output
@@ -21019,7 +21135,7 @@ export type components = {
              *
              *     **Available Version:** 62.0
              */
-            conditionSourceType: string;
+            conditionSourceType?: string;
             /**
              * @description Type of the data action's condition. This type differentiates between regular and additional conditions.
              *
@@ -21027,7 +21143,7 @@ export type components = {
              *
              *     **Available Version:** 62.0
              */
-            conditionType: string;
+            conditionType?: string;
             /**
              * @description Name of the data action's graph.
              *
@@ -21035,7 +21151,7 @@ export type components = {
              *
              *     **Available Version:** 62.0
              */
-            dataGraphName: string;
+            dataGraphName?: string;
             /**
              * @description Field name.
              *
@@ -21051,7 +21167,7 @@ export type components = {
              *
              *     **Available Version:** 62.0
              */
-            objectDataGraphName: string;
+            objectDataGraphName?: string;
             /**
              * @description Object name.
              *
@@ -21219,7 +21335,7 @@ export type components = {
              *
              *     **Available Version:** 62.0
              */
-            actionsSourceObject: string;
+            actionsSourceObject?: string;
             /**
              * @description Path of the data action's source object.
              *
@@ -21227,7 +21343,7 @@ export type components = {
              *
              *     **Available Version:** 62.0
              */
-            actionsSourceObjectPath: string;
+            actionsSourceObjectPath?: string;
             /**
              * @description Type of the data action's source object.
              *
@@ -21235,7 +21351,7 @@ export type components = {
              *
              *     **Available Version:** 62.0
              */
-            actionsSourceObjectType: string;
+            actionsSourceObjectType?: string;
             /**
              * @description Developer name of the data action source object.
              *
@@ -21243,7 +21359,7 @@ export type components = {
              *
              *     **Available Version:** 62.0
              */
-            developerName: string;
+            developerName?: string;
             /**
              * @description Developer name for the data action source object.
              *
@@ -21267,7 +21383,7 @@ export type components = {
              *
              *     **Available Version:** 62.0
              */
-            objectLinkedUiRecordId: string;
+            objectLinkedUiRecordId?: string;
             /**
              * @description Linked UI record name for the data action source object.
              *
@@ -21275,7 +21391,7 @@ export type components = {
              *
              *     **Available Version:** 62.0
              */
-            objectLinkedUiRecordName: string;
+            objectLinkedUiRecordName?: string;
             /**
              * @description Label of the data action's source object.
              *
@@ -21283,7 +21399,7 @@ export type components = {
              *
              *     **Available Version:** 62.0
              */
-            objectMasterLabel: string;
+            objectMasterLabel?: string;
             /**
              * @description Name of the data action source object.
              *
@@ -21291,7 +21407,7 @@ export type components = {
              *
              *     **Available Version:** 62.0
              */
-            objectName: string;
+            objectName?: string;
             /**
              * @description Type of the data action source object.
              *
@@ -22995,7 +23111,7 @@ export type components = {
              *
              *     **Available Version:** 62.0
              */
-            format: string;
+            format?: string;
             /**
              * @description For a CRM connection field, indicates whether the field is calculated (`true`) or not (`false`). A calculated field is derived or a core formula field.
              *
@@ -23173,7 +23289,7 @@ export type components = {
              *
              *     **Available Version:** 60.0
              */
-            label: string;
+            label?: string;
             /**
              * @description Developer name of the connector.
              *
@@ -23408,7 +23524,7 @@ export type components = {
              *
              *     **Available Version:** 62.0
              */
-            advancedAttributes: {
+            advancedAttributes?: {
                 [key: string]: string;
             };
             /**
@@ -24067,7 +24183,7 @@ export type components = {
              *
              *     **Available Version:** 60.0
              */
-            name: string;
+            name?: string;
             /**
              * @description Filter operation to perform on the `name` and `values`.
              *
@@ -24942,7 +25058,7 @@ export type components = {
              *
              *     **Available Version:** 60.0
              */
-            format: string;
+            format?: string;
             /**
              * @description Name of the data stream source field.
              *
@@ -25036,7 +25152,7 @@ export type components = {
              *
              *     **Available Version:** 60.0
              */
-            dataLakeObjectInfo: components["schemas"]["DataLakeObjectInputRepresentation"][];
+            dataLakeObjectInfo?: components["schemas"]["DataLakeObjectInputRepresentation"][];
             /**
              * @description Data source of the data stream.
              *
@@ -25132,13 +25248,13 @@ export type components = {
              *
              *     **Available Version:** 60.0
              */
-            connectorPatchInfo: components["schemas"]["ConnectorPatchInputRepresentation"];
+            connectorPatchInfo?: components["schemas"]["ConnectorPatchInputRepresentation"];
             /**
              * @description Input data lake object used by the data stream.
              *
              *     **Available Version:** 60.0
              */
-            dataLakeObjectInfo: Record<string, never>[];
+            dataLakeObjectInfo?: Record<string, never>[];
             /**
              * @description Type of data stream. Possible values include:
              *     - `AZURE`
@@ -25162,25 +25278,25 @@ export type components = {
              *
              *     **Available Version:** 60.0
              */
-            datastreamType: string;
+            datastreamType?: string;
             /**
              * @description Label of the data stream.
              *
              *     **Available Version:** 60.0
              */
-            label: string;
+            label?: string;
             /**
              * @description Mapping representations between formula fields and data lake object (DLO) fields.
              *
              *     **Available Version:** 60.0
              */
-            mappings: components["schemas"]["DataStreamFieldMappingInputRepresentation"][];
+            mappings?: components["schemas"]["DataStreamFieldMappingInputRepresentation"][];
             /**
              * @description Description of the refresh config input representation.
              *
              *     **Available Version:** 60.0
              */
-            refreshConfig: components["schemas"]["RefreshConfigInputRepresentation"];
+            refreshConfig?: components["schemas"]["RefreshConfigInputRepresentation"];
             /**
              * @description Description of the source fields. Not used for data streams of type EVENTS. To re-enable disabled fields of a Salesforce CRM connector data stream standard or custom DLO, add them to the this array.
              *
@@ -25229,13 +25345,13 @@ export type components = {
              *
              *     **Available Version:** 60.0
              */
-            name: string;
+            name?: string;
             /**
              * @description Output format for the activation target.
              *
              *     **Available Version:** 60.0
              */
-            outputFormat: string;
+            outputFormat?: string;
         };
         /**
          * Data Source Name Config Input
@@ -25261,7 +25377,7 @@ export type components = {
              *
              *     **Available Version:** 57.0
              */
-            errorCode: string;
+            errorCode?: string;
             /**
              * @description Message stating the reason for the error, if any.
              *
@@ -25269,7 +25385,7 @@ export type components = {
              *
              *     **Available Version:** 57.0
              */
-            errorMessage: string;
+            errorMessage?: string;
         };
         /**
          * Hourly Schedule Input
@@ -25447,7 +25563,7 @@ export type components = {
              *
              *     **Available Version:** 57.0
              */
-            partyIdentificationInfo: components["schemas"]["CdpIdentityResolutionMatchCriterionPartyIdentificationInfoOutput"];
+            partyIdentificationInfo?: components["schemas"]["CdpIdentityResolutionMatchCriterionPartyIdentificationInfoOutput"];
             /**
              * @description Specifies whether blank fields can be used for matching (`true`) or not (`false`).
              *
@@ -25548,7 +25664,7 @@ export type components = {
              *
              *     **Available Version:** 57.0
              */
-            description: string;
+            description?: string;
             /**
              * @description Specifies whether automatic job run scheduling is enabled for the ruleset (`true`) or not (`false`). If unspecified, defaults to `false`.
              *
@@ -25643,7 +25759,7 @@ export type components = {
              *
              *     **Available Version:** 57.0
              */
-            rulesetId: string;
+            rulesetId?: string;
             /**
              * @description Status of a ruleset job. Possible values are:
              *     - `NEW`
@@ -26582,7 +26698,7 @@ export type components = {
              *
              *     **Available Version:** 52.0
              */
-            data: Record<string, never>[];
+            data?: Record<string, never>[];
             /**
              * @description Specifies whether the query is done (`true`) or not (`false`).
              *
@@ -26590,7 +26706,7 @@ export type components = {
              *
              *     **Available Version:** 52.0
              */
-            done: boolean;
+            done?: boolean;
             /**
              * @description Query end time. Not returned for data graphs.
              *
@@ -27485,7 +27601,7 @@ export type components = {
              *
              *     **Available Version:** 58.0
              */
-            kqId: string;
+            kqId?: string;
             /**
              * @description Type of snapshot. Valid value: `full`.
              *
@@ -27539,7 +27655,7 @@ export type components = {
              *
              *     **Available Version:** 58.0
              */
-            profileTable: string;
+            profileTable?: string;
         };
         /**
          * Segment Output
@@ -27601,7 +27717,7 @@ export type components = {
              *
              *     **Available Version:** 57.0
              */
-            includeCriteria: string;
+            includeCriteria?: string;
             /**
              * @description Segment DBT pipeline.
              *
@@ -27617,7 +27733,7 @@ export type components = {
              *
              *     **Available Version:** 63.0
              */
-            lastPublishedEndDateTime: string;
+            lastPublishedEndDateTime?: string;
             /**
              * Format: int64
              * @description Last segment member count.
@@ -27626,7 +27742,7 @@ export type components = {
              *
              *     **Available Version:** 63.0
              */
-            lastSegmentMemberCount: number;
+            lastSegmentMemberCount?: number;
             /**
              * @description Lookalike criteria for the segment.
              *
@@ -27748,7 +27864,7 @@ export type components = {
              *
              *     **Available Version:** 56.0
              */
-            segmentOnApiName: string;
+            segmentOnApiName?: string;
             /**
              * @description Data graph ID of the SegmentOn entity.
              *
@@ -28092,7 +28208,7 @@ export type components = {
              *
              *     **Available Version:** 60.0
              */
-            dataSpaceName: string;
+            dataSpaceName?: string;
             /**
              * @description Description of the activation target.
              *
@@ -28172,7 +28288,7 @@ export type components = {
              *
              *     **Available Version:** 60.0
              */
-            platformName: string;
+            platformName?: string;
             /**
              * @description Platform privacy type for the activation target. Derived from Activation Platform.
              *
@@ -28189,7 +28305,7 @@ export type components = {
              *     **Available Version:** 60.0
              * @enum {string}
              */
-            platformType: "AmazonS3" | "AzureBlob" | "DataCloud" | "ExternalPlatform" | "GoogleCloudStorage" | "SalesforceMarketingCloud" | "Sftp";
+            platformType?: "AmazonS3" | "AzureBlob" | "DataCloud" | "ExternalPlatform" | "GoogleCloudStorage" | "SalesforceMarketingCloud" | "Sftp";
             /**
              * @description Target status of the activation target.
              *
@@ -28363,7 +28479,7 @@ export type components = {
              *
              *     **Available Version:** 60.0
              */
-            directDmoFiltersConfig: components["schemas"]["DmoFiltersConfigRepresentation"];
+            directDmoFiltersConfig?: components["schemas"]["DmoFiltersConfigRepresentation"];
             /**
              * @description Indicates whether the activation is enabled (`true`) or not (`false`).
              *
@@ -28493,7 +28609,7 @@ export type components = {
              *
              *     **Available Version:** 60.0
              */
-            relatedDmoFiltersConfig: components["schemas"]["DmoFiltersConfigRepresentation"];
+            relatedDmoFiltersConfig?: components["schemas"]["DmoFiltersConfigRepresentation"];
             /**
              * @description Segment API name.
              *
@@ -28768,7 +28884,7 @@ export type components = {
              *
              *     **Available Version:** 60.0
              */
-            id: string;
+            id?: string;
             /**
              * @description Name of the user.
              *
@@ -28776,7 +28892,7 @@ export type components = {
              *
              *     **Available Version:** 60.0
              */
-            name: string;
+            name?: string;
             /**
              * @description Profile photo of the user to show in the UI.
              *
@@ -29009,13 +29125,13 @@ export type components = {
              *     **Available Version:** 62.0
              * @enum {string}
              */
-            creationType: "Custom" | "System";
+            creationType?: "Custom" | "System";
             /**
              * @description The currency iso code of the data transform.
              *
              *     **Available Version:** 62.0
              */
-            currencyIsoCode: string;
+            currencyIsoCode?: string;
             /**
              * @description Data space that the data transform belongs to. Required for DMO-based data transforms.
              *
@@ -29035,7 +29151,7 @@ export type components = {
              *
              *     **Available Version:** 60.0
              */
-            description: string;
+            description?: string;
             /**
              * @description Label of the data transform.
              *
@@ -29055,7 +29171,7 @@ export type components = {
              *
              *     **Available Version:** 60.0
              */
-            primarySource: string;
+            primarySource?: string;
             /**
              * @description Type of data transform.
              *
@@ -29337,7 +29453,7 @@ export type components = {
              *
              *     **Available Version:** 62.0
              */
-            addedRows: number;
+            addedRows?: number;
             /**
              * Format: int64
              * @description For a streaming data transform, indicates the number of rows that the data transform deleted.
@@ -29346,7 +29462,7 @@ export type components = {
              *
              *     **Available Version:** 62.0
              */
-            deletedRows: number;
+            deletedRows?: number;
             /**
              * Format: int64
              * @description For a streaming data transform, indicates the number of rows that failed during the transform.
@@ -29355,7 +29471,7 @@ export type components = {
              *
              *     **Available Version:** 62.0
              */
-            failedRows: number;
+            failedRows?: number;
             /**
              * Format: int64
              * @description For a streaming data transform, indicates the number of rows that the data transform updated.
@@ -29364,7 +29480,7 @@ export type components = {
              *
              *     **Available Version:** 62.0
              */
-            updatedRows: number;
+            updatedRows?: number;
             /**
              * Format: int64
              * @description Duration of the data transform run in seconds.
@@ -29585,7 +29701,7 @@ export type components = {
              *
              *     **Available Version:** 63.0
              */
-            outputMaxRecordsPerFile: number;
+            outputMaxRecordsPerFile?: number;
             /**
              * @description Predetermined name of the output file. Either `customFilename` or `predeterminedFilename` must be present.
              *
@@ -29885,14 +30001,14 @@ export type components = {
              *
              *     **Available Version:** 64.0
              */
-            dataSpaceName: string;
+            dataSpaceName?: string;
             /**
              * @description Owner of the relationship.
              *
              *     **Available Version:** 64.0
              * @enum {string}
              */
-            relationshipOwner: "DataCloud" | "Sobject";
+            relationshipOwner?: "DataCloud" | "Sobject";
             /**
              * @description Developer name of the source field in the relationship.
              *
@@ -29904,7 +30020,7 @@ export type components = {
              *
              *     **Available Version:** 64.0
              */
-            sourceObjectName: string;
+            sourceObjectName?: string;
             /**
              * @description Developer name of the target field in the relationship.
              *
@@ -29916,7 +30032,7 @@ export type components = {
              *
              *     **Available Version:** 64.0
              */
-            targetObjectName: string;
+            targetObjectName?: string;
         };
         /**
          * Field Source Target Relationship Output
@@ -29981,7 +30097,7 @@ export type components = {
              *
              *     **Available Version:** 64.0
              */
-            sourceObject: components["schemas"]["RelationshipObjectRepresentation"];
+            sourceObject?: components["schemas"]["RelationshipObjectRepresentation"];
             /**
              * @description Status of the relationship.
              *
@@ -29998,7 +30114,7 @@ export type components = {
              *
              *     **Available Version:** 64.0
              */
-            targetField: components["schemas"]["RelationshipFieldRepresentation"];
+            targetField?: components["schemas"]["RelationshipFieldRepresentation"];
             /**
              * @description Details about the target object involved in the relationship.
              *
@@ -30006,7 +30122,7 @@ export type components = {
              *
              *     **Available Version:** 64.0
              */
-            targetObject: components["schemas"]["RelationshipObjectRepresentation"];
+            targetObject?: components["schemas"]["RelationshipObjectRepresentation"];
         };
         /**
          * Relationship Field Output
@@ -31075,7 +31191,7 @@ export type components = {
              *
              *     **Available Version:** 63.0
              */
-            allowedFileTypes: string[];
+            allowedFileTypes?: string[];
         };
         /**
          * Document AI File Config Input
@@ -31110,7 +31226,7 @@ export type components = {
              *
              *     **Available Version:** 63.0
              */
-            fields: components["schemas"]["IdpConfigExtractedDloFieldRepresentation"][];
+            fields?: components["schemas"]["IdpConfigExtractedDloFieldRepresentation"][];
             /**
              * @description The JSON array property name that maps to this DLO. The value is `null` for the root DLO.
              *
@@ -33093,7 +33209,7 @@ export type components = {
              *
              *     **Available Version:** 63.0
              */
-            row: Record<string, never>[];
+            row?: Record<string, never>[];
         };
         /**
          * Query SQL Page Output
@@ -33112,7 +33228,7 @@ export type components = {
              *
              *     **Available Version:** 63.0
              */
-            innerElement: string;
+            innerElement?: string;
             /**
              * @description Name of the field.
              *
@@ -33136,7 +33252,7 @@ export type components = {
              *
              *     **Available Version:** 63.0
              */
-            precision: number;
+            precision?: number;
             /**
              * @description The scale for numeric fields.
              *
@@ -33144,7 +33260,7 @@ export type components = {
              *
              *     **Available Version:** 63.0
              */
-            scale: number;
+            scale?: number;
             /**
              * @description Type of the field.
              *
@@ -33810,7 +33926,7 @@ export type components = {
          */
         SemanticSearchInputRepresentation: components["schemas"]["CdpAssetBaseInputRepresentation"] & {
             /**
-             * @description Activation status of record.
+             * @description Activation status of the semantic search record.
              *
              *     **Available Version:** 60.0
              */
@@ -33820,15 +33936,15 @@ export type components = {
              *
              *     **Available Version:** 62.0
              */
-            attachmentDmoDeveloperName: string;
+            attachmentDmoDeveloperName?: string;
             /**
-             * @description Developer name of the DMO used for chunking.
+             * @description Developer name of the DMO used for chunking, excluding the `__dlm` suffix.
              *
              *     **Available Version:** 60.0
              */
             chunkDmoDeveloperName: string;
             /**
-             * @description Chunk DMO.
+             * @description Name of the DMO used for chunking.
              *
              *     **Available Version:** 60.0
              */
@@ -33840,11 +33956,11 @@ export type components = {
              */
             chunkingConfiguration: components["schemas"]["ChunkingConfigInputRepresentation"];
             /**
-             * @description The description of semantic search record to be created.
+             * @description Description of semantic search record to be created.
              *
              *     **Available Version:** 60.0
              */
-            description: string;
+            description?: string;
             /**
              * @description Developer name of the semantic search record to be created.
              *
@@ -33864,13 +33980,19 @@ export type components = {
              */
             label: string;
             /**
+             * @description Processing type of the search index, such as `NEAR_REALTIME` or `REALTIME`.
+             *
+             *     **Available Version:** 63.0
+             */
+            processingType?: string;
+            /**
              * @description List of ranking configurations for hybrid search. Selecting fields for a ranking configuration is optional.
              *
              *     **Available Version:** 60.0
              */
             rankingConfigurations?: components["schemas"]["SearchRankingFieldInputRepresentation"][];
             /**
-             * @description Type of the search index (`HYRBID` or `VECTOR`).
+             * @description Type of the search index (`HYBRID` or `VECTOR`).
              *
              *     **Available Version:** 60.0
              */
@@ -33886,33 +34008,33 @@ export type components = {
              *
              *     **Available Version:** 60.0
              */
-            transcribeDmoDeveloperName: string;
+            transcribeDmoDeveloperName?: string;
             /**
              * @description Transcribe output DMO name.
              *
              *     **Available Version:** 60.0
              */
-            transcribeDmoName: string;
+            transcribeDmoName?: string;
             /**
              * @description Transcribe output DMO ID.
              *
              *     **Available Version:** 60.0
              */
-            transcribeDmoId: string;
+            transcribeDmoId?: string;
             /**
              * @description Transform configuration.
              *
              *     **Available Version:** 60.0
              */
-            transformConfigurations: components["schemas"]["TransformConfigInputRepresentation"][];
+            transformConfigurations?: components["schemas"]["TransformConfigInputRepresentation"][];
             /**
-             * @description Vector DMO developer name.
+             * @description Developer name of the vector DMO, excluding the `__dlm` suffix.
              *
              *     **Available Version:** 60.0
              */
             vectorDmoDeveloperName: string;
             /**
-             * @description Vector DMO.
+             * @description Name of the vector DMO.
              *
              *     **Available Version:** 60.0
              */
@@ -34195,13 +34317,13 @@ export type components = {
              *
              *     **Available Version:** 61.0
              */
-            sourceDmoLabel: string;
+            sourceDmoLabel?: string;
             /**
              * @description Source DMO field label.
              *
              *     **Available Version:** 61.0
              */
-            sourceFieldLabel: string;
+            sourceFieldLabel?: string;
             /**
              * @description Target DMO developer name.
              *
@@ -34219,13 +34341,13 @@ export type components = {
              *
              *     **Available Version:** 61.0
              */
-            targetDmoLabel: string;
+            targetDmoLabel?: string;
             /**
              * @description Target DMO field label.
              *
              *     **Available Version:** 61.0
              */
-            targetFieldLabel: string;
+            targetFieldLabel?: string;
         };
         /**
          * SFTP Connector Input
@@ -34265,7 +34387,7 @@ export type components = {
              *
              *     **Available Version:** 60.0
              */
-            id: string;
+            id?: string;
             /**
              * @description The list of IDs of created vector embedding related fields.
              *
@@ -34273,7 +34395,7 @@ export type components = {
              *
              *     **Available Version:** 60.0
              */
-            relatedFields: string[];
+            relatedFields?: string[];
         };
         /**
          * Semantic Search Config Output
@@ -34421,7 +34543,7 @@ export type components = {
              */
             rankingConfigurations?: components["schemas"]["RankingFieldsDetailsRepresentation"][];
             /**
-             * @description Type of the search index (`HYRBID` or `VECTOR`).
+             * @description Type of the search index (`HYBRID` or `VECTOR`).
              *
              *     **Filter Group:** Small
              *
@@ -36087,7 +36209,7 @@ export type components = {
              *
              *     **Available Version:** 60.0
              */
-            keyQualifierFieldName: string;
+            keyQualifierFieldName?: string;
             /**
              * @description Label of the field.
              *
@@ -36106,7 +36228,7 @@ export type components = {
              *     **Available Version:** 60.0
              * @enum {string}
              */
-            type: "Boolean" | "Date" | "DateOnly" | "DateTime" | "Email" | "Number" | "Percent" | "Phone" | "Text" | "Url";
+            type?: "Boolean" | "Date" | "DateOnly" | "DateTime" | "Email" | "Number" | "Percent" | "Phone" | "Text" | "Url";
         };
         /**
          * Data Object Output
@@ -36300,7 +36422,7 @@ export type components = {
              *
              *     **Available Version:** 60.0
              */
-            isPrimaryKey: boolean;
+            isPrimaryKey?: boolean;
             /**
              * @description Key qualifier field's developer name.
              *
@@ -36308,7 +36430,7 @@ export type components = {
              *
              *     **Available Version:** 60.0
              */
-            keyQualifierField: string;
+            keyQualifierField?: string;
             /**
              * @description Field's label.
              *

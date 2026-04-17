@@ -1,5 +1,5 @@
 /**
- * Named type exports for all 810 OpenAPI schemas, 262 enum types,
+ * Named type exports for all 812 OpenAPI schemas, 263 enum types,
  * and 3 discriminated union types.
  * Auto-generated — DO NOT EDIT. Run `npm run generate` to regenerate.
  *
@@ -14,7 +14,7 @@ type Schemas = components["schemas"];
 /** Flatten intersections into a single object type for readable IntelliSense hovers. */
 type Simplify<T> = { [K in keyof T]: T[K] } & {};
 
-// ── Schema types (810) ──
+// ── Schema types (812) ──
 
 export type AbstractBucketAlgorithmRepresentation = Schemas["AbstractBucketAlgorithmRepresentation"];
 export type AccountEngagementConnectionInputRepresentation = {
@@ -165,22 +165,22 @@ export type ActivationDataSourcesRepresentation = {
 }
 export type ActivationDefinitionInputRepresentation = {
   id?: string;
-  name: string;
+  name?: string;
   namespace?: string;
   activationMappingSchema?: string;
   activationTargetName?: string;
-  activationTargetSubjectConfig: Schemas["ActivationTargetSubjectConfigInputRepresentation"];
-  attributeLimitingExpressionConfig: Schemas["AttributeLimitingExpressionInputConfigRepresentation"];
+  activationTargetSubjectConfig?: Schemas["ActivationTargetSubjectConfigInputRepresentation"];
+  attributeLimitingExpressionConfig?: Schemas["AttributeLimitingExpressionInputConfigRepresentation"];
   attributesConfig?: Schemas["AttributesConfigInputRepresentation"][];
   contactPointsConfig?: Schemas["ContactPointConfigInputRepresentation"][];
-  curatedEntity: Schemas["CuratedEntityInputRepresentation"];
+  curatedEntity?: Schemas["CuratedEntityInputRepresentation"];
   customerFileSource?: "FirstAndThirdParty" | "FirstParty" | "ThirdParty";
   dataExportDefinitionId?: string;
-  dataSourcesConfig: Schemas["ActivationDataSourceConfigInputRepresentation"][];
-  dataSpaceName: string;
+  dataSourcesConfig?: Schemas["ActivationDataSourceConfigInputRepresentation"][];
+  dataSpaceName?: string;
   description?: string;
   directDmoFiltersConfig?: Schemas["DMOFilterConfigInputRepresentation"][];
-  limitValue: number;
+  limitValue?: number;
   marketSegmentId?: string;
   refreshType: string;
   relatedDmoFiltersConfig?: Schemas["DMOFilterConfigInputRepresentation"][];
@@ -214,6 +214,12 @@ export type ActivationExternalPlatformRepresentation = {
   status?: "Active" | "Error" | "Inactive" | "Processing";
   type?: "Advertising" | "Analytics" | "Marketing" | "Publishing" | "Technology";
 }
+export type ActivationPublishActionInputRepresentation = Schemas["ActivationPublishActionInputRepresentation"];
+export type ActivationPublishActionRepresentation = {
+  errors: Schemas["CdpErrorRepresentation"][];
+  success: boolean;
+  publishStatus?: "Error" | "NotSupported" | "PartnerError" | "PartnerProcessing" | "Publishing" | "Queued" | "SegmentError" | "Skipped" | "Success";
+}
 export type ActivationRepresentation = {
   createdBy?: Schemas["CdpUserRepresentation"];
   createdDate?: string;
@@ -238,7 +244,7 @@ export type ActivationRepresentation = {
   dataSpaceName: string;
   description?: string;
   developerName?: string;
-  directDmoFiltersConfig: Schemas["DmoFiltersConfigRepresentation"];
+  directDmoFiltersConfig?: Schemas["DmoFiltersConfigRepresentation"];
   enabled?: boolean;
   historyAudienceDmoApiName?: string;
   historyAudienceDmoLabel?: string;
@@ -254,7 +260,7 @@ export type ActivationRepresentation = {
   membershipName?: string;
   queryPathConfig: Schemas["QueryPathConfigListRepresentation"];
   refreshType: "Full_Refresh" | "Incremental";
-  relatedDmoFiltersConfig: Schemas["DmoFiltersConfigRepresentation"];
+  relatedDmoFiltersConfig?: Schemas["DmoFiltersConfigRepresentation"];
   segmentApiName?: string;
   segmentId?: string;
   shouldExcludeDeletes: boolean;
@@ -275,7 +281,7 @@ export type ActivationTargetRepresentation = {
   namespace?: string;
   url?: string;
   connector?: Schemas["DataConnectorRepresentation"];
-  dataSpaceName: string;
+  dataSpaceName?: string;
   description?: string;
   egressProperties?: Schemas["EgressPropertiesRepresentation"];
   historyAudienceDmoApiName?: string;
@@ -285,9 +291,9 @@ export type ActivationTargetRepresentation = {
   latestAudienceDmoApiName?: string;
   latestAudienceDmoLabel?: string;
   organizationId?: string;
-  platformName: string;
+  platformName?: string;
   platformPrivacyType?: string;
-  platformType: "AmazonS3" | "AzureBlob" | "DataCloud" | "ExternalPlatform" | "GoogleCloudStorage" | "SalesforceMarketingCloud" | "Sftp";
+  platformType?: "AmazonS3" | "AzureBlob" | "DataCloud" | "ExternalPlatform" | "GoogleCloudStorage" | "SalesforceMarketingCloud" | "Sftp";
   status: "Active" | "Processing" | "Error" | "Inactive";
 }
 export type ActivationTargetSubjectConfigInputRepresentation = {
@@ -434,8 +440,8 @@ export type AttributeLimitingExpressionRepresentation = {
 export type AttributesConfigInputRepresentation = Schemas["AttributesConfigInputRepresentation"];
 export type AudienceDMOCollectionRepresentation = Schemas["AudienceDMOCollectionRepresentation"];
 export type AzureConnectorInputRepresentation = {
-  name: string;
-  outputFormat: string;
+  name?: string;
+  outputFormat?: string;
 }
 export type AzureConnectorRepresentation = {
   createdBy?: Schemas["CdpUserRepresentation"];
@@ -1344,7 +1350,7 @@ export type ConnectionFieldCollectionInputRepresentation = Schemas["ConnectionFi
 export type ConnectionFieldCollectionRepresentation = Schemas["ConnectionFieldCollectionRepresentation"];
 export type ConnectionFieldRepresentation = {
   creationType?: "Custom" | "Standard";
-  format: string;
+  format?: string;
   isCalculated?: boolean;
   isRequired: boolean;
   label?: string;
@@ -1493,7 +1499,7 @@ export type ContextFieldConfigurationRepresentation = {
 }
 export type CrmConnectionFieldRepresentation = {
   creationType: "Custom" | "Standard";
-  format: string;
+  format?: string;
   isCalculated: boolean;
   isRequired: boolean;
   label: string;
@@ -2075,7 +2081,7 @@ export type DataModelObjectRepresentation = {
 /** @override Spec bugs: API expects `dataType` instead of `type` for field data type; isDynamicLookup missing but required for PATCH to work */
 export type DataObjectFieldInputRepresentation = {
   isPrimaryKey: boolean;
-  keyQualifierFieldName: string;
+  keyQualifierFieldName?: string;
   label: string;
   name: string;
   type?: "Boolean" | "Date" | "DateOnly" | "DateTime" | "Email" | "Number" | "Percent" | "Phone" | "Text" | "Url";
@@ -2139,7 +2145,7 @@ export type DataSpaceInfoRepresentation = {
   namespace?: string;
   url?: string;
   description: string;
-  prefix: string;
+  prefix?: string;
   status: "Active" | "Error" | "Processing";
 }
 export type DataSpaceInputRepresentation = {
@@ -2169,7 +2175,7 @@ export type DataSpaceMemberRepresentation = {
   name?: string;
   namespace?: string;
   url?: string;
-  filter: Schemas["DataSpaceFilterRepresentation"];
+  filter?: Schemas["DataSpaceFilterRepresentation"];
   memberName: string;
   status: "Active" | "Error" | "Processing";
 }
@@ -2234,7 +2240,7 @@ export type DataStreamInputRepresentation = {
   connectorInfo: Schemas["ConnectorInputRepresentation"];
   currencyIsoCodeInfo?: Record<string, never>;
   dataAccessMode?: "Direct_Access" | "Ingest";
-  dataLakeObjectInfo: DataLakeObjectInputRepresentation | DataLakeObjectInputRepresentation[];
+  dataLakeObjectInfo?: DataLakeObjectInputRepresentation | DataLakeObjectInputRepresentation[];
   datasource?: string;
   datastreamType?: string;
   existingDataLakeObjectInfo?: Schemas["ExistingDataLakeObjectInputRepresentation"];
@@ -2493,8 +2499,8 @@ export type ExactlyRelativeDateComparisonRepresentation = {
 }
 export type ExistingDataLakeObjectInputRepresentation = Schemas["ExistingDataLakeObjectInputRepresentation"];
 export type ExternalPlatformConnectorInputRepresentation = {
-  name: string;
-  outputFormat: string;
+  name?: string;
+  outputFormat?: string;
   fieldConfig?: Schemas["ExternalPlatformFieldConfigInputRepresentation"][];
   keyPrefixName?: string;
 }
@@ -2601,8 +2607,8 @@ export type FormulaNodeInputRepresentation = {
 }
 export type FormulaParametersInputRepresentation = Schemas["FormulaParametersInputRepresentation"];
 export type GcsConnectorInputRepresentation = {
-  name: string;
-  outputFormat: string;
+  name?: string;
+  outputFormat?: string;
 }
 export type GcsConnectorRepresentation = {
   createdBy?: Schemas["CdpUserRepresentation"];
@@ -2867,8 +2873,8 @@ export type MarketingCloudConnectionRepresentation = {
   ingestionBusinessUnits?: Schemas["MarketingCloudConnectionBusinessUnitRepresentation"][];
 }
 export type MarketingCloudConnectorInputRepresentation = {
-  name: string;
-  outputFormat: string;
+  name?: string;
+  outputFormat?: string;
   businessUnitConfig?: Schemas["BusinessUnitConfigInputRepresentation"][];
   targetSubType?: string;
 }
@@ -3196,8 +3202,8 @@ export type RouteDetailsInputRepresentation = Schemas["RouteDetailsInputRepresen
 export type RouteDetailsRepresentation = Schemas["RouteDetailsRepresentation"];
 export type RunHistoryOutputProgressRepresentation = Schemas["RunHistoryOutputProgressRepresentation"];
 export type S3ConnectorInputRepresentation = {
-  name: string;
-  outputFormat: string;
+  name?: string;
+  outputFormat?: string;
   accessKey?: string;
   bucketName?: string;
   folderName?: string;
@@ -3316,22 +3322,22 @@ export type SemanticSearchInputRepresentation = {
   chunkDmoDeveloperName: string;
   chunkDmoName: string;
   chunkingConfiguration: Schemas["ChunkingConfigInputRepresentation"];
-  description: string;
+  description?: string;
   developerName: string;
   indexConfiguration?: Schemas["IndexConfigInputRepresentation"];
   label: string;
+  processingType?: string;
   rankingConfigurations?: Schemas["SearchRankingFieldInputRepresentation"][];
   searchType: "HYBRID" | "VECTOR";
   sourceDmoDeveloperName: string;
   transcribeDmoDeveloperName?: string;
   transcribeDmoName?: string;
   transcribeDmoId?: string;
-  transformConfigurations: Schemas["TransformConfigInputRepresentation"][];
+  transformConfigurations?: Schemas["TransformConfigInputRepresentation"][];
   vectorDmoDeveloperName: string;
   vectorDmoName: string;
   vectorEmbedding: Schemas["VectorEmbeddingInputRepresentation"];
   vectorEmbeddingConfiguration: Schemas["VectorEmbeddingConfigInputRepresentation"];
-  processingType: "NEAR_REALTIME" | "REALTIME";
 }
 export type SemanticSearchRepresentation = {
   currentPageUrl?: string;
@@ -3344,8 +3350,8 @@ export type SemanticSearchRepresentation = {
   vectorEmbedding?: Schemas["VectorEmbeddingRepresentation"];
 }
 export type SftpConnectorInputRepresentation = {
-  name: string;
-  outputFormat: string;
+  name?: string;
+  outputFormat?: string;
 }
 export type SftpConnectorRepresentation = {
   createdBy?: Schemas["CdpUserRepresentation"];
@@ -3375,12 +3381,12 @@ export type SourceTargetRelationshipInputRepresentation = {
   namespace?: string;
   sourceDmoDeveloperName: string;
   sourceDmoFieldDeveloperName: string;
-  sourceDmoLabel: string;
-  sourceFieldLabel: string;
+  sourceDmoLabel?: string;
+  sourceFieldLabel?: string;
   targetDmoDeveloperName: string;
   targetDmoFieldDeveloperName: string;
-  targetDmoLabel: string;
-  targetFieldLabel: string;
+  targetDmoLabel?: string;
+  targetFieldLabel?: string;
 }
 export type SplitNodeInputRepresentation = {
   action: "Aggregate" | "Append_V2" | "Bucket" | "ComputeRelative" | "DateFormatConversion" | "Extension" | "Extract" | "Filter" | "Formula" | "Join" | "Load" | "OutputD360" | "Recommendation" | "Save" | "Schema" | "Split" | "SqlFilter" | "TypeCast" | "Update";
@@ -3804,7 +3810,7 @@ export type WeeklyScheduleRepresentation = {
   interval?: number;
 }
 
-// ── Enum types (262) ──
+// ── Enum types (263) ──
 
 export type AbstractBucketAlgorithmType = "TypographicClustering";
 export type AccountEngagementConnectionDataStreamType = "EmailActivity" | "FormActivity" | "WebPageActivity";
@@ -3822,6 +3828,7 @@ export type ActivationExternalPlatformPrivacyType = "NotApplicable" | "ServicePr
 export type ActivationExternalPlatformStatus = "Active" | "Error" | "Inactive" | "Processing";
 export type ActivationExternalPlatformType = "Advertising" | "Analytics" | "Marketing" | "Publishing" | "Technology";
 export type ActivationLastPublishStatus = "Error" | "Partner_Error" | "Partner_Processing" | "Publishing" | "Queued" | "Segment_Error" | "Skipped" | "Success";
+export type ActivationPublishActionPublishStatus = "Error" | "NotSupported" | "PartnerError" | "PartnerProcessing" | "Publishing" | "Queued" | "SegmentError" | "Skipped" | "Success";
 export type ActivationRefreshType = "Full_Refresh" | "Incremental";
 export type ActivationStatus = "Active" | "Processing" | "Error" | "Inactive";
 export type ActivationTargetPlatformType = "AmazonS3" | "AzureBlob" | "DataCloud" | "ExternalPlatform" | "GoogleCloudStorage" | "SalesforceMarketingCloud" | "Sftp";
@@ -4082,16 +4089,16 @@ export type DataStreamConnectorInput =
 
 /** Discriminated union — narrows by `connectorType`. */
 export type ConnectionCreateInput =
-    Simplify<{ connectorType: "IngestApi"; label: string; name?: string }>
-  | Simplify<{ connectorType: "SalesforceDotCom"; label: string; name?: string; organizationId: string }>
-  | Simplify<{ connectorType: "SalesforceMarketingCloud"; label: string; name?: string }>
-  | Simplify<{ connectorType: "StreamingApp"; label: string; name?: string; streamingAppSubType?: "WebApp_GA4"; streamingAppType: "MobileApp" | "ServerApp" | "WebApp" }>
-  | Simplify<{ connectorType: "AwsRdsPostgres" | "AzureBlob" | "Databricks" | "Gcs" | "Sftp" | "AmazonS3" | "Redshift" | "Snowflake" | "BigQuery" | "AzureSql"; label: string; name?: string; credentials: Schemas["DataConnectionParameterInputRepresentation"][]; method: "Egress" | "Ingress"; parameters: Schemas["DataConnectionParameterInputRepresentation"][] }>
+    Simplify<{ connectorType: "IngestApi"; label?: string; name?: string }>
+  | Simplify<{ connectorType: "SalesforceDotCom"; label?: string; name?: string; organizationId: string }>
+  | Simplify<{ connectorType: "SalesforceMarketingCloud"; label?: string; name?: string }>
+  | Simplify<{ connectorType: "StreamingApp"; label?: string; name?: string; streamingAppSubType?: "WebApp_GA4"; streamingAppType: "MobileApp" | "ServerApp" | "WebApp" }>
+  | Simplify<{ connectorType: "AwsRdsPostgres" | "AzureBlob" | "Databricks" | "Gcs" | "Sftp" | "AmazonS3" | "Redshift" | "Snowflake" | "BigQuery" | "AzureSql"; label?: string; name?: string; credentials: Schemas["DataConnectionParameterInputRepresentation"][]; method: "Egress" | "Ingress"; parameters: Schemas["DataConnectionParameterInputRepresentation"][] }>
 ;
 
 /** Discriminated union — narrows by `connectorType`. */
 export type ConnectionUpdateInput =
-    Simplify<{ connectorType: "SalesforceMarketingCloud"; label: string; name?: string; addActivationBusinessUnits?: string[]; addBusinessUnitsToDataSpaces?: Schemas["McBuToDataSpaceInputRepresentation"][]; addIngestionBusinessUnits?: string[]; createProfileMappings?: boolean; removeActivationBusinessUnits?: string[]; removeBusinessUnitsToDataSpaces?: Schemas["McBuToDataSpaceInputRepresentation"][]; removeIngestionBusinessUnits?: string[] }>
-  | Simplify<{ connectorType: "StreamingApp"; label: string; name?: string; modules: Schemas["ConnectionModuleConfigInputRepresentation"][] }>
+    Simplify<{ connectorType: "SalesforceMarketingCloud"; label?: string; name?: string; addActivationBusinessUnits?: string[]; addBusinessUnitsToDataSpaces?: Schemas["McBuToDataSpaceInputRepresentation"][]; addIngestionBusinessUnits?: string[]; createProfileMappings?: boolean; removeActivationBusinessUnits?: string[]; removeBusinessUnitsToDataSpaces?: Schemas["McBuToDataSpaceInputRepresentation"][]; removeIngestionBusinessUnits?: string[] }>
+  | Simplify<{ connectorType: "StreamingApp"; label?: string; name?: string; modules: Schemas["ConnectionModuleConfigInputRepresentation"][] }>
 ;
 

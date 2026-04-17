@@ -9,6 +9,8 @@ import type {
   ActivationCollectionRepresentation,
   ActivationDataRepresentation,
   ActivationDefinitionInputRepresentation,
+  ActivationPublishActionInputRepresentation,
+  ActivationPublishActionRepresentation,
   ActivationRepresentation,
   AudienceDMOCollectionRepresentation,
   QueryPathConfigRepresentation,
@@ -62,7 +64,12 @@ export class ActivationsServiceBase extends BaseResource {
     return this.httpClient.put(`${this.basePath}/${encodeURIComponent(activationId)}`, body, options);
   }
 
-  /** GET /ssot/activations/{activationId}/data — Get audience DMO activation records */
+  /** POST /ssot/activations/{activationId}/actions/publish — Publish a Batch DMO activation */
+  async publish(activationId: string, body: ActivationPublishActionInputRepresentation, options?: RequestOptions): Promise<ActivationPublishActionRepresentation> {
+    return this.httpClient.post(`${this.basePath}/${encodeURIComponent(activationId)}/actions/publish`, body, options);
+  }
+
+  /** GET /ssot/activations/{activationId}/data — Get Audience DMO activation records */
   async listData(activationId: string, params?: PaginationParams & ActivationsListDataParams, options?: RequestOptions): Promise<AudienceDMOCollectionRepresentation> {
     const { batchSize, offset, orderBy, ...query } = params ?? {};
     return this.httpClient.get(`${this.basePath}/${encodeURIComponent(activationId)}/data`, {

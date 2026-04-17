@@ -453,12 +453,54 @@ paths:
         schema:
           type: string
         description: |
-          Unique identifier of a specific activation target, such as the ID or developer name.
+          Unique identifier of a specific activation, such as the ID or developer name.
 
           **Available Version:** 60.0
+  /ssot/activations/{activationId}/actions/publish:
+    post:
+      summary: Publish a Batch DMO activation
+      tags:
+        - Activations
+      description: |
+        Initiate an on-demand publish job for a Batch data model object (DMO) activation.
+
+        **Available Version:** 66.0
+      parameters:
+        - name: activationId
+          in: path
+          schema:
+            type: string
+          description: |
+            Unique identifier of a specific activation, such as the market segment activation ID or developer name.
+
+            **Available Version:** 66.0
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ActivationPublishActionInputRepresentation"
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActivationPublishActionRepresentation'
+              examples:
+                Example:
+                  $ref: "#/components/examples/publish-activation-response-example"
+        "400":
+          description: The server could not process the request as the parameters or payload are incorrect.
+        "401":
+          description: The session ID or OAuth token has expired or is invalid. Or, if the request is made by a guest user, the resource isn’t accessible to guest users.
+        "403":
+          description: The request has been refused. Verify that the context user has the appropriate permissions to access the requested data, or that the context user is not an external user.
+        "404":
+          description: The server could not find the requested resource. Verify the URL is correct.
   /ssot/activations/{activationId}/data:
     get:
-      summary: Get audience DMO activation records
+      summary: Get Audience DMO activation records
       tags:
         - Activations
       description: |
@@ -525,7 +567,7 @@ paths:
         schema:
           type: string
         description: |
-          Unique identifier of a specific activation target, such as the ID or developer name.
+          Unique identifier of a specific activation, such as the ID or developer name.
 
           **Available Version:** 61.0
   /ssot/activation-external-platforms:
@@ -8798,13 +8840,6 @@ components:
                 $ref: "#/components/schemas/StaticDataConfigInputRepresentation"
           required:
             - refreshType
-            - dataSpaceName
-            - activationTargetSubjectConfig
-            - name
-            - attributeLimitingExpressionConfig
-            - limitValue
-            - curatedEntity
-            - dataSourcesConfig
     ActivationExternalPlatformCollectionRepresentation:
       title: Activation External Platform Collection Output
       description: Represents a collection of activation external platforms.
@@ -8991,12 +9026,8 @@ components:
             - Sftp
           type: string
       required:
-        - connector
         - dataSpaceName
-        - description
-        - isCappingEnabled
         - name
-        - platformType
     ActivationTargetSubjectConfigInputRepresentation:
       title: Activation Target Subject Config Input
       description: Represents the activation target subject configuration input.
@@ -9050,6 +9081,51 @@ components:
                 **Available Version:** 63.0
               allOf:
                 - $ref: "#/components/schemas/QueryPathConfigListRepresentation"
+    ActivationPublishActionInputRepresentation:
+      title: Activation Publish Action Input
+      type: object
+      description: Represents a Batch DMO activation publish job input.
+      properties:
+        fullRefresh:
+          description: |
+            Indicates whether the activation publish type is a full refresh (`true`) or incremental (`false`).
+
+            ><span style="color:blue">**Note:**</span>
+            >Execution behavior varies by DMO configuration.
+            >
+            >**For Full Refresh DMOs**: Always performs a full refresh, regardless of this value.
+            >
+            >**For Incremental DMOs**:
+            >- *Initial publish (day 0)*: Always performs a full refresh, regardless of this value.
+            >- *Subsequent publishes*: Defaults to incremental if `false` or omitted. Set to `true` to force a full refresh.
+
+            **Available Version:** 66.0
+          type: boolean
+    ActivationPublishActionRepresentation:
+      title: Activation Publish Action Output
+      description: Represents output for a Batch DMO activation publish job.
+      allOf:
+        - $ref: "#/components/schemas/CdpActionResponseBaseRepresentation"
+        - type: object
+          properties:
+            publishStatus:
+              description: |
+                Publish status of the activation.
+
+                **Filter Group:** Small
+
+                **Available Version:** 66.0
+              type: string
+              enum:
+                - Error
+                - NotSupported
+                - PartnerError
+                - PartnerProcessing
+                - Publishing
+                - Queued
+                - SegmentError
+                - Skipped
+                - Success
     AggregateInputRepresentation:
       title: Aggregate Input
       description: Represents the input for an aggregation.
@@ -9894,8 +9970,6 @@ components:
             - dataspaceInfo
             - label
             - name
-            - orgUnitIdentifierFieldName
-            - recordModifiedFieldName
     DataLakeObjectPatchInputRepresentation:
       title: Data Lake Object Patch Input
       type: object
@@ -9917,7 +9991,6 @@ components:
           type: string
       required:
         - label
-        - fields
     DataModelObjectInputRepresentation:
       title: Data Model Object Input
       description: Input representation for a DMO.
@@ -10029,10 +10102,8 @@ components:
             **Available Version:** 60.0
           type: string
       required:
-        - cancelAction
         - refreshStatusAction
         - retryAction
-        - runAction
     BooleanComparisonInputRepresentation:
       title: Boolean Comparison Input
       description: Represents the boolean comparison input.
@@ -11282,7 +11353,6 @@ components:
             **Available Version:** 62.0
           type: string
       required:
-        - publishScheduleEndDate
         - publishScheduleInterval
         - publishScheduleStartDateTime
     CdpCalculatedInsightMeasureRepresentation:
@@ -11654,11 +11724,8 @@ components:
       required:
         - apiName
         - config
-        - externalRecordIdentifier
         - label
         - status
-        - statusErrorCode
-        - subType
         - type
     CdpDataActionTargetInfo:
       title: Data Action Target Info Output
@@ -11851,9 +11918,7 @@ components:
       required:
         - apiName
         - config
-        - externalRecordIdentifier
         - label
-        - subType
         - type
     CdpDataActionTargetInternalWebConfig:
       title: Data Action Target Internal Web Config Input
@@ -12154,13 +12219,7 @@ components:
         - dataspace
         - description
         - developerName
-        - eventTriggerCondition
-        - externalRecordIdentifier
-        - isRealTimeAction
         - masterLabel
-        - shouldProcessDayZero
-        - shouldTriggerEventOnlyFirstTime
-        - subscriberKey
     CdpDataGraphActionResponseRepresentation:
       title: Data Graph Action Response Output
       description: Represents the data graph refresh output.
@@ -14844,7 +14903,6 @@ components:
               type: string
           required:
             - description
-            - prefix
             - status
     DataSpaceMemberCollectionRepresentation:
       title: Data Space Member Collection Output
@@ -14903,7 +14961,6 @@ components:
               type: string
           required:
             - status
-            - filter
             - memberName
     DataSpaceMemberPutCollectionRepresentation:
       title: Data Space Member Put Collection Output
@@ -16336,8 +16393,6 @@ components:
           type: array
           items:
             type: string
-      required:
-        - databaseSchemas
     ConnectionDatabaseCollectionRepresentation:
       title: Connection Database Collection Output
       type: object
@@ -16723,7 +16778,6 @@ components:
         - iconUrl
         - label
         - name
-        - releaseLevel
     ConnectorFeatureRepresentation:
       title: Connector Feature Output
       description: Represents a feature for a Data 360 connector.
@@ -17427,8 +17481,6 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/CdpQueryDataGraphMetadataRepresentation"
-      required:
-        - dataGraphMetadata
     CdpQueryDataGraphMetadataRepresentation:
       title: Data Graph Query Metadata Output
       description: Represents metadata for a data graph.
@@ -18495,7 +18547,6 @@ components:
             **Available Version:** 62.0
           type: string
       required:
-        - actionConditionExpression
         - actionConditions
         - dataActionEnrichmentProperties
         - dataActionName
@@ -18504,16 +18555,10 @@ components:
         - dataActionStatus
         - dataActionTargets
         - dataSpaceDevName
-        - description
         - developerName
-        - eventTriggerCondition
-        - externalRecordIdentifier
-        - isRealTimeAction
         - lastActionStatusDateTime
-        - lastActionStatusErrorCode
         - masterLabel
         - shouldTriggerEventOnlyFirstTime
-        - subscriberKey
     DataActionConditionOutputRepresentation:
       title: Data Action Condition Output
       description: Represents  DataActionCondition output.
@@ -18592,11 +18637,7 @@ components:
             **Available Version:** 62.0
           type: string
       required:
-        - conditionSourceType
-        - conditionType
-        - dataGraphName
         - fieldName
-        - objectDataGraphName
         - objectName
         - operator
         - order
@@ -18848,16 +18889,8 @@ components:
               - Update
             type: string
       required:
-        - actionsSourceObject
-        - actionsSourceObjectPath
-        - actionsSourceObjectType
-        - developerName
         - objectDevName
         - objectId
-        - objectLinkedUiRecordId
-        - objectLinkedUiRecordName
-        - objectMasterLabel
-        - objectName
         - objectType
         - subscriptionModes
     DataCleanRoomCollaborationCollectionRepresentation:
@@ -20813,7 +20846,6 @@ components:
             - Url
           type: string
       required:
-        - format
         - isRequired
         - name
         - originalType
@@ -20984,7 +21016,6 @@ components:
               type: string
           required:
             - connectorType
-            - label
     AccountEngagementConnectionInputRepresentation:
       title: Account Engagement Connection Input
       description: Input representation for an Account Engagement connector.
@@ -21278,8 +21309,6 @@ components:
             **Available Version:** 62.0
           allOf:
             - $ref: "#/components/schemas/ResourceFiltersInputRepresentation"
-      required:
-        - advancedAttributes
     ConnectionObjectCollectionRepresentation:
       title: Connection Object Collection Output
       description: Represents a collection of source objects for a connection.
@@ -22055,7 +22084,6 @@ components:
           items:
             type: string
       required:
-        - name
         - filterOperator
         - values
     DataStreamCollectionRepresentation:
@@ -23101,7 +23129,6 @@ components:
           type: string
       required:
         - datatype
-        - format
         - name
     ConnectorRepresentation:
       title: Connector Output
@@ -23279,7 +23306,6 @@ components:
             $ref: "#/components/schemas/DataStreamSourceFieldInputRepresentation"
       required:
         - connectorInfo
-        - dataLakeObjectInfo
         - label
         - mappings
         - name
@@ -23376,13 +23402,6 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/DataStreamSourceFieldInputRepresentation"
-      required:
-        - connectorPatchInfo
-        - dataLakeObjectInfo
-        - datastreamType
-        - label
-        - mappings
-        - refreshConfig
     DataStreamRepresentation:
       title: Data Stream Output
       description: Information about a data stream.
@@ -23441,9 +23460,6 @@ components:
 
             **Available Version:** 60.0
           type: string
-      required:
-        - name
-        - outputFormat
     DataSourceNameConfigInputRepresentation:
       title: Data Source Name Config Input
       description: Represents the data source name configuration input.
@@ -23480,9 +23496,6 @@ components:
 
             **Available Version:** 57.0
           type: string
-      required:
-        - errorCode
-        - errorMessage
     CdpHourlyScheduleInputRepresentation:
       title: Hourly Schedule Input
       description: Input representation for creating an hourly schedule.
@@ -23722,7 +23735,6 @@ components:
         - entityName
         - fieldName
         - matchMethodType
-        - partyIdentificationInfo
         - shouldMatchOnBlank
     CdpIdentityResolutionMatchCriterionPartyIdentificationInfoOutput:
       title: Identity Resolution Match Criterion Party Identification Info Output
@@ -23960,7 +23972,6 @@ components:
         - configurationType
         - consolidationRate
         - dataSpaceName
-        - description
         - doesRunAutomatically
         - id
         - knownUnifiedProfiles
@@ -23971,7 +23982,6 @@ components:
         - matchedSourceProfiles
         - objectApiName
         - reconciliationRules
-        - rulesetId
         - rulesetStatus
         - sourceProfiles
         - totalUnifiedProfiles
@@ -25055,9 +25065,6 @@ components:
 
             **Available Version:** 52.0
           type: string
-      required:
-        - data
-        - done
     CdpQueryOutputV2Representation:
       title: Query Output V2
       description: Represents query output for the V2 API.
@@ -26104,7 +26111,6 @@ components:
       required:
         - deltaType
         - id
-        - kqId
         - snapshotType
         - timestamp
         - versionStamp
@@ -26140,7 +26146,6 @@ components:
       required:
         - historyTable
         - latestTable
-        - profileTable
     CdpSegmentOutputRepresentation:
       title: Segment Output
       description: Represents segment output.
@@ -26396,16 +26401,12 @@ components:
       required:
         - apiName
         - dataSpace
-        - includeCriteria
         - marketSegmentDefinitionId
         - marketSegmentId
         - publishInterval
-        - segmentOnApiName
         - segmentOnId
         - segmentStatus
         - segmentType
-        - lastSegmentMemberCount
-        - lastPublishedEndDateTime
     ScheduleOutputRepresentation:
       title: Schedule Info Output
       type: object
@@ -26870,9 +26871,6 @@ components:
                 - Inactive
               type: string
           required:
-            - platformType
-            - platformName
-            - dataSpaceName
             - status
     ActivationCollectionRepresentation:
       title: Activation Collection Output
@@ -27259,10 +27257,8 @@ components:
             - contactPointsConfig
             - lastPublishStatus
             - curatedEntity
-            - directDmoFiltersConfig
             - refreshType
             - dataSourcesConfig
-            - relatedDmoFiltersConfig
             - shouldExcludeDeletes
             - activationTargetSubjectConfig
             - dataSpaceName
@@ -27534,9 +27530,6 @@ components:
 
             **Available Version:** 60.0
           type: string
-      required:
-        - id
-        - name
     ComputeRelativeNodeInputRepresentation:
       title: Compute Relative Node Input
       description: Representation to compare a row to another row.
@@ -27880,13 +27873,9 @@ components:
             - STREAMING
           type: string
       required:
-        - creationType
-        - currencyIsoCode
         - definition
-        - description
         - label
         - name
-        - primarySource
         - type
     DataTransformNodeInputRepresentation:
       title: Data Transform Node Input
@@ -28381,10 +28370,6 @@ components:
         - runMode
         - runModeParameters
         - runModeReason
-        - addedRows
-        - deletedRows
-        - failedRows
-        - updatedRows
         - duration
         - endTime
         - isVersionChanged
@@ -28616,7 +28601,6 @@ components:
         - outputDelimiter
         - outputFormat
         - outputMaxFileSizeMegaBytes
-        - outputMaxRecordsPerFile
     EgressPropertiesRepresentation:
       title: Egress Properties Output
       description: Represents the details for egress properties of the activation target.
@@ -29013,12 +28997,8 @@ components:
           type: string
       required:
         - cardinality
-        - dataSpaceName
-        - relationshipOwner
         - sourceFieldName
-        - sourceObjectName
         - targetFieldName
-        - targetObjectName
     FieldSrcTrgtRelationshipRepresentation:
       title: Field Source Target Relationship Output
       description: Represents a field source target relationship between data model objects (DMOs).
@@ -29136,10 +29116,7 @@ components:
         - name
         - owner
         - sourceField
-        - sourceObject
         - status
-        - targetField
-        - targetObject
     RelationshipFieldRepresentation:
       title: Relationship Field Output
       description: Represents details about the field involved in a relationship between
@@ -30389,8 +30366,6 @@ components:
           type: array
           items:
             type: string
-      required:
-        - allowedFileTypes
     IdpFileConfigInputRepresentation:
       title: Document AI File Config Input
       description: This type contains the fields required to configure file processing settings.
@@ -30441,7 +30416,6 @@ components:
           type: string
       required:
         - dlo
-        - fields
     IdpConfigExtractedDloInputRepresentation:
       title: Document AI Config Extracted DLO Input
       description: This type contains the fields required to configure DLO extraction settings.
@@ -32884,8 +32858,6 @@ components:
           type: array
           items:
             type: object
-      required:
-        - row
     QuerySqlPageRepresentation:
       title: Query SQL Page Output
       description: Represents SQL query output.
@@ -32962,11 +32934,8 @@ components:
             - Varchar
           type: string
       required:
-        - innerElement
         - name
         - nullable
-        - precision
-        - scale
         - type
     RelativeToNowDateComparisonInputRepresentation:
       title: Relative To Now Date Comparison Input
@@ -33737,7 +33706,7 @@ components:
           properties:
             activationStatus:
               description: |
-                Activation status of record.
+                Activation status of the semantic search record.
 
                 **Available Version:** 60.0
               type: string
@@ -33749,13 +33718,13 @@ components:
               type: string
             chunkDmoDeveloperName:
               description: |
-                Developer name of the DMO used for chunking.
+                Developer name of the DMO used for chunking, excluding the `__dlm` suffix.
 
                 **Available Version:** 60.0
               type: string
             chunkDmoName:
               description: |
-                Chunk DMO.
+                Name of the DMO used for chunking.
 
                 **Available Version:** 60.0
               type: string
@@ -33768,7 +33737,7 @@ components:
                 - $ref: "#/components/schemas/ChunkingConfigInputRepresentation"
             description:
               description: |
-                The description of semantic search record to be created.
+                Description of semantic search record to be created.
 
                 **Available Version:** 60.0
               type: string
@@ -33791,6 +33760,12 @@ components:
 
                 **Available Version:** 60.0
               type: string
+            processingType:
+              description: |
+                Processing type of the search index, such as `NEAR_REALTIME` or `REALTIME`.
+
+                **Available Version:** 63.0
+              type: string
             rankingConfigurations:
               description: |
                 List of ranking configurations for hybrid search. Selecting fields for a ranking configuration is optional.
@@ -33801,7 +33776,7 @@ components:
                 $ref: "#/components/schemas/SearchRankingFieldInputRepresentation"
             searchType:
               description: |
-                Type of the search index (`HYRBID` or `VECTOR`).
+                Type of the search index (`HYBRID` or `VECTOR`).
 
                 **Available Version:** 60.0
               type: string
@@ -33839,13 +33814,13 @@ components:
                 $ref: "#/components/schemas/TransformConfigInputRepresentation"
             vectorDmoDeveloperName:
               description: |
-                Vector DMO developer name.
+                Developer name of the vector DMO, excluding the `__dlm` suffix.
 
                 **Available Version:** 60.0
               type: string
             vectorDmoName:
               description: |
-                Vector DMO.
+                Name of the vector DMO.
 
                 **Available Version:** 60.0
               type: string
@@ -33864,19 +33839,13 @@ components:
               allOf:
                 - $ref: "#/components/schemas/VectorEmbeddingConfigInputRepresentation"
           required:
-            - attachmentDmoDeveloperName
             - chunkDmoDeveloperName
             - chunkDmoName
             - chunkingConfiguration
-            - description
             - developerName
             - label
             - searchType
             - sourceDmoDeveloperName
-            - transcribeDmoDeveloperName
-            - transcribeDmoName
-            - transcribeDmoId
-            - transformConfigurations
             - vectorDmoDeveloperName
             - vectorDmoName
             - vectorEmbedding
@@ -34199,12 +34168,8 @@ components:
       required:
         - sourceDmoDeveloperName
         - sourceDmoFieldDeveloperName
-        - sourceDmoLabel
-        - sourceFieldLabel
         - targetDmoDeveloperName
         - targetDmoFieldDeveloperName
-        - targetDmoLabel
-        - targetFieldLabel
     SftpConnectorInputRepresentation:
       title: SFTP Connector Input
       description: Represents the input details for an SFTP connector.
@@ -34256,9 +34221,6 @@ components:
           type: array
           items:
             type: string
-      required:
-        - id
-        - relatedFields
     SemanticSearchConfigRepresentation:
       title: Semantic Search Config Output
       description: Semantic Search Config Representation
@@ -34416,7 +34378,7 @@ components:
             $ref: "#/components/schemas/RankingFieldsDetailsRepresentation"
         searchType:
           description: |
-            Type of the search index (`HYRBID` or `VECTOR`).
+            Type of the search index (`HYBRID` or `VECTOR`).
 
             **Filter Group:** Small
 
@@ -36328,10 +36290,8 @@ components:
           type: string
       required:
         - isPrimaryKey
-        - keyQualifierFieldName
         - label
         - name
-        - type
     DataObjectRepresentation:
       title: Data Object Output
       description: Data object representation.
@@ -36620,8 +36580,6 @@ components:
             - Url
           type: string
       required:
-        - isPrimaryKey
-        - keyQualifierField
         - label
         - name
         - type
@@ -38225,6 +38183,15 @@ components:
           "shouldExcludeUpdates": false,
           "staticDataConfig": { "staticData": [{ "name": "Test", "value": "TestValue" }] },
           "status": "ACTIVE",
+        }
+    publish-activation-response-example:
+      value: 
+        {
+          "errors": [
+            {}
+          ],
+          "success": true,
+          "publishStatus": "Publishing"
         }
     external-platform-activation-response-example:
       value:
@@ -44581,8 +44548,8 @@ components:
           "relationships":
             [
               {
-                "sourceEntityName": "ds1_example1__dlm",
-                "targetEntityName": "ds1_example2__dlm",
+                "sourceObjectName": "ds1_example1__dlm",
+                "targetObjectName": "ds1_example2__dlm",
                 "cardinality": "ManyToOne",
                 "creationType": "Custom",
                 "sourceFieldName": "field1__c",
@@ -44590,8 +44557,8 @@ components:
                 "owner": "DataCloud",
               },
               {
-                "sourceEntityName": "ds1_example1__dlm",
-                "targetEntityName": "ds1_example3__dlm",
+                "sourceObjectName": "ds1_example1__dlm",
+                "targetObjectName": "ds1_example3__dlm",
                 "cardinality": "ManyToOne",
                 "creationType": "Custom",
                 "sourceFieldName": "field3__c",
@@ -44599,8 +44566,8 @@ components:
                 "owner": "DataCloud",
               },
               {
-                "sourceEntityName": "ds1_example1__dlm",
-                "targetEntityName": "ds1_Individual__dlm",
+                "sourceObjectName": "ds1_example1__dlm",
+                "targetObjectName": "ds1_Individual__dlm",
                 "cardinality": "ManyToOne",
                 "creationType": "Custom",
                 "sourceFieldName": "field1__c",
@@ -52260,89 +52227,81 @@ components:
     get-semantic-response-example:
       value:
         {
-          "semanticSearchDefinitionDetails":
-            [
-              {
-                "attachmentDmoDeveloperName": null,
-                "attachmentDmoId": null,
-                "attachmentDmoName": null,
-                "chunkDmoDeveloperName": "JB_Campaign_SI_chunk__dlm",
-                "chunkDmoId": "0gjSB00000163dlYAA",
-                "chunkDmoName": "JB_Campaign_SI chunk",
-                "chunkingConfiguration":
+          "attachmentDmoDeveloperName": null,
+          "attachmentDmoId": null,
+          "attachmentDmoName": null,
+          "chunkDmoDeveloperName": "JB_Campaign_SI_chunk__dlm",
+          "chunkDmoId": "0gjSB00000163dlYAA",
+          "chunkDmoName": "JB_Campaign_SI chunk",
+          "chunkingConfiguration":
+            {
+              "fieldLevelConfigurations":
+                [
                   {
-                    "fieldLevelConfigurations":
-                      [
-                        {
-                          "config":
-                            {
-                              "id": "passage_extraction",
-                              "userValues":
-                                [
-                                  { "id": "strip_html", "value": "true" },
-                                  { "id": "max_tokens", "value": "512" },
-                                ],
-                            },
-                          "decorators": [],
-                          "sourceDmoDeveloperName": "Campaign__dlm",
-                          "sourceDmoFieldDeveloperName": "Name__c",
-                          "sourceDmoFieldName": "Name",
-                          "sourceDmoName": "Campaign",
-                        },
-                      ],
-                    "perFileExtension": [],
-                  },
-                "dataspace": "default",
-                "description": null,
-                "developerName": "JB_Campaign_SI",
-                "id": "18lSB0000000MlJYAU",
-                "label": "JB_Campaign_SI",
-                "rankingConfigurations": [],
-                "searchType": "VECTOR",
-                "semanticSearchRankingConfigurations": [],
-                "sourceDmoDeveloperName": "Campaign__dlm",
-                "sourceDmoId": "0gjSB000000GwuTYAS",
-                "transcribeDmoDeveloperName": null,
-                "transcribeDmoId": null,
-                "transcribeDmoName": null,
-                "transformConfigurations": [],
-                "vectorDmoDeveloperName": "JB_Campaign_SI_vector__dlm",
-                "vectorDmoId": "0gjSB00000163dmYAA",
-                "vectorDmoName": "JB_Campaign_SI vector",
-                "vectorEmbedding":
-                  {
-                    "developerName": "JB_Campaign_SIVectorEmbedding",
-                    "id": "17nSB0000000V3pYAE",
-                    "sourceDmoDeveloperName": "JB_Campaign_SI_chunk__dlm",
-                    "sourceDmoFieldDeveloperName": "Chunk__c",
-                    "sourceDmoFieldId": "0gYSB00000ICpcN2AT",
-                    "sourceDmoId": "0gjSB00000163dlYAA",
-                    "vectorDmoDeveloperName": "JB_Campaign_SI_vector__dlm",
-                    "vectorDmoFieldDeveloperName": "VectorEmbedding__c",
-                    "vectorDmoFieldId": "0gYSB00000ICpcT2AT",
-                    "vectorDmoId": "0gjSB00000163dmYAA",
-                    "vectorEmbeddingRelatedFields": [],
-                  },
-                "vectorEmbeddingConfiguration":
-                  {
-                    "embeddingModel":
+                    "config":
                       {
-                        "id": "e5_large_v2",
+                        "id": "passage_extraction",
                         "userValues":
                           [
-                            { "id": "dimension", "value": "1024" },
-                            { "id": "max_token_limit", "value": "512" },
+                            { "id": "strip_html", "value": "true" },
+                            { "id": "max_tokens", "value": "512" },
                           ],
                       },
-                    "index": { "id": "DISKANN", "userValues": [] },
-                    "similarityMetric": "COSINE",
+                    "decorators": [],
+                    "sourceDmoDeveloperName": "Campaign__dlm",
+                    "sourceDmoFieldDeveloperName": "Name__c",
+                    "sourceDmoFieldName": "Name",
+                    "sourceDmoName": "Campaign",
                   },
-                "version": null,
-              },
-            ],
-          "totalSize": null,
-          "currentPageUrl": null,
-          "nextPageUrl": null,
+                ],
+              "perFileExtension": [],
+            },
+          "dataspace": "default",
+          "description": null,
+          "developerName": "JB_Campaign_SI",
+          "id": "18lSB0000000MlJYAU",
+          "label": "JB_Campaign_SI",
+          "rankingConfigurations": [],
+          "searchType": "VECTOR",
+          "semanticSearchRankingConfigurations": [],
+          "sourceDmoDeveloperName": "Campaign__dlm",
+          "sourceDmoId": "0gjSB000000GwuTYAS",
+          "transcribeDmoDeveloperName": null,
+          "transcribeDmoId": null,
+          "transcribeDmoName": null,
+          "transformConfigurations": [],
+          "vectorDmoDeveloperName": "JB_Campaign_SI_vector__dlm",
+          "vectorDmoId": "0gjSB00000163dmYAA",
+          "vectorDmoName": "JB_Campaign_SI vector",
+          "vectorEmbedding":
+            {
+              "developerName": "JB_Campaign_SIVectorEmbedding",
+              "id": "17nSB0000000V3pYAE",
+              "sourceDmoDeveloperName": "JB_Campaign_SI_chunk__dlm",
+              "sourceDmoFieldDeveloperName": "Chunk__c",
+              "sourceDmoFieldId": "0gYSB00000ICpcN2AT",
+              "sourceDmoId": "0gjSB00000163dlYAA",
+              "vectorDmoDeveloperName": "JB_Campaign_SI_vector__dlm",
+              "vectorDmoFieldDeveloperName": "VectorEmbedding__c",
+              "vectorDmoFieldId": "0gYSB00000ICpcT2AT",
+              "vectorDmoId": "0gjSB00000163dmYAA",
+              "vectorEmbeddingRelatedFields": [],
+            },
+          "vectorEmbeddingConfiguration":
+            {
+              "embeddingModel":
+                {
+                  "id": "e5_large_v2",
+                  "userValues":
+                    [
+                      { "id": "dimension", "value": "1024" },
+                      { "id": "max_token_limit", "value": "512" },
+                    ],
+                },
+              "index": { "id": "DISKANN", "userValues": [] },
+              "similarityMetric": "COSINE",
+            },
+          "version": null,
         }
     get-search-index-configuration-response-example:
       value:
@@ -52395,7 +52354,7 @@ components:
                               "id": "testId",
                               "userValues": [{ "id": "testId", "value": "testValue" }],
                             },
-                          "fileExtension": "html",
+                          "fileExtensions": "html",
                         },
                       ],
                   },
@@ -52458,7 +52417,7 @@ components:
                                 "id": "testId",
                                 "userValues": [{ "id": "testId", "value": "testValue" }],
                               },
-                            "fileExtension": "html",
+                            "fileExtensions": "html",
                           },
                         ],
                       "transformType": "testType",
@@ -53644,7 +53603,8 @@ tags:
       | [Delete activation](https://developer.salesforce.com/docs/data/connectapi/references/spec#tag/Activations/paths/~1ssot~1activations~1%7BactivationId%7D/delete) | `DELETE /ssot/activations/{activationId}` |
       | [Get activation](https://developer.salesforce.com/docs/data/connectapi/references/spec#tag/Activations/paths/~1ssot~1activations~1%7BactivationId%7D/get) | `GET /ssot/activations/{activationId}` |
       | [Update activation](https://developer.salesforce.com/docs/data/connectapi/references/spec#tag/Activations/paths/~1ssot~1activations~1%7BactivationId%7D/put) | `PUT /ssot/activations/{activationId}` |
-      | [Get audience DMO activation records](https://developer.salesforce.com/docs/data/connectapi/references/spec#tag/Activations/paths/~1ssot~1activations~1%7BactivationId%7D~1data/get) | `GET /ssot/activations/{activationId}/data` |
+      | [Publish a Batch DMO activation](https://developer.salesforce.com/docs/data/connectapi/references/spec#tag/Activations/paths/~1ssot~1activations~1%7BactivationId%7D~1actions~1publish/post) | `GET /ssot/activations/{activationId}/actions/publish` |
+      | [Get Audience DMO activation records](https://developer.salesforce.com/docs/data/connectapi/references/spec#tag/Activations/paths/~1ssot~1activations~1%7BactivationId%7D~1data/get) | `GET /ssot/activations/{activationId}/data` |
       | [Get activation external platforms](https://developer.salesforce.com/docs/data/connectapi/references/spec#tag/Activations/paths/~1ssot~1activation-external-platforms/get) | `GET /ssot/activation-external-platforms` |
 
   - name: Calculated Insights
