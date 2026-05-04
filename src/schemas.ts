@@ -1,5 +1,5 @@
 /**
- * Named type exports for all 812 OpenAPI schemas, 263 enum types,
+ * Named type exports for all 813 OpenAPI schemas, 264 enum types,
  * and 3 discriminated union types.
  * Auto-generated — DO NOT EDIT. Run `npm run generate` to regenerate.
  *
@@ -14,7 +14,7 @@ type Schemas = components["schemas"];
 /** Flatten intersections into a single object type for readable IntelliSense hovers. */
 type Simplify<T> = { [K in keyof T]: T[K] } & {};
 
-// ── Schema types (812) ──
+// ── Schema types (813) ──
 
 export type AbstractBucketAlgorithmRepresentation = Schemas["AbstractBucketAlgorithmRepresentation"];
 export type AccountEngagementConnectionInputRepresentation = {
@@ -3133,6 +3133,7 @@ export type QuerySqlPageRepresentation = {
   data: Schemas["QuerySqlRowRepresentation"][];
   metadata: Schemas["QuerySqlMetadataItemRepresentation"][];
 }
+export type QuerySqlParameterItemRepresentation = Schemas["QuerySqlParameterItemRepresentation"];
 export type QuerySqlRepresentation = {
   returnedRows: number;
   data: Schemas["QuerySqlRowRepresentation"][];
@@ -3810,7 +3811,7 @@ export type WeeklyScheduleRepresentation = {
   interval?: number;
 }
 
-// ── Enum types (263) ──
+// ── Enum types (264) ──
 
 export type AbstractBucketAlgorithmType = "TypographicClustering";
 export type AccountEngagementConnectionDataStreamType = "EmailActivity" | "FormActivity" | "WebPageActivity";
@@ -4041,7 +4042,8 @@ export type MlSetupBaseUpdateType = "EdcNoCode" | "ModelConnector";
 export type MonthlySpecificScheduleFrequency = "Monthly";
 export type OutputD360ParametersType = "DataLakeObject" | "DataModelObject";
 export type QuerySqlMetadataItemType = "ArrayOfX" | "BigInt" | "Bool" | "Char" | "Date" | "Double" | "Float" | "Integer" | "Numeric" | "Oid" | "SmallInt" | "Time" | "Timestamp" | "TimestampTZ" | "Unspecified" | "Varchar";
-export type QuerySqlStatusCompletionStatus = "Finished - the query execution is complete, and the results are available both in memory and persisted" | "ResultsProduced - the query execution is complete, and the results are available in memory" | "Running - the query is executing" | "Unspecified";
+export type QuerySqlParameterItemType = "ArrayOfX" | "BigInt" | "Bool" | "Char" | "Date" | "Double" | "Float" | "Integer" | "Numeric" | "Oid" | "SmallInt" | "Time" | "Timestamp" | "TimestampTZ" | "Unspecified" | "Varchar";
+export type QuerySqlStatusCompletionStatus = "Finished" | "ResultsProduced" | "Running" | "Unspecified";
 export type RecencyCriteriaValueType = "Record" | "Time";
 export type RecencyCriteriaValueUnit = "Day" | "Hour";
 export type RedshiftRouteDetailsType = "Redshift";

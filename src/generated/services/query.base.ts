@@ -55,7 +55,7 @@ export interface QueryGetRowsParams {
 export class QueryServiceBase extends BaseResource {
   protected readonly basePath = "/ssot/query-sql";
 
-  /** POST /ssot/query-sql — Create SQL query */
+  /** POST /ssot/query-sql — Submit SQL query */
   async create(body: QuerySqlInputRepresentation, params?: QueryCreateParams, options?: RequestOptions): Promise<QuerySqlRepresentation> {
     return this.httpClient.post(this.basePath, body, { ...options, query: params });
   }
@@ -65,7 +65,7 @@ export class QueryServiceBase extends BaseResource {
     return this.httpClient.delete(`${this.basePath}/${encodeURIComponent(queryId)}`, { ...options, query: params });
   }
 
-  /** GET /ssot/query-sql/{queryId} — Get SQL query */
+  /** GET /ssot/query-sql/{queryId} — Get SQL query status */
   async get(queryId: string, params?: QueryGetParams, options?: RequestOptions): Promise<QuerySqlStatusRepresentation> {
     return this.httpClient.get(`${this.basePath}/${encodeURIComponent(queryId)}`, { ...options, query: params });
   }

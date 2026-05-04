@@ -11154,7 +11154,7 @@ export type paths = {
          * @description Synchronously query data across data model, lake, unified, and linked objects in Data 360. This query returns up to 49,999 rows. For more information about using SQL in Data 360, see [Getting Started with Data 360 SQL](https://developer.salesforce.com/docs/data/data-cloud-query-guide/guide/dc-query-section.html).
          *
          *     ><span style="color:red">**Important:**</span>
-         *     >A new Query API version is available. We recommend exploring the latest version for enhanced capabilities and improved performance. For more information, see the [create SQL query](https://developer.salesforce.com/docs/data/connectapi/references/spec?meta=createSqlQuery) endpoint.
+         *     >A new Query API version is available. We recommend exploring the latest version for enhanced capabilities and improved performance. For more information, see the [submit SQL query](https://developer.salesforce.com/docs/data/connectapi/references/spec?meta=createSqlQuery) endpoint.
          *
          *     **Available Version:** 52.0
          *
@@ -11229,7 +11229,7 @@ export type paths = {
          * @description Query up to 8 MB of data across data model, lake, unified, and linked objects in Data 360. For more information about using SQL in Data 360, see [Getting Started with Data 360 SQL](https://developer.salesforce.com/docs/data/data-cloud-query-guide/guide/dc-query-section.html).
          *
          *     ><span style="color:red">**Important:**</span>
-         *     >A new Query API version is available. We recommend exploring the latest version for enhanced capabilities and improved performance. For more information, see the [create SQL query](https://developer.salesforce.com/docs/data/connectapi/references/spec?meta=createSqlQuery) endpoint.
+         *     >A new Query API version is available. We recommend exploring the latest version for enhanced capabilities and improved performance. For more information, see the [submit SQL query](https://developer.salesforce.com/docs/data/connectapi/references/spec?meta=createSqlQuery) endpoint.
          *
          *     **Available Version:** 54.0
          *
@@ -11293,7 +11293,7 @@ export type paths = {
          *     Initially, use the Data 360 Query V2 resource to query up to 8 MB of data. Use the `nextBatchId` from the Data 360 Query Output V2 response body as the value of *nextBatchId* in this API to get the next batch of data. You can continue using subsequent next batch IDs for up to an hour. For more information about using SQL in Data 360, see [Getting Started with Data 360 SQL](https://developer.salesforce.com/docs/data/data-cloud-query-guide/guide/dc-query-section.html).
          *
          *     ><span style="color:red">**Important:**</span>
-         *     >A new Query API version is available. We recommend exploring the latest version for enhanced capabilities and improved performance. For more information, see the [create SQL query](https://developer.salesforce.com/docs/data/connectapi/references/spec?meta=createSqlQuery) endpoint.
+         *     >A new Query API version is available. We recommend exploring the latest version for enhanced capabilities and improved performance. For more information, see the [submit SQL query](https://developer.salesforce.com/docs/data/connectapi/references/spec?meta=createSqlQuery) endpoint.
          *
          *     **Available Version:** 54.0
          */
@@ -11349,11 +11349,11 @@ export type paths = {
         get?: never;
         put?: never;
         /**
-         * Create SQL query
+         * Submit SQL query
          * @description Submit a SQL query request for execution and retrieve the metadata and first chunk of data. This endpoint combines and enhances the features of the previous query v1 and v2 endpoints, providing a more robust and versatile solution for interacting with Data 360. For more information about using SQL in Data 360, see [Getting Started with Data 360 SQL](https://developer.salesforce.com/docs/data/data-cloud-query-guide/guide/dc-query-section.html).
          *
          *     ><span style="color:red">**Important:**</span>
-         *     >Ensure application compatibility with both synchronous and asynchronous queries. To retrieve results from an asynchronous query, poll the [get SQL query](https://developer.salesforce.com/docs/data/connectapi/references/spec?meta=getSqlQuery) endpoint with the *queryId* until the status is `Finished`.
+         *     >Ensure application compatibility with both synchronous and asynchronous queries. To retrieve results from an asynchronous query, poll the [get SQL query status](https://developer.salesforce.com/docs/data/connectapi/references/spec?meta=getSqlQuery) endpoint with the *queryId* until the status is `Finished`.
          *
          *     ><span style="color:blue">**Note:**</span>
          *     >Refer to the [Data 360 Query Connect API use case example](https://developer.salesforce.com/docs/data/connectapi/guide/query-use-case.html) to see this endpoint implemented in a high-value scenario.
@@ -11395,6 +11395,41 @@ export type paths = {
                         "application/json": components["schemas"]["QuerySqlRepresentation"];
                     };
                 };
+                /** @description Invalid request. The `details` field will contain more information about the SQL code and error. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Invalid JWT. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Permission denied. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Request timed out in processing. */
+                408: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Server error. */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
             };
         };
         delete?: never;
@@ -11418,7 +11453,7 @@ export type paths = {
             cookie?: never;
         };
         /**
-         * Get SQL query
+         * Get SQL query status
          * @description Get the status of an SQL query request. For more information about using SQL in Data 360, see [Getting Started with Data 360 SQL](https://developer.salesforce.com/docs/data/data-cloud-query-guide/guide/dc-query-section.html).
          *
          *     ><span style="color:blue">**Note:**</span>
@@ -11471,6 +11506,34 @@ export type paths = {
                         "application/json": components["schemas"]["QuerySqlStatusRepresentation"];
                     };
                 };
+                /** @description Invalid request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Invalid JWT. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Permission denied. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Server error. */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
             };
         };
         put?: never;
@@ -11517,6 +11580,34 @@ export type paths = {
                     };
                     content?: never;
                 };
+                /** @description Invalid request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Invalid JWT. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Permission denied. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Server error. */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
             };
         };
         options?: never;
@@ -11543,7 +11634,7 @@ export type paths = {
          * @description Get additional query results that weren't returned in the initial request. For more information about using SQL in Data 360, see [Getting Started with Data 360 SQL](https://developer.salesforce.com/docs/data/data-cloud-query-guide/guide/dc-query-section.html).
          *
          *     ><span style="color:red">**Important:**</span>
-         *     >Ensure application compatibility with both synchronous and asynchronous queries. To retrieve results from an asynchronous query, poll the [get SQL query](https://developer.salesforce.com/docs/data/connectapi/references/spec?meta=getSqlQuery) endpoint with the *queryId* until the status is `Finished`.
+         *     >Ensure application compatibility with both synchronous and asynchronous queries. To retrieve results from an asynchronous query, poll the [get SQL query status](https://developer.salesforce.com/docs/data/connectapi/references/spec?meta=getSqlQuery) endpoint with the *queryId* until the status is `Finished`.
          *
          *     ><span style="color:blue">**Note:**</span>
          *     >Refer to the [Data 360 Query Connect API use case example](https://developer.salesforce.com/docs/data/connectapi/guide/query-use-case.html) to see this endpoint implemented in a high-value scenario.
@@ -11600,6 +11691,41 @@ export type paths = {
                     content: {
                         "application/json": components["schemas"]["QuerySqlPageRepresentation"];
                     };
+                };
+                /** @description Invalid request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Invalid JWT. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Permission denied. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Request timed out in processing. */
+                408: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Server error. */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
                 };
             };
         };
@@ -26628,7 +26754,7 @@ export type components = {
              */
             metadata?: components["schemas"]["CdpQueryMetadataEntityOutputRepresentation"][];
             /**
-             * @description ID for the next batch of metadata entities.
+             * @description ID for the next batch of metadata entities. Present only when done is `false`. When done is `true`, this field is omitted from the response.
              *
              *     **Filter Group:** Small
              *
@@ -30908,50 +31034,6 @@ export type components = {
              * @description The schema of the data to be extracted in JSON format. Use the root `description` field to provide a schema-level prompt for global instructions, such as setting the extraction language or sections to ignore. This document-wide guidance works with field-level prompts to enhance extraction accuracy across complex documents.
              *
              *     **Available Version:** 63.0
-             * @example {
-             *       "$schema": "http://json-schema.org/draft-07/schema#",
-             *       "title": "AmazonInvoice",
-             *       "description": "A schema representing a standard Amazon retail invoice including tax details and line items.",
-             *       "type": "object",
-             *       "required": ["invoice_number", "order_id", "order_date", "seller_details", "billing_address", "items", "totals"],
-             *       "properties": {
-             *         "invoice_number": {
-             *           "type": "string",
-             *           "description": "The unique legal identifier for the tax invoice."
-             *         },
-             *         "order_id": {
-             *           "type": "string",
-             *           "pattern": "^\\d{3}-\\d{7}-\\d{7}$",
-             *           "description": "The standard Amazon Order ID format (for example, 123-1234567-1234567)."
-             *         },
-             *         "order_date": {
-             *           "type": "string",
-             *           "format": "date",
-             *           "description": "The date the order was placed."
-             *         },
-             *         "invoice_date": {
-             *           "type": "string",
-             *           "format": "date",
-             *           "description": "The date the invoice was generated."
-             *         },
-             *         "items": {
-             *           "type": "array",
-             *           "minItems": 1,
-             *           "items": {
-             *             "type": "object",
-             *             "properties": {
-             *               "description": { "type": "string" },
-             *               "unit_price": { "type": "number", "minimum": 0 },
-             *               "quantity": { "type": "integer", "minimum": 1 },
-             *               "tax_rate": { "type": "number", "description": "Percentage of tax applied (for example, 18.0)." },
-             *               "tax_type": { "type": "string", "enum": ["VAT", "GST", "Sales Tax"] },
-             *               "total_price": { "type": "number" }
-             *             },
-             *             "required": ["description", "unit_price", "quantity", "total_price"]
-             *           }
-             *         }
-             *       }
-             *     }
              */
             schemaConfig?: string;
         };
@@ -33109,9 +33191,20 @@ export type components = {
         };
         /**
          * Query SQL Input
-         * @description Input representation to create a Query SQL request.
+         * @description Represents the input to create a query SQL request.
          */
         QuerySqlInputRepresentation: {
+            /**
+             * @description Settings to adjust the query execution behavior:
+             *     - **date_style**: Order of Year, Month, and Day for parsing date strings, for example `MDY` and `DMY`.
+             *     - **lc_time**: Locale for date literals using ISO language and country code, for example `en_US` and `de_AT`.
+             *     - **query_timeout**: Execution limit in milliseconds before the query is terminated, for example `1800000ms`.
+             *
+             *     **Available Version:** 62.0
+             */
+            querySettings?: {
+                [key: string]: string;
+            };
             /**
              * Format: int64
              * @description Maximum number of rows to include in the response. The actual number of rows returned may be lower than the requested value if fewer are available or if the result set exceeds internal system size limits. Value must be greater than `0`.
@@ -33120,7 +33213,7 @@ export type components = {
              */
             rowLimit?: number;
             /**
-             * @description SQL expression.
+             * @description SQL expression. To get started with writing queries, see [Write a Simple Query](https://developer.salesforce.com/docs/data/data-cloud-query-guide/guide/write-simple-query.html). For more information about creating SQL statements, see [Data 360 SQL Syntax](https://developer.salesforce.com/docs/data/data-cloud-query-guide/references/dc-sql-reference/syntax.html).
              *
              *     **Available Version:** 63.0
              */
@@ -33130,7 +33223,32 @@ export type components = {
              *
              *     **Available Version:** 63.0
              */
-            sqlParameters?: Record<string, never>[];
+            sqlParameters?: components["schemas"]["QuerySqlParameterItemRepresentation"][];
+        };
+        /**
+         * Query SQL Parameter Item Input
+         * @description Represents the input for SQL parameter fields.
+         */
+        QuerySqlParameterItemRepresentation: {
+            /**
+             * @description Name of the SQL parameter.
+             *
+             *     **Available Version:** 62.0
+             */
+            name?: string;
+            /**
+             * @description Type of SQL parameter.
+             *
+             *     **Available Version:** 62.0
+             * @enum {string}
+             */
+            type?: "ArrayOfX" | "BigInt" | "Bool" | "Char" | "Date" | "Double" | "Float" | "Integer" | "Numeric" | "Oid" | "SmallInt" | "Time" | "Timestamp" | "TimestampTZ" | "Unspecified" | "Varchar";
+            /**
+             * @description Value of the SQL parameter.
+             *
+             *     **Available Version:** 62.0
+             */
+            value?: string;
         };
         /**
          * Query SQL Output
@@ -33152,14 +33270,17 @@ export type components = {
          */
         QuerySqlStatusRepresentation: {
             /**
-             * @description Completion status of the query.
+             * @description Completion status of the query:
+             *     - `Finished`: Query execution is complete. The results are available in memory and committed to peristent storage.
+             *     - `ResultsProduced`: Query execution is complete. The results are available in memory.
+             *     - `Running`: Query is currently being processed.
              *
              *     **Filter Group:** Small
              *
              *     **Available Version:** 63.0
              * @enum {string}
              */
-            completionStatus: "Finished - the query execution is complete, and the results are available both in memory and persisted" | "ResultsProduced - the query execution is complete, and the results are available in memory" | "Running - the query is executing" | "Unspecified";
+            completionStatus: "Finished" | "ResultsProduced" | "Running" | "Unspecified";
             /**
              * @description Time when the query expires. You can't make requests to an expired query.
              *
