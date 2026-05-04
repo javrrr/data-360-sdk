@@ -20,6 +20,43 @@ describe("DataGraphsService", () => {
     expect(httpClient.get).toHaveBeenCalled();
   });
 
+  it("list() unwraps dataGraphMetadata from getMetadata response", async () => {
+    const items = [{ developerName: "A" }, { developerName: "B" }];
+    const httpClient = {
+      get: vi.fn(async () => ({ dataGraphMetadata: items })),
+    } as unknown as HttpClient;
+    const service = new DataGraphsService(httpClient);
+
+    const res = await service.list();
+    expect(res).toEqual(items);
+    expect(httpClient.get).toHaveBeenCalledWith(
+      "/ssot/data-graphs/metadata",
+      expect.objectContaining({ query: undefined }),
+    );
+  });
+
+  it("list() returns [] when dataGraphMetadata is missing", async () => {
+    const httpClient = {
+      get: vi.fn(async () => ({})),
+    } as unknown as HttpClient;
+    const service = new DataGraphsService(httpClient);
+
+    const res = await service.list();
+    expect(res).toEqual([]);
+  });
+
+  it("listAll() yields each descriptor", async () => {
+    const items = [{ developerName: "A" }, { developerName: "B" }];
+    const httpClient = {
+      get: vi.fn(async () => ({ dataGraphMetadata: items })),
+    } as unknown as HttpClient;
+    const service = new DataGraphsService(httpClient);
+
+    const collected = [];
+    for await (const item of service.listAll()) collected.push(item);
+    expect(collected).toEqual(items);
+  });
+
   it("get()", async () => {
     const httpClient = createMockHttpClient();
     const service = new DataGraphsService(httpClient);
@@ -42,7 +79,7 @@ describe("DataGraphsService", () => {
     const httpClient = createMockHttpClient();
     const service = new DataGraphsService(httpClient);
 
-    await service.getData("test-entityName", { batchSize: 10 });
+    await service.getData("test-entityName", { lookupKeys: "Id=abc" });
 
     expect(httpClient.get).toHaveBeenCalled();
   });

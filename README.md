@@ -258,7 +258,7 @@ if (queryId) {
 | Data Action Targets | `client.dataActionTargets` | list, listAll, get, create, delete, getSigningKey, createSigningKey, resetSigningKey |
 | Data Actions | `client.dataActions` | list, listAll, create |
 | Data Clean Room | `client.dataCleanRoom` | listCollaborations, listAllCollaborations, createCollaborations, acceptInvitation, rejectInvitation, run, listCollaborationsJobs, listAllCollaborationsJobs, listProviders, listAllProviders, createProviders, getProviders, listProvidersTemplates, listAllProvidersTemplates, listSpecifications, listAllSpecifications, createSpecifications, listTemplates, listAllTemplates |
-| Data Graphs | `client.dataGraphs` | get, create, delete, refresh, getData, getDataByGet, getMetadata |
+| Data Graphs | `client.dataGraphs` | list, listAll, get, create, delete, refresh, getData, getDataByGet, getMetadata |
 | Data Kits | `client.dataKits` | list, create, delete, patch, createByPost, listDependencies, getDeploymentStatus, createUndeploy, listAvailableComponents, getDataKitManifest |
 | Data Lake Objects | `client.dataLakeObjects` | list, listAll, get, create, delete, patch |
 | Data Model Objects | `client.dataModelObjects` | list, listAll, get, create, delete, patch, listRelationships, listAllRelationships, createRelationships, deleteRelationships, listMappings, listAllMappings, getMappings, createMappings, deleteMappings, deleteMappingsFieldMappings, patchMappingsFieldMappings |
