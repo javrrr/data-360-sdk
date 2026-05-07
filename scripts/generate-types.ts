@@ -58,7 +58,7 @@ interface SchemaOverride {
  */
 const SCHEMA_OVERRIDES: Record<string, SchemaOverride> = {
   DataStreamInputRepresentation: {
-    note: "Spec bugs: dataLakeObjectInfo should accept single or array; mappings and sourceFields are not required for all connector types",
+    note: "Spec bugs: dataLakeObjectInfo should accept single or array; mappings and sourceFields are not required for all connector types. Routing note: dataAccessMode='Direct_Access' is required for federated/BYOL connectors (Snowflake, Databricks, BigQuery, Iceberg) — without it the server returns `400 INTERNAL_ERROR: Unable to post Data Stream: DATA_CONNECTORS is not supported` even when the connector is GA. Direct_Access streams must also OMIT the top-level `datasource` field (otherwise: `DataSource name should be empty for External data streams`); the connection binding is established via connectorInfo.connectorDetails.name instead.",
     makeOptional: ["mappings", "sourceFields"],
     fieldTypes: {
       dataLakeObjectInfo: "DataLakeObjectInputRepresentation | DataLakeObjectInputRepresentation[]",
@@ -83,7 +83,7 @@ const SCHEMA_OVERRIDES: Record<string, SchemaOverride> = {
     },
   },
   SemanticSearchInputRepresentation: {
-    note: "Spec bugs: processingType missing from spec but required by API; attachment/transcribe fields are only required for document/PDF search indexes, not structured DMO search",
+    note: "Spec bugs: processingType missing from spec but required by API; attachment/transcribe fields are only required for document/PDF search indexes, not structured DMO search. Input rejects output-only display-name fields (sourceDmoName, sourceDmoFieldName, relatedDmoName, relatedDmoFieldName) that GET responses include — round-tripping a GET shape into a POST returns `500 UNKNOWN_EXCEPTION` with no diagnostic body. Pass developer-name fields only.",
     makeOptional: [
       "attachmentDmoDeveloperName",
       "transcribeDmoDeveloperName",
@@ -96,6 +96,21 @@ const SCHEMA_OVERRIDES: Record<string, SchemaOverride> = {
     addRequiredFields: {
       processingType: '"NEAR_REALTIME" | "REALTIME"',
     },
+  },
+  ConnectionSchemaFieldInputRepresentation: {
+    note: "Server NPEs (`Cannot invoke java.lang.CharSequence.length() because this.text is null`) when `label` is omitted from any field. Spec marks it optional but the upsert handler dereferences it unconditionally.",
+    makeRequired: ["label"],
+  },
+  DataStreamFieldMappingInputRepresentation: {
+    note: "Asymmetric input/output: POST input uses `sourceFieldLabel`, but GET responses echo `sourceFieldName` for the same field. Round-tripping GET→POST without renaming fails with JSON_PARSER_ERROR. Also: targetFieldReturntype is required by the create handler — when omitted, the mapping is silently dropped from the saved data stream with no error.",
+    makeRequired: ["targetFieldReturntype"],
+  },
+  DataStreamSourceFieldInputRepresentation: {
+    note: "Asymmetric input/output: POST input uses `dataType` (camelCase), but GET responses echo `datatype` (lowercase) for the same field. Round-tripping GET→POST without renaming fails with `JSON_PARSER_ERROR: Unrecognized field 'datatype'`.",
+  },
+  VectorEmbeddingInputRepresentation: {
+    note: "Server NPEs when vectorEmbeddingRelatedFields is omitted, empty, or null. The list must be non-empty (typical minimum: a single entry pointing at the source DMO's primary key). Spec marks it optional.",
+    makeRequired: ["vectorEmbeddingRelatedFields"],
   },
 };
 

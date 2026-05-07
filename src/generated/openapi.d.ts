@@ -13216,6 +13216,13 @@ export type components = {
              */
             activationTargetSubjectConfig?: components["schemas"]["ActivationTargetSubjectConfigInputRepresentation"];
             /**
+             * @description Type of activation. If unspecified, defaults to `Segment`.
+             *
+             *     **Available Version:** 66.0
+             * @enum {string}
+             */
+            activationType?: "ApiTriggered" | "Segment";
+            /**
              * @description Limiting expression configuration for the activation.
              *
              *     **Available Version:** 63.0
@@ -13283,7 +13290,7 @@ export type components = {
              */
             limitValue?: number;
             /**
-             * @description Segment ID of the segment the activation needs to be created against. Either marketSegmentId or segmentApiName must be present.
+             * @description Segment ID of the segment the activation needs to be created against. Either marketSegmentId or segmentApiName must be present. Exclude this property for `ApiTriggered` activation types.
              *
              *     **Available Version:** 60.0
              */
@@ -13307,7 +13314,7 @@ export type components = {
              */
             relatedDmoFiltersConfig?: components["schemas"]["DMOFilterConfigInputRepresentation"][];
             /**
-             * @description Developer name of the segment. Either marketSegmentId or segmentApiName must be present.
+             * @description Developer name of the segment. Either marketSegmentId or segmentApiName must be present. Exclude this property for `ApiTriggered` activation types.
              *
              *     **Available Version:** 60.0
              */
@@ -13324,6 +13331,12 @@ export type components = {
              *     **Available Version:** 60.0
              */
             shouldExcludeUpdates?: boolean;
+            /**
+             * @description Developer name of the source DMO. Required for `ApiTriggered` activation types. Exclude this property for `Segment` activation types.
+             *
+             *     **Available Version:** 66.0
+             */
+            sourceDmoName?: string;
             /**
              * @description Configuration of static data, which adds metadata or campaign details in the output. For example, `campaignId` or `campaignName`.
              *
@@ -28526,6 +28539,15 @@ export type components = {
              */
             activationTargetSubjectConfig: components["schemas"]["ActivationTargetSubjectRepresentation"];
             /**
+             * @description Type of activation.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             * @enum {string}
+             */
+            activationType?: "ApiTriggered" | "Segment";
+            /**
              * @description Limiting expression configuration for the activation.
              *
              *     **Filter Group:** Small
@@ -28696,7 +28718,7 @@ export type components = {
              */
             limitValue?: number;
             /**
-             * @description Segment ID of the activation.
+             * @description Segment ID of the activation. Returned for `Segment` type activations.
              *
              *     **Filter Group:** Small
              *
@@ -28737,7 +28759,7 @@ export type components = {
              */
             relatedDmoFiltersConfig?: components["schemas"]["DmoFiltersConfigRepresentation"];
             /**
-             * @description Segment API name.
+             * @description Segment API name. Returned for `Segment` type activations.
              *
              *     **Filter Group:** Small
              *
@@ -28745,7 +28767,7 @@ export type components = {
              */
             segmentApiName?: string;
             /**
-             * @description Segment ID of the activation.
+             * @description Segment ID of the activation. Returned for `Segment` type activations.
              *
              *     **Filter Group:** Small
              *
@@ -28768,6 +28790,14 @@ export type components = {
              *     **Available Version:** 60.0
              */
             shouldExcludeUpdates?: boolean;
+            /**
+             * @description Developer name of the source DMO.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            sourceDmoName?: string;
             /**
              * @description Static data configuration for the activation.
              *
