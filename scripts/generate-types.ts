@@ -35,6 +35,8 @@ interface SchemaOverride {
   note: string;
   /** Fields to relax from required to optional (spec marks them required but the API doesn't). */
   makeOptional?: string[];
+  /** Fields to promote from optional to required (spec marks them optional but the API requires them). */
+  makeRequired?: string[];
   /** Fields whose type should be replaced. Use type names from schemas.ts (not Schemas["..."]). */
   fieldTypes?: Record<string, string>;
   /** Optional fields to add when runtime responses include undocumented properties. */
@@ -725,12 +727,22 @@ async function main() {
 
   // Step 4: Flatten schemas, apply overrides, and generate discriminated unions
 
-  // Validate overrides reference real schemas
-  for (const name of Object.keys(SCHEMA_OVERRIDES)) {
+  // Validate overrides reference real schemas, and reject contradictions
+  // between makeOptional/makeRequired (a single field appearing in both is
+  // a config error and should fail loudly rather than silently last-wins).
+  for (const [name, override] of Object.entries(SCHEMA_OVERRIDES)) {
     if (!schemas[name]) {
       throw new Error(
         `SCHEMA_OVERRIDES: schema "${name}" not found in spec — remove stale override`,
       );
+    }
+    const optional = new Set(override.makeOptional ?? []);
+    for (const field of override.makeRequired ?? []) {
+      if (optional.has(field)) {
+        throw new Error(
+          `SCHEMA_OVERRIDES.${name}: field "${field}" is in both makeOptional and makeRequired`,
+        );
+      }
     }
   }
 
@@ -741,13 +753,30 @@ async function main() {
     const props = collectFlatProperties(name, schemas, !!override);
     if (!props) continue;
 
-    // Apply overrides
+    // Apply overrides. Each list referencing an existing-field name (the
+    // make* and fieldTypes families) is validated against the flattened
+    // property set — a stale field name fails generation, mirroring the
+    // schema-name validation above. The add*Fields families are skipped
+    // here because they're explicitly for fields NOT yet present.
     if (override) {
+      const validateField = (kind: string, field: string): void => {
+        if (!props[field]) {
+          throw new Error(
+            `SCHEMA_OVERRIDES.${name}.${kind}: field "${field}" not found on schema — remove stale override`,
+          );
+        }
+      };
       for (const field of override.makeOptional ?? []) {
-        if (props[field]) props[field].required = false;
+        validateField("makeOptional", field);
+        props[field]!.required = false;
+      }
+      for (const field of override.makeRequired ?? []) {
+        validateField("makeRequired", field);
+        props[field]!.required = true;
       }
       for (const [field, type] of Object.entries(override.fieldTypes ?? {})) {
-        if (props[field]) props[field].tsType = type;
+        validateField("fieldTypes", field);
+        props[field]!.tsType = type;
       }
       for (const [field, type] of Object.entries(override.addOptionalFields ?? {})) {
         if (!props[field]) {
