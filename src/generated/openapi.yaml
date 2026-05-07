@@ -8746,6 +8746,15 @@ components:
                 **Available Version:** 60.0
               allOf:
                 - $ref: "#/components/schemas/ActivationTargetSubjectConfigInputRepresentation"
+            activationType:
+              description: |
+                Type of activation. If unspecified, defaults to `Segment`.
+
+                **Available Version:** 66.0
+              type: string
+              enum:
+                - ApiTriggered
+                - Segment
             attributeLimitingExpressionConfig:
               description: |
                 Limiting expression configuration for the activation.
@@ -8828,7 +8837,7 @@ components:
               type: integer
             marketSegmentId:
               description: |
-                Segment ID of the segment the activation needs to be created against. Either marketSegmentId or segmentApiName must be present.
+                Segment ID of the segment the activation needs to be created against. Either marketSegmentId or segmentApiName must be present. Exclude this property for `ApiTriggered` activation types.
 
                 **Available Version:** 60.0
               type: string
@@ -8854,7 +8863,7 @@ components:
                 $ref: "#/components/schemas/DMOFilterConfigInputRepresentation"
             segmentApiName:
               description: |
-                Developer name of the segment. Either marketSegmentId or segmentApiName must be present.
+                Developer name of the segment. Either marketSegmentId or segmentApiName must be present. Exclude this property for `ApiTriggered` activation types.
 
                 **Available Version:** 60.0
               type: string
@@ -8870,6 +8879,12 @@ components:
 
                 **Available Version:** 60.0
               type: boolean
+            sourceDmoName:
+              description: |
+                Developer name of the source DMO. Required for `ApiTriggered` activation types. Exclude this property for `Segment` activation types.
+
+                **Available Version:** 66.0
+              type: string
             staticDataConfig:
               description: |
                 Configuration of static data, which adds metadata or campaign details in the output. For example, `campaignId` or `campaignName`.
@@ -27004,6 +27019,17 @@ components:
                 **Available Version:** 60.0
               allOf:
                 - $ref: "#/components/schemas/ActivationTargetSubjectRepresentation"
+            activationType:
+              description: |
+                Type of activation. 
+
+                **Filter Group:** Small
+
+                **Available Version:** 66.0
+              type: string
+              enum:
+                - ApiTriggered
+                - Segment
             attributeLimitingExpressionConfig:
               description: |
                 Limiting expression configuration for the activation.
@@ -27193,7 +27219,7 @@ components:
               type: integer
             marketSegmentId:
               description: |
-                Segment ID of the activation.
+                Segment ID of the activation. Returned for `Segment` type activations.
 
                 **Filter Group:** Small
 
@@ -27238,7 +27264,7 @@ components:
                 - $ref: "#/components/schemas/DmoFiltersConfigRepresentation"
             segmentApiName:
               description: |
-                Segment API name.
+                Segment API name. Returned for `Segment` type activations.
 
                 **Filter Group:** Small
 
@@ -27246,7 +27272,7 @@ components:
               type: string
             segmentId:
               description: |
-                Segment ID of the activation.
+                Segment ID of the activation. Returned for `Segment` type activations.
 
                 **Filter Group:** Small
 
@@ -27268,6 +27294,14 @@ components:
 
                 **Available Version:** 60.0
               type: boolean
+            sourceDmoName:
+              description: |
+                Developer name of the source DMO.
+
+                **Filter Group:** Small
+
+                **Available Version:** 66.0
+              type: string
             staticDataConfig:
               description: |
                 Static data configuration for the activation.

@@ -1,5 +1,5 @@
 /**
- * Named type exports for all 813 OpenAPI schemas, 264 enum types,
+ * Named type exports for all 813 OpenAPI schemas, 266 enum types,
  * and 3 discriminated union types.
  * Auto-generated — DO NOT EDIT. Run `npm run generate` to regenerate.
  *
@@ -170,6 +170,7 @@ export type ActivationDefinitionInputRepresentation = {
   activationMappingSchema?: string;
   activationTargetName?: string;
   activationTargetSubjectConfig?: Schemas["ActivationTargetSubjectConfigInputRepresentation"];
+  activationType?: "ApiTriggered" | "Segment";
   attributeLimitingExpressionConfig?: Schemas["AttributeLimitingExpressionInputConfigRepresentation"];
   attributesConfig?: Schemas["AttributesConfigInputRepresentation"][];
   contactPointsConfig?: Schemas["ContactPointConfigInputRepresentation"][];
@@ -187,6 +188,7 @@ export type ActivationDefinitionInputRepresentation = {
   segmentApiName?: string;
   shouldExcludeDeletes?: boolean;
   shouldExcludeUpdates?: boolean;
+  sourceDmoName?: string;
   staticDataConfig?: Schemas["StaticDataConfigInputRepresentation"][];
 }
 export type ActivationExternalPlatformAttributeConfigRepresentation = Schemas["ActivationExternalPlatformAttributeConfigRepresentation"];
@@ -235,6 +237,7 @@ export type ActivationRepresentation = {
   activationRecordSchema?: string;
   activationTarget: Schemas["ActivationTargetRepresentation"];
   activationTargetSubjectConfig: Schemas["ActivationTargetSubjectRepresentation"];
+  activationType?: "ApiTriggered" | "Segment";
   attributeLimitingExpressionConfig?: Schemas["AttributeLimitingExpressionConfigRepresentation"];
   attributesConfig: Schemas["ActivationAttributesConfigRepresentation"];
   contactPointsConfig: Schemas["ContactPointsConfigRepresentation"];
@@ -265,6 +268,7 @@ export type ActivationRepresentation = {
   segmentId?: string;
   shouldExcludeDeletes: boolean;
   shouldExcludeUpdates?: boolean;
+  sourceDmoName?: string;
   staticDataConfig?: Schemas["StaticDataConfigRepresentation"];
   status?: "Active" | "Processing" | "Error" | "Inactive";
 }
@@ -1379,7 +1383,11 @@ export type ConnectionSchemaActionResponseRepresentation = {
 }
 export type ConnectionSchemaCollectionInputRepresentation = Schemas["ConnectionSchemaCollectionInputRepresentation"];
 export type ConnectionSchemaCollectionRepresentation = Schemas["ConnectionSchemaCollectionRepresentation"];
-export type ConnectionSchemaFieldInputRepresentation = Schemas["ConnectionSchemaFieldInputRepresentation"];
+/** @override Server NPEs (`Cannot invoke java.lang.CharSequence.length() because this.text is null`) when `label` is omitted from any field. Spec marks it optional but the upsert handler dereferences it unconditionally. */
+export type ConnectionSchemaFieldInputRepresentation = {
+  label: string;
+  name?: string;
+}
 export type ConnectionSchemaFieldRepresentation = Schemas["ConnectionSchemaFieldRepresentation"];
 export type ConnectionSchemaInputRepresentation = Schemas["ConnectionSchemaInputRepresentation"];
 export type ConnectionSchemaRepresentation = Schemas["ConnectionSchemaRepresentation"];
@@ -2230,11 +2238,17 @@ export type DataStreamDetailedRepresentation = {
   status?: "Active" | "Deleting" | "Error" | "Processing";
   totalRecords?: number;
 }
-export type DataStreamFieldMappingInputRepresentation = Schemas["DataStreamFieldMappingInputRepresentation"];
+/** @override Asymmetric input/output: POST input uses `sourceFieldLabel`, but GET responses echo `sourceFieldName` for the same field. Round-tripping GET→POST without renaming fails with JSON_PARSER_ERROR. Also: targetFieldReturntype is required by the create handler — when omitted, the mapping is silently dropped from the saved data stream with no error. */
+export type DataStreamFieldMappingInputRepresentation = {
+  sourceFieldLabel?: string;
+  targetFieldName?: string;
+  targetFieldReturntype: "Boolean" | "Currency" | "Date" | "DateTime" | "Email" | "Number" | "Percent" | "Phone" | "Text" | "Url";
+  transformationFormula?: string;
+}
 export type DataStreamFieldMappingRepresentation = Schemas["DataStreamFieldMappingRepresentation"];
 export type DataStreamFrequencyInputRepresentation = Schemas["DataStreamFrequencyInputRepresentation"];
 export type DataStreamFrequencyRepresentation = Schemas["DataStreamFrequencyRepresentation"];
-/** @override Spec bugs: dataLakeObjectInfo should accept single or array; mappings and sourceFields are not required for all connector types */
+/** @override Spec bugs: dataLakeObjectInfo should accept single or array; mappings and sourceFields are not required for all connector types. Routing note: dataAccessMode='Direct_Access' is required for federated/BYOL connectors (Snowflake, Databricks, BigQuery, Iceberg) — without it the server returns `400 INTERNAL_ERROR: Unable to post Data Stream: DATA_CONNECTORS is not supported` even when the connector is GA. Direct_Access streams must also OMIT the top-level `datasource` field (otherwise: `DataSource name should be empty for External data streams`); the connection binding is established via connectorInfo.connectorDetails.name instead. */
 export type DataStreamInputRepresentation = {
   advancedAttributes?: { [key: string]: string };
   connectorInfo: Schemas["ConnectorInputRepresentation"];
@@ -2267,7 +2281,12 @@ export type DataStreamRepresentation = {
   status: "Active" | "Deleting" | "Error" | "Processing";
   dataSource?: string;
 }
-export type DataStreamSourceFieldInputRepresentation = Schemas["DataStreamSourceFieldInputRepresentation"];
+/** @override Asymmetric input/output: POST input uses `dataType` (camelCase), but GET responses echo `datatype` (lowercase) for the same field. Round-tripping GET→POST without renaming fails with `JSON_PARSER_ERROR: Unrecognized field 'datatype'`. */
+export type DataStreamSourceFieldInputRepresentation = {
+  dataType?: string;
+  format?: string;
+  name?: string;
+}
 export type DataStreamSourceFieldRepresentation = Schemas["DataStreamSourceFieldRepresentation"];
 export type DataTransformCollectionRepresentation = {
   currentPageUrl?: string;
@@ -3313,7 +3332,7 @@ export type SemanticSearchDefDetailsRepresentation = {
   totalSize?: number;
   semanticSearchDefinitionDetails: Schemas["SemanticSearchDefDetailRepresentation"][];
 }
-/** @override Spec bugs: processingType missing from spec but required by API; attachment/transcribe fields are only required for document/PDF search indexes, not structured DMO search */
+/** @override Spec bugs: processingType missing from spec but required by API; attachment/transcribe fields are only required for document/PDF search indexes, not structured DMO search. Input rejects output-only display-name fields (sourceDmoName, sourceDmoFieldName, relatedDmoName, relatedDmoFieldName) that GET responses include — round-tripping a GET shape into a POST returns `500 UNKNOWN_EXCEPTION` with no diagnostic body. Pass developer-name fields only. */
 export type SemanticSearchInputRepresentation = {
   id?: string;
   name?: string;
@@ -3777,12 +3796,13 @@ export type VectorConfigElementRepresentation = Schemas["VectorConfigElementRepr
 export type VectorConfigurationRepresentation = Schemas["VectorConfigurationRepresentation"];
 export type VectorEmbeddingConfigInputRepresentation = Schemas["VectorEmbeddingConfigInputRepresentation"];
 export type VectorEmbeddingDetailsRepresentation = Schemas["VectorEmbeddingDetailsRepresentation"];
+/** @override Server NPEs when vectorEmbeddingRelatedFields is omitted, empty, or null. The list must be non-empty (typical minimum: a single entry pointing at the source DMO's primary key). Spec marks it optional. */
 export type VectorEmbeddingInputRepresentation = {
   id?: string;
   name?: string;
   namespace?: string;
   einsteinStudioModelId?: string;
-  vectorEmbeddingRelatedFields?: Schemas["VectorEmbeddingRelatedFieldsInputRepresentation"][];
+  vectorEmbeddingRelatedFields: Schemas["VectorEmbeddingRelatedFieldsInputRepresentation"][];
 }
 export type VectorEmbeddingRelatedFieldsDetailsRepresentation = Schemas["VectorEmbeddingRelatedFieldsDetailsRepresentation"];
 export type VectorEmbeddingRelatedFieldsInputRepresentation = {
@@ -3811,10 +3831,11 @@ export type WeeklyScheduleRepresentation = {
   interval?: number;
 }
 
-// ── Enum types (264) ──
+// ── Enum types (266) ──
 
 export type AbstractBucketAlgorithmType = "TypographicClustering";
 export type AccountEngagementConnectionDataStreamType = "EmailActivity" | "FormActivity" | "WebPageActivity";
+export type ActivationActivationType = "ApiTriggered" | "Segment";
 export type ActivationAdditionalAttributesConfigSource = "Direct" | "Related";
 export type ActivationAdditionalAttributesConfigType = "Computed_Dimension" | "Computed_Measure" | "Model" | "Model_Related" | "Non_Aggregatable_Computed_Measure";
 export type ActivationAttributeSource = "Direct" | "Related";
@@ -3823,6 +3844,7 @@ export type ActivationContactPointSourceConfigDataSourcePreference = "ContactPoi
 export type ActivationContactPointType = "Email" | "Maid" | "Ott" | "Phone" | "Push" | "SubscriberKeyEmail" | "SubscriberKeyPhone" | "WhatsApp";
 export type ActivationCustomerFileSource = "First_And_Third_Party" | "First_Party" | "Third_Party";
 export type ActivationDataDeltaType = "[object Object]" | "[object Object]" | "[object Object]" | "[object Object]";
+export type ActivationDefinitionActivationType = "ApiTriggered" | "Segment";
 export type ActivationDefinitionCustomerFileSource = "FirstAndThirdParty" | "FirstParty" | "ThirdParty";
 export type ActivationExternalPlatformCreationType = "Json" | "Manual";
 export type ActivationExternalPlatformPrivacyType = "NotApplicable" | "ServiceProvider" | "ThirdParty" | "UpdateFailed";

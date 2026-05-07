@@ -35,6 +35,8 @@ interface SchemaOverride {
   note: string;
   /** Fields to relax from required to optional (spec marks them required but the API doesn't). */
   makeOptional?: string[];
+  /** Fields to promote from optional to required (spec marks them optional but the API requires them). */
+  makeRequired?: string[];
   /** Fields whose type should be replaced. Use type names from schemas.ts (not Schemas["..."]). */
   fieldTypes?: Record<string, string>;
   /** Optional fields to add when runtime responses include undocumented properties. */
@@ -56,7 +58,7 @@ interface SchemaOverride {
  */
 const SCHEMA_OVERRIDES: Record<string, SchemaOverride> = {
   DataStreamInputRepresentation: {
-    note: "Spec bugs: dataLakeObjectInfo should accept single or array; mappings and sourceFields are not required for all connector types",
+    note: "Spec bugs: dataLakeObjectInfo should accept single or array; mappings and sourceFields are not required for all connector types. Routing note: dataAccessMode='Direct_Access' is required for federated/BYOL connectors (Snowflake, Databricks, BigQuery, Iceberg) — without it the server returns `400 INTERNAL_ERROR: Unable to post Data Stream: DATA_CONNECTORS is not supported` even when the connector is GA. Direct_Access streams must also OMIT the top-level `datasource` field (otherwise: `DataSource name should be empty for External data streams`); the connection binding is established via connectorInfo.connectorDetails.name instead.",
     makeOptional: ["mappings", "sourceFields"],
     fieldTypes: {
       dataLakeObjectInfo: "DataLakeObjectInputRepresentation | DataLakeObjectInputRepresentation[]",
@@ -81,7 +83,7 @@ const SCHEMA_OVERRIDES: Record<string, SchemaOverride> = {
     },
   },
   SemanticSearchInputRepresentation: {
-    note: "Spec bugs: processingType missing from spec but required by API; attachment/transcribe fields are only required for document/PDF search indexes, not structured DMO search",
+    note: "Spec bugs: processingType missing from spec but required by API; attachment/transcribe fields are only required for document/PDF search indexes, not structured DMO search. Input rejects output-only display-name fields (sourceDmoName, sourceDmoFieldName, relatedDmoName, relatedDmoFieldName) that GET responses include — round-tripping a GET shape into a POST returns `500 UNKNOWN_EXCEPTION` with no diagnostic body. Pass developer-name fields only.",
     makeOptional: [
       "attachmentDmoDeveloperName",
       "transcribeDmoDeveloperName",
@@ -94,6 +96,21 @@ const SCHEMA_OVERRIDES: Record<string, SchemaOverride> = {
     addRequiredFields: {
       processingType: '"NEAR_REALTIME" | "REALTIME"',
     },
+  },
+  ConnectionSchemaFieldInputRepresentation: {
+    note: "Server NPEs (`Cannot invoke java.lang.CharSequence.length() because this.text is null`) when `label` is omitted from any field. Spec marks it optional but the upsert handler dereferences it unconditionally.",
+    makeRequired: ["label"],
+  },
+  DataStreamFieldMappingInputRepresentation: {
+    note: "Asymmetric input/output: POST input uses `sourceFieldLabel`, but GET responses echo `sourceFieldName` for the same field. Round-tripping GET→POST without renaming fails with JSON_PARSER_ERROR. Also: targetFieldReturntype is required by the create handler — when omitted, the mapping is silently dropped from the saved data stream with no error.",
+    makeRequired: ["targetFieldReturntype"],
+  },
+  DataStreamSourceFieldInputRepresentation: {
+    note: "Asymmetric input/output: POST input uses `dataType` (camelCase), but GET responses echo `datatype` (lowercase) for the same field. Round-tripping GET→POST without renaming fails with `JSON_PARSER_ERROR: Unrecognized field 'datatype'`.",
+  },
+  VectorEmbeddingInputRepresentation: {
+    note: "Server NPEs when vectorEmbeddingRelatedFields is omitted, empty, or null. The list must be non-empty (typical minimum: a single entry pointing at the source DMO's primary key). Spec marks it optional.",
+    makeRequired: ["vectorEmbeddingRelatedFields"],
   },
 };
 
@@ -725,12 +742,22 @@ async function main() {
 
   // Step 4: Flatten schemas, apply overrides, and generate discriminated unions
 
-  // Validate overrides reference real schemas
-  for (const name of Object.keys(SCHEMA_OVERRIDES)) {
+  // Validate overrides reference real schemas, and reject contradictions
+  // between makeOptional/makeRequired (a single field appearing in both is
+  // a config error and should fail loudly rather than silently last-wins).
+  for (const [name, override] of Object.entries(SCHEMA_OVERRIDES)) {
     if (!schemas[name]) {
       throw new Error(
         `SCHEMA_OVERRIDES: schema "${name}" not found in spec — remove stale override`,
       );
+    }
+    const optional = new Set(override.makeOptional ?? []);
+    for (const field of override.makeRequired ?? []) {
+      if (optional.has(field)) {
+        throw new Error(
+          `SCHEMA_OVERRIDES.${name}: field "${field}" is in both makeOptional and makeRequired`,
+        );
+      }
     }
   }
 
@@ -741,13 +768,30 @@ async function main() {
     const props = collectFlatProperties(name, schemas, !!override);
     if (!props) continue;
 
-    // Apply overrides
+    // Apply overrides. Each list referencing an existing-field name (the
+    // make* and fieldTypes families) is validated against the flattened
+    // property set — a stale field name fails generation, mirroring the
+    // schema-name validation above. The add*Fields families are skipped
+    // here because they're explicitly for fields NOT yet present.
     if (override) {
+      const validateField = (kind: string, field: string): void => {
+        if (!props[field]) {
+          throw new Error(
+            `SCHEMA_OVERRIDES.${name}.${kind}: field "${field}" not found on schema — remove stale override`,
+          );
+        }
+      };
       for (const field of override.makeOptional ?? []) {
-        if (props[field]) props[field].required = false;
+        validateField("makeOptional", field);
+        props[field]!.required = false;
+      }
+      for (const field of override.makeRequired ?? []) {
+        validateField("makeRequired", field);
+        props[field]!.required = true;
       }
       for (const [field, type] of Object.entries(override.fieldTypes ?? {})) {
-        if (props[field]) props[field].tsType = type;
+        validateField("fieldTypes", field);
+        props[field]!.tsType = type;
       }
       for (const [field, type] of Object.entries(override.addOptionalFields ?? {})) {
         if (!props[field]) {

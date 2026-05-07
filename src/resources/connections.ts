@@ -33,7 +33,26 @@ export class ConnectionsService extends ConnectionsServiceBase {
     return super.list(params, options);
   }
 
-  /** Override create with discriminated union input type. */
+  /**
+   * POST /ssot/connections — Create connection.
+   *
+   * Discriminated union input type narrows credentials/parameters by
+   * `connectorType`. For unknown / future connector types, fall back to
+   * `ConnectionInputRepresentation` directly.
+   *
+   * Name-lock race after delete: a same-name CREATE issued immediately
+   * after a successful DELETE of a connection with the same `name` returns
+   * `400 DUPLICATES_DETECTED` ("A data connector with the provided name: X
+   * already exists") for several seconds, even though the list endpoint
+   * already reports the prior connection as gone. Callers performing a
+   * delete-then-recreate with the same name should retry the create on
+   * DUPLICATES_DETECTED with a budget of ~30 seconds.
+   *
+   * IngestApi name rewrite: when `connectorType === "IngestApi"`, the
+   * server replaces the authored `name` with `<label-underscored>_<uuid>`.
+   * The response body carries the rewritten name. Look up such
+   * connections by `label` rather than `name` on subsequent reads.
+   */
   override async create(body: ConnectionCreateInput | ConnectionInputRepresentation, options?: RequestOptions): Promise<ConnectionRepresentation> {
     return this.httpClient.post(this.basePath, body, options);
   }
@@ -41,6 +60,22 @@ export class ConnectionsService extends ConnectionsServiceBase {
   /** Override put with discriminated union input type. */
   override async put(connectionId: string, body: ConnectionCreateInput | ConnectionInputRepresentation, options?: RequestOptions): Promise<void> {
     return this.httpClient.put(`${this.basePath}/${encodeURIComponent(connectionId)}`, body, options);
+  }
+
+  /**
+   * DELETE /ssot/connections/{connectionId} — Delete connection.
+   *
+   * Transient cleanup race: this endpoint can return `500 UNKNOWN_EXCEPTION`
+   * on the first attempt even when the connection is `deletable: true` and
+   * has no live dependents. The platform's connection teardown (account
+   * binding cleanup, OAuth token revocation, federated-session close)
+   * intermittently conflicts with the delete handler for a few seconds.
+   * A direct retry ~5–10s later succeeds with 204. Callers should retry
+   * 5xx responses with a budget of ~30 seconds rather than the SDK's
+   * default short retry.
+   */
+  override async delete(connectionId: string, options?: RequestOptions): Promise<void> {
+    return super.delete(connectionId, options);
   }
 
   /** Alias for patch — update a connection. */
