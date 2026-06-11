@@ -7,6 +7,7 @@ import { BaseResource } from "../../resources/base-resource.js";
 import type { RequestOptions } from "../../core/types.js";
 import type {
   CdpDataGraphActionResponseRepresentation,
+  CdpDataGraphActivateInputRepresentation,
   CdpDataGraphInputRepresentation,
   CdpDataGraphOutputRepresentation,
   CdpDgMetadataRepresentation,
@@ -59,6 +60,11 @@ export class DataGraphsServiceBase extends BaseResource {
   /** GET /ssot/data-graphs/{dataGraphName} — Get data graph */
   async get(dataGraphName: string, options?: RequestOptions): Promise<CdpDataGraphOutputRepresentation> {
     return this.httpClient.get(`${this.basePath}/${encodeURIComponent(dataGraphName)}`, options);
+  }
+
+  /** POST /ssot/data-graphs/{dataGraphName}/actions/activate — Activate data graph */
+  async activate(dataGraphName: string, body: CdpDataGraphActivateInputRepresentation, options?: RequestOptions): Promise<CdpDataGraphActionResponseRepresentation> {
+    return this.httpClient.post(`${this.basePath}/${encodeURIComponent(dataGraphName)}/actions/activate`, body, options);
   }
 
   /** POST /ssot/data-graphs/{dataGraphName}/actions/refresh — Refresh data graph */

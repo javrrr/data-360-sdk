@@ -16,6 +16,14 @@ import type {
   DataSpacePatchInputRepresentation,
 } from "../../schemas.js";
 
+// ── Query parameter interfaces ──
+
+export interface DataSpacesDeleteMembersParams {
+  /** DLO names separated by commas, for example, `DataSpaceMember1__dll,DataSpaceMember2__dll`. Maximum 10 members per request. */
+  memberNames: string;
+  [key: string]: string | number | boolean | undefined;
+}
+
 // ── Base service class ──
 
 export class DataSpacesServiceBase extends BaseResource {
@@ -42,6 +50,11 @@ export class DataSpacesServiceBase extends BaseResource {
   /** PATCH /ssot/data-spaces/{idOrName} — Update data space */
   async patch(idOrName: string, body: DataSpacePatchInputRepresentation, options?: RequestOptions): Promise<DataSpaceInfoRepresentation> {
     return this.httpClient.patch(`${this.basePath}/${encodeURIComponent(idOrName)}`, body, options);
+  }
+
+  /** DELETE /ssot/data-spaces/{idOrName}/members — Delete data space members */
+  async deleteMembers(idOrName: string, params: DataSpacesDeleteMembersParams, options?: RequestOptions): Promise<void> {
+    return this.httpClient.delete(`${this.basePath}/${encodeURIComponent(idOrName)}/members`, { ...options, query: params });
   }
 
   /** GET /ssot/data-spaces/{idOrName}/members — Get data space members */

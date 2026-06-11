@@ -1,5 +1,5 @@
 /**
- * Named type exports for all 813 OpenAPI schemas, 266 enum types,
+ * Named type exports for all 800 OpenAPI schemas, 274 enum types,
  * and 3 discriminated union types.
  * Auto-generated — DO NOT EDIT. Run `npm run generate` to regenerate.
  *
@@ -14,13 +14,9 @@ type Schemas = components["schemas"];
 /** Flatten intersections into a single object type for readable IntelliSense hovers. */
 type Simplify<T> = { [K in keyof T]: T[K] } & {};
 
-// ── Schema types (813) ──
+// ── Schema types (800) ──
 
 export type AbstractBucketAlgorithmRepresentation = Schemas["AbstractBucketAlgorithmRepresentation"];
-export type AccountEngagementConnectionInputRepresentation = {
-  dataStreamType: "EmailActivity" | "FormActivity" | "WebPageActivity";
-  pardotTenantId: string;
-}
 export type AccountEngagementConnectionRepresentation = {
   modules?: Schemas["ConnectionModuleConfigRepresentation"][];
   sourceId?: string;
@@ -135,20 +131,6 @@ export type ActivationDataRepresentation = {
   segmentOnId?: string;
   segmentedEntityFqk?: string;
 }
-export type ActivationDataSourceConfig = {
-  createdBy?: Schemas["CdpUserRepresentation"];
-  createdDate?: string;
-  id?: string;
-  label?: string;
-  lastModifiedBy?: Schemas["CdpUserRepresentation"];
-  lastModifiedDate?: string;
-  name?: string;
-  namespace?: string;
-  url?: string;
-  dataSourceId?: string;
-  dataSourceName?: string;
-  marketSegmentActivationId?: string;
-}
 export type ActivationDataSourceConfigInputRepresentation = Schemas["ActivationDataSourceConfigInputRepresentation"];
 export type ActivationDataSourceConfigRepresentation = Schemas["ActivationDataSourceConfigRepresentation"];
 export type ActivationDataSourcesRepresentation = {
@@ -218,8 +200,8 @@ export type ActivationExternalPlatformRepresentation = {
 }
 export type ActivationPublishActionInputRepresentation = Schemas["ActivationPublishActionInputRepresentation"];
 export type ActivationPublishActionRepresentation = {
-  errors: Schemas["CdpErrorRepresentation"][];
-  success: boolean;
+  errors?: Schemas["CdpErrorRepresentation"][];
+  success?: boolean;
   publishStatus?: "Error" | "NotSupported" | "PartnerError" | "PartnerProcessing" | "Publishing" | "Queued" | "SegmentError" | "Skipped" | "Success";
 }
 export type ActivationRepresentation = {
@@ -323,15 +305,9 @@ export type ActivationTargetSubjectRepresentation = {
 }
 export type AggregateInputRepresentation = Schemas["AggregateInputRepresentation"];
 export type AggregateNodeInputRepresentation = {
-  action: "Aggregate" | "Append_V2" | "Bucket" | "ComputeRelative" | "DateFormatConversion" | "Extension" | "Extract" | "Filter" | "Formula" | "Join" | "Load" | "OutputD360" | "Recommendation" | "Save" | "Schema" | "Split" | "SqlFilter" | "TypeCast" | "Update";
-  schema: Record<string, never>;
-  sources: string[];
-  parameters?: Schemas["AggregateParametersInputRepresentation"];
+  parameters: Schemas["AggregateParametersInputRepresentation"];
 }
 export type AggregateNodeRepresentation = {
-  action: "Aggregate" | "Append_V2" | "Bucket" | "ComputeRelative" | "DateFormatConversion" | "Extension" | "Extract" | "Filter" | "Formula" | "Join" | "Load" | "OutputD360" | "Recommendation" | "Save" | "Schema" | "Split" | "SqlFilter" | "TypeCast" | "Update";
-  schema: Schemas["SchemaParametersRepresentation"];
-  sources: string[];
   parameters?: Schemas["AggregateParametersRepresentation"];
 }
 export type AggregateParametersInputRepresentation = Schemas["AggregateParametersInputRepresentation"];
@@ -343,7 +319,7 @@ export type AmazonMSKRouteDetailsInputRepresentation = {
   brokerEndpoints: string[];
 }
 export type AmazonMSKRouteDetailsRepresentation = {
-  serviceName: string;
+  serviceName?: string;
   type: "AmazonMsk";
   brokerEndpoints: string[];
 }
@@ -352,15 +328,9 @@ export type AppendMappingRepresentation = Schemas["AppendMappingRepresentation"]
 export type AppendParametersInputRepresentation = Schemas["AppendParametersInputRepresentation"];
 export type AppendParametersRepresentation = Schemas["AppendParametersRepresentation"];
 export type AppendV2NodeInputRepresentation = {
-  action: "Aggregate" | "Append_V2" | "Bucket" | "ComputeRelative" | "DateFormatConversion" | "Extension" | "Extract" | "Filter" | "Formula" | "Join" | "Load" | "OutputD360" | "Recommendation" | "Save" | "Schema" | "Split" | "SqlFilter" | "TypeCast" | "Update";
-  schema: Record<string, never>;
-  sources: string[];
-  parameters?: Schemas["AppendParametersInputRepresentation"];
+  parameters: Schemas["AppendParametersInputRepresentation"];
 }
 export type AppendV2NodeRepresentation = {
-  action: "Aggregate" | "Append_V2" | "Bucket" | "ComputeRelative" | "DateFormatConversion" | "Extension" | "Extract" | "Filter" | "Formula" | "Join" | "Load" | "OutputD360" | "Recommendation" | "Save" | "Schema" | "Split" | "SqlFilter" | "TypeCast" | "Update";
-  schema: Schemas["SchemaParametersRepresentation"];
-  sources: string[];
   parameters?: Schemas["AppendParametersRepresentation"];
 }
 export type AttributeFilterExpressionInputRepresentation = {
@@ -443,22 +413,6 @@ export type AttributeLimitingExpressionRepresentation = {
 }
 export type AttributesConfigInputRepresentation = Schemas["AttributesConfigInputRepresentation"];
 export type AudienceDMOCollectionRepresentation = Schemas["AudienceDMOCollectionRepresentation"];
-export type AzureConnectorInputRepresentation = {
-  name?: string;
-  outputFormat?: string;
-}
-export type AzureConnectorRepresentation = {
-  createdBy?: Schemas["CdpUserRepresentation"];
-  createdDate?: string;
-  id?: string;
-  label?: string;
-  lastModifiedBy?: Schemas["CdpUserRepresentation"];
-  lastModifiedDate?: string;
-  name?: string;
-  namespace?: string;
-  url?: string;
-  outputFormat?: string;
-}
 export type BaseComparisonInputRepresentation = Schemas["BaseComparisonInputRepresentation"];
 export type BaseComparisonRepresentation = {
   createdBy?: Schemas["CdpUserRepresentation"];
@@ -476,162 +430,22 @@ export type BaseComparisonRepresentation = {
 export type BaseConnectionFieldRepresentation = Schemas["BaseConnectionFieldRepresentation"];
 export type BaseConnectionObjectRepresentation = Schemas["BaseConnectionObjectRepresentation"];
 export type BatchActionRepresentation = Schemas["BatchActionRepresentation"];
-export type BooleanComparisonInputRepresentation = {
-  filtersConfig: Schemas["TypeAndFilterInputRepresentationConfig"][];
-  operator: string;
-  joinPath?: Schemas["LabeledSubjectsConfigInput"][];
-  path?: Schemas["LabeledSubjectsConfigInput"][];
-  selfReference?: boolean;
-  subject?: Schemas["SubjectInputRepresentation"];
-  value?: boolean;
-}
-export type BucketBooleanBucketInputRepresentation = Schemas["BucketBooleanBucketInputRepresentation"];
-export type BucketBooleanBucketRepresentation = {
-  value: string;
-  sourceValues?: unknown[];
-}
-export type BucketBooleanFieldInputRepresentation = {
-  label: string;
-  name: string;
-  type: "Boolean" | "DateOnly" | "DateTime" | "Number" | "Text";
-  bucketsSetup?: Schemas["BucketBooleanSetupInputRepresentation"];
-}
-export type BucketBooleanSetupInputRepresentation = {
-  algorithm: Record<string, never>;
-  defaultBucketValue: string;
-  isPassthroughEnabled: boolean;
-  nullBucketValue: string;
-  buckets?: Schemas["BucketBooleanBucketInputRepresentation"][];
-  sourceField?: Schemas["BucketBooleanSourceFieldInputRepresentation"];
-}
-export type BucketBooleanSourceFieldInputRepresentation = Schemas["BucketBooleanSourceFieldInputRepresentation"];
-export type BucketDateArgumentInputRepresentation = Schemas["BucketDateArgumentInputRepresentation"];
-export type BucketDateArgumentRepresentation = Schemas["BucketDateArgumentRepresentation"];
-export type BucketDateBucketInputRepresentation = Schemas["BucketDateBucketInputRepresentation"];
-export type BucketDateBucketRepresentation = {
-  value: string;
-  rangeEnd?: Schemas["BucketDateArgumentRepresentation"];
-  rangeStart?: Schemas["BucketDateArgumentRepresentation"];
-}
-export type BucketDateOnlyFieldInputRepresentation = {
-  label: string;
-  name: string;
-  type: "Boolean" | "DateOnly" | "DateTime" | "Number" | "Text";
-  bucketsSetup?: Schemas["BucketDateSetupInputRepresentation"];
-}
-export type BucketDateSetupInputRepresentation = {
-  algorithm: Record<string, never>;
-  defaultBucketValue: string;
-  isPassthroughEnabled: boolean;
-  nullBucketValue: string;
-  buckets?: Schemas["BucketDateBucketInputRepresentation"][];
-  sourceField?: Schemas["BucketDateSourceFieldInputRepresentation"];
-}
-export type BucketDateSourceFieldInputRepresentation = Schemas["BucketDateSourceFieldInputRepresentation"];
-export type BucketDateTimeFieldInputRepresentation = {
-  label: string;
-  name: string;
-  type: "Boolean" | "DateOnly" | "DateTime" | "Number" | "Text";
-  bucketsSetup?: Schemas["BucketDateSetupInputRepresentation"];
-}
-export type BucketDimensionBucketInputRepresentation = Schemas["BucketDimensionBucketInputRepresentation"];
-export type BucketDimensionBucketRepresentation = {
-  value: string;
-  sourceValues?: string[];
-}
-export type BucketDimensionFieldInputRepresentation = {
-  label: string;
-  name: string;
-  type: "Boolean" | "DateOnly" | "DateTime" | "Number" | "Text";
-  bucketsSetup?: Schemas["BucketDimensionSetupInputRepresentation"];
-}
-export type BucketDimensionSetupInputRepresentation = {
-  algorithm: Record<string, never>;
-  defaultBucketValue: string;
-  isPassthroughEnabled: boolean;
-  nullBucketValue: string;
-  buckets?: Schemas["BucketDimensionBucketInputRepresentation"][];
-  sourceField?: Schemas["BucketDimensionSourceFieldInputRepresentation"];
-}
-export type BucketDimensionSourceFieldInputRepresentation = Schemas["BucketDimensionSourceFieldInputRepresentation"];
 export type BucketFieldInputRepresentation = Schemas["BucketFieldInputRepresentation"];
 export type BucketFieldRepresentation = Schemas["BucketFieldRepresentation"];
-export type BucketMeasureBucketInputRepresentation = Schemas["BucketMeasureBucketInputRepresentation"];
-export type BucketMeasureBucketRepresentation = {
-  value: string;
-  rangeEnd?: number;
-  rangeStart?: number;
-}
-export type BucketMeasureFieldInputRepresentation = {
-  label: string;
-  name: string;
-  type: "Boolean" | "DateOnly" | "DateTime" | "Number" | "Text";
-  bucketsSetup?: Schemas["BucketMeasureSetupInputRepresentation"];
-}
-export type BucketMeasureSetupInputRepresentation = {
-  algorithm: Record<string, never>;
-  defaultBucketValue: string;
-  isPassthroughEnabled: boolean;
-  nullBucketValue: string;
-  buckets?: Schemas["BucketMeasureBucketInputRepresentation"][];
-  sourceField?: Schemas["BucketMeasureSourceFieldInputRepresentation"];
-}
-export type BucketMeasureSourceFieldInputRepresentation = Schemas["BucketMeasureSourceFieldInputRepresentation"];
 export type BucketNodeInputRepresentation = {
-  action: "Aggregate" | "Append_V2" | "Bucket" | "ComputeRelative" | "DateFormatConversion" | "Extension" | "Extract" | "Filter" | "Formula" | "Join" | "Load" | "OutputD360" | "Recommendation" | "Save" | "Schema" | "Split" | "SqlFilter" | "TypeCast" | "Update";
-  schema: Record<string, never>;
-  sources: string[];
-  parameters?: Schemas["BucketParametersInputRepresentation"];
+  parameters: Schemas["BucketParametersInputRepresentation"];
 }
 export type BucketNodeRepresentation = {
-  action: "Aggregate" | "Append_V2" | "Bucket" | "ComputeRelative" | "DateFormatConversion" | "Extension" | "Extract" | "Filter" | "Formula" | "Join" | "Load" | "OutputD360" | "Recommendation" | "Save" | "Schema" | "Split" | "SqlFilter" | "TypeCast" | "Update";
-  schema: Schemas["SchemaParametersRepresentation"];
-  sources: string[];
   parameters?: Schemas["BucketParametersRepresentation"];
 }
 export type BucketParametersInputRepresentation = Schemas["BucketParametersInputRepresentation"];
 export type BucketParametersRepresentation = Schemas["BucketParametersRepresentation"];
 export type BucketRepresentation = Schemas["BucketRepresentation"];
-export type BucketSetupInputRepresentation = Schemas["BucketSetupInputRepresentation"];
 export type BucketSetupRepresentation = Schemas["BucketSetupRepresentation"];
 export type BucketSourceFieldRepresentation = Schemas["BucketSourceFieldRepresentation"];
-export type BusinessUnitConfigInputRepresentation = Schemas["BusinessUnitConfigInputRepresentation"];
-export type BusinessUnitConfigRepresentation = Schemas["BusinessUnitConfigRepresentation"];
 export type CdpActionResponseBaseRepresentation = Schemas["CdpActionResponseBaseRepresentation"];
 export type CdpAssetBaseInputRepresentation = Schemas["CdpAssetBaseInputRepresentation"];
 export type CdpAssetBaseRepresentation = Schemas["CdpAssetBaseRepresentation"];
-export type CdpAssetHistoryBaseRepresentation = {
-  createdBy?: Schemas["CdpUserRepresentation"];
-  createdDate?: string;
-  id?: string;
-  label?: string;
-  lastModifiedBy?: Schemas["CdpUserRepresentation"];
-  lastModifiedDate?: string;
-  name?: string;
-  namespace?: string;
-  url?: string;
-  isCurrent?: boolean;
-  revertURL?: string;
-}
-export type CdpAssetHistoryCollectionRepresentation = {
-  currentPageUrl?: string;
-  nextPageUrl?: string;
-  totalSize?: number;
-  histories?: Schemas["CdpAssetHistoryRepresentation"][];
-}
-export type CdpAssetHistoryRepresentation = {
-  createdBy?: Schemas["CdpUserRepresentation"];
-  createdDate?: string;
-  id?: string;
-  label?: string;
-  lastModifiedBy?: Schemas["CdpUserRepresentation"];
-  lastModifiedDate?: string;
-  name?: string;
-  namespace?: string;
-  url?: string;
-  isCurrent?: boolean;
-  revertURL?: string;
-}
 export type CdpAssetReferenceInputRepresentation = {
   id?: string;
   name?: string;
@@ -656,31 +470,20 @@ export type CdpCalculatedInsightInputRepresentation = Schemas["CdpCalculatedInsi
 export type CdpCalculatedInsightMeasureRepresentation = Schemas["CdpCalculatedInsightMeasureRepresentation"];
 export type CdpCalculatedInsightRepresentation = Schemas["CdpCalculatedInsightRepresentation"];
 export type CdpCalculatedInsightStandardActionResponseRepresentation = {
-  errors: Schemas["CdpErrorRepresentation"][];
-  success: boolean;
+  errors?: Schemas["CdpErrorRepresentation"][];
+  success?: boolean;
 }
-export type CdpCalculatedInsightValidateInputRepresentation = Schemas["CdpCalculatedInsightValidateInputRepresentation"];
 export type CdpDataActionCRMTargetInfo = {
-  apiContract: string;
-  targetEndpoint: string;
+  apiContract?: string;
+  targetEndpoint?: string;
   label?: string;
   orgId?: string;
 }
 export type CdpDataActionCollectionRepresentation = Schemas["CdpDataActionCollectionRepresentation"];
-export type CdpDataActionGrpcTargetInfo = {
-  apiContract: string;
-  targetEndpoint: string;
-  customMetadata?: Record<string, never>;
-  mappingConfig?: Schemas["CdpDataActionGrpcTargetMappingConfig"];
-  methodName?: string;
-  protoBufferContent?: string;
-  serviceName?: string;
-}
-export type CdpDataActionGrpcTargetMappingConfig = Schemas["CdpDataActionGrpcTargetMappingConfig"];
 export type CdpDataActionInputRepresentation = Schemas["CdpDataActionInputRepresentation"];
 export type CdpDataActionMCTargetInfo = {
-  apiContract: string;
-  targetEndpoint: string;
+  apiContract?: string;
+  targetEndpoint?: string;
   contentKey?: string;
   contentTemplate?: string;
 }
@@ -693,16 +496,6 @@ export type CdpDataActionTargetCRMConfig = {
 }
 export type CdpDataActionTargetCollectionRepresentation = Schemas["CdpDataActionTargetCollectionRepresentation"];
 export type CdpDataActionTargetConfig = Schemas["CdpDataActionTargetConfig"];
-export type CdpDataActionTargetGrpcConfig = {
-  apiContract?: string;
-  targetEndpoint?: string;
-  customMetadata?: { [key: string]: string };
-  mappingConfig?: Schemas["CdpDataActionTargetGrpcMappingConfig"];
-  methodName?: string;
-  protoBufferContent?: string;
-  serviceName?: string;
-}
-export type CdpDataActionTargetGrpcMappingConfig = Schemas["CdpDataActionTargetGrpcMappingConfig"];
 export type CdpDataActionTargetInfo = Schemas["CdpDataActionTargetInfo"];
 export type CdpDataActionTargetInputRepresentation = Schemas["CdpDataActionTargetInputRepresentation"];
 export type CdpDataActionTargetInternalWebConfig = {
@@ -710,8 +503,8 @@ export type CdpDataActionTargetInternalWebConfig = {
   targetEndpoint?: string;
 }
 export type CdpDataActionTargetInternalWebInfo = {
-  apiContract: string;
-  targetEndpoint: string;
+  apiContract?: string;
+  targetEndpoint?: string;
 }
 export type CdpDataActionTargetMCConfig = {
   apiContract?: string;
@@ -726,13 +519,14 @@ export type CdpDataActionTargetWebConfig = {
   targetEndpoint?: string;
 }
 export type CdpDataActionTargetWebInfo = {
-  apiContract: string;
-  targetEndpoint: string;
+  apiContract?: string;
+  targetEndpoint?: string;
 }
 export type CdpDataGraphActionResponseRepresentation = {
-  errors: Schemas["CdpErrorRepresentation"][];
-  success: boolean;
+  errors?: Schemas["CdpErrorRepresentation"][];
+  success?: boolean;
 }
+export type CdpDataGraphActivateInputRepresentation = Schemas["CdpDataGraphActivateInputRepresentation"];
 export type CdpDataGraphDataRecencyInputRepresentation = Schemas["CdpDataGraphDataRecencyInputRepresentation"];
 export type CdpDataGraphFieldInputRepresentation = Schemas["CdpDataGraphFieldInputRepresentation"];
 export type CdpDataGraphFieldOutputRepresentation = {
@@ -819,29 +613,6 @@ export type CdpDataGraphSourceObjectOutputRepresentation = {
   relatedObjects?: Schemas["CdpDataGraphSourceObjectOutputRepresentation"][];
   type?: "Activation_Audience" | "Bridge" | "Calculated" | "Calculated_Real_Time" | "Calculated_Streaming" | "Custom" | "Derived" | "Ml_Prediction" | "Segment_Membership" | "Standard" | "System" | "Transform";
 }
-export type CdpDataKitComponentInfo = Schemas["CdpDataKitComponentInfo"];
-export type CdpDataKitComponentInfoCalculatedInsight = {
-  type: "DataStreamBundle" | "CalculatedInsight" | "DataLakeObject" | "DataTransform";
-  apiName?: string;
-  expression?: string;
-  label?: string;
-}
-export type CdpDataKitComponentInfoForBundle = {
-  type: "DataStreamBundle" | "CalculatedInsight" | "DataLakeObject" | "DataTransform";
-  connectorType?: "Commerce" | "Crm" | "External" | "IngestApi" | "Mc" | "MoreConnectors" | "S3" | "StreamingApp";
-  devName?: string;
-  label?: string;
-  streams?: Schemas["CdpDataKitStream"][];
-}
-export type CdpDataKitComponentInfoForDLO = {
-  type: "DataStreamBundle" | "CalculatedInsight" | "DataLakeObject" | "DataTransform";
-  dloName?: string;
-}
-export type CdpDataKitComponentInfoForDataTransformRepresentation = {
-  type: "DataStreamBundle" | "CalculatedInsight" | "DataLakeObject" | "DataTransform";
-  dataTransformName?: string;
-}
-export type CdpDataKitComponents = Schemas["CdpDataKitComponents"];
 export type CdpDataKitDeployBundleConfig = Schemas["CdpDataKitDeployBundleConfig"];
 export type CdpDataKitDeployBundleConfigForAccountEngagement = {
   dataSpaceFilterCriteriaApiConfig?: Schemas["DataSpaceFilterConditionApiConfig"][];
@@ -958,15 +729,13 @@ export type CdpDataKitDeployComponentConfigMlRetriever = {
 }
 export type CdpDataKitDeployComponentRepresentation = Schemas["CdpDataKitDeployComponentRepresentation"];
 export type CdpDataKitDeployInputRepresentation = Schemas["CdpDataKitDeployInputRepresentation"];
-export type CdpDataKitDeployJobOutputRepresentation = Schemas["CdpDataKitDeployJobOutputRepresentation"];
-export type CdpDataKitDeployOutputRepresentation = Schemas["CdpDataKitDeployOutputRepresentation"];
-export type CdpDataKitDetails = Schemas["CdpDataKitDetails"];
 export type CdpDataKitMembers = Schemas["CdpDataKitMembers"];
 export type CdpDataKitMembersList = Schemas["CdpDataKitMembersList"];
 export type CdpDataKitStream = Schemas["CdpDataKitStream"];
 export type CdpDataTransformActionResponseRepresentation = {
-  errors: Schemas["CdpErrorRepresentation"][];
-  success: boolean;
+  errors?: Schemas["CdpErrorRepresentation"][];
+  success?: boolean;
+  shouldForceFullRun?: boolean;
 }
 export type CdpDgMetadataRepresentation = Schemas["CdpDgMetadataRepresentation"];
 export type CdpErrorRepresentation = Schemas["CdpErrorRepresentation"];
@@ -1022,41 +791,13 @@ export type CdpMinutelyScheduleRepresentation = {
   interval?: number;
 }
 export type CdpMlAggregatePredictConditionRepresentation = {
-  fields: Schemas["CdpMlPredictionContributionFieldRepresentation"][];
-  value: number;
+  fields?: Schemas["CdpMlPredictionContributionFieldRepresentation"][];
+  value?: number;
   count?: number;
 }
 export type CdpMlAggregatePredictionRepresentation = Schemas["CdpMlAggregatePredictionRepresentation"];
-export type CdpMlConfiguredModelCollectionRepresentation = Schemas["CdpMlConfiguredModelCollectionRepresentation"];
-export type CdpMlConfiguredModelRepresentation = {
-  createdBy?: Schemas["CdpUserRepresentation"];
-  createdDate?: string;
-  id?: string;
-  label?: string;
-  lastModifiedBy?: Schemas["CdpUserRepresentation"];
-  lastModifiedDate?: string;
-  name?: string;
-  namespace?: string;
-  url?: string;
-  actionableFields?: Schemas["CdpMlCustomizableFieldRepresentation"][];
-  artifact?: Schemas["CdpAssetReferenceRepresentation"];
-  capability?: "BinaryClassification" | "ChatCompletion" | "Completion" | "Embedding" | "Generic" | "MulticlassClassification" | "Regression";
-  customizableFields?: Schemas["CdpMlCustomizableFieldRepresentation"][];
-  description?: string;
-  filter?: Schemas["CdpMlFilterRepresentation"];
-  lastActivatedBy?: Schemas["CdpUserRepresentation"];
-  lastActivatedDate?: string;
-  metricsUrl?: string;
-  parameterOverrides?: Schemas["CdpMlModelParameterOverrideBaseRepresentation"][];
-  position?: number;
-  status?: "Disabled" | "Enabled";
-  workspace?: Schemas["CdpAssetReferenceRepresentation"];
-}
 export type CdpMlCustomizableFieldRepresentation = Schemas["CdpMlCustomizableFieldRepresentation"];
 export type CdpMlFieldRepresentation = Schemas["CdpMlFieldRepresentation"];
-export type CdpMlFilterCriterionBaseRepresentation = Schemas["CdpMlFilterCriterionBaseRepresentation"];
-export type CdpMlFilterRepresentation = Schemas["CdpMlFilterRepresentation"];
-export type CdpMlFilterValueRepresentation = Schemas["CdpMlFilterValueRepresentation"];
 export type CdpMlFoundationalModelRepresentation = Schemas["CdpMlFoundationalModelRepresentation"];
 export type CdpMlModelArtifactBaseRepresentation = {
   createdBy?: Schemas["CdpUserRepresentation"];
@@ -1091,49 +832,16 @@ export type CdpMlModelArtifactCollectionRepresentation = {
   totalSize?: number;
   modelArtifacts: Schemas["CdpMlModelArtifactBaseRepresentation"][];
 }
-export type CdpMlModelArtifactGenerativeRepresentation = {
-  createdBy?: Schemas["CdpUserRepresentation"];
-  createdDate?: string;
-  id?: string;
-  label?: string;
-  lastModifiedBy?: Schemas["CdpUserRepresentation"];
-  lastModifiedDate?: string;
-  name?: string;
-  namespace?: string;
-  url?: string;
-  description?: string;
-  inputFields?: Schemas["CdpMlModelInputFieldBaseRepresentation"][];
-  isBatchSupported?: boolean;
-  modelConnectorEndpoint?: Schemas["MlConnectorEndpointRepresentation"];
-  modelCount?: number;
-  modelType?: "Generative" | "Predictive" | "Unknown";
-  modelDisabledReasons?: string[];
-  outputFields?: Schemas["CdpMlModelOutputFieldRepresentation"][];
-  parameters?: Schemas["CdpMlModelParameterDefinitionBaseRepresentation"][];
-  runtimeType?: "External" | "Internal";
-  setupContainer?: Schemas["CdpAssetReferenceRepresentation"];
-  source?: Schemas["CdpAssetReferenceRepresentation"];
-  sourceContainer?: Schemas["CdpAssetReferenceRepresentation"];
-  sourceType?: "EdcNoCode" | "ModelConnector" | "OutOfTheBox";
-  status?: "Disabled" | "Draft" | "Enabled";
-  syncStatus?: "Error" | "NotSynced" | "Synced" | "Syncing";
-  foundationalModel?: Schemas["CdpMlFoundationalModelRepresentation"];
-  generativeModelType?: "Mixed" | "Text";
-  inputTypes?: Schemas["MlModelInputTypeRepresentation"][];
-  jsonModes?: Schemas["MlModelJsonModeRepresentation"][];
-  modelCapabilities?: string[];
-  outputTypes?: Schemas["MlModelOutputTypeRepresentation"][];
-}
 export type CdpMlModelArtifactInputRepresentation = Schemas["CdpMlModelArtifactInputRepresentation"];
 export type CdpMlModelFieldBaseRepresentation = {
-  label: string;
-  name: string;
+  label?: string;
+  name?: string;
   dataType?: "Boolean" | "Date" | "Number" | "Text";
   position?: number;
 }
 export type CdpMlModelInputFieldBaseRepresentation = {
-  label: string;
-  name: string;
+  label?: string;
+  name?: string;
   dataType?: "Boolean" | "Date" | "Number" | "Text";
   position?: number;
   isDisparateImpact?: boolean;
@@ -1141,8 +849,8 @@ export type CdpMlModelInputFieldBaseRepresentation = {
   isSensitive?: boolean;
 }
 export type CdpMlModelOutputFieldRepresentation = {
-  label: string;
-  name: string;
+  label?: string;
+  name?: string;
   dataType?: "Boolean" | "Date" | "Number" | "Text";
   position?: number;
 }
@@ -1154,8 +862,8 @@ export type CdpMlPredictSettingsRepresentation = Schemas["CdpMlPredictSettingsRe
 export type CdpMlPredictionBaseRepresentation = Schemas["CdpMlPredictionBaseRepresentation"];
 export type CdpMlPredictionContributionBaseRepresentation = Schemas["CdpMlPredictionContributionBaseRepresentation"];
 export type CdpMlPredictionContributionFieldRepresentation = {
-  label: string;
-  name: string;
+  label?: string;
+  name?: string;
   customText?: Schemas["CdpMlPredictionFieldCustomTextRepresentation"];
   inputValue?: string;
   prescribedValue?: string;
@@ -1244,6 +952,14 @@ export type CdpObjectSourceTargetMapInputRepresentation = {
 }
 export type CdpObjectSourceTargetMapRepresentation = Schemas["CdpObjectSourceTargetMapRepresentation"];
 export type CdpPaginatedResponseBaseRepresentation = Schemas["CdpPaginatedResponseBaseRepresentation"];
+export type CdpPredictNodeInputRepresentation = {
+  parameters: Schemas["CdpPredictParametersInputRepresentation"];
+}
+export type CdpPredictNodeRepresentation = {
+  parameters?: Schemas["CdpPredictParametersRepresentation"];
+}
+export type CdpPredictParametersInputRepresentation = Schemas["CdpPredictParametersInputRepresentation"];
+export type CdpPredictParametersRepresentation = Schemas["CdpPredictParametersRepresentation"];
 export type CdpQueryDataGraphMetadataRepresentation = Schemas["CdpQueryDataGraphMetadataRepresentation"];
 export type CdpQueryDataOutputRepresentation = Schemas["CdpQueryDataOutputRepresentation"];
 export type CdpQueryInputRepresentation = Schemas["CdpQueryInputRepresentation"];
@@ -1256,11 +972,15 @@ export type CdpQueryOutputV2Representation = Schemas["CdpQueryOutputV2Representa
 export type CdpQueryV2RowRepresentation = Schemas["CdpQueryV2RowRepresentation"];
 export type CdpScheduleBaseRepresentation = Schemas["CdpScheduleBaseRepresentation"];
 export type CdpScheduleInputRepresentation = Schemas["CdpScheduleInputRepresentation"];
-export type CdpScheduleRepresentation = Schemas["CdpScheduleRepresentation"];
+export type CdpScheduleRepresentation = {
+  frequency: "Hourly" | "None";
+  nextScheduledDate: string;
+  time: Schemas["CdpTimeRepresentation"];
+}
 export type CdpSegmentActionInputRepresentation = Schemas["CdpSegmentActionInputRepresentation"];
 export type CdpSegmentActionOutputRepresentation = {
-  errors: Schemas["CdpErrorRepresentation"][];
-  success: boolean;
+  errors?: Schemas["CdpErrorRepresentation"][];
+  success?: boolean;
   jobId?: string;
   partitionId?: string;
   publishStatus?: string;
@@ -1283,50 +1003,18 @@ export type CdpSegmentOutputRepresentation = Schemas["CdpSegmentOutputRepresenta
 export type CdpTimeInputRepresentation = Schemas["CdpTimeInputRepresentation"];
 export type CdpTimeRepresentation = Schemas["CdpTimeRepresentation"];
 export type CdpTimeZoneRepresentation = Schemas["CdpTimeZoneRepresentation"];
-export type CdpTransformScheduleRepresentation = {
-  type?: "Daily" | "Hourly" | "Minutely" | "Monthly" | "MonthlyRelative" | "Weekly" | "None" | "Transform";
-  schedule?: Schemas["CdpScheduleRepresentation"];
-}
 export type CdpUserRepresentation = Schemas["CdpUserRepresentation"];
 export type ChunkingConfigInputRepresentation = Schemas["ChunkingConfigInputRepresentation"];
 export type ChunkingConfigUserValuesRepresentation = Schemas["ChunkingConfigUserValuesRepresentation"];
 export type ChunkingConfigurationRepresentation = Schemas["ChunkingConfigurationRepresentation"];
-export type ChunkingStrategyInputRepresentation = {
-  id?: string;
-  name?: string;
-  namespace?: string;
-  chunkingConfigurationId?: number;
-  sourceDmoDeveloperName?: string;
-  sourceDmoFieldDeveloperName?: string;
-  version?: string;
-}
+export type CleanRoomTestConnectionRepresentation = Schemas["CleanRoomTestConnectionRepresentation"];
+export type CleanroomTestConnectionInputRepresentation = Schemas["CleanroomTestConnectionInputRepresentation"];
 export type CloudProviderDetailsInputRepresentation = Schemas["CloudProviderDetailsInputRepresentation"];
 export type CloudProviderDetailsRepresentation = Schemas["CloudProviderDetailsRepresentation"];
-export type CommerceCloudConnectorRepresentation = {
-  createdBy?: Schemas["CdpUserRepresentation"];
-  createdDate?: string;
-  id?: string;
-  label?: string;
-  lastModifiedBy?: Schemas["CdpUserRepresentation"];
-  lastModifiedDate?: string;
-  name?: string;
-  namespace?: string;
-  url?: string;
-  outputFormat?: string;
-  dataSourceId?: string;
-  instanceId?: string;
-  tenantId?: string;
-}
 export type ComputeRelativeNodeInputRepresentation = {
-  action: "Aggregate" | "Append_V2" | "Bucket" | "ComputeRelative" | "DateFormatConversion" | "Extension" | "Extract" | "Filter" | "Formula" | "Join" | "Load" | "OutputD360" | "Recommendation" | "Save" | "Schema" | "Split" | "SqlFilter" | "TypeCast" | "Update";
-  schema: Record<string, never>;
-  sources: string[];
-  parameters?: Schemas["ComputeRelativeParametersInputRepresentation"];
+  parameters: Schemas["ComputeRelativeParametersInputRepresentation"];
 }
 export type ComputeRelativeNodeRepresentation = {
-  action: "Aggregate" | "Append_V2" | "Bucket" | "ComputeRelative" | "DateFormatConversion" | "Extension" | "Extract" | "Filter" | "Formula" | "Join" | "Load" | "OutputD360" | "Recommendation" | "Save" | "Schema" | "Split" | "SqlFilter" | "TypeCast" | "Update";
-  schema: Schemas["SchemaParametersRepresentation"];
-  sources: string[];
   parameters?: Schemas["ComputeRelativeParametersRepresentation"];
 }
 export type ComputeRelativeParametersInputRepresentation = Schemas["ComputeRelativeParametersInputRepresentation"];
@@ -1343,8 +1031,8 @@ export type ConnectionCollectionRepresentation = {
 }
 export type ConnectionCommandActionInputRepresentation = Schemas["ConnectionCommandActionInputRepresentation"];
 export type ConnectionCommandActionRepresentation = {
-  errors: Schemas["CdpErrorRepresentation"][];
-  success: boolean;
+  errors?: Schemas["CdpErrorRepresentation"][];
+  success?: boolean;
 }
 export type ConnectionCommandExistingActionInputRepresentation = Schemas["ConnectionCommandExistingActionInputRepresentation"];
 export type ConnectionDatabaseCollectionRepresentation = Schemas["ConnectionDatabaseCollectionRepresentation"];
@@ -1352,23 +1040,13 @@ export type ConnectionDbSchemaCollectionInputRepresentation = Schemas["Connectio
 export type ConnectionDbSchemaCollectionRepresentation = Schemas["ConnectionDbSchemaCollectionRepresentation"];
 export type ConnectionFieldCollectionInputRepresentation = Schemas["ConnectionFieldCollectionInputRepresentation"];
 export type ConnectionFieldCollectionRepresentation = Schemas["ConnectionFieldCollectionRepresentation"];
-export type ConnectionFieldRepresentation = {
-  creationType?: "Custom" | "Standard";
-  format?: string;
-  isCalculated?: boolean;
-  isRequired: boolean;
-  label?: string;
-  name: string;
-  originalType: string;
-  type: "Boolean" | "Currency" | "Date" | "DateTime" | "Email" | "Number" | "Percent" | "Phone" | "Text" | "Unsupported" | "Url";
-}
 export type ConnectionInputRepresentation = Schemas["ConnectionInputRepresentation"];
 export type ConnectionModuleConfigInputRepresentation = Schemas["ConnectionModuleConfigInputRepresentation"];
 export type ConnectionModuleConfigRepresentation = Schemas["ConnectionModuleConfigRepresentation"];
 export type ConnectionObjectCollectionInputRepresentation = Schemas["ConnectionObjectCollectionInputRepresentation"];
 export type ConnectionObjectCollectionRepresentation = Schemas["ConnectionObjectCollectionRepresentation"];
 export type ConnectionObjectRepresentation = {
-  name: string;
+  name?: string;
   attributes: Record<string, never>;
   objectType: "Activity" | "Comment" | "Group" | "Permission" | "StructuredData" | "UnstructuredData" | "User";
 }
@@ -1378,8 +1056,8 @@ export type ConnectionPreviewRecordRepresentation = Schemas["ConnectionPreviewRe
 export type ConnectionPreviewRepresentation = Schemas["ConnectionPreviewRepresentation"];
 export type ConnectionRepresentation = Schemas["ConnectionRepresentation"];
 export type ConnectionSchemaActionResponseRepresentation = {
-  errors: Schemas["CdpErrorRepresentation"][];
-  success: boolean;
+  errors?: Schemas["CdpErrorRepresentation"][];
+  success?: boolean;
 }
 export type ConnectionSchemaCollectionInputRepresentation = Schemas["ConnectionSchemaCollectionInputRepresentation"];
 export type ConnectionSchemaCollectionRepresentation = Schemas["ConnectionSchemaCollectionRepresentation"];
@@ -1394,8 +1072,8 @@ export type ConnectionSchemaRepresentation = Schemas["ConnectionSchemaRepresenta
 export type ConnectionSitemapInputRepresentation = Schemas["ConnectionSitemapInputRepresentation"];
 export type ConnectionSitemapRepresentation = Schemas["ConnectionSitemapRepresentation"];
 export type ConnectionTestActionRepresentation = {
-  errors: Schemas["CdpErrorRepresentation"][];
-  success: boolean;
+  errors?: Schemas["CdpErrorRepresentation"][];
+  success?: boolean;
 }
 export type ConnectionTestInputRepresentation = Schemas["ConnectionTestInputRepresentation"];
 export type ConnectorDetailsConfig = Schemas["ConnectorDetailsConfig"];
@@ -1505,21 +1183,11 @@ export type ContextFieldConfigurationRepresentation = {
   dmoFieldDeveloperName?: string;
   relationships?: Schemas["FieldRelationshipsPathRepresentation"][];
 }
-export type CrmConnectionFieldRepresentation = {
-  creationType: "Custom" | "Standard";
-  format?: string;
-  isCalculated: boolean;
-  isRequired: boolean;
-  label: string;
-  name: string;
-  originalType: string;
-  type: "Boolean" | "Currency" | "Date" | "DateTime" | "Email" | "Number" | "Percent" | "Phone" | "Text" | "Unsupported" | "Url";
-}
 export type CrmConnectionInputRepresentation = {
   organizationId: string;
 }
 export type CrmConnectionObjectRepresentation = {
-  name: string;
+  name?: string;
   creationType: "Custom" | "Standard";
   hasChangeEvent: boolean;
   label: string;
@@ -1535,8 +1203,8 @@ export type CrmConnectorDetailsConfig = {
   sourceObject?: string;
 }
 export type CrmConnectorDetailsRepresentation = {
-  category: "Engagement" | "Other" | "Profile";
-  name: string;
+  category?: "Engagement" | "Other" | "Profile";
+  name?: string;
   sourceObject?: string;
 }
 export type CuratedEntityInputRepresentation = Schemas["CuratedEntityInputRepresentation"];
@@ -1595,6 +1263,24 @@ export type DataCleanRoomAWSSourceConfigRepresentation = {
   supportedRegions?: string[];
 }
 export type DataCleanRoomAcceptInvitationInputRepresentation = Schemas["DataCleanRoomAcceptInvitationInputRepresentation"];
+export type DataCleanRoomAwsS3ConnectionAttributesRepresentation = {
+  connectorType?: "CleanroomAwsS3" | "CleanroomSnowflake";
+  roleArn?: string;
+  s3Url?: string;
+}
+export type DataCleanRoomAwsS3OutputDestinationConfigRepresentation = {
+  connectorType?: "CleanroomAwsS3" | "CleanroomSnowflake";
+  roleArn?: string;
+  s3Url?: string;
+}
+export type DataCleanRoomCollaborationCollectionForUseCaseTypeRepresentation = {
+  currentPageUrl?: string;
+  nextPageUrl?: string;
+  totalSize?: number;
+  collaborations?: Schemas["DataCleanRoomCollaborationForUseCaseTypeRepresentation"][];
+  limit?: number;
+  offset?: number;
+}
 export type DataCleanRoomCollaborationCollectionRepresentation = {
   currentPageUrl?: string;
   nextPageUrl?: string;
@@ -1602,6 +1288,23 @@ export type DataCleanRoomCollaborationCollectionRepresentation = {
   collaborations?: Schemas["DataCleanRoomCollaborationRepresentation"][];
   limit?: number;
   offset?: number;
+}
+export type DataCleanRoomCollaborationForUseCaseTypeRepresentation = {
+  createdBy?: Schemas["CdpUserRepresentation"];
+  createdDate?: string;
+  id?: string;
+  label?: string;
+  lastModifiedBy?: Schemas["CdpUserRepresentation"];
+  lastModifiedDate?: string;
+  name?: string;
+  namespace?: string;
+  url?: string;
+  dataSpace?: Schemas["DataSpaceRepresentation"];
+  description?: string;
+  members?: Schemas["DataCleanRoomMemberForUseCaseTypeRepresentation"][];
+  outputObjectToDevName?: { [key: string]: string };
+  status?: "Active" | "Disabled" | "Error" | "Inactive";
+  templateVersion?: Schemas["DataCleanRoomTemplateRepresentation"];
 }
 export type DataCleanRoomCollaborationInputRepresentation = {
   dataSpaceName?: string;
@@ -1626,12 +1329,26 @@ export type DataCleanRoomCollaborationRepresentation = {
   namespace?: string;
   url?: string;
   apiKey?: string;
-  dataSpaceName?: string;
+  dataSpace?: Schemas["DataSpaceRepresentation"];
   description?: string;
   members?: Schemas["DataCleanRoomMemberRepresentation"][];
-  status?: "Active" | "Error" | "Inactive";
+  status?: "Active" | "Disabled" | "Error" | "Inactive";
   templateVersion?: Schemas["DataCleanRoomTemplateRepresentation"];
 }
+export type DataCleanRoomCollaborationResultDataObjectCollectionRepresentation = Schemas["DataCleanRoomCollaborationResultDataObjectCollectionRepresentation"];
+export type DataCleanRoomCollaborationResultDataObjectRepresentation = {
+  createdBy?: Schemas["CdpUserRepresentation"];
+  createdDate?: string;
+  id?: string;
+  label?: string;
+  lastModifiedBy?: Schemas["CdpUserRepresentation"];
+  lastModifiedDate?: string;
+  name?: string;
+  namespace?: string;
+  url?: string;
+  status?: "Active" | "Error" | "Inactive" | "Processing";
+}
+export type DataCleanRoomConnectionAttributesRepresentation = Schemas["DataCleanRoomConnectionAttributesRepresentation"];
 export type DataCleanRoomDCSourceConfigInputRepresentation = {
   dataCloudOrgId?: string;
   domainUrl?: string;
@@ -1666,12 +1383,47 @@ export type DataCleanRoomDataSpecificationRepresentation = {
   namespace?: string;
   url?: string;
   dataMapping?: Schemas["UseCaseTemplateMappingRepresentation"];
-  dataSpaceName?: string;
+  dataSpace?: Schemas["DataSpaceRepresentation"];
   description?: string;
   memberType?: "Consumer" | "Provider";
   ownerOrgId?: string;
   status?: "Active" | "Error" | "Inactive" | "Processing";
   templateVersion?: Schemas["DataCleanRoomTemplateRepresentation"];
+}
+export type DataCleanRoomGenericResponseRepresentation = {
+  errors?: Schemas["CdpErrorRepresentation"][];
+  success?: boolean;
+}
+export type DataCleanRoomMatchBoostOutputBridgeTablePathAttributeRepresentation = Schemas["DataCleanRoomMatchBoostOutputBridgeTablePathAttributeRepresentation"];
+export type DataCleanRoomMatchBoostOutputBridgeTablePathRepresentation = Schemas["DataCleanRoomMatchBoostOutputBridgeTablePathRepresentation"];
+export type DataCleanRoomMatchBoostOutputBridgeTableRepresentation = Schemas["DataCleanRoomMatchBoostOutputBridgeTableRepresentation"];
+export type DataCleanRoomMatchBoostOutputObjectConfigRepresentation = Schemas["DataCleanRoomMatchBoostOutputObjectConfigRepresentation"];
+export type DataCleanRoomMatchBoostOutputObjectRepresentation = Schemas["DataCleanRoomMatchBoostOutputObjectRepresentation"];
+export type DataCleanRoomMatchBoostOutputRelatedTableRepresentation = Schemas["DataCleanRoomMatchBoostOutputRelatedTableRepresentation"];
+export type DataCleanRoomMatchBoostUsecaseConfigRepresentation = {
+  useCaseType?: "Activation" | "Custom" | "MatchBoost" | "Overlap";
+  outputObjects?: Schemas["DataCleanRoomMatchBoostOutputObjectRepresentation"];
+  supportedContactPoints?: string[];
+}
+export type DataCleanRoomMemberConfigRepresentation = Schemas["DataCleanRoomMemberConfigRepresentation"];
+export type DataCleanRoomMemberForUseCaseTypeRepresentation = {
+  createdBy?: Schemas["CdpUserRepresentation"];
+  createdDate?: string;
+  id?: string;
+  label?: string;
+  lastModifiedBy?: Schemas["CdpUserRepresentation"];
+  lastModifiedDate?: string;
+  name?: string;
+  namespace?: string;
+  url?: string;
+  collaborationEntity?: string;
+  memberId?: string;
+  memberOrgId?: string;
+  memberStatus?: "Active" | "Inactive" | "Mapping_Incomplete";
+  memberType?: "Consumer" | "Provider";
+  providerId?: string;
+  providerName?: string;
+  specificationId?: string;
 }
 export type DataCleanRoomMemberRepresentation = {
   createdBy?: Schemas["CdpUserRepresentation"];
@@ -1685,6 +1437,9 @@ export type DataCleanRoomMemberRepresentation = {
   url?: string;
   invitationId?: string;
   invitationStatus?: "Accept_Error" | "Accept_Initiated" | "Accepted" | "Pending" | "Received" | "Reject_Error" | "Reject_Initiated" | "Rejected" | "Send_Error" | "Sent";
+  memberConfigs?: Schemas["DataCleanRoomMemberConfigRepresentation"][];
+  memberDataCloudRegion?: string;
+  memberDomainUrl?: string;
   memberId?: string;
   memberOrgId?: string;
   memberStatus?: "Active" | "Inactive" | "Mapping_Incomplete";
@@ -1692,6 +1447,11 @@ export type DataCleanRoomMemberRepresentation = {
   providerId?: string;
   specificationId?: string;
 }
+export type DataCleanRoomMetadataConfigurationRepresentation = Schemas["DataCleanRoomMetadataConfigurationRepresentation"];
+export type DataCleanRoomMetadataMemberConfigRepresentation = Schemas["DataCleanRoomMetadataMemberConfigRepresentation"];
+export type DataCleanRoomMetadataOutputConfigRepresentation = Schemas["DataCleanRoomMetadataOutputConfigRepresentation"];
+export type DataCleanRoomOutputConfigurationRepresentation = Schemas["DataCleanRoomOutputConfigurationRepresentation"];
+export type DataCleanRoomOutputDestinationConfigRepresentation = Schemas["DataCleanRoomOutputDestinationConfigRepresentation"];
 export type DataCleanRoomProviderCollectionRepresentation = {
   currentPageUrl?: string;
   nextPageUrl?: string;
@@ -1709,6 +1469,8 @@ export type DataCleanRoomProviderInputRepresentation = {
   domainUrl?: string;
   logoUrl?: string;
   offCoreTenantId?: string;
+  packageType?: "DataCollaboration" | "IdEnrichment";
+  providerDataSource?: "Snowflake";
   providerName?: string;
   source?: "AWS" | "DATA_CLOUD";
   sourceConfiguration?: Schemas["DataCleanRoomProviderSourceConfigInputRepresentation"];
@@ -1733,6 +1495,8 @@ export type DataCleanRoomProviderRepresentation = {
   domainUrl?: string;
   logoUrl?: string;
   offCoreTenantId?: string;
+  packageType?: "DataCollaboration" | "IdEnrichment";
+  providerDataSource?: "Snowflake";
   providerName?: string;
   source?: "AWS" | "DATA_CLOUD";
   sourceConfiguration?: Schemas["DataCleanRoomProviderSourceConfigRepresentation"];
@@ -1773,6 +1537,22 @@ export type DataCleanRoomQueryJobRepresentation = {
   triggeredDate?: string;
 }
 export type DataCleanRoomRejectInvitationInputRepresentation = Schemas["DataCleanRoomRejectInvitationInputRepresentation"];
+export type DataCleanRoomSnowflakeConnectionAttributesRepresentation = {
+  connectorType?: "CleanroomAwsS3" | "CleanroomSnowflake";
+  accountUrl?: string;
+  databaseName?: string;
+  schemaName?: string;
+  serviceUser?: string;
+  warehouseName?: string;
+}
+export type DataCleanRoomSnowflakeOutputDestinationConfigRepresentation = {
+  connectorType?: "CleanroomAwsS3" | "CleanroomSnowflake";
+  accountUrl?: string;
+  databaseName?: string;
+  schemaName?: string;
+  serviceUser?: string;
+  warehouseName?: string;
+}
 export type DataCleanRoomSpecificationCollectionRepresentation = {
   currentPageUrl?: string;
   nextPageUrl?: string;
@@ -1801,6 +1581,7 @@ export type DataCleanRoomTemplateRepresentation = {
   url?: string;
   configuration?: Schemas["UseCaseTemplateConfigRepresentation"];
   description?: string;
+  metadataConfiguration?: Schemas["DataCleanRoomMetadataConfigurationRepresentation"];
   providerId?: string;
   queryTemplate?: { [key: string]: Record<string, never> };
   templateType?: "Custom" | "Salesforce";
@@ -1820,6 +1601,8 @@ export type DataCleanRoomUseCaseTypeRepresentation = {
   url?: string;
   useCaseTypes?: string[];
 }
+export type DataCleanRoomUsecaseConfigInputRepresentation = Schemas["DataCleanRoomUsecaseConfigInputRepresentation"];
+export type DataCleanRoomUsecaseConfigRepresentation = Schemas["DataCleanRoomUsecaseConfigRepresentation"];
 /** @override Connector-type casing on the wire is NOT what the spec lists. The spec types `connectorType` as the TitleCase form (e.g. "Snowflake", "BigQuery") but the live `/ssot/connections` endpoint rejects everything except UPPERCASE and returns `ILLEGAL_QUERY_PARAMETER_VALUE: ConnectorType [BigQuery] is not supported`. Use "SNOWFLAKE", "BIGQUERY", "AMAZONS3", etc. on every wire call (POST body, ?connectorType= query string). Probed against awt 2026-06-11. Per-connector credential/parameter shapes are NOT documented in the spec; the connector descriptor at GET `/ssot/connector-descriptors/{TYPE}` is the authoritative source. BigQuery specifically needs: credentials = [{paramName: "authenticationOption", value: "KeyPair"}, {paramName: "serviceAccountEmail", value: <SA email>}, {paramName: "privateKey", value: <full SA JSON key file content>}]; parameters = [{paramName: "projectId", value: <GCP project>}]. Sending just the PEM body (or just the bare PEM) for `privateKey` results in `Connection wasn't successful: [BIGQUERY] [native] Failed to connect`; the connector parses the JSON internally to extract project_id + private_key + client_email. */
 export type DataConnectionInputRepresentation = {
   credentials: Schemas["DataConnectionParameterInputRepresentation"][];
@@ -1848,8 +1631,8 @@ export type DataConnectorDetailsConfig = {
   name?: string;
 }
 export type DataConnectorDetailsRepresentation = {
-  category: "Engagement" | "Other" | "Profile";
-  name: string;
+  category?: "Engagement" | "Other" | "Profile";
+  name?: string;
 }
 export type DataConnectorInputRepresentation = Schemas["DataConnectorInputRepresentation"];
 export type DataConnectorRepresentation = {
@@ -1868,10 +1651,12 @@ export type DataCustomCodeInputRep = {
   templateDevName?: string;
 }
 export type DataGraphFieldRepresentation = Schemas["DataGraphFieldRepresentation"];
+export type DataGraphFullRefreshConfigInputRepresentation = Schemas["DataGraphFullRefreshConfigInputRepresentation"];
 export type DataGraphIdsDmoFieldRepresentation = Schemas["DataGraphIdsDmoFieldRepresentation"];
 export type DataGraphIdsDmoRepresentation = Schemas["DataGraphIdsDmoRepresentation"];
 export type DataGraphObjectDataRepresentation = Schemas["DataGraphObjectDataRepresentation"];
 export type DataGraphRelationshipRepresentation = Schemas["DataGraphRelationshipRepresentation"];
+export type DataGraphScheduleInputRepresentation = Schemas["DataGraphScheduleInputRepresentation"];
 export type DataGraphValuesDmoFieldRepresentation = Schemas["DataGraphValuesDmoFieldRepresentation"];
 export type DataGraphValuesDmoRepresentation = Schemas["DataGraphValuesDmoRepresentation"];
 export type DataKitAsyncRepresentation = Schemas["DataKitAsyncRepresentation"];
@@ -2202,8 +1987,8 @@ export type DataSpaceRepresentation = {
   filter?: Schemas["DataSpaceFilterRepresentation"];
 }
 export type DataStreamActionResponseRepresentation = {
-  errors: Schemas["CdpErrorRepresentation"][];
-  success: boolean;
+  errors?: Schemas["CdpErrorRepresentation"][];
+  success?: boolean;
   jobId?: string;
 }
 export type DataStreamCollectionRepresentation = {
@@ -2294,6 +2079,7 @@ export type DataTransformCollectionRepresentation = {
   nextPageUrl?: string;
   totalSize?: number;
   dataTransforms: Schemas["DataTransformRepresentation"][];
+  errors?: Schemas["FailedResourceCollectionRepresentation"][];
 }
 export type DataTransformDataObjectOverride = Schemas["DataTransformDataObjectOverride"];
 export type DataTransformDefinitionInputRepresentation = Schemas["DataTransformDefinitionInputRepresentation"];
@@ -2313,9 +2099,12 @@ export type DataTransformRepresentation = {
   namespace?: string;
   url?: string;
   actionUrls?: Schemas["BatchActionRepresentation"];
+  creationType?: "Custom" | "System";
   dataSpaceName?: string;
   definition?: unknown;
+  definitions?: Schemas["DataTransformDefinitionRepresentation"][];
   description?: string;
+  fullRunFrequency?: "Daily" | "Monthly" | "Weekly";
   lastRunDate?: string;
   lastRunErrorCode?: Schemas["CdpErrorRepresentation"];
   lastRunStatus?: "Canceled" | "Failure" | "InProgress" | "None" | "PartialFailure" | "PartiallyCanceled" | "Pending" | "Success";
@@ -2333,60 +2122,25 @@ export type DataTransformRunHistoryCollectionRepresentation = {
 }
 export type DataTransformValidationRepresentation = Schemas["DataTransformValidationRepresentation"];
 export type DatakitComponentDetails = Schemas["DatakitComponentDetails"];
-export type DateComparisonInputRepresentation = {
-  filtersConfig: Schemas["TypeAndFilterInputRepresentationConfig"][];
-  operator: string;
-  joinPath?: Schemas["LabeledSubjectsConfigInput"][];
-  path?: Schemas["LabeledSubjectsConfigInput"][];
-  selfReference?: boolean;
-  subject?: Schemas["SubjectInputRepresentation"];
-  filterConfig?: Schemas["FilterValuesInputRepresentation"][];
+export type DcSqlDataTransformDefinitionInputRepresentation = {
+  outputDataObjects?: Schemas["DataObjectInputRepresentation"][];
+  type: "DbtHidden" | "DcSql" | "Sql" | "SqlHidden" | "Stl" | "StlHidden";
+  version: string;
+  manifest?: Schemas["DcSqlDataTransformManifestInputRepresentation"];
 }
-export type DateComparisonRepresentation = {
-  createdBy?: Schemas["CdpUserRepresentation"];
-  createdDate?: string;
-  id?: string;
+export type DcSqlDataTransformDefinitionRepresentation = {
   label?: string;
-  lastModifiedBy?: Schemas["CdpUserRepresentation"];
-  lastModifiedDate?: string;
   name?: string;
-  namespace?: string;
-  url?: string;
-  filters?: Schemas["TypeAndFilterRepresentation"][];
-  operator?: string;
-  joinPath?: Schemas["LabeledSubjectListConfigRepresentation"];
-  path?: Schemas["LabeledSubjectListConfigRepresentation"];
-  selfReference?: boolean;
-  subject?: Schemas["SubjectRepresentation"];
-  values?: string[];
+  outputDataObjects?: Schemas["DataObjectRepresentation"][];
+  type?: "DbtHidden" | "DcSql" | "Sql" | "SqlHidden" | "Stl" | "StlHidden";
+  version?: string;
+  manifest?: Schemas["DcSqlDataTransformManifestRepresentation"];
 }
-export type DateOnlyComparisonInputRepresentation = {
-  filtersConfig: Schemas["TypeAndFilterInputRepresentationConfig"][];
-  operator: string;
-  joinPath?: Schemas["LabeledSubjectsConfigInput"][];
-  path?: Schemas["LabeledSubjectsConfigInput"][];
-  selfReference?: boolean;
-  subject?: Schemas["SubjectInputRepresentation"];
-  filterConfig?: Schemas["FilterValuesInputRepresentation"][];
-}
-export type DateOnlyComparisonRepresentation = {
-  createdBy?: Schemas["CdpUserRepresentation"];
-  createdDate?: string;
-  id?: string;
-  label?: string;
-  lastModifiedBy?: Schemas["CdpUserRepresentation"];
-  lastModifiedDate?: string;
-  name?: string;
-  namespace?: string;
-  url?: string;
-  filters?: Schemas["TypeAndFilterRepresentation"][];
-  operator?: string;
-  joinPath?: Schemas["LabeledSubjectListConfigRepresentation"];
-  path?: Schemas["LabeledSubjectListConfigRepresentation"];
-  selfReference?: boolean;
-  subject?: Schemas["SubjectRepresentation"];
-  values?: string[];
-}
+export type DcSqlDataTransformDependsOnRepresentation = Schemas["DcSqlDataTransformDependsOnRepresentation"];
+export type DcSqlDataTransformMacroArgumentRepresentation = Schemas["DcSqlDataTransformMacroArgumentRepresentation"];
+export type DcSqlDataTransformManifestInputRepresentation = Schemas["DcSqlDataTransformManifestInputRepresentation"];
+export type DcSqlDataTransformManifestRepresentation = Schemas["DcSqlDataTransformManifestRepresentation"];
+export type DcSqlDataTransformNodeConfigurationRepresentation = Schemas["DcSqlDataTransformNodeConfigurationRepresentation"];
 export type DecoratorInputRepresentation = Schemas["DecoratorInputRepresentation"];
 export type DecoratorRepresentation = Schemas["DecoratorRepresentation"];
 export type DmoFilterLimitInputRepresentation = {
@@ -2464,121 +2218,49 @@ export type EgressPropertiesRepresentation = {
   outputMaxRecordsPerFile?: number;
   predeterminedFilename?: "Activation" | "Segment" | "SegmentActivation";
 }
-export type EntityScopedGroupInputRepresentation = {
-  filtersConfig: Schemas["TypeAndFilterInputRepresentationConfig"][];
-  operator: string;
-  attributeSource?: string;
-  condition?: Schemas["BaseComparisonInputRepresentation"][];
-  objectApiName?: string;
-  type?: string;
-}
-export type EntityScopedGroupRepresentation = {
-  createdBy?: Schemas["CdpUserRepresentation"];
-  createdDate?: string;
-  id?: string;
-  label?: string;
-  lastModifiedBy?: Schemas["CdpUserRepresentation"];
-  lastModifiedDate?: string;
-  name?: string;
-  namespace?: string;
-  url?: string;
-  filters?: Schemas["TypeAndFilterRepresentation"][];
-  operator?: string;
-  condition?: Schemas["BaseComparisonRepresentation"];
-  objectApiName?: string;
-  type?: string;
-}
-export type ExactlyRelativeDateComparisonInputRepresentation = {
-  filtersConfig: Schemas["TypeAndFilterInputRepresentationConfig"][];
-  operator: string;
-  joinPath?: Schemas["LabeledSubjectsConfigInput"][];
-  path?: Schemas["LabeledSubjectsConfigInput"][];
-  selfReference?: boolean;
-  subject?: Schemas["SubjectInputRepresentation"];
-  dateUnits?: "Days" | "Months" | "Years";
-  value?: number;
-}
-export type ExactlyRelativeDateComparisonRepresentation = {
-  createdBy?: Schemas["CdpUserRepresentation"];
-  createdDate?: string;
-  id?: string;
-  label?: string;
-  lastModifiedBy?: Schemas["CdpUserRepresentation"];
-  lastModifiedDate?: string;
-  name?: string;
-  namespace?: string;
-  url?: string;
-  filters?: Schemas["TypeAndFilterRepresentation"][];
-  operator?: string;
-  joinPath?: Schemas["LabeledSubjectListConfigRepresentation"];
-  path?: Schemas["LabeledSubjectListConfigRepresentation"];
-  selfReference?: boolean;
-  subject?: Schemas["SubjectRepresentation"];
-  dateUnits?: "Days" | "Months" | "Years";
-  value?: number;
-}
 export type ExistingDataLakeObjectInputRepresentation = Schemas["ExistingDataLakeObjectInputRepresentation"];
-export type ExternalPlatformConnectorInputRepresentation = {
-  name?: string;
-  outputFormat?: string;
-  fieldConfig?: Schemas["ExternalPlatformFieldConfigInputRepresentation"][];
-  keyPrefixName?: string;
+export type ExtensionFunctionNodeInputRepresentation = {
+  parameters: Schemas["ExtensionFunctionParametersInputRepresentation"];
 }
-export type ExternalPlatformConnectorRepresentation = {
-  createdBy?: Schemas["CdpUserRepresentation"];
-  createdDate?: string;
-  id?: string;
-  label?: string;
-  lastModifiedBy?: Schemas["CdpUserRepresentation"];
-  lastModifiedDate?: string;
-  name?: string;
-  namespace?: string;
-  url?: string;
-  outputFormat?: string;
-  fieldConfig?: Schemas["ExternalPlatformFieldConfigRepresentation"];
-  keyPrefixName?: string;
+export type ExtensionFunctionNodeRepresentation = {
+  parameters?: Schemas["ExtensionFunctionParametersRepresentation"];
 }
-export type ExternalPlatformFieldConfigInputRepresentation = Schemas["ExternalPlatformFieldConfigInputRepresentation"];
-export type ExternalPlatformFieldConfigRepresentation = {
-  createdBy?: Schemas["CdpUserRepresentation"];
-  createdDate?: string;
-  id?: string;
-  label?: string;
-  lastModifiedBy?: Schemas["CdpUserRepresentation"];
-  lastModifiedDate?: string;
-  name?: string;
-  namespace?: string;
-  url?: string;
-  outputFormat?: string;
-  fields?: Schemas["ExternalPlatformFieldRepresentation"][];
+export type ExtensionFunctionParametersInputRepresentation = Schemas["ExtensionFunctionParametersInputRepresentation"];
+export type ExtensionFunctionParametersRepresentation = Schemas["ExtensionFunctionParametersRepresentation"];
+export type ExtensionNodeInputRepresentation = {
+  parameters: Schemas["ExtensionParametersInputRepresentation"];
 }
-export type ExternalPlatformFieldInputRepresentation = Schemas["ExternalPlatformFieldInputRepresentation"];
-export type ExternalPlatformFieldRepresentation = {
-  createdBy?: Schemas["CdpUserRepresentation"];
-  createdDate?: string;
-  id?: string;
-  label?: string;
-  lastModifiedBy?: Schemas["CdpUserRepresentation"];
-  lastModifiedDate?: string;
-  name?: string;
-  namespace?: string;
-  url?: string;
-  outputFormat?: string;
-  value?: string;
+export type ExtensionNodeRepresentation = {
+  parameters?: Schemas["ExtensionParametersRepresentation"];
 }
+export type ExtensionParametersInputRepresentation = Schemas["ExtensionParametersInputRepresentation"];
+export type ExtensionParametersRepresentation = Schemas["ExtensionParametersRepresentation"];
+export type ExtractFieldRepresentation = Schemas["ExtractFieldRepresentation"];
 export type ExtractGrainFieldInputRepresentation = Schemas["ExtractGrainFieldInputRepresentation"];
 export type ExtractGrainNodeInputRepresentation = {
-  action: "Aggregate" | "Append_V2" | "Bucket" | "ComputeRelative" | "DateFormatConversion" | "Extension" | "Extract" | "Filter" | "Formula" | "Join" | "Load" | "OutputD360" | "Recommendation" | "Save" | "Schema" | "Split" | "SqlFilter" | "TypeCast" | "Update";
-  schema: Record<string, never>;
-  sources: string[];
-  parameters?: Schemas["ExtractGrainParametersInputRepresentation"];
+  parameters: Schemas["ExtractGrainParametersInputRepresentation"];
 }
 export type ExtractGrainParameterInputRepresentation = Schemas["ExtractGrainParameterInputRepresentation"];
 export type ExtractGrainParametersInputRepresentation = Schemas["ExtractGrainParametersInputRepresentation"];
+export type ExtractNodeRepresentation = {
+  parameters?: Schemas["ExtractParametersRepresentation"];
+}
+export type ExtractParameterRepresentation = Schemas["ExtractParameterRepresentation"];
+export type ExtractParametersRepresentation = Schemas["ExtractParametersRepresentation"];
+export type ExtractTableNodeInputRepresentation = {
+  parameters: Schemas["ExtractTableParametersInputRepresentation"];
+}
+export type ExtractTableNodeRepresentation = {
+  parameters?: Schemas["ExtractTableParametersRepresentation"];
+}
+export type ExtractTableParametersInputRepresentation = Schemas["ExtractTableParametersInputRepresentation"];
+export type ExtractTableParametersRepresentation = Schemas["ExtractTableParametersRepresentation"];
+export type FailedResourceCollectionRepresentation = Schemas["FailedResourceCollectionRepresentation"];
 export type FieldLevelChunkingConfigurationRepresentation = Schemas["FieldLevelChunkingConfigurationRepresentation"];
 export type FieldLevelConfigurationInputRepresentation = Schemas["FieldLevelConfigurationInputRepresentation"];
 export type FieldLevelConfigurationRepresentation = Schemas["FieldLevelConfigurationRepresentation"];
 export type FieldRelationshipsPathRepresentation = Schemas["FieldRelationshipsPathRepresentation"];
+export type FieldRepresentation = Schemas["FieldRepresentation"];
 export type FieldSrcTrgtRelationshipCollectionInputRepresentation = Schemas["FieldSrcTrgtRelationshipCollectionInputRepresentation"];
 export type FieldSrcTrgtRelationshipCollectionRepresentation = {
   currentPageUrl?: string;
@@ -2588,60 +2270,56 @@ export type FieldSrcTrgtRelationshipCollectionRepresentation = {
 }
 export type FieldSrcTrgtRelationshipInputRepresentation = Schemas["FieldSrcTrgtRelationshipInputRepresentation"];
 export type FieldSrcTrgtRelationshipRepresentation = Schemas["FieldSrcTrgtRelationshipRepresentation"];
-export type FileLevelConfiguration = Schemas["FileLevelConfiguration"];
 export type FilterDatSpaceInputRepresentation = Schemas["FilterDatSpaceInputRepresentation"];
 export type FilterExpressionDatSpaceInputRepresentation = Schemas["FilterExpressionDatSpaceInputRepresentation"];
 export type FilterExpressionInputRepresentation = Schemas["FilterExpressionInputRepresentation"];
 export type FilterExpressionRepresentation = Schemas["FilterExpressionRepresentation"];
 export type FilterNodeInputRepresentation = {
-  action: "Aggregate" | "Append_V2" | "Bucket" | "ComputeRelative" | "DateFormatConversion" | "Extension" | "Extract" | "Filter" | "Formula" | "Join" | "Load" | "OutputD360" | "Recommendation" | "Save" | "Schema" | "Split" | "SqlFilter" | "TypeCast" | "Update";
-  schema: Record<string, never>;
-  sources: string[];
-  parameters?: Schemas["FilterParametersInputRepresentation"];
+  parameters: Schemas["FilterParametersInputRepresentation"];
+}
+export type FilterNodeRepresentation = {
+  parameters?: Schemas["FilterParametersRepresentation"];
 }
 export type FilterParametersInputRepresentation = Schemas["FilterParametersInputRepresentation"];
 export type FilterParametersRepresentation = Schemas["FilterParametersRepresentation"];
 export type FilterValuesInputRepresentation = Schemas["FilterValuesInputRepresentation"];
 export type FilterValuesRepresentation = Schemas["FilterValuesRepresentation"];
 export type FlattenFieldInputRepresentation = Schemas["FlattenFieldInputRepresentation"];
+export type FlattenFieldRepresentation = Schemas["FlattenFieldRepresentation"];
+export type FlattenJsonNodeInputRepresentation = {
+  parameters: Schemas["FlattenJsonParametersInputRepresentation"];
+}
+export type FlattenJsonNodeRepresentation = {
+  parameters?: Schemas["FlattenJsonParametersRepresentation"];
+}
+export type FlattenJsonParametersInputRepresentation = Schemas["FlattenJsonParametersInputRepresentation"];
+export type FlattenJsonParametersRepresentation = Schemas["FlattenJsonParametersRepresentation"];
 export type FlattenNodeInputRepresentation = {
-  action: "Aggregate" | "Append_V2" | "Bucket" | "ComputeRelative" | "DateFormatConversion" | "Extension" | "Extract" | "Filter" | "Formula" | "Join" | "Load" | "OutputD360" | "Recommendation" | "Save" | "Schema" | "Split" | "SqlFilter" | "TypeCast" | "Update";
-  schema: Record<string, never>;
-  sources: string[];
-  parameters?: Schemas["FlattenParametersInputRepresentation"];
+  parameters: Schemas["FlattenParametersInputRepresentation"];
+}
+export type FlattenNodeRepresentation = {
+  parameters?: Schemas["FlattenParametersRepresentation"];
 }
 export type FlattenParametersInputRepresentation = Schemas["FlattenParametersInputRepresentation"];
+export type FlattenParametersRepresentation = Schemas["FlattenParametersRepresentation"];
 export type FormatDateNodeInputRepresentation = {
-  action: "Aggregate" | "Append_V2" | "Bucket" | "ComputeRelative" | "DateFormatConversion" | "Extension" | "Extract" | "Filter" | "Formula" | "Join" | "Load" | "OutputD360" | "Recommendation" | "Save" | "Schema" | "Split" | "SqlFilter" | "TypeCast" | "Update";
-  schema: Record<string, never>;
-  sources: string[];
-  parameters?: Schemas["FormatDateParametersInputRepresentation"];
+  parameters: Schemas["FormatDateParametersInputRepresentation"];
+}
+export type FormatDateNodeRepresentation = {
+  parameters?: Schemas["FormatDateParametersRepresentation"];
 }
 export type FormatDateParametersInputRepresentation = Schemas["FormatDateParametersInputRepresentation"];
+export type FormatDateParametersRepresentation = Schemas["FormatDateParametersRepresentation"];
 export type FormatDatePatternInputRepresentation = Schemas["FormatDatePatternInputRepresentation"];
+export type FormatDatePatternRepresentation = Schemas["FormatDatePatternRepresentation"];
 export type FormulaNodeInputRepresentation = {
-  action: "Aggregate" | "Append_V2" | "Bucket" | "ComputeRelative" | "DateFormatConversion" | "Extension" | "Extract" | "Filter" | "Formula" | "Join" | "Load" | "OutputD360" | "Recommendation" | "Save" | "Schema" | "Split" | "SqlFilter" | "TypeCast" | "Update";
-  schema: Record<string, never>;
-  sources: string[];
-  parameters?: Schemas["FormulaParametersInputRepresentation"];
+  parameters: Schemas["FormulaParametersInputRepresentation"];
+}
+export type FormulaNodeRepresentation = {
+  parameters?: Schemas["FormulaParametersRepresentation"];
 }
 export type FormulaParametersInputRepresentation = Schemas["FormulaParametersInputRepresentation"];
-export type GcsConnectorInputRepresentation = {
-  name?: string;
-  outputFormat?: string;
-}
-export type GcsConnectorRepresentation = {
-  createdBy?: Schemas["CdpUserRepresentation"];
-  createdDate?: string;
-  id?: string;
-  label?: string;
-  lastModifiedBy?: Schemas["CdpUserRepresentation"];
-  lastModifiedDate?: string;
-  name?: string;
-  namespace?: string;
-  url?: string;
-  outputFormat?: string;
-}
+export type FormulaParametersRepresentation = Schemas["FormulaParametersRepresentation"];
 export type IdpConfigExtractedDloFieldInputRepresentation = Schemas["IdpConfigExtractedDloFieldInputRepresentation"];
 export type IdpConfigExtractedDloFieldRepresentation = Schemas["IdpConfigExtractedDloFieldRepresentation"];
 export type IdpConfigExtractedDloInputRepresentation = Schemas["IdpConfigExtractedDloInputRepresentation"];
@@ -2722,20 +2400,20 @@ export type IdpConfigurationsCollectionRepresentation = {
   configurations: Schemas["IdpConfigurationRepresentation"][];
 }
 export type IdpContentTypeRepresentation = Schemas["IdpContentTypeRepresentation"];
-export type IdpDocumentCollectionRepresentation = Schemas["IdpDocumentCollectionRepresentation"];
-export type IdpDocumentInputRepresentation = Schemas["IdpDocumentInputRepresentation"];
-export type IdpDocumentRepresentation = Schemas["IdpDocumentRepresentation"];
 export type IdpExtractDataInputRepresentation = Schemas["IdpExtractDataInputRepresentation"];
 export type IdpExtractedDataRepresentation = Schemas["IdpExtractedDataRepresentation"];
 export type IdpExtractedFileDataRepresenation = Schemas["IdpExtractedFileDataRepresenation"];
+export type IdpFileAdditionalParamsInputRepresentation = Schemas["IdpFileAdditionalParamsInputRepresentation"];
 export type IdpFileConfigInputRepresentation = Schemas["IdpFileConfigInputRepresentation"];
 export type IdpFileConfigRepresentation = Schemas["IdpFileConfigRepresentation"];
-export type IdpFileProcessingConfigRepresentation = Schemas["IdpFileProcessingConfigRepresentation"];
 export type IdpGenerateSchemaFileInputRepresentation = Schemas["IdpGenerateSchemaFileInputRepresentation"];
 export type IdpGenerateSchemaInputRepresentation = Schemas["IdpGenerateSchemaInputRepresentation"];
 export type IdpGeneratedSchemaRepresentation = Schemas["IdpGeneratedSchemaRepresentation"];
 export type IdpGlobalConfigRepresentation = Schemas["IdpGlobalConfigRepresentation"];
-export type IdpProcessingStatusRepresentation = Schemas["IdpProcessingStatusRepresentation"];
+export type IdpSchemaDetectionInnerRepresentation = Schemas["IdpSchemaDetectionInnerRepresentation"];
+export type IdpSchemaDetectionInputRepresentation = Schemas["IdpSchemaDetectionInputRepresentation"];
+export type IdpSchemaDetectionPagesRepresentation = Schemas["IdpSchemaDetectionPagesRepresentation"];
+export type IdpSchemaDetectionRepresentation = Schemas["IdpSchemaDetectionRepresentation"];
 export type IdpSupportedModelRepresentation = Schemas["IdpSupportedModelRepresentation"];
 export type IndexConfigInputRepresentation = Schemas["IndexConfigInputRepresentation"];
 export type IndexConfigurationRepresentation = Schemas["IndexConfigurationRepresentation"];
@@ -2769,111 +2447,57 @@ export type IngestApiConnectorDetailsConfig = {
   events?: string[];
   name?: string;
 }
-export type IngestApiConnectorPatchDetailsConfig = {
-  mappings?: Schemas["DataStreamFieldMappingInputRepresentation"][];
-  syncSchema?: boolean;
-}
 export type IngestionApiConnectorDetailsRepresentation = {
-  category: "Engagement" | "Other" | "Profile";
-  name: string;
+  category?: "Engagement" | "Other" | "Profile";
+  name?: string;
   events?: string[];
 }
 export type JoinNodeInputRepresentation = {
-  action: "Aggregate" | "Append_V2" | "Bucket" | "ComputeRelative" | "DateFormatConversion" | "Extension" | "Extract" | "Filter" | "Formula" | "Join" | "Load" | "OutputD360" | "Recommendation" | "Save" | "Schema" | "Split" | "SqlFilter" | "TypeCast" | "Update";
-  schema: Record<string, never>;
-  sources: string[];
-  parameters?: Schemas["JoinParametersInputRepresentation"];
+  parameters: Schemas["JoinParametersInputRepresentation"];
+}
+export type JoinNodeRepresentation = {
+  parameters?: Schemas["JoinParametersRepresentation"];
 }
 export type JoinParametersInputRepresentation = Schemas["JoinParametersInputRepresentation"];
-export type LabeledSubjectConfigRepresentation = {
-  createdBy?: Schemas["CdpUserRepresentation"];
-  createdDate?: string;
-  id?: string;
-  label?: string;
-  lastModifiedBy?: Schemas["CdpUserRepresentation"];
-  lastModifiedDate?: string;
-  name?: string;
-  namespace?: string;
-  url?: string;
-  labeledSubjects?: Schemas["LabeledSubjectRepresentation"][];
+export type JoinParametersRepresentation = Schemas["JoinParametersRepresentation"];
+export type JsonArrayInputRepresentation = {
+  type?: "Array" | "Boolean" | "Integer" | "Null" | "Number" | "Object" | "String";
+  items?: Schemas["JsonSchemaInputRepresentation"];
 }
-export type LabeledSubjectInputRepresentation = {
-  fieldName: string;
-  objectName: string;
-  fieldLabel?: string;
-  objectLabel?: string;
+export type JsonBooleanInputRepresentation = {
+  type?: "Array" | "Boolean" | "Integer" | "Null" | "Number" | "Object" | "String";
 }
-export type LabeledSubjectListConfigRepresentation = {
-  createdBy?: Schemas["CdpUserRepresentation"];
-  createdDate?: string;
-  id?: string;
-  label?: string;
-  lastModifiedBy?: Schemas["CdpUserRepresentation"];
-  lastModifiedDate?: string;
-  name?: string;
-  namespace?: string;
-  url?: string;
-  subjects?: Schemas["LabeledSubjectConfigRepresentation"][];
+export type JsonIntegerInputRepresentation = {
+  type?: "Array" | "Boolean" | "Integer" | "Null" | "Number" | "Object" | "String";
 }
-export type LabeledSubjectRepresentation = {
-  createdBy?: Schemas["CdpUserRepresentation"];
-  createdDate?: string;
-  id?: string;
-  label?: string;
-  lastModifiedBy?: Schemas["CdpUserRepresentation"];
-  lastModifiedDate?: string;
-  name?: string;
-  namespace?: string;
-  url?: string;
-  fieldName?: string;
-  objectName?: string;
-  fieldLabel?: string;
-  objectLabel?: string;
+export type JsonNullInputRepresentation = {
+  type?: "Array" | "Boolean" | "Integer" | "Null" | "Number" | "Object" | "String";
 }
-export type LabeledSubjectsConfigInput = Schemas["LabeledSubjectsConfigInput"];
-export type LoadDataLakeObjectInputRepresentation = {
-  label: string;
-  type: "DataLakeObject" | "DataModelObject";
-  name?: string;
+export type JsonNumberInputRepresentation = {
+  type?: "Array" | "Boolean" | "Integer" | "Null" | "Number" | "Object" | "String";
 }
-export type LoadDataModelObjectInputRepresentation = {
-  label: string;
-  type: "DataLakeObject" | "DataModelObject";
-  name?: string;
+export type JsonObjectInputRepresentation = {
+  type?: "Array" | "Boolean" | "Integer" | "Null" | "Number" | "Object" | "String";
+  properties?: { [key: string]: Record<string, never> };
+  required?: string[];
+}
+export type JsonSchemaDetailsInputRepresentation = Schemas["JsonSchemaDetailsInputRepresentation"];
+export type JsonSchemaDetailsRepresentation = Schemas["JsonSchemaDetailsRepresentation"];
+export type JsonSchemaInputRepresentation = Schemas["JsonSchemaInputRepresentation"];
+export type JsonSchemaRepresentation = Schemas["JsonSchemaRepresentation"];
+export type JsonStringInputRepresentation = {
+  type?: "Array" | "Boolean" | "Integer" | "Null" | "Number" | "Object" | "String";
 }
 export type LoadDatasetInputRepresentation = Schemas["LoadDatasetInputRepresentation"];
 export type LoadDatasetRepresentation = Schemas["LoadDatasetRepresentation"];
 export type LoadNodeInputRepresentation = {
-  action: "Aggregate" | "Append_V2" | "Bucket" | "ComputeRelative" | "DateFormatConversion" | "Extension" | "Extract" | "Filter" | "Formula" | "Join" | "Load" | "OutputD360" | "Recommendation" | "Save" | "Schema" | "Split" | "SqlFilter" | "TypeCast" | "Update";
-  schema: Record<string, never>;
-  sources: string[];
-  parameters?: Schemas["LoadParametersInputRepresentation"];
+  parameters: Schemas["LoadParametersInputRepresentation"];
 }
 export type LoadNodeRepresentation = {
-  action: "Aggregate" | "Append_V2" | "Bucket" | "ComputeRelative" | "DateFormatConversion" | "Extension" | "Extract" | "Filter" | "Formula" | "Join" | "Load" | "OutputD360" | "Recommendation" | "Save" | "Schema" | "Split" | "SqlFilter" | "TypeCast" | "Update";
-  schema: Schemas["SchemaParametersRepresentation"];
-  sources: string[];
   parameters?: Schemas["LoadParametersRepresentation"];
 }
 export type LoadParametersInputRepresentation = Schemas["LoadParametersInputRepresentation"];
 export type LoadParametersRepresentation = Schemas["LoadParametersRepresentation"];
-export type LogicalComparisonInputRepresentation = {
-  filtersConfig: Schemas["TypeAndFilterInputRepresentationConfig"][];
-  operator: string;
-}
-export type LogicalComparisonRepresentation = {
-  createdBy?: Schemas["CdpUserRepresentation"];
-  createdDate?: string;
-  id?: string;
-  label?: string;
-  lastModifiedBy?: Schemas["CdpUserRepresentation"];
-  lastModifiedDate?: string;
-  name?: string;
-  namespace?: string;
-  url?: string;
-  filters?: Schemas["TypeAndFilterRepresentation"][];
-  operator?: string;
-}
 export type MarketingCloudConnectionBusinessUnitRepresentation = Schemas["MarketingCloudConnectionBusinessUnitRepresentation"];
 export type MarketingCloudConnectionInputRepresentation = Schemas["MarketingCloudConnectionInputRepresentation"];
 export type MarketingCloudConnectionPatchInputRepresentation = {
@@ -2892,27 +2516,13 @@ export type MarketingCloudConnectionRepresentation = {
   eid?: string;
   ingestionBusinessUnits?: Schemas["MarketingCloudConnectionBusinessUnitRepresentation"][];
 }
-export type MarketingCloudConnectorInputRepresentation = {
-  name?: string;
-  outputFormat?: string;
-  businessUnitConfig?: Schemas["BusinessUnitConfigInputRepresentation"][];
-  targetSubType?: string;
-}
-export type MarketingCloudConnectorRepresentation = {
-  createdBy?: Schemas["CdpUserRepresentation"];
-  createdDate?: string;
-  id?: string;
-  label?: string;
-  lastModifiedBy?: Schemas["CdpUserRepresentation"];
-  lastModifiedDate?: string;
-  name?: string;
-  namespace?: string;
-  url?: string;
-  outputFormat?: string;
-  businessUnitConfig?: Schemas["BusinessUnitConfigRepresentation"][];
-  enterpriseId?: number;
-  enterpriseName?: string;
-  targetSubType?: string;
+export type MatchBoostOutputBridgeTableInputRepresentation = Schemas["MatchBoostOutputBridgeTableInputRepresentation"];
+export type MatchBoostOutputObjectConfigRepresentation = Schemas["MatchBoostOutputObjectConfigRepresentation"];
+export type MatchBoostOutputObjectInputRepresentation = Schemas["MatchBoostOutputObjectInputRepresentation"];
+export type MatchBoostUsecaseConfigInputRepresentation = {
+  useCaseType?: "Activation" | "Custom" | "MatchBoost" | "Overlap";
+  outputObjects?: Schemas["MatchBoostOutputObjectInputRepresentation"][];
+  supportedContactPoints?: string[];
 }
 export type McBuToDataSpaceInputRepresentation = {
   id?: string;
@@ -2978,7 +2588,6 @@ export type MlDataAlertQueryInputRepresentation = Schemas["MlDataAlertQueryInput
 export type MlDataAlertRepresentation = Schemas["MlDataAlertRepresentation"];
 export type MlImprovementDirectiveRepresentation = Schemas["MlImprovementDirectiveRepresentation"];
 export type MlModelInputTypeRepresentation = Schemas["MlModelInputTypeRepresentation"];
-export type MlModelJsonModeRepresentation = Schemas["MlModelJsonModeRepresentation"];
 export type MlModelOutputTypeRepresentation = Schemas["MlModelOutputTypeRepresentation"];
 export type MlSetupBaseUpdateInputRepresentation = Schemas["MlSetupBaseUpdateInputRepresentation"];
 export type MonthlySpecificScheduleInputRepresentation = {
@@ -2996,74 +2605,26 @@ export type MonthlySpecificScheduleRepresentation = {
 }
 export type NameLabelInputRepresentation = Schemas["NameLabelInputRepresentation"];
 export type NameLabelRepresentation = Schemas["NameLabelRepresentation"];
-export type NumberComparisonInputRepresentation = {
-  filtersConfig: Schemas["TypeAndFilterInputRepresentationConfig"][];
-  operator: string;
-  joinPath?: Schemas["LabeledSubjectsConfigInput"][];
-  path?: Schemas["LabeledSubjectsConfigInput"][];
-  selfReference?: boolean;
-  subject?: Schemas["SubjectInputRepresentation"];
-  firstBoundValue?: number;
-  secondBoundValue?: number;
-  value?: number;
-}
-export type NumberComparisonRepresentation = {
-  createdBy?: Schemas["CdpUserRepresentation"];
-  createdDate?: string;
-  id?: string;
-  label?: string;
-  lastModifiedBy?: Schemas["CdpUserRepresentation"];
-  lastModifiedDate?: string;
-  name?: string;
-  namespace?: string;
-  url?: string;
-  filters?: Schemas["TypeAndFilterRepresentation"][];
-  operator?: string;
-  joinPath?: Schemas["LabeledSubjectListConfigRepresentation"];
-  path?: Schemas["LabeledSubjectListConfigRepresentation"];
-  selfReference?: boolean;
-  subject?: Schemas["SubjectRepresentation"];
-  firstBoundValue?: number;
-  secondBoundValue?: number;
-  value?: number;
-}
 export type OutputD360FieldsMappingInputRepresentation = Schemas["OutputD360FieldsMappingInputRepresentation"];
+export type OutputD360FieldsMappingRepresentation = Schemas["OutputD360FieldsMappingRepresentation"];
 export type OutputD360NodeInputRepresentation = {
-  action: "Aggregate" | "Append_V2" | "Bucket" | "ComputeRelative" | "DateFormatConversion" | "Extension" | "Extract" | "Filter" | "Formula" | "Join" | "Load" | "OutputD360" | "Recommendation" | "Save" | "Schema" | "Split" | "SqlFilter" | "TypeCast" | "Update";
-  schema: Record<string, never>;
-  sources: string[];
-  parameters?: Schemas["OutputD360ParametersInputRepresentation"];
+  parameters: Schemas["OutputD360ParametersInputRepresentation"];
+}
+export type OutputD360NodeRepresentation = {
+  parameters?: Schemas["OutputD360ParametersRepresentation"];
 }
 export type OutputD360ParametersInputRepresentation = Schemas["OutputD360ParametersInputRepresentation"];
+export type OutputD360ParametersRepresentation = Schemas["OutputD360ParametersRepresentation"];
 export type ParameterRepresentation = Schemas["ParameterRepresentation"];
 export type PerFileExtensionRepresentation = Schemas["PerFileExtensionRepresentation"];
 export type PivotV2InputRepresentation = Schemas["PivotV2InputRepresentation"];
 export type PivotV2Representation = Schemas["PivotV2Representation"];
-export type PrimitiveComparisonInputRepresentation = {
-  filtersConfig: Schemas["TypeAndFilterInputRepresentationConfig"][];
-  operator: string;
-  joinPath?: Schemas["LabeledSubjectsConfigInput"][];
-  path?: Schemas["LabeledSubjectsConfigInput"][];
-  selfReference?: boolean;
-  subject?: Schemas["SubjectInputRepresentation"];
-}
-export type PrimitiveComparisonRepresentation = {
-  createdBy?: Schemas["CdpUserRepresentation"];
-  createdDate?: string;
-  id?: string;
-  label?: string;
-  lastModifiedBy?: Schemas["CdpUserRepresentation"];
-  lastModifiedDate?: string;
-  name?: string;
-  namespace?: string;
-  url?: string;
-  filters?: Schemas["TypeAndFilterRepresentation"][];
-  operator?: string;
-  joinPath?: Schemas["LabeledSubjectListConfigRepresentation"];
-  path?: Schemas["LabeledSubjectListConfigRepresentation"];
-  selfReference?: boolean;
-  subject?: Schemas["SubjectRepresentation"];
-}
+export type PredictSourceInputRepresentation = Schemas["PredictSourceInputRepresentation"];
+export type PredictSourceRepresentation = Schemas["PredictSourceRepresentation"];
+export type PredictionContributorInputRepresentation = Schemas["PredictionContributorInputRepresentation"];
+export type PredictionContributorRepresentation = Schemas["PredictionContributorRepresentation"];
+export type PredictionFieldInputRepresentation = Schemas["PredictionFieldInputRepresentation"];
+export type PredictionFieldRepresentation = Schemas["PredictionFieldRepresentation"];
 export type PrivateNetworkRouteCollectionRepresentation = {
   currentPageUrl?: string;
   nextPageUrl?: string;
@@ -3149,15 +2710,15 @@ export type QuerySqlBaseRepresentation = Schemas["QuerySqlBaseRepresentation"];
 export type QuerySqlInputRepresentation = Schemas["QuerySqlInputRepresentation"];
 export type QuerySqlMetadataItemRepresentation = Schemas["QuerySqlMetadataItemRepresentation"];
 export type QuerySqlPageRepresentation = {
-  returnedRows: number;
-  data: Schemas["QuerySqlRowRepresentation"][];
-  metadata: Schemas["QuerySqlMetadataItemRepresentation"][];
+  returnedRows?: number;
+  data?: Schemas["QuerySqlRowRepresentation"][];
+  metadata?: Schemas["QuerySqlMetadataItemRepresentation"][];
 }
 export type QuerySqlParameterItemRepresentation = Schemas["QuerySqlParameterItemRepresentation"];
 export type QuerySqlRepresentation = {
-  returnedRows: number;
-  data: Schemas["QuerySqlRowRepresentation"][];
-  metadata: Schemas["QuerySqlMetadataItemRepresentation"][];
+  returnedRows?: number;
+  data?: Schemas["QuerySqlRowRepresentation"][];
+  metadata?: Schemas["QuerySqlMetadataItemRepresentation"][];
   status?: Schemas["QuerySqlStatusRepresentation"];
 }
 export type QuerySqlRowRepresentation = Schemas["QuerySqlRowRepresentation"];
@@ -3183,110 +2744,37 @@ export type RedshiftRouteDetailsInputRepresentation = {
   type: "Redshift";
 }
 export type RedshiftRouteDetailsRepresentation = {
-  serviceName: string;
+  serviceName?: string;
   type: "Redshift";
 }
 export type RefreshConfigInputRepresentation = Schemas["RefreshConfigInputRepresentation"];
 export type RefreshConfigRepresentation = Schemas["RefreshConfigRepresentation"];
 export type RelationshipFieldRepresentation = Schemas["RelationshipFieldRepresentation"];
 export type RelationshipObjectRepresentation = Schemas["RelationshipObjectRepresentation"];
-export type RelativeToNowDateComparisonInputRepresentation = {
-  filtersConfig: Schemas["TypeAndFilterInputRepresentationConfig"][];
-  operator: string;
-  joinPath?: Schemas["LabeledSubjectsConfigInput"][];
-  path?: Schemas["LabeledSubjectsConfigInput"][];
-  selfReference?: boolean;
-  subject?: Schemas["SubjectInputRepresentation"];
-  value?: number;
-}
-export type RelativeToNowDateComparisonRepresentation = {
-  createdBy?: Schemas["CdpUserRepresentation"];
-  createdDate?: string;
-  id?: string;
-  label?: string;
-  lastModifiedBy?: Schemas["CdpUserRepresentation"];
-  lastModifiedDate?: string;
-  name?: string;
-  namespace?: string;
-  url?: string;
-  filters?: Schemas["TypeAndFilterRepresentation"][];
-  operator?: string;
-  joinPath?: Schemas["LabeledSubjectListConfigRepresentation"];
-  path?: Schemas["LabeledSubjectListConfigRepresentation"];
-  selfReference?: boolean;
-  subject?: Schemas["SubjectRepresentation"];
-  value?: number;
-}
 export type ResourceFilterByPropertyInputRepresentation = Schemas["ResourceFilterByPropertyInputRepresentation"];
 export type ResourceFiltersInputRepresentation = Schemas["ResourceFiltersInputRepresentation"];
 export type RouteDetailsInputRepresentation = Schemas["RouteDetailsInputRepresentation"];
 export type RouteDetailsRepresentation = Schemas["RouteDetailsRepresentation"];
 export type RunHistoryOutputProgressRepresentation = Schemas["RunHistoryOutputProgressRepresentation"];
-export type S3ConnectorInputRepresentation = {
-  name?: string;
-  outputFormat?: string;
-  accessKey?: string;
-  bucketName?: string;
-  folderName?: string;
-  secretKey?: string;
-}
-export type S3ConnectorRepresentation = {
-  createdBy?: Schemas["CdpUserRepresentation"];
-  createdDate?: string;
-  id?: string;
-  label?: string;
-  lastModifiedBy?: Schemas["CdpUserRepresentation"];
-  lastModifiedDate?: string;
-  name?: string;
-  namespace?: string;
-  url?: string;
-  outputFormat?: string;
-  bucketName?: string;
-  folderName?: string;
-}
 export type SalesforceMarketingCloudConnectorDetailsConfig = {
   eid?: string;
   mid?: string;
   subType?: string;
 }
 export type SalesforceMarketingCloudConnectorDetailsRepresentation = {
-  category: "Engagement" | "Other" | "Profile";
-  name: string;
+  category?: "Engagement" | "Other" | "Profile";
+  name?: string;
   eid?: string;
   mid?: string;
 }
 export type SalesforceMarketingCloudDataExtensionConnectionObjectRepresentation = {
-  name: string;
+  name?: string;
   customObjectId: string;
   description?: string;
 }
-export type SalesforceMarketingCloudDataExtensionConnectorDetailsConfig = {
-  eid?: string;
-  mid?: string;
-  subType?: string;
-  customObjectId?: string;
-  customObjectName?: string;
-}
-export type SalesforceMarketingCloudDataExtensionConnectorDetailsRepresentation = {
-  category: "Engagement" | "Other" | "Profile";
-  name: string;
-  eid?: string;
-  mid?: string;
-  customObjectId?: string;
-  customObjectName?: string;
-}
 export type SalesforceMarketingCloudStandardConnectionObjectRepresentation = {
-  name: string;
+  name?: string;
   bundleName: string;
-}
-export type SalesforceMarketingCloudStandardConnectorDetailsConfig = Schemas["SalesforceMarketingCloudStandardConnectorDetailsConfig"];
-export type SalesforceMarketingCloudStandardConnectorDetailsRepresentation = {
-  category: "Engagement" | "Other" | "Profile";
-  name: string;
-  eid?: string;
-  mid?: string;
-  bundleName?: string;
-  sourceObjectName?: string;
 }
 export type SampleParametersInputRepresentation = Schemas["SampleParametersInputRepresentation"];
 export type SampleParametersRepresentation = Schemas["SampleParametersRepresentation"];
@@ -3301,10 +2789,10 @@ export type SchemaFieldRepresentation = Schemas["SchemaFieldRepresentation"];
 export type SchemaFieldTypePropertiesRepresentation = Schemas["SchemaFieldTypePropertiesRepresentation"];
 export type SchemaFormatSymbolsInputRepresentation = Schemas["SchemaFormatSymbolsInputRepresentation"];
 export type SchemaNodeInputRepresentation = {
-  action: "Aggregate" | "Append_V2" | "Bucket" | "ComputeRelative" | "DateFormatConversion" | "Extension" | "Extract" | "Filter" | "Formula" | "Join" | "Load" | "OutputD360" | "Recommendation" | "Save" | "Schema" | "Split" | "SqlFilter" | "TypeCast" | "Update";
-  schema: Record<string, never>;
-  sources: string[];
-  parameters?: Schemas["SchemaParametersInputRepresentation"];
+  parameters: Schemas["SchemaParametersInputRepresentation"];
+}
+export type SchemaNodeRepresentation = {
+  parameters?: Schemas["SchemaParametersRepresentation"];
 }
 export type SchemaParametersInputRepresentation = Schemas["SchemaParametersInputRepresentation"];
 export type SchemaParametersRepresentation = Schemas["SchemaParametersRepresentation"];
@@ -3370,32 +2858,17 @@ export type SemanticSearchRepresentation = {
   transformations?: string[];
   vectorEmbedding?: Schemas["VectorEmbeddingRepresentation"];
 }
-export type SftpConnectorInputRepresentation = {
-  name?: string;
-  outputFormat?: string;
-}
-export type SftpConnectorRepresentation = {
-  createdBy?: Schemas["CdpUserRepresentation"];
-  createdDate?: string;
-  id?: string;
-  label?: string;
-  lastModifiedBy?: Schemas["CdpUserRepresentation"];
-  lastModifiedDate?: string;
-  name?: string;
-  namespace?: string;
-  url?: string;
-  outputFormat?: string;
-}
 export type SnowflakeRouteDetailsInputRepresentation = {
   serviceName: string;
   type: "Snowflake";
   accountUrl?: string;
 }
 export type SnowflakeRouteDetailsRepresentation = {
-  serviceName: string;
+  serviceName?: string;
   type: "Snowflake";
   accountUrl?: string;
 }
+export type SortSpecificationRepresentation = Schemas["SortSpecificationRepresentation"];
 export type SourceTargetRelationshipInputRepresentation = {
   id?: string;
   name?: string;
@@ -3410,115 +2883,58 @@ export type SourceTargetRelationshipInputRepresentation = {
   targetFieldLabel?: string;
 }
 export type SplitNodeInputRepresentation = {
-  action: "Aggregate" | "Append_V2" | "Bucket" | "ComputeRelative" | "DateFormatConversion" | "Extension" | "Extract" | "Filter" | "Formula" | "Join" | "Load" | "OutputD360" | "Recommendation" | "Save" | "Schema" | "Split" | "SqlFilter" | "TypeCast" | "Update";
-  schema: Record<string, never>;
-  sources: string[];
-  parameters?: Schemas["SplitParametersInputRepresentation"];
+  parameters: Schemas["SplitParametersInputRepresentation"];
+}
+export type SplitNodeRepresentation = {
+  parameters?: Schemas["SplitParametersRepresentation"];
 }
 export type SplitParametersInputRepresentation = Schemas["SplitParametersInputRepresentation"];
+export type SplitParametersRepresentation = Schemas["SplitParametersRepresentation"];
 export type SqlDataTransformDefinitionInputRepresentation = {
-  type: "STL" | "SQL";
+  outputDataObjects?: Schemas["DataObjectInputRepresentation"][];
+  type: "DbtHidden" | "DcSql" | "Sql" | "SqlHidden" | "Stl" | "StlHidden";
   version: string;
   expression?: string;
   targetDlo?: string;
   targetDmo?: string;
 }
 export type SqlDataTransformDefinitionRepresentation = {
-  label: string;
-  name: string;
-  outputDataObjects: Schemas["DataObjectRepresentation"][];
-  type: "Dbt" | "DbtHidden" | "Sql" | "SqlHidden" | "Stl" | "StlHidden";
-  version: string;
+  label?: string;
+  name?: string;
+  outputDataObjects?: Schemas["DataObjectRepresentation"][];
+  type?: "DbtHidden" | "DcSql" | "Sql" | "SqlHidden" | "Stl" | "StlHidden";
+  version?: string;
   expression?: string;
   targetDlo?: string;
 }
 export type SqlFilterNodeInputRepresentation = {
-  action: "Aggregate" | "Append_V2" | "Bucket" | "ComputeRelative" | "DateFormatConversion" | "Extension" | "Extract" | "Filter" | "Formula" | "Join" | "Load" | "OutputD360" | "Recommendation" | "Save" | "Schema" | "Split" | "SqlFilter" | "TypeCast" | "Update";
-  schema: Record<string, never>;
-  sources: string[];
-  parameters?: Schemas["SqlFilterParametersInputRepresentation"];
+  parameters: Schemas["SqlFilterParametersInputRepresentation"];
+}
+export type SqlFilterNodeRepresentation = {
+  parameters?: Schemas["SqlFilterParametersRepresentation"];
 }
 export type SqlFilterParametersInputRepresentation = Schemas["SqlFilterParametersInputRepresentation"];
-export type SqlFormulaDateFieldRepresentation = {
-  defaultValue: string;
-  formulaExpression: string;
-  label: string;
-  name: string;
-  type: "Boolean" | "DateOnly" | "DateTime" | "Number" | "Text";
-  format?: string;
-}
-export type SqlFormulaDateOnlyFieldInputRepresentation = {
-  formulaExpression: string;
-  label: string;
-  name: string;
-  type: "Boolean" | "DateOnly" | "DateTime" | "Number" | "Text";
-  defaultValue?: string;
-  format?: string;
-}
-export type SqlFormulaDateTimeFieldInputRepresentation = {
-  formulaExpression: string;
-  label: string;
-  name: string;
-  type: "Boolean" | "DateOnly" | "DateTime" | "Number" | "Text";
-  defaultValue?: string;
-  format?: string;
-}
+export type SqlFilterParametersRepresentation = Schemas["SqlFilterParametersRepresentation"];
 export type SqlFormulaFieldInputRepresentation = Schemas["SqlFormulaFieldInputRepresentation"];
 export type SqlFormulaFieldRepresentation = Schemas["SqlFormulaFieldRepresentation"];
-export type SqlFormulaNumericFieldInputRepresentation = {
-  formulaExpression: string;
-  label: string;
-  name: string;
-  type: "Boolean" | "DateOnly" | "DateTime" | "Number" | "Text";
-  defaultValue?: string;
-  precision?: number;
-  scale?: number;
-}
-export type SqlFormulaNumericFieldRepresentation = {
-  defaultValue: string;
-  formulaExpression: string;
-  label: string;
-  name: string;
-  type: "Boolean" | "DateOnly" | "DateTime" | "Number" | "Text";
-  precision?: number;
-  scale?: number;
-}
-export type SqlFormulaParametersInputRepresentation = {
-  fields?: Schemas["SqlFormulaFieldInputRepresentation"][];
-}
-export type SqlFormulaTextFieldInputRepresentation = {
-  formulaExpression: string;
-  label: string;
-  name: string;
-  type: "Boolean" | "DateOnly" | "DateTime" | "Number" | "Text";
-  defaultValue?: string;
-  precision?: number;
-}
-export type SqlFormulaTextFieldRepresentation = {
-  defaultValue: string;
-  formulaExpression: string;
-  label: string;
-  name: string;
-  type: "Boolean" | "DateOnly" | "DateTime" | "Number" | "Text";
-  precision?: number;
-}
 export type StaticDataConfigInputRepresentation = Schemas["StaticDataConfigInputRepresentation"];
 export type StaticDataConfigRepresentation = Schemas["StaticDataConfigRepresentation"];
 export type StaticDataInputRepresentation = Schemas["StaticDataInputRepresentation"];
 export type StaticDataRepresentation = Schemas["StaticDataRepresentation"];
 export type StlDataTransformDefinitionInputRepresentation = {
-  type: "STL" | "SQL";
+  outputDataObjects?: Schemas["DataObjectInputRepresentation"][];
+  type: "DbtHidden" | "DcSql" | "Sql" | "SqlHidden" | "Stl" | "StlHidden";
   version: string;
-  nodes?: Record<string, never>;
+  nodes?: Schemas["DataTransformNodeInputRepresentation"];
   ui?: Record<string, never>;
 }
 export type StlDataTransformDefinitionRepresentation = {
-  label: string;
-  name: string;
-  outputDataObjects: Schemas["DataObjectRepresentation"][];
-  type: "Dbt" | "DbtHidden" | "Sql" | "SqlHidden" | "Stl" | "StlHidden";
-  version: string;
-  nodes?: Record<string, never>;
+  label?: string;
+  name?: string;
+  outputDataObjects?: Schemas["DataObjectRepresentation"][];
+  type?: "DbtHidden" | "DcSql" | "Sql" | "SqlHidden" | "Stl" | "StlHidden";
+  version?: string;
+  nodes?: Schemas["DataTransformNodeRepresentation"];
   ui?: Record<string, never>;
 }
 export type StreamingAppConnectionInputRepresentation = {
@@ -3567,75 +2983,12 @@ export type StreamingConnectorDetailsConfig = {
   streamingAppType?: "MobileApp" | "ServerApp" | "WebApp";
 }
 export type StreamingConnectorDetailsRepresentation = {
-  category: "Engagement" | "Other" | "Profile";
-  name: string;
+  category?: "Engagement" | "Other" | "Profile";
+  name?: string;
   events?: string[];
   streamingAppType?: string;
 }
-export type StreamingConnectorPatchDetailsConfig = {
-  addEvents?: string[];
-  mappings?: Schemas["DataStreamFieldMappingInputRepresentation"][];
-  syncSchema?: boolean;
-}
-export type StreamingParametersInputRepresentation = Schemas["StreamingParametersInputRepresentation"];
-export type SubjectBaseInputRepresentation = Schemas["SubjectBaseInputRepresentation"];
-export type SubjectBaseRepresentation = {
-  createdBy?: Schemas["CdpUserRepresentation"];
-  createdDate?: string;
-  id?: string;
-  label?: string;
-  lastModifiedBy?: Schemas["CdpUserRepresentation"];
-  lastModifiedDate?: string;
-  name?: string;
-  namespace?: string;
-  url?: string;
-  fieldName?: string;
-  objectName?: string;
-}
-export type SubjectInputRepresentation = {
-  fieldName: string;
-  objectName: string;
-}
-export type SubjectRepresentation = {
-  createdBy?: Schemas["CdpUserRepresentation"];
-  createdDate?: string;
-  id?: string;
-  label?: string;
-  lastModifiedBy?: Schemas["CdpUserRepresentation"];
-  lastModifiedDate?: string;
-  name?: string;
-  namespace?: string;
-  url?: string;
-  fieldName?: string;
-  objectName?: string;
-}
-export type TextComparisonInputRepresentation = {
-  filtersConfig: Schemas["TypeAndFilterInputRepresentationConfig"][];
-  operator: string;
-  joinPath?: Schemas["LabeledSubjectsConfigInput"][];
-  path?: Schemas["LabeledSubjectsConfigInput"][];
-  selfReference?: boolean;
-  subject?: Schemas["SubjectInputRepresentation"];
-  filterConfig?: Schemas["FilterValuesInputRepresentation"][];
-}
-export type TextComparisonRepresentation = {
-  createdBy?: Schemas["CdpUserRepresentation"];
-  createdDate?: string;
-  id?: string;
-  label?: string;
-  lastModifiedBy?: Schemas["CdpUserRepresentation"];
-  lastModifiedDate?: string;
-  name?: string;
-  namespace?: string;
-  url?: string;
-  filters?: Schemas["TypeAndFilterRepresentation"][];
-  operator?: string;
-  joinPath?: Schemas["LabeledSubjectListConfigRepresentation"];
-  path?: Schemas["LabeledSubjectListConfigRepresentation"];
-  selfReference?: boolean;
-  subject?: Schemas["SubjectRepresentation"];
-  values?: string[];
-}
+export type StreamingParametersRepresentation = Schemas["StreamingParametersRepresentation"];
 export type TimeOutputRepresentation = Schemas["TimeOutputRepresentation"];
 export type TokenizationInputRepresentation = Schemas["TokenizationInputRepresentation"];
 export type TokenizationRepresentation = Schemas["TokenizationRepresentation"];
@@ -3660,29 +3013,17 @@ export type TypeAndFilterRepresentation = {
   type?: string;
 }
 export type TypeCastNodeRepresentation = {
-  action: "Aggregate" | "Append_V2" | "Bucket" | "ComputeRelative" | "DateFormatConversion" | "Extension" | "Extract" | "Filter" | "Formula" | "Join" | "Load" | "OutputD360" | "Recommendation" | "Save" | "Schema" | "Split" | "SqlFilter" | "TypeCast" | "Update";
-  schema: Schemas["SchemaParametersRepresentation"];
-  sources: string[];
   parameters?: Schemas["TypeCastParametersRepresentation"];
 }
 export type TypeCastParametersRepresentation = Schemas["TypeCastParametersRepresentation"];
 export type TypecastNodeInputRepresentation = {
-  action: "Aggregate" | "Append_V2" | "Bucket" | "ComputeRelative" | "DateFormatConversion" | "Extension" | "Extract" | "Filter" | "Formula" | "Join" | "Load" | "OutputD360" | "Recommendation" | "Save" | "Schema" | "Split" | "SqlFilter" | "TypeCast" | "Update";
-  schema: Record<string, never>;
-  sources: string[];
-  parameters?: Schemas["TypecastParametersInputRepresentation"];
+  parameters: Schemas["TypecastParametersInputRepresentation"];
 }
 export type TypecastParametersInputRepresentation = Schemas["TypecastParametersInputRepresentation"];
 export type UpdateNodeInputRepresentation = {
-  action: "Aggregate" | "Append_V2" | "Bucket" | "ComputeRelative" | "DateFormatConversion" | "Extension" | "Extract" | "Filter" | "Formula" | "Join" | "Load" | "OutputD360" | "Recommendation" | "Save" | "Schema" | "Split" | "SqlFilter" | "TypeCast" | "Update";
-  schema: Record<string, never>;
-  sources: string[];
-  parameters?: Schemas["UpdateParametersInputRepresentation"];
+  parameters: Schemas["UpdateParametersInputRepresentation"];
 }
 export type UpdateNodeRepresentation = {
-  action: "Aggregate" | "Append_V2" | "Bucket" | "ComputeRelative" | "DateFormatConversion" | "Extension" | "Extract" | "Filter" | "Formula" | "Join" | "Load" | "OutputD360" | "Recommendation" | "Save" | "Schema" | "Split" | "SqlFilter" | "TypeCast" | "Update";
-  schema: Schemas["SchemaParametersRepresentation"];
-  sources: string[];
   parameters?: Schemas["UpdateParametersRepresentation"];
 }
 export type UpdateParametersInputRepresentation = Schemas["UpdateParametersInputRepresentation"];
@@ -3716,6 +3057,7 @@ export type UseCaseTemplateAttributeConfigRepresentation = {
   queryOptions?: Schemas["UseCaseTemplateAttributeQueryOptionConfigRepresentation"];
   required?: boolean;
   tableName?: string;
+  tooltip?: string;
 }
 export type UseCaseTemplateAttributeQueryOptionConfigRepresentation = {
   createdBy?: Schemas["CdpUserRepresentation"];
@@ -3832,10 +3174,9 @@ export type WeeklyScheduleRepresentation = {
   interval?: number;
 }
 
-// ── Enum types (266) ──
+// ── Enum types (274) ──
 
 export type AbstractBucketAlgorithmType = "TypographicClustering";
-export type AccountEngagementConnectionDataStreamType = "EmailActivity" | "FormActivity" | "WebPageActivity";
 export type ActivationActivationType = "ApiTriggered" | "Segment";
 export type ActivationAdditionalAttributesConfigSource = "Direct" | "Related";
 export type ActivationAdditionalAttributesConfigType = "Computed_Dimension" | "Computed_Measure" | "Model" | "Model_Related" | "Non_Aggregatable_Computed_Measure";
@@ -3866,16 +3207,10 @@ export type AttributeFilterType = "FilterOperatorDataTypeBoolean" | "FilterOpera
 export type AttributeLimitingExpressionOrder = "FilterSortOrderAsc" | "FilterSortOrderDesc";
 export type BaseConnectionFieldCreationType = "Custom" | "Standard";
 export type BaseConnectionFieldType = "Boolean" | "Currency" | "Date" | "DateTime" | "Email" | "Number" | "Percent" | "Phone" | "Text" | "Unsupported" | "Url";
-export type BucketBooleanSourceFieldType = "Boolean" | "DateOnly" | "DateTime" | "Number" | "Text";
-export type BucketDateArgumentType = "AbsoluteDate" | "Days" | "FiscalQuarters" | "FiscalYears" | "Months" | "Quarters" | "Weeks" | "Years";
-export type BucketDateSourceFieldType = "Boolean" | "DateOnly" | "DateTime" | "Number" | "Text";
-export type BucketDimensionSourceFieldType = "Boolean" | "DateOnly" | "DateTime" | "Number" | "Text";
 export type BucketFieldType = "Boolean" | "DateOnly" | "DateTime" | "Number" | "Text";
-export type BucketMeasureSourceFieldType = "Boolean" | "DateOnly" | "DateTime" | "Number" | "Text";
 export type BucketSourceFieldType = "Boolean" | "DateOnly" | "DateTime" | "Number" | "Text";
 export type CdpCalculatedInsightDefinitionType = "CALCULATED_METRIC" | "EXTERNAL_METRIC" | "STREAMING_METRIC";
 export type CdpCalculatedInsightPublishScheduleInterval = "ExternallyManaged" | "NotScheduled" | "One" | "Six" | "Streaming" | "SystemManaged" | "Twelve" | "TwentyFour";
-export type CdpCalculatedInsightValidateDefinitionType = "CALCULATED_METRIC" | "EXTERNAL_METRIC" | "STREAMING_METRIC";
 export type CdpDataActionOutputDataActionStatus = "Active" | "Error" | "InActive" | "Processing";
 export type CdpDataActionOutputLastActionStatusErrorCode = "CreateFailed" | "DeleteFailed" | "ProcessingFailed";
 export type CdpDataActionTargetOutputStatus = "Active" | "Error" | "InActive" | "Processing";
@@ -3886,9 +3221,6 @@ export type CdpDataActionTargetSubType = "Grpc" | "Rest";
 export type CdpDataActionTargetType = "Core" | "Internal_WebHook" | "MarketingCloud" | "WebHook";
 export type CdpDataGraphSourceObjectOutputType = "Activation_Audience" | "Bridge" | "Calculated" | "Calculated_Real_Time" | "Calculated_Streaming" | "Custom" | "Derived" | "Ml_Prediction" | "Segment_Membership" | "Standard" | "System" | "Transform";
 export type CdpDataGraphSourceType = "CALCULATED" | "CALCULATED_STREAMING" | "CALCULATED_REAL_TIME" | "STANDARD" | "CUSTOM" | "SYSTEM" | "DERIVED" | "BRIDGE" | "SEGMENT_MEMBERSHIP" | "ML_PREDICTION" | "ACTIVATION_AUDIENCE" | "TRANSFORM";
-export type CdpDataKitComponentInfoForBundleConnectorType = "Commerce" | "Crm" | "External" | "IngestApi" | "Mc" | "MoreConnectors" | "S3" | "StreamingApp";
-export type CdpDataKitComponentInfoType = "DataStreamBundle" | "CalculatedInsight" | "DataLakeObject" | "DataTransform";
-export type CdpDataKitComponentsType = "CalculatedInsight" | "DataLakeObject" | "DataStreamBundle" | "DataTransform";
 export type CdpDataKitDeployBundleConfigForAccountEngagementDataStreamType = "EmailActivity" | "FormActivity" | "WebPageActivity";
 export type CdpDataKitDeployBundleConfigForStreamingAppStreamingAppDataConnectorType = "MobileApp" | "WebApp";
 export type CdpDataKitDeployComponentConfigCalculatedInsightPublishInterval = "ExternallyManaged" | "NotScheduled" | "One" | "Six" | "Streaming" | "SystemManaged" | "Twelve" | "TwentyFour";
@@ -3906,13 +3238,7 @@ export type CdpIdentityResolutionReconciliationRuleOutputRuleType = "LastUpdated
 export type CdpIdentityResolutionRunNowOutputResultCode = "ExceededMaximumNumberOfSuccessfulRunsAllowedIn24Hours" | "IdentityResolutionJobIsAlreadyRunning" | "NoPendingChangesJobRunSkipped" | "SuccessfullySubmittedIdentityResolutionJobRunRequest";
 export type CdpMlAggregatePredictionStatus = "Error" | "Success";
 export type CdpMlAggregatePredictionType = "Average" | "Median" | "Sum";
-export type CdpMlConfiguredModelCapability = "BinaryClassification" | "ChatCompletion" | "Completion" | "Embedding" | "Generic" | "MulticlassClassification" | "Regression";
-export type CdpMlConfiguredModelStatus = "Disabled" | "Enabled";
 export type CdpMlCustomizableFieldType = "ActionableVariable" | "TopFactor";
-export type CdpMlFilterConjunctiveOperator = "And" | "Or";
-export type CdpMlFilterCriterionBaseOperator = "Contains" | "EndsWith" | "EqualTo" | "GreaterThan" | "GreaterThanOrEqualTo" | "In" | "IsNotNull" | "IsNull" | "LessThan" | "LessThanOrEqualTo" | "NotEqualTo" | "NotIn" | "StartsWith";
-export type CdpMlFilterCriterionBaseType = "CalculatedInsightObjectField" | "DataModelObjectField" | "ModelInputField" | "SemanticSearchVectorEmbedRelatedField";
-export type CdpMlFilterValueType = "Constant" | "Placeholder";
 export type CdpMlFoundationalModelMajorVersionName = "AnthropicClaudeInstant" | "AzureOpenAIGPT35Turbo" | "AzureOpenAIGPT35Turbo_16k" | "AzureOpenAIGPT41" | "AzureOpenAIGPT41Mini" | "AzureOpenAIGPT41Nano" | "AzureOpenAIGPT4Omni" | "AzureOpenAIGPT4OmniMini" | "AzureOpenAIGPT4Turbo" | "AzureOpenAITextEmbeddingAda_002" | "BedrockAnthropicClaude35Sonnet" | "BedrockAnthropicClaude35SonnetV2" | "BedrockAnthropicClaude37Sonnet" | "BedrockAnthropicClaude3Haiku" | "BedrockAnthropicClaude3Opus" | "BedrockAnthropicClaude3Sonnet" | "BedrockAnthropicClaude4Sonnet" | "BedrockCohereCommandLightTextV14" | "BedrockCohereCommandTextV14" | "BedrockLlama4Maverick" | "BedrockMistral7BInstructV0_2" | "BedrockMistral8x7BInstructV0_1" | "BedrockMistralLargeV1" | "EinsteinApexGuruMultiTasker" | "EinsteinDeepSeekR1" | "EinsteinFlashTopic" | "EinsteinLlama4Scout" | "EinsteinTableauGPT" | "EinsteinTextBaseV2" | "EinsteinTextEval" | "EinsteinTextSum" | "Einstein_AbstractiveSummarization_V1" | "Einstein_Clip_Vit_B_32_Multilingual_V1" | "Einstein_E5_Base" | "Einstein_E5_Large" | "Einstein_E5_Large_V2" | "Einstein_E5_Multilingual" | "Einstein_SFR_Embedding_Mistral" | "Einstein_Segmentation_V3" | "Einstein_Wespeaker_Voxceleb_Resnet34_Lm" | "Einstein_Whisper_Large_V3" | "Eleven_Turbo_V2" | "GenericGPT35Turbo" | "GenericGPT35TurboInstruct" | "GenericGPT35Turbo_16k" | "GenericGPT4" | "GenericGPT41" | "GenericGPT41Mini" | "GenericGPT4Omni" | "GenericGPT4OmniMini" | "GenericGPT4Turbo" | "GenericGPT4_32k" | "GenericTextDaVinci002" | "GenericTextDaVinci003" | "GenericTextEmbeddingAda_002" | "Nova_2_PhoneCall" | "OpenAIGPT35Turbo" | "OpenAIGPT35TurboInstruct" | "OpenAIGPT35Turbo_16k" | "OpenAIGPT4" | "OpenAIGPT41" | "OpenAIGPT41Mini" | "OpenAIGPT41Nano" | "OpenAIGPT4Omni" | "OpenAIGPT4OmniMini" | "OpenAIGPT4Turbo" | "OpenAIGPT4_32k" | "OpenAITextDaVinci002" | "OpenAITextDaVinci003" | "OpenAITextEmbedding3_Large" | "OpenAITextEmbedding3_Small" | "OpenAITextEmbeddingAda_002" | "OpenConnector" | "Salesforce_Embedding_2_R" | "VertexAIGemini20Flash001" | "VertexAIGemini20FlashLite001" | "VertexAIGemini25Flash001" | "VertexAIGeminiEmbed001" | "VertexAIGeminiPro10_002" | "VertexAIGeminiPro15" | "VertexAIGeminiPro25" | "WhisperBaseEn_4_27" | "WhisperBase_4_27";
 export type CdpMlFoundationalModelModelProviderName = "Anthropic" | "AzureOpenAI" | "Bedrock" | "Databricks" | "Generic" | "InternalEmbedding" | "OpenAI" | "OpenConnector" | "SageMaker" | "Salesforce" | "VertexAI";
 export type CdpMlModelArtifactBaseModelType = "Generative" | "Predictive" | "Unknown";
@@ -3920,7 +3246,6 @@ export type CdpMlModelArtifactBaseRuntimeType = "External" | "Internal";
 export type CdpMlModelArtifactBaseSourceType = "EdcNoCode" | "ModelConnector" | "OutOfTheBox";
 export type CdpMlModelArtifactBaseStatus = "Disabled" | "Draft" | "Enabled";
 export type CdpMlModelArtifactBaseSyncStatus = "Error" | "NotSynced" | "Synced" | "Syncing";
-export type CdpMlModelArtifactGenerativeGenerativeModelType = "Mixed" | "Text";
 export type CdpMlModelArtifactStatus = "Disabled" | "Draft" | "Enabled";
 export type CdpMlModelFieldBaseDataType = "Boolean" | "Date" | "Number" | "Text";
 export type CdpMlModelParameterDefinitionBaseType = "Continuous - a variable that can take on a value within a given range and is typically associated with measurements and quantities." | "Discrete - a variable that can take on only a finite or countable number of distinct values. These parameters are used in regression models, where the outcome is categorical, for example, a success or failure.";
@@ -3940,8 +3265,10 @@ export type CdpScheduleFrequency = "Daily" | "Hourly" | "Minutely" | "Monthly" |
 export type CdpSegmentPublishSchedule = "NoRefresh" | "One" | "Two" | "Four" | "Six" | "Twelve" | "TwentyFour";
 export type CdpSegmentSegmentCreationFlow = "Datakit" | "EinsteinGpt" | "Visual";
 export type CdpSegmentSegmentType = "Dbt" | "Dynamic" | "EinsteinGptSegmentsUI" | "Lookalike" | "Realtimez" | "Waterfall";
+export type CleanroomTestConnectionConnectorType = "CleanroomAwsS3" | "CleanroomSnowflake";
 export type CloudProviderDetailsStatus = "Allocating" | "DeletedRemotely" | "PendingAcceptance" | "PendingActivation" | "Ready" | "RejectedRemotely" | "TeardownInProgress" | "Unprovisioned";
 export type CloudProviderDetailsType = "AmazonWebServices";
+export type ComputeRelativeParametersExpressionType = "Dcsql" | "Sql";
 export type ComputeRelativeSortParametersDirection = "Ascending" | "Descending";
 export type ConnectionCommandActionMethod = "Egress" | "Ingress";
 export type ConnectionObjectObjectType = "Activity" | "Comment" | "Group" | "Permission" | "StructuredData" | "UnstructuredData" | "User";
@@ -3953,24 +3280,37 @@ export type ConnectorsFrameworkConnectionSchemaFieldDataType = "Boolean" | "Curr
 export type ContactPointConfigType = "Email" | "Maid" | "Ott" | "Phone" | "Push" | "SubscriberKeyEmail" | "SubscriberKeyPhone" | "WhatsApp";
 export type ContactPointSourceDataSourcePreference = "ContactPointPrefAny" | "ContactPointPrefBusiness" | "ContactPointPrefPersonal" | "ContactPointPrefPrimary";
 export type CrmConnectionConnectionStatus = "Active" | "Deleting" | "Error" | "InActive" | "Processing" | "SchemaRequired";
-export type CrmConnectionFieldCreationType = "Custom" | "Standard";
 export type CrmConnectionObjectCreationType = "Custom" | "Standard";
 export type DailyScheduleFrequency = "Daily";
-export type DataCleanRoomCollaborationStatus = "Active" | "Error" | "Inactive";
+export type DataCleanRoomCollaborationForUseCaseTypeStatus = "Active" | "Disabled" | "Error" | "Inactive";
+export type DataCleanRoomCollaborationResultDataObjectStatus = "Active" | "Error" | "Inactive" | "Processing";
+export type DataCleanRoomCollaborationStatus = "Active" | "Disabled" | "Error" | "Inactive";
+export type DataCleanRoomConnectionAttributesConnectorType = "CleanroomAwsS3" | "CleanroomSnowflake";
 export type DataCleanRoomDataSpecificationMemberType = "Consumer" | "Provider";
 export type DataCleanRoomDataSpecificationStatus = "Active" | "Error" | "Inactive" | "Processing";
 export type DataCleanRoomDataSpecificationTemplateType = "Custom" | "Salesforce";
 export type DataCleanRoomDataSpecificationUseCaseType = "Custom" | "Overlap";
+export type DataCleanRoomMemberConfigOutputDestinationType = "ExternalConnector" | "Lakehouse";
+export type DataCleanRoomMemberForUseCaseTypeMemberStatus = "Active" | "Inactive" | "Mapping_Incomplete";
+export type DataCleanRoomMemberForUseCaseTypeMemberType = "Consumer" | "Provider";
 export type DataCleanRoomMemberInvitationStatus = "Accept_Error" | "Accept_Initiated" | "Accepted" | "Pending" | "Received" | "Reject_Error" | "Reject_Initiated" | "Rejected" | "Send_Error" | "Sent";
 export type DataCleanRoomMemberMemberStatus = "Active" | "Inactive" | "Mapping_Incomplete";
 export type DataCleanRoomMemberMemberType = "Consumer" | "Provider";
+export type DataCleanRoomMetadataMemberConfigType = "Consumer" | "Provider";
+export type DataCleanRoomMetadataOutputConfigConnectorType = "CleanroomAwsS3" | "CleanroomSnowflake";
+export type DataCleanRoomMetadataOutputConfigDestinationType = "ExternalConnector" | "Lakehouse";
+export type DataCleanRoomOutputConfigurationOutputDestinationType = "ExternalConnector" | "Lakehouse";
+export type DataCleanRoomOutputDestinationConfigConnectorType = "CleanroomAwsS3" | "CleanroomSnowflake";
 export type DataCleanRoomProviderCreationType = "Packaged" | "Peer";
+export type DataCleanRoomProviderPackageType = "DataCollaboration" | "IdEnrichment";
+export type DataCleanRoomProviderProviderDataSource = "Snowflake";
 export type DataCleanRoomProviderSource = "AWS" | "DATA_CLOUD";
 export type DataCleanRoomProviderSourceConfigType = "AWS" | "DATA_CLOUD";
 export type DataCleanRoomProviderTemplateType = "Custom" | "Salesforce";
 export type DataCleanRoomQueryJobStatus = "Created" | "Failed" | "Running" | "Success";
 export type DataCleanRoomTemplateTemplateType = "Custom" | "Salesforce";
 export type DataCleanRoomTemplateUseCaseType = "Custom" | "Overlap";
+export type DataCleanRoomUsecaseConfigUseCaseType = "Activation" | "Custom" | "MatchBoost" | "Overlap";
 export type DataConnectionMethod = "Egress" | "Ingress";
 export type DataConnectionStatus = "Connected" | "Disconnected" | "Failed" | "NeedsReAuth";
 export type DataConnectionSyncStatus = "Failure" | "InProgress" | "InvalidCredentials" | "None" | "Pending" | "Success";
@@ -3991,7 +3331,7 @@ export type DataModelObjectStatus = "Active" | "Error" | "Inactive" | "Processin
 export type DataObjectCategory = "Engagement" | "Other" | "Profile";
 export type DataObjectFieldType = "Boolean" | "Date" | "DateOnly" | "DateTime" | "Email" | "Number" | "Percent" | "Phone" | "Text" | "Url";
 export type DataObjectType = "DataLakeObject" | "DataModelObject";
-export type DataSpaceFilterConditionOperator = "ContainsAny" | "Equals" | "GreaterThan" | "In" | "LastNumberOfDays" | "LessThan" | "NotEquals" | "NotIn";
+export type DataSpaceFilterConditionOperator = "ContainsAnyOperator" | "EqualsOperator" | "GreaterThanOperator" | "InOperator" | "IsEmptyStringOperator" | "IsNotEmptyStringOperator" | "IsNotNullOperator" | "IsNullOperator" | "LastNumberOfDaysOperator" | "LessThanOperator" | "NotEqualsOperator" | "NotInOperator";
 export type DataSpaceFilterConjunctiveOperator = "AndOperator" | "NoneOperator" | "OrOperator";
 export type DataSpaceInfoStatus = "Active" | "Error" | "Processing";
 export type DataSpaceMemberStatus = "Active" | "Error" | "Processing";
@@ -4006,7 +3346,8 @@ export type DataStreamFrequencyRefreshDayOfWeek = "Friday" | "Monday" | "Saturda
 export type DataStreamSourceFieldDatatype = "Date" | "DateTime" | "Number" | "Text";
 export type DataStreamStatus = "Active" | "Deleting" | "Error" | "Processing";
 export type DataTransformCreationType = "Custom" | "System";
-export type DataTransformDefinitionType = "Dbt" | "DbtHidden" | "Sql" | "SqlHidden" | "Stl" | "StlHidden";
+export type DataTransformDefinitionType = "DbtHidden" | "DcSql" | "Sql" | "SqlHidden" | "Stl" | "StlHidden";
+export type DataTransformFullRunFrequency = "Daily" | "Monthly" | "Weekly";
 export type DataTransformLastRunStatus = "Canceled" | "Failure" | "InProgress" | "None" | "PartialFailure" | "PartiallyCanceled" | "Pending" | "Success";
 export type DataTransformNodeAction = "Aggregate" | "Append_V2" | "Bucket" | "ComputeRelative" | "DateFormatConversion" | "Extension" | "Extract" | "Filter" | "Formula" | "Join" | "Load" | "OutputD360" | "Recommendation" | "Save" | "Schema" | "Split" | "SqlFilter" | "TypeCast" | "Update";
 export type DataTransformRunHistoryBaseRunMode = "Full" | "Incremental";
@@ -4014,11 +3355,14 @@ export type DataTransformRunHistoryBaseRunModeReason = "BtDefinitionChanged" | "
 export type DataTransformRunHistoryBaseStatus = "Canceled" | "Failure" | "InProgress" | "None" | "PartialFailure" | "PartiallyCanceled" | "Pending" | "RebuildFailure" | "RebuildPending" | "RebuildSuccess" | "Rebuilding" | "Success";
 export type DataTransformStatus = "Active" | "Deleting" | "Error" | "Processing";
 export type DataTransformType = "BATCH" | "STREAMING";
-export type DmoFilterLimitOrder = "FilterSortOrderAsc" | "FilterSortOrderDesc";
+export type DcSqlDataTransformMacroArgumentType = "BYOC_SCRIPT";
+export type DcSqlDataTransformNodeConfigurationMaterialized = "ephemeral" | "table";
+export type DcSqlDataTransformNodeConfigurationWriteMode = "Append" | "DeleteOnly" | "Merge" | "MergeUpsertDelete" | "Overwrite";
+export type DmoFilterLimitOrder = "Asc" | "Desc";
 export type EgressPropertiesOutputCompressionFormat = "Bzip2" | "Gzip" | "None";
 export type EgressPropertiesOutputDelimiter = "BrokenPipe" | "Caret" | "Colon" | "Comma" | "Hash" | "Pipe" | "Semicolon" | "Slash" | "Tab" | "Tilde" | "Underscore";
 export type EgressPropertiesPredeterminedFilename = "Activation" | "Segment" | "SegmentActivation";
-export type ExactlyRelativeDateComparisonDateUnits = "Days" | "Months" | "Years";
+export type ExtractFieldGrainType = "Day" | "DayEpoch" | "FiscalMonth" | "FiscalQuarter" | "FiscalWeek" | "FiscalYear" | "Hour" | "Minute" | "Month" | "Quarter" | "Second" | "SecondEpoch" | "Week" | "Year";
 export type ExtractGrainFieldGrainType = "Day" | "DayEpoch" | "FiscalMonth" | "FiscalQuarter" | "FiscalWeek" | "FiscalYear" | "Hour" | "Minute" | "Month" | "Quarter" | "Second" | "SecondEpoch" | "Week" | "Year";
 export type FieldSrcTrgtRelationshipCardinality = "ManyToOne" | "OneToOne";
 export type FieldSrcTrgtRelationshipCreationType = "CalculatedInsight" | "Curated" | "Custom" | "SegmentMembership" | "Standard" | "System";
@@ -4030,18 +3374,19 @@ export type FilterDatSpaceOperator = "Equals" | "In_Operator";
 export type FilterExpressionDatSpaceFilterOperator = "And_Operator" | "Or_Operator";
 export type FilterExpressionDatSpaceFilterType = "Condition";
 export type FilterExpressionType = "Boolean" | "DateOnly" | "DateTime" | "Number" | "Text";
+export type FormulaParametersExpressionType = "Dcsql" | "Sql";
 export type IdpConfigExtractedDloFieldDataType = "STRING" | "NUMBER" | "DATE" | "BOOLEAN";
 export type IdpConfigurationActivationStatus = "Activated" | "Deactivated";
 export type IdpConfigurationBaseActivationStatus = "Activated" | "Deactivated";
 export type IdpConfigurationBaseRuntimeStatus = "Aborted" | "Failed" | "InProgress" | "NotStarted" | "Pending" | "Ready" | "Submitted" | "Success";
 export type IdpConfigurationBaseStatus = "Error" | "NotSynced" | "Synced" | "Syncing";
 export type IdpConfigurationPatchActivationStatus = "Activated" | "Deactivated";
-export type IdpDocumentStatus = "PENDING" | "PROCESSING" | "COMPLETED" | "FAILED";
-export type IdpProcessingStatusStatus = "PENDING" | "PROCESSING" | "COMPLETED" | "FAILED";
+export type IdpSchemaDetectionMode = "Multi" | "Single";
 export type IngestApiConnectionSchemaAvailabilityStatus = "Available" | "InUse";
 export type IngestApiConnectionSchemaFieldDataType = "Boolean" | "Currency" | "Date" | "DateOnly" | "DateTime" | "Email" | "Number" | "Percent" | "Phone" | "Text" | "Url";
 export type IngestApiConnectionStatus = "Connected" | "Disconnected" | "Failed" | "NeedsReAuth";
 export type JoinParametersJoinType = "Cross" | "Inner" | "LeftOuter" | "Lookup" | "MultiValueLookup" | "Outer" | "RightOuter";
+export type JsonSchemaType = "Array" | "Boolean" | "Integer" | "Null" | "Number" | "Object" | "String";
 export type LoadDatasetType = "CalculatedInsightObject" | "DataLakeObject" | "DataModelObject";
 export type MlConfiguredModelCapability = "BinaryClassification" | "ChatCompletion" | "Completion" | "Embedding" | "Generic" | "MulticlassClassification" | "Regression";
 export type MlConfiguredModelConnectorType = "Anthropic" | "AzureOpenAI" | "Bedrock" | "Databricks" | "Generic" | "InternalEmbedding" | "OpenAI" | "SageMaker" | "VertexAI";
@@ -4059,11 +3404,13 @@ export type MlDataAlertAlertType = "Auc" | "CollinearFields" | "CorrelateWithPro
 export type MlDataAlertQueryAssetType = "ModelArtifact";
 export type MlDataAlertSourceType = "ModelTraining" | "Runtime";
 export type MlModelInputTypeName = "ApplicationPdf" | "Float" | "ImageJpeg" | "ImagePng" | "Json" | "Text";
-export type MlModelJsonModeName = "CustomSchema" | "Simple";
 export type MlModelOutputTypeName = "ApplicationPdf" | "Float" | "ImageJpeg" | "ImagePng" | "Json" | "Text";
 export type MlSetupBaseUpdateType = "EdcNoCode" | "ModelConnector";
 export type MonthlySpecificScheduleFrequency = "Monthly";
 export type OutputD360ParametersType = "DataLakeObject" | "DataModelObject";
+export type OutputD360ParametersWriteMode = "Append" | "DeleteOnly" | "Merge" | "MergeUpsertDelete" | "Overwrite";
+export type PredictionFieldType = "Boolean" | "DateOnly" | "DateTime" | "Number" | "Text";
+export type PredictSourceType = "ConfiguredModel" | "MlModelGroup";
 export type QuerySqlMetadataItemType = "ArrayOfX" | "BigInt" | "Bool" | "Char" | "Date" | "Double" | "Float" | "Integer" | "Numeric" | "Oid" | "SmallInt" | "Time" | "Timestamp" | "TimestampTZ" | "Unspecified" | "Varchar";
 export type QuerySqlParameterItemType = "ArrayOfX" | "BigInt" | "Bool" | "Char" | "Date" | "Double" | "Float" | "Integer" | "Numeric" | "Oid" | "SmallInt" | "Time" | "Timestamp" | "TimestampTZ" | "Unspecified" | "Varchar";
 export type QuerySqlStatusCompletionStatus = "Finished" | "ResultsProduced" | "Running" | "Unspecified";
@@ -4084,6 +3431,8 @@ export type SchemaFieldTypePropertiesType = "Boolean" | "DateOnly" | "DateTime" 
 export type SchemaSliceMode = "Drop" | "Select";
 export type SchemaTypePropertiesCastType = "Boolean" | "DateOnly" | "DateTime" | "Number" | "Text";
 export type SnowflakeRouteDetailsType = "Snowflake";
+export type SortSpecificationDirection = "Ascending" | "Descending";
+export type SqlFilterParametersExpressionType = "Dcsql" | "Sql";
 export type SqlFormulaFieldType = "Boolean" | "DateOnly" | "DateTime" | "Number" | "Text";
 export type StreamingAppConnectionSchemaAvailabilityStatus = "Available" | "InUse";
 export type StreamingAppConnectionSchemaCategory = "Engagement" | "Other" | "Profile";
@@ -4096,8 +3445,9 @@ export type StreamingConnectorDetailsConfigCategory = "Directory_Table" | "Engag
 export type StreamingConnectorDetailsConfigStreamingAppType = "MobileApp" | "ServerApp" | "WebApp";
 export type StreamingParametersOutputMode = "Append" | "Complete" | "Update";
 export type StreamingParametersTriggerType = "Fixed";
-export type TransformValidationIssueErrorCode = "DataTransformLimitExceeded" | "DefinitionValidationError" | "DloNameDoesNotExist" | "DmoOutputValidationError" | "NameValidationError" | "SqlExpressionIsNull" | "StreamingTransformCreateForbidden" | "TagsValidationError" | "TargetDloNotFound" | "TargetObjectNameNull" | "TypeValidationError";
+export type TransformValidationIssueErrorCode = "DataTransformLimitExceeded" | "DloNameDoesNotExist" | "DmoOutputValidationError" | "InternalServiceError" | "InvalidDataTransform" | "InvalidDataTransformCapability" | "InvalidDataTransformDataObjects" | "InvalidDataTransformDefMapping" | "InvalidDataTransformDefinition" | "InvalidDataTransformRequest" | "InvalidDataTransformTag" | "InvalidInputPayload" | "InvalidTargetDLO" | "InvalidTargetDMO" | "NameValidationError" | "RestrictedDLO" | "SourceDloNotFound" | "SqlExpressionIsNull" | "StreamingTransformCreateForbidden" | "TagsValidationError" | "TargetDLOIsRebuilding" | "TargetDloNotFound" | "TargetDmoNotFound" | "TargetObjectNameNull" | "TypeValidationError";
 export type TransformValidationIssueErrorSeverity = "Error" | "Fatal" | "Warning";
+export type TransformValidationIssueType = "Definition" | "Transform";
 export type UseCaseTemplateMemberConfigMemberType = "Consumer" | "Provider";
 export type WeeklyScheduleFrequency = "Weekly";
 

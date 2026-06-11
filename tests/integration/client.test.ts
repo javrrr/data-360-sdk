@@ -44,7 +44,7 @@ describe("Data360Client construction", () => {
     expect(client.connectors).toBeDefined();
     expect(client.dataActionTargets).toBeDefined();
     expect(client.dataActions).toBeDefined();
-    expect(client.dataCleanRoom).toBeDefined();
+    expect(client.cleanRooms).toBeDefined();
     expect(client.dataGraphs).toBeDefined();
     expect(client.dataKits).toBeDefined();
     expect(client.dataLakeObjects).toBeDefined();

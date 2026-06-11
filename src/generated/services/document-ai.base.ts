@@ -16,9 +16,17 @@ import type {
   IdpGenerateSchemaInputRepresentation,
   IdpGeneratedSchemaRepresentation,
   IdpGlobalConfigRepresentation,
+  IdpSchemaDetectionInputRepresentation,
+  IdpSchemaDetectionRepresentation,
 } from "../../schemas.js";
 
 // ── Query parameter interfaces ──
+
+export interface DocumentAiDetectSchemaParams {
+  /** Minimum matching score (0-1) required for a schema to be returned in the response. If unspecified, the default value is `0.80`. */
+  threshold?: number;
+  [key: string]: string | number | boolean | undefined;
+}
 
 export interface DocumentAiExtractDataParams {
   /** Ending page number for data extraction. */
@@ -42,6 +50,11 @@ export interface DocumentAiListConfigurationsParams {
 
 export class DocumentAiServiceBase extends BaseResource {
   protected readonly basePath = "/ssot/document-processing";
+
+  /** POST /ssot/document-processing/actions/detect-schema — Detect Document AI schema */
+  async detectSchema(body: IdpSchemaDetectionInputRepresentation, params?: DocumentAiDetectSchemaParams, options?: RequestOptions): Promise<IdpSchemaDetectionRepresentation> {
+    return this.httpClient.post(`${this.basePath}/actions/detect-schema`, body, { ...options, query: params });
+  }
 
   /** POST /ssot/document-processing/actions/extract-data — Extract Document AI configuration data */
   async extractData(body: IdpExtractDataInputRepresentation, params?: DocumentAiExtractDataParams, options?: RequestOptions): Promise<IdpExtractedDataRepresentation> {

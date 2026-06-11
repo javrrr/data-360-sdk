@@ -7,8 +7,8 @@ import { BaseResource } from "../../resources/base-resource.js";
 import type { PaginationParams, RequestOptions } from "../../core/types.js";
 import type {
   CdpDataTransformActionResponseRepresentation,
+  CdpScheduleBaseRepresentation,
   CdpScheduleInputRepresentation,
-  CdpScheduleRepresentation,
   DataTransformCollectionRepresentation,
   DataTransformInputRepresentation,
   DataTransformRepresentation,
@@ -111,12 +111,12 @@ export class DataTransformsServiceBase extends BaseResource {
   }
 
   /** GET /ssot/data-transforms/{dataTransformNameOrId}/schedule — Get data transform schedule */
-  async getSchedule(dataTransformNameOrId: string, options?: RequestOptions): Promise<CdpScheduleRepresentation> {
+  async getSchedule(dataTransformNameOrId: string, options?: RequestOptions): Promise<CdpScheduleBaseRepresentation> {
     return this.httpClient.get(`${this.basePath}/${encodeURIComponent(dataTransformNameOrId)}/schedule`, options);
   }
 
   /** PUT /ssot/data-transforms/{dataTransformNameOrId}/schedule — Update data transform schedule */
-  async putSchedule(dataTransformNameOrId: string, body: CdpScheduleInputRepresentation, options?: RequestOptions): Promise<CdpScheduleRepresentation> {
+  async putSchedule(dataTransformNameOrId: string, body: CdpScheduleInputRepresentation, options?: RequestOptions): Promise<CdpScheduleBaseRepresentation> {
     return this.httpClient.put(`${this.basePath}/${encodeURIComponent(dataTransformNameOrId)}/schedule`, body, options);
   }
 

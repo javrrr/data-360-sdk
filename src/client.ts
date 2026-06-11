@@ -7,7 +7,7 @@ import { ConnectionsService } from "./resources/connections.js";
 import { ConnectorsService } from "./resources/connectors.js";
 import { DataActionTargetsService } from "./resources/data-action-targets.js";
 import { DataActionsService } from "./resources/data-actions.js";
-import { DataCleanRoomService } from "./resources/data-clean-room.js";
+import { CleanRoomsService } from "./resources/clean-rooms.js";
 import { DataGraphsService } from "./resources/data-graphs.js";
 import { DataKitsService } from "./resources/data-kits.js";
 import { DataLakeObjectsService } from "./resources/data-lake-objects.js";
@@ -36,7 +36,7 @@ export class Data360Client {
   public readonly connectors: ConnectorsService;
   public readonly dataActionTargets: DataActionTargetsService;
   public readonly dataActions: DataActionsService;
-  public readonly dataCleanRoom: DataCleanRoomService;
+  public readonly cleanRooms: CleanRoomsService;
   public readonly dataGraphs: DataGraphsService;
   public readonly dataKits: DataKitsService;
   public readonly dataLakeObjects: DataLakeObjectsService;
@@ -67,7 +67,7 @@ export class Data360Client {
     this.connectors = new ConnectorsService(httpClient);
     this.dataActionTargets = new DataActionTargetsService(httpClient);
     this.dataActions = new DataActionsService(httpClient);
-    this.dataCleanRoom = new DataCleanRoomService(httpClient);
+    this.cleanRooms = new CleanRoomsService(httpClient);
     this.dataGraphs = new DataGraphsService(httpClient);
     this.dataKits = new DataKitsService(httpClient);
     this.dataLakeObjects = new DataLakeObjectsService(httpClient);

@@ -14,8 +14,7 @@ import type {
   DataStreamInputRepresentation,
   DataStreamRepresentation,
   IngestApiConnectorDetailsConfig,
-  IngestApiConnectorPatchDetailsConfig,
-  SqlFormulaParametersInputRepresentation,
+  FormulaParametersInputRepresentation,
 } from "../src/schemas.js";
 import type {
   DataStreamCreateInput,
@@ -31,9 +30,11 @@ export const connectorInputTypecheck: ConnectorInputRepresentation = {
   },
 };
 
-export const connectorPatchTypecheck: IngestApiConnectorPatchDetailsConfig = {
-  mappings: [],
-  syncSchema: true,
+// IngestApiConnectorPatchDetailsConfig was consolidated into
+// IngestApiConnectorDetailsConfig in the spec — no separate patch shape now.
+export const connectorPatchTypecheck: IngestApiConnectorDetailsConfig = {
+  events: [],
+  name: "patch-target",
 };
 
 export const dataKitComponentTypecheck: CdpDataKitDeployComponentConfigForDLO = {
@@ -45,8 +46,11 @@ export const dataKitBundleTypecheck: CdpDataKitDeployBundleConfigForIngestApi = 
   connectorName: "MyConnector",
 };
 
-export const sqlFormulaParametersTypecheck: SqlFormulaParametersInputRepresentation = {
-  fields: [],
+// SqlFormulaParametersInputRepresentation was renamed to
+// FormulaParametersInputRepresentation; the fields[] array dropped from the
+// shape — only `expressionType` remains. The expression now lives elsewhere.
+export const formulaParametersTypecheck: FormulaParametersInputRepresentation = {
+  expressionType: "Sql",
 };
 
 // ── DataStreamInputRepresentation: dataLakeObjectInfo override ──

@@ -56,7 +56,7 @@ export { ConnectionsService } from "./resources/connections.js";
 export { ConnectorsService } from "./resources/connectors.js";
 export { DataActionTargetsService } from "./resources/data-action-targets.js";
 export { DataActionsService } from "./resources/data-actions.js";
-export { DataCleanRoomService } from "./resources/data-clean-room.js";
+export { CleanRoomsService } from "./resources/clean-rooms.js";
 export { DataGraphsService } from "./resources/data-graphs.js";
 export { DataKitsService } from "./resources/data-kits.js";
 export { DataLakeObjectsService } from "./resources/data-lake-objects.js";
