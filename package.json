@@ -1,6 +1,6 @@
 {
   "name": "data-360-sdk",
-  "version": "0.2.9",
+  "version": "0.2.10",
   "type": "module",
   "description": "TypeScript SDK for the Salesforce Data 360 Connect REST API",
   "author": "javrrr",
