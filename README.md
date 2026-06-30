@@ -1,11 +1,11 @@
 # data-360-sdk
 
-TypeScript SDK for the Salesforce Data 360 Connect REST API. Provides type-safe, idiomatic access to all 27 API resource categories with full coverage of 220+ endpoints.
+TypeScript SDK for the Salesforce Data 360 Connect REST API. Provides type-safe, idiomatic access to all 27 API resource categories with full coverage of 250+ endpoints.
 
 ## Features
 
-- **Full API coverage** — 27 service namespaces, 220+ methods, generated from the OpenAPI spec
-- **Type-safe** — Auto-generated types and services from the OpenAPI 3.0.0 spec (810 schemas + 262 enums + discriminated input unions + typed query parameters)
+- **Full API coverage** — 27 service namespaces, 250+ methods, generated from the OpenAPI spec
+- **Type-safe** — Auto-generated types and services from the OpenAPI 3.0.0 spec (850+ schemas + 280 enums + discriminated input unions + typed query parameters)
 - **Zero HTTP dependencies** — Uses native `fetch` (Node.js 18+, browsers, React Native)
 - **Dual format** — ESM + CJS output, tree-shakeable with `sideEffects: false`
 - **Retry & backoff** — Exponential backoff with jitter, Retry-After header support
@@ -268,7 +268,7 @@ if (queryId) {
 | Document AI | `client.documentAi` | extractData, generateSchema, listConfigurations, listAllConfigurations, createConfigurations, deleteConfigurations, getConfigurations, patchConfigurations, run, getGlobalConfig |
 | Identity Resolutions | `client.identityResolutions` | list, listAll, get, create, delete, patch, runNow |
 | Insights | `client.insights` | getMetadata, getMetadataByGet, getCalculatedInsights |
-| Machine Learning | `client.machineLearning` | createAlerts, patchAlerts, listConfiguredModels, listAllConfiguredModels, getConfiguredModels, deleteConfiguredModels, patchConfiguredModels, listModelArtifacts, listAllModelArtifacts, getModelArtifacts, deleteModelArtifacts, patchModelArtifacts, createPredict, listModelSetupsSetupVersions, listAllModelSetupsSetupVersions, createModelSetupsSetupVersions, getModelSetupsSetupVersions, patchModelSetupsSetupVersions, listModelSetupsSetupVersionsByGet, listAllModelSetupsSetupVersionsByGet, getModelSetupsSetupVersionsByGet |
+| Machine Learning | `client.machineLearning` | createAlerts, patchAlerts, listConfiguredModels, listAllConfiguredModels, getConfiguredModels, deleteConfiguredModels, patchConfiguredModels, listModelArtifacts, listAllModelArtifacts, getModelArtifacts, deleteModelArtifacts, patchModelArtifacts, createPredict, listModelSetupsSetupVersions, listAllModelSetupsSetupVersions, createModelSetupsSetupVersions, getModelSetupsSetupVersions, patchModelSetupsSetupVersions, listModelSetupsSetupVersionsByGet, listAllModelSetupsSetupVersionsByGet, getModelSetupsSetupVersionsByGet, listJobs, listAllJobs, getJobs, listJobsTasks, listAllJobsTasks, getJobsTasks, listPredictionJobDefinitions, listAllPredictionJobDefinitions, createPredictionJobDefinitions, getPredictionJobDefinitions, patchPredictionJobDefinitions, deletePredictionJobDefinitions |
 | Metadata | `client.metadata` | list, getEntities |
 | Private Network Routes | `client.privateNetworkRoutes` | list, listAll, get, create, delete |
 | Profile | `client.profile` | get, getByGet, getGet, getCalculatedInsights, getMetadata, getMetadataByGet |

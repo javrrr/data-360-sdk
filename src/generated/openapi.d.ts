@@ -10171,6 +10171,334 @@ export type paths = {
         };
         trace?: never;
     };
+    "/ssot/machine-learning/jobs": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get predict jobs
+         * @description Get a list of predict jobs.
+         *
+         *     **Available Version:** 59.0
+         */
+        get: {
+            parameters: {
+                query?: {
+                    /**
+                     * @description ID or API name of the predict job.
+                     *
+                     *     **Available Version:** 59.0
+                     */
+                    jobIdOrName?: string;
+                    /**
+                     * @description Maximum number of predict jobs to return.
+                     *
+                     *     **Available Version:** 59.0
+                     */
+                    limit?: number;
+                    /**
+                     * @description Number of rows to skip before returning results. If unspecified, no rows are skipped.
+                     *
+                     *     **Available Version:** 59.0
+                     */
+                    offset?: number;
+                    /**
+                     * @description Type of job.
+                     *
+                     *     **Available Version:** 59.0
+                     */
+                    type?: "Prediction" | "Training";
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["CdpMlJobCollectionRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not Found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/machine-learning/jobs/{jobId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get a predict job
+         * @description Get a specific predict job.
+         *
+         *     **Available Version:** 59.0
+         */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description ID of the predict job.
+                     *
+                     *     **Available Version:** 59.0
+                     */
+                    jobId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["CdpMlJobBaseRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not Found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/machine-learning/jobs/{jobId}/tasks": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get predict job tasks
+         * @description Get a list of tasks associated with a specific predict job.
+         *
+         *     **Available Version:** 59.0
+         */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description ID of the predict job.
+                     *
+                     *     **Available Version:** 59.0
+                     */
+                    jobId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["CdpMlTaskCollection"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not Found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/machine-learning/jobs/{jobId}/tasks/{taskId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get a predict job task
+         * @description Get a task associated with a specific predict job.
+         *
+         *     **Available Version:** 59.0
+         */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description ID of the predict job.
+                     *
+                     *     **Available Version:** 59.0
+                     */
+                    jobId: string;
+                    /**
+                     * @description ID of the task.
+                     *
+                     *     **Available Version:** 59.0
+                     */
+                    taskId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["CdpMlTaskBase"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not Found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/ssot/machine-learning/model-artifacts": {
         parameters: {
             query?: never;
@@ -10359,51 +10687,6 @@ export type paths = {
                 };
             };
         };
-        trace?: never;
-    };
-    "/ssot/machine-learning/predict": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /**
-         * Get prediction
-         * @description Make a prediction using the specified model and parameters. This request is synchronous.
-         *
-         *     **Available Version:** 61.0
-         */
-        post: {
-            parameters: {
-                query?: never;
-                header?: never;
-                path?: never;
-                cookie?: never;
-            };
-            requestBody: {
-                content: {
-                    "application/json": components["schemas"]["CdpMlPredictInputBaseRepresentation"];
-                };
-            };
-            responses: {
-                /** @description Success */
-                200: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content: {
-                        "application/json": components["schemas"]["CdpMlPredictResultRepresentation"];
-                    };
-                };
-            };
-        };
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
         trace?: never;
     };
     "/ssot/machine-learning/model-setups/{modelSetupIdOrName}/setup-versions": {
@@ -10905,6 +11188,389 @@ export type paths = {
         options?: never;
         head?: never;
         patch?: never;
+        trace?: never;
+    };
+    "/ssot/machine-learning/predict": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Get prediction
+         * @description Make a prediction using the specified model and parameters. This request is synchronous.
+         *
+         *     **Available Version:** 61.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["CdpMlPredictInputBaseRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["CdpMlPredictResultRepresentation"];
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/machine-learning/prediction-job-definitions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get prediction job definitions
+         * @description Get a list of existing prediction job definitions.
+         *
+         *     **Available Version:** 59.0
+         */
+        get: {
+            parameters: {
+                query?: {
+                    /**
+                     * @description ID of the machine learning model.
+                     *
+                     *     **Available Version:** 59.0
+                     */
+                    modelId?: string;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["MlPredictionJobDefCollectionRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not Found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        /**
+         * Create a prediction job definition
+         * @description Create a new prediction job definition.
+         *
+         *     **Available Version:** 59.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["MlPredictionJobDefBaseInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["MlPredictionJobDefBaseRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not Found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/machine-learning/prediction-job-definitions/{predictionJobDefIdOrName}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description ID or API name of the prediction job definition.
+                 *
+                 *     **Available Version:** 59.0
+                 */
+                predictionJobDefIdOrName: string;
+            };
+            cookie?: never;
+        };
+        /**
+         * Get a prediction job definition
+         * @description Get a specific prediction job definition.
+         *
+         *     **Available Version:** 59.0
+         */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description ID or API name of the prediction job definition.
+                     *
+                     *     **Available Version:** 59.0
+                     */
+                    predictionJobDefIdOrName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["MlPredictionJobDefBaseRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not Found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        /**
+         * Delete a prediction job definition
+         * @description Delete a specific prediction job definition.
+         *
+         *     **Available Version:** 59.0
+         */
+        delete: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description ID or API name of the prediction job definition.
+                     *
+                     *     **Available Version:** 59.0
+                     */
+                    predictionJobDefIdOrName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not Found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        options?: never;
+        head?: never;
+        /**
+         * Update a prediction job definition
+         * @description Update a specific prediction job definition.
+         *
+         *     **Available Version:** 59.0
+         */
+        patch: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description ID or API name of the prediction job definition.
+                     *
+                     *     **Available Version:** 59.0
+                     */
+                    predictionJobDefIdOrName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["MlPredictionJobDefBaseInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["MlPredictionJobDefBaseRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not Found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
         trace?: never;
     };
     "/ssot/metadata": {
@@ -16097,7 +16763,7 @@ export type components = {
              */
             createdDate?: string;
             /**
-             * @description The 18-character ID of the asset.
+             * @description 18-character ID of the asset.
              *
              *     **Filter Group:** Small
              *
@@ -16137,7 +16803,7 @@ export type components = {
              */
             name?: string;
             /**
-             * @description Name space of the asset. Not applicable to the [get activation](https://developer.salesforce.com/docs/data/connectapi/references/spec?meta=getActivation) endpoint.
+             * @description Namespace of the asset. Not applicable to the [get activation](https://developer.salesforce.com/docs/data/connectapi/references/spec?meta=getActivation) endpoint.
              *
              *     **Filter Group:** Small
              *
@@ -19231,6 +19897,75 @@ export type components = {
             modelProviderName?: "Anthropic" | "AzureOpenAI" | "Bedrock" | "Databricks" | "Generic" | "InternalEmbedding" | "OpenAI" | "OpenConnector" | "SageMaker" | "Salesforce" | "VertexAI";
         };
         /**
+         * Ml Job Base Output
+         * @description Represents a machine learning job.
+         */
+        CdpMlJobBaseRepresentation: components["schemas"]["CdpAssetBaseRepresentation"] & {
+            /**
+             * @description Description of the job.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 59.0
+             */
+            description?: string;
+            /**
+             * @description End time of the job run.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 59.0
+             */
+            endTime?: string;
+            /**
+             * @description Asset input for the job run. For `Training` types, use the model setup ID. For `Prediction` types, use the model container ID.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 59.0
+             */
+            input?: components["schemas"]["CdpAssetReferenceRepresentation"];
+            /**
+             * @description Message associated with the job run.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 59.0
+             */
+            message?: string;
+            /**
+             * @description Start time of the job run.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 59.0
+             */
+            startTime?: string;
+            /**
+             * @description Type of job.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 59.0
+             * @enum {string}
+             */
+            type?: "Prediction" | "Training";
+        };
+        /**
+         * Ml Job Collection Output
+         * @description Represents a list of machine learning jobs.
+         */
+        CdpMlJobCollectionRepresentation: components["schemas"]["CdpPaginatedResponseBaseRepresentation"] & {
+            /**
+             * @description List of jobs.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 59.0
+             */
+            jobs?: components["schemas"]["CdpMlJobBaseRepresentation"][];
+        };
+        /**
          * ML Model Artifact Base Output
          * @description Represents a base ML model artifact.
          */
@@ -19927,6 +20662,58 @@ export type components = {
              *     **Available Version:** 59.0
              */
             url?: string;
+        };
+        /**
+         * Ml Task Base Output
+         * @description Represents a machine learning job task.
+         */
+        CdpMlTaskBase: components["schemas"]["CdpAssetBaseRepresentation"] & {
+            /**
+             * @description End time of the job run.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 59.0
+             */
+            endTime?: string;
+            /**
+             * @description Error code, if any.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 59.0
+             */
+            errorCode?: string;
+            /**
+             * @description Message associated with the job run.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 59.0
+             */
+            message?: string;
+            /**
+             * @description Start time of the job run.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 59.0
+             */
+            startTime?: string;
+        };
+        /**
+         * Ml Task Collection Output
+         * @description Represents a list of machine learning job tasks.
+         */
+        CdpMlTaskCollection: {
+            /**
+             * @description List of tasks.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 59.0
+             */
+            tasks?: components["schemas"]["CdpMlTaskBase"][];
         };
         /**
          * Monthly Relative Schedule Input
@@ -33230,6 +34017,100 @@ export type components = {
             name?: string;
         };
         /**
+         * Ml Binary Classification Job Def Input
+         * @description Represents the input for creating a binary classification prediction job definition.
+         */
+        MlBinaryClassificationJobDefInputRepresentation: components["schemas"]["MlPredictionJobDefPredictiveInputRepresentation"] & {
+            /**
+             * @description Binary classification settings.
+             *
+             *     **Available Version:** 66.0
+             */
+            binaryClassificationSettings?: components["schemas"]["MlBinaryClassificationJobDefSettingsInputRepresentation"];
+        };
+        /**
+         * Ml Binary Classification Job Def Output
+         * @description Represents a binary classification prediction job definition.
+         */
+        MlBinaryClassificationJobDefRepresentation: components["schemas"]["MlPredictionJobDefPredictiveRepresentation"] & {
+            /**
+             * @description Settings configuration for the binary classification prediction job definition.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            binaryClassificationSettings?: components["schemas"]["MlBinaryClassificationJobDefSettingsRepresentation"];
+        };
+        /**
+         * Ml Binary Classification Job Def Settings Input
+         * @description Represents the settings configuration for a binary classification prediction job definition.
+         */
+        MlBinaryClassificationJobDefSettingsInputRepresentation: {
+            /**
+             * @description Maximum number of prescriptions to generate.
+             *
+             *     **Available Version:** 66.0
+             */
+            maxPrescriptions?: number;
+            /**
+             * @description Maximum number of top contributors to generate.
+             *
+             *     **Available Version:** 66.0
+             */
+            maxTopContributors?: number;
+            /**
+             * @description Prescription threshold value.
+             *
+             *     **Available Version:** 66.0
+             */
+            prescriptionThreshold?: number;
+            /**
+             * @description Indicates whether the outcome columns show class probabilities for both positive and negative classes (`true`) or not (`false`). If unspecified, the default value is `true`.
+             *
+             *     **Available Version:** 66.0
+             */
+            showClassProbabilities?: boolean;
+        };
+        /**
+         * Ml Binary Classification Job Def Settings Output
+         * @description Represents the settings configuration for a binary classification prediction job definition.
+         */
+        MlBinaryClassificationJobDefSettingsRepresentation: {
+            /**
+             * @description Maximum number of prescriptions to include per prediction.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            maxPrescriptions?: number;
+            /**
+             * @description Maximum number of top contributors to include per prediction.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            maxTopContributors?: number;
+            /**
+             * @description Improvement threshold for prescriptions.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            prescriptionThreshold?: number;
+            /**
+             * @description Indicates whether the outcome columns show class probabilities for both positive and negative classes (`true`) or not (`false`).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            showClassProbabilities?: boolean;
+        };
+        /**
          * ML Configured Model Collection Output
          * @description Represents Ml Configured Model Collection
          */
@@ -33552,6 +34433,86 @@ export type components = {
             serviceAccountEmail?: string;
         };
         /**
+         * Ml Clustering Job Def Input
+         * @description Represents the input for creating a clustering prediction job definition.
+         */
+        MlClusteringJobDefInputRepresentation: components["schemas"]["MlPredictionJobDefPredictiveInputRepresentation"] & {
+            /**
+             * @description Clustering settings.
+             *
+             *     **Available Version:** 68.0
+             */
+            clusteringSettings?: components["schemas"]["MlClusteringJobDefSettingsInputRepresentation"];
+        };
+        /**
+         * Ml Clustering Job Def Output
+         * @description Represents a clustering prediction job definition.
+         */
+        MlClusteringJobDefRepresentation: components["schemas"]["MlPredictionJobDefPredictiveRepresentation"] & {
+            /**
+             * @description Settings configuration for the clustering prediction job definition.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 68.0
+             */
+            clusteringSettings?: components["schemas"]["MlClusteringJobDefSettingsRepresentation"];
+        };
+        /**
+         * Ml Clustering Job Def Settings Input
+         * @description Represents the settings configuration for a clustering prediction job definition.
+         */
+        MlClusteringJobDefSettingsInputRepresentation: {
+            /**
+             * @description Label for the cluster ID output field.
+             *
+             *     **Available Version:** 68.0
+             */
+            clusterIdFieldLabel?: string;
+            /**
+             * @description Label for the cluster label output field.
+             *
+             *     **Available Version:** 68.0
+             */
+            clusterLabelFieldLabel?: string;
+            /**
+             * @description Maximum number of top contributors for clustering.
+             *
+             *     **Available Version:** 68.0
+             */
+            maxTopContributors?: number;
+        };
+        /**
+         * Ml Clustering Job Def Settings Output
+         * @description Represents the settings configuration for a clustering prediction job definition.
+         */
+        MlClusteringJobDefSettingsRepresentation: {
+            /**
+             * @description Label for the cluster ID output field.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 68.0
+             */
+            clusterIdFieldLabel?: string;
+            /**
+             * @description Label for the cluster label output field.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 68.0
+             */
+            clusterLabelFieldLabel?: string;
+            /**
+             * @description Maximum number of top contributors to include per prediction.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 68.0
+             */
+            maxTopContributors?: number;
+        };
+        /**
          * ML Data Alert Collection Output
          * @description Represents a collection of data alerts for an ML model.
          */
@@ -33791,7 +34752,7 @@ export type components = {
              */
             description?: string;
             /**
-             * @description Indicates whether the input type is default (`true`) or not (`false`).
+             * @description Indicates whether the input type is the default (`true`) or not (`false`).
              *
              *     **Filter Group:** Small
              *
@@ -33878,7 +34839,7 @@ export type components = {
              */
             description?: string;
             /**
-             * @description Indicates whether the output type is default (`true`) or not (`false`).
+             * @description Indicates whether the output type is the default (`true`) or not (`false`).
              *
              *     **Filter Group:** Small
              *
@@ -33912,6 +34873,771 @@ export type components = {
             value?: string;
         };
         /**
+         * Ml Multiclass Classification Job Def Input
+         * @description Represents the input for creating a multiclass classification prediction job definition.
+         */
+        MlMulticlassClassificationJobDefInputRepresentation: components["schemas"]["MlPredictionJobDefPredictiveInputRepresentation"] & {
+            /**
+             * @description Multiclass classification settings.
+             *
+             *     **Available Version:** 66.0
+             */
+            multiclassClassificationSettings?: components["schemas"]["MlMulticlassClassificationJobDefSettingsInputRepresentation"];
+        };
+        /**
+         * Ml Multiclass Classification Job Def Output
+         * @description Represents a multiclass classification prediction job definition.
+         */
+        MlMulticlassClassificationJobDefRepresentation: components["schemas"]["MlPredictionJobDefPredictiveRepresentation"] & {
+            /**
+             * @description Settings configuration for the multiclass classification prediction job definition.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            multiclassClassificationSettings?: components["schemas"]["MlMulticlassClassificationJobDefSettingsRepresentation"];
+        };
+        /**
+         * Ml Multiclass Classification Job Def Settings Input
+         * @description Represents the settings configuration for a multiclass classification prediction job definition.
+         */
+        MlMulticlassClassificationJobDefSettingsInputRepresentation: {
+            /**
+             * @description Maximum number of top contributors to generate.
+             *
+             *     **Available Version:** 66.0
+             */
+            maxTopContributors?: number;
+            /**
+             * @description Number of classes to include in the output. If unspecified, the default value is all classes in the outcome.
+             *
+             *     **Available Version:** 66.0
+             */
+            numberOfClasses?: number;
+        };
+        /**
+         * Ml Multiclass Classification Job Def Settings Output
+         * @description Represents the settings configuration for a multiclass classification prediction job definition.
+         */
+        MlMulticlassClassificationJobDefSettingsRepresentation: {
+            /**
+             * @description Maximum number of top contributors to include per prediction.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            maxTopContributors?: number;
+            /**
+             * @description Number of classes to include in the output.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            numberOfClasses?: number;
+        };
+        /**
+         * Ml Prediction Job Def Base Input
+         * @description Represents the input configuration for a prediction job definition.
+         */
+        MlPredictionJobDefBaseInputRepresentation: Record<string, never> & ({
+            /**
+             * @description Activation status of the prediction job.
+             *
+             *     **Available Version:** 59.0
+             * @enum {string}
+             */
+            activationStatus?: "Active" | "Inactive";
+            /**
+             * @description API name of the prediction job.
+             *
+             *     **Available Version:** 59.0
+             */
+            apiName?: string;
+            /**
+             * @description Description of the prediction job.
+             *
+             *     **Available Version:** 59.0
+             */
+            description?: string;
+            /**
+             * @description Label of the prediction job.
+             *
+             *     **Available Version:** 59.0
+             */
+            label?: string;
+            /**
+             * @description Model associated with the prediction job.
+             *
+             *     **Available Version:** 59.0
+             */
+            model?: components["schemas"]["CdpAssetReferenceInputRepresentation"];
+            /**
+             * @description Output data model object (DMO) details.
+             *
+             *     **Available Version:** 59.0
+             */
+            outputConfig?: components["schemas"]["MlPredictionJobDefPredictionsConfigInputRepresentation"];
+            /**
+             * @description Scoring mode for the prediction job.
+             *
+             *     **Available Version:** 59.0
+             * @enum {string}
+             */
+            scoringMode?: "Batch" | "Streaming";
+            /**
+             * @description Type of prediction job. Use the job def input object that corresponds to the job type.
+             *
+             *     For example, use the Ml Binary Classification Job Def Input for the `BinaryClassification` job type.
+             *
+             *     **Available Version:** 59.0
+             * @enum {string}
+             */
+            type?: "BinaryClassification" | "Clustering" | "MulticlassClassification" | "Regression" | "SentimentDetection" | "TopicClassification";
+        } & (components["schemas"]["MlBinaryClassificationJobDefInputRepresentation"] | components["schemas"]["MlClusteringJobDefInputRepresentation"] | components["schemas"]["MlMulticlassClassificationJobDefInputRepresentation"] | components["schemas"]["MlRegressionJobDefInputRepresentation"] | components["schemas"]["MlSentimentDetectionJobDefInputRepresentation"] | components["schemas"]["MlTopicClassificationJobDefInputRepresentation"]));
+        /**
+         * Ml Prediction Job Def Base Output
+         * @description Represents the base output for a prediction job definition.
+         */
+        MlPredictionJobDefBaseRepresentation: Record<string, never> & ({
+            /**
+             * @description Activation status of the prediction job.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 59.0
+             * @enum {string}
+             */
+            activationStatus?: "Active" | "Inactive";
+            /**
+             * @description Data space details for the prediction job.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 59.0
+             */
+            dataSpace?: components["schemas"]["CdpAssetReferenceRepresentation"];
+            /**
+             * @description Description of the prediction job.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 59.0
+             */
+            description?: string;
+            /**
+             * @description Last execution date for the prediction job.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 59.0
+             */
+            lastRunDate?: string;
+            /**
+             * @description Status of the last execution.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 59.0
+             * @enum {string}
+             */
+            lastRunStatus?: "Aborted" | "Failed" | "InProgress" | "NotStarted" | "Pending" | "Submited" | "Success";
+            /**
+             * @description Model associated with the prediction job.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 59.0
+             */
+            model?: components["schemas"]["CdpAssetReferenceRepresentation"];
+            /**
+             * @description Output data model object (DMO) details.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 59.0
+             */
+            outputConfig?: components["schemas"]["MlPredictionJobDefPredictionsConfigRepresentation"];
+            /**
+             * @description Scoring mode for the prediction job.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 59.0
+             * @enum {string}
+             */
+            scoringMode?: "Batch" | "Streaming";
+            /**
+             * @description Type of prediction job. The endpoint returns the job def output object that corresponds to the job type.
+             *
+             *     For example, the Ml Binary Classification Job Def Output is returned for the `BinaryClassification` job type.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 59.0
+             * @enum {string}
+             */
+            type?: "BinaryClassification" | "Clustering" | "MulticlassClassification" | "Regression" | "SentimentDetection" | "TopicClassification";
+        } & (components["schemas"]["MlBinaryClassificationJobDefRepresentation"] | components["schemas"]["MlClusteringJobDefRepresentation"] | components["schemas"]["MlMulticlassClassificationJobDefRepresentation"] | components["schemas"]["MlRegressionJobDefRepresentation"] | components["schemas"]["MlSentimentDetectionJobDefRepresentation"] | components["schemas"]["MlTopicClassificationJobDefRepresentation"]));
+        /**
+         * Ml Prediction Job Def Collection Output
+         * @description Represents a collection of prediction job definitions.
+         */
+        MlPredictionJobDefCollectionRepresentation: {
+            /**
+             * @description List of prediction jobs.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 59.0
+             */
+            predictionJobDefinitions?: components["schemas"]["MlPredictionJobDefBaseRepresentation"][];
+            /**
+             * @description Total size of the prediction jobs returned.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 59.0
+             */
+            totalSize?: number;
+            /**
+             * @description URL of the page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 59.0
+             */
+            url?: string;
+        };
+        /**
+         * Ml Prediction Job Def Data Field Input
+         * @description Represents a data model object (DMO) field with an optional relationship path.
+         */
+        MlPredictionJobDefDataFieldInputRepresentation: components["schemas"]["CdpAssetBaseInputRepresentation"] & {
+            /**
+             * @description Data model object (DMO) that contains the field.
+             *
+             *     **Available Version:** 67.0
+             */
+            dataObject?: components["schemas"]["CdpAssetReferenceInputRepresentation"];
+        };
+        /**
+         * Ml Prediction Job Def Data Field Output
+         * @description Represents a prediction job data field.
+         */
+        MlPredictionJobDefDataFieldRepresentation: components["schemas"]["CdpAssetBaseRepresentation"] & {
+            /**
+             * @description Detals about the data model object (DMO) for the field.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 59.0
+             */
+            dataObject?: components["schemas"]["CdpAssetReferenceRepresentation"];
+        };
+        /**
+         * Ml Prediction Job Def Features Config Input
+         * @description Represents the input configuration for features, including the data model object (DMO) and field mappings.
+         */
+        MlPredictionJobDefFeaturesConfigInputRepresentation: {
+            /**
+             * @description Input data model object (DMO).
+             *
+             *     **Available Version:** 59.0
+             */
+            dataObject?: components["schemas"]["CdpAssetReferenceInputRepresentation"];
+            /**
+             * @description List of field mappings between model features and DMO fields.
+             *
+             *     **Available Version:** 59.0
+             */
+            fields?: components["schemas"]["MlPredictionJobDefFeatureMappingInputRepresentation"][];
+        };
+        /**
+         * Ml Prediction Job Def Features Config Output
+         * @description Represents the features configuration for a prediction job definition.
+         */
+        MlPredictionJobDefFeaturesConfigRepresentation: {
+            /**
+             * @description Input data model object (DMO).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 59.0
+             */
+            dataObject?: components["schemas"]["CdpAssetReferenceRepresentation"];
+            /**
+             * @description List of mappings between model features and data model object (DMO) fields.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 59.0
+             */
+            fields?: components["schemas"]["MlPredictionJobDefFeatureMappingRepresentation"][];
+        };
+        /**
+         * Ml Prediction Job Def Feature Mapping Input
+         * @description Represents the mapping between a model feature and a data model object (DMO) field.
+         */
+        MlPredictionJobDefFeatureMappingInputRepresentation: {
+            /**
+             * @description Mapped data model object (DMO) field.
+             *
+             *     **Available Version:** 59.0
+             */
+            mappedField?: components["schemas"]["MlPredictionJobDefMappedFieldInputRepresentation"];
+            /**
+             * @description Model feature field.
+             *
+             *     **Available Version:** 59.0
+             */
+            modelField?: components["schemas"]["CdpAssetReferenceInputRepresentation"];
+            /**
+             * @description Indicates whether an update to this field triggers a prediction update for streaming jobs (`true`) or not (`false`).
+             *
+             *     **Available Version:** 59.0
+             */
+            updateScore?: boolean;
+        };
+        /**
+         * Ml Prediction Job Def Feature Mapping Output
+         * @description Represents the mapping between a model feature and a data model object (DMO) field.
+         */
+        MlPredictionJobDefFeatureMappingRepresentation: {
+            /**
+             * @description Mapped data model object (DMO) field.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 59.0
+             */
+            mappedField?: components["schemas"]["MlPredictionJobDefMappedFieldRepresentation"];
+            /**
+             * @description Model feature field.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 59.0
+             */
+            modelField?: components["schemas"]["CdpAssetReferenceRepresentation"];
+            /**
+             * @description Indicates whether an update to this field triggers a prediction update for streaming jobs (`true`) or not (`false`).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 59.0
+             */
+            updateScore?: boolean;
+        };
+        /**
+         * Ml Prediction Job Def Field Relationship Input
+         * @description Represents a join relationship between two data model object (DMO) fields.
+         */
+        MlPredictionJobDefFieldRelationshipInputRepresentation: {
+            /**
+             * @description Source field on the left side of the join.
+             *
+             *     **Available Version:** 59.0
+             */
+            sourceField?: components["schemas"]["MlPredictionJobDefDataFieldInputRepresentation"];
+            /**
+             * @description Target field on the right side of the join.
+             *
+             *     **Available Version:** 59.0
+             */
+            targetField?: components["schemas"]["MlPredictionJobDefDataFieldInputRepresentation"];
+        };
+        /**
+         * Ml Prediction Job Def Field Relationship Output
+         * @description Represents a prediction job field relationship.
+         */
+        MlPredictionJobDefFieldRelationshipRepresentation: {
+            /**
+             * @description Name of the data model object (DMO) source field.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 59.0
+             */
+            sourceField?: components["schemas"]["MlPredictionJobDefDataFieldRepresentation"];
+            /**
+             * @description Name of the DMO target field.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 59.0
+             */
+            targetField?: components["schemas"]["MlPredictionJobDefDataFieldRepresentation"];
+        };
+        /**
+         * Ml Prediction Job Def Input Field Input
+         * @description Represents an input field for a prediction job definition.
+         */
+        MlPredictionJobDefInputFieldInputRepresentation: {
+            /**
+             * @description Mapped data model object (DMO) field.
+             *
+             *     **Available Version:** 66.0
+             */
+            mappedField?: components["schemas"]["MlPredictionJobDefMappedFieldInputRepresentation"];
+            /**
+             * @description Indicates whether a prediction is rescored when this field updates (`true`) or not (`false`).
+             *
+             *     **Available Version:** 66.0
+             */
+            updateScore?: boolean;
+        };
+        /**
+         * Ml Prediction Job Def Input Field Output
+         * @description Represents an input field configuration for a prediction job definition.
+         */
+        MlPredictionJobDefInputFieldRepresentation: {
+            /**
+             * @description Mapped data model object (DMO) field.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            mappedField?: components["schemas"]["MlPredictionJobDefMappedFieldRepresentation"];
+            /**
+             * @description Indicates whether an update to this field triggers a prediction update for streaming jobs (`true`) or not (`false`).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            updateScore?: boolean;
+        };
+        /**
+         * Ml Prediction Job Def Mapped Field Input
+         * @description Represents a data model object (DMO) field with an optional relationship path.
+         */
+        MlPredictionJobDefMappedFieldInputRepresentation: components["schemas"]["CdpAssetBaseInputRepresentation"] & {
+            /**
+             * @description Data model object (DMO) that contains the field.
+             *
+             *     **Available Version:** 59.0
+             */
+            dataObject?: components["schemas"]["CdpAssetReferenceInputRepresentation"];
+            /**
+             * @description List of join relationships for accessing the field from a related DMO.
+             *
+             *     **Available Version:** 59.0
+             */
+            relationshipPath?: components["schemas"]["MlPredictionJobDefFieldRelationshipInputRepresentation"][];
+        };
+        /**
+         * Ml Prediction Job Def Mapped Field Output
+         * @description Represents a prediction job mapped data field.
+         */
+        MlPredictionJobDefMappedFieldRepresentation: components["schemas"]["CdpAssetBaseRepresentation"] & {
+            /**
+             * @description Data model object (DMO) details for the given field.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 59.0
+             */
+            dataObject?: components["schemas"]["CdpAssetReferenceRepresentation"];
+            /**
+             * @description Relationship path for cases where the field comes from a related DMO.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 59.0
+             */
+            relationshipPath?: components["schemas"]["MlPredictionJobDefFieldRelationshipRepresentation"][];
+        };
+        /**
+         * Ml Prediction Job Def Predictions Config Input
+         * @description Represents the input configuration for predictions generated by a model.
+         */
+        MlPredictionJobDefPredictionsConfigInputRepresentation: {
+            /**
+             * @description Description of the output data model object (DMO).
+             *
+             *     **Available Version:** 59.0
+             */
+            description?: string;
+            /**
+             * @description Object label of the output DMO.
+             *
+             *     **Available Version:** 59.0
+             */
+            objectLabel?: string;
+            /**
+             * @description API name of the output DMO.
+             *
+             *     **Available Version:** 59.0
+             */
+            objectName?: string;
+        };
+        /**
+         * Ml Prediction Job Def Predictions Config Output
+         * @description Represents the configuration for prediction jobs.
+         */
+        MlPredictionJobDefPredictionsConfigRepresentation: {
+            /**
+             * @description Details about the output data model object (DMO).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 59.0
+             */
+            dataObject?: components["schemas"]["CdpAssetReferenceRepresentation"];
+            /**
+             * @description List of model prediction fields and output DMO mappings.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 59.0
+             */
+            fields?: components["schemas"]["MlPredictionJobDefPredictionMappingRepresentation"][];
+        };
+        /**
+         * Ml Prediction Job Def Prediction Mapping Output
+         * @description Represents the output for prediction job mappings.
+         */
+        MlPredictionJobDefPredictionMappingRepresentation: {
+            /**
+             * @description Mapped field details from the output data model object (DMO).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 59.0
+             */
+            mappedField?: components["schemas"]["MlPredictionJobDefMappedFieldRepresentation"];
+            /**
+             * @description Model feature details from a model output feature, if any.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 59.0
+             */
+            modelField?: components["schemas"]["CdpAssetReferenceRepresentation"];
+            /**
+             * @description Source field details from an input DMO, if any.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 59.0
+             */
+            sourceField?: components["schemas"]["MlPredictionJobDefMappedFieldRepresentation"];
+        };
+        /**
+         * Ml Prediction Job Def Predictive Input
+         * @description Represents the input configuration for a prediction job definition.
+         */
+        MlPredictionJobDefPredictiveInputRepresentation: components["schemas"]["MlPredictionJobDefBaseInputRepresentation"] & {
+            /**
+             * @description Input configuration for the prediction job definition.
+             *
+             *     **Available Version:** 59.0
+             */
+            inputConfig?: components["schemas"]["MlPredictionJobDefFeaturesConfigInputRepresentation"];
+        };
+        /**
+         * Ml Prediction Job Def Predictive Output
+         * @description Represents the base configuration for predictive prediction job definitions.
+         */
+        MlPredictionJobDefPredictiveRepresentation: components["schemas"]["MlPredictionJobDefBaseRepresentation"] & {
+            /**
+             * @description Input configuration for features and field mappings.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 59.0
+             */
+            inputConfig?: components["schemas"]["MlPredictionJobDefFeaturesConfigRepresentation"];
+        };
+        /**
+         * Ml Prediction Job Def Settings Output
+         * @description Represents the general settings configuration for a prediction job definition.
+         */
+        MlPredictionJobDefSettingsRepresentation: {
+            /**
+             * @description Maximum number of prescriptions to include per prediction.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            maxPrescriptions?: number;
+            /**
+             * @description Maximum number of top contributors to include per prediction.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            maxTopContributors?: number;
+            /**
+             * @description Improvement threshold for prescriptions.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            prescriptionThreshold?: number;
+        };
+        /**
+         * Ml Regression Job Def Input
+         * @description Represents the input for creating a regression prediction job definition.
+         */
+        MlRegressionJobDefInputRepresentation: components["schemas"]["MlPredictionJobDefPredictiveInputRepresentation"] & {
+            /**
+             * @description Regression settings.
+             *
+             *     **Available Version:** 66.0
+             */
+            regressionSettings?: components["schemas"]["MlRegressionJobDefSettingsInputRepresentation"];
+        };
+        /**
+         * Ml Regression Job Def Output
+         * @description Represents a regression prediction job definition.
+         */
+        MlRegressionJobDefRepresentation: components["schemas"]["MlPredictionJobDefPredictiveRepresentation"] & {
+            /**
+             * @description General prediction settings configuration.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            predictionSettings?: components["schemas"]["MlPredictionJobDefSettingsRepresentation"];
+            /**
+             * @description Regression-specific settings configuration.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            regressionSettings?: components["schemas"]["MlRegressionJobDefSettingsRepresentation"];
+        };
+        /**
+         * Ml Regression Job Def Settings Input
+         * @description Represents the settings configuration for a regression prediction job definition.
+         */
+        MlRegressionJobDefSettingsInputRepresentation: {
+            /**
+             * @description Maximum number of prescriptions to generate.
+             *
+             *     **Available Version:** 66.0
+             */
+            maxPrescriptions?: number;
+            /**
+             * @description Maximum number of top contributors to generate.
+             *
+             *     **Available Version:** 66.0
+             */
+            maxTopContributors?: number;
+            /**
+             * @description Improvement threshold for prescriptions.
+             *
+             *     **Available Version:** 66.0
+             */
+            prescriptionThreshold?: number;
+        };
+        /**
+         * Ml Regression Job Def Settings Output
+         * @description Represents the settings configuration for a regression prediction job definition.
+         */
+        MlRegressionJobDefSettingsRepresentation: {
+            /**
+             * @description Maximum number of prescriptions to include per prediction.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            maxPrescriptions?: number;
+            /**
+             * @description Maximum number of top contributors to include per prediction.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            maxTopContributors?: number;
+            /**
+             * @description Improvement threshold for prescriptions.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            prescriptionThreshold?: number;
+        };
+        /**
+         * Ml Sentiment Detection Job Def Input
+         * @description Represents the input for creating a sentiment detection prediction job definition.
+         */
+        MlSentimentDetectionJobDefInputRepresentation: components["schemas"]["MlPredictionJobDefBaseInputRepresentation"] & {
+            /**
+             * @description Input configuration for sentiment detection.
+             *
+             *     **Available Version:** 66.0
+             */
+            inputConfig?: components["schemas"]["MlSentimentDetectionInputConfigInputRepresentation"];
+        };
+        /**
+         * Ml Sentiment Detection Input Config Input
+         * @description Represents the input configuration for a sentiment detection prediction job definition.
+         */
+        MlSentimentDetectionInputConfigInputRepresentation: {
+            /**
+             * @description Input data model object (DMO).
+             *
+             *     **Available Version:** 66.0
+             */
+            dataObject?: components["schemas"]["CdpAssetReferenceInputRepresentation"];
+            /**
+             * @description List of text fields to perform sentiment detection on.
+             *
+             *     **Available Version:** 66.0
+             */
+            textFields?: components["schemas"]["MlPredictionJobDefInputFieldInputRepresentation"][];
+        };
+        /**
+         * Ml Sentiment Detection Input Config Output
+         * @description Represents the input configuration for a sentiment detection prediction job definition.
+         */
+        MlSentimentDetectionInputConfigRepresentation: {
+            /**
+             * @description Input data model object (DMO).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            dataObject?: components["schemas"]["CdpAssetReferenceRepresentation"];
+            /**
+             * @description List of text fields to perform sentiment detection on.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            textFields?: components["schemas"]["MlPredictionJobDefInputFieldRepresentation"][];
+        };
+        /**
+         * Ml Sentiment Detection Job Def Output
+         * @description Represents a sentiment detection prediction job definition.
+         */
+        MlSentimentDetectionJobDefRepresentation: components["schemas"]["MlPredictionJobDefBaseRepresentation"] & {
+            /**
+             * @description Input configuration for sentiment detection.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            inputConfig?: components["schemas"]["MlSentimentDetectionInputConfigRepresentation"];
+        };
+        /**
          * ML Setup Base Update Input
          * @description Represents the base class for the core fields you can update in a model setup.
          */
@@ -33923,6 +35649,126 @@ export type components = {
              * @enum {string}
              */
             type?: "EdcNoCode" | "ModelConnector";
+        };
+        /**
+         * Ml Topic Classification Input Config Input
+         * @description Represents the input configuration for a topic classification prediction job definition.
+         */
+        MlTopicClassificationInputConfigInputRepresentation: {
+            /**
+             * @description Input data model object (DMO).
+             *
+             *     **Available Version:** 66.0
+             */
+            dataObject?: components["schemas"]["CdpAssetReferenceInputRepresentation"];
+            /**
+             * @description List of text fields to perform topic classification on.
+             *
+             *     **Available Version:** 66.0
+             */
+            textFields?: components["schemas"]["MlPredictionJobDefInputFieldInputRepresentation"][];
+            /**
+             * @description Topic labels for classifying the text fields.
+             *
+             *     **Available Version:** 66.0
+             */
+            topicLabels?: components["schemas"]["MlTopicClassificationJobStaticLabelsInputRepresentation"];
+        };
+        /**
+         * Ml Topic Classification Input Config Output
+         * @description Represents the input configuration for a topic classification prediction job definition.
+         */
+        MlTopicClassificationInputConfigRepresentation: {
+            /**
+             * @description Input data model object (DMO).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            dataObject?: components["schemas"]["CdpAssetReferenceRepresentation"];
+            /**
+             * @description List of text fields to perform topic classification on.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            textFields?: components["schemas"]["MlPredictionJobDefInputFieldRepresentation"][];
+            /**
+             * @description Topic labels for classifying the text fields.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            topicLabels?: components["schemas"]["MlTopicClassificationJobLabelsBaseRepresentation"];
+        };
+        /**
+         * Ml Topic Classification Job Def Input
+         * @description Represents the input for creating a topic classification prediction job definition.
+         */
+        MlTopicClassificationJobDefInputRepresentation: components["schemas"]["MlPredictionJobDefBaseInputRepresentation"] & {
+            /**
+             * @description Input configuration for topic classification.
+             *
+             *     **Available Version:** 66.0
+             */
+            inputConfig?: components["schemas"]["MlTopicClassificationInputConfigInputRepresentation"];
+        };
+        /**
+         * Ml Topic Classification Job Def Output
+         * @description Represents a topic classification prediction job definition.
+         */
+        MlTopicClassificationJobDefRepresentation: components["schemas"]["MlPredictionJobDefBaseRepresentation"] & {
+            /**
+             * @description Input configuration for topic classification.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            inputConfig?: components["schemas"]["MlTopicClassificationInputConfigRepresentation"];
+        };
+        /**
+         * Ml Topic Classification Job Labels Base Input
+         * @description Represents the base input for topic classification labels.
+         */
+        MlTopicClassificationJobLabelsBaseInputRepresentation: {
+            /**
+             * @description Type of labels mapping.
+             *
+             *     **Available Version:** 66.0
+             * @enum {string}
+             */
+            type?: "Static";
+        };
+        /**
+         * Ml Topic Classification Job Static Labels Input
+         * @description Represents the base class for topic classification labels.
+         */
+        MlTopicClassificationJobStaticLabelsInputRepresentation: components["schemas"]["MlTopicClassificationJobLabelsBaseInputRepresentation"] & {
+            /**
+             * @description Static list of topic labels to be used for classification.
+             *
+             *     **Available Version:** 66.0
+             */
+            values?: string[];
+        };
+        /**
+         * Ml Topic Classification Job Labels Base Output
+         * @description Represents the base configuration for topic classification labels.
+         */
+        MlTopicClassificationJobLabelsBaseRepresentation: {
+            /**
+             * @description Type of labels mapping.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             * @enum {string}
+             */
+            type?: "Dynamic" | "Static";
         };
         /**
          * Monthly Schedule Input

@@ -1,5 +1,5 @@
 /**
- * Named type exports for all 800 OpenAPI schemas, 274 enum types,
+ * Named type exports for all 852 OpenAPI schemas, 280 enum types,
  * and 3 discriminated union types.
  * Auto-generated — DO NOT EDIT. Run `npm run generate` to regenerate.
  *
@@ -14,7 +14,7 @@ type Schemas = components["schemas"];
 /** Flatten intersections into a single object type for readable IntelliSense hovers. */
 type Simplify<T> = { [K in keyof T]: T[K] } & {};
 
-// ── Schema types (800) ──
+// ── Schema types (852) ──
 
 export type AbstractBucketAlgorithmRepresentation = Schemas["AbstractBucketAlgorithmRepresentation"];
 export type AccountEngagementConnectionRepresentation = {
@@ -799,6 +799,29 @@ export type CdpMlAggregatePredictionRepresentation = Schemas["CdpMlAggregatePred
 export type CdpMlCustomizableFieldRepresentation = Schemas["CdpMlCustomizableFieldRepresentation"];
 export type CdpMlFieldRepresentation = Schemas["CdpMlFieldRepresentation"];
 export type CdpMlFoundationalModelRepresentation = Schemas["CdpMlFoundationalModelRepresentation"];
+export type CdpMlJobBaseRepresentation = {
+  createdBy?: Schemas["CdpUserRepresentation"];
+  createdDate?: string;
+  id?: string;
+  label?: string;
+  lastModifiedBy?: Schemas["CdpUserRepresentation"];
+  lastModifiedDate?: string;
+  name?: string;
+  namespace?: string;
+  url?: string;
+  description?: string;
+  endTime?: string;
+  input?: Schemas["CdpAssetReferenceRepresentation"];
+  message?: string;
+  startTime?: string;
+  type?: "Prediction" | "Training";
+}
+export type CdpMlJobCollectionRepresentation = {
+  currentPageUrl?: string;
+  nextPageUrl?: string;
+  totalSize?: number;
+  jobs?: Schemas["CdpMlJobBaseRepresentation"][];
+}
 export type CdpMlModelArtifactBaseRepresentation = {
   createdBy?: Schemas["CdpUserRepresentation"];
   createdDate?: string;
@@ -907,6 +930,22 @@ export type CdpMlSetupVersionCollectionRepresentation = {
   versions?: Schemas["CdpMlSetupBaseRepresentation"][];
 }
 export type CdpMlSetupVersionPartitionCollectionRepresentation = Schemas["CdpMlSetupVersionPartitionCollectionRepresentation"];
+export type CdpMlTaskBase = {
+  createdBy?: Schemas["CdpUserRepresentation"];
+  createdDate?: string;
+  id?: string;
+  label?: string;
+  lastModifiedBy?: Schemas["CdpUserRepresentation"];
+  lastModifiedDate?: string;
+  name?: string;
+  namespace?: string;
+  url?: string;
+  endTime?: string;
+  errorCode?: string;
+  message?: string;
+  startTime?: string;
+}
+export type CdpMlTaskCollection = Schemas["CdpMlTaskCollection"];
 export type CdpMonthlyRelativeScheduleInputRepresentation = {
   definitionName?: string;
   frequency: "Daily" | "Hourly" | "Minutely" | "Monthly" | "MonthlyRelative" | "Weekly" | "None" | "Transform";
@@ -2532,6 +2571,26 @@ export type McBuToDataSpaceInputRepresentation = {
   mid: string;
 }
 export type McBuToDataSpaceRepresentation = Schemas["McBuToDataSpaceRepresentation"];
+export type MlBinaryClassificationJobDefInputRepresentation = {
+  inputConfig?: Schemas["MlPredictionJobDefFeaturesConfigInputRepresentation"];
+  binaryClassificationSettings?: Schemas["MlBinaryClassificationJobDefSettingsInputRepresentation"];
+}
+export type MlBinaryClassificationJobDefRepresentation = {
+  inputConfig?: Schemas["MlPredictionJobDefFeaturesConfigRepresentation"];
+  binaryClassificationSettings?: Schemas["MlBinaryClassificationJobDefSettingsRepresentation"];
+}
+export type MlBinaryClassificationJobDefSettingsInputRepresentation = Schemas["MlBinaryClassificationJobDefSettingsInputRepresentation"];
+export type MlBinaryClassificationJobDefSettingsRepresentation = Schemas["MlBinaryClassificationJobDefSettingsRepresentation"];
+export type MlClusteringJobDefInputRepresentation = {
+  inputConfig?: Schemas["MlPredictionJobDefFeaturesConfigInputRepresentation"];
+  clusteringSettings?: Schemas["MlClusteringJobDefSettingsInputRepresentation"];
+}
+export type MlClusteringJobDefRepresentation = {
+  inputConfig?: Schemas["MlPredictionJobDefFeaturesConfigRepresentation"];
+  clusteringSettings?: Schemas["MlClusteringJobDefSettingsRepresentation"];
+}
+export type MlClusteringJobDefSettingsInputRepresentation = Schemas["MlClusteringJobDefSettingsInputRepresentation"];
+export type MlClusteringJobDefSettingsRepresentation = Schemas["MlClusteringJobDefSettingsRepresentation"];
 export type MlConfiguredModelCollectionRepresentation = {
   currentPageUrl?: string;
   nextPageUrl?: string;
@@ -2589,7 +2648,109 @@ export type MlDataAlertRepresentation = Schemas["MlDataAlertRepresentation"];
 export type MlImprovementDirectiveRepresentation = Schemas["MlImprovementDirectiveRepresentation"];
 export type MlModelInputTypeRepresentation = Schemas["MlModelInputTypeRepresentation"];
 export type MlModelOutputTypeRepresentation = Schemas["MlModelOutputTypeRepresentation"];
+export type MlMulticlassClassificationJobDefInputRepresentation = {
+  inputConfig?: Schemas["MlPredictionJobDefFeaturesConfigInputRepresentation"];
+  multiclassClassificationSettings?: Schemas["MlMulticlassClassificationJobDefSettingsInputRepresentation"];
+}
+export type MlMulticlassClassificationJobDefRepresentation = {
+  inputConfig?: Schemas["MlPredictionJobDefFeaturesConfigRepresentation"];
+  multiclassClassificationSettings?: Schemas["MlMulticlassClassificationJobDefSettingsRepresentation"];
+}
+export type MlMulticlassClassificationJobDefSettingsInputRepresentation = Schemas["MlMulticlassClassificationJobDefSettingsInputRepresentation"];
+export type MlMulticlassClassificationJobDefSettingsRepresentation = Schemas["MlMulticlassClassificationJobDefSettingsRepresentation"];
+export type MlPredictionJobDefBaseInputRepresentation = Schemas["MlPredictionJobDefBaseInputRepresentation"];
+export type MlPredictionJobDefBaseRepresentation = Schemas["MlPredictionJobDefBaseRepresentation"];
+export type MlPredictionJobDefCollectionRepresentation = Schemas["MlPredictionJobDefCollectionRepresentation"];
+export type MlPredictionJobDefDataFieldInputRepresentation = {
+  id?: string;
+  name?: string;
+  namespace?: string;
+  dataObject?: Schemas["CdpAssetReferenceInputRepresentation"];
+}
+export type MlPredictionJobDefDataFieldRepresentation = {
+  createdBy?: Schemas["CdpUserRepresentation"];
+  createdDate?: string;
+  id?: string;
+  label?: string;
+  lastModifiedBy?: Schemas["CdpUserRepresentation"];
+  lastModifiedDate?: string;
+  name?: string;
+  namespace?: string;
+  url?: string;
+  dataObject?: Schemas["CdpAssetReferenceRepresentation"];
+}
+export type MlPredictionJobDefFeatureMappingInputRepresentation = Schemas["MlPredictionJobDefFeatureMappingInputRepresentation"];
+export type MlPredictionJobDefFeatureMappingRepresentation = Schemas["MlPredictionJobDefFeatureMappingRepresentation"];
+export type MlPredictionJobDefFeaturesConfigInputRepresentation = Schemas["MlPredictionJobDefFeaturesConfigInputRepresentation"];
+export type MlPredictionJobDefFeaturesConfigRepresentation = Schemas["MlPredictionJobDefFeaturesConfigRepresentation"];
+export type MlPredictionJobDefFieldRelationshipInputRepresentation = Schemas["MlPredictionJobDefFieldRelationshipInputRepresentation"];
+export type MlPredictionJobDefFieldRelationshipRepresentation = Schemas["MlPredictionJobDefFieldRelationshipRepresentation"];
+export type MlPredictionJobDefInputFieldInputRepresentation = Schemas["MlPredictionJobDefInputFieldInputRepresentation"];
+export type MlPredictionJobDefInputFieldRepresentation = Schemas["MlPredictionJobDefInputFieldRepresentation"];
+export type MlPredictionJobDefMappedFieldInputRepresentation = {
+  id?: string;
+  name?: string;
+  namespace?: string;
+  dataObject?: Schemas["CdpAssetReferenceInputRepresentation"];
+  relationshipPath?: Schemas["MlPredictionJobDefFieldRelationshipInputRepresentation"][];
+}
+export type MlPredictionJobDefMappedFieldRepresentation = {
+  createdBy?: Schemas["CdpUserRepresentation"];
+  createdDate?: string;
+  id?: string;
+  label?: string;
+  lastModifiedBy?: Schemas["CdpUserRepresentation"];
+  lastModifiedDate?: string;
+  name?: string;
+  namespace?: string;
+  url?: string;
+  dataObject?: Schemas["CdpAssetReferenceRepresentation"];
+  relationshipPath?: Schemas["MlPredictionJobDefFieldRelationshipRepresentation"][];
+}
+export type MlPredictionJobDefPredictionMappingRepresentation = Schemas["MlPredictionJobDefPredictionMappingRepresentation"];
+export type MlPredictionJobDefPredictionsConfigInputRepresentation = Schemas["MlPredictionJobDefPredictionsConfigInputRepresentation"];
+export type MlPredictionJobDefPredictionsConfigRepresentation = Schemas["MlPredictionJobDefPredictionsConfigRepresentation"];
+export type MlPredictionJobDefPredictiveInputRepresentation = {
+  inputConfig?: Schemas["MlPredictionJobDefFeaturesConfigInputRepresentation"];
+}
+export type MlPredictionJobDefPredictiveRepresentation = {
+  inputConfig?: Schemas["MlPredictionJobDefFeaturesConfigRepresentation"];
+}
+export type MlPredictionJobDefSettingsRepresentation = Schemas["MlPredictionJobDefSettingsRepresentation"];
+export type MlRegressionJobDefInputRepresentation = {
+  inputConfig?: Schemas["MlPredictionJobDefFeaturesConfigInputRepresentation"];
+  regressionSettings?: Schemas["MlRegressionJobDefSettingsInputRepresentation"];
+}
+export type MlRegressionJobDefRepresentation = {
+  inputConfig?: Schemas["MlPredictionJobDefFeaturesConfigRepresentation"];
+  predictionSettings?: Schemas["MlPredictionJobDefSettingsRepresentation"];
+  regressionSettings?: Schemas["MlRegressionJobDefSettingsRepresentation"];
+}
+export type MlRegressionJobDefSettingsInputRepresentation = Schemas["MlRegressionJobDefSettingsInputRepresentation"];
+export type MlRegressionJobDefSettingsRepresentation = Schemas["MlRegressionJobDefSettingsRepresentation"];
+export type MlSentimentDetectionInputConfigInputRepresentation = Schemas["MlSentimentDetectionInputConfigInputRepresentation"];
+export type MlSentimentDetectionInputConfigRepresentation = Schemas["MlSentimentDetectionInputConfigRepresentation"];
+export type MlSentimentDetectionJobDefInputRepresentation = {
+  inputConfig?: Schemas["MlSentimentDetectionInputConfigInputRepresentation"];
+}
+export type MlSentimentDetectionJobDefRepresentation = {
+  inputConfig?: Schemas["MlSentimentDetectionInputConfigRepresentation"];
+}
 export type MlSetupBaseUpdateInputRepresentation = Schemas["MlSetupBaseUpdateInputRepresentation"];
+export type MlTopicClassificationInputConfigInputRepresentation = Schemas["MlTopicClassificationInputConfigInputRepresentation"];
+export type MlTopicClassificationInputConfigRepresentation = Schemas["MlTopicClassificationInputConfigRepresentation"];
+export type MlTopicClassificationJobDefInputRepresentation = {
+  inputConfig?: Schemas["MlTopicClassificationInputConfigInputRepresentation"];
+}
+export type MlTopicClassificationJobDefRepresentation = {
+  inputConfig?: Schemas["MlTopicClassificationInputConfigRepresentation"];
+}
+export type MlTopicClassificationJobLabelsBaseInputRepresentation = Schemas["MlTopicClassificationJobLabelsBaseInputRepresentation"];
+export type MlTopicClassificationJobLabelsBaseRepresentation = Schemas["MlTopicClassificationJobLabelsBaseRepresentation"];
+export type MlTopicClassificationJobStaticLabelsInputRepresentation = {
+  type?: "Static";
+  values?: string[];
+}
 export type MonthlySpecificScheduleInputRepresentation = {
   definitionName?: string;
   frequency: "Monthly";
@@ -3174,7 +3335,7 @@ export type WeeklyScheduleRepresentation = {
   interval?: number;
 }
 
-// ── Enum types (274) ──
+// ── Enum types (280) ──
 
 export type AbstractBucketAlgorithmType = "TypographicClustering";
 export type ActivationActivationType = "ApiTriggered" | "Segment";
@@ -3241,6 +3402,7 @@ export type CdpMlAggregatePredictionType = "Average" | "Median" | "Sum";
 export type CdpMlCustomizableFieldType = "ActionableVariable" | "TopFactor";
 export type CdpMlFoundationalModelMajorVersionName = "AnthropicClaudeInstant" | "AzureOpenAIGPT35Turbo" | "AzureOpenAIGPT35Turbo_16k" | "AzureOpenAIGPT41" | "AzureOpenAIGPT41Mini" | "AzureOpenAIGPT41Nano" | "AzureOpenAIGPT4Omni" | "AzureOpenAIGPT4OmniMini" | "AzureOpenAIGPT4Turbo" | "AzureOpenAITextEmbeddingAda_002" | "BedrockAnthropicClaude35Sonnet" | "BedrockAnthropicClaude35SonnetV2" | "BedrockAnthropicClaude37Sonnet" | "BedrockAnthropicClaude3Haiku" | "BedrockAnthropicClaude3Opus" | "BedrockAnthropicClaude3Sonnet" | "BedrockAnthropicClaude4Sonnet" | "BedrockCohereCommandLightTextV14" | "BedrockCohereCommandTextV14" | "BedrockLlama4Maverick" | "BedrockMistral7BInstructV0_2" | "BedrockMistral8x7BInstructV0_1" | "BedrockMistralLargeV1" | "EinsteinApexGuruMultiTasker" | "EinsteinDeepSeekR1" | "EinsteinFlashTopic" | "EinsteinLlama4Scout" | "EinsteinTableauGPT" | "EinsteinTextBaseV2" | "EinsteinTextEval" | "EinsteinTextSum" | "Einstein_AbstractiveSummarization_V1" | "Einstein_Clip_Vit_B_32_Multilingual_V1" | "Einstein_E5_Base" | "Einstein_E5_Large" | "Einstein_E5_Large_V2" | "Einstein_E5_Multilingual" | "Einstein_SFR_Embedding_Mistral" | "Einstein_Segmentation_V3" | "Einstein_Wespeaker_Voxceleb_Resnet34_Lm" | "Einstein_Whisper_Large_V3" | "Eleven_Turbo_V2" | "GenericGPT35Turbo" | "GenericGPT35TurboInstruct" | "GenericGPT35Turbo_16k" | "GenericGPT4" | "GenericGPT41" | "GenericGPT41Mini" | "GenericGPT4Omni" | "GenericGPT4OmniMini" | "GenericGPT4Turbo" | "GenericGPT4_32k" | "GenericTextDaVinci002" | "GenericTextDaVinci003" | "GenericTextEmbeddingAda_002" | "Nova_2_PhoneCall" | "OpenAIGPT35Turbo" | "OpenAIGPT35TurboInstruct" | "OpenAIGPT35Turbo_16k" | "OpenAIGPT4" | "OpenAIGPT41" | "OpenAIGPT41Mini" | "OpenAIGPT41Nano" | "OpenAIGPT4Omni" | "OpenAIGPT4OmniMini" | "OpenAIGPT4Turbo" | "OpenAIGPT4_32k" | "OpenAITextDaVinci002" | "OpenAITextDaVinci003" | "OpenAITextEmbedding3_Large" | "OpenAITextEmbedding3_Small" | "OpenAITextEmbeddingAda_002" | "OpenConnector" | "Salesforce_Embedding_2_R" | "VertexAIGemini20Flash001" | "VertexAIGemini20FlashLite001" | "VertexAIGemini25Flash001" | "VertexAIGeminiEmbed001" | "VertexAIGeminiPro10_002" | "VertexAIGeminiPro15" | "VertexAIGeminiPro25" | "WhisperBaseEn_4_27" | "WhisperBase_4_27";
 export type CdpMlFoundationalModelModelProviderName = "Anthropic" | "AzureOpenAI" | "Bedrock" | "Databricks" | "Generic" | "InternalEmbedding" | "OpenAI" | "OpenConnector" | "SageMaker" | "Salesforce" | "VertexAI";
+export type CdpMlJobBaseType = "Prediction" | "Training";
 export type CdpMlModelArtifactBaseModelType = "Generative" | "Predictive" | "Unknown";
 export type CdpMlModelArtifactBaseRuntimeType = "External" | "Internal";
 export type CdpMlModelArtifactBaseSourceType = "EdcNoCode" | "ModelConnector" | "OutOfTheBox";
@@ -3405,7 +3567,12 @@ export type MlDataAlertQueryAssetType = "ModelArtifact";
 export type MlDataAlertSourceType = "ModelTraining" | "Runtime";
 export type MlModelInputTypeName = "ApplicationPdf" | "Float" | "ImageJpeg" | "ImagePng" | "Json" | "Text";
 export type MlModelOutputTypeName = "ApplicationPdf" | "Float" | "ImageJpeg" | "ImagePng" | "Json" | "Text";
+export type MlPredictionJobDefBaseActivationStatus = "Active" | "Inactive";
+export type MlPredictionJobDefBaseLastRunStatus = "Aborted" | "Failed" | "InProgress" | "NotStarted" | "Pending" | "Submited" | "Success";
+export type MlPredictionJobDefBaseScoringMode = "Batch" | "Streaming";
+export type MlPredictionJobDefBaseType = "BinaryClassification" | "Clustering" | "MulticlassClassification" | "Regression" | "SentimentDetection" | "TopicClassification";
 export type MlSetupBaseUpdateType = "EdcNoCode" | "ModelConnector";
+export type MlTopicClassificationJobLabelsBaseType = "Dynamic" | "Static";
 export type MonthlySpecificScheduleFrequency = "Monthly";
 export type OutputD360ParametersType = "DataLakeObject" | "DataModelObject";
 export type OutputD360ParametersWriteMode = "Append" | "DeleteOnly" | "Merge" | "MergeUpsertDelete" | "Overwrite";

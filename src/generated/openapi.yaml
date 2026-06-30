@@ -6508,6 +6508,189 @@ paths:
           The model's fully qualified name or ID. If using the model's name, use `<name space>__<devname>`, for example `mynamespace__ourGPT35Turbo`.
 
           **Available Version:** 61.0
+  /ssot/machine-learning/jobs:
+    get:
+      summary: Get predict jobs
+      tags:
+        - Machine Learning
+      description: |
+        Get a list of predict jobs.
+
+        **Available Version:** 59.0
+      parameters:
+        - name: jobIdOrName
+          in: query
+          schema:
+            type: string
+          description: |
+            ID or API name of the predict job.
+
+            **Available Version:** 59.0
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          description: |
+            Maximum number of predict jobs to return.
+
+            **Available Version:** 59.0
+        - name: offset
+          in: query
+          schema:
+            type: integer
+          description: |
+            Number of rows to skip before returning results. If unspecified, no rows are skipped.
+
+            **Available Version:** 59.0
+        - name: type
+          in: query
+          schema:
+            enum:
+              - Prediction
+              - Training
+            type: string
+          description: |
+            Type of job.
+
+            **Available Version:** 59.0
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CdpMlJobCollectionRepresentation'
+              examples:
+                example1:
+                  $ref: "#/components/examples/get-jobs-output-example"
+        "400":
+          description: Bad request.
+        "401":
+          description: Unauthorized.
+        "403":
+          description: Forbidden.
+        "404":
+          description: Not Found.
+  /ssot/machine-learning/jobs/{jobId}:
+    get:
+      summary: Get a predict job
+      tags:
+        - Machine Learning
+      description: |
+        Get a specific predict job.
+
+        **Available Version:** 59.0
+      parameters:
+        - name: jobId
+          in: path
+          schema:
+            type: string
+          description: |
+            ID of the predict job.
+
+            **Available Version:** 59.0
+          required: true
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CdpMlJobBaseRepresentation'
+              examples:
+                example1:
+                  $ref: "#/components/examples/get-job-output-example"
+        "400":
+          description: Bad request.
+        "401":
+          description: Unauthorized.
+        "403":
+          description: Forbidden.
+        "404":
+          description: Not Found.
+  /ssot/machine-learning/jobs/{jobId}/tasks:
+    get:
+      summary: Get predict job tasks
+      tags:
+        - Machine Learning
+      description: |
+        Get a list of tasks associated with a specific predict job.
+
+        **Available Version:** 59.0
+      parameters:
+        - name: jobId
+          in: path
+          schema:
+            type: string
+          description: |
+            ID of the predict job.
+
+            **Available Version:** 59.0
+          required: true
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CdpMlTaskCollection'
+              examples:
+                example1:
+                  $ref: "#/components/examples/get-tasks-output-example"
+        "400":
+          description: Bad request.
+        "401":
+          description: Unauthorized.
+        "403":
+          description: Forbidden.
+        "404":
+          description: Not Found.
+  /ssot/machine-learning/jobs/{jobId}/tasks/{taskId}:
+    get:
+      summary: Get a predict job task
+      tags:
+        - Machine Learning
+      description: |
+        Get a task associated with a specific predict job.
+
+        **Available Version:** 59.0
+      parameters:
+        - name: jobId
+          in: path
+          schema:
+            type: string
+          description: |
+            ID of the predict job.
+
+            **Available Version:** 59.0
+          required: true
+        - name: taskId
+          in: path
+          schema:
+            type: string
+          description: |
+            ID of the task.
+
+            **Available Version:** 59.0
+          required: true
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CdpMlTaskBase'
+              examples:
+                example1:
+                  $ref: "#/components/examples/get-task-output-example"
+        "400":
+          description: Bad request.
+        "401":
+          description: Unauthorized.
+        "403":
+          description: Forbidden.
+        "404":
+          description: Not Found.
   /ssot/machine-learning/model-artifacts:
     get:
       summary: Get model artifacts
@@ -6638,36 +6821,6 @@ paths:
           The artifact's name or ID. If using the artifact's name, use `<namespace>__<devname>`.
 
           **Available Version:** 61.0
-  /ssot/machine-learning/predict:
-    post:
-      summary: Get prediction
-      tags:
-        - Machine Learning
-      description: |
-        Make a prediction using the specified model and parameters. This request is synchronous.
-
-        **Available Version:** 61.0
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/CdpMlPredictInputBaseRepresentation"
-            examples:
-              Example:
-                $ref: "#/components/examples/get-prediction-input-example"
-        required: true
-      responses:
-        "200":
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/CdpMlPredictResultRepresentation"
-              examples:
-                Max top factors response:
-                  $ref: "#/components/examples/maxTopFactors-output-example"
-                Binary classification response:
-                  $ref: "#/components/examples/binary-classification-output-example"
   /ssot/machine-learning/model-setups/{modelSetupIdOrName}/setup-versions:
     get:
       summary: Get model setup versions
@@ -6924,6 +7077,228 @@ paths:
           ID of the model setup version.
 
           **Available Version:** 59.0
+  /ssot/machine-learning/predict:
+    post:
+      summary: Get prediction
+      tags:
+        - Machine Learning
+      description: |
+        Make a prediction using the specified model and parameters. This request is synchronous.
+
+        **Available Version:** 61.0
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CdpMlPredictInputBaseRepresentation"
+            examples:
+              Example:
+                $ref: "#/components/examples/get-prediction-input-example"
+        required: true
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CdpMlPredictResultRepresentation"
+              examples:
+                Max top factors response:
+                  $ref: "#/components/examples/maxTopFactors-output-example"
+                Binary classification response:
+                  $ref: "#/components/examples/binary-classification-output-example"
+  /ssot/machine-learning/prediction-job-definitions:
+    get:
+      summary: Get prediction job definitions
+      tags:
+        - Machine Learning
+      description: |
+        Get a list of existing prediction job definitions.
+
+        **Available Version:** 59.0
+      parameters:
+        - name: modelId
+          in: query
+          schema:
+            type: string
+          description: |
+            ID of the machine learning model.
+
+            **Available Version:** 59.0
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MlPredictionJobDefCollectionRepresentation'
+              examples:
+                example1:
+                  $ref: "#/components/examples/get-prediction-jobs-output-example"
+        "400":
+          description: Bad request.
+        "401":
+          description: Unauthorized.
+        "403":
+          description: Forbidden.
+        "404":
+          description: Not Found.
+    post:
+      summary: Create a prediction job definition
+      tags:
+        - Machine Learning
+      description: |
+        Create a new prediction job definition.
+
+        **Available Version:** 59.0
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MlPredictionJobDefBaseInputRepresentation"
+            examples:
+              Binary request:
+                  $ref: "#/components/examples/prediction-job-def-post-binary-request-example"
+              Clustering request:
+                $ref: "#/components/examples/prediction-job-def-post-clustering-request-example"
+              Multiclass request:
+                $ref: "#/components/examples/prediction-job-def-post-multiclass-request-example"
+              Sentiment request:
+                $ref: "#/components/examples/prediction-job-def-post-sentiment-request-example"
+              Topic request:
+                $ref: "#/components/examples/prediction-job-def-post-topic-request-example"
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MlPredictionJobDefBaseRepresentation'
+              examples:
+                Binary response:
+                  $ref: "#/components/examples/prediction-job-def-binary-response-example"
+                Clustering response:
+                  $ref: "#/components/examples/prediction-job-def-clustering-response-example"
+                Multiclass response:
+                  $ref: "#/components/examples/prediction-job-def-multiclass-response-example"
+                Sentiment response:
+                  $ref: "#/components/examples/prediction-job-def-sentiment-response-example"
+                Topic response:
+                  $ref: "#/components/examples/prediction-job-def-topic-response-example"
+        "400":
+          description: Bad request.
+        "401":
+          description: Unauthorized.
+        "403":
+          description: Forbidden.
+        "404":
+          description: Not Found.
+  /ssot/machine-learning/prediction-job-definitions/{predictionJobDefIdOrName}:
+    delete:
+      summary: Delete a prediction job definition
+      tags:
+        - Machine Learning
+      description: |
+        Delete a specific prediction job definition.
+
+        **Available Version:** 59.0
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Bad request.
+        "401":
+          description: Unauthorized.
+        "403":
+          description: Forbidden.
+        "404":
+          description: Not Found.
+    get:
+      summary: Get a prediction job definition
+      tags:
+        - Machine Learning
+      description: |
+        Get a specific prediction job definition.
+
+        **Available Version:** 59.0
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MlPredictionJobDefBaseRepresentation'
+              examples:
+                Binary response:
+                  $ref: "#/components/examples/prediction-job-def-binary-response-example"
+                Clustering response:
+                  $ref: "#/components/examples/prediction-job-def-clustering-response-example"
+                Multiclass response:
+                  $ref: "#/components/examples/prediction-job-def-multiclass-response-example"
+                Sentiment response:
+                  $ref: "#/components/examples/prediction-job-def-sentiment-response-example"
+                Topic response:
+                  $ref: "#/components/examples/prediction-job-def-topic-response-example"
+        "400":
+          description: Bad request.
+        "401":
+          description: Unauthorized.
+        "403":
+          description: Forbidden.
+        "404":
+          description: Not Found.
+    patch:
+      summary: Update a prediction job definition
+      tags:
+        - Machine Learning
+      description: |
+        Update a specific prediction job definition.
+
+        **Available Version:** 59.0
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MlPredictionJobDefBaseInputRepresentation"
+            examples:
+              example1:
+                $ref: "#/components/examples/prediction-job-def-patch-request-example"
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MlPredictionJobDefBaseRepresentation'
+              examples:
+                Binary response:
+                  $ref: "#/components/examples/prediction-job-def-binary-response-example"
+                Clustering response:
+                  $ref: "#/components/examples/prediction-job-def-clustering-response-example"
+                Multiclass response:
+                  $ref: "#/components/examples/prediction-job-def-multiclass-response-example"
+                Sentiment response:
+                  $ref: "#/components/examples/prediction-job-def-sentiment-response-example"
+                Topic response:
+                  $ref: "#/components/examples/prediction-job-def-topic-response-example"
+        "400":
+          description: Bad request.
+        "401":
+          description: Unauthorized.
+        "403":
+          description: Forbidden.
+        "404":
+          description: Not Found.
+    parameters:
+      - name: predictionJobDefIdOrName
+        in: path
+        schema:
+          type: string
+        description: |
+          ID or API name of the prediction job definition.
+
+          **Available Version:** 59.0
+        required: true
   /ssot/metadata:
     get:
       summary: Get metadata
@@ -11577,7 +11952,7 @@ components:
           type: string
         id:
           description: |
-            The 18-character ID of the asset.
+            18-character ID of the asset.
 
             **Filter Group:** Small
 
@@ -11618,7 +11993,7 @@ components:
           type: string
         namespace:
           description: |
-            Name space of the asset. Not applicable to the [get activation](https://developer.salesforce.com/docs/data/connectapi/references/spec?meta=getActivation) endpoint.
+            Namespace of the asset. Not applicable to the [get activation](https://developer.salesforce.com/docs/data/connectapi/references/spec?meta=getActivation) endpoint.
 
             **Filter Group:** Small
 
@@ -15275,6 +15650,82 @@ components:
             - SageMaker
             - Salesforce
             - VertexAI
+    CdpMlJobBaseRepresentation:
+      title: Ml Job Base Output
+      description: Represents a machine learning job.
+      allOf:
+        - $ref: "#/components/schemas/CdpAssetBaseRepresentation"
+        - type: object
+          properties:
+            description:
+              description: |
+                Description of the job.
+
+                **Filter Group:** Small
+
+                **Available Version:** 59.0
+              type: string
+            endTime:
+              description: |
+                End time of the job run.
+
+                **Filter Group:** Small
+
+                **Available Version:** 59.0
+              type: string
+            input:
+              description: |
+                Asset input for the job run. For `Training` types, use the model setup ID. For `Prediction` types, use the model container ID.
+
+                **Filter Group:** Small
+
+                **Available Version:** 59.0
+              allOf:
+                - $ref: "#/components/schemas/CdpAssetReferenceRepresentation"
+            message:
+              description: |
+                Message associated with the job run.
+
+                **Filter Group:** Small
+
+                **Available Version:** 59.0
+              type: string
+            startTime:
+              description: |
+                Start time of the job run.
+
+                **Filter Group:** Small
+
+                **Available Version:** 59.0
+              type: string
+            type:
+              description: |
+                Type of job.
+
+                **Filter Group:** Small
+
+                **Available Version:** 59.0
+              type: string
+              enum:
+                - Prediction
+                - Training
+    CdpMlJobCollectionRepresentation:
+      title: Ml Job Collection Output
+      description: Represents a list of machine learning jobs.
+      allOf:
+        - $ref: "#/components/schemas/CdpPaginatedResponseBaseRepresentation"
+        - type: object
+          properties:
+            jobs:
+              description: |
+                List of jobs.
+
+                **Filter Group:** Small
+
+                **Available Version:** 59.0
+              type: array
+              items:
+                $ref: "#/components/schemas/CdpMlJobBaseRepresentation"
     CdpMlModelArtifactBaseRepresentation:
       title: ML Model Artifact Base Output
       description: Represents a base ML model artifact.
@@ -16087,6 +16538,60 @@ components:
 
             **Available Version:** 59.0
           type: string
+    CdpMlTaskBase:
+      title: Ml Task Base Output
+      description: Represents a machine learning job task.
+      allOf:
+        - $ref: "#/components/schemas/CdpAssetBaseRepresentation"
+        - type: object
+          properties:
+            endTime:
+              description: |
+                End time of the job run.
+
+                **Filter Group:** Small
+
+                **Available Version:** 59.0
+              type: string
+            errorCode:
+              description: |
+                Error code, if any.
+
+                **Filter Group:** Small
+
+                **Available Version:** 59.0
+              type: string
+            message:
+              description: |
+                Message associated with the job run.
+
+                **Filter Group:** Small
+
+                **Available Version:** 59.0
+              type: string
+            startTime:
+              description: |
+                Start time of the job run.
+
+                **Filter Group:** Small
+
+                **Available Version:** 59.0
+              type: string
+    CdpMlTaskCollection:
+      title: Ml Task Collection Output
+      type: object
+      description: Represents a list of machine learning job tasks.
+      properties:
+        tasks:
+          description: |
+            List of tasks.
+
+            **Filter Group:** Small
+
+            **Available Version:** 59.0
+          type: array
+          items:
+            $ref: "#/components/schemas/CdpMlTaskBase"
     CdpMonthlyRelativeScheduleInputRepresentation:
       title: Monthly Relative Schedule Input
       description: Represents the input for creating a monthly relative schedule.
@@ -31437,6 +31942,102 @@ components:
 
             **Available Version:** 62.0
           type: string
+    MlBinaryClassificationJobDefInputRepresentation:
+      title: Ml Binary Classification Job Def Input
+      description: Represents the input for creating a binary classification prediction job definition.
+      allOf:
+        - $ref: "#/components/schemas/MlPredictionJobDefPredictiveInputRepresentation"
+        - type: object
+          properties:
+            binaryClassificationSettings:
+              description: |
+                Binary classification settings.
+
+                **Available Version:** 66.0
+              allOf:
+                - $ref: "#/components/schemas/MlBinaryClassificationJobDefSettingsInputRepresentation"
+    MlBinaryClassificationJobDefRepresentation:
+      title: Ml Binary Classification Job Def Output
+      description: Represents a binary classification prediction job definition.
+      allOf:
+        - $ref: "#/components/schemas/MlPredictionJobDefPredictiveRepresentation"
+        - type: object
+          properties:
+            binaryClassificationSettings:
+              description: |
+                Settings configuration for the binary classification prediction job definition.
+
+                **Filter Group:** Small
+
+                **Available Version:** 66.0
+              allOf:
+                - $ref: "#/components/schemas/MlBinaryClassificationJobDefSettingsRepresentation"
+    MlBinaryClassificationJobDefSettingsInputRepresentation:
+      title: Ml Binary Classification Job Def Settings Input
+      type: object
+      description: Represents the settings configuration for a binary classification prediction job definition.
+      properties:
+        maxPrescriptions:
+          description: |
+            Maximum number of prescriptions to generate.
+
+            **Available Version:** 66.0
+          type: integer
+        maxTopContributors:
+          description: |
+            Maximum number of top contributors to generate.
+
+            **Available Version:** 66.0
+          type: integer
+        prescriptionThreshold:
+          description: |
+            Prescription threshold value.
+
+            **Available Version:** 66.0
+          type: integer
+        showClassProbabilities:
+          description: |
+            Indicates whether the outcome columns show class probabilities for both positive and negative classes (`true`) or not (`false`). If unspecified, the default value is `true`.
+
+            **Available Version:** 66.0
+          type: boolean
+    MlBinaryClassificationJobDefSettingsRepresentation:
+      title: Ml Binary Classification Job Def Settings Output
+      type: object
+      description: Represents the settings configuration for a binary classification prediction job definition.
+      properties:
+        maxPrescriptions:
+          description: |
+            Maximum number of prescriptions to include per prediction.
+
+            **Filter Group:** Small
+
+            **Available Version:** 66.0
+          type: integer
+        maxTopContributors:
+          description: |
+            Maximum number of top contributors to include per prediction.
+
+            **Filter Group:** Small
+
+            **Available Version:** 66.0
+          type: integer
+        prescriptionThreshold:
+          description: |
+            Improvement threshold for prescriptions.
+
+            **Filter Group:** Small
+
+            **Available Version:** 66.0
+          type: integer
+        showClassProbabilities:
+          description: |
+            Indicates whether the outcome columns show class probabilities for both positive and negative classes (`true`) or not (`false`).
+
+            **Filter Group:** Small
+
+            **Available Version:** 66.0
+          type: boolean
     MlConfiguredModelCollectionRepresentation:
       title: ML Configured Model Collection Output
       description: Represents Ml Configured Model Collection
@@ -31887,6 +32488,88 @@ components:
         serviceAccountEmail:
           description: The service account email
           type: string
+    MlClusteringJobDefInputRepresentation:
+      title: Ml Clustering Job Def Input
+      description: Represents the input for creating a clustering prediction job definition.
+      allOf:
+        - $ref: "#/components/schemas/MlPredictionJobDefPredictiveInputRepresentation"
+        - type: object
+          properties:
+            clusteringSettings:
+              description: |
+                Clustering settings.
+
+                **Available Version:** 68.0
+              allOf:
+                - $ref: "#/components/schemas/MlClusteringJobDefSettingsInputRepresentation"
+    MlClusteringJobDefRepresentation:
+      title: Ml Clustering Job Def Output
+      description: Represents a clustering prediction job definition.
+      allOf:
+        - $ref: "#/components/schemas/MlPredictionJobDefPredictiveRepresentation"
+        - type: object
+          properties:
+            clusteringSettings:
+              description: |
+                Settings configuration for the clustering prediction job definition.
+
+                **Filter Group:** Small
+
+                **Available Version:** 68.0
+              allOf:
+                - $ref: "#/components/schemas/MlClusteringJobDefSettingsRepresentation"
+    MlClusteringJobDefSettingsInputRepresentation:
+      title: Ml Clustering Job Def Settings Input
+      type: object
+      description: Represents the settings configuration for a clustering prediction job definition.
+      properties:
+        clusterIdFieldLabel:
+          description: |
+            Label for the cluster ID output field.
+
+            **Available Version:** 68.0
+          type: string
+        clusterLabelFieldLabel:
+          description: |
+            Label for the cluster label output field.
+
+            **Available Version:** 68.0
+          type: string
+        maxTopContributors:
+          description: |
+            Maximum number of top contributors for clustering.
+
+            **Available Version:** 68.0
+          type: integer
+    MlClusteringJobDefSettingsRepresentation:
+      title: Ml Clustering Job Def Settings Output
+      type: object
+      description: Represents the settings configuration for a clustering prediction job definition.
+      properties:
+        clusterIdFieldLabel:
+          description: |
+            Label for the cluster ID output field.
+
+            **Filter Group:** Small
+
+            **Available Version:** 68.0
+          type: string
+        clusterLabelFieldLabel:
+          description: |
+            Label for the cluster label output field.
+
+            **Filter Group:** Small
+
+            **Available Version:** 68.0
+          type: string
+        maxTopContributors:
+          description: |
+            Maximum number of top contributors to include per prediction.
+
+            **Filter Group:** Small
+
+            **Available Version:** 68.0
+          type: integer
     MlDataAlertCollectionRepresentation:
       title: ML Data Alert Collection Output
       description: Represents a collection of data alerts for an ML model.
@@ -32157,7 +32840,7 @@ components:
           type: string
         isDefault:
           description: |
-            Indicates whether the input type is default (`true`) or not (`false`).
+            Indicates whether the input type is the default (`true`) or not (`false`).
 
             **Filter Group:** Small
 
@@ -32251,7 +32934,7 @@ components:
           type: string
         isDefault:
           description: |
-            Indicates whether the output type is default (`true`) or not (`false`).
+            Indicates whether the output type is the default (`true`) or not (`false`).
 
             **Filter Group:** Small
 
@@ -32288,6 +32971,857 @@ components:
 
             **Available Version:** 62.0
           type: string
+    MlMulticlassClassificationJobDefInputRepresentation:
+      title: Ml Multiclass Classification Job Def Input
+      description: Represents the input for creating a multiclass classification prediction job definition.
+      allOf:
+        - $ref: "#/components/schemas/MlPredictionJobDefPredictiveInputRepresentation"
+        - type: object
+          properties:
+            multiclassClassificationSettings:
+              description: |
+                Multiclass classification settings.
+
+                **Available Version:** 66.0
+              allOf:
+                - $ref: "#/components/schemas/MlMulticlassClassificationJobDefSettingsInputRepresentation"
+    MlMulticlassClassificationJobDefRepresentation:
+      title: Ml Multiclass Classification Job Def Output
+      description: Represents a multiclass classification prediction job definition.
+      allOf:
+        - $ref: "#/components/schemas/MlPredictionJobDefPredictiveRepresentation"
+        - type: object
+          properties:
+            multiclassClassificationSettings:
+              description: |
+                Settings configuration for the multiclass classification prediction job definition.
+
+                **Filter Group:** Small
+
+                **Available Version:** 66.0
+              allOf:
+                - $ref: "#/components/schemas/MlMulticlassClassificationJobDefSettingsRepresentation"
+    MlMulticlassClassificationJobDefSettingsInputRepresentation:
+      title: Ml Multiclass Classification Job Def Settings Input
+      type: object
+      description: Represents the settings configuration for a multiclass classification prediction job definition.
+      properties:
+        maxTopContributors:
+          description: |
+            Maximum number of top contributors to generate.
+
+            **Available Version:** 66.0
+          type: integer
+        numberOfClasses:
+          description: |
+            Number of classes to include in the output. If unspecified, the default value is all classes in the outcome.
+
+            **Available Version:** 66.0
+          type: integer
+    MlMulticlassClassificationJobDefSettingsRepresentation:
+      title: Ml Multiclass Classification Job Def Settings Output
+      type: object
+      description: Represents the settings configuration for a multiclass classification prediction job definition.
+      properties:
+        maxTopContributors:
+          description: |
+            Maximum number of top contributors to include per prediction.
+
+            **Filter Group:** Small
+
+            **Available Version:** 66.0
+          type: integer
+        numberOfClasses:
+          description: |
+            Number of classes to include in the output.
+
+            **Filter Group:** Small
+
+            **Available Version:** 66.0
+          type: integer
+    MlPredictionJobDefBaseInputRepresentation:
+      title: Ml Prediction Job Def Base Input
+      description: Represents the input configuration for a prediction job definition.
+      allOf:
+        - type: object
+        - oneOf:
+          - $ref: "#/components/schemas/MlBinaryClassificationJobDefInputRepresentation"
+          - $ref: "#/components/schemas/MlClusteringJobDefInputRepresentation"
+          - $ref: "#/components/schemas/MlMulticlassClassificationJobDefInputRepresentation"
+          - $ref: "#/components/schemas/MlRegressionJobDefInputRepresentation"
+          - $ref: "#/components/schemas/MlSentimentDetectionJobDefInputRepresentation"
+          - $ref: "#/components/schemas/MlTopicClassificationJobDefInputRepresentation"
+          properties:
+            activationStatus:
+              description: |
+                Activation status of the prediction job.
+
+                **Available Version:** 59.0
+              type: string
+              enum:
+                - Active
+                - Inactive
+            apiName:
+              description: |
+                API name of the prediction job.
+
+                **Available Version:** 59.0
+              type: string
+            description:
+              description: |
+                Description of the prediction job.
+
+                **Available Version:** 59.0
+              type: string
+            label:
+              description: |
+                Label of the prediction job.
+
+                **Available Version:** 59.0
+              type: string
+            model:
+              description: |
+                Model associated with the prediction job.
+
+                **Available Version:** 59.0
+              allOf:
+                - $ref: "#/components/schemas/CdpAssetReferenceInputRepresentation"
+            outputConfig:
+              description: |
+                Output data model object (DMO) details.
+
+                **Available Version:** 59.0
+              allOf:
+                - $ref: "#/components/schemas/MlPredictionJobDefPredictionsConfigInputRepresentation"
+            scoringMode:
+              description: |
+                Scoring mode for the prediction job.
+
+                **Available Version:** 59.0
+              type: string
+              enum:
+                - Batch
+                - Streaming
+            type:
+              description: |
+                Type of prediction job. Use the job def input object that corresponds to the job type.
+
+                For example, use the Ml Binary Classification Job Def Input for the `BinaryClassification` job type.
+
+                **Available Version:** 59.0
+              type: string
+              enum:
+                - BinaryClassification
+                - Clustering
+                - MulticlassClassification
+                - Regression
+                - SentimentDetection
+                - TopicClassification
+    MlPredictionJobDefBaseRepresentation:
+      title: Ml Prediction Job Def Base Output
+      description: Represents the base output for a prediction job definition.
+      allOf:
+        - type: object
+        - oneOf:
+          - $ref: "#/components/schemas/MlBinaryClassificationJobDefRepresentation"
+          - $ref: "#/components/schemas/MlClusteringJobDefRepresentation"
+          - $ref: "#/components/schemas/MlMulticlassClassificationJobDefRepresentation"
+          - $ref: "#/components/schemas/MlRegressionJobDefRepresentation"
+          - $ref: "#/components/schemas/MlSentimentDetectionJobDefRepresentation"
+          - $ref: "#/components/schemas/MlTopicClassificationJobDefRepresentation"
+          properties:
+            activationStatus:
+              description: |
+                Activation status of the prediction job.
+
+                **Filter Group:** Small
+
+                **Available Version:** 59.0
+              type: string
+              enum:
+                - Active
+                - Inactive
+            dataSpace:
+              description: |
+                Data space details for the prediction job.
+
+                **Filter Group:** Small
+
+                **Available Version:** 59.0
+              allOf:
+                - $ref: "#/components/schemas/CdpAssetReferenceRepresentation"
+            description:
+              description: |
+                Description of the prediction job.
+
+                **Filter Group:** Small
+
+                **Available Version:** 59.0
+              type: string
+            lastRunDate:
+              description: |
+                Last execution date for the prediction job.
+
+                **Filter Group:** Small
+
+                **Available Version:** 59.0
+              type: string
+            lastRunStatus:
+              description: |
+                Status of the last execution.
+
+                **Filter Group:** Small
+
+                **Available Version:** 59.0
+              type: string
+              enum:
+                - Aborted
+                - Failed
+                - InProgress
+                - NotStarted
+                - Pending
+                - Submited
+                - Success
+            model:
+              description: |
+                Model associated with the prediction job.
+
+                **Filter Group:** Small
+
+                **Available Version:** 59.0
+              allOf:
+                - $ref: "#/components/schemas/CdpAssetReferenceRepresentation"
+            outputConfig:
+              description: |
+                Output data model object (DMO) details.
+
+                **Filter Group:** Small
+
+                **Available Version:** 59.0
+              allOf:
+                - $ref: "#/components/schemas/MlPredictionJobDefPredictionsConfigRepresentation"
+            scoringMode:
+              description: |
+                Scoring mode for the prediction job.
+
+                **Filter Group:** Small
+
+                **Available Version:** 59.0
+              type: string
+              enum:
+                - Batch
+                - Streaming
+            type:
+              description: |
+                Type of prediction job. The endpoint returns the job def output object that corresponds to the job type.
+
+                For example, the Ml Binary Classification Job Def Output is returned for the `BinaryClassification` job type.
+
+                **Filter Group:** Small
+
+                **Available Version:** 59.0
+              type: string
+              enum:
+                - BinaryClassification
+                - Clustering
+                - MulticlassClassification
+                - Regression
+                - SentimentDetection
+                - TopicClassification
+    MlPredictionJobDefCollectionRepresentation:
+      title: Ml Prediction Job Def Collection Output
+      type: object
+      description: Represents a collection of prediction job definitions.
+      properties:
+        predictionJobDefinitions:
+          description: |
+            List of prediction jobs.
+
+            **Filter Group:** Small
+
+            **Available Version:** 59.0
+          type: array
+          items:
+            $ref: "#/components/schemas/MlPredictionJobDefBaseRepresentation"
+        totalSize:
+          description: |
+            Total size of the prediction jobs returned.
+
+            **Filter Group:** Small
+
+            **Available Version:** 59.0
+          type: integer
+        url:
+          description: |
+            URL of the page.
+
+            **Filter Group:** Small
+
+            **Available Version:** 59.0
+          type: string
+    MlPredictionJobDefDataFieldInputRepresentation:
+      title: Ml Prediction Job Def Data Field Input
+      description: Represents a data model object (DMO) field with an optional relationship path.
+      allOf:
+        - $ref: "#/components/schemas/CdpAssetBaseInputRepresentation"
+        - type: object
+          properties:
+            dataObject:
+              description: |
+                Data model object (DMO) that contains the field.
+
+                **Available Version:** 67.0
+              allOf:
+                - $ref: "#/components/schemas/CdpAssetReferenceInputRepresentation"
+    MlPredictionJobDefDataFieldRepresentation:
+      title: Ml Prediction Job Def Data Field Output
+      description: Represents a prediction job data field.
+      allOf:
+        - $ref: "#/components/schemas/CdpAssetBaseRepresentation"
+        - type: object
+          properties:
+            dataObject:
+              description: |
+                Detals about the data model object (DMO) for the field.
+
+                **Filter Group:** Small
+
+                **Available Version:** 59.0
+              allOf:
+                - $ref: "#/components/schemas/CdpAssetReferenceRepresentation"
+    MlPredictionJobDefFeaturesConfigInputRepresentation:
+      title: Ml Prediction Job Def Features Config Input
+      type: object
+      description: Represents the input configuration for features, including the data model object (DMO) and field mappings.
+      properties:
+        dataObject:
+          description: |
+            Input data model object (DMO).
+
+            **Available Version:** 59.0
+          allOf:
+            - $ref: "#/components/schemas/CdpAssetReferenceInputRepresentation"
+        fields:
+          description: |
+            List of field mappings between model features and DMO fields.
+
+            **Available Version:** 59.0
+          type: array
+          items:
+            $ref: "#/components/schemas/MlPredictionJobDefFeatureMappingInputRepresentation"
+    MlPredictionJobDefFeaturesConfigRepresentation:
+      title: Ml Prediction Job Def Features Config Output
+      type: object
+      description: Represents the features configuration for a prediction job definition.
+      properties:
+        dataObject:
+          description: |
+            Input data model object (DMO).
+
+            **Filter Group:** Small
+
+            **Available Version:** 59.0
+          allOf:
+            - $ref: "#/components/schemas/CdpAssetReferenceRepresentation"
+        fields:
+          description: |
+            List of mappings between model features and data model object (DMO) fields.
+
+            **Filter Group:** Small
+
+            **Available Version:** 59.0
+          type: array
+          items:
+            $ref: "#/components/schemas/MlPredictionJobDefFeatureMappingRepresentation"
+    MlPredictionJobDefFeatureMappingInputRepresentation:
+      title: Ml Prediction Job Def Feature Mapping Input
+      type: object
+      description: Represents the mapping between a model feature and a data model object (DMO) field.
+      properties:
+        mappedField:
+          description: |
+            Mapped data model object (DMO) field.
+
+            **Available Version:** 59.0
+          allOf:
+            - $ref: "#/components/schemas/MlPredictionJobDefMappedFieldInputRepresentation"
+        modelField:
+          description: |
+            Model feature field.
+
+            **Available Version:** 59.0
+          allOf:
+            - $ref: "#/components/schemas/CdpAssetReferenceInputRepresentation"
+        updateScore:
+          description: |
+            Indicates whether an update to this field triggers a prediction update for streaming jobs (`true`) or not (`false`).
+
+            **Available Version:** 59.0
+          type: boolean
+    MlPredictionJobDefFeatureMappingRepresentation:
+      title: Ml Prediction Job Def Feature Mapping Output
+      type: object
+      description: Represents the mapping between a model feature and a data model object (DMO) field.
+      properties:
+        mappedField:
+          description: |
+            Mapped data model object (DMO) field.
+
+            **Filter Group:** Small
+
+            **Available Version:** 59.0
+          allOf:
+            - $ref: "#/components/schemas/MlPredictionJobDefMappedFieldRepresentation"
+        modelField:
+          description: |
+            Model feature field.
+
+            **Filter Group:** Small
+
+            **Available Version:** 59.0
+          allOf:
+            - $ref: "#/components/schemas/CdpAssetReferenceRepresentation"
+        updateScore:
+          description: |
+            Indicates whether an update to this field triggers a prediction update for streaming jobs (`true`) or not (`false`).
+
+            **Filter Group:** Small
+
+            **Available Version:** 59.0
+          type: boolean
+    MlPredictionJobDefFieldRelationshipInputRepresentation:
+      title: Ml Prediction Job Def Field Relationship Input
+      type: object
+      description: Represents a join relationship between two data model object (DMO) fields.
+      properties:
+        sourceField:
+          description: |
+            Source field on the left side of the join.
+
+            **Available Version:** 59.0
+          allOf:
+            - $ref: "#/components/schemas/MlPredictionJobDefDataFieldInputRepresentation"
+        targetField:
+          description: |
+            Target field on the right side of the join.
+
+            **Available Version:** 59.0
+          allOf:
+            - $ref: "#/components/schemas/MlPredictionJobDefDataFieldInputRepresentation"
+    MlPredictionJobDefFieldRelationshipRepresentation:
+      title: Ml Prediction Job Def Field Relationship Output
+      type: object
+      description: Represents a prediction job field relationship.
+      properties:
+        sourceField:
+          description: |
+            Name of the data model object (DMO) source field.
+
+            **Filter Group:** Small
+
+            **Available Version:** 59.0
+          allOf:
+            - $ref: "#/components/schemas/MlPredictionJobDefDataFieldRepresentation"
+        targetField:
+          description: |
+            Name of the DMO target field.
+
+            **Filter Group:** Small
+
+            **Available Version:** 59.0
+          allOf:
+            - $ref: "#/components/schemas/MlPredictionJobDefDataFieldRepresentation"
+    MlPredictionJobDefInputFieldInputRepresentation:
+      title: Ml Prediction Job Def Input Field Input
+      type: object
+      description: Represents an input field for a prediction job definition.
+      properties:
+        mappedField:
+          description: |
+            Mapped data model object (DMO) field.
+
+            **Available Version:** 66.0
+          allOf:
+            - $ref: "#/components/schemas/MlPredictionJobDefMappedFieldInputRepresentation"
+        updateScore:
+          description: |
+            Indicates whether a prediction is rescored when this field updates (`true`) or not (`false`).
+
+            **Available Version:** 66.0
+          type: boolean
+    MlPredictionJobDefInputFieldRepresentation:
+      title: Ml Prediction Job Def Input Field Output
+      type: object
+      description: Represents an input field configuration for a prediction job definition.
+      properties:
+        mappedField:
+          description: |
+            Mapped data model object (DMO) field.
+
+            **Filter Group:** Small
+
+            **Available Version:** 66.0
+          allOf:
+            - $ref: "#/components/schemas/MlPredictionJobDefMappedFieldRepresentation"
+        updateScore:
+          description: |
+            Indicates whether an update to this field triggers a prediction update for streaming jobs (`true`) or not (`false`).
+
+            **Filter Group:** Small
+
+            **Available Version:** 66.0
+          type: boolean
+    MlPredictionJobDefMappedFieldInputRepresentation:
+      title: Ml Prediction Job Def Mapped Field Input
+      description: Represents a data model object (DMO) field with an optional relationship path.
+      allOf:
+        - $ref: "#/components/schemas/CdpAssetBaseInputRepresentation"
+        - type: object
+          properties:
+            dataObject:
+              description: |
+                Data model object (DMO) that contains the field.
+
+                **Available Version:** 59.0
+              allOf:
+                - $ref: "#/components/schemas/CdpAssetReferenceInputRepresentation"
+            relationshipPath:
+              description: |
+                List of join relationships for accessing the field from a related DMO.
+
+                **Available Version:** 59.0
+              type: array
+              items:
+                $ref: "#/components/schemas/MlPredictionJobDefFieldRelationshipInputRepresentation"
+    MlPredictionJobDefMappedFieldRepresentation:
+      title: Ml Prediction Job Def Mapped Field Output
+      description: Represents a prediction job mapped data field.
+      allOf:
+        - $ref: "#/components/schemas/CdpAssetBaseRepresentation"
+        - type: object
+          properties:
+            dataObject:
+              description: |
+                Data model object (DMO) details for the given field.
+
+                **Filter Group:** Small
+
+                **Available Version:** 59.0
+              allOf:
+                - $ref: "#/components/schemas/CdpAssetReferenceRepresentation"
+            relationshipPath:
+              description: |
+                Relationship path for cases where the field comes from a related DMO.
+
+                **Filter Group:** Small
+
+                **Available Version:** 59.0
+              type: array
+              items:
+                $ref: "#/components/schemas/MlPredictionJobDefFieldRelationshipRepresentation"
+    MlPredictionJobDefPredictionsConfigInputRepresentation:
+      title: Ml Prediction Job Def Predictions Config Input
+      type: object
+      description: Represents the input configuration for predictions generated by a model.
+      properties:
+        description:
+          description: |
+            Description of the output data model object (DMO).
+
+            **Available Version:** 59.0
+          type: string
+        objectLabel:
+          description: |
+            Object label of the output DMO.
+
+            **Available Version:** 59.0
+          type: string
+        objectName:
+          description: |
+            API name of the output DMO.
+
+            **Available Version:** 59.0
+          type: string
+    MlPredictionJobDefPredictionsConfigRepresentation:
+      title: Ml Prediction Job Def Predictions Config Output
+      type: object
+      description: Represents the configuration for prediction jobs.
+      properties:
+        dataObject:
+          description: |
+            Details about the output data model object (DMO).
+
+            **Filter Group:** Small
+
+            **Available Version:** 59.0
+          allOf:
+            - $ref: "#/components/schemas/CdpAssetReferenceRepresentation"
+        fields:
+          description: |
+            List of model prediction fields and output DMO mappings.
+
+            **Filter Group:** Small
+
+            **Available Version:** 59.0
+          type: array
+          items:
+            $ref: "#/components/schemas/MlPredictionJobDefPredictionMappingRepresentation"
+    MlPredictionJobDefPredictionMappingRepresentation:
+      title: Ml Prediction Job Def Prediction Mapping Output
+      type: object
+      description: Represents the output for prediction job mappings.
+      properties:
+        mappedField:
+          description: |
+            Mapped field details from the output data model object (DMO).
+
+            **Filter Group:** Small
+
+            **Available Version:** 59.0
+          allOf:
+            - $ref: "#/components/schemas/MlPredictionJobDefMappedFieldRepresentation"
+        modelField:
+          description: |
+            Model feature details from a model output feature, if any.
+
+            **Filter Group:** Small
+
+            **Available Version:** 59.0
+          allOf:
+            - $ref: "#/components/schemas/CdpAssetReferenceRepresentation"
+        sourceField:
+          description: |
+            Source field details from an input DMO, if any.
+
+            **Filter Group:** Small
+
+            **Available Version:** 59.0
+          allOf:
+            - $ref: "#/components/schemas/MlPredictionJobDefMappedFieldRepresentation"
+    MlPredictionJobDefPredictiveInputRepresentation:
+      title: Ml Prediction Job Def Predictive Input
+      description: Represents the input configuration for a prediction job definition.
+      allOf:
+        - $ref: "#/components/schemas/MlPredictionJobDefBaseInputRepresentation"
+        - type: object
+          properties:
+            inputConfig:
+              description: |
+                Input configuration for the prediction job definition.
+
+                **Available Version:** 59.0
+              allOf:
+                - $ref: "#/components/schemas/MlPredictionJobDefFeaturesConfigInputRepresentation"
+    MlPredictionJobDefPredictiveRepresentation:
+      title: Ml Prediction Job Def Predictive Output
+      description: Represents the base configuration for predictive prediction job definitions.
+      allOf:
+        - $ref: "#/components/schemas/MlPredictionJobDefBaseRepresentation"
+        - type: object
+          properties:
+            inputConfig:
+              description: |
+                Input configuration for features and field mappings.
+
+                **Filter Group:** Small
+
+                **Available Version:** 59.0
+              allOf:
+                - $ref: "#/components/schemas/MlPredictionJobDefFeaturesConfigRepresentation"
+    MlPredictionJobDefSettingsRepresentation:
+      title: Ml Prediction Job Def Settings Output
+      type: object
+      description: Represents the general settings configuration for a prediction job definition.
+      properties:
+        maxPrescriptions:
+          description: |
+            Maximum number of prescriptions to include per prediction.
+
+            **Filter Group:** Small
+
+            **Available Version:** 65.0
+          type: integer
+        maxTopContributors:
+          description: |
+            Maximum number of top contributors to include per prediction.
+
+            **Filter Group:** Small
+
+            **Available Version:** 65.0
+          type: integer
+        prescriptionThreshold:
+          description: |
+            Improvement threshold for prescriptions.
+
+            **Filter Group:** Small
+
+            **Available Version:** 65.0
+          type: integer
+    MlRegressionJobDefInputRepresentation:
+      title: Ml Regression Job Def Input
+      description: Represents the input for creating a regression prediction job definition.
+      allOf:
+        - $ref: "#/components/schemas/MlPredictionJobDefPredictiveInputRepresentation"
+        - type: object
+          properties:
+            regressionSettings:
+              description: |
+                Regression settings.
+
+                **Available Version:** 66.0
+              allOf:
+                - $ref: "#/components/schemas/MlRegressionJobDefSettingsInputRepresentation"
+    MlRegressionJobDefRepresentation:
+      title: Ml Regression Job Def Output
+      description: Represents a regression prediction job definition.
+      allOf:
+        - $ref: "#/components/schemas/MlPredictionJobDefPredictiveRepresentation"
+        - type: object
+          properties:
+            predictionSettings:
+              description: |
+                General prediction settings configuration.
+
+                **Filter Group:** Small
+
+                **Available Version:** 65.0
+              allOf:
+                - $ref: "#/components/schemas/MlPredictionJobDefSettingsRepresentation"
+            regressionSettings:
+              description: |
+                Regression-specific settings configuration.
+
+                **Filter Group:** Small
+
+                **Available Version:** 66.0
+              allOf:
+                - $ref: "#/components/schemas/MlRegressionJobDefSettingsRepresentation"
+    MlRegressionJobDefSettingsInputRepresentation:
+      title: Ml Regression Job Def Settings Input
+      type: object
+      description: Represents the settings configuration for a regression prediction job definition.
+      properties:
+        maxPrescriptions:
+          description: |
+            Maximum number of prescriptions to generate.
+
+            **Available Version:** 66.0
+          type: integer
+        maxTopContributors:
+          description: |
+            Maximum number of top contributors to generate.
+
+            **Available Version:** 66.0
+          type: integer
+        prescriptionThreshold:
+          description: |
+            Improvement threshold for prescriptions.
+
+            **Available Version:** 66.0
+          type: integer
+    MlRegressionJobDefSettingsRepresentation:
+      title: Ml Regression Job Def Settings Output
+      type: object
+      description: Represents the settings configuration for a regression prediction job definition.
+      properties:
+        maxPrescriptions:
+          description: |
+            Maximum number of prescriptions to include per prediction.
+
+            **Filter Group:** Small
+
+            **Available Version:** 66.0
+          type: integer
+        maxTopContributors:
+          description: |
+            Maximum number of top contributors to include per prediction.
+
+            **Filter Group:** Small
+
+            **Available Version:** 66.0
+          type: integer
+        prescriptionThreshold:
+          description: |
+            Improvement threshold for prescriptions.
+
+            **Filter Group:** Small
+
+            **Available Version:** 66.0
+          type: integer
+    MlSentimentDetectionJobDefInputRepresentation:
+      title: Ml Sentiment Detection Job Def Input
+      description: Represents the input for creating a sentiment detection prediction job definition.
+      allOf:
+        - $ref: "#/components/schemas/MlPredictionJobDefBaseInputRepresentation"
+        - type: object
+          properties:
+            inputConfig:
+              description: |
+                Input configuration for sentiment detection.
+
+                **Available Version:** 66.0
+              allOf:
+                - $ref: "#/components/schemas/MlSentimentDetectionInputConfigInputRepresentation"
+    MlSentimentDetectionInputConfigInputRepresentation:
+      title: Ml Sentiment Detection Input Config Input
+      type: object
+      description: Represents the input configuration for a sentiment detection prediction job definition.
+      properties:
+        dataObject:
+          description: |
+            Input data model object (DMO).
+
+            **Available Version:** 66.0
+          allOf:
+            - $ref: "#/components/schemas/CdpAssetReferenceInputRepresentation"
+        textFields:
+          description: |
+            List of text fields to perform sentiment detection on.
+
+            **Available Version:** 66.0
+          type: array
+          items:
+            $ref: "#/components/schemas/MlPredictionJobDefInputFieldInputRepresentation"
+    MlSentimentDetectionInputConfigRepresentation:
+      title: Ml Sentiment Detection Input Config Output
+      type: object
+      description: Represents the input configuration for a sentiment detection prediction job definition.
+      properties:
+        dataObject:
+          description: |
+            Input data model object (DMO).
+
+            **Filter Group:** Small
+
+            **Available Version:** 66.0
+          allOf:
+            - $ref: "#/components/schemas/CdpAssetReferenceRepresentation"
+        textFields:
+          description: |
+            List of text fields to perform sentiment detection on.
+
+            **Filter Group:** Small
+
+            **Available Version:** 66.0
+          type: array
+          items:
+            $ref: "#/components/schemas/MlPredictionJobDefInputFieldRepresentation"
+    MlSentimentDetectionJobDefRepresentation:
+      title: Ml Sentiment Detection Job Def Output
+      description: Represents a sentiment detection prediction job definition.
+      allOf:
+        - $ref: "#/components/schemas/MlPredictionJobDefBaseRepresentation"
+        - type: object
+          properties:
+            inputConfig:
+              description: |
+                Input configuration for sentiment detection.
+
+                **Filter Group:** Small
+
+                **Available Version:** 66.0
+              allOf:
+                - $ref: "#/components/schemas/MlSentimentDetectionInputConfigRepresentation"
     MlSetupBaseUpdateInputRepresentation:
       title: ML Setup Base Update Input
       description: Represents the base class for the core fields you can update in a model setup.
@@ -32302,6 +33836,140 @@ components:
           enum:
             - EdcNoCode
             - ModelConnector
+    MlTopicClassificationInputConfigInputRepresentation:
+      title: Ml Topic Classification Input Config Input
+      type: object
+      description: Represents the input configuration for a topic classification prediction job definition.
+      properties:
+        dataObject:
+          description: |
+            Input data model object (DMO).
+
+            **Available Version:** 66.0
+          allOf:
+            - $ref: "#/components/schemas/CdpAssetReferenceInputRepresentation"
+        textFields:
+          description: |
+            List of text fields to perform topic classification on.
+
+            **Available Version:** 66.0
+          type: array
+          items:
+            $ref: "#/components/schemas/MlPredictionJobDefInputFieldInputRepresentation"
+        topicLabels:
+          description: |
+            Topic labels for classifying the text fields.
+
+            **Available Version:** 66.0
+          allOf:
+            - $ref: "#/components/schemas/MlTopicClassificationJobStaticLabelsInputRepresentation"
+    MlTopicClassificationInputConfigRepresentation:
+      title: Ml Topic Classification Input Config Output
+      type: object
+      description: Represents the input configuration for a topic classification prediction job definition.
+      properties:
+        dataObject:
+          description: |
+            Input data model object (DMO).
+
+            **Filter Group:** Small
+
+            **Available Version:** 66.0
+          allOf:
+            - $ref: "#/components/schemas/CdpAssetReferenceRepresentation"
+        textFields:
+          description: |
+            List of text fields to perform topic classification on.
+
+            **Filter Group:** Small
+
+            **Available Version:** 66.0
+          type: array
+          items:
+            $ref: "#/components/schemas/MlPredictionJobDefInputFieldRepresentation"
+        topicLabels:
+          description: |
+            Topic labels for classifying the text fields.
+
+            **Filter Group:** Small
+
+            **Available Version:** 66.0
+          allOf:
+            - $ref: "#/components/schemas/MlTopicClassificationJobLabelsBaseRepresentation"
+    MlTopicClassificationJobDefInputRepresentation:
+      title: Ml Topic Classification Job Def Input
+      description: Represents the input for creating a topic classification prediction job definition.
+      allOf:
+        - $ref: "#/components/schemas/MlPredictionJobDefBaseInputRepresentation"
+        - type: object
+          properties:
+            inputConfig:
+              description: |
+                Input configuration for topic classification.
+
+                **Available Version:** 66.0
+              allOf:
+                - $ref: "#/components/schemas/MlTopicClassificationInputConfigInputRepresentation"
+    MlTopicClassificationJobDefRepresentation:
+      title: Ml Topic Classification Job Def Output
+      description: Represents a topic classification prediction job definition.
+      allOf:
+        - $ref: "#/components/schemas/MlPredictionJobDefBaseRepresentation"
+        - type: object
+          properties:
+            inputConfig:
+              description: |
+                Input configuration for topic classification.
+
+                **Filter Group:** Small
+
+                **Available Version:** 66.0
+              allOf:
+                - $ref: "#/components/schemas/MlTopicClassificationInputConfigRepresentation"
+    MlTopicClassificationJobLabelsBaseInputRepresentation:
+      title: Ml Topic Classification Job Labels Base Input
+      type: object
+      description: Represents the base input for topic classification labels.
+      properties:
+        type:
+          description: |
+            Type of labels mapping.
+
+            **Available Version:** 66.0
+          type: string
+          enum:
+            - Static
+    MlTopicClassificationJobStaticLabelsInputRepresentation:
+      title: Ml Topic Classification Job Static Labels Input
+      description: Represents the base class for topic classification labels.
+      allOf:
+        - $ref: "#/components/schemas/MlTopicClassificationJobLabelsBaseInputRepresentation"
+        - type: object
+          properties:
+            values:
+              description: |
+                Static list of topic labels to be used for classification.
+
+                **Available Version:** 66.0
+              type: array
+              items:
+                type: string
+    MlTopicClassificationJobLabelsBaseRepresentation:
+      title: Ml Topic Classification Job Labels Base Output
+      type: object
+      description: Represents the base configuration for topic classification labels.
+      properties:
+        type:
+          description: |
+            Type of labels mapping.
+
+            **Filter Group:** Small
+
+            **Available Version:** 66.0
+          type: string
+          enum:
+            - Dynamic
+            - Static
     MonthlySpecificScheduleInputRepresentation:
       title: Monthly Schedule Input
       description: Represents the input for creating a monthly schedule where the days are fixed by numerical date.
@@ -50724,6 +52392,942 @@ components:
           "status": "Enabled",
           "url": "/services/data/v61.0/ssot/machine-learning/configured-models/sfdc_ai__DefaultGPT35Turbo",
         }
+    get-jobs-output-example:
+      value:
+        {
+          "currentPageUrl": "/services/data/v66.0/ssot/machine-learning/jobs?limit=25&offset=0&type=Training",
+          "jobs": [
+            {
+              "type": "Training",
+              "createdBy": {
+                "id": "005SB00000eyXenYAE",
+                "name": "EDC Admin"
+              },
+              "createdDate": "2026-06-04T00:15:13.000Z",
+              "description": null,
+              "endTime": "2026-06-04T00:20:14.000Z",
+              "id": "14qSB0000005jCbYAI",
+              "input": {
+                "id": "14kSB000000C8Y5YAK"
+              },
+              "label": null,
+              "lastModifiedBy": {
+                "id": "005SB00000eyY1NYAU",
+                "name": "Automated Process"
+              },
+              "lastModifiedDate": "2026-06-04T00:20:15.000Z",
+              "message": null,
+              "name": null,
+              "namespace": null,
+              "numberOfTasks": 1,
+              "startTime": "2026-06-04T00:15:16.000Z",
+              "status": "Success",
+              "tasksUrl": "/services/data/v66.0/ssot/machine-learning/jobs/14qSB0000005jCbYAI/tasks",
+              "totalRowsProcessed": 32212,
+              "triggerType": "User",
+              "url": "/services/data/v66.0/ssot/machine-learning/jobs/14qSB0000005jCbYAI"
+            },
+            {
+              "type": "Training",
+              "createdBy": {
+                "id": "005SB00000eyXenYAE",
+                "name": "EDC Admin"
+              },
+              "createdDate": "2026-06-02T04:19:57.000Z",
+              "description": null,
+              "endTime": "2026-06-02T04:24:17.000Z",
+              "id": "14qSB0000005hYzYAI",
+              "input": {
+                "id": "14kSB000000C6ODYA0"
+              },
+              "label": null,
+              "lastModifiedBy": {
+                "id": "005SB00000eyY1NYAU",
+                "name": "Automated Process"
+              },
+              "lastModifiedDate": "2026-06-02T04:24:19.000Z",
+              "message": null,
+              "name": null,
+              "namespace": null,
+              "numberOfTasks": 1,
+              "startTime": "2026-06-02T04:19:58.000Z",
+              "status": "Success",
+              "tasksUrl": "/services/data/v66.0/ssot/machine-learning/jobs/14qSB0000005hYzYAI/tasks",
+              "totalRowsProcessed": 1470,
+              "triggerType": "User",
+              "url": "/services/data/v66.0/ssot/machine-learning/jobs/14qSB0000005hYzYAI"
+            },
+            {
+              "type": "Training",
+              "createdBy": {
+                "id": "005SB00000eyXenYAE",
+                "name": "EDC Admin"
+              },
+              "createdDate": "2026-06-02T04:04:02.000Z",
+              "description": null,
+              "endTime": "2026-06-02T04:08:03.000Z",
+              "id": "14qSB0000005hXNYAY",
+              "input": {
+                "id": "14kSB000000C6MbYAK"
+              },
+              "label": null,
+              "lastModifiedBy": {
+                "id": "005SB00000eyY1NYAU",
+                "name": "Automated Process"
+              },
+              "lastModifiedDate": "2026-06-02T04:08:11.000Z",
+              "message": null,
+              "name": null,
+              "namespace": null,
+              "numberOfTasks": 1,
+              "startTime": "2026-06-02T04:04:04.000Z",
+              "status": "Success",
+              "tasksUrl": "/services/data/v66.0/ssot/machine-learning/jobs/14qSB0000005hXNYAY/tasks",
+              "totalRowsProcessed": 1470,
+              "triggerType": "User",
+              "url": "/services/data/v66.0/ssot/machine-learning/jobs/14qSB0000005hXNYAY"
+            },
+            {
+              "type": "Training",
+              "createdBy": {
+                "id": "005SB00000eyXenYAE",
+                "name": "EDC Admin"
+              },
+              "createdDate": "2026-06-01T22:59:41.000Z",
+              "description": null,
+              "endTime": "2026-06-01T23:06:33.000Z",
+              "id": "14qSB0000005hU9YAI",
+              "input": {
+                "id": "14kSB000000C6JNYA0"
+              },
+              "label": null,
+              "lastModifiedBy": {
+                "id": "005SB00000eyY1NYAU",
+                "name": "Automated Process"
+              },
+              "lastModifiedDate": "2026-06-01T23:06:38.000Z",
+              "message": null,
+              "name": null,
+              "namespace": null,
+              "numberOfTasks": 1,
+              "startTime": "2026-06-01T22:59:43.000Z",
+              "status": "Success",
+              "tasksUrl": "/services/data/v66.0/ssot/machine-learning/jobs/14qSB0000005hU9YAI/tasks",
+              "totalRowsProcessed": 1470,
+              "triggerType": "User",
+              "url": "/services/data/v66.0/ssot/machine-learning/jobs/14qSB0000005hU9YAI"
+            },
+            {
+              "type": "Training",
+              "createdBy": {
+                "id": "005SB00000eyXenYAE",
+                "name": "EDC Admin"
+              },
+              "createdDate": "2026-06-01T21:59:14.000Z",
+              "description": null,
+              "endTime": "2026-06-01T22:04:15.000Z",
+              "id": "14qSB0000005hSXYAY",
+              "input": {
+                "id": "14kSB000000C6HlYAK"
+              },
+              "label": null,
+              "lastModifiedBy": {
+                "id": "005SB00000eyY1NYAU",
+                "name": "Automated Process"
+              },
+              "lastModifiedDate": "2026-06-01T22:04:16.000Z",
+              "message": null,
+              "name": null,
+              "namespace": null,
+              "numberOfTasks": 1,
+              "startTime": "2026-06-01T21:59:16.000Z",
+              "status": "Success",
+              "tasksUrl": "/services/data/v66.0/ssot/machine-learning/jobs/14qSB0000005hSXYAY/tasks",
+              "totalRowsProcessed": 1470,
+              "triggerType": "User",
+              "url": "/services/data/v66.0/ssot/machine-learning/jobs/14qSB0000005hSXYAY"
+            },
+            {
+              "type": "Training",
+              "createdBy": {
+                "id": "005SB00000eyXenYAE",
+                "name": "EDC Admin"
+              },
+              "createdDate": "2026-06-01T21:50:09.000Z",
+              "description": null,
+              "endTime": "2026-06-01T21:55:49.000Z",
+              "id": "14qSB0000005hQvYAI",
+              "input": {
+                "id": "14kSB000000C6G9YAK"
+              },
+              "label": null,
+              "lastModifiedBy": {
+                "id": "005SB00000eyY1NYAU",
+                "name": "Automated Process"
+              },
+              "lastModifiedDate": "2026-06-01T21:55:50.000Z",
+              "message": null,
+              "name": null,
+              "namespace": null,
+              "numberOfTasks": 1,
+              "startTime": "2026-06-01T21:50:10.000Z",
+              "status": "Success",
+              "tasksUrl": "/services/data/v66.0/ssot/machine-learning/jobs/14qSB0000005hQvYAI/tasks",
+              "totalRowsProcessed": 1462,
+              "triggerType": "User",
+              "url": "/services/data/v66.0/ssot/machine-learning/jobs/14qSB0000005hQvYAI"
+            },
+            {
+              "type": "Training",
+              "createdBy": {
+                "id": "005SB00000eyXenYAE",
+                "name": "EDC Admin"
+              },
+              "createdDate": "2026-06-01T21:28:25.000Z",
+              "description": null,
+              "endTime": "2026-06-01T21:33:28.000Z",
+              "id": "14qSB0000005hPJYAY",
+              "input": {
+                "id": "14kSB000000C6EXYA0"
+              },
+              "label": null,
+              "lastModifiedBy": {
+                "id": "005SB00000eyY1NYAU",
+                "name": "Automated Process"
+              },
+              "lastModifiedDate": "2026-06-01T21:33:31.000Z",
+              "message": null,
+              "name": null,
+              "namespace": null,
+              "numberOfTasks": 1,
+              "startTime": "2026-06-01T21:28:27.000Z",
+              "status": "Success",
+              "tasksUrl": "/services/data/v66.0/ssot/machine-learning/jobs/14qSB0000005hPJYAY/tasks",
+              "totalRowsProcessed": 1470,
+              "triggerType": "User",
+              "url": "/services/data/v66.0/ssot/machine-learning/jobs/14qSB0000005hPJYAY"
+            },
+            {
+              "type": "Training",
+              "createdBy": {
+                "id": "005SB00000eyXenYAE",
+                "name": "EDC Admin"
+              },
+              "createdDate": "2026-06-01T20:48:58.000Z",
+              "description": null,
+              "endTime": "2026-06-01T20:54:20.000Z",
+              "id": "14qSB0000005hNhYAI",
+              "input": {
+                "id": "14kSB000000C6CvYAK"
+              },
+              "label": null,
+              "lastModifiedBy": {
+                "id": "005SB00000eyY1NYAU",
+                "name": "Automated Process"
+              },
+              "lastModifiedDate": "2026-06-01T20:54:22.000Z",
+              "message": null,
+              "name": null,
+              "namespace": null,
+              "numberOfTasks": 1,
+              "startTime": "2026-06-01T20:48:59.000Z",
+              "status": "Success",
+              "tasksUrl": "/services/data/v66.0/ssot/machine-learning/jobs/14qSB0000005hNhYAI/tasks",
+              "totalRowsProcessed": 1470,
+              "triggerType": "User",
+              "url": "/services/data/v66.0/ssot/machine-learning/jobs/14qSB0000005hNhYAI"
+            }
+          ],
+          "nextPageUrl": null,
+          "totalSize": 8
+        }
+    get-job-output-example:
+      value:
+        {
+          "type": "Training",
+          "createdBy": {
+            "id": "005SB00000eyXenYAE",
+            "name": "EDC Admin"
+          },
+          "createdDate": "2026-06-04T00:15:13.000Z",
+          "description": null,
+          "endTime": "2026-06-04T00:20:14.000Z",
+          "id": "14qSB0000005jCbYAI",
+          "input": {
+            "id": "14kSB000000C8Y5YAK"
+          },
+          "label": null,
+          "lastModifiedBy": {
+            "id": "005SB00000eyY1NYAU",
+            "name": "Automated Process"
+          },
+          "lastModifiedDate": "2026-06-04T00:20:15.000Z",
+          "message": null,
+          "name": null,
+          "namespace": null,
+          "numberOfTasks": 1,
+          "startTime": "2026-06-04T00:15:16.000Z",
+          "status": "Success",
+          "tasksUrl": "/services/data/v66.0/ssot/machine-learning/jobs/14qSB0000005jCbYAI/tasks",
+          "totalRowsProcessed": 32212,
+          "triggerType": "User",
+          "url": "/services/data/v66.0/ssot/machine-learning/jobs/14qSB0000005jCbYAI"
+        }
+    get-tasks-output-example:
+      value:
+        {
+          "tasks": [
+            {
+              "configurationResult": {
+                "type": "EdcNoCode",
+                "active": false,
+                "createdBy": {
+                  "id": "005SB00000eyXenYAE",
+                  "name": "EDC Admin"
+                },
+                "createdDate": "2026-06-04T00:15:12.000Z",
+                "description": "true=10086,false=22126",
+                "fieldRelationships": [],
+                "fieldSelection": "Automatic",
+                "fields": [
+                  {
+                    "type": "Number",
+                    "bucketingStrategy": {
+                      "type": "Percentile",
+                      "numberOfBuckets": 10
+                    },
+                    "highCardinality": false,
+                    "ignored": false,
+                    "label": "Amount",
+                    "max": 1335411,
+                    "min": 489,
+                    "name": "Amount__c",
+                    "sensitive": false,
+                    "source": null
+                  },
+                  {
+                    "type": "Number",
+                    "bucketingStrategy": {
+                      "type": "Percentile",
+                      "numberOfBuckets": 10
+                    },
+                    "highCardinality": false,
+                    "ignored": false,
+                    "label": "Discount",
+                    "max": 50,
+                    "min": 0,
+                    "name": "Discount__c",
+                    "sensitive": false,
+                    "source": null
+                  },
+                  {
+                    "type": "Text",
+                    "balanced": false,
+                    "dataType": "Categorical",
+                    "highCardinality": false,
+                    "ignored": false,
+                    "includeOther": true,
+                    "label": "Competitor",
+                    "name": "Competitor__c",
+                    "ordering": "Occurrence",
+                    "sensitive": false,
+                    "source": null,
+                    "values": []
+                  },
+                  {
+                    "type": "Text",
+                    "balanced": false,
+                    "dataType": "Categorical",
+                    "highCardinality": false,
+                    "ignored": false,
+                    "includeOther": true,
+                    "label": "Product Name",
+                    "name": "Product_Name__c",
+                    "ordering": "Occurrence",
+                    "sensitive": false,
+                    "source": null,
+                    "values": []
+                  },
+                  {
+                    "type": "Text",
+                    "balanced": false,
+                    "dataType": "Categorical",
+                    "highCardinality": false,
+                    "ignored": false,
+                    "includeOther": true,
+                    "label": "Promotion",
+                    "name": "Promotion__c",
+                    "ordering": "Occurrence",
+                    "sensitive": false,
+                    "source": null,
+                    "values": []
+                  },
+                  {
+                    "type": "Text",
+                    "balanced": false,
+                    "dataType": "Categorical",
+                    "highCardinality": false,
+                    "ignored": false,
+                    "includeOther": true,
+                    "label": "Region",
+                    "name": "Region__c",
+                    "ordering": "Occurrence",
+                    "sensitive": false,
+                    "source": null,
+                    "values": []
+                  },
+                  {
+                    "type": "Text",
+                    "balanced": false,
+                    "dataType": "Categorical",
+                    "highCardinality": false,
+                    "ignored": false,
+                    "includeOther": true,
+                    "label": "Vertical",
+                    "name": "Vertical__c",
+                    "ordering": "Occurrence",
+                    "sensitive": false,
+                    "source": null,
+                    "values": []
+                  },
+                  {
+                    "type": "Date",
+                    "highCardinality": false,
+                    "ignored": false,
+                    "label": "Date",
+                    "max": "2015-04-01T00:00:00.000Z",
+                    "min": "2015-01-01T00:00:00.000Z",
+                    "name": "Date__c",
+                    "sensitive": false,
+                    "source": null
+                  }
+                ],
+                "filter": null,
+                "id": "14kSB000000C8Y5YAK",
+                "input": null,
+                "job": {
+                  "createdBy": {
+                    "id": "005SB00000eyXenYAE",
+                    "name": "EDC Admin"
+                  },
+                  "createdDate": "2026-06-04T00:15:13.000Z",
+                  "id": "14qSB0000005jCbYAI",
+                  "lastModifiedBy": {
+                    "id": "005SB00000eyY1NYAU",
+                    "name": "Automated Process"
+                  },
+                  "lastModifiedDate": "2026-06-04T00:20:15.000Z",
+                  "url": "/services/data/v66.0/ssot/machine-learning/jobs/14qSB0000005jCbYAI"
+                },
+                "joins": [],
+                "label": null,
+                "lastModifiedBy": {
+                  "id": "005SB00000eyXenYAE",
+                  "name": "EDC Admin"
+                },
+                "lastModifiedDate": "2026-06-04T00:22:03.000Z",
+                "modelConfiguration": {
+                  "algorithmType": "Catboost"
+                },
+                "name": null,
+                "namespace": null,
+                "numberOfPartitions": null,
+                "outcomes": [
+                  {
+                    "type": "Binary",
+                    "failureValue": "FALSE",
+                    "failureValueCount": null,
+                    "goal": "Maximize",
+                    "label": "Opportunity_Won",
+                    "name": "Opportunity_Won__c",
+                    "source": null,
+                    "successValue": "TRUE",
+                    "successValueCount": null
+                  }
+                ],
+                "partitionsUrl": "/services/data/v66.0/ssot/machine-learning/model-setups/24sSB000000D1MTYA0/setup-versions/14kSB000000C8Y5YAK/partitions",
+                "runtimeType": "InternalV2",
+                "status": "Published",
+                "transformations": [
+                  {
+                    "type": "ExtractMonthOfYear",
+                    "postTransformationFilter": null,
+                    "source": null,
+                    "sourceFieldName": null,
+                    "sourceFieldSource": null,
+                    "targetFieldName": null
+                  }
+                ],
+                "url": "/services/data/v66.0/ssot/machine-learning/model-setups/24sSB000000D1MTYA0/setup-versions/14kSB000000C8Y5YAK",
+                "validationConfiguration": null,
+                "version": 1
+              },
+              "createdBy": {
+                "id": "005SB00000eyY1NYAU",
+                "name": "Automated Process"
+              },
+              "createdDate": "2026-06-04T00:20:14.000Z",
+              "endTime": "2026-06-04T00:20:14.000Z",
+              "errorCode": null,
+              "id": "14rSB0000007CZ7YAM",
+              "input": {
+                "id": "14lSB000000BvKjYAK"
+              },
+              "label": null,
+              "lastModifiedBy": {
+                "id": "005SB00000eyY1NYAU",
+                "name": "Automated Process"
+              },
+              "lastModifiedDate": "2026-06-04T00:20:14.000Z",
+              "message": null,
+              "name": null,
+              "namespace": null,
+              "resultArtifact": {
+                "createdBy": {
+                  "id": "005SB00000eyY1NYAU",
+                  "name": "Automated Process"
+                },
+                "createdDate": "2026-06-04T00:20:15.000Z",
+                "id": "12lSB000000UiejYAC",
+                "label": "model artifact label",
+                "lastModifiedBy": {
+                  "id": "005SB00000eyXenYAE",
+                  "name": "EDC Admin"
+                },
+                "lastModifiedDate": "2026-06-05T23:22:01.000Z",
+                "name": "model_artifact_label_MA_12l_t1d4de5c954",
+                "url": "/services/data/v66.0/ssot/machine-learning/model-artifacts/12lSB000000UiejYAC"
+              },
+              "startTime": null,
+              "status": "Published",
+              "url": "/services/data/v66.0/ssot/machine-learning/jobs/14qSB0000005jCbYAI/tasks/14rSB0000007CZ7YAM"
+            },
+            {
+              "configurationResult": {
+                "type": "EdcNoCode",
+                "active": true,
+                "createdBy": {
+                  "id": "005SB00000eyXenYAE",
+                  "name": "EDC Admin"
+                },
+                "createdDate": "2026-06-05T14:30:45.000Z",
+                "description": "true=8542,false=18934",
+                "fieldRelationships": [],
+                "fieldSelection": "Manual",
+                "fields": [
+                  {
+                    "type": "Number",
+                    "bucketingStrategy": {
+                      "type": "Percentile",
+                      "numberOfBuckets": 5
+                    },
+                    "highCardinality": false,
+                    "ignored": false,
+                    "label": "Revenue",
+                    "max": 2500000,
+                    "min": 1000,
+                    "name": "Revenue__c",
+                    "sensitive": false,
+                    "source": null
+                  },
+                  {
+                    "type": "Number",
+                    "bucketingStrategy": {
+                      "type": "Percentile",
+                      "numberOfBuckets": 10
+                    },
+                    "highCardinality": false,
+                    "ignored": false,
+                    "label": "Contract Value",
+                    "max": 500000,
+                    "min": 5000,
+                    "name": "Contract_Value__c",
+                    "sensitive": false,
+                    "source": null
+                  },
+                  {
+                    "type": "Text",
+                    "balanced": false,
+                    "dataType": "Categorical",
+                    "highCardinality": false,
+                    "ignored": false,
+                    "includeOther": true,
+                    "label": "Industry",
+                    "name": "Industry__c",
+                    "ordering": "Occurrence",
+                    "sensitive": false,
+                    "source": null,
+                    "values": []
+                  },
+                  {
+                    "type": "Text",
+                    "balanced": false,
+                    "dataType": "Categorical",
+                    "highCardinality": false,
+                    "ignored": false,
+                    "includeOther": true,
+                    "label": "Lead Source",
+                    "name": "Lead_Source__c",
+                    "ordering": "Occurrence",
+                    "sensitive": false,
+                    "source": null,
+                    "values": []
+                  },
+                  {
+                    "type": "Text",
+                    "balanced": false,
+                    "dataType": "Categorical",
+                    "highCardinality": false,
+                    "ignored": false,
+                    "includeOther": true,
+                    "label": "Account Type",
+                    "name": "Account_Type__c",
+                    "ordering": "Occurrence",
+                    "sensitive": false,
+                    "source": null,
+                    "values": []
+                  },
+                  {
+                    "type": "Date",
+                    "highCardinality": false,
+                    "ignored": false,
+                    "label": "Close Date",
+                    "max": "2015-12-31T00:00:00.000Z",
+                    "min": "2015-06-01T00:00:00.000Z",
+                    "name": "Close_Date__c",
+                    "sensitive": false,
+                    "source": null
+                  }
+                ],
+                "filter": null,
+                "id": "14kSB000000C9ABYA0",
+                "input": null,
+                "job": {
+                  "createdBy": {
+                    "id": "005SB00000eyXenYAE",
+                    "name": "EDC Admin"
+                  },
+                  "createdDate": "2026-06-05T14:30:46.000Z",
+                  "id": "14qSB0000005jDmYAI",
+                  "lastModifiedBy": {
+                    "id": "005SB00000eyY1NYAU",
+                    "name": "Automated Process"
+                  },
+                  "lastModifiedDate": "2026-06-05T14:35:22.000Z",
+                  "url": "/services/data/v66.0/ssot/machine-learning/jobs/14qSB0000005jDmYAI"
+                },
+                "joins": [],
+                "label": null,
+                "lastModifiedBy": {
+                  "id": "005SB00000eyXenYAE",
+                  "name": "EDC Admin"
+                },
+                "lastModifiedDate": "2026-06-05T14:37:18.000Z",
+                "modelConfiguration": {
+                  "algorithmType": "XGBoost"
+                },
+                "name": null,
+                "namespace": null,
+                "numberOfPartitions": null,
+                "outcomes": [
+                  {
+                    "type": "Binary",
+                    "failureValue": "FALSE",
+                    "failureValueCount": null,
+                    "goal": "Maximize",
+                    "label": "Deal_Closed",
+                    "name": "Deal_Closed__c",
+                    "source": null,
+                    "successValue": "TRUE",
+                    "successValueCount": null
+                  }
+                ],
+                "partitionsUrl": "/services/data/v66.0/ssot/machine-learning/model-setups/24sSB000000D1NXYA0/setup-versions/14kSB000000C9ABYA0/partitions",
+                "runtimeType": "InternalV2",
+                "status": "InProgress",
+                "transformations": [
+                  {
+                    "type": "ExtractDayOfWeek",
+                    "postTransformationFilter": null,
+                    "source": null,
+                    "sourceFieldName": null,
+                    "sourceFieldSource": null,
+                    "targetFieldName": null
+                  }
+                ],
+                "url": "/services/data/v66.0/ssot/machine-learning/model-setups/24sSB000000D1NXYA0/setup-versions/14kSB000000C9ABYA0",
+                "validationConfiguration": null,
+                "version": 2
+              },
+              "createdBy": {
+                "id": "005SB00000eyY1NYAU",
+                "name": "Automated Process"
+              },
+              "createdDate": "2026-06-05T14:35:21.000Z",
+              "endTime": "2026-06-05T14:35:21.000Z",
+              "errorCode": null,
+              "id": "14rSB0000007CaBYAU",
+              "input": {
+                "id": "14lSB000000BvLpYAK"
+              },
+              "label": null,
+              "lastModifiedBy": {
+                "id": "005SB00000eyY1NYAU",
+                "name": "Automated Process"
+              },
+              "lastModifiedDate": "2026-06-05T14:35:21.000Z",
+              "message": null,
+              "name": null,
+              "namespace": null,
+              "resultArtifact": {
+                "createdBy": {
+                  "id": "005SB00000eyY1NYAU",
+                  "name": "Automated Process"
+                },
+                "createdDate": "2026-06-05T14:35:22.000Z",
+                "id": "12lSB000000UikFYAS",
+                "label": "revenue prediction artifact",
+                "lastModifiedBy": {
+                  "id": "005SB00000eyXenYAE",
+                  "name": "EDC Admin"
+                },
+                "lastModifiedDate": "2026-06-06T10:15:33.000Z",
+                "name": "revenue_prediction_artifact_MA_12l_t1d4f8a2b71",
+                "url": "/services/data/v66.0/ssot/machine-learning/model-artifacts/12lSB000000UikFYAS"
+              },
+              "startTime": null,
+              "status": "InProgress",
+              "url": "/services/data/v66.0/ssot/machine-learning/jobs/14qSB0000005jDmYAI/tasks/14rSB0000007CaBYAU"
+            }
+          ]
+        }
+    get-task-output-example:
+      value:
+        {
+          "configurationResult": {
+            "type": "EdcNoCode",
+            "active": false,
+            "createdBy": {
+              "id": "005SB00000eyXenYAE",
+              "name": "EDC Admin"
+            },
+            "createdDate": "2026-06-04T00:15:12.000Z",
+            "description": "true=10086,false=22126",
+            "fieldRelationships": [],
+            "fieldSelection": "Automatic",
+            "fields": [
+              {
+                "type": "Number",
+                "bucketingStrategy": {
+                  "type": "Percentile",
+                  "numberOfBuckets": 10
+                },
+                "highCardinality": false,
+                "ignored": false,
+                "label": "Amount",
+                "max": 1335411,
+                "min": 489,
+                "name": "Amount__c",
+                "sensitive": false,
+                "source": null
+              },
+              {
+                "type": "Number",
+                "bucketingStrategy": {
+                  "type": "Percentile",
+                  "numberOfBuckets": 10
+                },
+                "highCardinality": false,
+                "ignored": false,
+                "label": "Discount",
+                "max": 50,
+                "min": 0,
+                "name": "Discount__c",
+                "sensitive": false,
+                "source": null
+              },
+              {
+                "type": "Text",
+                "balanced": false,
+                "dataType": "Categorical",
+                "highCardinality": false,
+                "ignored": false,
+                "includeOther": true,
+                "label": "Competitor",
+                "name": "Competitor__c",
+                "ordering": "Occurrence",
+                "sensitive": false,
+                "source": null,
+                "values": []
+              },
+              {
+                "type": "Text",
+                "balanced": false,
+                "dataType": "Categorical",
+                "highCardinality": false,
+                "ignored": false,
+                "includeOther": true,
+                "label": "Product Name",
+                "name": "Product_Name__c",
+                "ordering": "Occurrence",
+                "sensitive": false,
+                "source": null,
+                "values": []
+              },
+              {
+                "type": "Text",
+                "balanced": false,
+                "dataType": "Categorical",
+                "highCardinality": false,
+                "ignored": false,
+                "includeOther": true,
+                "label": "Promotion",
+                "name": "Promotion__c",
+                "ordering": "Occurrence",
+                "sensitive": false,
+                "source": null,
+                "values": []
+              },
+              {
+                "type": "Text",
+                "balanced": false,
+                "dataType": "Categorical",
+                "highCardinality": false,
+                "ignored": false,
+                "includeOther": true,
+                "label": "Region",
+                "name": "Region__c",
+                "ordering": "Occurrence",
+                "sensitive": false,
+                "source": null,
+                "values": []
+              },
+              {
+                "type": "Text",
+                "balanced": false,
+                "dataType": "Categorical",
+                "highCardinality": false,
+                "ignored": false,
+                "includeOther": true,
+                "label": "Vertical",
+                "name": "Vertical__c",
+                "ordering": "Occurrence",
+                "sensitive": false,
+                "source": null,
+                "values": []
+              },
+              {
+                "type": "Date",
+                "highCardinality": false,
+                "ignored": false,
+                "label": "Date",
+                "max": "2015-04-01T00:00:00.000Z",
+                "min": "2015-01-01T00:00:00.000Z",
+                "name": "Date__c",
+                "sensitive": false,
+                "source": null
+              }
+            ],
+            "filter": null,
+            "id": "14kSB000000C8Y5YAK",
+            "input": null,
+            "job": {
+              "createdBy": {
+                "id": "005SB00000eyXenYAE",
+                "name": "EDC Admin"
+              },
+              "createdDate": "2026-06-04T00:15:13.000Z",
+              "id": "14qSB0000005jCbYAI",
+              "lastModifiedBy": {
+                "id": "005SB00000eyY1NYAU",
+                "name": "Automated Process"
+              },
+              "lastModifiedDate": "2026-06-04T00:20:15.000Z",
+              "url": "/services/data/v66.0/ssot/machine-learning/jobs/14qSB0000005jCbYAI"
+            },
+            "joins": [],
+            "label": null,
+            "lastModifiedBy": {
+              "id": "005SB00000eyXenYAE",
+              "name": "EDC Admin"
+            },
+            "lastModifiedDate": "2026-06-04T00:22:03.000Z",
+            "modelConfiguration": {
+              "algorithmType": "Catboost"
+            },
+            "name": null,
+            "namespace": null,
+            "numberOfPartitions": null,
+            "outcomes": [
+              {
+                "type": "Binary",
+                "failureValue": "FALSE",
+                "failureValueCount": null,
+                "goal": "Maximize",
+                "label": "Opportunity_Won",
+                "name": "Opportunity_Won__c",
+                "source": null,
+                "successValue": "TRUE",
+                "successValueCount": null
+              }
+            ],
+            "partitionsUrl": "/services/data/v66.0/ssot/machine-learning/model-setups/24sSB000000D1MTYA0/setup-versions/14kSB000000C8Y5YAK/partitions",
+            "runtimeType": "InternalV2",
+            "status": "Published",
+            "transformations": [
+              {
+                "type": "ExtractMonthOfYear",
+                "postTransformationFilter": null,
+                "source": null,
+                "sourceFieldName": null,
+                "sourceFieldSource": null,
+                "targetFieldName": null
+              }
+            ],
+            "url": "/services/data/v66.0/ssot/machine-learning/model-setups/24sSB000000D1MTYA0/setup-versions/14kSB000000C8Y5YAK",
+            "validationConfiguration": null,
+            "version": 1
+          },
+          "createdBy": {
+            "id": "005SB00000eyY1NYAU",
+            "name": "Automated Process"
+          },
+          "createdDate": "2026-06-04T00:20:14.000Z",
+          "endTime": "2026-06-04T00:20:14.000Z",
+          "errorCode": null,
+          "id": "14rSB0000007CZ7YAM",
+          "input": {
+            "id": "14lSB000000BvKjYAK"
+          },
+          "label": null,
+          "lastModifiedBy": {
+            "id": "005SB00000eyY1NYAU",
+            "name": "Automated Process"
+          },
+          "lastModifiedDate": "2026-06-04T00:20:14.000Z",
+          "message": null,
+          "name": null,
+          "namespace": null,
+          "resultArtifact": {
+            "createdBy": {
+              "id": "005SB00000eyY1NYAU",
+              "name": "Automated Process"
+            },
+            "createdDate": "2026-06-04T00:20:15.000Z",
+            "id": "12lSB000000UiejYAC",
+            "label": "model artifact label",
+            "lastModifiedBy": {
+              "id": "005SB00000eyXenYAE",
+              "name": "EDC Admin"
+            },
+            "lastModifiedDate": "2026-06-05T23:22:01.000Z",
+            "name": "model_artifact_label_MA_12l_t1d4de5c954",
+            "url": "/services/data/v66.0/ssot/machine-learning/model-artifacts/12lSB000000UiejYAC"
+          },
+          "startTime": null,
+          "status": "Published",
+          "url": "/services/data/v66.0/ssot/machine-learning/jobs/14qSB0000005jCbYAI/tasks/14rSB0000007CZ7YAM"
+        }
     get-model-artifact-collection-output-example:
       value:
         {
@@ -51436,6 +54040,1353 @@ components:
           "label": "Training Partition",
           "name": "Training_Partition",
           "url": "/services/data/v66.0/ssot/machine-learning/model-setups/24sSG0000001iOnYAI/setup-versions/14kSG0000001NAfYAM/partitions/14kSG0000001PART1YAM",
+        }
+    get-prediction-jobs-output-example:
+      value:
+        {
+          "predictionJobDefinitions": [
+            {
+              "activationStatus": "Active",
+              "createdBy": {
+                "id": "005SB00000eyXenYAE",
+                "name": "EDC Admin",
+                "profilePhotoUrl": "https://lovi-may2025-cdptest1.test1.file.pc-rnd.force.com/profilephoto/005/T"
+              },
+              "createdDate": "2026-05-20T22:13:42.000Z",
+              "dataSpace": {
+                "id": "0wSSB000002L2FN2A0",
+                "label": "default",
+                "name": "default"
+              },
+              "description": "big query",
+              "id": "106SB00000IR6i5YAD",
+              "inputConfig": {
+                "dataObject": {
+                  "id": "0gjSB00000SQccbYAD",
+                  "label": "cschoett-big-query-1",
+                  "name": "cschoett_big_query_1__dlm",
+                  "namespace": ""
+                },
+                "fields": [
+                  {
+                    "mappedField": {
+                      "dataObject": {
+                        "id": "0gjSB00000SQccbYAD",
+                        "label": "cschoett-big-query-1",
+                        "name": "cschoett_big_query_1__dlm",
+                        "namespace": ""
+                      },
+                      "id": "0gYSB00006XqM852AF",
+                      "label": "ResponseTimeFromAssignment",
+                      "name": "responsetimefromassignment__c",
+                      "namespace": "",
+                      "relationshipPath": []
+                    },
+                    "modelField": {
+                      "id": "0xmSB0000008UovYAE",
+                      "label": "ResponseTimeFromAssignment",
+                      "name": "responsetimefromassignment__c",
+                      "namespace": ""
+                    },
+                    "updateScore": false
+                  },
+                  {
+                    "mappedField": {
+                      "dataObject": {
+                        "id": "0gjSB00000SQccbYAD",
+                        "label": "cschoett-big-query-1",
+                        "name": "cschoett_big_query_1__dlm",
+                        "namespace": ""
+                      },
+                      "id": "0gYSB00006XqM832AF",
+                      "label": "ResponseTimefromCreation",
+                      "name": "responsetimefromcreation__c",
+                      "namespace": "",
+                      "relationshipPath": []
+                    },
+                    "modelField": {
+                      "id": "0xmSB0000008UowYAE",
+                      "label": "ResponseTimefromCreation",
+                      "name": "responsetimefromcreation__c",
+                      "namespace": ""
+                    },
+                    "updateScore": false
+                  },
+                  {
+                    "mappedField": {
+                      "dataObject": {
+                        "id": "0gjSB00000SQccbYAD",
+                        "label": "cschoett-big-query-1",
+                        "name": "cschoett_big_query_1__dlm",
+                        "namespace": ""
+                      },
+                      "id": "0gYSB00006XqM8E2AV",
+                      "label": "UniqueId",
+                      "name": "uniqueid__c",
+                      "namespace": "",
+                      "relationshipPath": []
+                    },
+                    "modelField": {
+                      "id": "0xmSB0000008UoxYAE",
+                      "label": "UniqueId",
+                      "name": "uniqueid__c",
+                      "namespace": ""
+                    },
+                    "updateScore": false
+                  },
+                  {
+                    "mappedField": {
+                      "dataObject": {
+                        "id": "0gjSB00000SQccbYAD",
+                        "label": "cschoett-big-query-1",
+                        "name": "cschoett_big_query_1__dlm",
+                        "namespace": ""
+                      },
+                      "id": "0gYSB00006XqM812AF",
+                      "label": "Company",
+                      "name": "company__c",
+                      "namespace": "",
+                      "relationshipPath": []
+                    },
+                    "modelField": {
+                      "id": "0xmSB0000008UoyYAE",
+                      "label": "Company",
+                      "name": "company__c",
+                      "namespace": ""
+                    },
+                    "updateScore": false
+                  },
+                  {
+                    "mappedField": {
+                      "dataObject": {
+                        "id": "0gjSB00000SQccbYAD",
+                        "label": "cschoett-big-query-1",
+                        "name": "cschoett_big_query_1__dlm",
+                        "namespace": ""
+                      },
+                      "id": "0gYSB00006XqM8C2AV",
+                      "label": "Industry",
+                      "name": "industry__c",
+                      "namespace": "",
+                      "relationshipPath": []
+                    },
+                    "modelField": {
+                      "id": "0xmSB0000008UozYAE",
+                      "label": "Industry",
+                      "name": "industry__c",
+                      "namespace": ""
+                    },
+                    "updateScore": false
+                  },
+                  {
+                    "mappedField": {
+                      "dataObject": {
+                        "id": "0gjSB00000SQccbYAD",
+                        "label": "cschoett-big-query-1",
+                        "name": "cschoett_big_query_1__dlm",
+                        "namespace": ""
+                      },
+                      "id": "0gYSB00006XqM882AF",
+                      "label": "LeadSource",
+                      "name": "leadsource__c",
+                      "namespace": "",
+                      "relationshipPath": []
+                    },
+                    "modelField": {
+                      "id": "0xmSB0000008Up0YAE",
+                      "label": "LeadSource",
+                      "name": "leadsource__c",
+                      "namespace": ""
+                    },
+                    "updateScore": false
+                  },
+                  {
+                    "mappedField": {
+                      "dataObject": {
+                        "id": "0gjSB00000SQccbYAD",
+                        "label": "cschoett-big-query-1",
+                        "name": "cschoett_big_query_1__dlm",
+                        "namespace": ""
+                      },
+                      "id": "0gYSB00006XqM8D2AV",
+                      "label": "Title",
+                      "name": "title__c",
+                      "namespace": "",
+                      "relationshipPath": []
+                    },
+                    "modelField": {
+                      "id": "0xmSB0000008Up1YAE",
+                      "label": "Title",
+                      "name": "title__c",
+                      "namespace": ""
+                    },
+                    "updateScore": false
+                  },
+                  {
+                    "mappedField": {
+                      "dataObject": {
+                        "id": "0gjSB00000SQccbYAD",
+                        "label": "cschoett-big-query-1",
+                        "name": "cschoett_big_query_1__dlm",
+                        "namespace": ""
+                      },
+                      "id": "0gYSB00006XqM862AF",
+                      "label": "Converted",
+                      "name": "converted__c",
+                      "namespace": "",
+                      "relationshipPath": []
+                    },
+                    "modelField": {
+                      "id": "0xmSB0000008Up2YAE",
+                      "label": "Converted",
+                      "name": "converted__c",
+                      "namespace": ""
+                    },
+                    "updateScore": false
+                  }
+                ]
+              },
+              "label": "cschoett-predict-job1",
+              "lastModifiedBy": {
+                "id": "005SB00000eyY1NYAU",
+                "name": "Automated Process",
+                "profilePhotoUrl": "https://lovi-may2025-cdptest1.test1.file.pc-rnd.force.com/profilephoto/005/T"
+              },
+              "lastModifiedDate": "2026-06-01T19:08:46.000Z",
+              "lastRunDate": "2026-06-01T19:08:45.000Z",
+              "lastRunStatus": "Success",
+              "model": {
+                "id": "12lSB000000UWdZYAW",
+                "label": "cschoett big query Predicted NumOfEmployees",
+                "name": "cschoett_big_query_Predicted_NumOfEmployees_CM_12l_t1dd4f0c469",
+                "url": "/services/data/v66.0/ssot/machine-learning/configured-models/12lSB000000UWdZYAW"
+              },
+              "name": "cschoett_predict_job1",
+              "namespace": "",
+              "outputConfig": {
+                "fields": [
+                  {
+                    "mappedField": {
+                      "dataObject": {
+                        "id": "0gjSB00000SR4x6YAD",
+                        "label": "cschoett-predict-job1",
+                        "name": "cschoett_predict_job1__dlm",
+                        "namespace": ""
+                      },
+                      "id": "0gYSB00006XxksO2AR",
+                      "label": "Internal Organization",
+                      "name": "InternalOrganization__c",
+                      "namespace": "",
+                      "relationshipPath": []
+                    },
+                    "sourceField": {
+                      "dataObject": {
+                        "id": "0gjSB00000SQccbYAD",
+                        "label": "cschoett-big-query-1",
+                        "name": "cschoett_big_query_1__dlm",
+                        "namespace": ""
+                      },
+                      "id": "0gYSB00006XqM872AF",
+                      "label": "Internal Organization",
+                      "name": "InternalOrganization__c",
+                      "namespace": "",
+                      "relationshipPath": []
+                    }
+                  },
+                  {
+                    "mappedField": {
+                      "dataObject": {
+                        "id": "0gjSB00000SR4x6YAD",
+                        "label": "cschoett-predict-job1",
+                        "name": "cschoett_predict_job1__dlm",
+                        "namespace": ""
+                      },
+                      "id": "0gYSB00006XxksR2AR",
+                      "label": "Data Source",
+                      "name": "DataSource__c",
+                      "namespace": "",
+                      "relationshipPath": []
+                    },
+                    "sourceField": {
+                      "dataObject": {
+                        "id": "0gjSB00000SQccbYAD",
+                        "label": "cschoett-big-query-1",
+                        "name": "cschoett_big_query_1__dlm",
+                        "namespace": ""
+                      },
+                      "id": "0gYSB00006XqM8G2AV",
+                      "label": "Data Source",
+                      "name": "DataSource__c",
+                      "namespace": "",
+                      "relationshipPath": []
+                    }
+                  },
+                  {
+                    "mappedField": {
+                      "dataObject": {
+                        "id": "0gjSB00000SR4x6YAD",
+                        "label": "cschoett-predict-job1",
+                        "name": "cschoett_predict_job1__dlm",
+                        "namespace": ""
+                      },
+                      "id": "0gYSB00006XxksM2AR",
+                      "label": "Data Source Object",
+                      "name": "DataSourceObject__c",
+                      "namespace": "",
+                      "relationshipPath": []
+                    },
+                    "sourceField": {
+                      "dataObject": {
+                        "id": "0gjSB00000SQccbYAD",
+                        "label": "cschoett-big-query-1",
+                        "name": "cschoett_big_query_1__dlm",
+                        "namespace": ""
+                      },
+                      "id": "0gYSB00006XqM822AF",
+                      "label": "Data Source Object",
+                      "name": "DataSourceObject__c",
+                      "namespace": "",
+                      "relationshipPath": []
+                    }
+                  },
+                  {
+                    "mappedField": {
+                      "dataObject": {
+                        "id": "0gjSB00000SR4x6YAD",
+                        "label": "cschoett-predict-job1",
+                        "name": "cschoett_predict_job1__dlm",
+                        "namespace": ""
+                      },
+                      "id": "0gYSB00006XxksP2AR",
+                      "label": "Primary Object PK",
+                      "name": "PrimaryObjectPk__c",
+                      "namespace": "",
+                      "relationshipPath": []
+                    },
+                    "sourceField": {
+                      "dataObject": {
+                        "id": "0gjSB00000SQccbYAD",
+                        "label": "cschoett-big-query-1",
+                        "name": "cschoett_big_query_1__dlm",
+                        "namespace": ""
+                      },
+                      "id": "0gYSB00006XqM8E2AV",
+                      "label": "UniqueId",
+                      "name": "uniqueid__c",
+                      "namespace": "",
+                      "relationshipPath": []
+                    }
+                  },
+                  {
+                    "mappedField": {
+                      "dataObject": {
+                        "id": "0gjSB00000SR4x6YAD",
+                        "label": "cschoett-predict-job1",
+                        "name": "cschoett_predict_job1__dlm",
+                        "namespace": ""
+                      },
+                      "id": "0gYSB00006XxksQ2AR",
+                      "label": "NumOfEmployees",
+                      "name": "numofemployees__c",
+                      "namespace": "",
+                      "relationshipPath": []
+                    },
+                    "modelField": {
+                      "id": "0xnSB000000CtLhYAK",
+                      "label": "NumOfEmployees",
+                      "name": "numofemployees__c",
+                      "namespace": ""
+                    }
+                  },
+                  {
+                    "mappedField": {
+                      "dataObject": {
+                        "id": "0gjSB00000SR4x6YAD",
+                        "label": "cschoett-predict-job1",
+                        "name": "cschoett_predict_job1__dlm",
+                        "namespace": ""
+                      },
+                      "id": "0gYSB00006XxksT2AR",
+                      "label": "Key Qualifier Primary Object PK",
+                      "name": "KQ_PrimaryObjectPk__c",
+                      "namespace": "",
+                      "relationshipPath": []
+                    },
+                    "sourceField": {
+                      "dataObject": {
+                        "id": "0gjSB00000SQccbYAD",
+                        "label": "cschoett-big-query-1",
+                        "name": "cschoett_big_query_1__dlm",
+                        "namespace": ""
+                      },
+                      "id": "0gYSB00006XqM8F2AV",
+                      "label": "Key Qualifier UniqueId",
+                      "name": "KQ_uniqueid__c",
+                      "namespace": "",
+                      "relationshipPath": []
+                    }
+                  }
+                ]
+              },
+              "scoringMode": "Batch",
+              "type": "Regression",
+              "url": "/services/data/v66.0/ssot/machine-learning/prediction-job-definitions/106SB00000IR6i5YAD"
+            },
+            {
+              "activationStatus": "Active",
+              "createdBy": {
+                "id": "005SB00000eyXenYAE",
+                "name": "EDC Admin",
+                "profilePhotoUrl": "https://lovi-may2025-cdptest1.test1.file.pc-rnd.force.com/profilephoto/005/T"
+              },
+              "createdDate": "2026-05-28T20:58:00.000Z",
+              "dataSpace": {
+                "id": "0wSSB000002L2FN2A0",
+                "label": "default",
+                "name": "default"
+              },
+              "id": "106SB00000IZyADYA1",
+              "inputConfig": {
+                "dataObject": {
+                  "id": "0gjSB00000SJ2xFYAT",
+                  "label": "Attrition",
+                  "name": "Attrition__dlm",
+                  "namespace": ""
+                },
+                "textFields": [
+                  {
+                    "mappedField": {
+                      "dataObject": {
+                        "id": "0gjSB00000SJ2xFYAT",
+                        "label": "Attrition",
+                        "name": "Attrition__dlm",
+                        "namespace": ""
+                      },
+                      "id": "0gYSB00006W3U192AF",
+                      "label": "Work Life Balance",
+                      "name": "Work_Life_Balance__c",
+                      "namespace": "",
+                      "relationshipPath": []
+                    },
+                    "updateScore": false
+                  },
+                  {
+                    "mappedField": {
+                      "dataObject": {
+                        "id": "0gjSB00000SJ2xFYAT",
+                        "label": "Attrition",
+                        "name": "Attrition__dlm",
+                        "namespace": ""
+                      },
+                      "id": "0gYSB00006W3U1I2AV",
+                      "label": "Job Satisfaction",
+                      "name": "Job_Satisfaction__c",
+                      "namespace": "",
+                      "relationshipPath": []
+                    },
+                    "updateScore": false
+                  }
+                ]
+              },
+              "label": "cschoett-sentiment-attr1",
+              "lastModifiedBy": {
+                "id": "005SB00000eyY1NYAU",
+                "name": "Automated Process",
+                "profilePhotoUrl": "https://lovi-may2025-cdptest1.test1.file.pc-rnd.force.com/profilephoto/005/T"
+              },
+              "lastModifiedDate": "2026-06-01T19:20:17.000Z",
+              "lastRunDate": "2026-06-01T19:20:15.000Z",
+              "lastRunStatus": "Success",
+              "model": {
+                "name": "sfdc_ai__DefaultSalesforceSentimentAnalysis"
+              },
+              "name": "cschoett_sentiment_attr1",
+              "namespace": "",
+              "outputConfig": {
+                "fields": [
+                  {
+                    "mappedField": {
+                      "dataObject": {
+                        "id": "0gjSB00000SklF7YAJ",
+                        "label": "cschoett-sentitment-attr",
+                        "name": "cschoett_sentitment_attr__dlm",
+                        "namespace": ""
+                      },
+                      "id": "0gYSB00006cWRYw2AO",
+                      "label": "Primary Object PK",
+                      "name": "PrimaryObjectPk__c",
+                      "namespace": "",
+                      "relationshipPath": []
+                    },
+                    "sourceField": {
+                      "dataObject": {
+                        "id": "0gjSB00000SJ2xFYAT",
+                        "label": "Attrition",
+                        "name": "Attrition__dlm",
+                        "namespace": ""
+                      },
+                      "id": "0gYSB00006W3U132AF",
+                      "label": "Employee Number",
+                      "name": "Employee_Number__c",
+                      "namespace": "",
+                      "relationshipPath": []
+                    }
+                  },
+                  {
+                    "mappedField": {
+                      "dataObject": {
+                        "id": "0gjSB00000SklF7YAJ",
+                        "label": "cschoett-sentitment-attr",
+                        "name": "cschoett_sentitment_attr__dlm",
+                        "namespace": ""
+                      },
+                      "id": "0gYSB00006cWRYu2AO",
+                      "label": "Data Source Object",
+                      "name": "DataSourceObject__c",
+                      "namespace": "",
+                      "relationshipPath": []
+                    },
+                    "sourceField": {
+                      "dataObject": {
+                        "id": "0gjSB00000SJ2xFYAT",
+                        "label": "Attrition",
+                        "name": "Attrition__dlm",
+                        "namespace": ""
+                      },
+                      "id": "0gYSB00006W3U0t2AF",
+                      "label": "Data Source Object",
+                      "name": "DataSourceObject__c",
+                      "namespace": "",
+                      "relationshipPath": []
+                    }
+                  },
+                  {
+                    "mappedField": {
+                      "dataObject": {
+                        "id": "0gjSB00000SklF7YAJ",
+                        "label": "cschoett-sentitment-attr",
+                        "name": "cschoett_sentitment_attr__dlm",
+                        "namespace": ""
+                      },
+                      "id": "0gYSB00006cWRYq2AO",
+                      "label": "Internal Organization",
+                      "name": "InternalOrganization__c",
+                      "namespace": "",
+                      "relationshipPath": []
+                    },
+                    "sourceField": {
+                      "dataObject": {
+                        "id": "0gjSB00000SJ2xFYAT",
+                        "label": "Attrition",
+                        "name": "Attrition__dlm",
+                        "namespace": ""
+                      },
+                      "id": "0gYSB00006W3U172AF",
+                      "label": "Internal Organization",
+                      "name": "InternalOrganization__c",
+                      "namespace": "",
+                      "relationshipPath": []
+                    }
+                  },
+                  {
+                    "mappedField": {
+                      "dataObject": {
+                        "id": "0gjSB00000SklF7YAJ",
+                        "label": "cschoett-sentitment-attr",
+                        "name": "cschoett_sentitment_attr__dlm",
+                        "namespace": ""
+                      },
+                      "id": "0gYSB00006cWRYs2AO",
+                      "label": "Data Source",
+                      "name": "DataSource__c",
+                      "namespace": "",
+                      "relationshipPath": []
+                    },
+                    "sourceField": {
+                      "dataObject": {
+                        "id": "0gjSB00000SJ2xFYAT",
+                        "label": "Attrition",
+                        "name": "Attrition__dlm",
+                        "namespace": ""
+                      },
+                      "id": "0gYSB00006W3U1E2AV",
+                      "label": "Data Source",
+                      "name": "DataSource__c",
+                      "namespace": "",
+                      "relationshipPath": []
+                    }
+                  },
+                  {
+                    "mappedField": {
+                      "dataObject": {
+                        "id": "0gjSB00000SklF7YAJ",
+                        "label": "cschoett-sentitment-attr",
+                        "name": "cschoett_sentitment_attr__dlm",
+                        "namespace": ""
+                      },
+                      "id": "0gYSB00006cWRYx2AO",
+                      "label": "Key Qualifier Primary Object PK",
+                      "name": "KQ_PrimaryObjectPk__c",
+                      "namespace": "",
+                      "relationshipPath": []
+                    },
+                    "sourceField": {
+                      "dataObject": {
+                        "id": "0gjSB00000SJ2xFYAT",
+                        "label": "Attrition",
+                        "name": "Attrition__dlm",
+                        "namespace": ""
+                      },
+                      "id": "0gYSB00006W3U1S2AV",
+                      "label": "Key Qualifier Employee Number",
+                      "name": "KQ_Employee_Number__c",
+                      "namespace": "",
+                      "relationshipPath": []
+                    }
+                  }
+                ]
+              },
+              "scoringMode": "Batch",
+              "type": "SentimentDetection",
+              "url": "/services/data/v66.0/ssot/machine-learning/prediction-job-definitions/106SB00000IZyADYA1"
+            }
+          ],
+          "totalSize": 2,
+          "url": "/services/data/v66.0/ssot/machine-learning/prediction-job-definitions"
+        }
+    prediction-job-def-post-binary-request-example:
+      value:
+        {
+          "type": "BinaryClassification",
+          "label": "Binary Classification Job",
+          "description": "Binary classification prediction job",
+          "model": {
+            "id": "12lSB000000UWdZYAW"
+          },
+          "outputConfig": {
+            "objectName": "Customer_Segments",
+            "description": "Output description"
+          },
+          "scoringMode": "Batch",
+          "inputConfig": {
+            "dataObject": {
+              "id": "0gjSB00000SQccbYAD"
+            },
+            "fields": [
+              {
+                "modelField": {
+                  "id": "0xmSB0000008UovYAE"
+                },
+                "mappedField": {
+                  "id": "0gYSB00006XqM852AF",
+                  "dataObject": {
+                    "id": "0gjSB00000SQccbYAD"
+                  },
+                  "relationshipPath": [
+                    {
+                      "sourceField": {
+                        "id": "0gYSB00006XqM8F2AV",
+                        "dataObject": {
+                          "id": "0gjSB00000SQccbYAD"
+                        }
+                      },
+                      "targetField": {
+                        "id": "0gYSB00006W3U0t2AF",
+                        "dataObject": {
+                          "id": "0gjSB00000SJ2xFYAT"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "updateScore": true
+              }
+            ]
+          },
+          "binaryClassificationSettings": {
+            "maxTopContributors": 3,
+            "maxPrescriptions": 3,
+            "prescriptionThreshold": 22,
+            "showClassProbabilities": true
+          }
+        }
+    prediction-job-def-post-clustering-request-example:
+      value:
+        {
+          "type": "Clustering",
+          "label": "Clustering Prediction Job",
+          "description": "Clustering prediction job for segmentation",
+          "model": {
+            "id": "12lSB000000UWdZYAW"
+          },
+          "outputConfig": {
+            "objectName": "Customer_Segments",
+            "description": "Output description"
+          },
+          "scoringMode": "Batch",
+          "inputConfig": {
+            "dataObject": {
+              "id": "0gjSB00000SQccbYAD"
+            },
+            "fields": [
+              {
+                "modelField": {
+                  "id": "0xmSB0000008UovYAE"
+                },
+                "mappedField": {
+                  "id": "0gYSB00006XqM852AF",
+                  "dataObject": {
+                    "id": "0gjSB00000SQccbYAD"
+                  },
+                  "relationshipPath": [
+                    {
+                      "sourceField": {
+                        "id": "0gYSB00006XqM8F2AV",
+                        "dataObject": {
+                          "id": "0gjSB00000SQccbYAD"
+                        }
+                      },
+                      "targetField": {
+                        "id": "0gYSB00006W3U0t2AF",
+                        "dataObject": {
+                          "id": "0gjSB00000SJ2xFYAT"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "updateScore": true
+              }
+            ]
+          },
+          "clusteringSettings": {
+            "clusterIdFieldLabel": "Cluster ID",
+            "clusterLabelFieldLabel": "Cluster Label",
+            "maxTopContributors": 3
+          }
+        }
+    prediction-job-def-post-multiclass-request-example:
+      value:
+        {
+          "type": "MulticlassClassification",
+          "label": "Multiclass Classification Job",
+          "description": "Multiclass classification prediction job",
+          "multiclassClassificationSettings": {
+            "maxTopContributors": 3,
+            "numberOfClasses": 4
+          },
+          "model": {
+            "id": "12lSB000000UccXYAS"
+          },
+          "outputConfig": {
+            "objectName": "Product_Category_Predictions",
+            "description": "Output description"
+          },
+          "scoringMode": "Batch",
+          "inputConfig": {
+            "dataObject": {
+              "id": "0gjSB00000SJ2xFYAT"
+            },
+            "fields": [
+              {
+                "modelField": {
+                  "id": "0xmSB0000008WM5YAM"
+                },
+                "mappedField": {
+                  "id": "0gYSB00006W3U0r2AF",
+                  "dataObject": {
+                    "id": "0gjSB00000SJ2xFYAT"
+                  },
+                  "relationshipPath": [
+                    {
+                      "sourceField": {
+                        "id": "0gYSB00006W3U132AF",
+                        "dataObject": {
+                          "id": "0gjSB00000SJ2xFYAT"
+                        }
+                      },
+                      "targetField": {
+                        "id": "0gYSB00006W3U0t2AF",
+                        "dataObject": {
+                          "id": "0gjSB00000SklF7YAJ"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "updateScore": true
+              }
+            ]
+          }
+        }
+    prediction-job-def-post-sentiment-request-example:
+      value:
+        {
+          "type": "SentimentDetection",
+          "inputConfig": {
+            "dataObject": {
+              "id": "0gjSB00000SJ2xFYAT"
+            },
+            "textFields": [
+              {
+                "mappedField": {
+                  "id": "0gYSB00006W3U192AF",
+                  "dataObject": {
+                    "id": "0gjSB00000SJ2xFYAT"
+                  },
+                  "relationshipPath": [
+                    {
+                      "sourceField": {
+                        "id": "0gYSB00006W3U1S2AV",
+                        "dataObject": {
+                          "id": "0gjSB00000SJ2xFYAT"
+                        }
+                      },
+                      "targetField": {
+                        "id": "0gYSB00006cWRYw2AO",
+                        "dataObject": {
+                          "id": "0gjSB00000SklF7YAJ"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "updateScore": false
+              }
+            ]
+          }
+        }
+    prediction-job-def-post-topic-request-example:
+      value:
+        {
+          "type": "TopicClassification",
+          "inputConfig": {
+            "dataObject": {
+              "id": "0gjSB00000SJ2xFYAT"
+            },
+            "textFields": [
+              {
+                "mappedField": {
+                  "id": "0gYSB00006W3U1I2AV",
+                  "dataObject": {
+                    "id": "0gjSB00000SJ2xFYAT"
+                  },
+                  "relationshipPath": [
+                    {
+                      "sourceField": {
+                        "id": "0gYSB00006W3U1S2AV",
+                        "dataObject": {
+                          "id": "0gjSB00000SJ2xFYAT"
+                        }
+                      },
+                      "targetField": {
+                        "id": "0gYSB00006cWRYw2AO",
+                        "dataObject": {
+                          "id": "0gjSB00000SklF7YAJ"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "updateScore": false
+              }
+            ],
+            "topicLabels": {
+              "type": "Static",
+              "values": ["Technology", "Business", "Healthcare", "Education"]
+            }
+          }
+        }
+    prediction-job-def-patch-request-example:
+      value: 
+        {
+          "label": "cschoett-pattr-2",
+          "inputConfig": {
+            "dataObject": {
+              "name": "titanic_cschoett_v11csv__dlm"
+            },
+            "fields": [
+              {
+                "mappedField": {
+                  "dataObject": {
+                    "name": "titanic_cschoett_v11csv__dlm"
+                  },
+                  "name": "age__c",
+                  "relationshipPath": []
+                },
+                "modelField": {
+                  "name": "Age__c"
+                },
+                "updateScore": false
+              },
+              {
+                "mappedField": {
+                  "dataObject": {
+                    "name": "titanic_cschoett_v11csv__dlm"
+                  },
+                  "name": "fare__c",
+                  "relationshipPath": []
+                },
+                "modelField": {
+                  "name": "Monthly_Rate__c"
+                },
+                "updateScore": false
+              }
+            ]
+          },
+          "scoringMode": "Batch",
+          "binaryClassificationSettings": {
+            "maxTopContributors": 0,
+            "maxPrescriptions": 0,
+            "showClassProbabilities": false
+          },
+          "type": "BinaryClassification"
+        }
+    prediction-job-def-binary-response-example:
+      value:
+        {
+          "dataSpace": {
+            "id": "0wSSB000002L2FN2A0",
+            "label": "default",
+            "name": "default"
+          },
+          "type": "BinaryClassification",
+          "label": "Binary Classification Job",
+          "name": "customer_prediction_job",
+          "id": "106SB00000IR6i5YAD",
+          "description": "Binary classification prediction job",
+          "model": {
+            "id": "12lSB000000UWdZYAW",
+            "label": "Customer Churn Prediction Model",
+            "name": "customer_churn_prediction_model",
+            "url": "/services/data/67.0/ssot/machine-learning/configured-models/12lSB000000UWdZYAW"
+          },
+          "outputConfig": {
+            "dataObject": {
+              "label": "Prediction_Results",
+              "name": "Prediction_Results"
+            },
+            "fields": []
+          },
+          "scoringMode": "Batch",
+          "inputConfig": {
+            "dataObject": {
+              "id": "0gjSB00000SQccbYAD",
+              "label": "Customer_Data",
+              "name": "Customer_Data__dlm",
+              "namespace": ""
+            },
+            "fields": [
+              {
+                "mappedField": {
+                  "dataObject": {
+                    "id": "0gjSB00000SQccbYAD",
+                    "label": "Customer_Data",
+                    "name": "Customer_Data__dlm",
+                    "namespace": ""
+                  },
+                  "id": "0gYSB00006XqM852AF",
+                  "label": "Total_Purchase_Amount",
+                  "name": "Total_Purchase_Amount__c",
+                  "namespace": "",
+                  "relationshipPath": [
+                    {
+                      "sourceField": {
+                        "dataObject": {
+                          "id": "0gjSB00000SJ2xFYAT",
+                          "label": "Account",
+                          "name": "Account__dlm",
+                          "namespace": ""
+                        },
+                        "id": "0gYSB00006XqM8F2AV",
+                        "label": "Account_Id",
+                        "name": "Account_Id__c",
+                        "namespace": ""
+                      },
+                      "targetField": {
+                        "dataObject": {
+                          "id": "0gjSB00000SklF7YAJ",
+                          "label": "Contact",
+                          "name": "Contact__dlm",
+                          "namespace": ""
+                        },
+                        "id": "0gYSB00006W3U0t2AF",
+                        "label": "Contact_Id",
+                        "name": "Contact_Id__c",
+                        "namespace": ""
+                      }
+                    }
+                  ]
+                },
+                "modelField": {
+                  "id": "0xmSB0000008UovYAE",
+                  "label": "Annual Revenue",
+                  "name": "annual_revenue__c",
+                  "namespace": ""
+                },
+                "updateScore": true
+              }
+            ]
+          },
+          "url": "/services/data/67.0/ssot/machine-learning/prediction-job-definitions/106SB00000IR6i5YAD",
+          "binaryClassificationSettings": {
+            "maxTopContributors": 3,
+            "maxPrescriptions": 3,
+            "prescriptionThreshold": 22,
+            "showClassProbabilities": true
+          },
+          "namespace": ""
+        }
+    prediction-job-def-clustering-response-example:
+      value:
+        {
+          "dataSpace": {
+            "id": "0wSSB000002L2FN2A0",
+            "label": "default",
+            "name": "default"
+          },
+          "type": "Clustering",
+          "label": "Clustering Prediction Job",
+          "name": "customer_prediction_job",
+          "id": "106SB00000IR6i5YAD",
+          "description": "Clustering prediction job for segmentation",
+          "model": {
+            "id": "12lSB000000UWdZYAW",
+            "label": "Customer Churn Prediction Model",
+            "name": "customer_churn_prediction_model",
+            "url": "/services/data/67.0/ssot/machine-learning/configured-models/12lSB000000UWdZYAW"
+          },
+          "outputConfig": {
+            "dataObject": {
+              "label": "Prediction_Results",
+              "name": "Prediction_Results"
+            },
+            "fields": []
+          },
+          "scoringMode": "Batch",
+          "inputConfig": {
+            "dataObject": {
+              "id": "0gjSB00000SQccbYAD",
+              "label": "Customer_Data",
+              "name": "Customer_Data__dlm",
+              "namespace": ""
+            },
+            "fields": [
+              {
+                "mappedField": {
+                  "dataObject": {
+                    "id": "0gjSB00000SQccbYAD",
+                    "label": "Customer_Data",
+                    "name": "Customer_Data__dlm",
+                    "namespace": ""
+                  },
+                  "id": "0gYSB00006XqM852AF",
+                  "label": "Total_Purchase_Amount",
+                  "name": "Total_Purchase_Amount__c",
+                  "namespace": "",
+                  "relationshipPath": [
+                    {
+                      "sourceField": {
+                        "dataObject": {
+                          "id": "0gjSB00000SJ2xFYAT",
+                          "label": "Account",
+                          "name": "Account__dlm",
+                          "namespace": ""
+                        },
+                        "id": "0gYSB00006XqM8F2AV",
+                        "label": "Account_Id",
+                        "name": "Account_Id__c",
+                        "namespace": ""
+                      },
+                      "targetField": {
+                        "dataObject": {
+                          "id": "0gjSB00000SklF7YAJ",
+                          "label": "Contact",
+                          "name": "Contact__dlm",
+                          "namespace": ""
+                        },
+                        "id": "0gYSB00006W3U0t2AF",
+                        "label": "Contact_Id",
+                        "name": "Contact_Id__c",
+                        "namespace": ""
+                      }
+                    }
+                  ]
+                },
+                "modelField": {
+                  "id": "0xmSB0000008UovYAE",
+                  "label": "Annual Revenue",
+                  "name": "annual_revenue__c",
+                  "namespace": ""
+                },
+                "updateScore": true
+              }
+            ]
+          },
+          "url": "/services/data/67.0/ssot/machine-learning/prediction-job-definitions/106SB00000IR6i5YAD",
+          "clusteringSettings": {
+            "clusterIdFieldLabel": "Cluster ID",
+            "clusterLabelFieldLabel": "Cluster Label",
+            "maxTopContributors": 3
+          },
+          "namespace": ""
+        }
+    prediction-job-def-multiclass-response-example:
+      value:
+        {
+          "dataSpace": {
+            "id": "0wSSB000002L2FN2A0",
+            "label": "default",
+            "name": "default"
+          },
+          "type": "MulticlassClassification",
+          "label": "Multiclass Classification Job",
+          "description": "Multiclass classification prediction job",
+          "multiclassClassificationSettings": {
+            "maxTopContributors": 3,
+            "numberOfClasses": 4
+          },
+          "name": "customer_prediction_job",
+          "id": "106SB00000IR6i5YAD",
+          "model": {
+            "id": "12lSB000000UWdZYAW",
+            "label": "Customer Churn Prediction Model",
+            "name": "customer_churn_prediction_model",
+            "url": "/services/data/67.0/ssot/machine-learning/configured-models/12lSB000000UWdZYAW"
+          },
+          "outputConfig": {
+            "dataObject": {
+              "label": "Prediction_Results",
+              "name": "Prediction_Results"
+            },
+            "fields": []
+          },
+          "scoringMode": "Batch",
+          "inputConfig": {
+            "dataObject": {
+              "id": "0gjSB00000SQccbYAD",
+              "label": "Customer_Data",
+              "name": "Customer_Data__dlm",
+              "namespace": ""
+            },
+            "fields": [
+              {
+                "mappedField": {
+                  "dataObject": {
+                    "id": "0gjSB00000SQccbYAD",
+                    "label": "Customer_Data",
+                    "name": "Customer_Data__dlm",
+                    "namespace": ""
+                  },
+                  "id": "0gYSB00006XqM852AF",
+                  "label": "Total_Purchase_Amount",
+                  "name": "Total_Purchase_Amount__c",
+                  "namespace": "",
+                  "relationshipPath": [
+                    {
+                      "sourceField": {
+                        "dataObject": {
+                          "id": "0gjSB00000SJ2xFYAT",
+                          "label": "Account",
+                          "name": "Account__dlm",
+                          "namespace": ""
+                        },
+                        "id": "0gYSB00006XqM8F2AV",
+                        "label": "Account_Id",
+                        "name": "Account_Id__c",
+                        "namespace": ""
+                      },
+                      "targetField": {
+                        "dataObject": {
+                          "id": "0gjSB00000SklF7YAJ",
+                          "label": "Contact",
+                          "name": "Contact__dlm",
+                          "namespace": ""
+                        },
+                        "id": "0gYSB00006W3U0t2AF",
+                        "label": "Contact_Id",
+                        "name": "Contact_Id__c",
+                        "namespace": ""
+                      }
+                    }
+                  ]
+                },
+                "modelField": {
+                  "id": "0xmSB0000008UovYAE",
+                  "label": "Annual Revenue",
+                  "name": "annual_revenue__c",
+                  "namespace": ""
+                },
+                "updateScore": true
+              }
+            ]
+          },
+          "url": "/services/data/67.0/ssot/machine-learning/prediction-job-definitions/106SB00000IR6i5YAD",
+          "namespace": ""
+        }
+    prediction-job-def-sentiment-response-example:
+      value:
+        {
+          "dataSpace": {
+            "id": "0wSSB000002L2FN2A0",
+            "label": "default",
+            "name": "default"
+          },
+          "type": "SentimentDetection",
+          "label": "Sentiment Detection Job",
+          "name": "customer_prediction_job",
+          "id": "106SB00000IR6i5YAD",
+          "description": "Sentiment detection prediction job",
+          "model": {
+            "name": "sfdc_ai__DefaultSalesforceSentimentAnalysis"
+          },
+          "outputConfig": {
+            "dataObject": {
+              "label": "Prediction_Results",
+              "name": "Prediction_Results"
+            },
+            "fields": []
+          },
+          "scoringMode": "Batch",
+          "inputConfig": {
+            "dataObject": {
+              "id": "0gjSB00000SQccbYAD",
+              "label": "Customer_Data",
+              "name": "Customer_Data__dlm",
+              "namespace": ""
+            },
+            "textFields": [
+              {
+                "mappedField": {
+                  "dataObject": {
+                    "id": "0gjSB00000SQccbYAD",
+                    "label": "Customer_Data",
+                    "name": "Customer_Data__dlm",
+                    "namespace": ""
+                  },
+                  "id": "0gYSB00006W3U192AF",
+                  "label": "Customer_Feedback",
+                  "name": "Customer_Feedback__c",
+                  "namespace": "",
+                  "relationshipPath": [
+                    {
+                      "sourceField": {
+                        "dataObject": {
+                          "id": "0gjSB00000SJ2xFYAT",
+                          "label": "Account",
+                          "name": "Account__dlm",
+                          "namespace": ""
+                        },
+                        "id": "0gYSB00006XqM8F2AV",
+                        "label": "Account_Id",
+                        "name": "Account_Id__c",
+                        "namespace": ""
+                      },
+                      "targetField": {
+                        "dataObject": {
+                          "id": "0gjSB00000SklF7YAJ",
+                          "label": "Contact",
+                          "name": "Contact__dlm",
+                          "namespace": ""
+                        },
+                        "id": "0gYSB00006W3U0t2AF",
+                        "label": "Contact_Id",
+                        "name": "Contact_Id__c",
+                        "namespace": ""
+                      }
+                    }
+                  ]
+                },
+                "updateScore": false
+              }
+            ]
+          },
+          "url": "/services/data/67.0/ssot/machine-learning/prediction-job-definitions/106SB00000IR6i5YAD",
+          "namespace": ""
+        }
+    prediction-job-def-topic-response-example:
+      value:
+        {
+          "dataSpace": {
+            "id": "0wSSB000002L2FN2A0",
+            "label": "default",
+            "name": "default"
+          },
+          "type": "TopicClassification",
+          "label": "Topic Classification Job",
+          "name": "customer_prediction_job",
+          "id": "106SB00000IR6i5YAD",
+          "description": "Topic classification prediction job",
+          "model": {
+            "name": "sfdc_ai__DefaultSalesforceTopicClassification"
+          },
+          "outputConfig": {
+            "dataObject": {
+              "label": "Prediction_Results",
+              "name": "Prediction_Results"
+            },
+            "fields": []
+          },
+          "scoringMode": "Batch",
+          "inputConfig": {
+            "dataObject": {
+              "id": "0gjSB00000SQccbYAD",
+              "label": "Customer_Data",
+              "name": "Customer_Data__dlm",
+              "namespace": ""
+            },
+            "textFields": [
+              {
+                "mappedField": {
+                  "dataObject": {
+                    "id": "0gjSB00000SQccbYAD",
+                    "label": "Customer_Data",
+                    "name": "Customer_Data__dlm",
+                    "namespace": ""
+                  },
+                  "id": "0gYSB00006XqM852AF",
+                  "label": "Total_Purchase_Amount",
+                  "name": "Total_Purchase_Amount__c",
+                  "namespace": "",
+                  "relationshipPath": [
+                    {
+                      "sourceField": {
+                        "dataObject": {
+                          "id": "0gjSB00000SJ2xFYAT",
+                          "label": "Account",
+                          "name": "Account__dlm",
+                          "namespace": ""
+                        },
+                        "id": "0gYSB00006XqM8F2AV",
+                        "label": "Account_Id",
+                        "name": "Account_Id__c",
+                        "namespace": ""
+                      },
+                      "targetField": {
+                        "dataObject": {
+                          "id": "0gjSB00000SklF7YAJ",
+                          "label": "Contact",
+                          "name": "Contact__dlm",
+                          "namespace": ""
+                        },
+                        "id": "0gYSB00006W3U0t2AF",
+                        "label": "Contact_Id",
+                        "name": "Contact_Id__c",
+                        "namespace": ""
+                      }
+                    }
+                  ]
+                },
+                "updateScore": true
+              }
+            ],
+            "topicLabels": {
+              "type": "Static",
+              "values": ["Technology", "Business", "Healthcare", "Education"]
+            }
+          },
+          "url": "/services/data/67.0/ssot/machine-learning/prediction-job-definitions/106SB00000IR6i5YAD",
+          "namespace": ""
         }
     # metadata
     get-metadata-output-example:
@@ -54435,17 +58386,26 @@ tags:
       | [Delete configured model](https://developer.salesforce.com/docs/data/connectapi/references/spec#tag/Machine-Learning/paths/~1ssot~1machine-learning~1configured-models~1%7BconfiguredModelIdOrName%7D/delete) | `DELETE /ssot/machine-learning/configured-models/{configuredModelIdOrName}` |
       | [Get configured model](https://developer.salesforce.com/docs/data/connectapi/references/spec#tag/Machine-Learning/paths/~1ssot~1machine-learning~1configured-models~1%7BconfiguredModelIdOrName%7D/get) | `GET /ssot/machine-learning/configured-models/{configuredModelIdOrName}` |
       | [Update configured model](https://developer.salesforce.com/docs/data/connectapi/references/spec#tag/Machine-Learning/paths/~1ssot~1machine-learning~1configured-models~1%7BconfiguredModelIdOrName%7D/patch) | `PATCH /ssot/machine-learning/configured-models/{configuredModelIdOrName}` |
+      | [Get predict jobs](https://developer.salesforce.com/docs/data/connectapi/references/spec#tag/Machine-Learning/paths/~1ssot~1machine-learning~1jobs/get) | `GET /ssot/machine-learning/jobs` |
+      | [Get a predict job](https://developer.salesforce.com/docs/data/connectapi/references/spec#tag/Machine-Learning/paths/~1ssot~1machine-learning~1jobs~1%7BjobId%7D/get) | `GET /ssot/machine-learning/jobs/{jobId}` |
+      | [Get predict job tasks](https://developer.salesforce.com/docs/data/connectapi/references/spec#tag/Machine-Learning/paths/~1ssot~1machine-learning~1jobs~1%7BjobId%7D~1tasks/get) | `GET /ssot/machine-learning/jobs/{jobId}/tasks` |
+      | [Get a predict job task](https://developer.salesforce.com/docs/data/connectapi/references/spec#tag/Machine-Learning/paths/~1ssot~1machine-learning~1jobs~1%7BjobId%7D~1tasks~1%7BtaskId%7D/get) | `GET /ssot/machine-learning/jobs/{jobId}/tasks/{taskId}` |
       | [Get model artifacts](https://developer.salesforce.com/docs/data/connectapi/references/spec#tag/Machine-Learning/paths/~1ssot~1machine-learning~1model-artifacts/get) | `GET /ssot/machine-learning/model-artifacts` |
       | [Delete model artifact](https://developer.salesforce.com/docs/data/connectapi/references/spec#tag/Machine-Learning/paths/~1ssot~1machine-learning~1model-artifacts~1%7BmodelArtifactIdOrName%7D/delete) | `DELETE /ssot/machine-learning/model-artifacts/{modelArtifactIdOrName}` |
       | [Get model artifact](https://developer.salesforce.com/docs/data/connectapi/references/spec#tag/Machine-Learning/paths/~1ssot~1machine-learning~1model-artifacts~1%7BmodelArtifactIdOrName%7D/get) | `GET /ssot/machine-learning/model-artifacts/{modelArtifactIdOrName}` |
       | [Update model artifact](https://developer.salesforce.com/docs/data/connectapi/references/spec#tag/Machine-Learning/paths/~1ssot~1machine-learning~1model-artifacts~1%7BmodelArtifactIdOrName%7D/patch) | `PATCH /ssot/machine-learning/model-artifacts/{modelArtifactIdOrName}` |
-      | [Get prediction](https://developer.salesforce.com/docs/data/connectapi/references/spec#tag/Machine-Learning/paths/~1ssot~1machine-learning~1predict/post) | `POST /ssot/machine-learning/predict` |
       | [Get model setup versions](https://developer.salesforce.com/docs/data/connectapi/references/spec#tag/Machine-Learning/paths/~1ssot~1machine-learning~1model-setups~1%7BmodelSetupIdOrName%7D~1setup-versions/get) | `GET /ssot/machine-learning/model-setups/{modelSetupIdOrName}/setup-versions` |
       | [Create model setup version](https://developer.salesforce.com/docs/data/connectapi/references/spec#tag/Machine-Learning/paths/~1ssot~1machine-learning~1model-setups~1%7BmodelSetupIdOrName%7D~1setup-versions/post) | `POST /ssot/machine-learning/model-setups/{modelSetupIdOrName}/setup-versions` |
       | [Get model setup version](https://developer.salesforce.com/docs/data/connectapi/references/spec#tag/Machine-Learning/paths/~1ssot~1machine-learning~1model-setups~1%7BmodelSetupIdOrName%7D~1setup-versions~1%7BmodelSetupVersionId%7D/get) | `GET /ssot/machine-learning/model-setups/{modelSetupIdOrName}/setup-versions/{modelSetupVersionId}` |
       | [Update model setup version](https://developer.salesforce.com/docs/data/connectapi/references/spec#tag/Machine-Learning/paths/~1ssot~1machine-learning~1model-setups~1%7BmodelSetupIdOrName%7D~1setup-versions~1%7BmodelSetupVersionId%7D/patch) | `PATCH /ssot/machine-learning/model-setups/{modelSetupIdOrName}/setup-versions/{modelSetupVersionId}` |
       | [Get model setup version partitions](https://developer.salesforce.com/docs/data/connectapi/references/spec#tag/Machine-Learning/paths/~1ssot~1machine-learning~1model-setups~1%7BmodelSetupIdOrName%7D~1setup-versions~1%7BmodelSetupVersionId%7D~1partitions/get) | `GET /ssot/machine-learning/model-setups/{modelSetupIdOrName}/setup-versions/{modelSetupVersionId}/partitions` |
-      | [Get model setup version partition](https://developer.salesforce.com/docs/data/connectapi/references/spec#tag/Machine-Learning/paths/~1ssot~1machine-learning~1model-setups~1%7BmodelSetupIdOrName%7D~1setup-versions~1%7BmodelSetupVersionId%7D~1partitions~1%7BmodelSetupPartitionId%7D/get) | `GET /ssot/machine-learning/model-setups/{modelSetupIdOrName}/setup-versions/{modelSetupVersionId}/partitions/{modelSetupPartitionId}` |
+      | [Get model setup version partition](https://developer.salesforce.com/docs/data/connectapi/references/spec#tag/Machine-Learning/paths/~1ssot~1machine-learning~1model-setups~1%7BmodelSetupIdOrName%7D~1setup-versions~1%7BmodelSetupVersionId%7D~1partitions~1%7BmodelSetupPartitionId%7D/get) | `GET /ssot/machine-learning/model-setups/{modelSetupIdOrName}/setup-versions/{modelSetupVersionId}/partitions/{modelSetupPartitionId}` || [Get prediction](https://developer.salesforce.com/docs/data/connectapi/references/spec#tag/Machine-Learning/paths/~1ssot~1machine-learning~1predict/post) | `POST /ssot/machine-learning/predict` |
+      | [Get prediction](https://developer.salesforce.com/docs/data/connectapi/references/spec#tag/Machine-Learning/paths/~1ssot~1machine-learning~1predict/post) | `POST /ssot/machine-learning/prediction-job-definitions` |
+      | [Get prediction job definitions](https://developer.salesforce.com/docs/data/connectapi/references/spec#tag/Machine-Learning/paths/~1ssot~1machine-learning~1prediction-job-definitions/get) | `GET /ssot/machine-learning/model-setups/{modelSetupIdOrName}/setup-versions/{modelSetupVersionId}/partitions/{modelSetupPartitionId}` |
+      | [Create a prediction job definition](https://developer.salesforce.com/docs/data/connectapi/references/spec#tag/Machine-Learning/paths/~1ssot~1machine-learning~1prediction-job-definitions/post) | `GET /ssot/machine-learning/model-setups/{modelSetupIdOrName}/setup-versions/{modelSetupVersionId}/partitions/{modelSetupPartitionId}` || [Get prediction](https://developer.salesforce.com/docs/data/connectapi/references/spec#tag/Machine-Learning/paths/~1ssot~1machine-learning~1predict/post) | `POST /ssot/machine-learning/prediction-job-definitions` |
+      | [Delete a prediction job definition](https://developer.salesforce.com/docs/data/connectapi/references/spec#tag/Machine-Learning/paths/~1ssot~1machine-learning~1prediction-job-definitions~1%7BpredictionJobDefIdOrName%7D/delete) | `GET /ssot/machine-learning/model-setups/{modelSetupIdOrName}/setup-versions/{modelSetupVersionId}/partitions/{modelSetupPartitionId}` || [Get prediction](https://developer.salesforce.com/docs/data/connectapi/references/spec#tag/Machine-Learning/paths/~1ssot~1machine-learning~1predict/post) | `POST /ssot/machine-learning/prediction-job-definitions/{predictionJobDefIdOrName}` |
+      | [Get a prediction job definition](https://developer.salesforce.com/docs/data/connectapi/references/spec#tag/Machine-Learning/paths/~1ssot~1machine-learning~1prediction-job-definitions~1%7BpredictionJobDefIdOrName%7D/get) | `GET /ssot/machine-learning/model-setups/{modelSetupIdOrName}/setup-versions/{modelSetupVersionId}/partitions/{modelSetupPartitionId}` || [Get prediction](https://developer.salesforce.com/docs/data/connectapi/references/spec#tag/Machine-Learning/paths/~1ssot~1machine-learning~1predict/post) | `POST /ssot/machine-learning/prediction-job-definitions/{predictionJobDefIdOrName}` |
+      | [Update a prediction job definition](https://developer.salesforce.com/docs/data/connectapi/references/spec#tag/Machine-Learning/paths/~1ssot~1machine-learning~1prediction-job-definitions~1%7BpredictionJobDefIdOrName%7D/patch) | `GET /ssot/machine-learning/model-setups/{modelSetupIdOrName}/setup-versions/{modelSetupVersionId}/partitions/{modelSetupPartitionId}` || [Get prediction](https://developer.salesforce.com/docs/data/connectapi/references/spec#tag/Machine-Learning/paths/~1ssot~1machine-learning~1predict/post) | `POST /ssot/machine-learning/prediction-job-definitions/{predictionJobDefIdOrName}` |
 
   - name: Metadata
     description: |
