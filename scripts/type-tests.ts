@@ -6,15 +6,22 @@
 import type {
   CdpDataKitDeployBundleConfigForIngestApi,
   CdpDataKitDeployComponentConfigForDLO,
+  CdpIdentityResolutionMatchCriterionOutput,
+  CdpIdentityResolutionOutputRepresentation,
+  CdpIdentityResolutionReconciliationRuleOutput,
   ConnectionCreateInput,
   ConnectionUpdateInput,
   ConnectorInputRepresentation,
   DataLakeObjectInputRepresentation,
+  DataModelObjectInputRepresentation,
+  DataObjectFieldInputRepresentation,
   DataStreamConnectorInput,
+  DataStreamDetailedRepresentation,
   DataStreamInputRepresentation,
   DataStreamRepresentation,
   IngestApiConnectorDetailsConfig,
   FormulaParametersInputRepresentation,
+  QuerySqlBaseRepresentation,
 } from "../src/schemas.js";
 import type {
   DataStreamCreateInput,
@@ -75,7 +82,7 @@ export const dataStreamResponseDataSourceTypecheck: DataStreamRepresentation = {
   dataSource: "DataConnector",
   dataLakeObjectInfo: {} as DataStreamRepresentation["dataLakeObjectInfo"],
   recordId: "a0A000000000001",
-  status: "Active",
+  status: "ACTIVE",
 };
 
 // Canonical raw field remains `datasource`
@@ -177,4 +184,101 @@ export const connectionUpdateStreamingApp: ConnectionUpdateInput = {
   connectorType: "StreamingApp",
   label: "Updated SA",
   modules: [{ name: "myModule" }],
+};
+
+// ── Enum casing overrides: data streams (SCREAMING_SNAKE wire values) ──
+
+// dataAccessMode / dataStreamType / lastRunStatus / status use the wire
+// SCREAMING_SNAKE values, not the TitleCase forms the spec declared.
+export const dataStreamDetailedEnumCasing: DataStreamDetailedRepresentation = {
+  dataAccessMode: "DIRECT_ACCESS",
+  dataStreamType: "INGESTAPI",
+  lastRunStatus: "IN_PROGRESS",
+  status: "NEEDS_ACTIVATION",
+  isEnabled: true,
+  capabilities: { ingest: true },
+};
+
+export const dataStreamDetailedBadCasing: DataStreamDetailedRepresentation = {
+  // @ts-expect-error TitleCase forms are no longer valid (wire is SCREAMING_SNAKE)
+  dataAccessMode: "Direct_Access",
+};
+
+// status on the list/get rep is also SCREAMING_SNAKE
+export const dataStreamStatusCasing: DataStreamRepresentation = {
+  status: "PROCESSING",
+  dataLakeObjectInfo: {} as DataStreamRepresentation["dataLakeObjectInfo"],
+  recordId: "a0A000000000001",
+};
+
+// ── Enum casing overrides: identity resolution (lowercase wire values) ──
+
+export const irMatchMethodCasing: CdpIdentityResolutionMatchCriterionOutput = {
+  matchMethodType: "exactnormalized",
+};
+
+export const irMatchMethodBadCasing: CdpIdentityResolutionMatchCriterionOutput = {
+  // @ts-expect-error TitleCase is no longer valid (wire is lowercase)
+  matchMethodType: "Fuzzy",
+};
+
+export const irRuleTypeCasing: CdpIdentityResolutionReconciliationRuleOutput = {
+  ruleType: "sourcesequence",
+};
+
+export const irConfigTypeCasing: CdpIdentityResolutionOutputRepresentation = {
+  configurationType: "household",
+  secondaryDmo: "Account__dlm",
+};
+
+// ── QuerySql: positional-row `data` shape ──
+
+// data is a JSON array of positional value arrays (scalar or null), not
+// object-wrapped rows.
+export const querySqlPositionalData: QuerySqlBaseRepresentation = {
+  data: [
+    ["alice", 42, true, null],
+    ["bob", 7, false, null],
+  ],
+  returnedRows: 2,
+};
+
+export const querySqlBadRowShape: QuerySqlBaseRepresentation = {
+  // @ts-expect-error object-wrapped rows are no longer the element type of `data`
+  data: [{ row: ["alice"] }],
+};
+
+// ── DMO field input: dataType enum + category casing ──
+
+// dataType uses the data-model field type set: no "DateOnly"; Currency /
+// ArrayOfFloats / ArrayOfTexts are valid. isDynamicLookup is required.
+export const dmoFieldDataType: DataObjectFieldInputRepresentation = {
+  name: "amount__c",
+  label: "Amount",
+  description: "Order amount",
+  dataType: "Currency",
+  isDynamicLookup: false,
+  isPrimaryKey: false,
+};
+
+export const dmoFieldArrayType: DataObjectFieldInputRepresentation = {
+  name: "tags__c",
+  label: "Tags",
+  dataType: "ArrayOfTexts",
+  isDynamicLookup: false,
+  isPrimaryKey: false,
+};
+
+export const dmoFieldBadDataType: DataObjectFieldInputRepresentation = {
+  name: "d__c",
+  label: "D",
+  // @ts-expect-error "DateOnly" is bogus and was removed from the enum
+  dataType: "DateOnly",
+  isDynamicLookup: false,
+  isPrimaryKey: false,
+};
+
+// DMO category binds to the UPPERCASE enum
+export const dmoCategoryCasing: DataModelObjectInputRepresentation = {
+  category: "UNASSIGNED",
 };

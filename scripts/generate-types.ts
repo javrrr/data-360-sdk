@@ -64,24 +64,21 @@ const SCHEMA_OVERRIDES: Record<string, SchemaOverride> = {
       dataLakeObjectInfo: "DataLakeObjectInputRepresentation | DataLakeObjectInputRepresentation[]",
     },
   },
-  DataStreamRepresentation: {
-    note: "Runtime list/get responses include `dataSource` although the spec omits it",
-    addOptionalFields: {
-      dataSource: "string",
-    },
-  },
   DataLakeObjectInputRepresentation: {
     note: "Spec bugs: recordModifiedFieldName and orgUnitIdentifierFieldName are not required for all DLO types",
     makeOptional: ["recordModifiedFieldName", "orgUnitIdentifierFieldName"],
   },
   DataConnectionInputRepresentation: {
-    note: "Connector-type casing on the wire is NOT what the spec lists. The spec types `connectorType` as the TitleCase form (e.g. \"Snowflake\", \"BigQuery\") but the live `/ssot/connections` endpoint rejects everything except UPPERCASE and returns `ILLEGAL_QUERY_PARAMETER_VALUE: ConnectorType [BigQuery] is not supported`. Use \"SNOWFLAKE\", \"BIGQUERY\", \"AMAZONS3\", etc. on every wire call (POST body, ?connectorType= query string). Probed against awt 2026-06-11. Per-connector credential/parameter shapes are NOT documented in the spec; the connector descriptor at GET `/ssot/connector-descriptors/{TYPE}` is the authoritative source. BigQuery specifically needs: credentials = [{paramName: \"authenticationOption\", value: \"KeyPair\"}, {paramName: \"serviceAccountEmail\", value: <SA email>}, {paramName: \"privateKey\", value: <full SA JSON key file content>}]; parameters = [{paramName: \"projectId\", value: <GCP project>}]. Sending just the PEM body (or just the bare PEM) for `privateKey` results in `Connection wasn't successful: [BIGQUERY] [native] Failed to connect`; the connector parses the JSON internally to extract project_id + private_key + client_email.",
+    note: "`connectorType` casing is per-connector, NOT uniformly uppercase. Most connectors use a TitleCase token (e.g. \"Snowflake\", \"AmazonS3\"); some use an uppercase token (e.g. \"BIGQUERY\"). The authoritative accepted token for any connector is the descriptor name returned by GET `/ssot/connector-descriptors/{TYPE}`. Treat `connectorType` as a string and source the exact token from the connector descriptor rather than assuming a casing convention. Per-connector credential/parameter shapes are NOT documented in the spec; the connector descriptor at GET `/ssot/connector-descriptors/{TYPE}` is the authoritative source. BigQuery specifically needs: credentials = [{paramName: \"authenticationOption\", value: \"KeyPair\"}, {paramName: \"serviceAccountEmail\", value: <SA email>}, {paramName: \"privateKey\", value: <full SA JSON key file content>}]; parameters = [{paramName: \"projectId\", value: <GCP project>}]. Sending just the PEM body (or just the bare PEM) for `privateKey` fails the connection; the connector parses the JSON internally to extract project_id + private_key + client_email.",
   },
   DataObjectFieldInputRepresentation: {
-    note: "Spec bugs: API expects `dataType` instead of `type` for field data type; isDynamicLookup missing but required for PATCH to work",
+    note: "Spec bugs: the DMO field endpoint expects `dataType` (not `type`) and the wire values are TitleCase from the data-model field type set — there is no `DateOnly`, and `Currency`/`ArrayOfFloats`/`ArrayOfTexts` are valid values the spec omits. `isDynamicLookup` is dereferenced unconditionally by the create/PATCH handler (omitting it errors), so it is effectively required. `description` is accepted but absent from the spec.",
     makeOptional: ["type"],
+    addOptionalFields: {
+      description: "string",
+    },
     addRequiredFields: {
-      dataType: '"Boolean" | "Date" | "DateOnly" | "DateTime" | "Email" | "Number" | "Percent" | "Phone" | "Text" | "Url"',
+      dataType: '"Number" | "Text" | "Date" | "DateTime" | "Url" | "Phone" | "Email" | "Percent" | "Boolean" | "Currency" | "ArrayOfFloats" | "ArrayOfTexts"',
       isDynamicLookup: "boolean",
     },
   },
@@ -114,6 +111,205 @@ const SCHEMA_OVERRIDES: Record<string, SchemaOverride> = {
   VectorEmbeddingInputRepresentation: {
     note: "Server NPEs when vectorEmbeddingRelatedFields is omitted, empty, or null. The list must be non-empty (typical minimum: a single entry pointing at the source DMO's primary key). Spec marks it optional.",
     makeRequired: ["vectorEmbeddingRelatedFields"],
+  },
+
+  // ── Connection / data-stream response coverage ──
+  ConnectionRepresentation: {
+    note: "Spec omits the common asset fields the wire returns. ConnectionRepresentation is an abstract asset whose base inheritance is dropped in the spec, so the generated type loses id/name/label/createdDate/createdBy/lastModifiedBy/lastModifiedDate/namespace/url. Subtype-specific fields (organizationId, alias, connectionStatus, etc.) remain modeled on the concrete subtypes.",
+    addOptionalFields: {
+      id: "string",
+      name: "string",
+      label: "string",
+      createdDate: "string",
+      namespace: "string",
+      url: "string",
+      createdBy: "CdpUserRepresentation",
+      lastModifiedBy: "CdpUserRepresentation",
+      lastModifiedDate: "string",
+    },
+  },
+
+  // ── Identity resolution / data-stream enum casing (SCREAMING_SNAKE wire) ──
+  DataStreamDetailedRepresentation: {
+    note: "Spec enum casing is wrong: the wire emits and accepts SCREAMING_SNAKE values for dataAccessMode, dataStreamType, lastRunStatus, and status. The TitleCase forms in the spec are never on the wire. Also returns isEnabled and capabilities (a string→boolean map), both omitted by the spec.",
+    fieldTypes: {
+      dataAccessMode: '"INGEST" | "DIRECT_ACCESS"',
+      dataStreamType:
+        '"S3" | "MC" | "SFDC" | "SFDC_BUNDLE" | "SFDC_PACKAGE_KIT" | "MCDE" | "FILEUPLOAD" | "PACKAGE" | "PACKAGENDATAKIT" | "EVENTS" | "EVENTS_PACKAGE" | "INGESTAPI" | "INGESTAPI_PACKAGE" | "COMMERCE_BUNDLE" | "COMMERCE_DATA_KIT" | "MCIS" | "GOOGLE_CLOUD_STORAGE" | "CS" | "SFTP" | "CONNECTORSFRAMEWORK" | "AZURE_BLOB" | "EXTERNAL" | "S3_ARN" | "ACCOUNTENGAGEMENT"',
+      lastRunStatus:
+        '"NONE" | "PENDING" | "IN_PROGRESS" | "SUCCESS" | "FAILURE" | "CANCELLED" | "EXTRACTING"',
+      status:
+        '"PROCESSING" | "ACTIVE" | "ERROR" | "DELETING" | "NEEDS_ACTIVATION" | "INACTIVE"',
+    },
+    addOptionalFields: {
+      isEnabled: "boolean",
+      capabilities: "Record<string, boolean>",
+    },
+  },
+  DataStreamRepresentation: {
+    note: "Runtime list/get responses include `dataSource` although the spec omits it. The wire `status` is SCREAMING_SNAKE, not the TitleCase forms in the spec.",
+    fieldTypes: {
+      status:
+        '"PROCESSING" | "ACTIVE" | "ERROR" | "DELETING" | "NEEDS_ACTIVATION" | "INACTIVE"',
+    },
+    addOptionalFields: {
+      dataSource: "string",
+    },
+  },
+  DataLakeObjectRepresentation: {
+    note: "Spec omits capabilities (string→boolean map) and fields (an alias of dataLakeFieldInfoRepresentation); capabilities/timeToLive are only populated for automated-process callers. The wire `status` is SCREAMING_SNAKE, not the TitleCase forms in the spec.",
+    fieldTypes: {
+      status: '"PROCESSING" | "ACTIVE" | "ERROR" | "DELETING" | "INACTIVE"',
+    },
+    addOptionalFields: {
+      capabilities: "Record<string, boolean>",
+      fields: "DataLakeFieldRepresentation[]",
+    },
+  },
+  DataStreamFrequencyRepresentation: {
+    note: "Spec `frequencyType` enum is mis-cased and missing about half its members (e.g. BATCH). The wire uses SCREAMING_SNAKE internal names.",
+    fieldTypes: {
+      frequencyType:
+        '"NONE" | "NOT_APPLICABLE" | "MINUTELY" | "MINUTES_5" | "MINUTES_15" | "MINUTES_30" | "HOURLY" | "EVERY_4_HOURS" | "EVERY_12_HOURS" | "DAILY" | "WEEKLY" | "MONTHLY" | "MONTHLY_RELATIVE" | "BATCH" | "STREAMING"',
+    },
+  },
+  DataStreamFrequencyInputRepresentation: {
+    note: "Spec `frequencyType` enum is mis-cased and missing about half its members (e.g. BATCH). The wire accepts the SCREAMING_SNAKE internal names.",
+    fieldTypes: {
+      frequencyType:
+        '"NONE" | "NOT_APPLICABLE" | "MINUTELY" | "MINUTES_5" | "MINUTES_15" | "MINUTES_30" | "HOURLY" | "EVERY_4_HOURS" | "EVERY_12_HOURS" | "DAILY" | "WEEKLY" | "MONTHLY" | "MONTHLY_RELATIVE" | "BATCH" | "STREAMING"',
+    },
+  },
+  RefreshConfigInputRepresentation: {
+    note: "Spec types `frequency` as an array, but the wire expects a single DataStreamFrequencyInputRepresentation object.",
+    fieldTypes: {
+      frequency: "DataStreamFrequencyInputRepresentation",
+    },
+  },
+  DataStreamPatchInputRepresentation: {
+    note: "PATCH accepts a single DataLakeObjectInputRepresentation object (the dominant create shape) in addition to an array, mirroring the create input. Also accepts advancedAttributes (a string→string map) which the spec omits.",
+    fieldTypes: {
+      dataLakeObjectInfo:
+        "DataLakeObjectInputRepresentation | DataLakeObjectInputRepresentation[]",
+    },
+    addOptionalFields: {
+      advancedAttributes: "Record<string, string>",
+    },
+  },
+  CdpIdentityResolutionMatchCriterionOutput: {
+    note: "Spec `matchMethodType` enum is mis-cased (TitleCase). The wire uses all-lowercase display names on both responses and requests.",
+    fieldTypes: {
+      matchMethodType:
+        '"exact" | "exactnormalized" | "fuzzy" | "fuzzylow" | "fuzzyhigh"',
+    },
+  },
+  CdpIdentityResolutionReconciliationRuleOutput: {
+    note: "Spec `ruleType` enum is mis-cased (TitleCase). The wire uses all-lowercase display names on both responses and requests.",
+    fieldTypes: {
+      ruleType: '"lastupdated" | "mostfrequent" | "sourcesequence"',
+    },
+  },
+  CdpIdentityResolutionOutputRepresentation: {
+    note: "Spec `configurationType` enum is mis-cased (TitleCase). The wire uses all-lowercase display names. The output also returns secondaryDmo, sourceIrDevName, isLimitedToSingleHousehold, isCaseSensitive, and filters — all optional/nullable and omitted by the spec. (filters lacks a dedicated output schema in the spec, so it is typed structurally.)",
+    fieldTypes: {
+      configurationType:
+        '"individual" | "account" | "lead" | "entpuser" | "household"',
+    },
+    addOptionalFields: {
+      secondaryDmo: "string",
+      sourceIrDevName: "string",
+      isLimitedToSingleHousehold: "boolean",
+      isCaseSensitive: "boolean",
+      filters: "Record<string, unknown>[]",
+    },
+  },
+
+  // ── Segments ──
+  CdpSegmentDbtInputRepresentation: {
+    note: "Spec types `models` as a bare array, but the wire nests it one level under a list-wrapper object: { models: [ <model>, ... ] }. (The wrapper has no dedicated schema in the spec, so it is typed structurally over CdpSegmentDbtModelInputRepresentation.)",
+    fieldTypes: {
+      models: "{ models?: CdpSegmentDbtModelInputRepresentation[] }",
+    },
+  },
+  CdpSegmentOutputRepresentation: {
+    note: "Spec omits the audit fields the wire returns (since Spring '25): lastModifiedDate, createdDate (ISO-8601 strings) and lastModifiedBy, createdBy (user objects). All optional (null-suppressed).",
+    addOptionalFields: {
+      lastModifiedDate: "string",
+      createdDate: "string",
+      lastModifiedBy: "CdpUserRepresentation",
+      createdBy: "CdpUserRepresentation",
+    },
+  },
+  CdpSegmentContainerOutputRepresentation: {
+    note: "Spec omits `totalSize` (total number of results) which the collection wrapper returns alongside segments/offset/orderByExpression. Optional (null-suppressed).",
+    addOptionalFields: {
+      totalSize: "number",
+    },
+  },
+
+  // ── Data transforms ──
+  RunHistoryOutputProgressRepresentation: {
+    note: "Spec enums use Java constant-name casing; the wire emits the JSON values. status is SCREAMING_SNAKE; dataObjectType is camelCase and includes calculatedInsightObject (omitted by the spec).",
+    fieldTypes: {
+      status: '"PENDING" | "RUNNING" | "SUCCESS" | "ERROR"',
+      dataObjectType:
+        '"dataLakeObject" | "dataModelObject" | "calculatedInsightObject"',
+    },
+  },
+  TransformValidationIssueRepresentation: {
+    note: "Spec enums use Java constant-name casing; the wire emits the JSON values. errorSeverity is SCREAMING_SNAKE; errorCode is a SCREAMING_SNAKE set that may grow over time on this response-only field.",
+    fieldTypes: {
+      errorSeverity: '"WARNING" | "ERROR" | "FATAL"',
+      errorCode:
+        '"INVALID_INPUT_PAYLOAD" | "TYPE_VALIDATION_ERROR" | "NAME_VALIDATION_ERROR" | "INVALID_DATA_TRANSFORM_DEFINITION" | "DMO_OUTPUT_VALIDATION_ERROR" | "TAGS_VALIDATION_ERROR" | "DLO_NAME_DOES_NOT_EXIST" | "SQL_EXPRESSION_IS_NULL" | "STREAMING_TRANSFORM_CREATE_FORBIDDEN" | "TARGET_OBJECT_NAME_NULL" | "TARGET_DLO_NOT_FOUND" | "TARGET_DMO_NOT_FOUND" | "DATA_TRANSFORM_LIMIT_EXCEEDED" | "INVALID_DATA_TRANSFORM_REQUEST" | "TARGET_DLO_IS_REBUILDING" | "SOURCE_DLO_NOT_FOUND" | "INVALID_DATA_TRANSFORM_TAG" | "INVALID_DATA_TRANSFORM_CAPABILITY" | "INVALID_DATA_TRANSFORM" | "INVALID_DATA_TRANSFORM_DATA_OBJECTS" | "INVALID_DATA_TRANSFORM_DEF_MAPPING" | "RESTRICTED_DLO" | "INVALID_TARGET_DLO" | "INVALID_TARGET_DMO" | "INTERNAL_SERVICE_ERROR"',
+    },
+  },
+
+  // ── Data model objects ──
+  DataModelObjectInputRepresentation: {
+    note: "The DMO endpoint binds `category` to an UPPERCASE enum (PROFILE, ENGAGEMENT, ...) that is broader than the spec's TitleCase list (which reflects the legacy DLO enum). Deserialization is case-insensitive, but responses always serialize UPPERCASE. Kept optional.",
+    fieldTypes: {
+      category:
+        '"PROFILE" | "ENGAGEMENT" | "OTHER" | "UNASSIGNED" | "INSIGHTS" | "SEGMENT_MEMBERSHIP" | "ACTIVATION_AUDIENCE" | "CG_AUDIENCE" | "CLEAN_ROOM" | "VECTOR_EMBEDDING" | "CONTENT" | "AD_AUDIENCE_INSIGHTS" | "DIRECTORY_TABLE"',
+    },
+  },
+  RelationshipFieldRepresentation: {
+    note: "Spec copied the Java constant names for `type`; the wire serializes the Mkt-prefixed display names. Output-only.",
+    fieldTypes: {
+      type: '"MktDataModelField" | "MktCalculatedInsightField" | "SObjectField"',
+    },
+  },
+
+  // ── Query SQL ──
+  QuerySqlBaseRepresentation: {
+    note: "Spec types `data` rows as object-wrapped row representations, but the REST response emits `data` as a JSON array of positional value arrays (scalar or null), ordered to match the metadata[] columns. The {row}-shaped QuerySqlRowRepresentation is REST-hidden and is not the element type of `data`.",
+    fieldTypes: {
+      data: "(string | number | boolean | null)[][]",
+    },
+  },
+  QuerySqlRepresentation: {
+    note: "Inherits the `data` shape from QuerySqlBaseRepresentation: the REST response emits `data` as a JSON array of positional value arrays, not object-wrapped rows.",
+    fieldTypes: {
+      data: "(string | number | boolean | null)[][]",
+    },
+  },
+  QuerySqlPageRepresentation: {
+    note: "Inherits the `data` shape from QuerySqlBaseRepresentation: the REST response emits `data` as a JSON array of positional value arrays, not object-wrapped rows.",
+    fieldTypes: {
+      data: "(string | number | boolean | null)[][]",
+    },
+  },
+  QuerySqlStatusRepresentation: {
+    note: "Spec omits `chunkCount` (an int64 on the wire) which is returned alongside completionStatus/expirationTime/progress/queryId/rowCount on both the nested status object and the get-query-status response. Optional (null-suppressed).",
+    addOptionalFields: {
+      chunkCount: "number",
+    },
+  },
+  QuerySqlParameterItemRepresentation: {
+    note: "Request input accepts BOTH the TitleCase Connect display name and the lowercase serialized alias for `type` (the lowercase alias for ArrayOfX is \"array\"). Responses emit TitleCase only.",
+    fieldTypes: {
+      type: '"ArrayOfX" | "BigInt" | "Bool" | "Char" | "Date" | "Double" | "Float" | "Integer" | "Numeric" | "Oid" | "SmallInt" | "Time" | "Timestamp" | "TimestampTZ" | "Unspecified" | "Varchar" | "array" | "bigint" | "bool" | "char" | "date" | "double" | "float" | "integer" | "numeric" | "oid" | "smallint" | "time" | "timestamp" | "timestamptz" | "unspecified" | "varchar"',
+    },
   },
 };
 

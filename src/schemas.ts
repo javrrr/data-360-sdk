@@ -765,12 +765,55 @@ export type CdpHourlyScheduleRepresentation = {
 }
 export type CdpIdentityResolutionConfigInput = Schemas["CdpIdentityResolutionConfigInput"];
 export type CdpIdentityResolutionConfigPatchInput = Schemas["CdpIdentityResolutionConfigPatchInput"];
-export type CdpIdentityResolutionMatchCriterionOutput = Schemas["CdpIdentityResolutionMatchCriterionOutput"];
+/** @override Spec `matchMethodType` enum is mis-cased (TitleCase). The wire uses all-lowercase display names on both responses and requests. */
+export type CdpIdentityResolutionMatchCriterionOutput = {
+  caseSensitiveMatch?: boolean;
+  entityName?: string;
+  fieldName?: string;
+  matchMethodType?: "exact" | "exactnormalized" | "fuzzy" | "fuzzylow" | "fuzzyhigh";
+  partyIdentificationInfo?: Schemas["CdpIdentityResolutionMatchCriterionPartyIdentificationInfoOutput"];
+  shouldMatchOnBlank?: boolean;
+}
 export type CdpIdentityResolutionMatchCriterionPartyIdentificationInfoOutput = Schemas["CdpIdentityResolutionMatchCriterionPartyIdentificationInfoOutput"];
 export type CdpIdentityResolutionMatchRuleOutput = Schemas["CdpIdentityResolutionMatchRuleOutput"];
-export type CdpIdentityResolutionOutputRepresentation = Schemas["CdpIdentityResolutionOutputRepresentation"];
+/** @override Spec `configurationType` enum is mis-cased (TitleCase). The wire uses all-lowercase display names. The output also returns secondaryDmo, sourceIrDevName, isLimitedToSingleHousehold, isCaseSensitive, and filters — all optional/nullable and omitted by the spec. (filters lacks a dedicated output schema in the spec, so it is typed structurally.) */
+export type CdpIdentityResolutionOutputRepresentation = {
+  anonymousUnifiedProfiles?: number;
+  configurationType?: "individual" | "account" | "lead" | "entpuser" | "household";
+  consolidationRate?: number;
+  dataSpaceName?: string;
+  description?: string;
+  doesRunAutomatically?: boolean;
+  id?: string;
+  knownUnifiedProfiles?: number;
+  label?: string;
+  lastJobCompleted?: string;
+  lastJobStatus?: string;
+  matchRules?: Schemas["CdpIdentityResolutionMatchRuleOutput"][];
+  matchedSourceProfiles?: number;
+  objectApiName?: string;
+  reconciliationRules?: Schemas["CdpIdentityResolutionReconciliationRuleOutput"][];
+  rulesetId?: string;
+  rulesetStatus?: string;
+  sourceProfiles?: number;
+  totalUnifiedProfiles?: number;
+  secondaryDmo?: string;
+  sourceIrDevName?: string;
+  isLimitedToSingleHousehold?: boolean;
+  isCaseSensitive?: boolean;
+  filters?: Record<string, unknown>[];
+}
 export type CdpIdentityResolutionReconciliationFieldRuleOutput = Schemas["CdpIdentityResolutionReconciliationFieldRuleOutput"];
-export type CdpIdentityResolutionReconciliationRuleOutput = Schemas["CdpIdentityResolutionReconciliationRuleOutput"];
+/** @override Spec `ruleType` enum is mis-cased (TitleCase). The wire uses all-lowercase display names on both responses and requests. */
+export type CdpIdentityResolutionReconciliationRuleOutput = {
+  entityName?: string;
+  fields?: Schemas["CdpIdentityResolutionReconciliationFieldRuleOutput"][];
+  linkDmoName?: string;
+  ruleType?: "lastupdated" | "mostfrequent" | "sourcesequence";
+  shouldIgnoreEmptyValue?: boolean;
+  sources?: Schemas["CdpIdentityResolutionReconciliationSourceOutput"][];
+  unifiedDmoName?: string;
+}
 export type CdpIdentityResolutionReconciliationSourceOutput = Schemas["CdpIdentityResolutionReconciliationSourceOutput"];
 export type CdpIdentityResolutionRunNowInput = Schemas["CdpIdentityResolutionRunNowInput"];
 export type CdpIdentityResolutionRunNowOutputRepresentation = Schemas["CdpIdentityResolutionRunNowOutputRepresentation"];
@@ -1026,8 +1069,18 @@ export type CdpSegmentActionOutputRepresentation = {
   segmentApiName?: string;
   segmentId: string;
 }
-export type CdpSegmentContainerOutputRepresentation = Schemas["CdpSegmentContainerOutputRepresentation"];
-export type CdpSegmentDbtInputRepresentation = Schemas["CdpSegmentDbtInputRepresentation"];
+/** @override Spec omits `totalSize` (total number of results) which the collection wrapper returns alongside segments/offset/orderByExpression. Optional (null-suppressed). */
+export type CdpSegmentContainerOutputRepresentation = {
+  batchSize?: number;
+  offset?: number;
+  orderByExpression?: string;
+  segments?: Schemas["CdpSegmentOutputRepresentation"][];
+  totalSize?: number;
+}
+/** @override Spec types `models` as a bare array, but the wire nests it one level under a list-wrapper object: { models: [ <model>, ... ] }. (The wrapper has no dedicated schema in the spec, so it is typed structurally over CdpSegmentDbtModelInputRepresentation.) */
+export type CdpSegmentDbtInputRepresentation = {
+  models?: { models?: CdpSegmentDbtModelInputRepresentation[] };
+}
 export type CdpSegmentDbtModelInputRepresentation = Schemas["CdpSegmentDbtModelInputRepresentation"];
 export type CdpSegmentDbtModelOutputRepresentation = Schemas["CdpSegmentDbtModelOutputRepresentation"];
 export type CdpSegmentDbtPipelineOutputRepresentation = Schemas["CdpSegmentDbtPipelineOutputRepresentation"];
@@ -1038,7 +1091,42 @@ export type CdpSegmentLookalikeOutputRepresentation = Schemas["CdpSegmentLookali
 export type CdpSegmentMemberOutputRepresentation = Schemas["CdpSegmentMemberOutputRepresentation"];
 export type CdpSegmentMemberRowOutputRepresentation = Schemas["CdpSegmentMemberRowOutputRepresentation"];
 export type CdpSegmentMembershipTableOutputRepresentation = Schemas["CdpSegmentMembershipTableOutputRepresentation"];
-export type CdpSegmentOutputRepresentation = Schemas["CdpSegmentOutputRepresentation"];
+/** @override Spec omits the audit fields the wire returns (since Spring '25): lastModifiedDate, createdDate (ISO-8601 strings) and lastModifiedBy, createdBy (user objects). All optional (null-suppressed). */
+export type CdpSegmentOutputRepresentation = {
+  apiName?: string;
+  dataSpace?: string;
+  description?: string;
+  developerName?: string;
+  displayName?: string;
+  excludeCriteria?: string;
+  includeCriteria?: string;
+  includeDbt?: Schemas["CdpSegmentDbtPipelineOutputRepresentation"];
+  lastPublishedEndDateTime?: string;
+  lastSegmentMemberCount?: number;
+  lookalikeCriteria?: Schemas["CdpSegmentLookalikeOutputRepresentation"];
+  lookbackPeriod?: string;
+  marketSegmentDefinitionId?: string;
+  marketSegmentId?: string;
+  nextPublishDateTime?: string;
+  parameters?: Schemas["ParameterRepresentation"][];
+  publishInterval?: string;
+  publishScheduleEndDate?: string;
+  publishScheduleEndDateTime?: string;
+  publishScheduleInfo?: unknown;
+  publishScheduleStartDateTime?: string;
+  publishStatus?: string;
+  segmentMembershipDmo?: Schemas["CdpSegmentMembershipTableOutputRepresentation"];
+  segmentMembershipTable?: string;
+  segmentOnApiName?: string;
+  segmentOnDataGraph?: string;
+  segmentOnId?: string;
+  segmentStatus?: string;
+  segmentType?: string;
+  lastModifiedDate?: string;
+  createdDate?: string;
+  lastModifiedBy?: CdpUserRepresentation;
+  createdBy?: CdpUserRepresentation;
+}
 export type CdpTimeInputRepresentation = Schemas["CdpTimeInputRepresentation"];
 export type CdpTimeRepresentation = Schemas["CdpTimeRepresentation"];
 export type CdpTimeZoneRepresentation = Schemas["CdpTimeZoneRepresentation"];
@@ -1642,7 +1730,7 @@ export type DataCleanRoomUseCaseTypeRepresentation = {
 }
 export type DataCleanRoomUsecaseConfigInputRepresentation = Schemas["DataCleanRoomUsecaseConfigInputRepresentation"];
 export type DataCleanRoomUsecaseConfigRepresentation = Schemas["DataCleanRoomUsecaseConfigRepresentation"];
-/** @override Connector-type casing on the wire is NOT what the spec lists. The spec types `connectorType` as the TitleCase form (e.g. "Snowflake", "BigQuery") but the live `/ssot/connections` endpoint rejects everything except UPPERCASE and returns `ILLEGAL_QUERY_PARAMETER_VALUE: ConnectorType [BigQuery] is not supported`. Use "SNOWFLAKE", "BIGQUERY", "AMAZONS3", etc. on every wire call (POST body, ?connectorType= query string). Probed against awt 2026-06-11. Per-connector credential/parameter shapes are NOT documented in the spec; the connector descriptor at GET `/ssot/connector-descriptors/{TYPE}` is the authoritative source. BigQuery specifically needs: credentials = [{paramName: "authenticationOption", value: "KeyPair"}, {paramName: "serviceAccountEmail", value: <SA email>}, {paramName: "privateKey", value: <full SA JSON key file content>}]; parameters = [{paramName: "projectId", value: <GCP project>}]. Sending just the PEM body (or just the bare PEM) for `privateKey` results in `Connection wasn't successful: [BIGQUERY] [native] Failed to connect`; the connector parses the JSON internally to extract project_id + private_key + client_email. */
+/** @override `connectorType` casing is per-connector, NOT uniformly uppercase. Most connectors use a TitleCase token (e.g. "Snowflake", "AmazonS3"); some use an uppercase token (e.g. "BIGQUERY"). The authoritative accepted token for any connector is the descriptor name returned by GET `/ssot/connector-descriptors/{TYPE}`. Treat `connectorType` as a string and source the exact token from the connector descriptor rather than assuming a casing convention. Per-connector credential/parameter shapes are NOT documented in the spec; the connector descriptor at GET `/ssot/connector-descriptors/{TYPE}` is the authoritative source. BigQuery specifically needs: credentials = [{paramName: "authenticationOption", value: "KeyPair"}, {paramName: "serviceAccountEmail", value: <SA email>}, {paramName: "privateKey", value: <full SA JSON key file content>}]; parameters = [{paramName: "projectId", value: <GCP project>}]. Sending just the PEM body (or just the bare PEM) for `privateKey` fails the connection; the connector parses the JSON internally to extract project_id + private_key + client_email. */
 export type DataConnectionInputRepresentation = {
   credentials: Schemas["DataConnectionParameterInputRepresentation"][];
   method: "Egress" | "Ingress";
@@ -1858,6 +1946,7 @@ export type DataLakeObjectInputRepresentation = {
   orgUnitIdentifierFieldName?: string;
 }
 export type DataLakeObjectPatchInputRepresentation = Schemas["DataLakeObjectPatchInputRepresentation"];
+/** @override Spec omits capabilities (string→boolean map) and fields (an alias of dataLakeFieldInfoRepresentation); capabilities/timeToLive are only populated for automated-process callers. The wire `status` is SCREAMING_SNAKE, not the TitleCase forms in the spec. */
 export type DataLakeObjectRepresentation = {
   createdBy?: Schemas["CdpUserRepresentation"];
   createdDate?: string;
@@ -1874,7 +1963,9 @@ export type DataLakeObjectRepresentation = {
   eventDateTimeFieldName?: string;
   orgUnitIdentifierFieldName?: string;
   recordModifiedFieldName?: string;
-  status: "Active" | "Deleting" | "Error" | "Inactive" | "Processing";
+  status: "PROCESSING" | "ACTIVE" | "ERROR" | "DELETING" | "INACTIVE";
+  capabilities?: Record<string, boolean>;
+  fields?: DataLakeFieldRepresentation[];
 }
 export type DataModelObjectCollectionRepresentation = {
   currentPageUrl?: string;
@@ -1882,12 +1973,13 @@ export type DataModelObjectCollectionRepresentation = {
   totalSize?: number;
   dataModelObject?: Schemas["DataModelObjectRepresentation"][];
 }
+/** @override The DMO endpoint binds `category` to an UPPERCASE enum (PROFILE, ENGAGEMENT, ...) that is broader than the spec's TitleCase list (which reflects the legacy DLO enum). Deserialization is case-insensitive, but responses always serialize UPPERCASE. Kept optional. */
 export type DataModelObjectInputRepresentation = {
   dataSpaceName?: string;
   description?: string;
   label?: string;
   name?: string;
-  category?: "Engagement" | "Other" | "Profile";
+  category?: "PROFILE" | "ENGAGEMENT" | "OTHER" | "UNASSIGNED" | "INSIGHTS" | "SEGMENT_MEMBERSHIP" | "ACTIVATION_AUDIENCE" | "CG_AUDIENCE" | "CLEAN_ROOM" | "VECTOR_EMBEDDING" | "CONTENT" | "AD_AUDIENCE_INSIGHTS" | "DIRECTORY_TABLE";
   eventDateTimeFieldName?: string;
   fields?: Schemas["DataObjectFieldInputRepresentation"][];
   recordModifiedFieldName?: string;
@@ -1911,14 +2003,15 @@ export type DataModelObjectRepresentation = {
   type?: "DataLakeObject" | "DataModelObject";
   status?: "Active" | "Error" | "Inactive" | "Processing";
 }
-/** @override Spec bugs: API expects `dataType` instead of `type` for field data type; isDynamicLookup missing but required for PATCH to work */
+/** @override Spec bugs: the DMO field endpoint expects `dataType` (not `type`) and the wire values are TitleCase from the data-model field type set — there is no `DateOnly`, and `Currency`/`ArrayOfFloats`/`ArrayOfTexts` are valid values the spec omits. `isDynamicLookup` is dereferenced unconditionally by the create/PATCH handler (omitting it errors), so it is effectively required. `description` is accepted but absent from the spec. */
 export type DataObjectFieldInputRepresentation = {
   isPrimaryKey: boolean;
   keyQualifierFieldName?: string;
   label: string;
   name: string;
   type?: "Boolean" | "Date" | "DateOnly" | "DateTime" | "Email" | "Number" | "Percent" | "Phone" | "Text" | "Url";
-  dataType: "Boolean" | "Date" | "DateOnly" | "DateTime" | "Email" | "Number" | "Percent" | "Phone" | "Text" | "Url";
+  description?: string;
+  dataType: "Number" | "Text" | "Date" | "DateTime" | "Url" | "Phone" | "Email" | "Percent" | "Boolean" | "Currency" | "ArrayOfFloats" | "ArrayOfTexts";
   isDynamicLookup: boolean;
 }
 export type DataObjectFieldRepresentation = Schemas["DataObjectFieldRepresentation"];
@@ -2036,6 +2129,7 @@ export type DataStreamCollectionRepresentation = {
   totalSize?: number;
   dataStreams: Schemas["DataStreamDetailedRepresentation"][];
 }
+/** @override Spec enum casing is wrong: the wire emits and accepts SCREAMING_SNAKE values for dataAccessMode, dataStreamType, lastRunStatus, and status. The TitleCase forms in the spec are never on the wire. Also returns isEnabled and capabilities (a string→boolean map), both omitted by the spec. */
 export type DataStreamDetailedRepresentation = {
   createdBy?: Schemas["CdpUserRepresentation"];
   createdDate?: string;
@@ -2048,20 +2142,22 @@ export type DataStreamDetailedRepresentation = {
   url?: string;
   advancedAttributes?: { [key: string]: string };
   connectorInfo?: Schemas["ConnectorRepresentation"];
-  dataAccessMode?: "Direct_Access" | "Ingest";
+  dataAccessMode?: "INGEST" | "DIRECT_ACCESS";
   dataLakeObjectInfo?: Schemas["DataLakeObjectRepresentation"];
   dataSource?: string;
-  dataStreamType?: "AccountEngagement" | "Azure_Blob" | "Commerce_Bundle" | "Commerce_Data_Kit" | "ConnectorFramework" | "Cs" | "Events" | "Events_Package" | "External" | "FileUpload" | "Google_Cloud_Storage" | "IngestAPI" | "IngestAPI_Package" | "Mc" | "Mcde" | "Mcis" | "Package" | "PackageNDataKit" | "S3" | "S3_Arn" | "Sfdc" | "Sfdc_Bundle" | "Sfdc_Package_Kit" | "Sftp";
+  dataStreamType?: "S3" | "MC" | "SFDC" | "SFDC_BUNDLE" | "SFDC_PACKAGE_KIT" | "MCDE" | "FILEUPLOAD" | "PACKAGE" | "PACKAGENDATAKIT" | "EVENTS" | "EVENTS_PACKAGE" | "INGESTAPI" | "INGESTAPI_PACKAGE" | "COMMERCE_BUNDLE" | "COMMERCE_DATA_KIT" | "MCIS" | "GOOGLE_CLOUD_STORAGE" | "CS" | "SFTP" | "CONNECTORSFRAMEWORK" | "AZURE_BLOB" | "EXTERNAL" | "S3_ARN" | "ACCOUNTENGAGEMENT";
   lastAddedRecords?: number;
   lastProcessedRecords?: number;
   lastRefreshDate?: string;
-  lastRunStatus?: "Cancelled" | "Extracting" | "Failure" | "In Progress" | "None" | "Pending" | "Success";
+  lastRunStatus?: "NONE" | "PENDING" | "IN_PROGRESS" | "SUCCESS" | "FAILURE" | "CANCELLED" | "EXTRACTING";
   mappings?: Schemas["DataStreamFieldMappingRepresentation"][];
   recordId?: string;
   refreshConfig?: Schemas["RefreshConfigRepresentation"];
   sourceFields?: Schemas["DataStreamSourceFieldRepresentation"][];
-  status?: "Active" | "Deleting" | "Error" | "Processing";
+  status?: "PROCESSING" | "ACTIVE" | "ERROR" | "DELETING" | "NEEDS_ACTIVATION" | "INACTIVE";
   totalRecords?: number;
+  isEnabled?: boolean;
+  capabilities?: Record<string, boolean>;
 }
 /** @override Asymmetric input/output: POST input uses `sourceFieldLabel`, but GET responses echo `sourceFieldName` for the same field. Round-tripping GET→POST without renaming fails with JSON_PARSER_ERROR. Also: targetFieldReturntype is required by the create handler — when omitted, the mapping is silently dropped from the saved data stream with no error. */
 export type DataStreamFieldMappingInputRepresentation = {
@@ -2071,8 +2167,20 @@ export type DataStreamFieldMappingInputRepresentation = {
   transformationFormula?: string;
 }
 export type DataStreamFieldMappingRepresentation = Schemas["DataStreamFieldMappingRepresentation"];
-export type DataStreamFrequencyInputRepresentation = Schemas["DataStreamFrequencyInputRepresentation"];
-export type DataStreamFrequencyRepresentation = Schemas["DataStreamFrequencyRepresentation"];
+/** @override Spec `frequencyType` enum is mis-cased and missing about half its members (e.g. BATCH). The wire accepts the SCREAMING_SNAKE internal names. */
+export type DataStreamFrequencyInputRepresentation = {
+  frequencyType?: "NONE" | "NOT_APPLICABLE" | "MINUTELY" | "MINUTES_5" | "MINUTES_15" | "MINUTES_30" | "HOURLY" | "EVERY_4_HOURS" | "EVERY_12_HOURS" | "DAILY" | "WEEKLY" | "MONTHLY" | "MONTHLY_RELATIVE" | "BATCH" | "STREAMING";
+  hours?: number[];
+  refreshDayOfMonth?: number[];
+  refreshDayOfWeek?: "Friday" | "Monday" | "Saturday" | "Sunday" | "Thursday" | "Tuesday" | "Wednesday";
+}
+/** @override Spec `frequencyType` enum is mis-cased and missing about half its members (e.g. BATCH). The wire uses SCREAMING_SNAKE internal names. */
+export type DataStreamFrequencyRepresentation = {
+  frequencyType?: "NONE" | "NOT_APPLICABLE" | "MINUTELY" | "MINUTES_5" | "MINUTES_15" | "MINUTES_30" | "HOURLY" | "EVERY_4_HOURS" | "EVERY_12_HOURS" | "DAILY" | "WEEKLY" | "MONTHLY" | "MONTHLY_RELATIVE" | "BATCH" | "STREAMING";
+  hours?: number[];
+  refreshDayOfMonth?: number[];
+  refreshDayOfWeek?: "Friday" | "Monday" | "Saturday" | "Sunday" | "Thursday" | "Tuesday" | "Wednesday";
+}
 /** @override Spec bugs: dataLakeObjectInfo should accept single or array; mappings and sourceFields are not required for all connector types. Routing note: dataAccessMode='Direct_Access' is required for federated/BYOL connectors (Snowflake, Databricks, BigQuery, Iceberg) — without it the server returns `400 INTERNAL_ERROR: Unable to post Data Stream: DATA_CONNECTORS is not supported` even when the connector is GA. Direct_Access streams must also OMIT the top-level `datasource` field (otherwise: `DataSource name should be empty for External data streams`); the connection binding is established via connectorInfo.connectorDetails.name instead. advancedAttributes for Direct_Access streams uses GENERIC keys regardless of connector flavor: `database`/`schema`/`object` (Snowflake-shaped). For BigQuery this maps to project/dataset/table — sending the BigQuery-native key names returns `INVALID_ARGUMENT: database cannot be empty in advanced attr`. INCREMENTAL refresh on BigQuery requires acceleration enabled on the connection — without it, create returns `INVALID_ARGUMENT: acceleration should be enabled for incremental column`; use TOTAL_REPLACE if acceleration isn't configured. */
 export type DataStreamInputRepresentation = {
   advancedAttributes?: { [key: string]: string };
@@ -2089,8 +2197,18 @@ export type DataStreamInputRepresentation = {
   refreshConfig: Schemas["RefreshConfigInputRepresentation"];
   sourceFields?: Schemas["DataStreamSourceFieldInputRepresentation"][];
 }
-export type DataStreamPatchInputRepresentation = Schemas["DataStreamPatchInputRepresentation"];
-/** @override Runtime list/get responses include `dataSource` although the spec omits it */
+/** @override PATCH accepts a single DataLakeObjectInputRepresentation object (the dominant create shape) in addition to an array, mirroring the create input. Also accepts advancedAttributes (a string→string map) which the spec omits. */
+export type DataStreamPatchInputRepresentation = {
+  connectorPatchInfo?: Schemas["ConnectorPatchInputRepresentation"];
+  dataLakeObjectInfo?: DataLakeObjectInputRepresentation | DataLakeObjectInputRepresentation[];
+  datastreamType?: string;
+  label?: string;
+  mappings?: Schemas["DataStreamFieldMappingInputRepresentation"][];
+  refreshConfig?: Schemas["RefreshConfigInputRepresentation"];
+  sourceFields?: Schemas["DataStreamSourceFieldInputRepresentation"][];
+  advancedAttributes?: Record<string, string>;
+}
+/** @override Runtime list/get responses include `dataSource` although the spec omits it. The wire `status` is SCREAMING_SNAKE, not the TitleCase forms in the spec. */
 export type DataStreamRepresentation = {
   createdBy?: Schemas["CdpUserRepresentation"];
   createdDate?: string;
@@ -2103,7 +2221,7 @@ export type DataStreamRepresentation = {
   url?: string;
   dataLakeObjectInfo: Schemas["DataLakeObjectRepresentation"];
   recordId: string;
-  status: "Active" | "Deleting" | "Error" | "Processing";
+  status: "PROCESSING" | "ACTIVE" | "ERROR" | "DELETING" | "NEEDS_ACTIVATION" | "INACTIVE";
   dataSource?: string;
 }
 /** @override Asymmetric input/output: POST input uses `dataType` (camelCase), but GET responses echo `datatype` (lowercase) for the same field. Round-tripping GET→POST without renaming fails with `JSON_PARSER_ERROR: Unrecognized field 'datatype'`. */
@@ -2867,23 +2985,43 @@ export type QueryPathRepresentation = {
   objectLabel?: string;
   objectName?: string;
 }
-export type QuerySqlBaseRepresentation = Schemas["QuerySqlBaseRepresentation"];
-export type QuerySqlInputRepresentation = Schemas["QuerySqlInputRepresentation"];
-export type QuerySqlMetadataItemRepresentation = Schemas["QuerySqlMetadataItemRepresentation"];
-export type QuerySqlPageRepresentation = {
+/** @override Spec types `data` rows as object-wrapped row representations, but the REST response emits `data` as a JSON array of positional value arrays (scalar or null), ordered to match the metadata[] columns. The {row}-shaped QuerySqlRowRepresentation is REST-hidden and is not the element type of `data`. */
+export type QuerySqlBaseRepresentation = {
   returnedRows?: number;
-  data?: Schemas["QuerySqlRowRepresentation"][];
+  data?: (string | number | boolean | null)[][];
   metadata?: Schemas["QuerySqlMetadataItemRepresentation"][];
 }
-export type QuerySqlParameterItemRepresentation = Schemas["QuerySqlParameterItemRepresentation"];
+export type QuerySqlInputRepresentation = Schemas["QuerySqlInputRepresentation"];
+export type QuerySqlMetadataItemRepresentation = Schemas["QuerySqlMetadataItemRepresentation"];
+/** @override Inherits the `data` shape from QuerySqlBaseRepresentation: the REST response emits `data` as a JSON array of positional value arrays, not object-wrapped rows. */
+export type QuerySqlPageRepresentation = {
+  returnedRows?: number;
+  data?: (string | number | boolean | null)[][];
+  metadata?: Schemas["QuerySqlMetadataItemRepresentation"][];
+}
+/** @override Request input accepts BOTH the TitleCase Connect display name and the lowercase serialized alias for `type` (the lowercase alias for ArrayOfX is "array"). Responses emit TitleCase only. */
+export type QuerySqlParameterItemRepresentation = {
+  name?: string;
+  type?: "ArrayOfX" | "BigInt" | "Bool" | "Char" | "Date" | "Double" | "Float" | "Integer" | "Numeric" | "Oid" | "SmallInt" | "Time" | "Timestamp" | "TimestampTZ" | "Unspecified" | "Varchar" | "array" | "bigint" | "bool" | "char" | "date" | "double" | "float" | "integer" | "numeric" | "oid" | "smallint" | "time" | "timestamp" | "timestamptz" | "unspecified" | "varchar";
+  value?: string;
+}
+/** @override Inherits the `data` shape from QuerySqlBaseRepresentation: the REST response emits `data` as a JSON array of positional value arrays, not object-wrapped rows. */
 export type QuerySqlRepresentation = {
   returnedRows?: number;
-  data?: Schemas["QuerySqlRowRepresentation"][];
+  data?: (string | number | boolean | null)[][];
   metadata?: Schemas["QuerySqlMetadataItemRepresentation"][];
   status?: Schemas["QuerySqlStatusRepresentation"];
 }
 export type QuerySqlRowRepresentation = Schemas["QuerySqlRowRepresentation"];
-export type QuerySqlStatusRepresentation = Schemas["QuerySqlStatusRepresentation"];
+/** @override Spec omits `chunkCount` (an int64 on the wire) which is returned alongside completionStatus/expirationTime/progress/queryId/rowCount on both the nested status object and the get-query-status response. Optional (null-suppressed). */
+export type QuerySqlStatusRepresentation = {
+  completionStatus?: "Finished" | "ResultsProduced" | "Running" | "Unspecified";
+  expirationTime?: string;
+  progress?: number;
+  queryId?: string;
+  rowCount?: number;
+  chunkCount?: number;
+}
 export type RankingFieldsDetailsRepresentation = Schemas["RankingFieldsDetailsRepresentation"];
 export type RecencyCriteriaRepresentation = Schemas["RecencyCriteriaRepresentation"];
 export type RecordFieldConfigurationInputRepresentation = {
@@ -2908,15 +3046,34 @@ export type RedshiftRouteDetailsRepresentation = {
   serviceName?: string;
   type: "Redshift";
 }
-export type RefreshConfigInputRepresentation = Schemas["RefreshConfigInputRepresentation"];
+/** @override Spec types `frequency` as an array, but the wire expects a single DataStreamFrequencyInputRepresentation object. */
+export type RefreshConfigInputRepresentation = {
+  additionalAttributes?: { [key: string]: string };
+  frequency?: DataStreamFrequencyInputRepresentation;
+  isAccelerationEnabled?: boolean;
+  refreshMode?: "TOTAL_REPLACE" | "UPSERT" | "INCREMENTAL" | "REPLACE" | "NEAR_REAL_TIME_INCREMENTAL" | "PARTIAL_UPDATE";
+}
 export type RefreshConfigRepresentation = Schemas["RefreshConfigRepresentation"];
-export type RelationshipFieldRepresentation = Schemas["RelationshipFieldRepresentation"];
+/** @override Spec copied the Java constant names for `type`; the wire serializes the Mkt-prefixed display names. Output-only. */
+export type RelationshipFieldRepresentation = {
+  label?: string;
+  name?: string;
+  type?: "MktDataModelField" | "MktCalculatedInsightField" | "SObjectField";
+}
 export type RelationshipObjectRepresentation = Schemas["RelationshipObjectRepresentation"];
 export type ResourceFilterByPropertyInputRepresentation = Schemas["ResourceFilterByPropertyInputRepresentation"];
 export type ResourceFiltersInputRepresentation = Schemas["ResourceFiltersInputRepresentation"];
 export type RouteDetailsInputRepresentation = Schemas["RouteDetailsInputRepresentation"];
 export type RouteDetailsRepresentation = Schemas["RouteDetailsRepresentation"];
-export type RunHistoryOutputProgressRepresentation = Schemas["RunHistoryOutputProgressRepresentation"];
+/** @override Spec enums use Java constant-name casing; the wire emits the JSON values. status is SCREAMING_SNAKE; dataObjectType is camelCase and includes calculatedInsightObject (omitted by the spec). */
+export type RunHistoryOutputProgressRepresentation = {
+  completedDate?: string;
+  dataObjectName?: string;
+  dataObjectType?: "dataLakeObject" | "dataModelObject" | "calculatedInsightObject";
+  name?: string;
+  status?: "PENDING" | "RUNNING" | "SUCCESS" | "ERROR";
+  totalRows?: number;
+}
 export type SalesforceMarketingCloudConnectorDetailsConfig = {
   eid?: string;
   mid?: string;
@@ -3157,7 +3314,14 @@ export type TransformConfigInputRepresentation = Schemas["TransformConfigInputRe
 export type TransformConfigurationRepresentation = Schemas["TransformConfigurationRepresentation"];
 export type TransformFileLevelConfiguration = Schemas["TransformFileLevelConfiguration"];
 export type TransformFileLevelConfigurationInputRepresentation = Schemas["TransformFileLevelConfigurationInputRepresentation"];
-export type TransformValidationIssueRepresentation = Schemas["TransformValidationIssueRepresentation"];
+/** @override Spec enums use Java constant-name casing; the wire emits the JSON values. errorSeverity is SCREAMING_SNAKE; errorCode is a SCREAMING_SNAKE set that may grow over time on this response-only field. */
+export type TransformValidationIssueRepresentation = {
+  definitionName?: string;
+  errorCode?: "INVALID_INPUT_PAYLOAD" | "TYPE_VALIDATION_ERROR" | "NAME_VALIDATION_ERROR" | "INVALID_DATA_TRANSFORM_DEFINITION" | "DMO_OUTPUT_VALIDATION_ERROR" | "TAGS_VALIDATION_ERROR" | "DLO_NAME_DOES_NOT_EXIST" | "SQL_EXPRESSION_IS_NULL" | "STREAMING_TRANSFORM_CREATE_FORBIDDEN" | "TARGET_OBJECT_NAME_NULL" | "TARGET_DLO_NOT_FOUND" | "TARGET_DMO_NOT_FOUND" | "DATA_TRANSFORM_LIMIT_EXCEEDED" | "INVALID_DATA_TRANSFORM_REQUEST" | "TARGET_DLO_IS_REBUILDING" | "SOURCE_DLO_NOT_FOUND" | "INVALID_DATA_TRANSFORM_TAG" | "INVALID_DATA_TRANSFORM_CAPABILITY" | "INVALID_DATA_TRANSFORM" | "INVALID_DATA_TRANSFORM_DATA_OBJECTS" | "INVALID_DATA_TRANSFORM_DEF_MAPPING" | "RESTRICTED_DLO" | "INVALID_TARGET_DLO" | "INVALID_TARGET_DMO" | "INTERNAL_SERVICE_ERROR";
+  errorMessage?: string;
+  errorSeverity?: "WARNING" | "ERROR" | "FATAL";
+  type?: "Definition" | "Transform";
+}
 export type TypeAndFilterInputRepresentation = Schemas["TypeAndFilterInputRepresentation"];
 export type TypeAndFilterInputRepresentationConfig = Schemas["TypeAndFilterInputRepresentationConfig"];
 export type TypeAndFilterRepresentation = {
