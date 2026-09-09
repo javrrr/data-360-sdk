@@ -30,6 +30,17 @@ import type {
   MlPredictionJobDefBaseInputRepresentation,
   MlPredictionJobDefBaseRepresentation,
   MlPredictionJobDefCollectionRepresentation,
+  MlRetrieverCollectionRepresentation,
+  MlRetrieverConfigurationBaseInputRepresentation,
+  MlRetrieverConfigurationCollectionRepresentation,
+  MlRetrieverConfigurationDetailRepresentation,
+  MlRetrieverConfigurationRepresentation,
+  MlRetrieverConfigurationUpdateInputRepresentation,
+  MlRetrieverInputRepresentation,
+  MlRetrieverRepresentation,
+  MlRetrieverReviewInputRepresentation,
+  MlRetrieverReviewRepresentation,
+  MlRetrieverUpdateInputRepresentation,
   MlSetupBaseUpdateInputRepresentation,
 } from "../../schemas.js";
 
@@ -86,6 +97,28 @@ export interface MachineLearningListModelSetupsSetupVersionsParams {
 export interface MachineLearningListPredictionJobDefinitionsParams {
   /** ID of the machine learning model. */
   modelId?: string;
+  [key: string]: string | number | boolean | undefined;
+}
+
+export interface MachineLearningListRetrieversParams {
+  /** Filter retrievers by visibility across organizations in Data Cloud One. */
+  dataCloudOneVisibility?: string;
+  /** Response detail level. If unspecified, the default value is `Detailed`. */
+  detailLevel?: string;
+  /** Indicates whether to return only active retrievers (`true`) or not (`false`). */
+  isActive?: boolean;
+  /** Indicates whether to return only default retrievers (`true`) or not (`false`). */
+  isDefault?: boolean;
+  /** Filter by query type. */
+  queryType?: string;
+  /** Search keyword to match against label or API name. */
+  search?: string;
+  /** Field to sort results by. If unspecified, items are returned in `CreatedDate DESC` order. */
+  sortBy?: string;
+  /** Sort order. If unspecified, the default value is `Ascending`. */
+  sortOrder?: string;
+  /** Filter by source data model object (DMO) ID or API name. */
+  sourceDmo?: string;
   [key: string]: string | number | boolean | undefined;
 }
 
@@ -240,6 +273,68 @@ export class MachineLearningServiceBase extends BaseResource {
     return this.httpClient.patch(`${this.basePath}/prediction-job-definitions/${encodeURIComponent(predictionJobDefIdOrName)}`, body, options);
   }
 
+  /** GET /ssot/machine-learning/retrievers — Get retrievers */
+  async listRetrievers(params?: PaginationParams & MachineLearningListRetrieversParams, options?: RequestOptions): Promise<MlRetrieverCollectionRepresentation> {
+    const { batchSize, offset, orderBy, ...query } = params ?? {};
+    return this.httpClient.get(`${this.basePath}/retrievers`, {
+      ...options,
+      query: { ...this.paginationQuery({ batchSize, offset, orderBy, pageSizeParam: "limit" }), ...query },
+    });
+  }
+
+  /** POST /ssot/machine-learning/retrievers — Create retriever */
+  async createRetrievers(body: MlRetrieverInputRepresentation, options?: RequestOptions): Promise<MlRetrieverRepresentation> {
+    return this.httpClient.post(`${this.basePath}/retrievers`, body, options);
+  }
+
+  /** DELETE /ssot/machine-learning/retrievers/{retrieverIdOrName} — Delete retriever */
+  async deleteRetrievers(retrieverIdOrName: string, options?: RequestOptions): Promise<void> {
+    return this.httpClient.delete(`${this.basePath}/retrievers/${encodeURIComponent(retrieverIdOrName)}`, options);
+  }
+
+  /** GET /ssot/machine-learning/retrievers/{retrieverIdOrName} — Get retriever */
+  async getRetrievers(retrieverIdOrName: string, options?: RequestOptions): Promise<MlRetrieverRepresentation> {
+    return this.httpClient.get(`${this.basePath}/retrievers/${encodeURIComponent(retrieverIdOrName)}`, options);
+  }
+
+  /** PATCH /ssot/machine-learning/retrievers/{retrieverIdOrName} — Update retriever */
+  async patchRetrievers(retrieverIdOrName: string, body: MlRetrieverUpdateInputRepresentation, options?: RequestOptions): Promise<MlRetrieverRepresentation> {
+    return this.httpClient.patch(`${this.basePath}/retrievers/${encodeURIComponent(retrieverIdOrName)}`, body, options);
+  }
+
+  /** GET /ssot/machine-learning/retrievers/{retrieverIdOrName}/configurations — Get retriever configurations */
+  async listRetrieversConfigurations(retrieverIdOrName: string, params?: PaginationParams, options?: RequestOptions): Promise<MlRetrieverConfigurationCollectionRepresentation> {
+    return this.httpClient.get(`${this.basePath}/retrievers/${encodeURIComponent(retrieverIdOrName)}/configurations`, {
+      ...options,
+      query: this.paginationQuery({ ...params, pageSizeParam: "limit" }),
+    });
+  }
+
+  /** POST /ssot/machine-learning/retrievers/{retrieverIdOrName}/configurations — Create retriever configuration */
+  async createRetrieversConfigurations(retrieverIdOrName: string, body: MlRetrieverConfigurationBaseInputRepresentation, options?: RequestOptions): Promise<MlRetrieverConfigurationDetailRepresentation> {
+    return this.httpClient.post(`${this.basePath}/retrievers/${encodeURIComponent(retrieverIdOrName)}/configurations`, body, options);
+  }
+
+  /** DELETE /ssot/machine-learning/retrievers/{retrieverIdOrName}/configurations/{retrieverConfigurationIdOrName} — Delete retriever configuration */
+  async deleteRetrieversConfigurations(retrieverConfigurationIdOrName: string, retrieverIdOrName: string, options?: RequestOptions): Promise<void> {
+    return this.httpClient.delete(`${this.basePath}/retrievers/${encodeURIComponent(retrieverIdOrName)}/configurations/${encodeURIComponent(retrieverConfigurationIdOrName)}`, options);
+  }
+
+  /** GET /ssot/machine-learning/retrievers/{retrieverIdOrName}/configurations/{retrieverConfigurationIdOrName} — Get retriever configuration */
+  async getRetrieversConfigurations(retrieverConfigurationIdOrName: string, retrieverIdOrName: string, options?: RequestOptions): Promise<MlRetrieverConfigurationDetailRepresentation> {
+    return this.httpClient.get(`${this.basePath}/retrievers/${encodeURIComponent(retrieverIdOrName)}/configurations/${encodeURIComponent(retrieverConfigurationIdOrName)}`, options);
+  }
+
+  /** PATCH /ssot/machine-learning/retrievers/{retrieverIdOrName}/configurations/{retrieverConfigurationIdOrName} — Update retriever configuration */
+  async patchRetrieversConfigurations(retrieverConfigurationIdOrName: string, retrieverIdOrName: string, body: MlRetrieverConfigurationUpdateInputRepresentation, options?: RequestOptions): Promise<MlRetrieverConfigurationDetailRepresentation> {
+    return this.httpClient.patch(`${this.basePath}/retrievers/${encodeURIComponent(retrieverIdOrName)}/configurations/${encodeURIComponent(retrieverConfigurationIdOrName)}`, body, options);
+  }
+
+  /** POST /ssot/machine-learning/retrievers/actions/review — Review retriever */
+  async review(body: MlRetrieverReviewInputRepresentation, options?: RequestOptions): Promise<MlRetrieverReviewRepresentation> {
+    return this.httpClient.post(`${this.basePath}/retrievers/actions/review`, body, options);
+  }
+
   /** Async generator yielding all items from listConfiguredModels */
   async *listAllConfiguredModels(params?: PaginationParams & MachineLearningListConfiguredModelsParams, options?: RequestOptions): AsyncGenerator<MlConfiguredModelRepresentation, void, undefined> {
     const { batchSize, offset, orderBy, ...query } = params ?? {};
@@ -278,5 +373,16 @@ export class MachineLearningServiceBase extends BaseResource {
   async *listAllPredictionJobDefinitions(params?: PaginationParams & MachineLearningListPredictionJobDefinitionsParams, options?: RequestOptions): AsyncGenerator<MlPredictionJobDefBaseRepresentation, void, undefined> {
     const { batchSize, offset, orderBy, ...query } = params ?? {};
     yield* this.paginate<MlPredictionJobDefBaseRepresentation>(`${this.basePath}/prediction-job-definitions`, { batchSize, offset, orderBy, pageSizeParam: "batchSize", query }, options);
+  }
+
+  /** Async generator yielding all items from listRetrievers */
+  async *listAllRetrievers(params?: PaginationParams & MachineLearningListRetrieversParams, options?: RequestOptions): AsyncGenerator<MlRetrieverRepresentation, void, undefined> {
+    const { batchSize, offset, orderBy, ...query } = params ?? {};
+    yield* this.paginate<MlRetrieverRepresentation>(`${this.basePath}/retrievers`, { batchSize, offset, orderBy, pageSizeParam: "limit", query }, options);
+  }
+
+  /** Async generator yielding all items from listRetrieversConfigurations */
+  async *listAllRetrieversConfigurations(retrieverIdOrName: string, params?: PaginationParams, options?: RequestOptions): AsyncGenerator<MlRetrieverConfigurationRepresentation, void, undefined> {
+    yield* this.paginate<MlRetrieverConfigurationRepresentation>(`${this.basePath}/retrievers/${encodeURIComponent(retrieverIdOrName)}/configurations`, { ...params, pageSizeParam: "limit" }, options);
   }
 }

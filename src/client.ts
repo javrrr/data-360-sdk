@@ -1,17 +1,22 @@
 import type { ClientConfig } from "./core/types.js";
 import { HttpClient } from "./core/http-client.js";
+import { ActivationExternalPlatformsService } from "./resources/activation-external-platforms.js";
+import { ActivationPlatformsService } from "./resources/activation-platforms.js";
 import { ActivationTargetsService } from "./resources/activation-targets.js";
 import { ActivationsService } from "./resources/activations.js";
+import { AgentConfigurationService } from "./resources/agent-configuration.js";
 import { CalculatedInsightsService } from "./resources/calculated-insights.js";
 import { ConnectionsService } from "./resources/connections.js";
 import { ConnectorsService } from "./resources/connectors.js";
 import { DataActionTargetsService } from "./resources/data-action-targets.js";
 import { DataActionsService } from "./resources/data-actions.js";
 import { CleanRoomsService } from "./resources/clean-rooms.js";
+import { DataGovernanceService } from "./resources/data-governance.js";
 import { DataGraphsService } from "./resources/data-graphs.js";
 import { DataKitsService } from "./resources/data-kits.js";
 import { DataLakeObjectsService } from "./resources/data-lake-objects.js";
 import { DataModelObjectsService } from "./resources/data-model-objects.js";
+import { DataSharesService } from "./resources/data-shares.js";
 import { DataSpacesService } from "./resources/data-spaces.js";
 import { DataStreamsService } from "./resources/data-streams.js";
 import { DataTransformsService } from "./resources/data-transforms.js";
@@ -20,6 +25,7 @@ import { IdentityResolutionsService } from "./resources/identity-resolutions.js"
 import { InsightsService } from "./resources/insights.js";
 import { MachineLearningService } from "./resources/machine-learning.js";
 import { MetadataService } from "./resources/metadata.js";
+import { NotebookAiService } from "./resources/notebook-ai.js";
 import { PrivateNetworkRoutesService } from "./resources/private-network-routes.js";
 import { ProfileService } from "./resources/profile.js";
 import { QueryV1V2Service } from "./resources/query-v1v2.js";
@@ -29,18 +35,23 @@ import { SegmentsService } from "./resources/segments.js";
 import { UniversalIdLookupService } from "./resources/universal-id-lookup.js";
 
 export class Data360Client {
+  public readonly activationExternalPlatforms: ActivationExternalPlatformsService;
+  public readonly activationPlatforms: ActivationPlatformsService;
   public readonly activationTargets: ActivationTargetsService;
   public readonly activations: ActivationsService;
+  public readonly agentConfiguration: AgentConfigurationService;
   public readonly calculatedInsights: CalculatedInsightsService;
   public readonly connections: ConnectionsService;
   public readonly connectors: ConnectorsService;
   public readonly dataActionTargets: DataActionTargetsService;
   public readonly dataActions: DataActionsService;
   public readonly cleanRooms: CleanRoomsService;
+  public readonly dataGovernance: DataGovernanceService;
   public readonly dataGraphs: DataGraphsService;
   public readonly dataKits: DataKitsService;
   public readonly dataLakeObjects: DataLakeObjectsService;
   public readonly dataModelObjects: DataModelObjectsService;
+  public readonly dataShares: DataSharesService;
   public readonly dataSpaces: DataSpacesService;
   public readonly dataStreams: DataStreamsService;
   public readonly dataTransforms: DataTransformsService;
@@ -49,6 +60,7 @@ export class Data360Client {
   public readonly insights: InsightsService;
   public readonly machineLearning: MachineLearningService;
   public readonly metadata: MetadataService;
+  public readonly notebookAi: NotebookAiService;
   public readonly privateNetworkRoutes: PrivateNetworkRoutesService;
   public readonly profile: ProfileService;
   public readonly queryV1V2: QueryV1V2Service;
@@ -60,18 +72,23 @@ export class Data360Client {
   constructor(config: ClientConfig) {
     const httpClient = new HttpClient(config);
 
+    this.activationExternalPlatforms = new ActivationExternalPlatformsService(httpClient);
+    this.activationPlatforms = new ActivationPlatformsService(httpClient);
     this.activationTargets = new ActivationTargetsService(httpClient);
     this.activations = new ActivationsService(httpClient);
+    this.agentConfiguration = new AgentConfigurationService(httpClient);
     this.calculatedInsights = new CalculatedInsightsService(httpClient);
     this.connections = new ConnectionsService(httpClient);
     this.connectors = new ConnectorsService(httpClient);
     this.dataActionTargets = new DataActionTargetsService(httpClient);
     this.dataActions = new DataActionsService(httpClient);
     this.cleanRooms = new CleanRoomsService(httpClient);
+    this.dataGovernance = new DataGovernanceService(httpClient);
     this.dataGraphs = new DataGraphsService(httpClient);
     this.dataKits = new DataKitsService(httpClient);
     this.dataLakeObjects = new DataLakeObjectsService(httpClient);
     this.dataModelObjects = new DataModelObjectsService(httpClient);
+    this.dataShares = new DataSharesService(httpClient);
     this.dataSpaces = new DataSpacesService(httpClient);
     this.dataStreams = new DataStreamsService(httpClient);
     this.dataTransforms = new DataTransformsService(httpClient);
@@ -80,6 +97,7 @@ export class Data360Client {
     this.insights = new InsightsService(httpClient);
     this.machineLearning = new MachineLearningService(httpClient);
     this.metadata = new MetadataService(httpClient);
+    this.notebookAi = new NotebookAiService(httpClient);
     this.privateNetworkRoutes = new PrivateNetworkRoutesService(httpClient);
     this.profile = new ProfileService(httpClient);
     this.queryV1V2 = new QueryV1V2Service(httpClient);

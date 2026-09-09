@@ -12,9 +12,9 @@ import type {
   DataTransformCollectionRepresentation,
   DataTransformInputRepresentation,
   DataTransformRepresentation,
-  DataTransformRunHistoryBaseRepresentation,
   DataTransformRunHistoryCollectionRepresentation,
   DataTransformValidationRepresentation,
+  RebuildActionInputRepresentation,
 } from "../../schemas.js";
 
 // ── Query parameter interfaces ──
@@ -40,6 +40,12 @@ export interface DataTransformsGetParams {
 export interface DataTransformsPutParams {
   /** Group on which to filter response results. Valid values are `Big`, `Medium`, and `Small`. */
   filterGroup?: string;
+  [key: string]: string | number | boolean | undefined;
+}
+
+export interface DataTransformsRebuildParams {
+  /** ID of the user requesting the rebuild. */
+  requestedBy?: string;
   [key: string]: string | number | boolean | undefined;
 }
 
@@ -87,6 +93,11 @@ export class DataTransformsServiceBase extends BaseResource {
     return this.httpClient.post(`${this.basePath}/${encodeURIComponent(dataTransformNameOrId)}/actions/cancel`, undefined, options);
   }
 
+  /** POST /ssot/data-transforms/{dataTransformNameOrId}/actions/rebuild — Rebuild data transform */
+  async rebuild(dataTransformNameOrId: string, body: RebuildActionInputRepresentation, params?: DataTransformsRebuildParams, options?: RequestOptions): Promise<CdpDataTransformActionResponseRepresentation> {
+    return this.httpClient.post(`${this.basePath}/${encodeURIComponent(dataTransformNameOrId)}/actions/rebuild`, body, { ...options, query: params });
+  }
+
   /** POST /ssot/data-transforms/{dataTransformNameOrId}/actions/refresh-status — Refresh data transform status */
   async refreshStatus(dataTransformNameOrId: string, options?: RequestOptions): Promise<CdpDataTransformActionResponseRepresentation> {
     return this.httpClient.post(`${this.basePath}/${encodeURIComponent(dataTransformNameOrId)}/actions/refresh-status`, undefined, options);
@@ -124,10 +135,5 @@ export class DataTransformsServiceBase extends BaseResource {
   async *listAll(params?: PaginationParams & DataTransformsListParams, options?: RequestOptions): AsyncGenerator<DataTransformRepresentation, void, undefined> {
     const { batchSize, offset, orderBy, ...query } = params ?? {};
     yield* this.paginate<DataTransformRepresentation>(this.basePath, { batchSize, offset, orderBy, pageSizeParam: "limit", query }, options);
-  }
-
-  /** Async generator yielding all items from listRunHistory */
-  async *listAllRunHistory(dataTransformNameOrId: string, params?: PaginationParams, options?: RequestOptions): AsyncGenerator<DataTransformRunHistoryBaseRepresentation, void, undefined> {
-    yield* this.paginate<DataTransformRunHistoryBaseRepresentation>(`${this.basePath}/${encodeURIComponent(dataTransformNameOrId)}/run-history`, { ...params, pageSizeParam: "limit" }, options);
   }
 }

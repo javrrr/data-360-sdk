@@ -49,18 +49,23 @@ export type * from "./schemas.js";
 export type * from "./generated/services/index.js";
 
 // Resource services (for advanced usage / extension)
+export { ActivationExternalPlatformsService } from "./resources/activation-external-platforms.js";
+export { ActivationPlatformsService } from "./resources/activation-platforms.js";
 export { ActivationTargetsService } from "./resources/activation-targets.js";
 export { ActivationsService } from "./resources/activations.js";
+export { AgentConfigurationService } from "./resources/agent-configuration.js";
 export { CalculatedInsightsService } from "./resources/calculated-insights.js";
 export { ConnectionsService } from "./resources/connections.js";
 export { ConnectorsService } from "./resources/connectors.js";
 export { DataActionTargetsService } from "./resources/data-action-targets.js";
 export { DataActionsService } from "./resources/data-actions.js";
 export { CleanRoomsService } from "./resources/clean-rooms.js";
+export { DataGovernanceService } from "./resources/data-governance.js";
 export { DataGraphsService } from "./resources/data-graphs.js";
 export { DataKitsService } from "./resources/data-kits.js";
 export { DataLakeObjectsService } from "./resources/data-lake-objects.js";
 export { DataModelObjectsService } from "./resources/data-model-objects.js";
+export { DataSharesService } from "./resources/data-shares.js";
 export { DataSpacesService } from "./resources/data-spaces.js";
 export { DataStreamsService } from "./resources/data-streams.js";
 export type { DataStreamCreateInput } from "./resources/data-streams.js";
@@ -70,6 +75,7 @@ export { IdentityResolutionsService } from "./resources/identity-resolutions.js"
 export { InsightsService } from "./resources/insights.js";
 export { MachineLearningService } from "./resources/machine-learning.js";
 export { MetadataService } from "./resources/metadata.js";
+export { NotebookAiService } from "./resources/notebook-ai.js";
 export { PrivateNetworkRoutesService } from "./resources/private-network-routes.js";
 export { ProfileService } from "./resources/profile.js";
 export { QueryV1V2Service } from "./resources/query-v1v2.js";

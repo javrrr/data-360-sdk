@@ -15,7 +15,7 @@ import type {
 export interface InsightsGetCalculatedInsightsParams {
   /** Comma-separated list of up to 10 dimensions, such as `GenderId__c`, to project. If unspecified, this parameter includes all of the available dimensions. */
   dimensions?: string;
-  /** Filter the result set to a more narrow scope or specific type, such as `[GenderId__c=Male,​FirstName__c=Angel]`. */
+  /** Filter the result set to a more narrow scope or specific type, such as `[GenderId__c=Male,\u200BFirstName__c=Angel]`. */
   filters?: string;
   /** Comma-separated list of up to five measures, such as `TotalSales__c,` to project. If unspecified, this parameter includes all of the available measures. */
   measures?: string;

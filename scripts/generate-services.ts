@@ -90,6 +90,20 @@ interface ServiceConfig {
   generateListAll?: boolean;
   /** Method name overrides: key is the auto-derived name, value is the desired name */
   methodNames?: Record<string, string>;
+  /**
+   * Qualify action method names with the preceding resource segment.
+   *
+   * By default `/{resource}/actions/{verb}` derives to just `{verb}` (e.g.
+   * `bulkCreate`). For services that expose the same action verb across many
+   * sibling sub-resources (e.g. Data Governance has `bulk-create` under
+   * classifications, tags, taxonomies, …), the bare verb collides. Enabling
+   * this appends the resource segment so each is unique and self-describing,
+   * e.g. `bulkCreateClassifications`, `bulkCreateTags`.
+   *
+   * Only affects actions that have a literal resource segment before `actions`
+   * (`/{id}/actions/{verb}` and base-level `/actions/{verb}` are unchanged).
+   */
+  qualifyActionsWithResource?: boolean;
 }
 
 /**
@@ -164,6 +178,13 @@ const SERVICE_CONFIG: Record<string, ServiceConfig> = {
   Connectors: {
     // Include the connectors paths that the spec tags under Connections
     additionalPaths: ["/ssot/connectors", "/ssot/connectors/{connectorType}"],
+  },
+  "Data Governance": {
+    // Many sibling sub-resources (classifications, tags, taxonomies, …) expose
+    // the same bulk action verbs (bulk-create/bulk-delete/bulk-update), which
+    // collide to a single `bulkCreate`/etc. Qualify with the resource segment
+    // so each action method is unique and self-describing.
+    qualifyActionsWithResource: true,
   },
 };
 
@@ -331,6 +352,7 @@ function deriveMethodName(
   op: ParsedOperation,
   basePath: string,
   isCollectionResponse: boolean,
+  qualifyActionsWithResource = false,
 ): { name: string; isListEndpoint: boolean } {
   // When the path shares the basePath, strip it. Otherwise strip only the
   // longest common prefix so method names stay short (e.g. "-mappings" instead
@@ -388,6 +410,12 @@ function deriveMethodName(
   const actionsIdx = literalParts.findIndex((p) => p.value === "actions");
   if (actionsIdx !== -1 && actionsIdx < literalParts.length - 1) {
     const actionName = literalParts[actionsIdx + 1].value;
+    // Optionally qualify with the resource segment before `actions` so the same
+    // verb on sibling resources doesn't collide (e.g. bulkCreateClassifications).
+    if (qualifyActionsWithResource && actionsIdx > 0) {
+      const resourceSeg = literalParts[actionsIdx - 1].value;
+      return { name: `${kebabToCamel(actionName)}${toPascal(resourceSeg)}`, isListEndpoint: false };
+    }
     return { name: kebabToCamel(actionName), isListEndpoint: false };
   }
 
@@ -636,7 +664,7 @@ function generateService(
     if (config?.excludePaths?.includes(op.path)) continue;
 
     const isCollection = isCollectionSchema(op.responseRef);
-    const derived = deriveMethodName(op, basePath, isCollection);
+    const derived = deriveMethodName(op, basePath, isCollection, config?.qualifyActionsWithResource);
     let methodName = derived.name;
 
     // Apply method name overrides
@@ -649,13 +677,20 @@ function generateService(
 
     // Handle collisions
     if (seenMethodNames.has(methodName)) {
-      // Try adding "ById" or method prefix
-      const alt = `${methodName}By${toPascal(op.method)}`;
-      if (!seenMethodNames.has(alt)) {
-        methodName = alt;
-      } else {
-        methodName = `${op.method}${toPascal(methodName)}`;
+      // Try "<name>By<Method>", then "<method><Name>", then a numeric suffix.
+      // The final loop guarantees a globally unique name so we never silently
+      // emit two methods with the same signature (a hard TS compile error).
+      const candidates = [
+        `${methodName}By${toPascal(op.method)}`,
+        `${op.method}${toPascal(methodName)}`,
+      ];
+      let resolved = candidates.find((c) => !seenMethodNames.has(c));
+      if (!resolved) {
+        let n = 2;
+        while (seenMethodNames.has(`${methodName}${n}`)) n++;
+        resolved = `${methodName}${n}`;
       }
+      methodName = resolved;
     }
     seenMethodNames.add(methodName);
 
