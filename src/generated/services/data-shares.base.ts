@@ -73,15 +73,15 @@ export class DataSharesServiceBase extends BaseResource {
   }
 
   /** GET /ssot/data-shares — Get data shares */
-  async listS(params?: PaginationParams, options?: RequestOptions): Promise<DataShareCollectionRepresentation> {
+  async listDataShares(params?: PaginationParams, options?: RequestOptions): Promise<DataShareCollectionRepresentation> {
     return this.httpClient.get(`${this.basePath}s`, {
       ...options,
       query: this.paginationQuery({ ...params, pageSizeParam: "limit" }),
     });
   }
 
-  /** Async generator yielding all items from listS */
-  async *listAllS(params?: PaginationParams, options?: RequestOptions): AsyncGenerator<DataShareRepresentation, void, undefined> {
+  /** Async generator yielding all items from listDataShares */
+  async *listAllDataShares(params?: PaginationParams, options?: RequestOptions): AsyncGenerator<DataShareRepresentation, void, undefined> {
     yield* this.paginate<DataShareRepresentation>(`${this.basePath}s`, { ...params, pageSizeParam: "limit" }, options);
   }
 }

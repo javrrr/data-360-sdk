@@ -145,6 +145,13 @@ const SERVICE_CONFIG: Record<string, ServiceConfig> = {
     className: "QueryV1V2ServiceBase",
     fileName: "query-v1v2",
     clientPropertyName: "queryV1V2",
+    methodNames: {
+      // `/ssot/queryv2` is a distinct segment from basePath `/ssot/query`, so
+      // the boundary-aware namer derives `createQueryv2`/`getQueryv2`. Keep the
+      // established public names (also relied on by the resource wrapper).
+      createQueryv2: "createV2",
+      getQueryv2: "getV2",
+    },
   },
   "Universal ID Lookup": {
     className: "UniversalIdLookupServiceBase",
@@ -357,8 +364,13 @@ function deriveMethodName(
   // When the path shares the basePath, strip it. Otherwise strip only the
   // longest common prefix so method names stay short (e.g. "-mappings" instead
   // of "data-model-object-mappings").
+  //
+  // The basePath must match at a segment boundary: a sibling like
+  // `/ssot/data-shares` is NOT under basePath `/ssot/data-share` even though it
+  // shares the character prefix. Without this check the plural segment would be
+  // mangled to a bare `s` suffix, producing method names like `listS`.
   let suffix: string;
-  if (op.path.startsWith(basePath)) {
+  if (op.path === basePath || op.path.startsWith(`${basePath}/`)) {
     suffix = op.path.slice(basePath.length);
   } else {
     let lcpLen = longestCommonPrefixLength(basePath, op.path);
