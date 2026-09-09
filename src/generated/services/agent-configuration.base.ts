@@ -13,7 +13,7 @@ import type {
 
 // ── Query parameter interfaces ──
 
-export interface AgentConfigurationListSParams {
+export interface AgentConfigurationListAgentsParams {
   /** Field names by which to filter results. Specify a comma-separated list of values of the form `[field=value]`. */
   filters?: string;
   [key: string]: string | number | boolean | undefined;
@@ -40,7 +40,7 @@ export class AgentConfigurationServiceBase extends BaseResource {
   }
 
   /** GET /ssot/agentic/agents — Get agents */
-  async listS(params?: PaginationParams & AgentConfigurationListSParams, options?: RequestOptions): Promise<AgentCollectionRepresentation> {
+  async listAgents(params?: PaginationParams & AgentConfigurationListAgentsParams, options?: RequestOptions): Promise<AgentCollectionRepresentation> {
     const { batchSize, offset, orderBy, ...query } = params ?? {};
     return this.httpClient.get(`${this.basePath}s`, {
       ...options,
@@ -48,8 +48,8 @@ export class AgentConfigurationServiceBase extends BaseResource {
     });
   }
 
-  /** Async generator yielding all items from listS */
-  async *listAllS(params?: PaginationParams & AgentConfigurationListSParams, options?: RequestOptions): AsyncGenerator<AgentRepresentation, void, undefined> {
+  /** Async generator yielding all items from listAgents */
+  async *listAllAgents(params?: PaginationParams & AgentConfigurationListAgentsParams, options?: RequestOptions): AsyncGenerator<AgentRepresentation, void, undefined> {
     const { batchSize, offset, orderBy, ...query } = params ?? {};
     yield* this.paginate<AgentRepresentation>(`${this.basePath}s`, { batchSize, offset, orderBy, pageSizeParam: "limit", query }, options);
   }

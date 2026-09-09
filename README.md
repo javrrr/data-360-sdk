@@ -1,11 +1,11 @@
 # data-360-sdk
 
-TypeScript SDK for the Salesforce Data 360 Connect REST API. Provides type-safe, idiomatic access to all 27 API resource categories with full coverage of 250+ endpoints.
+TypeScript SDK for the Salesforce Data 360 Connect REST API. Provides type-safe, idiomatic access to all 33 API resource categories with full coverage of 420+ endpoints.
 
 ## Features
 
-- **Full API coverage** — 27 service namespaces, 250+ methods, generated from the OpenAPI spec
-- **Type-safe** — Auto-generated types and services from the OpenAPI 3.0.0 spec (850+ schemas + 280 enums + discriminated input unions + typed query parameters)
+- **Full API coverage** — 33 service namespaces, 480+ methods, generated from the OpenAPI spec
+- **Type-safe** — Auto-generated types and services from the OpenAPI 3.0.0 spec (1,170+ schemas + 380 enums + discriminated input unions + typed query parameters)
 - **Zero HTTP dependencies** — Uses native `fetch` (Node.js 18+, browsers, React Native)
 - **Dual format** — ESM + CJS output, tree-shakeable with `sideEffects: false`
 - **Retry & backoff** — Exponential backoff with jitter, Retry-After header support
@@ -24,7 +24,7 @@ npm install data-360-sdk
 import { Data360Client } from "data-360-sdk";
 
 const client = new Data360Client({
-  instanceUrl: "https://your-instance.my.salesforce.com/services/data/v66.0",
+  instanceUrl: "https://your-instance.my.salesforce.com/services/data/v68.0",
   auth: {
     type: "static",
     accessToken: "your-access-token",
@@ -113,7 +113,7 @@ const connectionInput: ConnectionCreateInput = {
 
 ```typescript
 const client = new Data360Client({
-  instanceUrl: "https://instance.my.salesforce.com/services/data/v66.0",
+  instanceUrl: "https://instance.my.salesforce.com/services/data/v68.0",
   auth: {
     type: "static",
     accessToken: "your-token",
@@ -125,7 +125,7 @@ const client = new Data360Client({
 
 ```typescript
 const client = new Data360Client({
-  instanceUrl: "https://instance.my.salesforce.com/services/data/v66.0",
+  instanceUrl: "https://instance.my.salesforce.com/services/data/v68.0",
   auth: {
     type: "refresh",
     accessToken: "initial-token",
@@ -155,7 +155,7 @@ const client = new Data360Client({
 
 ```typescript
 const client = new Data360Client({
-  instanceUrl: "https://instance.my.salesforce.com/services/data/v66.0",
+  instanceUrl: "https://instance.my.salesforce.com/services/data/v68.0",
   auth: {
     type: "oauth2",
     clientId: "your-client-id",
@@ -246,30 +246,36 @@ if (queryId) {
 
 ## Available Services
 
-220+ methods across 27 service namespaces. Service classes and typed query parameter interfaces are auto-generated from the [Data 360 Connect API OpenAPI Spec](https://developer.salesforce.com/docs/data/connectapi/references/spec).
+480+ methods across 33 service namespaces. Service classes and typed query parameter interfaces are auto-generated from the [Data 360 Connect API OpenAPI Spec](https://developer.salesforce.com/docs/data/connectapi/references/spec).
 
 | Service | Namespace | Methods |
 |---------|-----------|---------|
-| Activation Targets | `client.activationTargets` | list, listAll, get, create, patch, update, listExternalPlatforms, listAllExternalPlatforms |
-| Activations | `client.activations` | list, listAll, get, getById, create, put, update, delete, listData, getData, listAllData |
+| Activation External Platforms | `client.activationExternalPlatforms` | list, listAll, get |
+| Activation Platforms | `client.activationPlatforms` | list, listAll, get, create, delete, patch, disable, enable, publish, retrySync, setPrivacyType, getMetadataActionSources, getMetadataEvents, getMetadataPartnerObjectTypes |
+| Activation Targets | `client.activationTargets` | list, listAll, get, create, delete, patch, update, disable, enable, retrySync, assignAdAccount, getAvailableAdAccounts, listPartnerObjects, listAllPartnerObjects, listExternalPlatforms, listAllExternalPlatforms, getMetadataActivationPlatforms, getMetadataCommunicationCappingDataSpaces, getMetadataDataspaceAccountValidation, getMetadataMcEnterprises, getMetadataTargetPlatformFields |
+| Activations | `client.activations` | list, listAll, get, getById, create, put, update, delete, publish, disable, enable, fullRefresh, retrySync, listData, listAllData, getData, listHistory, listAllHistory, getMetadataActivatableDataObjectCategories, getMetadataChannelPreferences, getMetadataChannels, getMetadataConsentDataModelObjects, getMetadataDataSources, getMetadataLimitsRelatedAttributeActivationQuota, getMetadataLimitsRelatedAttributeConfigurationLimits, getMetadataMatchBoostIdentityProviders, getMetadataStreamingEligibility |
+| Agent Configuration | `client.agentConfiguration` | listAgents, listAllAgents, get, create, delete |
 | Calculated Insights | `client.calculatedInsights` | list, listAll, get, create, delete, patch, run |
+| Clean Rooms | `client.cleanRooms` | listCollaborations, listAllCollaborations, createCollaborations, acceptInvitation, rejectInvitation, run, disable, refreshMetadata, listCollaborationsJobs, listAllCollaborationsJobs, listCollaborationsResultDataObjects, listAllCollaborationsResultDataObjects, listProviders, listAllProviders, createProviders, getProviders, listProvidersTemplates, listAllProvidersTemplates, listSpecifications, listAllSpecifications, createSpecifications, deleteSpecifications, listTemplates, listAllTemplates, listTemplatesCollaborations, listAllTemplatesCollaborations, createTestConnection |
 | Connections | `client.connections` | list, listAll, get, create, update, patch, put, delete, test, testByPost, postTest, postActions, createActionsById, createDatabaseSchemas, createDatabases, getEndpoints, createObjects, createFields, createPreview, listSchema, putSchema, getSitemap, putSitemap, listAllSchema |
 | Connectors | `client.connectors` | list, listAll, get |
 | Data Action Targets | `client.dataActionTargets` | list, listAll, get, create, delete, getSigningKey, createSigningKey, resetSigningKey |
 | Data Actions | `client.dataActions` | list, listAll, create |
-| Data Clean Room | `client.dataCleanRoom` | listCollaborations, listAllCollaborations, createCollaborations, acceptInvitation, rejectInvitation, run, listCollaborationsJobs, listAllCollaborationsJobs, listProviders, listAllProviders, createProviders, getProviders, listProvidersTemplates, listAllProvidersTemplates, listSpecifications, listAllSpecifications, createSpecifications, listTemplates, listAllTemplates |
+| Data Governance | `client.dataGovernance` | Access policies (list/listAll/get/create/patch/delete + rules), classifications, classification taxonomies, classification assignments, object access grants, tags, tag taxonomies, tag assignments, tag suggestions (approve/generate/reject), auto-tagging jobs, and detection instructions — each resource exposes list/listAll/get/create/patch/delete plus bulkCreate/bulkDelete/bulkUpdate where the API supports them (~90 methods) |
 | Data Graphs | `client.dataGraphs` | list, listAll, get, create, delete, refresh, getData, getDataByGet, getMetadata |
 | Data Kits | `client.dataKits` | list, create, delete, patch, createByPost, listDependencies, getDeploymentStatus, createUndeploy, listAvailableComponents, getDataKitManifest |
 | Data Lake Objects | `client.dataLakeObjects` | list, listAll, get, create, delete, patch |
 | Data Model Objects | `client.dataModelObjects` | list, listAll, get, create, delete, patch, listRelationships, listAllRelationships, createRelationships, deleteRelationships, listMappings, listAllMappings, getMappings, createMappings, deleteMappings, deleteMappingsFieldMappings, patchMappingsFieldMappings |
+| Data Shares | `client.dataShares` | listDataShares, listAllDataShares, get, create, delete, patch, link, unlink, getTarget, getTargets, createTarget, deleteTarget |
 | Data Spaces | `client.dataSpaces` | list, listAll, get, create, patch, listMembers, listAllMembers, putMembers, getMembers |
 | Data Streams | `client.dataStreams` | list, listAll, get, create, delete, patch, run |
-| Data Transforms | `client.dataTransforms` | list, listAll, get, create, put, delete, run, cancel, retry, refreshStatus, createValidation, listRunHistory, listAllRunHistory, getSchedule, putSchedule |
+| Data Transforms | `client.dataTransforms` | list, listAll, get, create, put, delete, run, cancel, retry, rebuild, refreshStatus, createValidation, listRunHistory, getSchedule, putSchedule |
 | Document AI | `client.documentAi` | extractData, generateSchema, listConfigurations, listAllConfigurations, createConfigurations, deleteConfigurations, getConfigurations, patchConfigurations, run, getGlobalConfig |
 | Identity Resolutions | `client.identityResolutions` | list, listAll, get, create, delete, patch, runNow |
 | Insights | `client.insights` | getMetadata, getMetadataByGet, getCalculatedInsights |
-| Machine Learning | `client.machineLearning` | createAlerts, patchAlerts, listConfiguredModels, listAllConfiguredModels, getConfiguredModels, deleteConfiguredModels, patchConfiguredModels, listModelArtifacts, listAllModelArtifacts, getModelArtifacts, deleteModelArtifacts, patchModelArtifacts, createPredict, listModelSetupsSetupVersions, listAllModelSetupsSetupVersions, createModelSetupsSetupVersions, getModelSetupsSetupVersions, patchModelSetupsSetupVersions, listModelSetupsSetupVersionsByGet, listAllModelSetupsSetupVersionsByGet, getModelSetupsSetupVersionsByGet, listJobs, listAllJobs, getJobs, listJobsTasks, listAllJobsTasks, getJobsTasks, listPredictionJobDefinitions, listAllPredictionJobDefinitions, createPredictionJobDefinitions, getPredictionJobDefinitions, patchPredictionJobDefinitions, deletePredictionJobDefinitions |
+| Machine Learning | `client.machineLearning` | createAlerts, patchAlerts, listConfiguredModels, listAllConfiguredModels, getConfiguredModels, deleteConfiguredModels, patchConfiguredModels, listModelArtifacts, listAllModelArtifacts, getModelArtifacts, deleteModelArtifacts, patchModelArtifacts, createPredict, review, listModelSetupsSetupVersions, listAllModelSetupsSetupVersions, createModelSetupsSetupVersions, getModelSetupsSetupVersions, patchModelSetupsSetupVersions, listModelSetupsSetupVersionsByGet, listAllModelSetupsSetupVersionsByGet, getModelSetupsSetupVersionsByGet, listJobs, listAllJobs, getJobs, listJobsTasks, listAllJobsTasks, getJobsTasks, listPredictionJobDefinitions, listAllPredictionJobDefinitions, createPredictionJobDefinitions, getPredictionJobDefinitions, patchPredictionJobDefinitions, deletePredictionJobDefinitions, listRetrievers, listAllRetrievers, createRetrievers, getRetrievers, patchRetrievers, deleteRetrievers, listRetrieversConfigurations, listAllRetrieversConfigurations, createRetrieversConfigurations, getRetrieversConfigurations, patchRetrieversConfigurations, deleteRetrieversConfigurations |
 | Metadata | `client.metadata` | list, getEntities |
+| Notebook AI | `client.notebookAi` | list, listAll, get, create, delete, patch, getDetails, getConversation, getSessions, createSessions, getSession, deleteSession, getConfig, getConfigByGet, createConfig, deleteConfig, getLibrary, createLibrary, patchLibrary, getLibraryDetails, postLibrarySearch, postLibraryRemoveLibrary, getDeepResearch, patchDeepResearch, createDeepResearchRun, createDeepResearchReport, createDeepResearchCancel, createSpaceDeepResearch, createGetKnowledgeForImport, createImportKnowledge, createIndexFiles, createRemoveFiles, postFilesStatus, createPresignedUrls, createProvision, createSummary |
 | Private Network Routes | `client.privateNetworkRoutes` | list, listAll, get, create, delete |
 | Profile | `client.profile` | get, getByGet, getGet, getCalculatedInsights, getMetadata, getMetadataByGet |
 | Query V1/V2 | `client.queryV1V2` | create, createV2, getV2, executeV1, executeV2, getNextBatch |
@@ -282,7 +288,7 @@ if (queryId) {
 
 ```typescript
 const client = new Data360Client({
-  instanceUrl: "https://instance.my.salesforce.com/services/data/v66.0",
+  instanceUrl: "https://instance.my.salesforce.com/services/data/v68.0",
   auth: { type: "static", accessToken: "token" },
   timeout: 30000,        // Request timeout in ms (default: 30000)
   maxRetries: 3,         // Retries for 429/5xx (default: 3)
@@ -310,7 +316,7 @@ src/
     openapi.yaml          ← Fetched spec (committed for diffing)
     openapi.d.ts          ← Raw types from openapi-typescript
     services/             ← Generated base service classes
-      *.base.ts           ← One per API tag (27 files)
+      *.base.ts           ← One per API tag (33 files)
       index.ts            ← Barrel export
   schemas.ts              ← Named re-exports with overrides, enums, unions
   resources/
