@@ -1,5 +1,1145 @@
 // Auto-generated — DO NOT EDIT
 export type paths = {
+    "/ssot/activation-external-platforms": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get activation external platforms
+         * @description Get a paginated list of activation external platforms.
+         *
+         *     **Available Version:** 64.0
+         */
+        get: {
+            parameters: {
+                query?: {
+                    /**
+                     * @description Number of external platforms to return. Values are from `1` through `20`. If unspecified, the default value is `20`.
+                     *
+                     *     **Available Version:** 64.0
+                     */
+                    batchSize?: number;
+                    /**
+                     * @description Maximum number of external platforms to return. If unspecified, the default value is `20`.
+                     *
+                     *     **Available Version:** 64.0
+                     */
+                    limit?: number;
+                    /**
+                     * @description Number of rows to skip before returning results. Must be greater than or equal to `0`. If unspecified, no rows are skipped.
+                     *
+                     *     **Available Version:** 64.0
+                     */
+                    offset?: number;
+                    /**
+                     * @description Order in which to sort the results based on the `createdDate` field. Specify the field name followed by `asc` for ascending order or `desc` for descending order. If you specify only the field name or omit the parameter, results are sorted in ascending order. For example, `createdDate asc` and `createdDate` yield the same results.
+                     *
+                     *     **Available Version:** 64.0
+                     */
+                    orderBy?: string;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ActivationExternalPlatformCollectionRepresentation"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/activation-external-platforms/{idOrName}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get activation external platform
+         * @description Get a specific activation external platform.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query?: {
+                    /**
+                     * @description Action source used, together with `eventName`, to scope the returned attribute configuration.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    actionSource?: string;
+                    /**
+                     * @description Standard event name used, together with `actionSource`, to scope the returned attribute configuration. For example, the platform's standard event.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    eventName?: string;
+                };
+                header?: never;
+                path: {
+                    /**
+                     * @description Unique identifier of a specific activation external platform, such as the ID or developer name.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    idOrName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ActivationExternalPlatformRepresentation"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/activation-platforms": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get activation platforms
+         * @description Returns a paginated list of activation platforms.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query?: {
+                    /**
+                     * @description Set of platforms to return. If unspecified, the default value is `All`.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    activationPlatformView?: "All" | "Developer" | "Subscriber";
+                    /**
+                     * @description Maximum number of results to return. Values are `1` through `200`. If unspecified, the default value is `20`.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    batchSize?: number;
+                    /**
+                     * @description Number of rows to skip before returning results. If unspecified, no rows are skipped.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    offset?: number;
+                    /**
+                     * @description Sort expression in the form `<fieldName> <ASC|DESC>`.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    orderBy?: string;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ActivationPlatformsCollectionRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        /**
+         * Create activation platform
+         * @description Creates an activation platform.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["ActivationPlatformCreateInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ActivationPlatformRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/activation-platforms/{idOrName}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description Record ID (18-character) or API name of the activation platform.
+                 *
+                 *     **Available Version:** 67.0
+                 */
+                idOrName: string;
+            };
+            cookie?: never;
+        };
+        /**
+         * Get activation platform
+         * @description Returns an activation platform by record ID or API name.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description Record ID (18-character) or API name of the activation platform.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    idOrName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ActivationPlatformRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        /**
+         * Delete activation platform
+         * @description Deletes an activation platform. Returns a 412 error if the platform is referenced by activation targets or market segment activations.
+         *
+         *     **Available Version:** 67.0
+         */
+        delete: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description Record ID (18-character) or API name of the activation platform.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    idOrName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        options?: never;
+        head?: never;
+        /**
+         * Update activation platform
+         * @description Updates an activation platform by record ID or API name. Only the fields you provide are modified.
+         *
+         *     **Available Version:** 67.0
+         */
+        patch: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description Record ID (18-character) or API name of the activation platform.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    idOrName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["ActivationPlatformInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ActivationPlatformRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        trace?: never;
+    };
+    "/ssot/activation-platforms/{idOrName}/actions/disable": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Disable activation platform
+         * @description Disables an activation platform.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description 18-character ID or API name of the activation platform.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    idOrName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ActionResultRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/activation-platforms/{idOrName}/actions/enable": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Enable activation platform
+         * @description Enables an activation platform.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description 18-character ID or API name of the activation platform.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    idOrName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ActionResultRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/activation-platforms/{idOrName}/actions/publish": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Publish activation platform
+         * @description Publishes an activation platform and sets its status to active.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description Record ID (18-character) or API name of the activation platform to publish.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    idOrName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ActionResultRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/activation-platforms/{idOrName}/actions/retry-sync": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Retry activation platform sync
+         * @description Retries the sync operation for an activation platform that previously failed.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description 18-character ID or API name of the activation platform.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    idOrName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                202: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ActionResultRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/activation-platforms/{idOrName}/actions/set-privacy-type": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Set activation platform privacy type
+         * @description Sets the privacy type classification for an activation platform.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description 18-character ID or API name of the activation platform.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    idOrName: string;
+                };
+                cookie?: never;
+            };
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["SetPrivacyTypeInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ActionResultRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/activation-platforms/{idOrName}/metadata/action-sources": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get action sources for an event
+         * @description Returns the action sources valid for the specified event on the activation platform, such as Website, App, or Offline.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query: {
+                    /**
+                     * @description Name of the event whose action sources to return.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    eventName: string;
+                    /**
+                     * @description Maximum number of action sources to return. Values are `1` through `200`. If unspecified, the default value is `20`.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    pageSize?: number;
+                    /**
+                     * @description Number of rows to skip before returning results. If unspecified, no rows are skipped.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    offset?: number;
+                };
+                header?: never;
+                path: {
+                    /**
+                     * @description 15- or 18-character ID or API name of the activation platform.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    idOrName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ActionSourceCollectionRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/activation-platforms/{idOrName}/metadata/events": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get events for an activation platform
+         * @description Returns the standard event names configured for the activation platform's streaming metadata, such as Purchase or AddToCart.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query?: {
+                    /**
+                     * @description Maximum number of events to return. Values are `1` through `200`. If unspecified, the default value is `20`.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    pageSize?: number;
+                    /**
+                     * @description Number of rows to skip before returning results. If unspecified, no rows are skipped.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    offset?: number;
+                };
+                header?: never;
+                path: {
+                    /**
+                     * @description 15- or 18-character ID or API name of the activation platform.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    idOrName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["EventCollectionRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/activation-platforms/{idOrName}/metadata/partner-object-types": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get partner-object types for an activation platform
+         * @description Returns the partner-object types valid for the activation platform, such as Pixel, App, or ConversionRule, each with a display label.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query?: {
+                    /**
+                     * @description Maximum number of partner-object types to return. Values are `1` through `200`. If unspecified, the default value is `20`.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    pageSize?: number;
+                    /**
+                     * @description Number of rows to skip before returning results. If unspecified, no rows are skipped.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    offset?: number;
+                };
+                header?: never;
+                path: {
+                    /**
+                     * @description 15- or 18-character ID or API name of the activation platform.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    idOrName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["PartnerObjectTypeCollectionRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/ssot/activation-targets": {
         parameters: {
             query?: never;
@@ -173,6 +1313,780 @@ export type paths = {
         patch?: never;
         trace?: never;
     };
+    "/ssot/activation-targets/actions/{activationTargetId}/assign-ad-account": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Assign ad account
+         * @description Assigns the specified ad account to the activation target.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description Record ID (15- or 18-character) of the activation target.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    activationTargetId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["AssignAdAccountInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ActionResultRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/activation-targets/actions/{activationTargetId}/disable": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Disable activation target
+         * @description Disables an activation target.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: {
+                    /**
+                     * @description Name of the data space to use as context for the request.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    dataSpace?: string;
+                };
+                header?: never;
+                path: {
+                    /**
+                     * @description Record ID (18-character) of the activation target to disable.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    activationTargetId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ActionResultRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/activation-targets/actions/{activationTargetId}/enable": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Enable activation target
+         * @description Enables an activation target.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: {
+                    /**
+                     * @description Name of the data space to use as context for the request.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    dataSpace?: string;
+                };
+                header?: never;
+                path: {
+                    /**
+                     * @description Record ID (18-character) of the activation target to enable.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    activationTargetId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ActionResultRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/activation-targets/actions/{activationTargetId}/retry-sync": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Retry activation target sync
+         * @description Retries the sync for an activation target.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description Record ID (15- or 18-character) of the activation target.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    activationTargetId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ActionResultRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/activation-targets/metadata/activation-platforms": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get activation platform metadata
+         * @description Returns a paginated list of activation platform metadata, with optional filtering by platform type and name.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query?: {
+                    /**
+                     * @description Maximum number of results to return. Values are `1` through `200`. If unspecified, the default value is `20`.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    batchSize?: number;
+                    /**
+                     * @description Name of the data space to scope the lookup. If unspecified, the request's data space context is used.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    dataSpace?: string;
+                    /**
+                     * @description Filter expression used to narrow results, such as `field eq value AND name contains foo`. Supported operators are `eq`, `!=`, `contains`, `in`, `>`, `<`, `>=`, and `<=`.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    filters?: string;
+                    /**
+                     * @description Filter results by activation platform name. Must be an exact match.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    name?: string;
+                    /**
+                     * @description Number of rows to skip before returning results. If unspecified, no rows are skipped.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    offset?: number;
+                    /**
+                     * @description Sort expression in the form `field [asc|desc][, field [asc|desc]]*`.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    orderBy?: string;
+                    /**
+                     * @description Filter results by platform type, such as `Sfmc`, `Sftp`, `External`, or `Strategic`.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    platformType?: "AzureBlob" | "DataCloud" | "External" | "GoogleCloudStorage" | "InteractionStudio" | "S3" | "S3V2" | "SfApp" | "Sfcc" | "Sfmc" | "Sftp" | "Strategic" | "StreamingFlow";
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ActivationTargetPlatformsCollectionRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/activation-targets/metadata/communication-capping-data-spaces": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get communication capping data spaces
+         * @description Returns all data spaces with communication capping definitions linked to activation targets.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query?: {
+                    /**
+                     * @description Maximum number of results to return. Values are `1` through `200`. If unspecified, the default value is `20`.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    batchSize?: number;
+                    /**
+                     * @description Filter expression used to narrow results, such as `field eq value AND name contains foo`. Supported operators are `eq`, `!=`, `contains`, `in`, `>`, `<`, `>=`, and `<=`.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    filters?: string;
+                    /**
+                     * @description Number of rows to skip before returning results. If unspecified, no rows are skipped.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    offset?: number;
+                    /**
+                     * @description Sort expression in the form `field [asc|desc][, field [asc|desc]]*`.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    orderBy?: string;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["CommunicationCappingDataSpacesCollectionRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/activation-targets/metadata/dataspace-account-validation": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Validate data space account for target
+         * @description Indicates whether an ad account is available to assign to an activation target. Returns `true` when the account isn't already assigned.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query: {
+                    /**
+                     * @description Identifier of the ad account on the partner platform.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    accountId: string;
+                    /**
+                     * @description Name of the data space to check against.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    dataSpace: string;
+                    /**
+                     * @description Record ID (15- or 18-character) or API name of the activation platform.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    platformIdOrName: string;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["DataspaceAccountValidationRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/activation-targets/metadata/mc-enterprises": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get Marketing Cloud enterprises
+         * @description Returns Marketing Cloud enterprises and their business units.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query?: {
+                    /**
+                     * @description Maximum number of results to return. Values are `1` through `200`. If unspecified, the default value is `20`.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    batchSize?: number;
+                    /**
+                     * @description Number of rows to skip before returning results. If unspecified, no rows are skipped.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    offset?: number;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["McEnterprisesCollectionRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/activation-targets/metadata/target-platform-fields": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get activation target platform fields
+         * @description Returns the target-level configuration fields for an activation platform.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query: {
+                    /**
+                     * @description Record ID (15- or 18-character) or API name of the activation platform.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    platformIdOrName: string;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ActivationPlatformFieldsRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/ssot/activation-targets/{activationTargetId}": {
         parameters: {
             query?: never;
@@ -250,7 +2164,65 @@ export type paths = {
         };
         put?: never;
         post?: never;
-        delete?: never;
+        /**
+         * Delete activation target
+         * @description Delete an activation target by ID or developer name.
+         *
+         *     **Available Version:** 60.0
+         */
+        delete: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description Unique identifier of a specific activation target, such as the ID or developer name.
+                     *
+                     *     **Available Version:** 60.0
+                     */
+                    activationTargetId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
         options?: never;
         head?: never;
         /**
@@ -324,6 +2296,184 @@ export type paths = {
                 };
             };
         };
+        trace?: never;
+    };
+    "/ssot/activation-targets/{activationTargetId}/available-ad-accounts": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get available ad accounts
+         * @description Returns the ad accounts that aren't already assigned in the specified data space.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query: {
+                    /**
+                     * @description Name of the data space used to filter out already-assigned accounts.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    dataSpace: string;
+                    /**
+                     * @description Record ID (15- or 18-character) or API name of the activation platform.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    platformIdOrName: string;
+                };
+                header?: never;
+                path: {
+                    /**
+                     * @description Record ID (15- or 18-character) of the activation target.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    activationTargetId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["AdAccountsRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/activation-targets/{activationTargetId}/partner-objects": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get partner objects
+         * @description Returns partner-platform objects of the specified type. Results are cursor-paginated: follow `nextPageUrl` to retrieve each subsequent page instead of supplying an offset.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query: {
+                    /**
+                     * @description Cursor for the next page of results. Omit this value on the first request. The response's `nextPageUrl` includes the `pageToken` to fetch the next page, so follow `nextPageUrl` rather than constructing this value.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    pageToken?: string;
+                    /**
+                     * @description Type of partner object to retrieve.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    partnerObjectType: "App" | "ConversionRule" | "CrmEventSet" | "MobileApp" | "OfflineEventSet" | "Pixel";
+                };
+                header?: never;
+                path: {
+                    /**
+                     * @description Record ID (15- or 18-character) of the activation target.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    activationTargetId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["PartnerObjectsCollectionRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
         trace?: never;
     };
     "/ssot/activations": {
@@ -483,6 +2633,1091 @@ export type paths = {
                 };
             };
         };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/activations/actions/{activationId}/disable": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Disable activation
+         * @description Disables a market segment activation.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: {
+                    /**
+                     * @description Name of the data space to use as context for the request.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    dataSpace?: string;
+                };
+                header?: never;
+                path: {
+                    /**
+                     * @description Record ID (18-character) of the activation to disable.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    activationId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ActionResultRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/activations/actions/{activationId}/enable": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Enable activation
+         * @description Enables a market segment activation.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: {
+                    /**
+                     * @description Name of the data space to use as context for the request.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    dataSpace?: string;
+                };
+                header?: never;
+                path: {
+                    /**
+                     * @description Record ID (18-character) of the activation to enable.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    activationId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ActionResultRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/activations/actions/{activationId}/full-refresh": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Trigger activation full refresh
+         * @description Triggers a full-refresh publish for an activation.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description Record ID (15- or 18-character) of the market segment activation.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    activationId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ActionResultRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/activations/actions/{activationId}/retry-sync": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Retry activation sync
+         * @description Retries the sync for an activation.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description Record ID (15- or 18-character) of the market segment activation.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    activationId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ActionResultRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/activations/metadata/activatable-data-object-categories": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get data object categories available for activation
+         * @description Returns the data object category types that are available for activation, optionally scoped to a data space.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query?: {
+                    /**
+                     * @description Name of the data space to scope the lookup. If unspecified, the request's data space context is used.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    dataSpace?: string;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ActivatableDataObjectCategoriesRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/activations/metadata/channel-preferences": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get channel preferences
+         * @description Returns the channel preference options for a channel and data model object (DMO) pair, such as Primary phone or Secondary phone.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query: {
+                    /**
+                     * @description Contact point channel, such as `Email`, `Phone`, `Push`, `Whatsapp`, or `DigitalId`.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    channel: "DigitalId" | "Email" | "Phone" | "Push" | "Whatsapp";
+                    /**
+                     * @description API name of the contact point data model object (DMO).
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    dataModelObjectApiName: string;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ChannelPreferencesRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/activations/metadata/channels": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get channels
+         * @description Returns the available activation channels for a data space.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query: {
+                    /**
+                     * @description API name of the data model object (DMO) to activate on, such as `ssot__Individual__dlm`. The namespace prefix of the DMO resolves the contact point DMOs (Email, Phone, Push, and so on) for the data space.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    activateOn: string;
+                    /**
+                     * @description Maximum number of results to return. Values are `1` through `200`. If unspecified, the default value is `20`.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    batchSize?: number;
+                    /**
+                     * @description Name of the data space to scope channel mapping checks.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    dataSpace: string;
+                    /**
+                     * @description Filter expression used to narrow results, such as `field eq value AND name contains foo`. Supported operators are `eq`, `!=`, `contains`, `in`, `>`, `<`, `>=`, and `<=`.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    filters?: string;
+                    /**
+                     * @description Number of rows to skip before returning results. If unspecified, no rows are skipped.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    offset?: number;
+                    /**
+                     * @description Sort expression in the form `field [asc|desc][, field [asc|desc]]*`.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    orderBy?: string;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ChannelsCollectionRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/activations/metadata/consent-data-model-objects": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get consent data model objects
+         * @description Returns the standard consent data model objects (DMOs) for a data space.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query: {
+                    /**
+                     * @description API name of the data model object (DMO) to activate on, such as `ssot__Individual__dlm`. The namespace prefix of the DMO resolves the standard consent DMOs (ContactPointConsent, CommunicationSubscriptionConsent) for the data space.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    activateOn: string;
+                    /**
+                     * @description Name of the data space to scope the consent data model object lookup.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    dataSpace: string;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ConsentDataModelObjectsRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/activations/metadata/data-sources": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get data sources
+         * @description Returns the data sources for a data model object (DMO). When you provide a channel, results are filtered to data sources compatible with that channel. The data space context is derived from the DMO.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query: {
+                    /**
+                     * @description Maximum number of results to return. Values are `1` through `200`. If unspecified, the default value is `20`.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    batchSize?: number;
+                    /**
+                     * @description Contact point channel. If unspecified, data sources are returned for all channels compatible with the data model object (DMO).
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    channel?: "DigitalId" | "Email" | "Phone" | "Push" | "Whatsapp";
+                    /**
+                     * @description API name of the data model object (DMO) used as the activation target. The data space context is derived from this value.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    dataModelObjectApiName: string;
+                    /**
+                     * @description Filter expression used to narrow results, such as `field eq value AND name contains foo`. Supported operators are `eq`, `!=`, `contains`, `in`, `>`, `<`, `>=`, and `<=`.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    filters?: string;
+                    /**
+                     * @description Number of rows to skip before returning results. If unspecified, no rows are skipped.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    offset?: number;
+                    /**
+                     * @description Sort expression in the form `field [asc|desc][, field [asc|desc]]*`.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    orderBy?: string;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["DataSourcesCollectionRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/activations/metadata/limits/related-attribute-activation-quota": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get related attribute activation quota
+         * @description Returns the related-attribute activation quota for the org. When you supply an activation ID, that activation is excluded from the current count, which supports edit flows.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query?: {
+                    /**
+                     * @description Record ID of an activation to exclude from the current count. Used during edit flows so that the activation being edited doesn't count against itself.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    activationId?: string;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["RelatedAttributeActivationQuotaRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/activations/metadata/limits/related-attribute-configuration-limits": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get related attribute configuration limits
+         * @description Returns the static configuration limits for related-attribute activations, such as maximum hops and attributes per activation.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["RelatedAttributeConfigurationLimitsRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/activations/metadata/match-boost-identity-providers": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get identity providers for match boost
+         * @description Returns the identity providers for an activation target and data model object (DMO).
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query: {
+                    /**
+                     * @description API name of the data model object (DMO), such as `ssot__Individual__dlm`.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    activateOn: string;
+                    /**
+                     * @description Record ID (15- or 18-character) of the activation target.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    activationTargetId: string;
+                    /**
+                     * @description Name of the data space to scope the provider lookup.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    dataSpace: string;
+                    /**
+                     * @description Record ID of the previously saved identity provider. Used in edit mode only.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    selectedProviderId?: string;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["MatchBoostProvidersRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/activations/metadata/streaming-eligibility": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get streaming eligibility
+         * @description Indicates whether streaming activation is allowed for a data model object (DMO), and provides the reason when it isn't.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query: {
+                    /**
+                     * @description API name of the data model object (DMO) to check streaming eligibility for.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    dataModelObjectApiName: string;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["StreamingEligibilityRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -855,7 +4090,7 @@ export type paths = {
         patch?: never;
         trace?: never;
     };
-    "/ssot/activation-external-platforms": {
+    "/ssot/activations/{activationId}/history": {
         parameters: {
             query?: never;
             header?: never;
@@ -863,41 +4098,139 @@ export type paths = {
             cookie?: never;
         };
         /**
-         * Get activation external platforms
-         * @description Get a paginated list of activation external platforms.
+         * Get activation history
+         * @description Returns a paginated list of publish-history records. With a market segment activation ID, returns the history for that single activation. With a market segment ID, returns the history for all activations under that segment. Routing is determined automatically based on the record ID.
          *
-         *     **Available Version:** 64.0
+         *     For paginated results, set `offset` to `0` in the initial request, then follow the `nextPageUrl` value in each response to retrieve subsequent pages.
+         *
+         *     **Available Version:** 67.0
          */
         get: {
             parameters: {
                 query?: {
                     /**
-                     * @description Number of external platforms to return. Values are from `1` through `20`. If unspecified, the default value is `20`.
+                     * @description Maximum number of history records to return. Values are `1` through `200`. If unspecified, the default value is `20`.
                      *
-                     *     **Available Version:** 64.0
-                     */
-                    batchSize?: number;
-                    /**
-                     * @description Maximum number of external platforms to return. If unspecified, the default value is `20`.
-                     *
-                     *     **Available Version:** 64.0
+                     *     **Available Version:** 67.0
                      */
                     limit?: number;
                     /**
-                     * @description Number of rows to skip before returning results. Must be greater than or equal to `0`. If unspecified, no rows are skipped.
+                     * @description Number of rows to skip before returning results. If unspecified, no rows are skipped.
                      *
-                     *     **Available Version:** 64.0
+                     *     **Available Version:** 67.0
                      */
                     offset?: number;
                     /**
-                     * @description Order in which to sort the results based on the `createdDate`
-                     *     field. Specify the field name followed by `asc` for ascending
-                     *     order or `desc` for descending order. If you specify only the
-                     *     field name or omit the parameter, results are sorted in
-                     *     ascending order. For example, `createdDate asc` and
-                     *     `createdDate` yield the same results.
+                     * @description Sort expression. If unspecified, the default value is `publishEndTime desc`.
                      *
-                     *     **Available Version:** 64.0
+                     *     **Available Version:** 67.0
+                     */
+                    orderBy?: string;
+                    /**
+                     * @description Snapshot anchor for consistent pagination. Omit this value on the first request. The response's `nextPageUrl` includes the `pageToken` for subsequent pages, which keeps the result set stable as new activations are published. Follow `nextPageUrl` rather than constructing this value.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    pageToken?: string;
+                };
+                header?: never;
+                path: {
+                    /**
+                     * @description Record ID (15- or 18-character) of a market segment activation or a market segment. Routing to single-activation or segment-wide history is determined automatically based on the record ID.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    activationId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ActivationHistoryCollectionRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/agentic/agents": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get agents
+         * @description Returns a list of all registered agents.
+         *
+         *     **Available Version:** 66.0
+         */
+        get: {
+            parameters: {
+                query?: {
+                    /**
+                     * @description Field names by which to filter results. Specify a comma-separated list of values of the form `[field=value]`.
+                     *
+                     *     **Available Version:** 66.0
+                     */
+                    filters?: string;
+                    /**
+                     * @description Maximum number of agents to return from `1` through `200`.
+                     *
+                     *     **Available Version:** 66.0
+                     */
+                    limit?: number;
+                    /**
+                     * @description Number of rows to skip before returning results. Must be an integer greater than zero. If unspecified, no rows are skipped.
+                     *
+                     *     **Available Version:** 66.0
+                     */
+                    offset?: number;
+                    /**
+                     * @description Sort order for the result set: `ASC` for ascending or `DESC` for descending. If unspecified, results are returned in ascending order.
+                     *
+                     *     **Available Version:** 66.0
                      */
                     orderBy?: string;
                 };
@@ -913,14 +4246,263 @@ export type paths = {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": components["schemas"]["ActivationExternalPlatformCollectionRepresentation"];
+                        "application/json": components["schemas"]["AgentCollectionRepresentation"];
                     };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not Found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
                 };
             };
         };
         put?: never;
         post?: never;
         delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/agentic/agent": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Create agent
+         * @description Creates a new agent.
+         *
+         *     **Available Version:** 66.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["AgentInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["AgentRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not Found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Agent name already exists. */
+                409: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/agentic/agent/{agentIdOrApiName}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description ID or API name of the agent.
+                 *
+                 *     **Available Version:** 66.0
+                 */
+                agentIdOrApiName: string;
+            };
+            cookie?: never;
+        };
+        /**
+         * Get agent
+         * @description Get an existing agent.
+         *
+         *     **Available Version:** 66.0
+         */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description ID or API name of the agent.
+                     *
+                     *     **Available Version:** 66.0
+                     */
+                    agentIdOrApiName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["AgentRepresentation"];
+                    };
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not Found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        /**
+         * Delete agent
+         * @description Deletes an existing agent.
+         *
+         *     **Available Version:** 66.0
+         */
+        delete: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description ID or API name of the agent.
+                     *
+                     *     **Available Version:** 66.0
+                     */
+                    agentIdOrApiName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Bad request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not Found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
         options?: never;
         head?: never;
         patch?: never;
@@ -5015,6 +8597,4619 @@ export type paths = {
         patch?: never;
         trace?: never;
     };
+    "/ssot/data-governance/access-policies": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get access policies
+         * @description Returns a paginated list of builder-compatible access policies. To include system or legacy policies that aren't builder-compatible, set `includeIncompatible` to `true`.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query?: {
+                    /**
+                     * @description Indicates whether to include policies that aren't builder-compatible (`true`) or not (`false`). If unspecified, the default value is `false`.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    includeIncompatible?: boolean;
+                    /**
+                     * @description Maximum number of access policies to return. Values are `5` through `200`. If unspecified, the default value is `25`.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    limit?: number;
+                    /**
+                     * @description Number of rows to skip before returning results. If unspecified, no rows are skipped.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    offset?: number;
+                    /**
+                     * @description Case-insensitive substring to match against the policy name or label.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    searchString?: string;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["AccessPolicyCollectionRepresentation"];
+                    };
+                };
+                /**
+                 * @description INVALID_INPUT_COMBINATION
+                 *
+                 *     For example:
+                 *     - limit must be between 5 and 200.
+                 *     - offset must be non-negative.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        /**
+         * Create access policy
+         * @description Creates an access policy, with optional inline rules, using all-or-none semantics. A builder-compatible policy can contain at most one rule.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["AccessPolicyInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["AccessPolicyRepresentation"];
+                    };
+                };
+                /**
+                 * @description INVALID_INPUT, INVALID_DEVELOPER_NAME, MISSING_ARGUMENT, or MULTIPLE_RULES_NOT_ALLOWED
+                 *
+                 *     For example:
+                 *     - A policy can contain at most ONE rule to remain compatible with the Access Policy UI Builder.
+                 *     - Developer name must be alphanumeric with no spaces.
+                 *     - Input representation is required.
+                 *     - Policy validation failed: builder-compatible policies can have at most one rule.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description INVALID_SESSION_ID: Session expired or invalid. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-governance/access-policies/{name}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description Developer name of the access policy.
+                 *
+                 *     **Available Version:** 67.0
+                 */
+                name: string;
+            };
+            cookie?: never;
+        };
+        /**
+         * Get access policy
+         * @description Returns a single access policy and its rules by developer name.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description Developer name of the access policy.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    name: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["AccessPolicyRepresentation"];
+                    };
+                };
+                /**
+                 * @description MULTIPLE_RULES_NOT_ALLOWED or NAME_MISMATCH
+                 *
+                 *     For example:
+                 *     - The policy cannot contain more than one rule for UI Builder compatibility.
+                 *     - The rule name in URL and request body must match.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description INVALID_SESSION_ID: Session expired or invalid. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description RESOURCE_NOT_FOUND: Access Policy with developer name *{name}* was not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        /**
+         * Delete access policy
+         * @description Permanently deletes an access policy and cascades the delete to its rules.
+         *
+         *     **Available Version:** 67.0
+         */
+        delete: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description Developer name of the access policy.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    name: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                202: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description INVALID_SESSION_ID: Session expired or invalid. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description RESOURCE_NOT_FOUND: Access Policy with developer name *{name}* was not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        options?: never;
+        head?: never;
+        /**
+         * Update access policy
+         * @description Applies an idempotent partial update to an access policy's label or description. To modify rules, use the PUT rules endpoint instead.
+         *
+         *     **Available Version:** 67.0
+         */
+        patch: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description Developer name of the access policy.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    name: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["AccessPolicyPatchInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["AccessPolicyRepresentation"];
+                    };
+                };
+                /**
+                 * @description RULE_MUTATION_NOT_SUPPORTED
+                 *
+                 *     For example:
+                 *     - Rules cannot be updated via PATCH access-policies endpoint. Use PUT /rules instead.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description INVALID_SESSION_ID: Session expired or invalid. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description RESOURCE_NOT_FOUND: Access Policy with developer name *{name}* was not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        trace?: never;
+    };
+    "/ssot/data-governance/access-policies/{name}/rules/{ruleName}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description Developer name of the parent access policy.
+                 *
+                 *     **Available Version:** 67.0
+                 */
+                name: string;
+                /**
+                 * @description Developer name of the rule.
+                 *
+                 *     **Available Version:** 67.0
+                 */
+                ruleName: string;
+            };
+            cookie?: never;
+        };
+        /**
+         * Get access policy rule
+         * @description Returns the details of a specific rule within an access policy.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description Developer name of the parent access policy.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    name: string;
+                    /**
+                     * @description Developer name of the rule.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    ruleName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["AccessPolicyRuleRepresentation"];
+                    };
+                };
+                /** @description INVALID_SESSION_ID: Session expired or invalid. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /**
+                 * @description RESOURCE_NOT_FOUND or RULE_NOT_FOUND
+                 *
+                 *     For example:
+                 *     - Access Policy with developer name *{name}* was not found.
+                 *     - Rule *{ruleName}* was not found in policy *{name}*.
+                 */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        /**
+         * Replace access policy rule
+         * @description Overwrites or upserts a single rule within an access policy.
+         *
+         *     **Available Version:** 67.0
+         */
+        put: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description Developer name of the parent access policy.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    name: string;
+                    /**
+                     * @description Developer name of the rule.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    ruleName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["AccessPolicyRuleInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["AccessPolicyRuleRepresentation"];
+                    };
+                };
+                /**
+                 * @description NAME_MISMATCH
+                 *
+                 *     For example:
+                 *     - The rule name in URL and request body must match.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description INVALID_SESSION_ID: Session expired or invalid. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description INSUFFICIENT_ACCESS: User lacks 'CanAccessCustomerDataCloudAPI' permission. For example, mutation without ModifyAccessPolicies returns "You do not have permission to modify access policies". */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description RESOURCE_NOT_FOUND: Access Policy with developer name *{name}* was not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-governance/auto-tagging-jobs": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get auto-tagging jobs
+         * @description Returns a paginated list of data governance auto-tagging jobs, optionally filtered by object or status. Auto-tagging jobs are created by the generate tag suggestions action.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query?: {
+                    /**
+                     * @description Maximum number of auto-tagging jobs to return. Values are from `5` through `200`. The default value is `25` if unspecified.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    limit?: number;
+                    /**
+                     * @description API name of the object to filter jobs by.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    objectName?: string;
+                    /**
+                     * @description Number of rows to skip before returning results. If unspecified, no rows are skipped.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    offset?: number;
+                    /**
+                     * @description Status to filter jobs by. Values are `InProgress`, `Success`, or `Fail`.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    status?: string;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["AutoTaggingJobCollectionRepresentation"];
+                    };
+                };
+                /**
+                 * @description INVALID_INPUT_COMBINATION
+                 *
+                 *     For example:
+                 *     - Limit must be between 5 and 200.
+                 *     - Offset must be non-negative.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description INSUFFICIENT_ACCESS: GovernanceAiSuggestTags permission required. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-governance/auto-tagging-jobs/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get auto-tagging job
+         * @description Returns a single data governance auto-tagging job by ID, reporting its progress and status.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description ID of the auto-tagging job.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    id: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["AutoTaggingJobRepresentation"];
+                    };
+                };
+                /** @description INSUFFICIENT_ACCESS: GovernanceAiSuggestTags permission required. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description RESOURCE_NOT_FOUND: Auto-tagging job *{id}* not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-governance/classification-assignments": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get classification assignments
+         * @description Returns a paginated list of data governance classification assignments, optionally filtered by tag or classification.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query?: {
+                    /**
+                     * @description Fully-qualified API name of the classification to filter assignments by.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    classificationFullyQualifiedName?: string;
+                    /**
+                     * @description Maximum number of classification assignments to return. Values are from `5` through `200`. The default value is `25` if unspecified.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    limit?: number;
+                    /**
+                     * @description Number of rows to skip before returning results. If unspecified, no rows are skipped.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    offset?: number;
+                    /**
+                     * @description Fully-qualified API name of the tag to filter assignments by.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    tagFullyQualifiedName?: string;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ClassificationAssignmentCollectionRepresentation"];
+                    };
+                };
+                /**
+                 * @description INVALID_INPUT_COMBINATION
+                 *
+                 *     For example:
+                 *     - Limit must be between 5 and 200.
+                 *     - Offset must be non-negative.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description RESOURCE_NOT_FOUND: Tag *{tagFullyQualifiedName}* not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        /**
+         * Create classification assignment
+         * @description Creates a single data governance classification assignment.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["ClassificationAssignmentCreateItemInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                201: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ClassificationAssignmentRepresentation"];
+                    };
+                };
+                /**
+                 * @description MISSING_ARGUMENT
+                 *
+                 *     For example:
+                 *     - A *classificationFullyQualifiedName* is required.
+                 *     - Input representation is required.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description RESOURCE_NOT_FOUND: Tag *{tagFullyQualifiedName}* not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-governance/classification-assignments/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description ID of the classification assignment.
+                 *
+                 *     **Available Version:** 67.0
+                 */
+                id: string;
+            };
+            cookie?: never;
+        };
+        /**
+         * Get classification assignment
+         * @description Returns a single data governance classification assignment by ID.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description ID of the classification assignment.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    id: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ClassificationAssignmentRepresentation"];
+                    };
+                };
+                /** @description RESOURCE_NOT_FOUND: Classification assignment *{id}* not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        /**
+         * Delete classification assignment
+         * @description Deletes a data governance classification assignment by ID.
+         *
+         *     **Available Version:** 67.0
+         */
+        delete: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description ID of the classification assignment.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    id: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                202: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description RESOURCE_NOT_FOUND: Classification assignment *{id}* not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-governance/classification-assignments/actions/bulk-create": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Bulk create classification assignments
+         * @description Bulk creates data governance classification assignments.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["ClassificationAssignmentBulkCreateInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                201: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BatchRepresentation"];
+                    };
+                };
+                /**
+                 * @description INVALID_INPUT_COMBINATION or MISSING_ARGUMENT
+                 *
+                 *     For example:
+                 *     - Maximum 200 items per request.
+                 *     - Input representation is required.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-governance/classification-assignments/actions/bulk-delete": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Bulk delete classification assignments
+         * @description Bulk deletes data governance classification assignments.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["ClassificationAssignmentBulkDeleteInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                202: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BatchRepresentation"];
+                    };
+                };
+                /**
+                 * @description INVALID_INPUT_COMBINATION or MISSING_ARGUMENT
+                 *
+                 *     For example:
+                 *     - Maximum 200 items per request.
+                 *     - Input representation is required.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-governance/classification-taxonomies": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get classification taxonomies
+         * @description Returns a paginated list of classification taxonomies.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query?: {
+                    /**
+                     * @description Maximum number of classification taxonomies to return. Must be between `5` and `200`. If unspecified, the default value is `25`.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    limit?: number;
+                    /**
+                     * @description Number of rows to skip before returning results. If unspecified, no rows are skipped.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    offset?: number;
+                    /**
+                     * @description Sort order for the result set: `ASC` for ascending or `DESC` for descending. If unspecified, the default value is `ASC` ordered by developer name.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    orderBy?: string;
+                    /**
+                     * @description Search keyword to match against the developer name or label.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    searchString?: string;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["TaxonomyCollectionRepresentation"];
+                    };
+                };
+                /**
+                 * @description INVALID_INPUT_COMBINATION
+                 *
+                 *     For example:
+                 *     - Limit must be between 5 and 200.
+                 *     - Invalid orderBy field. Valid fields: Label, DeveloperName.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        /**
+         * Create classification taxonomy
+         * @description Creates a classification taxonomy.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["TaxonomyCreateInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["TaxonomyRepresentation"];
+                    };
+                };
+                /**
+                 * @description INVALID_INPUT or MISSING_ARGUMENT
+                 *
+                 *     For example:
+                 *     - Classification taxonomy name must be a single DeveloperName (managed-package namespace prefix permitted); must not contain `.`
+                 *     - A classification taxonomy with this label already exists.
+                 *     - Name is required.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-governance/classification-taxonomies/{name}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description API name or developer name of the classification taxonomy.
+                 *
+                 *     **Available Version:** 67.0
+                 */
+                name: string;
+            };
+            cookie?: never;
+        };
+        /**
+         * Get classification taxonomy
+         * @description Returns a classification taxonomy by its API name.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description API name or developer name of the classification taxonomy.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    name: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["TaxonomyRepresentation"];
+                    };
+                };
+                /** @description RESOURCE_NOT_FOUND: Classification taxonomy *{name}* not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        /**
+         * Delete classification taxonomy
+         * @description Deletes a classification taxonomy.
+         *
+         *     **Available Version:** 67.0
+         */
+        delete: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description API name or developer name of the classification taxonomy.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    name: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                202: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /**
+                 * @description INVALID_OPERATION
+                 *
+                 *     For example:
+                 *     - Cannot delete system classification taxonomy.
+                 *     - Entity is already being deleted.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description RESOURCE_NOT_FOUND: Classification taxonomy *{name}* not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description REFERENTIAL_INTEGRITY_VIOLATION: Cannot delete — has external dependencies or children classifications. */
+                412: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        options?: never;
+        head?: never;
+        /**
+         * Update classification taxonomy
+         * @description Updates a classification taxonomy. Omitted fields are left unchanged.
+         *
+         *     **Available Version:** 67.0
+         */
+        patch: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description API name or developer name of the classification taxonomy.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    name: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["TaxonomyPatchInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["TaxonomyRepresentation"];
+                    };
+                };
+                /**
+                 * @description INVALID_INPUT, INVALID_OPERATION, or MISSING_ARGUMENT
+                 *
+                 *     For example:
+                 *     - A classification taxonomy with this label already exists.
+                 *     - Cannot update entity in Deleting state.
+                 *     - Input representation is required.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description RESOURCE_NOT_FOUND: Classification taxonomy *{name}* not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        trace?: never;
+    };
+    "/ssot/data-governance/classification-taxonomies/actions/bulk-create": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Bulk create classification taxonomies
+         * @description Creates multiple classification taxonomies in a single request.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["TaxonomyBulkCreateInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BatchRepresentation"];
+                    };
+                };
+                /**
+                 * @description INVALID_INPUT_COMBINATION or MISSING_ARGUMENT
+                 *
+                 *     For example:
+                 *     - Maximum 200 items per request.
+                 *     - Input representation is required.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-governance/classification-taxonomies/actions/bulk-delete": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Bulk delete classification taxonomies
+         * @description Deletes multiple classification taxonomies in a single request.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["TaxonomyBulkDeleteInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BatchRepresentation"];
+                    };
+                };
+                /**
+                 * @description INVALID_INPUT_COMBINATION or MISSING_ARGUMENT
+                 *
+                 *     For example:
+                 *     - Maximum 200 items per request.
+                 *     - Input representation is required.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-governance/classification-taxonomies/actions/bulk-update": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Bulk update classification taxonomies
+         * @description Updates multiple classification taxonomies in a single request. Omitted fields are left unchanged.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["TaxonomyBulkUpdateInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BatchRepresentation"];
+                    };
+                };
+                /**
+                 * @description INVALID_INPUT_COMBINATION or MISSING_ARGUMENT
+                 *
+                 *     For example:
+                 *     - Maximum 200 items per request.
+                 *     - Input representation is required.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-governance/classifications": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get classifications
+         * @description Returns a paginated list of classifications across all classification taxonomies.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query?: {
+                    /**
+                     * @description Maximum number of classifications to return from `5` through `200`. If unspecified, the default number of rows is `25`.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    limit?: number;
+                    /**
+                     * @description Number of rows to skip before returning results. Must be an integer greater than zero. If unspecified, no rows are skipped.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    offset?: number;
+                    /**
+                     * @description Sort order for the result set: `ASC` for ascending or `DESC` for descending. If unspecified,the default value is `ASC` ordered by developer name.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    orderBy?: string;
+                    /**
+                     * @description Fully-qualified API name of the parent classification. Scopes the list to direct children.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    parentClassificationFullyQualifiedName?: string;
+                    /**
+                     * @description Search keyword to match against the developer name or label.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    searchString?: string;
+                    /**
+                     * @description Fully-qualified API name of the classification taxonomy (for example, `Compliance_Classifications`). Scopes the list to classifications under that taxonomy.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    taxonomyName?: string;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ClassificationCollectionRepresentation"];
+                    };
+                };
+                /**
+                 * @description INVALID_INPUT_COMBINATION
+                 *
+                 *     For example:
+                 *     - Limit must be between 5 and 200.
+                 *     - Invalid orderBy field. Valid fields: Label, DeveloperName.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description RESOURCE_NOT_FOUND: Classification *{parentClassificationFullyQualifiedName}* not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        /**
+         * Create classification
+         * @description Creates a classification under a specified classification taxonomy, with optional initial tag links. If a tag link fails, the classification is still created and the failed tag link is reported.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["ClassificationCreateInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ClassificationRepresentation"];
+                    };
+                };
+                /**
+                 * @description INVALID_INPUT or MISSING_ARGUMENT
+                 *
+                 *     For example:
+                 *     - Classification *fullyQualifiedName* must be 2 or 3 segments: <TaxonomyName>.<Level1>[.<Level2>]
+                 *     - A classification with this API name already exists
+                 *     - Input representation is required.
+                 *
+                 *     RESOURCE_NOT_FOUND
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description RESOURCE_NOT_FOUND: Classification taxonomy *{taxonomySegment}* not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-governance/classifications/{fullyQualifiedName}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description Fully-qualified API name of the classification.
+                 *
+                 *     **Available Version:** 67.0
+                 */
+                fullyQualifiedName: string;
+            };
+            cookie?: never;
+        };
+        /**
+         * Get classification
+         * @description Returns a classification by its fully-qualified API name.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description Fully-qualified API name of the classification.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    fullyQualifiedName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ClassificationRepresentation"];
+                    };
+                };
+                /** @description RESOURCE_NOT_FOUND: Classification *{fullyQualifiedName}* not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        /**
+         * Delete classification
+         * @description Deletes a classification and cascades the deletion to any child classifications and assignments.
+         *
+         *     **Available Version:** 67.0
+         */
+        delete: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description Fully-qualified API name of the classification.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    fullyQualifiedName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                202: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /**
+                 * @description INVALID_OPERATION
+                 *
+                 *     For example:
+                 *     - Cannot delete system classification.
+                 *     - Entity is already being deleted.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description RESOURCE_NOT_FOUND: Classification *{fullyQualifiedName}* not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description REFERENTIAL_INTEGRITY_VIOLATION: Cannot delete — has external dependencies or children classifications. */
+                412: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        options?: never;
+        head?: never;
+        /**
+         * Update classification
+         * @description Updates a classification. Omitted fields are left unchanged.
+         *
+         *     **Available Version:** 67.0
+         */
+        patch: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description Fully-qualified API name of the classification.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    fullyQualifiedName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["ClassificationPatchInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ClassificationRepresentation"];
+                    };
+                };
+                /**
+                 * @description INVALID_INPUT, INVALID_OPERATION, or MISSING_ARGUMENT
+                 *
+                 *     For example:
+                 *     - A classification with this label already exists.
+                 *     - Referenced tag must be in the same taxonomy.
+                 *     - Cannot update entity in Deleting state.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description RESOURCE_NOT_FOUND: Classification *{fullyQualifiedName}* not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        trace?: never;
+    };
+    "/ssot/data-governance/classifications/{fullyQualifiedName}/assignments": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get classification assignments on a classification
+         * @description Returns a paginated list of assignments for a specific classification, including all linked tags.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query?: {
+                    /**
+                     * @description Maximum number of classification assignments to return. Values are from `5` through `200`. The default value is `25` if unspecified.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    limit?: number;
+                    /**
+                     * @description Number of rows to skip before returning results. If unspecified, no rows are skipped.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    offset?: number;
+                };
+                header?: never;
+                path: {
+                    /**
+                     * @description Fully-qualified API name of the classification (dotted path).
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    fullyQualifiedName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ClassificationAssignmentCollectionRepresentation"];
+                    };
+                };
+                /**
+                 * @description INVALID_INPUT_COMBINATION
+                 *
+                 *     For example:
+                 *     - Limit must be between 5 and 200.
+                 *     - Offset must be non-negative.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description RESOURCE_NOT_FOUND: Classification *{fullyQualifiedName}* not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-governance/classifications/actions/bulk-create": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Bulk create classifications
+         * @description Creates multiple classifications in a single request. Maximum of 200 items per request. If a tag link fails for an item, the classification is still created.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["ClassificationBulkCreateInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BatchRepresentation"];
+                    };
+                };
+                /**
+                 * @description INVALID_INPUT_COMBINATION or MISSING_ARGUMENT
+                 *
+                 *     For example:
+                 *     - Maximum 200 items per request.
+                 *     - Input representation is required.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-governance/classifications/actions/bulk-delete": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Bulk delete classifications
+         * @description Deletes multiple classifications in a single request, cascading each deletion to its child classifications and assignments.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["ClassificationBulkDeleteInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BatchRepresentation"];
+                    };
+                };
+                /**
+                 * @description INVALID_INPUT_COMBINATION or MISSING_ARGUMENT
+                 *
+                 *     For example:
+                 *     - Maximum 200 items per request.
+                 *     - Input representation is required.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-governance/classifications/actions/bulk-update": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Bulk update classifications
+         * @description Updates multiple classifications in a single request. Omitted fields are left unchanged. Tag validation runs against the state before the batch operation. If a tag link fails, the classification is updated, but the tag link change is not applied, and an error is reported
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["ClassificationBulkUpdateInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BatchRepresentation"];
+                    };
+                };
+                /**
+                 * @description INVALID_INPUT_COMBINATION or MISSING_ARGUMENT
+                 *
+                 *     For example:
+                 *     - Maximum 200 items per request.
+                 *     - Input representation is required.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-governance/object-access-grants": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get object access grants
+         * @description Returns a paginated list of object access grants, with optional filters. Providing only a permission set name returns all associated grants across data spaces and objects. Providing only a data space name returns all grants for objects within that data space across all permission sets. Providing only an object name returns all permission sets that grant access to that object.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query?: {
+                    /**
+                     * @description Developer name of the data space to filter grants by.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    dataSpaceName?: string;
+                    /**
+                     * @description Maximum number of object access grants to return. Values are `5` through `200`. If unspecified, the default value is `25`.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    limit?: number;
+                    /**
+                     * @description API name of the DMO, DLO, or CIO object to filter grants by.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    objectApiName?: string;
+                    /**
+                     * @description Number of rows to skip before returning results. If unspecified, no rows are skipped.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    offset?: number;
+                    /**
+                     * @description Developer name of the permission set or permission set group to filter grants by.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    permissionSetName?: string;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["DataGovernanceObjectAccessGrantCollectionRepresentation"];
+                    };
+                };
+                /**
+                 * @description INVALID_INPUT_COMBINATION
+                 *
+                 *     For example:
+                 *     - limit must be between 5 and 200.
+                 *     - offset must be non-negative.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        /**
+         * Create object access grant
+         * @description Creates a single object access grant using an idempotent request. If a matching grant already exists, the API returns the existing record; otherwise, it creates and returns a new grant.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["ObjectAccessGrantCreateInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["DataGovernanceObjectAccessGrantRepresentation"];
+                    };
+                };
+                /**
+                 * @description MISSING_ARGUMENT, INVALID_INPUT, or INVALID_INPUT_COMBINATION
+                 *
+                 *     For example:
+                 *     - Input representation is required.
+                 *     - permissionSetName, dataspaceName and atleast one objectApiName is Mandatory.
+                 *     - permissionSetName is required.
+                 *     - dataspaceName is required.
+                 *     - objectApiName is required.
+                 *     - There is no Permission Set {permissionSetName} with assigned Dataspace {dataspaceName}.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description INSUFFICIENT_ACCESS: You do not have permission to modify access of Dataspace Objects through PermissionSet page. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-governance/object-access-grants/{objectApiName}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description API name of the Data Cloud object.
+                 *
+                 *     **Available Version:** 67.0
+                 */
+                objectApiName: string;
+            };
+            cookie?: never;
+        };
+        /**
+         * Get object access grant
+         * @description Returns a single object access grant.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query?: {
+                    /**
+                     * @description Name of the data space. If unspecified, the `default` data space is used.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    dataSpaceName?: string;
+                    /**
+                     * @description Developer name of the permission set.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    permissionSetName?: string;
+                };
+                header?: never;
+                path: {
+                    /**
+                     * @description API name of the Data Cloud object.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    objectApiName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["DataGovernanceObjectAccessGrantRepresentation"];
+                    };
+                };
+                /** @description RESOURCE_NOT_FOUND: There is no grant for *{objectApiName}* found for Dataspace *{dataSpaceName}* and Permission set *{permissionSetName}*. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        /**
+         * Delete object access grant
+         * @description Deletes a single object access grant.
+         *
+         *     **Available Version:** 67.0
+         */
+        delete: {
+            parameters: {
+                query?: {
+                    /**
+                     * @description Name of the data space. If unspecified, the `default` data space is used.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    dataSpaceName?: string;
+                    /**
+                     * @description Developer name of the permission set.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    permissionSetName?: string;
+                };
+                header?: never;
+                path: {
+                    /**
+                     * @description API name of the Data Cloud object.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    objectApiName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                204: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description INSUFFICIENT_ACCESS: You do not have permission to modify access of Dataspace Objects through PermissionSet page. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description RESOURCE_NOT_FOUND: There is no grant for *{objectApiName}* found for Dataspace *{dataSpaceName}* and Permission set *{permissionSetName}*. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-governance/object-access-grants/actions/bulk-create": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Bulk create object access grants
+         * @description Creates multiple object access grants for a single combination of a data space and a permission set using an idempotent request. A request supports a maximum of 200 items.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["ObjectAccessGrantBulkCreateInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["DataGovernanceObjectAccessGrantBulkCreateResultRepresentation"];
+                    };
+                };
+                /**
+                 * @description MISSING_ARGUMENT or INVALID_INPUT_COMBINATION
+                 *
+                 *     For example:
+                 *     - Input representation is required.
+                 *     - At least one item is required.
+                 *     - Maximum 200 items per request.
+                 *
+                 *     Per-item failures are returned in `results[i].result` as a list of errors, with a 4xx `statusCode` for that item. For example, an item can return INVALID_INPUT ("permissionSetName is required") or INVALID_INPUT_COMBINATION ("There is no Permission Set {permissionSetName} with assigned Dataspace {dataspaceName}").
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description INSUFFICIENT_ACCESS: You do not have permission to modify access of Dataspace Objects through PermissionSet page. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-governance/object-access-grants/actions/bulk-delete": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Bulk delete object access grants
+         * @description Deletes multiple object access grants for a single combination of a data space and a permission set using an idempotent request. If a specified grant doesn't exist, no action is taken for that item.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["ObjectAccessGrantBulkDeleteInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["DataGovernanceObjectAccessGrantBulkDeleteResultRepresentation"];
+                    };
+                };
+                /**
+                 * @description MISSING_ARGUMENT or INVALID_INPUT_COMBINATION
+                 *
+                 *     For example:
+                 *     - Input representation is required.
+                 *     - At least one item is required.
+                 *     - Maximum 200 items per request.
+                 *
+                 *     Per-item failures are returned in `results[i].result` as a list of errors, with a 4xx `statusCode` for that item. For example, an item can return RESOURCE_NOT_FOUND ("There is no grant for {objectApiName} found for Dataspace {dataspaceName} and Permission set {permissionSetName}") or INVALID_INPUT_COMBINATION ("Duplicate identifier in request").
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description INSUFFICIENT_ACCESS: You do not have permission to modify access of Dataspace Objects through PermissionSet page. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-governance/tag-assignments": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get tag assignments
+         * @description Returns a paginated list of data governance tag assignments for a given object, with optional field filtering.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query?: {
+                    /**
+                     * @description API name of the field to filter tag assignments by.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    fieldName?: string;
+                    /**
+                     * @description Maximum number of tag assignments to return. Values are from `5` through `200`. The default value is `25` if unspecified.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    limit?: number;
+                    /**
+                     * @description API name of the object to filter tag assignments by.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    objectName?: string;
+                    /**
+                     * @description Number of rows to skip before returning results. If unspecified, no rows are skipped.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    offset?: number;
+                    /**
+                     * @description Fully-qualified API name of the tag to filter assignments by.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    tagFullyQualifiedName?: string;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["TagAssignmentCollectionRepresentation"];
+                    };
+                };
+                /**
+                 * @description INVALID_INPUT_COMBINATION
+                 *
+                 *     For example:
+                 *     - Limit must be between 5 and 200.
+                 *     - The *fieldName* requires an *objectName*.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description RESOURCE_NOT_FOUND: Object *{objectName}* not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        /**
+         * Create tag assignment
+         * @description Creates a single data governance tag assignment.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["TagAssignmentCreateItemInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                201: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["TagAssignmentRepresentation"];
+                    };
+                };
+                /**
+                 * @description MISSING_ARGUMENT
+                 *
+                 *     For example:
+                 *     - A *tagFullyQualifiedName* is required.
+                 *     - Input representation is required
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description RESOURCE_NOT_FOUND: Object *{objectName}* not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-governance/tag-assignments/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description ID of the tag assignment.
+                 *
+                 *     **Available Version:** 67.0
+                 */
+                id: string;
+            };
+            cookie?: never;
+        };
+        /**
+         * Get tag assignment
+         * @description Returns a single data governance tag assignment by ID.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description ID of the tag assignment.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    id: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["TagAssignmentRepresentation"];
+                    };
+                };
+                /** @description RESOURCE_NOT_FOUND: Tag assignment *{id}* not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        /**
+         * Delete tag assignment
+         * @description Deletes a data governance tag assignment by ID.
+         *
+         *     **Available Version:** 67.0
+         */
+        delete: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description ID of the tag assignment.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    id: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                202: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description RESOURCE_NOT_FOUND: Tag assignment *{id}* not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-governance/tag-assignments/actions/bulk-create": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Bulk create tag assignments
+         * @description Bulk creates data governance tag assignments.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["TagAssignmentBulkCreateInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                201: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BatchRepresentation"];
+                    };
+                };
+                /**
+                 * @description INVALID_INPUT_COMBINATION or MISSING_ARGUMENT
+                 *
+                 *     For example:
+                 *     - Maximum 200 items per request.
+                 *     - Input representation is required.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-governance/tag-assignments/actions/bulk-delete": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Bulk delete tag assignments
+         * @description Bulk deletes data governance tag assignments.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["TagAssignmentBulkDeleteInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                202: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BatchRepresentation"];
+                    };
+                };
+                /**
+                 * @description INVALID_INPUT_COMBINATION or MISSING_ARGUMENT
+                 *
+                 *     For example:
+                 *     - Maximum 200 items per request.
+                 *     - Input representation is required.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-governance/tag-suggestions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get tag suggestions
+         * @description Returns a paginated list of AI-generated data governance tag suggestions, optionally filtered by object, tag, or status.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query?: {
+                    /**
+                     * @description Maximum number of tag suggestions to return.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    limit?: number;
+                    /**
+                     * @description API name of the object to filter suggestions by.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    objectName?: string;
+                    /**
+                     * @description Number of rows to skip before returning results. If unspecified, no rows are skipped.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    offset?: number;
+                    /**
+                     * @description Status to filter suggestions by.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    status?: string;
+                    /**
+                     * @description Fully-qualified API name of the tag to filter suggestions by.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    tagFullyQualifiedName?: string;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["TagSuggestionCollectionRepresentation"];
+                    };
+                };
+                /**
+                 * @description INVALID_INPUT_COMBINATION
+                 *
+                 *     For example:
+                 *     - Limit must be between 5 and 200.
+                 *     - Offset must be non-negative.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description INSUFFICIENT_ACCESS: GovernanceAiSuggestTags permission required. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description RESOURCE_NOT_FOUND: Tag *{tagFullyQualifiedName}* not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-governance/tag-suggestions/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get tag suggestion
+         * @description Returns a single AI-generated tag suggestion by ID.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description ID of the tag suggestion.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    id: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["TagSuggestionRepresentation"];
+                    };
+                };
+                /** @description INSUFFICIENT_ACCESS: GovernanceAiSuggestTags permission required. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description RESOURCE_NOT_FOUND: Tag suggestion *{id}* not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-governance/tag-suggestions/actions/approve": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Approve tag suggestions
+         * @description Approves one or more tag suggestions. Each item returns status code 200 on success, 404 if the suggestion isn't found, or 400 if the suggestion is in a terminal state.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["BulkIdInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                201: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BatchRepresentation"];
+                    };
+                };
+                /**
+                 * @description INVALID_OPERATION or MISSING_ARGUMENT
+                 *
+                 *     For example:
+                 *     - Maximum 200 items per request.
+                 *     - Input representation is required.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description INSUFFICIENT_ACCESS: GovernanceAiSuggestTags permission required. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-governance/tag-suggestions/actions/generate": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Generate tag suggestions
+         * @description Launches asynchronous AI-driven tag suggestion jobs for one or more objects. Returns per-object job IDs.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["SuggestTagsInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                202: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["SuggestTagsResultRepresentation"];
+                    };
+                };
+                /**
+                 * @description INVALID_OPERATION, ENTITY_IS_LOCKED, or MISSING_ARGUMENT
+                 *
+                 *     For example:
+                 *     - Maximum 20 objects per request.
+                 *     - An auto-tagging job is already in progress for object.
+                 *     - At least one taxonomy is required.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description INSUFFICIENT_ACCESS: GovernanceAiSuggestTags permission required. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description RESOURCE_NOT_FOUND: Tag taxonomy *{taxonomyName}* not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description REQUEST_LIMIT_EXCEEDED: Too many auto-tagging jobs in progress. Org limit: *MaxConcurrentAutoTagJobs org value* (default 100, configurable by Salesforce via BT admin). */
+                429: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-governance/tag-suggestions/actions/reject": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Reject tag suggestions
+         * @description Rejects one or more tag suggestions. Each item returns status code 200 on success, 404 if the suggestion isn't found, or 400 if the suggestion is in a terminal state.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["BulkIdInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                201: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BatchRepresentation"];
+                    };
+                };
+                /**
+                 * @description INVALID_INPUT_COMBINATION or MISSING_ARGUMENT
+                 *
+                 *     For example:
+                 *     - Maximum 200 items per request.
+                 *     - Input representation is required.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description INSUFFICIENT_ACCESS: GovernanceAiSuggestTags permission required. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-governance/tag-taxonomies": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List tag taxonomies
+         * @description Returns a paginated list of tag taxonomies.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query?: {
+                    /**
+                     * @description Maximum number of tag taxonomies to return. Must be between `5` and `200`. If unspecified, the default value is `25`.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    limit?: number;
+                    /**
+                     * @description Number of rows to skip before returning results. If unspecified, no rows are skipped.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    offset?: number;
+                    /**
+                     * @description Sort order for the result set: `ASC` for ascending or `DESC` for descending. If unspecified, the default value is `ASC` ordered by developer name.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    orderBy?: string;
+                    /**
+                     * @description Search keyword to match against the developer name or label.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    searchString?: string;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["TaxonomyCollectionRepresentation"];
+                    };
+                };
+                /**
+                 * @description INVALID_INPUT_COMBINATION
+                 *
+                 *     For example:
+                 *     - Limit must be between 5 and 200.
+                 *     - Invalid orderBy field. Valid fields: Label, DeveloperName.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        /**
+         * Create tag taxonomy
+         * @description Creates a top-level tag taxonomy.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["TaxonomyCreateInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["TaxonomyRepresentation"];
+                    };
+                };
+                /**
+                 * @description INVALID_INPUT or MISSING_ARGUMENT
+                 *
+                 *     For example:
+                 *     - Tag taxonomy name must be a single DeveloperName (managed-package namespace prefix permitted); must not contain `.`
+                 *     - A tag taxonomy with this label already exists.
+                 *     - Name is required.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-governance/tag-taxonomies/{fullyQualifiedName}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description Fully qualified API name of the tag taxonomy.
+                 *
+                 *     **Available Version:** 67.0
+                 */
+                fullyQualifiedName: string;
+            };
+            cookie?: never;
+        };
+        /**
+         * Get tag taxonomy
+         * @description Returns a tag taxonomy by its fully qualified API name.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description Fully qualified API name of the tag taxonomy.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    fullyQualifiedName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["TaxonomyRepresentation"];
+                    };
+                };
+                /** @description RESOURCE_NOT_FOUND: Tag taxonomy *{fullyQualifiedName}* not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        /**
+         * Delete tag taxonomy
+         * @description Deletes a tag taxonomy and all child tags.
+         *
+         *     **Available Version:** 67.0
+         */
+        delete: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description Fully qualified API name of the tag taxonomy.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    fullyQualifiedName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                202: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /**
+                 * @description INVALID_OPERATION
+                 *
+                 *     For example:
+                 *     - Cannot delete system tag taxonomy.
+                 *     - Entity is already being deleted.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description RESOURCE_NOT_FOUND: Tag taxonomy *{fullyQualifiedName}* not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description REFERENTIAL_INTEGRITY_VIOLATION: Cannot delete — has external dependencies or children tags. */
+                412: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        options?: never;
+        head?: never;
+        /**
+         * Update tag taxonomy
+         * @description Updates a tag taxonomy. Omitted fields are left unchanged.
+         *
+         *     **Available Version:** 67.0
+         */
+        patch: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description Fully qualified API name of the tag taxonomy.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    fullyQualifiedName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["TaxonomyPatchInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["TaxonomyRepresentation"];
+                    };
+                };
+                /**
+                 * @description INVALID_INPUT, INVALID_OPERATION, or MISSING_ARGUMENT
+                 *
+                 *     For example:
+                 *     - A tag taxonomy with this label already exists.
+                 *     - Cannot update entity in Deleting state.
+                 *     - Input representation is required.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description RESOURCE_NOT_FOUND: Tag taxonomy *{fullyQualifiedName}* not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        trace?: never;
+    };
+    "/ssot/data-governance/tag-taxonomies/{fullyQualifiedName}/detection-instructions/actions/bulk-create": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Bulk create tag detection instructions
+         * @description Bulk creates active detection instructions for multiple tags under one taxonomy. Each item creates or replaces the active instruction for one tag.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description Fully-qualified API name of the tag taxonomy.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    fullyQualifiedName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["TagDetectionInstructionBulkCreateInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                201: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BatchRepresentation"];
+                    };
+                };
+                /**
+                 * @description INVALID_INPUT_COMBINATION or MISSING_ARGUMENT
+                 *
+                 *     For example:
+                 *     - Maximum 200 items per bulk request.
+                 *     - A *tagFullyQualifiedName* is required.
+                 *     - An *instructionTxt* is required and must be at most 100 characters.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description RESOURCE_NOT_FOUND: Tag taxonomy *{fullyQualifiedName}* not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-governance/tag-taxonomies/{fullyQualifiedName}/tags-with-active-detection-instructions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get tags with active detection instructions
+         * @description Returns a paginated list of tags in a taxonomy along with their active detection instruction, if any.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query?: {
+                    /**
+                     * @description Maximum number of tags to return. Values are from `5` through `200`. The default value is `25` if unspecified.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    limit?: number;
+                    /**
+                     * @description Number of rows to skip before returning results. If unspecified, no rows are skipped.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    offset?: number;
+                };
+                header?: never;
+                path: {
+                    /**
+                     * @description Fully-qualified API name of the tag taxonomy.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    fullyQualifiedName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["TagWithActiveDetectionInstructionCollectionRepresentation"];
+                    };
+                };
+                /**
+                 * @description INVALID_INPUT_COMBINATION
+                 *
+                 *     For example:
+                 *     - Limit must be between 5 and 200.
+                 *     - Offset must be non-negative.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description RESOURCE_NOT_FOUND: Tag taxonomy *{fullyQualifiedName}* not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-governance/tag-taxonomies/actions/bulk-create": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Bulk create tag taxonomies
+         * @description Creates multiple tag taxonomies in a single request.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["TaxonomyBulkCreateInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BatchRepresentation"];
+                    };
+                };
+                /**
+                 * @description INVALID_INPUT_COMBINATION or MISSING_ARGUMENT
+                 *
+                 *     For example:
+                 *     - Maximum 200 items per request.
+                 *     - Input representation is required.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-governance/tag-taxonomies/actions/bulk-delete": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Bulk delete tag taxonomies
+         * @description Deletes multiple tag taxonomies and all child tags in a single request.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["TaxonomyBulkDeleteInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BatchRepresentation"];
+                    };
+                };
+                /**
+                 * @description INVALID_INPUT_COMBINATION or MISSING_ARGUMENT
+                 *
+                 *     For example:
+                 *     - Maximum 200 items per request.
+                 *     - Input representation is required.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-governance/tag-taxonomies/actions/bulk-update": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Bulk update tag taxonomies
+         * @description Updates multiple tag taxonomies in a single request. Omitted fields are left unchanged.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["TaxonomyBulkUpdateInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BatchRepresentation"];
+                    };
+                };
+                /**
+                 * @description INVALID_INPUT_COMBINATION or MISSING_ARGUMENT
+                 *
+                 *     For example:
+                 *     - Maximum 200 items per request.
+                 *     - Input representation is required.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-governance/tags": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get tags
+         * @description Returns a paginated list of tags across all tag taxonomies.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query?: {
+                    /**
+                     * @description Maximum number of tags to return from `5` through `200`. If unspecified, the default number of rows is `25`.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    limit?: number;
+                    /**
+                     * @description Number of rows to skip before returning results. Must be an integer greater than zero. If unspecified, no rows are skipped.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    offset?: number;
+                    /**
+                     * @description Sort order for the result set: `ASC` for ascending or `DESC` for descending. If unspecified, the default value is `ASC` ordered by developer name.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    orderBy?: string;
+                    /**
+                     * @description Fully-qualified API name of the parent tag. Scopes the list to direct children.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    parentTagFullyQualifiedName?: string;
+                    /**
+                     * @description Search keyword to match against the developer name or label.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    searchString?: string;
+                    /**
+                     * @description Fully-qualified API name of the tag taxonomy (for example, `Compliance_Tags`). Scopes the list to tags under that taxonomy.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    taxonomyName?: string;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["TagCollectionRepresentation"];
+                    };
+                };
+                /**
+                 * @description INVALID_INPUT_COMBINATION
+                 *
+                 *     For example:
+                 *     - Limit must be between 5 and 200.
+                 *     - Invalid orderBy field. Valid fields: Label, DeveloperName.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description RESOURCE_NOT_FOUND: Tag *{parentTagFullyQualifiedName}* not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        /**
+         * Create tag
+         * @description Creates a tag under a specified tag taxonomy, optionally nested under a parent tag.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["TagCreateInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["TagRepresentation"];
+                    };
+                };
+                /**
+                 * @description INVALID_INPUT or MISSING_ARGUMENT
+                 *
+                 *     For example:
+                 *     - Tag *fullyQualifiedName* must be 2 or 3 segments: <TaxonomyName>.<Level1>[.<Level2>]
+                 *     - A tag with this API name already exists
+                 *     - Input representation is required.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description RESOURCE_NOT_FOUND: Tag taxonomy *{taxonomySegment}* not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-governance/tags/{fullyQualifiedName}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description Fully qualified API name of the tag.
+                 *
+                 *     **Available Version:** 67.0
+                 */
+                fullyQualifiedName: string;
+            };
+            cookie?: never;
+        };
+        /**
+         * Get tag
+         * @description Returns a tag by its fully qualified API name.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description Fully qualified API name of the tag.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    fullyQualifiedName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["TagRepresentation"];
+                    };
+                };
+                /** @description RESOURCE_NOT_FOUND: Tag *{fullyQualifiedName}* not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        /**
+         * Delete tag
+         * @description Deletes a tag and cascades the deletion to any child tags and assignments.
+         *
+         *     **Available Version:** 67.0
+         */
+        delete: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description Fully qualified API name of the tag.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    fullyQualifiedName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                202: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /**
+                 * @description INVALID_OPERATION
+                 *
+                 *     For example:
+                 *     - Cannot delete system tag.
+                 *     - Entity is already being deleted.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description RESOURCE_NOT_FOUND: Tag *{fullyQualifiedName}* not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description REFERENTIAL_INTEGRITY_VIOLATION: Cannot delete — has external dependencies or children tags. */
+                412: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        options?: never;
+        head?: never;
+        /**
+         * Update tag
+         * @description Updates a tag. Omitted fields are left unchanged.
+         *
+         *     **Available Version:** 67.0
+         */
+        patch: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description Fully qualified API name of the tag.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    fullyQualifiedName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["TagPatchInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["TagRepresentation"];
+                    };
+                };
+                /**
+                 * @description INVALID_INPUT, INVALID_OPERATION, or MISSING_ARGUMENT
+                 *
+                 *     For example:
+                 *     - A tag with this label already exists.
+                 *     - Referenced tag must be in the same taxonomy.
+                 *     - Cannot update entity in Deleting state.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description RESOURCE_NOT_FOUND: Tag *{fullyQualifiedName}* not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        trace?: never;
+    };
+    "/ssot/data-governance/tags/{fullyQualifiedName}/assignments": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get tag assignments on a tag
+         * @description Returns a paginated list of tag assignments for a specific tag.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query?: {
+                    /**
+                     * @description Maximum number of tag assignments to return.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    limit?: number;
+                    /**
+                     * @description Number of rows to skip before returning results. If unspecified, no rows are skipped.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    offset?: number;
+                };
+                header?: never;
+                path: {
+                    /**
+                     * @description Fully-qualified API name of the tag (dotted path).
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    fullyQualifiedName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["TagAssignmentCollectionRepresentation"];
+                    };
+                };
+                /**
+                 * @description INVALID_INPUT_COMBINATION
+                 *
+                 *     For example:
+                 *     - Limit must be between 5 and 200.
+                 *     - Offset must be non-negative.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description RESOURCE_NOT_FOUND: Tag *{fullyQualifiedName}* not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-governance/tags/{fullyQualifiedName}/detection-instructions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Create tag detection instruction
+         * @description Creates or replaces the active detection instruction for a tag.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description Fully-qualified API name of the tag (dotted path).
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    fullyQualifiedName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["TagDetectionInstructionCreateInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                201: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["TagDetectionInstructionRepresentation"];
+                    };
+                };
+                /**
+                 * @description INVALID_INPUT_COMBINATION or MISSING_ARGUMENT
+                 *
+                 *     For example:
+                 *     - The *instructionTxt* must be at most 100 characters.
+                 *     - The *fullyQualifiedName* is required.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description RESOURCE_NOT_FOUND: Tag *{fullyQualifiedName}* not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-governance/tags/{fullyQualifiedName}/detection-instructions/active": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description Fully-qualified API name of the tag (dotted path).
+                 *
+                 *     **Available Version:** 67.0
+                 */
+                fullyQualifiedName: string;
+            };
+            cookie?: never;
+        };
+        /**
+         * Get tag detection instruction
+         * @description Returns the currently active detection instruction for a tag.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description Fully-qualified API name of the tag (dotted path).
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    fullyQualifiedName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["TagDetectionInstructionRepresentation"];
+                    };
+                };
+                /** @description MISSING_ARGUMENT: *fullyQualifiedName* is required. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description RESOURCE_NOT_FOUND: Tag *{fullyQualifiedName}* not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        /**
+         * Delete tag detection instruction
+         * @description Deactivates the currently active detection instruction for a tag.
+         *
+         *     **Available Version:** 67.0
+         */
+        delete: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description Fully-qualified API name of the tag (dotted path).
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    fullyQualifiedName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                202: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description MISSING_ARGUMENT: *fullyQualifiedName* is required. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description RESOURCE_NOT_FOUND: Tag *{fullyQualifiedName}* not found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-governance/tags/actions/bulk-create": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Bulk create tags
+         * @description Creates multiple tags in a single request. Maximum of 200 items per request. A parent tag and its child cannot be created in the same request.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["TagBulkCreateInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BatchRepresentation"];
+                    };
+                };
+                /**
+                 * @description INVALID_INPUT_COMBINATION or MISSING_ARGUMENT
+                 *
+                 *     For example:
+                 *     - Maximum 200 items per request.
+                 *     - Input representation is required.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-governance/tags/actions/bulk-delete": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Bulk delete tags
+         * @description Deletes multiple tags in a single request, cascading each deletion to its child tags and assignments.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["TagBulkDeleteInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BatchRepresentation"];
+                    };
+                };
+                /**
+                 * @description INVALID_INPUT_COMBINATION or MISSING_ARGUMENT
+                 *
+                 *     For example:
+                 *     - Maximum 200 items per request.
+                 *     - Input representation is required.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-governance/tags/actions/bulk-update": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Bulk update tags
+         * @description Updates multiple tags in a single requests. Omitted fields are left unchanged. Validation runs against the state before the batch operation. For example, if item 1 re-parents tag A and item 2 references tag A, item 2 validates against tag A's ancestry before the batch operation.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["TagBulkUpdateInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BatchRepresentation"];
+                    };
+                };
+                /**
+                 * @description INVALID_INPUT_COMBINATION or MISSING_ARGUMENT
+                 *
+                 *     For example:
+                 *     - Maximum 200 items per request.
+                 *     - Input representation is required.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-governance/tags/actions/propagate": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Propagate tags
+         * @description Propagates data governance tags to the specified objects.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["TagPropagateInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                201: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BatchRepresentation"];
+                    };
+                };
+                /**
+                 * @description INVALID_INPUT_COMBINATION or MISSING_ARGUMENT
+                 *
+                 *     For example:
+                 *     - At least one *objectName* is required.
+                 *     - Maximum 20 objectNames per request.
+                 *     - Input representation is required.
+                 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/ssot/data-graphs": {
         parameters: {
             query?: never;
@@ -7317,6 +15512,816 @@ export type paths = {
         patch?: never;
         trace?: never;
     };
+    "/ssot/data-shares": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get data shares
+         * @description Returns all data shares in the org, ordered by developer name.
+         *
+         *     **Available Version:** 63.0
+         */
+        get: {
+            parameters: {
+                query?: {
+                    /**
+                     * @description Maximum number of data shares to return.
+                     *
+                     *     **Available Version:** 63.0
+                     */
+                    limit?: number;
+                    /**
+                     * @description Number of rows to skip before returning results. If unspecified, no rows are skipped.
+                     *
+                     *     **Available Version:** 63.0
+                     */
+                    offset?: number;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["DataShareCollectionRepresentation"];
+                    };
+                };
+                /** @description Bad Request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not Found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-share": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Create data share
+         * @description Creates a data share and adds the data model object (DMO), data lake object (DLO), and calculated insight object (CIO) to it.
+         *
+         *     **Available Version:** 63.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["DataShareInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["DataShareRepresentation"];
+                    };
+                };
+                /** @description Bad Request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not Found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-share/{nameOrId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description API name or record ID of the data share.
+                 *
+                 *     **Available Version:** 63.0
+                 */
+                nameOrId: string;
+            };
+            cookie?: never;
+        };
+        /**
+         * Get data share
+         * @description Returns a data share with its object names.
+         *
+         *     **Available Version:** 63.0
+         */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description API name or record ID of the data share.
+                     *
+                     *     **Available Version:** 63.0
+                     */
+                    nameOrId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["DataShareRepresentation"];
+                    };
+                };
+                /** @description Bad Request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not Found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        /**
+         * Delete data share
+         * @description Deletes a data share.
+         *
+         *     **Available Version:** 63.0
+         */
+        delete: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description API name or record ID of the data share.
+                     *
+                     *     **Available Version:** 63.0
+                     */
+                    nameOrId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Bad Request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not Found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        options?: never;
+        head?: never;
+        /**
+         * Update data share
+         * @description Updates a data share and adds the data model object (DMO), data lake object (DLO), and calculated insight object (CIO) to it.
+         *
+         *     **Available Version:** 63.0
+         */
+        patch: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description API name or record ID of the data share.
+                     *
+                     *     **Available Version:** 63.0
+                     */
+                    nameOrId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["DataSharePatchInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["DataShareRepresentation"];
+                    };
+                };
+                /** @description Bad Request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not Found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        trace?: never;
+    };
+    "/ssot/data-share/{nameOrId}/actions/link": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Link data share with target
+         * @description Links a data share with a data share target. If the target is already linked, the operation is idempotent and no changes are made.
+         *
+         *     **Available Version:** 63.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description API name or ID of the data share.
+                     *
+                     *     **Available Version:** 63.0
+                     */
+                    nameOrId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["DataShareLinkActionInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["DataShareRepresentation"];
+                    };
+                };
+                /** @description Bad Request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not Found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-share/{nameOrId}/actions/unlink": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Unlink data share with target
+         * @description Unlinks a data share from a data share target. If the target is already unlinked, the operation is idempotent and no changes are made.
+         *
+         *     **Available Version:** 63.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description API name or ID of the data share.
+                     *
+                     *     **Available Version:** 63.0
+                     */
+                    nameOrId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["DataShareUnlinkActionInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["DataShareRepresentation"];
+                    };
+                };
+                /** @description Bad Request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not Found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-share-targets/{targetType}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get data share targets
+         * @description Returns all data share targets of a given target type.
+         *
+         *     **Available Version:** 63.0
+         */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description Type of data share target. Possible values are `Aws`, `BigQuery`, `Databricks`, `Datacloud`, `Ibm`, `Other`, `Snowflake`, and `SnowflakeOpenFlow`.
+                     *
+                     *     **Available Version:** 63.0
+                     */
+                    targetType: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["DataShareTargetCollectionRepresentation"];
+                    };
+                };
+                /** @description Bad Request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not Found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-share-target": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Create data share target
+         * @description Creates a data share target of a particular target type.
+         *
+         *     **Available Version:** 63.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["DataShareTargetInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["DataShareTargetRepresentation"];
+                    };
+                };
+                /** @description Bad Request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not Found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/data-share-target/{nameOrId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description API name or record ID of the data share target.
+                 *
+                 *     **Available Version:** 63.0
+                 */
+                nameOrId: string;
+            };
+            cookie?: never;
+        };
+        /**
+         * Get data share target
+         * @description Returns a data share target.
+         *
+         *     **Available Version:** 63.0
+         */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description API name or record ID of the data share target.
+                     *
+                     *     **Available Version:** 63.0
+                     */
+                    nameOrId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["DataShareTargetRepresentation"];
+                    };
+                };
+                /** @description Bad Request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not Found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        /**
+         * Delete data share target
+         * @description Deletes a data share target.
+         *
+         *     **Available Version:** 63.0
+         */
+        delete: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description API name or record ID of the data share target.
+                     *
+                     *     **Available Version:** 63.0
+                     */
+                    nameOrId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Bad Request. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Unauthorized. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Forbidden. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Not Found. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/ssot/data-spaces": {
         parameters: {
             query?: never;
@@ -7521,13 +16526,23 @@ export type paths = {
             parameters: {
                 query?: {
                     /**
-                     * @description The maximum number of items to return in each response. Values are from `1` through `4999`. The default value is `50` if unspecified.
+                     * @description The maximum number of items to return in each response. Values are from `1` through `2000`. The default value is `50` if unspecified.
                      *
                      *     **Available Version:** 61.0
                      */
-                    limit?: number;
+                    batchSize?: number;
                     /**
-                     * @description Number of rows to skip before returning results. Must be an integer greater than zero. If unspecified, no rows are skipped.
+                     * @description Token used to retrieve the next set of data space members. Returned when more results are available than can be returned in a single request.
+                     *     - **First request:** Omit the parameter or pass `null` to retrieve the first page.
+                     *     - **Subsequent requests:** Pass the token from the previous response to retrieve the next page.
+                     *     - **Expired tokens:** Tokens can expire after a period of time. If a token expires, restart pagination from the firstpage.
+                     *     - **Last page:** When the response returns no `continuationToken`, you've reached the last page.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    continuationToken?: string;
+                    /**
+                     * @description Number of rows to skip before returning results. Values are from `1` through '2000' If unspecified, no rows are skipped.
                      *
                      *     **Available Version:** 61.0
                      */
@@ -8423,6 +17438,65 @@ export type paths = {
         patch?: never;
         trace?: never;
     };
+    "/ssot/data-transforms/{dataTransformNameOrId}/actions/rebuild": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Rebuild data transform
+         * @description Rebuild a streaming data transform.
+         *
+         *     **Available Version:** 61.0
+         */
+        post: {
+            parameters: {
+                query?: {
+                    /**
+                     * @description ID of the user requesting the rebuild.
+                     *
+                     *     **Available Version:** 61.0
+                     */
+                    requestedBy?: string;
+                };
+                header?: never;
+                path: {
+                    /**
+                     * @description Record ID or API name of the data transform.
+                     *
+                     *     **Available Version:** 61.0
+                     */
+                    dataTransformNameOrId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["RebuildActionInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["CdpDataTransformActionResponseRepresentation"];
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/ssot/data-transforms/{dataTransformNameOrId}/actions/refresh-status": {
         parameters: {
             query?: never;
@@ -8608,7 +17682,7 @@ export type paths = {
             header?: never;
             path: {
                 /**
-                 * @description Name or Id of the data transform to get run history for.
+                 * @description Developer name or ID of the data transform to get run history for.
                  *
                  *     **Available Version:** 62.0
                  */
@@ -8628,13 +17702,13 @@ export type paths = {
             parameters: {
                 query?: {
                     /**
-                     * @description Maximum number of results to return.
+                     * @description Maximum number of run jobs to return.
                      *
                      *     **Available Version:** 62.0
                      */
                     limit?: number;
                     /**
-                     * @description Number of results to skip. Typically used to paginate results.
+                     * @description Number of run history records to skip before returning results. Must be an integer greater than zero. If unspecified, no rows are skipped.
                      *
                      *     **Available Version:** 62.0
                      */
@@ -8643,7 +17717,7 @@ export type paths = {
                 header?: never;
                 path: {
                     /**
-                     * @description Name or Id of the data transform to get run history for.
+                     * @description Developer name or ID of the data transform to get run history for.
                      *
                      *     **Available Version:** 62.0
                      */
@@ -8887,7 +17961,7 @@ export type paths = {
         put?: never;
         /**
          * Extract Document AI configuration data
-         * @description Extract data from a source of unstructured data. You can specify a page range for extraction and assign confidence scores for each extracted field.
+         * @description Extract structured data from PDF, image, Microsoft Word (.docx), PowerPoint (.pptx), and Excel (.xlsx) files. You can specify a page range for extraction and assign confidence scores for each extracted field. For Excel files, specify the target sheet name in the request.
          *
          *     **Available Version:** 63.0
          */
@@ -9614,7 +18688,7 @@ export type paths = {
                      */
                     dimensions?: string;
                     /**
-                     * @description Filter the result set to a more narrow scope or specific type, such as `[GenderId__c=Male,​FirstName__c=Angel]`.
+                     * @description Filter the result set to a more narrow scope or specific type, such as `[GenderId__c=Male,\u200BFirstName__c=Angel]`.
                      *
                      *     **Available Version:** 52.0
                      */
@@ -9768,6 +18842,1586 @@ export type paths = {
                         [name: string]: unknown;
                     };
                     content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/knowledge-space": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get knowledge spaces
+         * @description Get all knowledge spaces in the current data space.
+         *
+         *     **Available Version:** 65.0
+         */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["AllKnowledgeSpaceOutputRepresentation"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        /**
+         * Create knowledge space
+         * @description Create a knowledge space in the current data space.
+         *
+         *     **Available Version:** 65.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["KnowledgeSpaceInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["KnowledgeSpaceOutputRepresentation"];
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/knowledge-space/{knowledgeSpaceApiNameOrId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description API name or ID of the knowledge space.
+                 *
+                 *     **Available Version:** 65.0
+                 */
+                knowledgeSpaceApiNameOrId: string;
+            };
+            cookie?: never;
+        };
+        /**
+         * Get knowledge space
+         * @description Get a knowledge space.
+         *
+         *     **Available Version:** 65.0
+         */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description API name or ID of the knowledge space.
+                     *
+                     *     **Available Version:** 65.0
+                     */
+                    knowledgeSpaceApiNameOrId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["KnowledgeSpaceOutputRepresentation"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        /**
+         * Delete knowledge space
+         * @description Delete a knowledge space.
+         *
+         *     **Available Version:** 65.0
+         */
+        delete: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description API name or ID of the knowledge space.
+                     *
+                     *     **Available Version:** 65.0
+                     */
+                    knowledgeSpaceApiNameOrId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        options?: never;
+        head?: never;
+        /**
+         * Update knowledge space
+         * @description Update a knowledge space.
+         *
+         *     **Available Version:** 65.0
+         */
+        patch: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description API name or ID of the knowledge space.
+                     *
+                     *     **Available Version:** 65.0
+                     */
+                    knowledgeSpaceApiNameOrId: string;
+                };
+                cookie?: never;
+            };
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["KnowledgeSpaceInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["KnowledgeSpaceOutputRepresentation"];
+                    };
+                };
+            };
+        };
+        trace?: never;
+    };
+    "/ssot/knowledge-space/{knowledgeSpaceApiNameOrId}/details": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description API name or ID of the knowledge space.
+                 *
+                 *     **Available Version:** 65.0
+                 */
+                knowledgeSpaceApiNameOrId: string;
+            };
+            cookie?: never;
+        };
+        /**
+         * Get knowledge space details
+         * @description Get detailed information about a specific knowledge space.
+         *
+         *     **Available Version:** 65.0
+         */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description API name or ID of the knowledge space.
+                     *
+                     *     **Available Version:** 65.0
+                     */
+                    knowledgeSpaceApiNameOrId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["KnowledgeSpaceOutputRepresentation"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/knowledge-space/provision": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Provision knowledge space
+         * @description Provision a knowledge space for the specified data spaces.
+         *
+         *     **Available Version:** 65.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["KnowledgeSpaceProvisionInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["KnowledgeSpaceProvisionOutputRepresentation"];
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/knowledge-space/config": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get knowledge space configurations
+         * @description Get all knowledge space configuration details.
+         *
+         *     **Available Version:** 65.0
+         */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["AllKnowledgeSpaceConfigOutputRepresentation"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        /**
+         * Create knowledge space configuration
+         * @description Create a knowledge space configuration.
+         *
+         *     **Available Version:** 65.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["KnowledgeSpaceConfigInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["KnowledgeSpaceConfigOutputRepresentation"];
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/knowledge-space/config/{knowledgeSpaceConfigApiNameOrId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description API name or ID of the knowledge space configuration.
+                 *
+                 *     **Available Version:** 65.0
+                 */
+                knowledgeSpaceConfigApiNameOrId: string;
+            };
+            cookie?: never;
+        };
+        /**
+         * Get knowledge space configuration
+         * @description Get the details of a specific knowledge space configuration record.
+         *
+         *     **Available Version:** 65.0
+         */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description API name or ID of the knowledge space configuration.
+                     *
+                     *     **Available Version:** 65.0
+                     */
+                    knowledgeSpaceConfigApiNameOrId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["KnowledgeSpaceConfigOutputRepresentation"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        /**
+         * Delete knowledge space configuration
+         * @description Delete a knowledge space configuration.
+         *
+         *     **Available Version:** 65.0
+         */
+        delete: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description API name or ID of the knowledge space configuration.
+                     *
+                     *     **Available Version:** 65.0
+                     */
+                    knowledgeSpaceConfigApiNameOrId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/knowledge-space/library": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get knowledge libraries
+         * @description Get all knowledge libraries.
+         *
+         *     **Available Version:** 65.0
+         */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["AllKnowledgeSpaceLibraryOutputRepresentation"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        /**
+         * Create knowledge library
+         * @description Create a knowledge library in an existing knowledge space.
+         *
+         *     **Available Version:** 65.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["KnowledgeSpaceLibraryInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["KnowledgeSpaceLibraryOutputRepresentation"];
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/knowledge-space/library/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description ID of the knowledge library.
+                 *
+                 *     **Available Version:** 65.0
+                 */
+                id: string;
+            };
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /**
+         * Update knowledge library
+         * @description Update a knowledge library.
+         *
+         *     **Available Version:** 65.0
+         */
+        patch: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description ID of the knowledge library.
+                     *
+                     *     **Available Version:** 65.0
+                     */
+                    id: string;
+                };
+                cookie?: never;
+            };
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["KnowledgeSpaceLibraryInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["KnowledgeSpaceLibraryOutputRepresentation"];
+                    };
+                };
+            };
+        };
+        trace?: never;
+    };
+    "/ssot/knowledge-space/library/{libraryId}/details": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description ID of the knowledge library.
+                 *
+                 *     **Available Version:** 65.0
+                 */
+                libraryId: string;
+            };
+            cookie?: never;
+        };
+        /**
+         * Get knowledge library details
+         * @description Get detailed information about a specific knowledge library.
+         *
+         *     **Available Version:** 65.0
+         */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description ID of the knowledge library.
+                     *
+                     *     **Available Version:** 65.0
+                     */
+                    libraryId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["KnowledgeSpaceLibraryOutputRepresentation"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/knowledge-space/library/remove-library": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Remove knowledge library
+         * @description Remove a knowledge library from a knowledge space.
+         *
+         *     **Available Version:** 65.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["KnowledgeSpaceLibraryInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["KnowledgeSpaceLibraryOutputRepresentation"];
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/knowledge-space/library/search": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Search knowledge libraries
+         * @description Search for a knowledge library.
+         *
+         *     **Available Version:** 65.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["KnowledgeSpaceLibraryInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["AllKnowledgeSpaceLibraryOutputRepresentation"];
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/knowledge-space/presigned-urls": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Get presigned URLs
+         * @description Get presigned URLs for uploading files to a knowledge library.
+         *
+         *     **Available Version:** 65.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["KnowledgeSpaceUploadPresignedUrlInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["KnowledgeSpaceUploadPresignedURLOutputRepresentation"];
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/knowledge-space/index-files": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Index files
+         * @description Index uploaded files for a knowledge space.
+         *
+         *     **Available Version:** 65.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["KnowledgeSpaceIndexFilesInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["KnowledgeSpaceIndexFilesOutputRepresentation"];
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/knowledge-space/files/status": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Get file status
+         * @description Get the file status of a knowledge space for the specified file IDs.
+         *
+         *     **Available Version:** 65.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["KnowledgeSpaceFileStatusInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["KnowledgeSpaceFilesStatusOutputRepresentation"];
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/knowledge-space/remove-files": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Remove files
+         * @description Remove files from a knowledge library.
+         *
+         *     **Available Version:** 65.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["KnowledgeSpaceIndexFilesInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["KnowledgeSpaceIndexFilesOutputRepresentation"];
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/knowledge-space/summary": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Get file chunks summary
+         * @description Get all chunks for files in a knowledge space.
+         *
+         *     **Available Version:** 65.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["KnowledgeSpaceFileChunksInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["KnowledgeSpaceFileChunksOutputRepresentation"];
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/knowledge-space/getKnowledgeForImport": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Get knowledge for import
+         * @description Get knowledge libraries and search indexes to import into the specified knowledge space.
+         *
+         *     **Available Version:** 65.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["KnowledgeModalInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["KnowledgeModalOutputRepresentation"];
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/knowledge-space/importKnowledge": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Import knowledge
+         * @description Import selected knowledge libraries and search indexes into a target knowledge space.
+         *
+         *     **Available Version:** 65.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["KnowledgeModalInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["KnowledgeModalOutputRepresentation"];
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/knowledge-space/deep-research/{researchId}/run": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Run deep research
+         * @description Run deep research for a research ID.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description The unique identifier for the deep research job.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    researchId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["KnowledgeSpaceDeepResRunResearchOutputRepresentation"];
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/knowledge-space/deep-research/{researchId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description Unique identifier for the deep research job.
+                 *
+                 *     **Available Version:** 67.0
+                 */
+                researchId: string;
+            };
+            cookie?: never;
+        };
+        /**
+         * Get deep research status
+         * @description Get the deep research status by research ID.
+         *
+         *     **Available Version:** 67.0
+         */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description Unique identifier for the deep research job.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    researchId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["KnowledgeSpaceRunResearchOutputRepresentation"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /**
+         * Update deep research plan
+         * @description Update the deep research plan (instructions and/or steps) before execution.
+         *
+         *     **Available Version:** 67.0
+         */
+        patch: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description Unique identifier for the deep research job.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    researchId: string;
+                };
+                cookie?: never;
+            };
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["KnowledgeSpaceDeepResearchPlanPatchInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["KnowledgeSpaceRunResearchOutputRepresentation"];
+                    };
+                };
+            };
+        };
+        trace?: never;
+    };
+    "/ssot/knowledge-space/deep-research/{researchId}/cancel": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Cancel running deep research job
+         * @description Cancel a running deep research job, optionally requesting a partial report from completed steps.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description Unique identifier for the deep research job to cancel.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    researchId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["KnowledgeSpaceDeepResearchCancelInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["KnowledgeSpaceRunResearchOutputRepresentation"];
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/knowledge-space/deep-research/{researchId}/report": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Get deep research report
+         * @description Get the deep research report for a research ID.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description Unique identifier for the deep research job.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    researchId: string;
+                };
+                cookie?: never;
+            };
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["KnowledgeSpaceDeepResReportInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["KnowledgeSpaceDeepResReportOutputRepresentation"];
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/knowledge-space/space/{knowledgeSpaceApiNameOrId}/deep-research/source": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Add deep research as knowledge source
+         * @description Copy a completed deep research report into the knowledge space's GENERATED_RESOURCES library and trigger indexing. This causes the research findings to be available for future queries.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description API name or ID of the knowledge space.
+                     *
+                     *     **Available Version:** 67.0
+                     */
+                    knowledgeSpaceApiNameOrId: string;
+                };
+                cookie?: never;
+            };
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["KnowledgeSpaceDeepResearchAddSourceInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["KnowledgeSpaceDeepResearchAddSourceOutputRepresentation"];
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/knowledge-space/{knowledgeSpaceApiNameOrId}/sessions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description API name or ID of the knowledge space.
+                 *
+                 *     **Available Version:** 65.0
+                 */
+                knowledgeSpaceApiNameOrId: string;
+            };
+            cookie?: never;
+        };
+        /**
+         * Get knowledge space sessions
+         * @description Get all sessions for a knowledge space.
+         *
+         *     **Available Version:** 65.0
+         */
+        get: {
+            parameters: {
+                query?: {
+                    /**
+                     * @description Maximum number of sessions to return.
+                     *
+                     *     **Available Version:** 65.0
+                     */
+                    limit?: number;
+                };
+                header?: never;
+                path: {
+                    /**
+                     * @description API name or ID of the knowledge space.
+                     *
+                     *     **Available Version:** 65.0
+                     */
+                    knowledgeSpaceApiNameOrId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["AllKnowledgeSpaceSessionOutputRepresentation"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        /**
+         * Create knowledge space session
+         * @description Create a new session for a knowledge space.
+         *
+         *     **Available Version:** 65.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description API name or ID of the knowledge space.
+                     *
+                     *     **Available Version:** 65.0
+                     */
+                    knowledgeSpaceApiNameOrId: string;
+                };
+                cookie?: never;
+            };
+            requestBody: {
+                content: {
+                    "application/json": components["schemas"]["KnowledgeSpaceSessionInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["KnowledgeSpaceSessionOutputRepresentation"];
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/knowledge-space/session/{knowledgeSpaceSessionId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description ID of the knowledge space session.
+                 *
+                 *     **Available Version:** 65.0
+                 */
+                knowledgeSpaceSessionId: string;
+            };
+            cookie?: never;
+        };
+        /**
+         * Get knowledge space session
+         * @description Get a knowledge space session.
+         *
+         *     **Available Version:** 65.0
+         */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description ID of the knowledge space session.
+                     *
+                     *     **Available Version:** 65.0
+                     */
+                    knowledgeSpaceSessionId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["KnowledgeSpaceSessionOutputRepresentation"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        /**
+         * Delete knowledge space session
+         * @description Delete a knowledge space session.
+         *
+         *     **Available Version:** 65.0
+         */
+        delete: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description ID of the knowledge space session.
+                     *
+                     *     **Available Version:** 65.0
+                     */
+                    knowledgeSpaceSessionId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/knowledge-space/{knowledgeSpaceApiNameOrId}/session/{knowledgeSpaceSessionId}/conversation": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description API name or ID of the knowledge space.
+                 *
+                 *     **Available Version:** 65.0
+                 */
+                knowledgeSpaceApiNameOrId: string;
+                /**
+                 * @description ID of the knowledge space session.
+                 *
+                 *     **Available Version:** 65.0
+                 */
+                knowledgeSpaceSessionId: string;
+            };
+            cookie?: never;
+        };
+        /**
+         * Get session conversation
+         * @description Get conversation messages for a knowledge space session.
+         *
+         *     **Available Version:** 65.0
+         */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description API name or ID of the knowledge space.
+                     *
+                     *     **Available Version:** 65.0
+                     */
+                    knowledgeSpaceApiNameOrId: string;
+                    /**
+                     * @description ID of the knowledge space session.
+                     *
+                     *     **Available Version:** 65.0
+                     */
+                    knowledgeSpaceSessionId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["KnowledgeSpaceSessionConversationOutputRepresentation"];
+                    };
                 };
             };
         };
@@ -11564,6 +22218,975 @@ export type paths = {
                 };
                 /** @description Not Found. */
                 404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        trace?: never;
+    };
+    "/ssot/machine-learning/retrievers": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get retrievers
+         * @description Get a paginated list of retrievers. Out-of-the-box retrievers are returned first.
+         *
+         *     ><span style="color:blue">**Note:**</span>
+         *     >This endpoint is a pilot or beta service that is subject to the Beta Services Terms at [Agreements - Salesforce.com](https://www.salesforce.com/company/legal/agreements/) or a written Unified Pilot Agreement if executed by Customer, and applicable terms in the [Product Terms Directory](https://ptd.salesforce.com/). Use of this pilot or beta service is at the Customer's sole discretion.
+         *
+         *     **Available Version:** 61.0
+         */
+        get: {
+            parameters: {
+                query?: {
+                    /**
+                     * @description Filter retrievers by visibility across organizations in Data Cloud One.
+                     *
+                     *     **Available Version:** 61.0
+                     */
+                    dataCloudOneVisibility?: "All" | "Consumable" | "Local" | "Remote";
+                    /**
+                     * @description Response detail level. If unspecified, the default value is `Detailed`.
+                     *
+                     *     **Available Version:** 61.0
+                     */
+                    detailLevel?: "Basic" | "Detailed";
+                    /**
+                     * @description Indicates whether to return only active retrievers (`true`) or not (`false`).
+                     *
+                     *     **Available Version:** 61.0
+                     */
+                    isActive?: boolean;
+                    /**
+                     * @description Indicates whether to return only default retrievers (`true`) or not (`false`).
+                     *
+                     *     **Available Version:** 61.0
+                     */
+                    isDefault?: boolean;
+                    /**
+                     * @description Maximum number of retrievers to return. Values are from `1` through `200`. `-1` is no limit. If unspecified, `25` retrievers are returned.
+                     *
+                     *     **Available Version:** 61.0
+                     */
+                    limit?: number;
+                    /**
+                     * @description Number of rows to skip before returning results. If unspecified, no rows are skipped.
+                     *
+                     *     **Available Version:** 61.0
+                     */
+                    offset?: number;
+                    /**
+                     * @description Filter by query type.
+                     *
+                     *     **Available Version:** 61.0
+                     */
+                    queryType?: ("CustomSql" | "Ensemble" | "NoCode")[];
+                    /**
+                     * @description Search keyword to match against label or API name.
+                     *
+                     *     **Available Version:** 61.0
+                     */
+                    search?: string;
+                    /**
+                     * @description Field to sort results by. If unspecified, items are returned in `CreatedDate DESC` order.
+                     *
+                     *     **Available Version:** 61.0
+                     */
+                    sortBy?: ("CreatedDate" | "DataSourceType" | "Label" | "LastModifiedBy" | "LastModifiedDate" | "OwnerType" | "QueryType" | "Status")[];
+                    /**
+                     * @description Sort order. If unspecified, the default value is `Ascending`.
+                     *
+                     *     **Available Version:** 61.0
+                     */
+                    sortOrder?: ("Ascending" | "Descending")[];
+                    /**
+                     * @description Filter by source data model object (DMO) ID or API name.
+                     *
+                     *     **Available Version:** 61.0
+                     */
+                    sourceDmo?: string;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["MlRetrieverCollectionRepresentation"];
+                    };
+                };
+                /** @description Invalid request. Possible causes include missing required fields or invalid data. The response contains errorCode and message. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description The session ID or OAuth token has expired or is invalid. Or, if the request is made by a guest user, the resource isn't accessible to guest users. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description The request has been refused. Verify that the context user has the appropriate permissions to access the requested data, or that the context user is not an external user. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description The server can't find the requested resource. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description An error has occurred within Salesforce, so the request could not be completed. Please try again. For more help, contact Salesforce Customer Support. */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        /**
+         * Create retriever
+         * @description Create a retriever to query and retrieve data from Data 360 objects or search indexes. See [AI Retrievers Overview](https://help.salesforce.com/s/articleView?id=data.c360_a_ai_retriever.htm&type=5) for more information about retrievers.
+         *
+         *     ><span style="color:blue">**Note:**</span>
+         *     >This endpoint is a pilot or beta service that is subject to the Beta Services Terms at [Agreements - Salesforce.com](https://www.salesforce.com/company/legal/agreements/) or a written Unified Pilot Agreement if executed by Customer, and applicable terms in the [Product Terms Directory](https://ptd.salesforce.com/). Use of this pilot or beta service is at the Customer's sole discretion.
+         *
+         *     **Available Version:** 61.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["MlRetrieverInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["MlRetrieverRepresentation"];
+                    };
+                };
+                /** @description Invalid request. Possible causes include missing required fields or invalid data. The response contains errorCode and message. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description The session ID or OAuth token has expired or is invalid. Or, if the request is made by a guest user, the resource isn't accessible to guest users. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description The request has been refused. Verify that the context user has the appropriate permissions to access the requested data, or that the context user is not an external user. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description The server can't find the requested resource. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description An error has occurred within Salesforce, so the request could not be completed. Please try again. For more help, contact Salesforce Customer Support. */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/machine-learning/retrievers/actions/review": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Review retriever
+         * @description Reviews a Custom SQL retriever input and returns findings with errors and suggestions. Use this endpoint to validate the SQL query before creating or updating the retriever configuration.
+         *
+         *     ><span style="color:blue">**Note:**</span>
+         *     >This endpoint is a pilot or beta service that is subject to the Beta Services Terms at [Agreements - Salesforce.com](https://www.salesforce.com/company/legal/agreements/) or a written Unified Pilot Agreement if executed by Customer, and applicable terms in the [Product Terms Directory](https://ptd.salesforce.com/). Use of this pilot or beta service is at the Customer's sole discretion.
+         *
+         *     **Available Version:** 67.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["MlRetrieverReviewInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["MlRetrieverReviewRepresentation"];
+                    };
+                };
+                /** @description Invalid request. Possible causes include missing required fields or invalid data. The response contains errorCode and message. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description The session ID or OAuth token has expired or is invalid. Or, if the request is made by a guest user, the resource isn't accessible to guest users. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description The request has been refused. Verify that the context user has the appropriate permissions to access the requested data, or that the context user is not an external user. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description The server can't find the requested resource. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description An error has occurred within Salesforce, so the request could not be completed. Please try again. For more help, contact Salesforce Customer Support. */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/machine-learning/retrievers/{retrieverIdOrName}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description Record ID or API name of the retriever.
+                 *
+                 *     **Available Version:** 61.0
+                 */
+                retrieverIdOrName: string;
+            };
+            cookie?: never;
+        };
+        /**
+         * Get retriever
+         * @description Get a retriever with its latest and active configurations.
+         *
+         *     **Available Version:** 61.0
+         */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description Record ID or API name of the retriever.
+                     *
+                     *     **Available Version:** 61.0
+                     */
+                    retrieverIdOrName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["MlRetrieverRepresentation"];
+                    };
+                };
+                /** @description Invalid request. Possible causes include missing required fields or invalid data. The response contains errorCode and message. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description The session ID or OAuth token has expired or is invalid. Or, if the request is made by a guest user, the resource isn't accessible to guest users. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description The request has been refused. Verify that the context user has the appropriate permissions to access the requested data, or that the context user is not an external user. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description The server can't find the requested resource. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description An error has occurred within Salesforce, so the request could not be completed. Please try again. For more help, contact Salesforce Customer Support. */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        /**
+         * Delete retriever
+         * @description Delete a retriever and all its configuration versions. The retriever must not be used by other entities.
+         *
+         *     ><span style="color:blue">**Note:**</span>
+         *     >This endpoint is a pilot or beta service that is subject to the Beta Services Terms at [Agreements - Salesforce.com](https://www.salesforce.com/company/legal/agreements/) or a written Unified Pilot Agreement if executed by Customer, and applicable terms in the [Product Terms Directory](https://ptd.salesforce.com/). Use of this pilot or beta service is at the Customer's sole discretion.
+         *
+         *     **Available Version:** 61.0
+         */
+        delete: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description Record ID or API name of the retriever.
+                     *
+                     *     **Available Version:** 61.0
+                     */
+                    retrieverIdOrName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Invalid request. Possible causes include missing required fields or invalid data. The response contains errorCode and message. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description The session ID or OAuth token has expired or is invalid. Or, if the request is made by a guest user, the resource isn't accessible to guest users. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description The request has been refused. Verify that the context user has the appropriate permissions to access the requested data, or that the context user is not an external user. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description The server can't find the requested resource. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description An error has occurred within Salesforce, so the request could not be completed. Please try again. For more help, contact Salesforce Customer Support. */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        options?: never;
+        head?: never;
+        /**
+         * Update retriever
+         * @description Update a retriever label or description. To change the retrieval behavior, create a new configuration version.
+         *
+         *     ><span style="color:blue">**Note:**</span>
+         *     >This endpoint is a pilot or beta service that is subject to the Beta Services Terms at [Agreements - Salesforce.com](https://www.salesforce.com/company/legal/agreements/) or a written Unified Pilot Agreement if executed by Customer, and applicable terms in the [Product Terms Directory](https://ptd.salesforce.com/). Use of this pilot or beta service is at the Customer's sole discretion.
+         *
+         *     **Available Version:** 61.0
+         */
+        patch: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description Record ID or API name of the retriever.
+                     *
+                     *     **Available Version:** 61.0
+                     */
+                    retrieverIdOrName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["MlRetrieverUpdateInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["MlRetrieverRepresentation"];
+                    };
+                };
+                /** @description Invalid request. Possible causes include missing required fields or invalid data. The response contains errorCode and message. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description The session ID or OAuth token has expired or is invalid. Or, if the request is made by a guest user, the resource isn't accessible to guest users. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description The request has been refused. Verify that the context user has the appropriate permissions to access the requested data, or that the context user is not an external user. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description The server can't find the requested resource. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description An error has occurred within Salesforce, so the request could not be completed. Please try again. For more help, contact Salesforce Customer Support. */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        trace?: never;
+    };
+    "/ssot/machine-learning/retrievers/{retrieverIdOrName}/configurations": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description Record ID or API name of the retriever.
+                 *
+                 *     **Available Version:** 61.0
+                 */
+                retrieverIdOrName: string;
+            };
+            cookie?: never;
+        };
+        /**
+         * Get retriever configurations
+         * @description Get all configuration versions for the retriever.
+         *
+         *     ><span style="color:blue">**Note:**</span>
+         *     >This endpoint is a pilot or beta service that is subject to the Beta Services Terms at [Agreements - Salesforce.com](https://www.salesforce.com/company/legal/agreements/) or a written Unified Pilot Agreement if executed by Customer, and applicable terms in the [Product Terms Directory](https://ptd.salesforce.com/). Use of this pilot or beta service is at the Customer's sole discretion.
+         *
+         *     **Available Version:** 61.0
+         */
+        get: {
+            parameters: {
+                query?: {
+                    /**
+                     * @description Maximum number of configurations to return. Values are `1` through `200`. `-1` is no limit. If unspecified, `25` configurations are returned.
+                     *
+                     *     **Available Version:** 61.0
+                     */
+                    limit?: number;
+                    /**
+                     * @description Number of rows to skip before returning results. If unspecified, no rows are skipped.
+                     *
+                     *     **Available Version:** 61.0
+                     */
+                    offset?: number;
+                };
+                header?: never;
+                path: {
+                    /**
+                     * @description Record ID or API name of the retriever.
+                     *
+                     *     **Available Version:** 61.0
+                     */
+                    retrieverIdOrName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["MlRetrieverConfigurationCollectionRepresentation"];
+                    };
+                };
+                /** @description Invalid request. Possible causes include missing required fields or invalid data. The response contains errorCode and message. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description The session ID or OAuth token has expired or is invalid. Or, if the request is made by a guest user, the resource isn't accessible to guest users. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description The request has been refused. Verify that the context user has the appropriate permissions to access the requested data, or that the context user is not an external user. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description The server can't find the requested resource. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description An error has occurred within Salesforce, so the request could not be completed. Please try again. For more help, contact Salesforce Customer Support. */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        /**
+         * Create retriever configuration
+         * @description Create a new configuration version for the retriever. Set `isActive` to `true` to activate immediately. At most one configuration can be active at a time.
+         *
+         *     The `NoCode` retriever type internally generates a Data 360 SQL query template from the configuration. The `CustomSql` retriever type uses a user-specified Data 360 SQL query template. The `Ensemble` retriever type combines results from multiple sub-retrievers with reranking.
+         *
+         *     ><span style="color:blue">**Note:**</span>
+         *     >This endpoint is a pilot or beta service that is subject to the Beta Services Terms at [Agreements - Salesforce.com](https://www.salesforce.com/company/legal/agreements/) or a written Unified Pilot Agreement if executed by Customer, and applicable terms in the [Product Terms Directory](https://ptd.salesforce.com/). Use of this pilot or beta service is at the Customer's sole discretion.
+         *
+         *     **Available Version:** 61.0
+         */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description Record ID or API name of the retriever.
+                     *
+                     *     **Available Version:** 61.0
+                     */
+                    retrieverIdOrName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["MlRetrieverConfigurationBaseInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["MlRetrieverConfigurationDetailRepresentation"];
+                    };
+                };
+                /** @description Invalid request. Possible causes include missing required fields or invalid data. The response contains errorCode and message. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description The session ID or OAuth token has expired or is invalid. Or, if the request is made by a guest user, the resource isn't accessible to guest users. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description The request has been refused. Verify that the context user has the appropriate permissions to access the requested data, or that the context user is not an external user. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description The server can't find the requested resource. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description An error has occurred within Salesforce, so the request could not be completed. Please try again. For more help, contact Salesforce Customer Support. */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/ssot/machine-learning/retrievers/{retrieverIdOrName}/configurations/{retrieverConfigurationIdOrName}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                /**
+                 * @description Record ID or API name of the configuration.
+                 *
+                 *     **Available Version:** 61.0
+                 */
+                retrieverConfigurationIdOrName: string;
+                /**
+                 * @description Record ID or API name of the retriever.
+                 *
+                 *     **Available Version:** 61.0
+                 */
+                retrieverIdOrName: string;
+            };
+            cookie?: never;
+        };
+        /**
+         * Get retriever configuration
+         * @description Get a retriever configuration.
+         *
+         *     ><span style="color:blue">**Note:**</span>
+         *     >This endpoint is a pilot or beta service that is subject to the Beta Services Terms at [Agreements - Salesforce.com](https://www.salesforce.com/company/legal/agreements/) or a written Unified Pilot Agreement if executed by Customer, and applicable terms in the [Product Terms Directory](https://ptd.salesforce.com/). Use of this pilot or beta service is at the Customer's sole discretion.
+         *
+         *     **Available Version:** 61.0
+         */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description Record ID or API name of the configuration.
+                     *
+                     *     **Available Version:** 61.0
+                     */
+                    retrieverConfigurationIdOrName: string;
+                    /**
+                     * @description Record ID or API name of the retriever.
+                     *
+                     *     **Available Version:** 61.0
+                     */
+                    retrieverIdOrName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["MlRetrieverConfigurationDetailRepresentation"];
+                    };
+                };
+                /** @description Invalid request. Possible causes include missing required fields or invalid data. The response contains errorCode and message. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description The session ID or OAuth token has expired or is invalid. Or, if the request is made by a guest user, the resource isn't accessible to guest users. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description The request has been refused. Verify that the context user has the appropriate permissions to access the requested data, or that the context user is not an external user. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description The server can't find the requested resource. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description An error has occurred within Salesforce, so the request could not be completed. Please try again. For more help, contact Salesforce Customer Support. */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        /**
+         * Delete retriever configuration
+         * @description Delete a retriever configuration.
+         *
+         *     ><span style="color:blue">**Note:**</span>
+         *     >This endpoint is a pilot or beta service that is subject to the Beta Services Terms at [Agreements - Salesforce.com](https://www.salesforce.com/company/legal/agreements/) or a written Unified Pilot Agreement if executed by Customer, and applicable terms in the [Product Terms Directory](https://ptd.salesforce.com/). Use of this pilot or beta service is at the Customer's sole discretion.
+         *
+         *     **Available Version:** 61.0
+         */
+        delete: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description Record ID or API name of the configuration.
+                     *
+                     *     **Available Version:** 61.0
+                     */
+                    retrieverConfigurationIdOrName: string;
+                    /**
+                     * @description Record ID or API name of the retriever.
+                     *
+                     *     **Available Version:** 61.0
+                     */
+                    retrieverIdOrName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Invalid request. Possible causes include missing required fields or invalid data. The response contains errorCode and message. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description The session ID or OAuth token has expired or is invalid. Or, if the request is made by a guest user, the resource isn't accessible to guest users. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description The request has been refused. Verify that the context user has the appropriate permissions to access the requested data, or that the context user is not an external user. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description The server can't find the requested resource. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description An error has occurred within Salesforce, so the request could not be completed. Please try again. For more help, contact Salesforce Customer Support. */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        options?: never;
+        head?: never;
+        /**
+         * Update retriever configuration
+         * @description Update the configuration's active status. Setting `isActive` to `true` activates this configuration and deactivates any previously active configuration. Setting `isActive` to `false` on the currently active configuration deactivates the retriever. The retriever must not be used by other entities before deactivation.
+         *
+         *     ><span style="color:blue">**Note:**</span>
+         *     >This endpoint is a pilot or beta service that is subject to the Beta Services Terms at [Agreements - Salesforce.com](https://www.salesforce.com/company/legal/agreements/) or a written Unified Pilot Agreement if executed by Customer, and applicable terms in the [Product Terms Directory](https://ptd.salesforce.com/). Use of this pilot or beta service is at the Customer's sole discretion.
+         *
+         *     **Available Version:** 61.0
+         */
+        patch: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    /**
+                     * @description Record ID or API name of the configuration.
+                     *
+                     *     **Available Version:** 61.0
+                     */
+                    retrieverConfigurationIdOrName: string;
+                    /**
+                     * @description Record ID or API name of the retriever.
+                     *
+                     *     **Available Version:** 61.0
+                     */
+                    retrieverIdOrName: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["MlRetrieverConfigurationUpdateInputRepresentation"];
+                };
+            };
+            responses: {
+                /** @description Success */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["MlRetrieverConfigurationDetailRepresentation"];
+                    };
+                };
+                /** @description Invalid request. Possible causes include missing required fields or invalid data. The response contains errorCode and message. */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description The session ID or OAuth token has expired or is invalid. Or, if the request is made by a guest user, the resource isn't accessible to guest users. */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description The request has been refused. Verify that the context user has the appropriate permissions to access the requested data, or that the context user is not an external user. */
+                403: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description The server can't find the requested resource. */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description An error has occurred within Salesforce, so the request could not be completed. Please try again. For more help, contact Salesforce Customer Support. */
+                500: {
                     headers: {
                         [name: string]: unknown;
                     };
@@ -14256,6 +25879,287 @@ export type components = {
             type?: "TypographicClustering";
         };
         /**
+         * Access Policy Collection Output
+         * @description Represents a paginated list of access policies.
+         */
+        AccessPolicyCollectionRepresentation: components["schemas"]["CdpPaginatedResponseBaseRepresentation"] & {
+            /**
+             * @description Access policies on the current page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            records?: components["schemas"]["AccessPolicyRepresentation"][];
+        };
+        /**
+         * Access Policy Input
+         * @description Represents the input for creating an access policy.
+         */
+        AccessPolicyInputRepresentation: components["schemas"]["CdpObjectBaseInputRepresentation"] & {
+            /**
+             * @description Ordered list of rules embedded in the policy. The access policy builder requires exactly one rule.
+             *     **Available Version:** 67.0
+             */
+            rules?: components["schemas"]["AccessPolicyRuleInputRepresentation"][];
+        };
+        /**
+         * Access Policy Patch Input
+         * @description Represents the input for partially updating an access policy's set-level metadata. Only the fields that are explicitly set are updated.
+         */
+        AccessPolicyPatchInputRepresentation: {
+            /**
+             * @description Description of the policy. Omit to leave unchanged.
+             *
+             *     **Available Version:** 67.0
+             */
+            description?: string;
+            /**
+             * @description Display label for the policy. Omit to leave unchanged.
+             *
+             *     **Available Version:** 67.0
+             */
+            label?: string;
+        };
+        /**
+         * Access Policy Output
+         * @description Represents an access policy with its embedded rules.
+         */
+        AccessPolicyRepresentation: components["schemas"]["CdpAssetBaseRepresentation"] & {
+            /**
+             * @description Indicates whether the policy was authored to be renderable in the access policy builder (`true`) or not (`false`).
+             *     **Filter Group:** Small
+             *     **Available Version:** 67.0
+             */
+            builderCompatible?: boolean;
+            /**
+             * @description Indicates whether the access policy validator has run for the policy (`true`) or not (`false`). Read-only; the server derives this value on save.
+             *     **Filter Group:** Small
+             *     **Available Version:** 67.0
+             */
+            builderValidated?: boolean;
+            /**
+             * @description Description of the policy.
+             *     **Filter Group:** Small
+             *     **Available Version:** 67.0
+             */
+            description?: string;
+            /**
+             * @description Rules contained in the policy. The access policy builder restricts a policy to one rule; multi-rule policies have `builderCompatible` set to `false`.
+             *     **Filter Group:** Small
+             *     **Available Version:** 67.0
+             */
+            rules?: components["schemas"]["AccessPolicyRuleRepresentation"][];
+        };
+        /**
+         * Access Policy Rule Input
+         * @description Represents the input for a single rule within an access policy.
+         */
+        AccessPolicyRuleInputRepresentation: {
+            /**
+             * @description Actions the rule applies to, such as `Read`.
+             *     **Available Version:** 67.0
+             */
+            action?: string[];
+            /**
+             * @description MDAPI rule category.
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            category: "ACCESS_POLICY_RULE_DEFINITION" | "GOVERNANCE_POLICY_RULE_DEFINITION" | "TRANSFORM_POLICY_RULE_DEFINITION" | "RECORD_POLICY_RULE_DEFINITION" | "IDENTIFIED_RECORD_POLICY_RULE_DEFINITION";
+            /**
+             * @description Effect of the rule.
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            effect: "Permit" | "Forbid" | "Transform";
+            /**
+             * @description Display label for the rule.
+             *     **Available Version:** 67.0
+             */
+            label?: string;
+            /**
+             * @description Developer name of the rule (PolicyRuleDefinition fullName).
+             *     **Available Version:** 67.0
+             */
+            name: string;
+            /**
+             * @description Required principal authentication level.
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            principalAuthenticationLevel?: "UNIDENTIFIED" | "IDENTIFIED" | "AUTHENTICATED" | "INTERNAL";
+            /**
+             * @description Principal scope type.
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            principalScopeType?: "ANY";
+            /**
+             * @description DMOs or objects the rule scopes to. Required for record-scope (RLS) rules.
+             *     **Available Version:** 67.0
+             */
+            resourceDomains?: string[];
+            /**
+             * @description Resource scope type.
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            resourceScopeType?: "ANY" | "FIELD" | "RECORD";
+            /**
+             * @description For Transform or FLS rules, the transform applied to the field.
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            resourceTransform?: "LAST_N_CHARS_RESOURCE_TRANSFORM" | "FIRST_N_CHARS_RESOURCE_TRANSFORM" | "ALL_BUT_LAST_N_CHARS_RESOURCE_TRANSFORM" | "ALL_BUT_FIRST_N_CHARS_RESOURCE_TRANSFORM" | "CLOSEST_ORDER_OF_MAGNITUDE_RESOURCE_TRANSFORM" | "NULL_RESOURCE_TRANSFORM" | "EMPTY_STRING_RESOURCE_TRANSFORM" | "TRUNCATE_DATE_RESOURCE_TRANSFORM" | "ROUND_RESOURCE_TRANSFORM" | "REPLACE_ALL_CHARS_RESOURCE_TRANSFORM";
+            /**
+             * @description Static argument list for the resource transform, such as the `2` for `FIRST_N_CHARS_RESOURCE_TRANSFORM`.
+             *     **Available Version:** 67.0
+             */
+            resourceTransformArguments?: components["schemas"]["ResourceTransformArgumentInputRepresentation"][];
+            /**
+             * @description Consumer of the rule's enforcement.
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            ruleConsumer?: "ALL" | "DATACLOUD" | "MULESOFT" | "TABLEAU" | "CORE";
+            /**
+             * @description Tiebreaker when multiple Transform rules apply to the same field. The lower value wins. Applies only to Transform-effect rules.
+             *
+             *     **Available Version:** 67.0
+             */
+            transformPrecedence?: number;
+            /**
+             * @description Condition group that, when met, exempts the rule from applying.
+             *
+             *     **Available Version:** 67.0
+             */
+            unless?: components["schemas"]["ConditionGroupInputRepresentation"];
+            /**
+             * @description Condition group that must be met for the rule to apply.
+             *
+             *     **Available Version:** 67.0
+             */
+            when?: components["schemas"]["ConditionGroupInputRepresentation"];
+        };
+        /**
+         * Access Policy Rule Output
+         * @description Represents a single rule within an access policy.
+         */
+        AccessPolicyRuleRepresentation: {
+            /**
+             * @description Actions the rule applies to, such as `Read`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            action?: string[];
+            /**
+             * @description MDAPI rule category, which determines the validator that dispatches.
+             *     **Filter Group:** Small
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            category?: "ACCESS_POLICY_RULE_DEFINITION" | "GOVERNANCE_POLICY_RULE_DEFINITION" | "TRANSFORM_POLICY_RULE_DEFINITION" | "RECORD_POLICY_RULE_DEFINITION" | "IDENTIFIED_RECORD_POLICY_RULE_DEFINITION";
+            /**
+             * @description Effect of the rule.
+             *     **Filter Group:** Small
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            effect?: "Permit" | "Forbid" | "Transform";
+            /**
+             * @description 18-character record ID of the underlying PolicyRuleDefinition.
+             *     **Filter Group:** Small
+             *     **Available Version:** 67.0
+             */
+            id?: string;
+            /**
+             * @description Display label for the rule.
+             *     **Filter Group:** Small
+             *     **Available Version:** 67.0
+             */
+            label?: string;
+            /**
+             * @description Developer name of the rule (PolicyRuleDefinition fullName).
+             *     **Filter Group:** Small
+             *     **Available Version:** 67.0
+             */
+            name?: string;
+            /**
+             * @description Required principal authentication level.
+             *     **Filter Group:** Small
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            principalAuthenticationLevel?: "UNIDENTIFIED" | "IDENTIFIED" | "AUTHENTICATED" | "INTERNAL";
+            /**
+             * @description Principal scope type.
+             *     **Filter Group:** Small
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            principalScopeType?: "ANY";
+            /**
+             * @description DMOs or objects the rule scopes to. Required for record-scope (RLS) rules; typically empty or absent for OLS or FLS.
+             *     **Filter Group:** Small
+             *     **Available Version:** 67.0
+             */
+            resourceDomains?: string[];
+            /**
+             * @description Resource scope type.
+             *     **Filter Group:** Small
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            resourceScopeType?: "ANY" | "FIELD" | "RECORD";
+            /**
+             * @description For Transform or FLS rules, the transform applied to the field before the principal sees it.
+             *     **Filter Group:** Small
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            resourceTransform?: "LAST_N_CHARS_RESOURCE_TRANSFORM" | "FIRST_N_CHARS_RESOURCE_TRANSFORM" | "ALL_BUT_LAST_N_CHARS_RESOURCE_TRANSFORM" | "ALL_BUT_FIRST_N_CHARS_RESOURCE_TRANSFORM" | "CLOSEST_ORDER_OF_MAGNITUDE_RESOURCE_TRANSFORM" | "NULL_RESOURCE_TRANSFORM" | "EMPTY_STRING_RESOURCE_TRANSFORM" | "TRUNCATE_DATE_RESOURCE_TRANSFORM" | "ROUND_RESOURCE_TRANSFORM" | "REPLACE_ALL_CHARS_RESOURCE_TRANSFORM";
+            /**
+             * @description Static argument list for the resource transform, such as the `2` for `FIRST_N_CHARS_RESOURCE_TRANSFORM`.
+             *     **Filter Group:** Small
+             *     **Available Version:** 67.0
+             */
+            resourceTransformArguments?: components["schemas"]["ResourceTransformArgumentRepresentation"][];
+            /**
+             * @description Consumer of the rule's enforcement.
+             *     **Filter Group:** Small
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            ruleConsumer?: "ALL" | "DATACLOUD" | "MULESOFT" | "TABLEAU" | "CORE";
+            /**
+             * @description Tiebreaker when multiple Transform rules apply to the same field. The lower value wins. Emitted only on Transform-effect rules.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            transformPrecedence?: number;
+            /**
+             * @description Condition group that, when met, exempts the rule from applying.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            unless?: components["schemas"]["ConditionGroupRepresentation"];
+            /**
+             * @description Condition group that must be met for the rule to apply.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            when?: components["schemas"]["ConditionGroupRepresentation"];
+        };
+        /**
          * Account Engagement Connection Output
          * @description Represents an Account Engagement connector.
          */
@@ -14284,6 +26188,70 @@ export type components = {
              *     **Available Version:** 63.0
              */
             tenantSpecificEndpoint?: string;
+        };
+        /**
+         * Action Result Output
+         * @description Represents the result of a lifecycle action, such as enable or disable.
+         */
+        ActionResultRepresentation: {
+            /**
+             * @description Human-readable status or warning message. Can be null on success.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            message?: string;
+            /**
+             * @description Indicates whether the action completed successfully (`true`) or not (`false`).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            success?: boolean;
+        };
+        /**
+         * Action Source Collection Output
+         * @description Represents a paginated collection of action sources available for an event.
+         */
+        ActionSourceCollectionRepresentation: {
+            /**
+             * @description List of action sources valid for the requested event.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            actionSources?: components["schemas"]["ActionSourceRepresentation"][];
+        } & components["schemas"]["CdpActivationPaginatedResponseBaseRepresentation"];
+        /**
+         * Action Source Output
+         * @description Represents an action source valid for an event on a streaming activation platform.
+         */
+        ActionSourceRepresentation: {
+            /**
+             * @description Name of the action source, such as Website, App, or Offline.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            name?: string;
+        };
+        /**
+         * Activatable Data Object Categories Output
+         * @description Represents the data object category types that can be activated.
+         */
+        ActivatableDataObjectCategoriesRepresentation: {
+            /**
+             * @description List of category type identifiers that are available for activation, such as Profile, Engagement, and Other.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            categories?: string[];
         };
         /**
          * Activation Additional Attributes Config Input
@@ -14789,7 +26757,7 @@ export type components = {
              *     **Available Version:** 66.0
              * @enum {string}
              */
-            activationType?: "ApiTriggered" | "Segment";
+            activationType?: "ApiTriggered" | "Dmo" | "Segment";
             /**
              * @description Limiting expression configuration for the activation.
              *
@@ -14846,6 +26814,12 @@ export type components = {
              */
             description?: string;
             /**
+             * @description Developer name of the activation. Must be unique. The request fails if an activation with the same developer name already exists.
+             *
+             *     **Available Version:** 67.0
+             */
+            developerName?: string;
+            /**
              * @description Direct DMO filters.
              *
              *     **Available Version:** 60.0
@@ -14869,6 +26843,13 @@ export type components = {
              *     **Available Version:** 60.0
              */
             name?: string;
+            /**
+             * @description Processing type for DMO activations. Required when activationType is `DMO`.
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            processingType?: "Batch";
             /**
              * @description Indicates the refresh type for the activation, (`Full` or `Incremental`).
              *
@@ -14906,11 +26887,227 @@ export type components = {
              */
             sourceDmoName?: string;
             /**
-             * @description Configuration of static data, which adds metadata or campaign details in the output. For example, `campaignId` or `campaignName`.
+             * @description Configuration of campaign data attributes for an activation, which are name-value pairs including standard attributes (system-defined) and custom attributes (user-defined).
+             *
+             *     Standard attributes are resolved by the system at activation run time and added as separate columns in the activation output. The available standard attributes are Activation Name, Activation ID, Segment Name, Segment ID, Activation Publish Start Time, and Activation Run ID.
+             *
+             *     Standard attributes improve traceability, reconciliation, auditability, time-based processing, and disambiguation when multiple activations write to overlapping destinations. To use a standard attribute, select the exact standard attribute name and its corresponding value in the name-value pair.
              *
              *     **Available Version:** 60.0
              */
             staticDataConfig?: components["schemas"]["StaticDataConfigInputRepresentation"][];
+            /**
+             * @description Details about the selected Waterfall child segments. Required when segmentApiName references a Waterfall segment type; must not be present otherwise.
+             *
+             *     **Available Version:** 67.0
+             */
+            waterfallSelectedChildSegmentsConfig?: components["schemas"]["WaterfallSelectedChildSegmentsConfigInputRepresentation"];
+        };
+        /**
+         * Activation Event Parameter Hierarchy Combination Input
+         * @description Represents the input for a key-values pair within a hierarchy combination.
+         */
+        ActivationEventParameterHierarchyCombinationInputRepresentation: {
+            /**
+             * @description Parameter value key, such as `Purchase`.
+             *
+             *     **Available Version:** 67.0
+             */
+            key: string;
+            /**
+             * @description Valid child parameter values for the key.
+             *
+             *     **Available Version:** 67.0
+             */
+            values?: string[];
+        };
+        /**
+         * Activation Event Parameter Hierarchy Combination Output
+         * @description Represents a key-values pair within a hierarchy combination.
+         */
+        ActivationEventParameterHierarchyCombinationRepresentation: {
+            /**
+             * @description Parameter value key, such as `Purchase`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            key?: string;
+            /**
+             * @description Valid child parameter values for the key.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            values?: string[];
+        };
+        /**
+         * Activation Event Parameter Hierarchy Input
+         * @description Represents the input for a hierarchy combination.
+         */
+        ActivationEventParameterHierarchyInputRepresentation: {
+            /**
+             * @description Combination key, such as `Event__ActionSource`.
+             *
+             *     **Available Version:** 67.0
+             */
+            hierarchyCombination: string;
+            /**
+             * @description Valid value pairings for the combination.
+             *
+             *     **Available Version:** 67.0
+             */
+            hierarchyCombinationData?: components["schemas"]["ActivationEventParameterHierarchyCombinationInputRepresentation"][];
+        };
+        /**
+         * Activation Event Parameter Hierarchy Output
+         * @description Represents a hierarchy combination that defines valid parameter value pairings.
+         */
+        ActivationEventParameterHierarchyRepresentation: {
+            /**
+             * @description Combination key, such as `Event__ActionSource`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            hierarchyCombination?: string;
+            /**
+             * @description Valid value pairings for the combination.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            hierarchyCombinationData?: components["schemas"]["ActivationEventParameterHierarchyCombinationRepresentation"][];
+        };
+        /**
+         * Activation Event Parameter Input
+         * @description Represents the input for an event parameter reference.
+         */
+        ActivationEventParameterInputRepresentation: {
+            /**
+             * @description Parameter value name, such as `Purchase` or `Website`.
+             *
+             *     **Available Version:** 67.0
+             */
+            name: string;
+            /**
+             * @description Nested event parameter reference for the next level in the hierarchy.
+             *
+             *     **Available Version:** 67.0
+             */
+            subEventParameter?: components["schemas"]["ActivationEventParameterInputRepresentation"];
+            /**
+             * @description Type of event parameter.
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            type: "ActionSource" | "Event";
+        };
+        /**
+         * Activation Event Parameter Output
+         * @description Represents an event parameter reference. Supports recursive sub-parameters.
+         */
+        ActivationEventParameterRepresentation: {
+            /**
+             * @description Parameter value name, such as `Purchase` or `Website`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            name?: string;
+            /**
+             * @description Nested event parameter reference for the next level in the hierarchy.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            subEventParameter?: components["schemas"]["ActivationEventParameterRepresentation"];
+            /**
+             * @description Type of event parameter.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            type?: "ActionSource" | "Event";
+        };
+        /**
+         * Activation Event Parameter Values Input
+         * @description Represents the input for an event parameter definition.
+         */
+        ActivationEventParameterValuesInputRepresentation: {
+            /**
+             * @description Hierarchy level, starting at 1.
+             *
+             *     **Available Version:** 67.0
+             */
+            hierarchy?: number;
+            /**
+             * @description Parameter name, such as `Event` or `Action Source`.
+             *
+             *     **Available Version:** 67.0
+             */
+            name: string;
+            /**
+             * @description Type of event parameter.
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            type: "ActionSource" | "Event";
+            /**
+             * @description Allowed values for the parameter.
+             *
+             *     **Available Version:** 67.0
+             */
+            values?: string[];
+        };
+        /**
+         * Activation Event Parameter Values Output
+         * @description Represents an event parameter definition with its allowed values.
+         */
+        ActivationEventParameterValuesRepresentation: {
+            /**
+             * @description Hierarchy level, starting at 1.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            hierarchy?: number;
+            /**
+             * @description Parameter name, such as `Event` or `Action Source`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            name?: string;
+            /**
+             * @description Type of event parameter.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            type?: "ActionSource" | "Event";
+            /**
+             * @description Allowed values for the parameter.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            values?: string[];
         };
         /**
          * Activation External Platform Attribute Config Output
@@ -15021,6 +27218,2183 @@ export type components = {
             type?: "Advertising" | "Analytics" | "Marketing" | "Publishing" | "Technology";
         };
         /**
+         * Activation History Collection Output
+         * @description Represents a page of activation publish-history records.
+         */
+        ActivationHistoryCollectionRepresentation: {
+            /**
+             * Format: url
+             * @description URL of the current page request, suitable for re-fetching the same page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            currentPageUrl?: string;
+            /**
+             * Format: url
+             * @description URL of the next page when more records are available. Absent on the last page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            nextPageUrl?: string;
+            /**
+             * @description Publish-history records in the page. Most-recent-first by default.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            records?: components["schemas"]["ActivationHistoryRecordRepresentation"][];
+            /**
+             * @description Total number of pages available for the query at the current page size. A next page exists while the current page index, derived from offset and limit, is below this value.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            totalPages?: number;
+            /**
+             * @description Number of publish-history records returned in the page. Because a grand total record count isn't returned, this value reflects the current page only. Use `totalPages` for the full pagination extent, and follow `nextPageUrl` to page through results.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            totalSize?: number;
+        };
+        /**
+         * Activation History Record Output
+         * @description Represents one publish-history record for a market segment activation.
+         */
+        ActivationHistoryRecordRepresentation: {
+            /**
+             * @description Number of records accepted by the platform.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            acceptedPopulation?: number;
+            /**
+             * @description Unique ID of the activation job.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            activationJobId?: string;
+            /**
+             * @description Name of the activation.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            activationName?: string;
+            /**
+             * @description Name of the activation platform.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            activationPlatformName?: string;
+            /**
+             * @description Population sent to the activation platform.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            activationPopulation?: number;
+            /**
+             * @description Record ID (15- or 18-character) of the activation target.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            activationTargetId?: string;
+            /**
+             * @description Name of the activation target.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            activationTargetName?: string;
+            /**
+             * @description Indicates whether the error code is appended to the error message (`true`) or not (`false`).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            appendErrorCodeToMessage?: boolean;
+            /**
+             * @description Data source associated with the activation.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            dataSource?: string;
+            /**
+             * @description Error code returned when the publish failed.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            errorCode?: string;
+            /**
+             * @description Human-readable error message returned when the publish failed.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            errorMessage?: string;
+            /**
+             * @description Short error title returned when the publish failed.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            errorTitle?: string;
+            /**
+             * @description Record ID (15- or 18-character) of the market segment.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            marketSegmentId?: string;
+            /**
+             * @description Aggregated partner-side validation results for the publish run.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            partnerValidationSummary?: components["schemas"]["PartnerValidationSummaryRepresentation"];
+            /**
+             * Format: date-time
+             * @description Timestamp when the publish completed.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            publishEndTime?: string;
+            /**
+             * @description Status of the publish run.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            publishStatus?: "Completed" | "Created" | "Error" | "PartnerError" | "PartnerProcessing" | "Pending" | "Queued" | "Restarting" | "Running" | "SegmentError" | "Skipped" | "Started";
+            /**
+             * @description How the publish was triggered.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            publishType?: "Manual" | "Scheduled";
+            /**
+             * @description Number of records rejected during publish.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            rejectedPopulation?: number;
+            /**
+             * @description Total population of the market segment.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            segmentPopulation?: number;
+            /**
+             * @description Target size for the activation.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            targetSize?: number;
+        };
+        /**
+         * Activation Mapping Schema Input
+         * @description Represents the input for a mapping schema.
+         */
+        ActivationMappingSchemaInputRepresentation: {
+            /**
+             * @description Description of the mapping schema.
+             *
+             *     **Available Version:** 67.0
+             */
+            description?: string;
+            /**
+             * @description Icon identifier.
+             *
+             *     **Available Version:** 67.0
+             */
+            icon?: string;
+            /**
+             * @description Indicates whether the schema is the default mapping schema (`true`) or not (`false`).
+             *
+             *     **Available Version:** 67.0
+             */
+            isDefault?: boolean;
+            /**
+             * @description Name of the mapping schema.
+             *
+             *     **Available Version:** 67.0
+             */
+            name: string;
+            /**
+             * @description Display title.
+             *
+             *     **Available Version:** 67.0
+             */
+            title?: string;
+        };
+        /**
+         * Activation Mapping Schema Output
+         * @description Represents a mapping schema available for the platform.
+         */
+        ActivationMappingSchemaRepresentation: {
+            /**
+             * @description Description of the mapping schema.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            description?: string;
+            /**
+             * @description Icon identifier.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            icon?: string;
+            /**
+             * @description Indicates whether the schema is the default mapping schema (`true`) or not (`false`).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            isDefault?: boolean;
+            /**
+             * @description Name of the mapping schema.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            name?: string;
+            /**
+             * @description Display title.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            title?: string;
+        };
+        /**
+         * Activation Platform Additional Metadata Input
+         * @description Represents the input for additional platform metadata, such as event configuration, mappings, and output properties.
+         */
+        ActivationPlatformAdditionalMetadataInputRepresentation: {
+            /**
+             * @description Event metadata configuration.
+             *
+             *     **Available Version:** 67.0
+             */
+            activationPlatformEventMetadata?: components["schemas"]["ActivationPlatformEventMetadataInputRepresentation"];
+            /**
+             * @description Prefix for custom attributes, such as `custom__`.
+             *
+             *     **Available Version:** 67.0
+             */
+            customAttributePrefix?: string;
+            /**
+             * @description Customer file source types, such as `FirstParty`, `ThirdParty`, or `FirstPartyAndThirdParty`.
+             *
+             *     **Available Version:** 67.0
+             */
+            customerFileSources?: string[];
+            /**
+             * @description Hash method applied to identifiers.
+             *
+             *     **Available Version:** 67.0
+             */
+            hashMethod?: string;
+            /**
+             * @description Available mapping schemas for the platform.
+             *
+             *     **Available Version:** 67.0
+             */
+            mappingSchemas?: components["schemas"]["ActivationMappingSchemaInputRepresentation"][];
+            /**
+             * @description File output configuration properties.
+             *
+             *     **Available Version:** 67.0
+             */
+            outputProperties?: components["schemas"]["ActivationPlatformOutputPropertiesInputRepresentation"];
+            /**
+             * @description Partner-supported identifier types per destination.
+             *
+             *     **Available Version:** 67.0
+             */
+            partnerSupportedIds?: components["schemas"]["ActivationPlatformPartnerSupportedIdInputRepresentation"][];
+        };
+        /**
+         * Activation Platform Additional Metadata Output
+         * @description Represents additional metadata for an activation platform, such as event configuration, mappings, and output properties.
+         */
+        ActivationPlatformAdditionalMetadataRepresentation: {
+            /**
+             * @description Event metadata configuration.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            activationPlatformEventMetadata?: components["schemas"]["ActivationPlatformEventMetadataRepresentation"];
+            /**
+             * @description Prefix for custom attributes, such as `custom__`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            customAttributePrefix?: string;
+            /**
+             * @description Customer file source types, such as `FirstParty`, `ThirdParty`, or `FirstPartyAndThirdParty`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            customerFileSources?: string[];
+            /**
+             * @description Hash method applied to identifiers.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            hashMethod?: string;
+            /**
+             * @description Available mapping schemas for the platform.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            mappingSchemas?: components["schemas"]["ActivationMappingSchemaRepresentation"][];
+            /**
+             * @description File output configuration properties.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            outputProperties?: components["schemas"]["ActivationPlatformOutputPropertiesRepresentation"];
+            /**
+             * @description Partner-supported identifier types per destination.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            partnerSupportedIds?: components["schemas"]["ActivationPlatformPartnerSupportedIdRepresentation"][];
+        };
+        /**
+         * Activation Platform Attribute Input
+         * @description Represents the input for an activation attribute.
+         */
+        ActivationPlatformAttributeInputRepresentation: {
+            /**
+             * @description Indicates whether hashing is applied to the attribute (`true`) or not (`false`).
+             *
+             *     **Available Version:** 67.0
+             */
+            applyHash?: boolean;
+            /**
+             * @description Destination name for the attribute.
+             *
+             *     **Available Version:** 67.0
+             */
+            destinationName?: string;
+            /**
+             * @description Source field name.
+             *
+             *     **Available Version:** 67.0
+             */
+            fieldName?: string;
+            /**
+             * @description Indicates whether the attribute is an identifier (`true`) or not (`false`).
+             *
+             *     **Available Version:** 67.0
+             */
+            isIdentifier?: boolean;
+            /**
+             * @description Indicates whether the attribute is required (`true`) or not (`false`).
+             *
+             *     **Available Version:** 67.0
+             */
+            isRequired: boolean;
+            /**
+             * @description Attribute display label.
+             *
+             *     **Available Version:** 67.0
+             */
+            label?: string;
+            /**
+             * @description Attribute name.
+             *
+             *     **Available Version:** 67.0
+             */
+            name: string;
+            /**
+             * @description Source object name.
+             *
+             *     **Available Version:** 67.0
+             */
+            objectName?: string;
+            /**
+             * @description Constant value for the attribute.
+             *
+             *     **Available Version:** 67.0
+             */
+            value?: string;
+        };
+        /**
+         * Activation Platform Attribute Output
+         * @description Represents an activation attribute for data mapping.
+         */
+        ActivationPlatformAttributeRepresentation: {
+            /**
+             * @description ID of the parent activation platform.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            activationPlatformId?: string;
+            /**
+             * @description Name of the parent activation platform.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            activationPlatformName?: string;
+            /**
+             * @description Indicates whether hashing is applied to the attribute (`true`) or not (`false`).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            applyHash?: boolean;
+            /**
+             * @description Destination name for the attribute.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            destinationName?: string;
+            /**
+             * @description Source field API name, including the namespace.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            fieldName?: string;
+            /**
+             * @description Attribute ID.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            id?: string;
+            /**
+             * @description Audience identifier associated with the attribute.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            identifier?: components["schemas"]["ActivationPlatformIdentifierRepresentation"];
+            /**
+             * @description Indicates whether the attribute has a constant value (`true`) or not (`false`).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            isConstant?: boolean;
+            /**
+             * @description Indicates whether the attribute maps from a source object (`true`) or not (`false`).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            isFromSourceObject?: boolean;
+            /**
+             * @description Indicates whether the attribute is an identifier (`true`) or not (`false`).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            isIdentifier?: boolean;
+            /**
+             * @description Indicates whether the attribute is required (`true`) or not (`false`).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            isRequired?: boolean;
+            /**
+             * @description Attribute display label.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            label?: string;
+            /**
+             * @description Attribute API name.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            name?: string;
+            /**
+             * @description Source object API name, including the namespace.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            objectName?: string;
+        };
+        /**
+         * Activation Platform Attribute System Map Criteria Input
+         * @description Represents the input for system-mapped attribute criteria.
+         */
+        ActivationPlatformAttributeSystemMapCriteriaInputRepresentation: {
+            /**
+             * @description Data type of the mapped field.
+             *
+             *     **Available Version:** 67.0
+             */
+            dataType: string;
+            /**
+             * @description Destination attribute name.
+             *
+             *     **Available Version:** 67.0
+             */
+            destinationName: string;
+            /**
+             * @description Source field to auto-map from, such as `commit_timestamp`.
+             *
+             *     **Available Version:** 67.0
+             */
+            sourceMappingField: string;
+            /**
+             * @description Data model object (DMO) types that support the system mapping, such as `Profile`.
+             *
+             *     **Available Version:** 67.0
+             */
+            supportedDMOTypes?: string[];
+        };
+        /**
+         * Activation Platform Attribute System Map Criteria Output
+         * @description Represents the criteria for system-mapped attributes, which are auto-populated from the source data model object (DMO).
+         */
+        ActivationPlatformAttributeSystemMapCriteriaRepresentation: {
+            /**
+             * @description Data type of the mapped field.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            dataType?: string;
+            /**
+             * @description Destination attribute name.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            destinationName?: string;
+            /**
+             * @description Source field to auto-map from, such as `commit_timestamp`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            sourceMappingField?: string;
+            /**
+             * @description Data model object (DMO) types that support the system mapping, such as `Profile`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            supportedDMOTypes?: string[];
+        };
+        /**
+         * Activation Platform Create Input
+         * @description Represents the input for creating an activation platform. For ISV Toolkit platforms, provide `additionalMetadata` and `customMetadata`. The `additionalMetadata.hashMethod` value is required if any activation attribute has `applyHash` set to `true`. The `additionalMetadata.partnerSupportedIds` value is required if any activation attribute uses `ContactPointDigitalId` as its `objectName`.
+         */
+        ActivationPlatformCreateInputRepresentation: {
+            /**
+             * @description Type of activation flow.
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            activationFlowType?: "Dmo" | "Segment";
+            /**
+             * @description Activation attributes for data mapping.
+             *
+             *     **Available Version:** 67.0
+             */
+            activationPlatformAttributes?: components["schemas"]["ActivationPlatformAttributeInputRepresentation"][];
+            /**
+             * @description Additional platform metadata, such as event configuration, mappings, and output properties.
+             *
+             *     **Available Version:** 67.0
+             */
+            additionalMetadata?: components["schemas"]["ActivationPlatformAdditionalMetadataInputRepresentation"];
+            /**
+             * @description Connector configuration as key-value string pairs, such as `bucketName` and `exportDirectory`.
+             *
+             *     **Available Version:** 67.0
+             */
+            connector?: {
+                [key: string]: string;
+            };
+            /**
+             * @description Connector credentials for toolkit-created platforms.
+             *
+             *     **Available Version:** 67.0
+             */
+            customMetadata?: components["schemas"]["ActivationPlatformCustomMetadataInputRepresentation"];
+            /**
+             * @description Description of the activation platform.
+             *
+             *     **Available Version:** 67.0
+             */
+            description: string;
+            /**
+             * @description Configuration fields for the platform.
+             *
+             *     **Available Version:** 67.0
+             */
+            fields?: components["schemas"]["ActivationPlatformFieldInputRepresentation"][];
+            /**
+             * @description Platform audience identifiers.
+             *
+             *     **Available Version:** 67.0
+             */
+            identifiers?: components["schemas"]["ActivationPlatformIdentifierInputRepresentation"][];
+            /**
+             * @description Display label of the activation platform.
+             *
+             *     **Available Version:** 67.0
+             */
+            label: string;
+            /**
+             * @description URL to the platform logo.
+             *
+             *     **Available Version:** 67.0
+             */
+            logoUrl?: string;
+            /**
+             * @description API name of the activation platform.
+             *
+             *     **Available Version:** 67.0
+             */
+            name: string;
+            /**
+             * @description Format of the output files.
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            outputFormat: "Csv" | "Json" | "Parquet";
+            /**
+             * @description How output files are grouped.
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            outputGrouping: "PerAccount" | "PerSegment";
+            /**
+             * @description Category of the activation platform.
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            platformType: "Advertising" | "Analytics" | "Marketing" | "Publishing" | "Technology";
+            /**
+             * @description Refresh configuration for the platform.
+             *
+             *     **Available Version:** 67.0
+             */
+            refreshSettings: components["schemas"]["RefreshSettingsInputRepresentation"];
+        };
+        /**
+         * Activation Platform Custom Event Input
+         * @description Represents the input for custom event details.
+         */
+        ActivationPlatformCustomEventInputRepresentation: {
+            /**
+             * @description Attribute mapping rules for custom events.
+             *
+             *     **Available Version:** 67.0
+             */
+            attributeMappingInfo?: components["schemas"]["ActivationPlatformEventAttributeMappingInputRepresentation"][];
+            /**
+             * @description Attribute override categorization for custom events.
+             *
+             *     **Available Version:** 67.0
+             */
+            attributesOverride?: components["schemas"]["ActivationPlatformEventAttributeOverrideInputRepresentation"];
+        };
+        /**
+         * Activation Platform Custom Event Output
+         * @description Represents custom event details with attribute overrides.
+         */
+        ActivationPlatformCustomEventRepresentation: {
+            /**
+             * @description Attribute mapping rules for custom events.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            attributeMappingInfo?: components["schemas"]["ActivationPlatformEventAttributeMappingRepresentation"][];
+            /**
+             * @description Attribute override categorization for custom events.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            attributesOverride?: components["schemas"]["ActivationPlatformEventAttributeOverrideRepresentation"];
+        };
+        /**
+         * Activation Platform Custom Metadata Input
+         * @description Represents the connector credentials for toolkit-created activation platforms. The required fields depend on the connector type. For example, S3 requires `accessKey` and `secretKey`.
+         */
+        ActivationPlatformCustomMetadataInputRepresentation: {
+            /**
+             * @description Access key for the connector. Required for S3.
+             *
+             *     **Available Version:** 67.0
+             */
+            accessKey?: string;
+            /**
+             * @description Connector type, such as `S3`, `Sftp`, or `AzureBlob`.
+             *
+             *     **Available Version:** 67.0
+             */
+            connectorType: string;
+            /**
+             * @description Secret key for the connector. Required for S3.
+             *
+             *     **Available Version:** 67.0
+             */
+            secretKey?: string;
+        };
+        /**
+         * Activation Platform Customer Id Type Mapping Output
+         * @description Represents a customer ID type mapping configuration.
+         */
+        ActivationPlatformCustomerIdTypeMappingRepresentation: {
+            /**
+             * @description List of ID type data entries.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            idTypeDataList?: components["schemas"]["ActivationPlatformCustomerIdTypeRepresentation"][];
+        };
+        /**
+         * Activation Platform Customer Id Type Output
+         * @description Represents a single customer ID type entry.
+         */
+        ActivationPlatformCustomerIdTypeRepresentation: {
+            /**
+             * @description Name of the ID type.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            idType?: string;
+            /**
+             * @description Values for the ID type.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            values?: string[];
+        };
+        /**
+         * Activation Platform Event Attribute Input
+         * @description Represents the input for a destination attribute with an optional constant value.
+         */
+        ActivationPlatformEventAttributeInputRepresentation: {
+            /**
+             * @description Destination attribute name.
+             *
+             *     **Available Version:** 67.0
+             */
+            destinationName: string;
+            /**
+             * @description Constant value. Null if mapped dynamically.
+             *
+             *     **Available Version:** 67.0
+             */
+            value?: string;
+        };
+        /**
+         * Activation Platform Event Attribute Mapping Input
+         * @description Represents the input for an attribute mapping rule.
+         */
+        ActivationPlatformEventAttributeMappingInputRepresentation: {
+            /**
+             * @description Attribute override categorization for the mapping.
+             *
+             *     **Available Version:** 67.0
+             */
+            attributesOverride?: components["schemas"]["ActivationPlatformEventAttributeOverrideInputRepresentation"];
+            /**
+             * @description Event parameter reference for the mapping.
+             *
+             *     **Available Version:** 67.0
+             */
+            eventParameter?: components["schemas"]["ActivationEventParameterInputRepresentation"];
+            /**
+             * @description Mapping key, such as `Purchase__Website` or `Global`.
+             *
+             *     **Available Version:** 67.0
+             */
+            key: string;
+            /**
+             * @description Keys of parent mappings whose attributes are inherited.
+             *
+             *     **Available Version:** 67.0
+             */
+            referenceAttributes?: string[];
+        };
+        /**
+         * Activation Platform Event Attribute Mapping Output
+         * @description Represents an attribute mapping rule for a specific event and action-source combination.
+         */
+        ActivationPlatformEventAttributeMappingRepresentation: {
+            /**
+             * @description Attribute override categorization for the mapping.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            attributesOverride?: components["schemas"]["ActivationPlatformEventAttributeOverrideRepresentation"];
+            /**
+             * @description Event parameter reference for the mapping.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            eventParameter?: components["schemas"]["ActivationEventParameterRepresentation"];
+            /**
+             * @description Mapping key, such as `Purchase__Website` or `Global`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            key?: string;
+            /**
+             * @description Keys of parent mappings whose attributes are inherited.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            referenceAttributes?: string[];
+        };
+        /**
+         * Activation Platform Event Attribute Override Input
+         * @description Represents the input for attribute override categorization.
+         */
+        ActivationPlatformEventAttributeOverrideInputRepresentation: {
+            /**
+             * @description Excluded attributes for this context.
+             *
+             *     **Available Version:** 67.0
+             */
+            exclude?: components["schemas"]["ActivationPlatformEventAttributeInputRepresentation"][];
+            /**
+             * @description Identifier attributes for this context.
+             *
+             *     **Available Version:** 67.0
+             */
+            identifiers?: components["schemas"]["ActivationPlatformEventAttributeInputRepresentation"][];
+            /**
+             * @description Optional attributes for this context.
+             *
+             *     **Available Version:** 67.0
+             */
+            optional?: components["schemas"]["ActivationPlatformEventAttributeInputRepresentation"][];
+            /**
+             * @description Required attributes for this context.
+             *
+             *     **Available Version:** 67.0
+             */
+            required?: components["schemas"]["ActivationPlatformEventAttributeInputRepresentation"][];
+            /**
+             * @description System-mapped attributes with auto-population criteria.
+             *
+             *     **Available Version:** 67.0
+             */
+            systemMappingAttributes?: components["schemas"]["ActivationPlatformAttributeSystemMapCriteriaInputRepresentation"][];
+        };
+        /**
+         * Activation Platform Event Attribute Override Output
+         * @description Represents an attribute override categorization, such as required, optional, identifiers, excluded, and system-mapped.
+         */
+        ActivationPlatformEventAttributeOverrideRepresentation: {
+            /**
+             * @description Excluded attributes for this context.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            exclude?: components["schemas"]["ActivationPlatformEventAttributeRepresentation"][];
+            /**
+             * @description Identifier attributes for this context.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            identifiers?: components["schemas"]["ActivationPlatformEventAttributeRepresentation"][];
+            /**
+             * @description Optional attributes for this context.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            optional?: components["schemas"]["ActivationPlatformEventAttributeRepresentation"][];
+            /**
+             * @description Required attributes for this context.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            required?: components["schemas"]["ActivationPlatformEventAttributeRepresentation"][];
+            /**
+             * @description System-mapped attributes with auto-population criteria.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            systemMappingAttributes?: components["schemas"]["ActivationPlatformAttributeSystemMapCriteriaRepresentation"][];
+        };
+        /**
+         * Activation Platform Event Attribute Output
+         * @description Represents a destination attribute with an optional constant value.
+         */
+        ActivationPlatformEventAttributeRepresentation: {
+            /**
+             * @description Destination attribute name.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            destinationName?: string;
+            /**
+             * @description Constant value. Null if mapped dynamically.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            value?: string;
+        };
+        /**
+         * Activation Platform Event Metadata Input
+         * @description Represents the input for event metadata configuration.
+         */
+        ActivationPlatformEventMetadataInputRepresentation: {
+            /**
+             * @description Custom event details with attribute overrides.
+             *
+             *     **Available Version:** 67.0
+             */
+            customEventDetails?: components["schemas"]["ActivationPlatformCustomEventInputRepresentation"];
+            /**
+             * @description Indicates whether event source annotations are shown in the UI (`true`) or not (`false`).
+             *
+             *     **Available Version:** 67.0
+             */
+            showEventSourceAnnotations?: boolean;
+            /**
+             * @description Standard event details, including event parameters, hierarchy, and attribute mapping info.
+             *
+             *     **Available Version:** 67.0
+             */
+            standardEventDetails?: components["schemas"]["ActivationPlatformStandardEventInputRepresentation"];
+            /**
+             * @description Supported event types, such as `Standard` and `Custom`.
+             *
+             *     **Available Version:** 67.0
+             */
+            supportedEventTypes?: string[];
+        };
+        /**
+         * Activation Platform Event Metadata Output
+         * @description Represents event metadata for streaming activation platforms.
+         */
+        ActivationPlatformEventMetadataRepresentation: {
+            /**
+             * @description Custom event details with attribute overrides.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            customEventDetails?: components["schemas"]["ActivationPlatformCustomEventRepresentation"];
+            /**
+             * @description Indicates whether event source annotations are shown in the UI (`true`) or not (`false`).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            showEventSourceAnnotations?: boolean;
+            /**
+             * @description Standard event details, including event parameters, hierarchy, and attribute mapping info.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            standardEventDetails?: components["schemas"]["ActivationPlatformStandardEventRepresentation"];
+            /**
+             * @description Supported event types, such as `Standard` and `Custom`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            supportedEventTypes?: string[];
+        };
+        /**
+         * Activation Platform Field Input
+         * @description Represents the input for a configuration field.
+         */
+        ActivationPlatformFieldInputRepresentation: {
+            /**
+             * @description Help text for the field.
+             *
+             *     **Available Version:** 67.0
+             */
+            helpText?: string;
+            /**
+             * @description Indicates whether the field is hidden in the UI (`true`) or not (`false`).
+             *
+             *     **Available Version:** 67.0
+             */
+            isHidden?: boolean;
+            /**
+             * @description Indicates whether the field is required (`true`) or not (`false`).
+             *
+             *     **Available Version:** 67.0
+             */
+            isRequired: boolean;
+            /**
+             * @description Field display label.
+             *
+             *     **Available Version:** 67.0
+             */
+            label?: string;
+            /**
+             * @description Field API name.
+             *
+             *     **Available Version:** 67.0
+             */
+            name: string;
+            /**
+             * @description Data type of the field.
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            type: "Date" | "Number" | "Text";
+            /**
+             * @description Allowed values for picklist fields.
+             *
+             *     **Available Version:** 67.0
+             */
+            values?: components["schemas"]["ActivationPlatformFieldValueInputRepresentation"][];
+        };
+        /**
+         * Activation Platform Field Output
+         * @description Represents a configuration field for an activation platform.
+         */
+        ActivationPlatformFieldRepresentation: {
+            /**
+             * @description ID of the parent activation platform.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            activationPlatformId?: string;
+            /**
+             * @description Name of the parent activation platform.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            activationPlatformName?: string;
+            /**
+             * @description Help text for the field.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            helpText?: string;
+            /**
+             * @description Field ID.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            id?: string;
+            /**
+             * @description Indicates whether the field is hidden in the UI (`true`) or not (`false`).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            isHidden?: boolean;
+            /**
+             * @description Indicates whether the field is required (`true`) or not (`false`).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            isRequired?: boolean;
+            /**
+             * @description Field display label.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            label?: string;
+            /**
+             * @description Field API name.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            name?: string;
+            /**
+             * @description Data type of the field.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            type?: "Date" | "Number" | "Text";
+            /**
+             * @description Allowed values for picklist fields. Exactly one value must have `isDefault` set to `true`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            values?: components["schemas"]["ActivationPlatformFieldValueRepresentation"][];
+        };
+        /**
+         * Activation Platform Field Value Input
+         * @description Represents the input for a field picklist value.
+         */
+        ActivationPlatformFieldValueInputRepresentation: {
+            /**
+             * @description Indicates whether the value is the default value (`true`) or not (`false`).
+             *
+             *     **Available Version:** 67.0
+             */
+            isDefault?: boolean;
+            /**
+             * @description Picklist value.
+             *
+             *     **Available Version:** 67.0
+             */
+            value?: string;
+        };
+        /**
+         * Activation Platform Field Value Output
+         * @description Represents a picklist value for an activation platform field.
+         */
+        ActivationPlatformFieldValueRepresentation: {
+            /**
+             * @description ID of the parent field.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            activationPlatformFieldId?: string;
+            /**
+             * @description Field value ID.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            id?: string;
+            /**
+             * @description Indicates whether the value is the default value (`true`) or not (`false`).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            isDefault?: boolean;
+            /**
+             * @description Picklist value.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            value?: string;
+        };
+        /**
+         * Activation Platform Fields Output
+         * @description Represents a collection of target-level configuration fields for an activation platform.
+         */
+        ActivationPlatformFieldsRepresentation: {
+            /**
+             * @description Target-level configuration fields defined by the platform.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            platformFields?: components["schemas"]["ActivationPlatformFieldRepresentation"][];
+        };
+        /**
+         * Activation Platform Identifier Input
+         * @description Represents the input for a platform audience identifier.
+         */
+        ActivationPlatformIdentifierInputRepresentation: {
+            /**
+             * @description Hash method applied to the identifier.
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            identifierHashMethod?: "Md5" | "None" | "Sha1" | "Sha256";
+            /**
+             * @description Type of audience identifier.
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            identifierType?: "Email" | "Maid" | "Ott" | "Phone";
+        };
+        /**
+         * Activation Platform Identifier Output
+         * @description Represents an audience identifier for an activation platform.
+         */
+        ActivationPlatformIdentifierRepresentation: {
+            /**
+             * @description ID of the parent activation platform.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            activationPlatformId?: string;
+            /**
+             * @description Name of the parent activation platform.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            activationPlatformName?: string;
+            /**
+             * @description Identifier ID.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            id?: string;
+            /**
+             * @description Hash method applied to the identifier.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            identifierHashMethod?: "Md5" | "None" | "Sha1" | "Sha256";
+            /**
+             * @description Type of audience identifier.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            identifierType?: "Email" | "Maid" | "Ott" | "Phone";
+        };
+        /**
+         * Activation Platform Input
+         * @description Represents the input for a partial update of an activation platform.
+         */
+        ActivationPlatformInputRepresentation: {
+            /**
+             * @description Activation attributes for data mapping. Replaces the full set. Any existing attributes not included are removed.
+             *
+             *     **Available Version:** 67.0
+             */
+            activationPlatformAttributes?: components["schemas"]["ActivationPlatformAttributeInputRepresentation"][];
+            /**
+             * @description Additional platform metadata, such as event configuration, mappings, and output properties.
+             *
+             *     **Available Version:** 67.0
+             */
+            additionalMetadata?: components["schemas"]["ActivationPlatformAdditionalMetadataInputRepresentation"];
+            /**
+             * @description Connector configuration as key-value string pairs.
+             *
+             *     **Available Version:** 67.0
+             */
+            connector?: {
+                [key: string]: string;
+            };
+            /**
+             * @description Connector credentials for toolkit-created platforms.
+             *
+             *     **Available Version:** 67.0
+             */
+            customMetadata?: components["schemas"]["ActivationPlatformCustomMetadataInputRepresentation"];
+            /**
+             * @description Description of the activation platform.
+             *
+             *     **Available Version:** 67.0
+             */
+            description?: string;
+            /**
+             * @description Configuration fields for the platform. Replaces the full set. Any existing fields not included are removed.
+             *
+             *     **Available Version:** 67.0
+             */
+            fields?: components["schemas"]["ActivationPlatformFieldInputRepresentation"][];
+            /**
+             * @description Platform audience identifiers. Replaces the full set. Any existing identifiers not included are removed.
+             *
+             *     **Available Version:** 67.0
+             */
+            identifiers?: components["schemas"]["ActivationPlatformIdentifierInputRepresentation"][];
+            /**
+             * @description Display label of the activation platform.
+             *
+             *     **Available Version:** 67.0
+             */
+            label?: string;
+            /**
+             * @description URL to the platform logo.
+             *
+             *     **Available Version:** 67.0
+             */
+            logoUrl?: string;
+            /**
+             * @description Format of the output files.
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            outputFormat?: "Csv" | "Json" | "Parquet";
+            /**
+             * @description How output files are grouped.
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            outputGrouping?: "PerAccount" | "PerSegment";
+            /**
+             * @description How the platform processes activations.
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            platformProcessingType?: "Batch" | "Streaming";
+            /**
+             * @description Refresh configuration for the platform.
+             *
+             *     **Available Version:** 67.0
+             */
+            refreshSettings?: components["schemas"]["RefreshSettingsInputRepresentation"];
+        };
+        /**
+         * Activation Platform Output Properties Input
+         * @description Represents the input for file output configuration properties.
+         */
+        ActivationPlatformOutputPropertiesInputRepresentation: {
+            /**
+             * @description Compression method applied to output files.
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            compression?: "Bzip2" | "Gzip" | "None";
+            /**
+             * @description Field delimiter used in output files.
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            delimiter?: "BrokenPipe" | "Caret" | "Colon" | "Comma" | "Hash" | "Pipe" | "Semicolon" | "Slash" | "Tab" | "Tilde" | "Underscore";
+            /**
+             * @description Maximum file size in megabytes.
+             *
+             *     **Available Version:** 67.0
+             */
+            maxFileSizeInMB?: number;
+            /**
+             * Format: int64
+             * @description Maximum records per output file.
+             *
+             *     **Available Version:** 67.0
+             */
+            maxRecordsPerFile?: number;
+            /**
+             * Format: int64
+             * @description Minimum records per output file.
+             *
+             *     **Available Version:** 67.0
+             */
+            minRecordsPerFile?: number;
+            /**
+             * @description Format of the output files.
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            outputFormat?: "Csv" | "Json" | "Parquet";
+            /**
+             * Format: int64
+             * @description Number of output partitions.
+             *
+             *     **Available Version:** 67.0
+             */
+            outputPartitions?: number;
+        };
+        /**
+         * Activation Platform Output Properties
+         * @description Represents file output configuration properties.
+         */
+        ActivationPlatformOutputPropertiesRepresentation: {
+            /**
+             * @description Compression method applied to output files.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            compression?: "Bzip2" | "Gzip" | "None";
+            /**
+             * @description Field delimiter used in output files.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            delimiter?: "BrokenPipe" | "Caret" | "Colon" | "Comma" | "Hash" | "Pipe" | "Semicolon" | "Slash" | "Tab" | "Tilde" | "Underscore";
+            /**
+             * @description Maximum file size in megabytes.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            maxFileSizeInMB?: number;
+            /**
+             * Format: int64
+             * @description Maximum records per output file.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            maxRecordsPerFile?: number;
+            /**
+             * Format: int64
+             * @description Minimum records per output file.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            minRecordsPerFile?: number;
+            /**
+             * @description Format of the output files.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            outputFormat?: "Csv" | "Json" | "Parquet";
+            /**
+             * Format: int64
+             * @description Number of output partitions.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            outputPartitions?: number;
+        };
+        /**
+         * Activation Platform Partner Supported Id Input
+         * @description Represents the input for partner-supported identifier types.
+         */
+        ActivationPlatformPartnerSupportedIdInputRepresentation: {
+            /**
+             * @description Destination attribute that accepts these ID types.
+             *
+             *     **Available Version:** 67.0
+             */
+            destinationName: string;
+            /**
+             * @description Supported identifier type values.
+             *
+             *     **Available Version:** 67.0
+             */
+            supportedIdTypes?: string[];
+        };
+        /**
+         * Activation Platform Partner Supported Id Output
+         * @description Represents partner-supported identifier types for a specific destination.
+         */
+        ActivationPlatformPartnerSupportedIdRepresentation: {
+            /**
+             * @description Destination attribute that accepts these ID types.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            destinationName?: string;
+            /**
+             * @description Supported identifier type values.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            supportedIdTypes?: string[];
+        };
+        /**
+         * Activation Platform Output
+         * @description Represents an activation platform.
+         */
+        ActivationPlatformRepresentation: {
+            /**
+             * @description Type of activation flow.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            activationFlowType?: "Dmo" | "Segment";
+            /**
+             * @description Activation attributes for data mapping.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            activationPlatformAttributes?: components["schemas"]["ActivationPlatformAttributeRepresentation"][];
+            /**
+             * @description How the platform was created.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            activationPlatformCreationType?: "Json" | "Manual";
+            /**
+             * @description Additional platform metadata, such as event configuration, mappings, and output properties.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            additionalMetadata?: components["schemas"]["ActivationPlatformAdditionalMetadataRepresentation"];
+            /**
+             * @description Indicates whether the platform is ready to be published (`true`) or not (`false`).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            canPublishNow?: boolean;
+            /**
+             * @description Connector configuration for S3 or OAuth.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            connector?: {
+                [key: string]: Record<string, never>;
+            };
+            /**
+             * @description Type of connector.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            connectorType?: "Oauth" | "S3";
+            /**
+             * @description User who created the platform.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            createdBy?: components["schemas"]["ActivationPlatformUserRepresentation"];
+            /**
+             * Format: date-time
+             * @description Date and time when the platform was created.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            createdDate?: string;
+            /**
+             * @description Customer ID type mapping configuration.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            customerIdTypeMapping?: components["schemas"]["ActivationPlatformCustomerIdTypeMappingRepresentation"];
+            /**
+             * @description Description of the activation platform.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            description?: string;
+            /**
+             * @description Indicates whether the activation platform is enabled (`true`) or not (`false`).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            enabled: boolean;
+            /**
+             * @description Error code returned when the status is `Error`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            errorCode?: string;
+            /**
+             * @description Map of valid parameter value pairings keyed by hierarchy combination, such as `Event__ActionSource`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            eventParameterHierarchyMap?: {
+                [key: string]: Record<string, never>;
+            };
+            /**
+             * @description Event parameter definitions with hierarchy and allowed values.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            eventParameters?: components["schemas"]["ActivationEventParameterValuesRepresentation"][];
+            /**
+             * @description External provider associated with the platform.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            externalProvider?: "Amazon" | "Dv360" | "Facebook" | "Google" | "GoogleAdManager" | "LinkedIn" | "LinkedInCapi" | "MetaCapi" | "Pinterest" | "Snapchat" | "SnapchatCapi" | "TikTok" | "TikTokCapi";
+            /**
+             * @description Configuration fields for the platform.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            fields?: components["schemas"]["ActivationPlatformFieldRepresentation"][];
+            /**
+             * @description Salesforce ID of the activation platform.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            id: string;
+            /**
+             * @description Platform audience identifiers.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            identifiers?: components["schemas"]["ActivationPlatformIdentifierRepresentation"][];
+            /**
+             * @description Indicates whether segment names are included in output files (`true`) or not (`false`).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            includeSegmentNames?: boolean;
+            /**
+             * @description Indicates whether the platform is a strategic partner platform (`true`) or not (`false`).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            isStrategicPartner?: boolean;
+            /**
+             * @description Display label of the activation platform.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            label: string;
+            /**
+             * @description User who last modified the platform.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            lastModifiedBy?: components["schemas"]["ActivationPlatformUserRepresentation"];
+            /**
+             * Format: date-time
+             * @description Date and time when the platform was last modified.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            lastModifiedDate?: string;
+            /**
+             * @description URL to the platform logo for UI display.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            logoUrl?: string;
+            /**
+             * @description API name of the activation platform.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            name: string;
+            /**
+             * @description Namespace prefix for managed packages. Null for unmanaged.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            namespace?: string;
+            /**
+             * @description Additional notes or admin commentary.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            notes?: string;
+            /**
+             * @description Format of the output files.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            outputFormat?: "Csv" | "Json" | "Parquet";
+            /**
+             * @description How output files are grouped.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            outputGrouping?: "PerAccount" | "PerSegment";
+            /**
+             * @description How the platform processes activations.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            platformProcessingType: "Batch" | "Streaming";
+            /**
+             * @description Category of the activation platform.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            platformType: "Advertising" | "Analytics" | "Marketing" | "Publishing" | "Technology";
+            /**
+             * @description Privacy classification of the platform.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            privacyType?: "NotApplicable" | "ServiceProvider" | "ThirdParty" | "UpdateFailed";
+            /**
+             * @description Refresh configuration for the platform.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            refreshSettings?: components["schemas"]["RefreshSettingsRepresentation"];
+            /**
+             * @description Indicates whether event source annotations are shown in the UI (`true`) or not (`false`).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            showEventSourceAnnotations?: boolean;
+            /**
+             * @description Status of the activation platform.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            status: "Active" | "Error" | "Processing";
+            /**
+             * @description Supported event types for streaming platforms.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            supportedEventTypes?: ("Custom" | "Standard")[];
+        };
+        /**
+         * Activation Platform Standard Event Input
+         * @description Represents the input for standard event details.
+         */
+        ActivationPlatformStandardEventInputRepresentation: {
+            /**
+             * @description Attribute mapping rules per event/action-source combination.
+             *
+             *     **Available Version:** 67.0
+             */
+            attributeMappingInfo?: components["schemas"]["ActivationPlatformEventAttributeMappingInputRepresentation"][];
+            /**
+             * @description Hierarchy combinations defining valid parameter value pairings.
+             *
+             *     **Available Version:** 67.0
+             */
+            eventParameterHierarchy?: components["schemas"]["ActivationEventParameterHierarchyInputRepresentation"][];
+            /**
+             * @description Event parameter definitions with hierarchy and allowed values.
+             *
+             *     **Available Version:** 67.0
+             */
+            eventParameters?: components["schemas"]["ActivationEventParameterValuesInputRepresentation"][];
+        };
+        /**
+         * Activation Platform Standard Event Output
+         * @description Represents standard event details, including event parameters, hierarchy, and attribute mapping info.
+         */
+        ActivationPlatformStandardEventRepresentation: {
+            /**
+             * @description Attribute mapping rules per event/action-source combination.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            attributeMappingInfo?: components["schemas"]["ActivationPlatformEventAttributeMappingRepresentation"][];
+            /**
+             * @description Hierarchy combinations defining valid parameter value pairings.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            eventParameterHierarchy?: components["schemas"]["ActivationEventParameterHierarchyRepresentation"][];
+            /**
+             * @description Event parameter definitions with hierarchy and allowed values.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            eventParameters?: components["schemas"]["ActivationEventParameterValuesRepresentation"][];
+        };
+        /**
+         * Activation Platform Summary Output
+         * @description Represents a summary of an activation platform for collection results.
+         */
+        ActivationPlatformSummaryRepresentation: {
+            /**
+             * @description How the platform was created.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            activationPlatformCreationType?: "Json" | "Manual";
+            /**
+             * @description Indicates whether the platform is ready to be published (`true`) or not (`false`).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            canPublishNow?: boolean;
+            /**
+             * @description Indicates whether the activation platform is enabled (`true`) or not (`false`).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            enabled?: boolean;
+            /**
+             * @description Salesforce ID of the activation platform.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            id?: string;
+            /**
+             * @description Display label of the activation platform.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            label?: string;
+            /**
+             * @description API name of the activation platform.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            name?: string;
+            /**
+             * @description How the platform processes activations.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            platformProcessingType?: "Batch" | "Streaming";
+            /**
+             * @description Category of the activation platform.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            platformType?: "Advertising" | "Analytics" | "Marketing" | "Publishing" | "Technology";
+            /**
+             * @description Status of the activation platform.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            status?: "Active" | "Error" | "Processing";
+        };
+        /**
+         * Activation Platform Supported Event Type Output
+         * @description Represents a supported event type for a streaming activation platform.
+         */
+        ActivationPlatformSupportedEventTypeRepresentation: {
+            /**
+             * @description Type of supported event.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            eventType?: "Standard" | "Custom";
+        };
+        /**
+         * Activation Platform User Output
+         * @description Represents a user referenced by activation platform audit fields.
+         */
+        ActivationPlatformUserRepresentation: {
+            /**
+             * @description Record ID (15- or 18-character) of the user.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            id?: string;
+            /**
+             * @description Display name of the user.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            name?: string;
+            /**
+             * @description URL of the user's profile photo.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            profilePhotoUrl?: string;
+        };
+        /**
+         * Activation Platforms Collection Output
+         * @description Represents a paginated collection of activation platforms.
+         */
+        ActivationPlatformsCollectionRepresentation: {
+            /**
+             * @description Activation platform summaries in this page of results.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            activationPlatforms?: components["schemas"]["ActivationPlatformSummaryRepresentation"][];
+            /**
+             * @description Number of results returned in this page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            batchSize?: number;
+            /**
+             * @description Starting position of this page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            offset?: number;
+            /**
+             * @description Total number of activation platforms matching the query.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            totalSize?: number;
+        };
+        /**
          * Activation Publish Action Input
          * @description Represents a Batch DMO activation publish job input.
          */
@@ -15109,7 +29483,7 @@ export type components = {
              *     **Available Version:** 66.0
              * @enum {string}
              */
-            activationType?: "ApiTriggered" | "Segment";
+            activationType?: "ApiTriggered" | "Dmo" | "Segment";
             /**
              * @description Limiting expression configuration for the activation.
              *
@@ -15297,6 +29671,15 @@ export type components = {
              */
             membershipName?: string;
             /**
+             * @description Processing type for DMO activations.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            processingType?: "Batch";
+            /**
              * @description Query path for the activation target.
              *
              *     **Filter Group:** Small
@@ -15362,7 +29745,7 @@ export type components = {
              */
             sourceDmoName?: string;
             /**
-             * @description Static data configuration for the activation.
+             * @description Campaign data attributes configuration for an activation, which includes both standard attributes (system-defined) and custom attributes (user-defined).
              *
              *     **Filter Group:** Small
              *
@@ -15378,6 +29761,14 @@ export type components = {
              * @enum {string}
              */
             status?: "Active" | "Processing" | "Error" | "Inactive";
+            /**
+             * @description Details about the selected Waterfall child segments. Required when segmentApiName references a Waterfall segment type; must not be present otherwise.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            waterfallSelectedChildSegmentsConfig?: components["schemas"]["WaterfallSelectedChildSegmentsConfigRepresentation"];
         };
         /**
          * Activation Target Collection Output
@@ -15465,6 +29856,120 @@ export type components = {
              * @enum {string}
              */
             platformType?: "AmazonS3" | "AzureBlob" | "DataCloud" | "ExternalPlatform" | "GoogleCloudStorage" | "SalesforceMarketingCloud" | "Sftp";
+        };
+        /**
+         * Activation Target Platform Output
+         * @description Represents a platform available for creating activation targets, a focused subset of activation platform data.
+         */
+        ActivationTargetPlatformRepresentation: {
+            /**
+             * @description Stable identifier for the activation platform.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            apiName?: string;
+            /**
+             * @description Category of the activation platform.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            category?: "Advertising" | "Analytics" | "Marketing" | "Publishing" | "Technology";
+            /**
+             * @description Description of the activation platform.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            description?: string;
+            /**
+             * @description External partner provider for the activation platform.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            externalProvider?: "Amazon" | "Dv360" | "Facebook" | "Google" | "GoogleAdManager" | "LinkedIn" | "LinkedInCapi" | "MetaCapi" | "Pinterest" | "Snapchat" | "SnapchatCapi" | "TikTok" | "TikTokCapi";
+            /**
+             * @description Display name of the activation platform.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            name?: string;
+            /**
+             * @description Type of the activation platform.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            platformType?: "AzureBlob" | "DataCloud" | "External" | "GoogleCloudStorage" | "InteractionStudio" | "S3" | "S3V2" | "SfApp" | "Sfcc" | "Sfmc" | "Sftp" | "Strategic" | "StreamingFlow";
+            /**
+             * @description How the platform processes activations.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            processingType?: "Batch" | "Streaming";
+            /**
+             * @description Sort order used to display platforms in pickers. Lower values appear first.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            sortOrder?: number;
+        };
+        /**
+         * Activation Target Platforms Collection Output
+         * @description Represents a collection of activation target platforms.
+         */
+        ActivationTargetPlatformsCollectionRepresentation: {
+            /**
+             * @description Activation target platforms in this page of results.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            activationTargetPlatforms?: components["schemas"]["ActivationTargetPlatformRepresentation"][];
+            /**
+             * Format: url
+             * @description URL of the current page request, suitable for re-fetching the same page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            currentPageUrl?: string;
+            /**
+             * Format: url
+             * @description URL of the next page when more records are available; absent on the last page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            nextPageUrl?: string;
+            /**
+             * @description Total number of records matching the query across all pages.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            totalSize?: number;
         };
         /**
          * Activation Target Output
@@ -15641,6 +30146,318 @@ export type components = {
              *     **Available Version:** 63.0
              */
             queryPathConfig?: components["schemas"]["QueryPathConfigListRepresentation"];
+        };
+        /**
+         * Ad Account Output
+         * @description Represents an ad account on the partner advertising platform.
+         */
+        AdAccountRepresentation: {
+            /**
+             * @description Display name of the ad account.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            accountName?: string;
+            /**
+             * @description Ad account number on the partner platform.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            accountNumber?: string;
+            /**
+             * @description Indicates whether the ad account is currently active (`true`) or not (`false`).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            active?: boolean;
+            /**
+             * @description Validation errors for the account.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            errors?: components["schemas"]["CdpErrorRepresentation"][];
+            /**
+             * @description Indicates whether validation errors exist for the account (`true`) or not (`false`).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            hasError?: boolean;
+            /**
+             * @description Manager account ID, if the account is managed by another account.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            managerAccountId?: string;
+        };
+        /**
+         * Ad Accounts Output
+         * @description Represents a collection of ad accounts.
+         */
+        AdAccountsRepresentation: {
+            /**
+             * @description Ad accounts from the partner platform.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            adAccounts?: components["schemas"]["AdAccountRepresentation"][];
+        };
+        /**
+         * Agent Collection Output
+         * @description Represents a list of agents.
+         */
+        AgentCollectionRepresentation: components["schemas"]["CdpPaginatedResponseBaseRepresentation"] & {
+            /**
+             * @description List of agents.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            agents?: components["schemas"]["AgentRepresentation"][];
+            /**
+             * @description Number of records returned in the response.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            limit?: number;
+            /**
+             * @description Number of records to skip for the next request.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            offset?: number;
+        };
+        /**
+         * Agent Configuration Input
+         * @description Represents the input for agent configuration.
+         */
+        AgentConfigurationInputRepresentation: {
+            /**
+             * @description Context data sources for the agent.
+             *
+             *     **Available Version:** 66.0
+             */
+            contextDataSources?: components["schemas"]["AgentContextDataSourcesInputRepresentation"];
+            /**
+             * @description List of profile data model objects (DMOs).
+             *
+             *     **Available Version:** 66.0
+             */
+            profileDmos?: components["schemas"]["ProfileDmoInputRepresentation"][];
+        };
+        /**
+         * Agent Configuration Output
+         * @description Represents agent configuration.
+         */
+        AgentConfigurationRepresentation: {
+            /**
+             * @description Context data sources for the agent.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            contextDataSources?: components["schemas"]["AgentContextDataSourcesRepresentation"];
+            /**
+             * @description List of profile data model objects (DMOs).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            profileDmos?: components["schemas"]["ProfileDmoRepresentation"][];
+        };
+        /**
+         * Agent Context Data Sources Input
+         * @description Represents the input for agent context data sources.
+         */
+        AgentContextDataSourcesInputRepresentation: {
+            /**
+             * @description List of data graphs.
+             *
+             *     **Available Version:** 66.0
+             */
+            dataGraphs?: components["schemas"]["DataGraphInputRepresentation"][];
+        };
+        /**
+         * Agent Context Data Sources Output
+         * @description Represents agent context data sources.
+         */
+        AgentContextDataSourcesRepresentation: {
+            /**
+             * @description List of data graphs.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            dataGraphs?: components["schemas"]["DataGraphRepresentation"][];
+        };
+        /**
+         * Agent Input
+         * @description Represents the input for an agent.
+         */
+        AgentInputRepresentation: components["schemas"]["CdpObjectBaseInputRepresentation"] & {
+            /**
+             * @description Configuration of the agent.
+             *
+             *     **Available Version:** 66.0
+             */
+            configuration?: components["schemas"]["AgentConfigurationInputRepresentation"];
+        };
+        /**
+         * Agent Output
+         * @description Represents an agent.
+         */
+        AgentRepresentation: components["schemas"]["CdpAssetBaseRepresentation"] & {
+            /**
+             * @description Configuration of the agent.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            configuration?: components["schemas"]["AgentConfigurationRepresentation"];
+            /**
+             * @description Name of the data space that the agent belongs to.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            dataspaceName?: string;
+            /**
+             * @description Name of the agent setup.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            setupName?: components["schemas"]["CdpAssetReferenceRepresentation"];
+            /**
+             * @description Status of the agent.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             * @enum {string}
+             */
+            status?: "Active" | "Error" | "Processing";
+        };
+        /**
+         * Agent Setup Collection Output
+         * @description Represents a collection of agent setups.
+         */
+        AgentSetupCollectionRepresentation: components["schemas"]["CdpPaginatedResponseBaseRepresentation"] & {
+            /**
+             * @description Number of records in the response.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            limit?: number;
+            /**
+             * @description Number of records to skip for the next request.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            offset?: number;
+            /**
+             * @description List of agent setup configurations.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            setupConfigs?: components["schemas"]["AgentSetupConfigRepresentation"][];
+        };
+        /**
+         * Agent Setup Config Output
+         * @description Represents an agent setup configuration.
+         */
+        AgentSetupConfigRepresentation: components["schemas"]["CdpAssetBaseRepresentation"] & {
+            /**
+             * @description Name of the data space that the agent setup belongs to.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            dataspaceName?: string;
+            /**
+             * @description Indicates whether the agent setup is enabled (`true`) or not (`false`).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            enabled?: boolean;
+            /**
+             * @description Status of the agent setup.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             * @enum {string}
+             */
+            status?: "Active" | "Error" | "Processing";
+        };
+        /**
+         * Agent Setup Input
+         * @description Represents the input for an agent setup.
+         */
+        AgentSetupInputRepresentation: components["schemas"]["CdpObjectBaseInputRepresentation"] & {
+            /**
+             * @description Name of the data space that the agent setup belongs to.
+             *
+             *     **Available Version:** 66.0
+             */
+            dataSpaceName?: string;
+            /**
+             * @description Indicates whether the agent setup is enabled (`true`) or not (`false`).
+             *
+             *     **Available Version:** 66.0
+             */
+            enabled?: boolean;
+        };
+        /**
+         * Agent Setup Update Input
+         * @description Represents the input for updating an agent setup.
+         */
+        AgentSetupUpdateInputRepresentation: components["schemas"]["CdpObjectBaseInputRepresentation"] & {
+            /**
+             * @description Name of the data space that the agent setup belongs to.
+             *
+             *     **Available Version:** 66.0
+             */
+            dataSpaceName?: string;
+            /**
+             * @description Indicates whether the agent setup is enabled (`true`) or not (`false`).
+             *
+             *     **Available Version:** 66.0
+             */
+            enabled?: boolean;
         };
         /**
          * Aggregate Input
@@ -15880,7 +30697,7 @@ export type components = {
              *
              *     **Available Version:** 65.0
              */
-            brokerEndpoints: string[];
+            brokerEndpoints?: string[];
         } & {
             /**
              * @description discriminator enum property added by openapi-typescript
@@ -16013,6 +30830,30 @@ export type components = {
              *     **Available Version:** 60.0
              */
             parameters?: components["schemas"]["AppendParametersRepresentation"];
+        };
+        /**
+         * Assign Ad Account Input
+         * @description Represents the input for assigning an ad account to a target.
+         */
+        AssignAdAccountInputRepresentation: {
+            /**
+             * @description Ad account number to assign.
+             *
+             *     **Available Version:** 67.0
+             */
+            accountNumber: string;
+            /**
+             * @description Name of the data space to associate with the ad account.
+             *
+             *     **Available Version:** 67.0
+             */
+            dataSpace: string;
+            /**
+             * @description Manager account ID for the ad account.
+             *
+             *     **Available Version:** 67.0
+             */
+            managerAccountId?: string;
         };
         /**
          * Attribute Filter Expression Input
@@ -16309,6 +31150,158 @@ export type components = {
             offset?: number;
         };
         /**
+         * Auto Tagging Job Collection Output
+         * @description Represents a paginated collection of data governance auto-tagging jobs.
+         */
+        AutoTaggingJobCollectionRepresentation: components["schemas"]["CdpPaginatedResponseBaseRepresentation"] & {
+            /**
+             * @description Number of records on the current page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            count?: number;
+            /**
+             * @description List of auto-tagging jobs.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            jobs?: components["schemas"]["AutoTaggingJobRepresentation"][];
+            /**
+             * @description Page size used for the response.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            limit?: number;
+            /**
+             * @description Offset into the result set for the current page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            offset?: number;
+            /**
+             * Format: url
+             * @description URL for the previous page. Null if the current page is the first page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            previousPageUrl?: string;
+        };
+        /**
+         * Auto Tagging Job Output
+         * @description Represents a data governance auto-tagging background job.
+         */
+        AutoTaggingJobRepresentation: {
+            /**
+             * Format: date-time
+             * @description Date the job was created.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            createdDate?: string;
+            /**
+             * @description ID of the job.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            id?: string;
+            /**
+             * Format: date-time
+             * @description Date the job status was last updated.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            lastModifiedDate?: string;
+            /**
+             * @description Target object API name.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            objectName?: string;
+            /**
+             * @description Status of the job.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            status?: "Fail" | "InProgress" | "Success";
+        };
+        /**
+         * Aws Data Share Target Input
+         * @description Represents the input for creating an AWS data share target.
+         */
+        AwsDataShareTargetInputRepresentation: components["schemas"]["DataShareTargetInputRepresentation"] & {
+            /**
+             * @description AWS account ID for the data share target.
+             *
+             *     **Available Version:** 63.0
+             */
+            accountId?: string;
+            /**
+             * @description AWS role ARN for the data share target.
+             *
+             *     **Available Version:** 63.0
+             */
+            awsRoleArn?: string;
+            /**
+             * @description Subtype of AWS data share target.
+             *
+             *     **Available Version:** 63.0
+             * @enum {string}
+             */
+            subType?: "Aws" | "CleanRoom";
+        };
+        /**
+         * Aws Data Share Target Output
+         * @description Represents an AWS data share target.
+         */
+        AwsDataShareTargetRepresentation: components["schemas"]["DataShareTargetRepresentation"] & {
+            /**
+             * @description AWS account ID for the data share target.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             */
+            accountId?: string;
+            /**
+             * @description AWS role ARN for the data share target.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             */
+            awsRoleArn?: string;
+            /**
+             * @description Subtype of AWS data share target.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             * @enum {string}
+             */
+            subType?: "Aws" | "CleanRoom";
+        };
+        /**
          * Base Comparison Input
          * @description Represents the base comparison input. Abstract parent of:
          *     - [Entity Scoped Group Input](?meta=type%3AEntity%2BScoped%2BGroup%2BInput)
@@ -16479,6 +31472,162 @@ export type components = {
              *     **Available Version:** 60.0
              */
             runAction?: string;
+        };
+        /**
+         * Batch Data Transform Run History Output
+         * @description Represents the run history of a batch data transform.
+         */
+        BatchDataTransformRunHistoryRepresentation: components["schemas"]["DataTransformRunHistoryBaseRepresentation"] & {
+            /**
+             * @description Output status of the data transform run.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 62.0
+             */
+            outputStatus?: components["schemas"]["RunHistoryOutputProgressRepresentation"][];
+            /**
+             * @description Mode used for the data transform run.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 62.0
+             * @enum {string}
+             */
+            runMode?: "Full" | "Incremental";
+            /**
+             * @description Additional parameters related to the run mode.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 62.0
+             */
+            runModeParameters?: string[];
+            /**
+             * @description Reason why the data transform ran in the specified mode.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 62.0
+             * @enum {string}
+             */
+            runModeReason?: "BtDefinitionChanged" | "DmoMappingsChanged" | "EvaluationError" | "FullSyncInSrcObject" | "FunctionsRequireFullRun" | "IncrementalModeDisabled" | "IrregularDmoPk" | "JoinManyIncrSources" | "MaxRetriesFailed" | "NoRecentFullRun" | "NodesRequireFullRun" | "NotAScheduledRun" | "RetryAfterPartialFailure" | "RunAfterPartialResult" | "TooManyChangesInSrcObject" | "UnsupportedObjectType" | "UnsupportedWriteModes";
+        };
+        /**
+         * Batch Error Item Output
+         * @description Represents the error information for a failed data governance bulk operation item.
+         */
+        BatchErrorItemRepresentation: {
+            /**
+             * @description Machine-readable error code.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            errorCode?: string;
+            /**
+             * @description Human-readable error message.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            message?: string;
+        };
+        /**
+         * Batch Output
+         * @description Represents the result of a data governance bulk operation.
+         */
+        BatchRepresentation: {
+            /**
+             * @description Indicates whether any item failed (`true`) or all items succeeded (`false`).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            hasErrors?: boolean;
+            /**
+             * @description List of per-item results in the same order as the input list.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            results?: components["schemas"]["BatchResultItemRepresentation"][];
+        };
+        /**
+         * Batch Result Item Output
+         * @description Represents a per-item result in a bulk operation response.
+         */
+        BatchResultItemRepresentation: {
+            /**
+             * @description Result of the operation. On success, contains the created or updated entity or is omitted for delete operations. For failed items (status codes such as `400`, `404`, `412`, or `422`), contains the Batch Error Item Output with error details.
+             *
+             *     The output object depends on the type of result item:
+             *     - Classification and tag taxonomies return the Taxonomy Output.
+             *     - Classifications return the Classification Output.
+             *     - Tags return the Tag Output.
+             *     - Classification assignments return the Classification Assignment Output.
+             *     - Tag assignments return the Tag Assignment Output.
+             *     - Tag detection instructions return the Tag Detection Instruction Output.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            result?: components["schemas"]["TaxonomyRepresentation"] | components["schemas"]["ClassificationRepresentation"] | components["schemas"]["TagRepresentation"] | components["schemas"]["ClassificationAssignmentRepresentation"] | components["schemas"]["TagAssignmentRepresentation"] | components["schemas"]["TagDetectionInstructionRepresentation"] | components["schemas"]["BatchErrorItemRepresentation"][];
+            /**
+             * @description HTTP status code for the item. For example, `201`, `200`, `204`, `400`, or `404`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            statusCode?: number;
+        };
+        /**
+         * Big Query Data Share Target Input
+         * @description Represents the input for creating a BigQuery data share target.
+         */
+        BigQueryDataShareTargetInputRepresentation: components["schemas"]["DataShareTargetInputRepresentation"] & {
+            /**
+             * @description Email address of the Google principal that the data is shared with.
+             *
+             *     **Available Version:** 63.0
+             */
+            targetEmailId?: string;
+            /**
+             * @description Type of Google principal.
+             *
+             *     **Available Version:** 63.0
+             * @enum {string}
+             */
+            targetEmailType?: "Group" | "ServiceAccount" | "User";
+        };
+        /**
+         * Big Query Data Share Target Output
+         * @description Represents a BigQuery data share target.
+         */
+        BigQueryDataShareTargetRepresentation: components["schemas"]["DataShareTargetRepresentation"] & {
+            /**
+             * @description Email address of the Google principal that the data is shared with.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             */
+            targetEmailId?: string;
+            /**
+             * @description Type of Google principal.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             * @enum {string}
+             */
+            targetEmailType?: "Group" | "ServiceAccount" | "User";
         };
         /**
          * Bucket Field Input
@@ -16688,6 +31837,18 @@ export type components = {
             type?: "Boolean" | "DateOnly" | "DateTime" | "Number" | "Text";
         };
         /**
+         * Bulk Id Input
+         * @description Represents the input for bulk operations that accept a list of record IDs.
+         */
+        BulkIdInputRepresentation: {
+            /**
+             * @description List of core record IDs (18 characters). Maximum 200.
+             *
+             *     **Available Version:** 67.0
+             */
+            ids: string[];
+        };
+        /**
          * Action Response Base Output
          * @description Represents the base response for an action. Abstract parent of:
          *     - [Calculated Insight Standard Action Response Output](?meta=type%3ACalculated%2BInsight%2BStandard%2BAction%2BResponse%2BOutput)
@@ -16716,6 +31877,38 @@ export type components = {
              *     **Available Version:** 57.0
              */
             success?: boolean;
+        };
+        /**
+         * Activation Paginated Response Base Output
+         * @description Represents the base paginated response.
+         */
+        CdpActivationPaginatedResponseBaseRepresentation: {
+            /**
+             * Format: url
+             * @description URL of the current page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            currentPageUrl?: string;
+            /**
+             * Format: url
+             * @description URL of the next page, if one exists.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            nextPageUrl?: string;
+            /**
+             * @description Total number of results in the collection.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            totalSize?: number;
         };
         /**
          * Asset Base Input
@@ -19043,6 +34236,14 @@ export type components = {
          */
         CdpDataTransformActionResponseRepresentation: components["schemas"]["CdpActionResponseBaseRepresentation"] & {
             /**
+             * @description Request ID assigned to this data transform run request for tracking.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            requestId?: string;
+            /**
              * @description Indicates whether to force the transform to run in full mode (`true`) or not (`false`).
              *
              *     **Filter Group:** Small
@@ -19839,6 +35040,161 @@ export type components = {
              *     **Available Version:** 61.0
              */
             name?: string;
+        };
+        /**
+         * Ml Filter Input
+         * @description Represents the input for a filter expression.
+         */
+        CdpMlFilterInputRepresentation: {
+            /**
+             * @description Operator used to join filter criteria.
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            conjunctiveOperator: "And" | "Custom" | "Or";
+            /**
+             * @description List of filter criteria.
+             *
+             *     **Available Version:** 67.0
+             */
+            criteria: components["schemas"]["CdpMlFilterCriterionInputRepresentation"][];
+            /**
+             * @description Custom boolean expression in the format "{!$0} AND {!$1} AND ({!$2} OR {!$3}) AND (NOT {!$4})". Each number is the index of a criterion in the criteria list. Used when `conjunctiveOperator` is `Custom`.
+             *
+             *     **Available Version:** 67.0
+             */
+            customBooleanExpression?: string;
+        };
+        /**
+         * Ml Filter Criterion Input
+         * @description Represents the input for a filter criterion.
+         */
+        CdpMlFilterCriterionInputRepresentation: {
+            /**
+             * @description Filter field. For `NoCode` retriever configuration, this is the reference ID, alias name, or related data model object (DMO) field developer name in `vectorEmbeddingRelatedFields` of the search index.
+             *
+             *     **Available Version:** 67.0
+             */
+            field: components["schemas"]["MlFilterFieldAssetInputRepresentation"];
+            /**
+             * @description Operator applied to the filter criterion.
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            operator: "EqualTo" | "GreaterThan" | "GreaterThanOrEqualTo" | "In" | "LessThan" | "LessThanOrEqualTo" | "Like" | "NotEqualTo" | "NotIn";
+            /**
+             * @description List of values to apply in the filter.
+             *
+             *     **Available Version:** 67.0
+             */
+            values: components["schemas"]["CdpMlFilterValueInputRepresentation"][];
+        };
+        /**
+         * Ml Filter Criterion Base Output
+         * @description Represents a filter criterion.
+         */
+        CdpMlFilterCriterionBaseRepresentation: {
+            /**
+             * @description Operator of the filter.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             * @enum {string}
+             */
+            operator?: "EqualTo" | "GreaterThan" | "GreaterThanOrEqualTo" | "In" | "LessThan" | "LessThanOrEqualTo" | "Like" | "NotEqualTo" | "NotIn";
+            /**
+             * @description Type of filter.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             * @enum {string}
+             */
+            type?: "CalculatedInsightObjectField" | "DataModelObjectField" | "ModelInputField" | "SemanticSearchVectorEmbedRelatedField";
+            /**
+             * @description List of values to apply in the filter.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            values?: components["schemas"]["CdpMlFilterValueRepresentation"][];
+        };
+        /**
+         * Ml Filter Output
+         * @description Represents a filter expression.
+         */
+        CdpMlFilterRepresentation: {
+            /**
+             * @description Operator to join filter conditions.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             * @enum {string}
+             */
+            conjunctiveOperator?: "And" | "Custom" | "Or";
+            /**
+             * @description List of filter criteria.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            criteria?: components["schemas"]["CdpMlFilterCriterionBaseRepresentation"][];
+            /**
+             * @description Custom boolean expression. For example, "{!$0} AND {!$1} AND ({!$2} OR {!$3}) AND (NOT {!$4})". Each number is the index of a criterion in the criteria list.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            customBooleanExpression?: string;
+        };
+        /**
+         * Ml Filter Value Input
+         * @description Represents the input for a filter value.
+         */
+        CdpMlFilterValueInputRepresentation: {
+            /**
+             * @description Type of value.
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            type: "Constant" | "Placeholder";
+            /**
+             * @description Value content. When `type` is `Constant`, this property contains the constant value. When `type` is `Placeholder`, this property contains the placeholder name in the format "{!$parameter}".
+             *
+             *     **Available Version:** 67.0
+             */
+            value: string;
+        };
+        /**
+         * Ml Filter Value Output
+         * @description Represents a filter value.
+         */
+        CdpMlFilterValueRepresentation: {
+            /**
+             * @description Type of value.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             * @enum {string}
+             */
+            type?: "Constant" | "Placeholder";
+            /**
+             * @description Value. When `type` is `Constant`, this property contains the constant value. When `type` is `Placeholder`, this property contains the placeholder name in the format "{!$parameter}". For retrievers, this only applies for `NoCode`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            value?: string;
         };
         /**
          * ML Foundational Model Output
@@ -22483,6 +37839,121 @@ export type components = {
             profilePhotoUrl?: string;
         };
         /**
+         * Channel Preference Output
+         * @description Represents a single channel preference option, such as primary phone or secondary email.
+         */
+        ChannelPreferenceRepresentation: {
+            /**
+             * @description Localized display label for the preference, such as `Primary` or `Secondary`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            label?: string;
+            /**
+             * @description Machine-readable preference option value.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            option?: string;
+        };
+        /**
+         * Channel Preferences Output
+         * @description Represents the available channel preferences for a channel and data model object (DMO) pair, which determine the contact point type to activate on.
+         */
+        ChannelPreferencesRepresentation: {
+            /**
+             * @description Channel preference options.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            preferences?: components["schemas"]["ChannelPreferenceRepresentation"][];
+        };
+        /**
+         * Channel Output
+         * @description Represents a contact-point delivery channel.
+         */
+        ChannelRepresentation: {
+            /**
+             * @description API name of the underlying contact-point data model object (DMO), such as `ssot__ContactPointEmail__dlm`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            apiName?: string;
+            /**
+             * @description Type of delivery channel.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            channelType?: "DigitalId" | "Email" | "Phone" | "Push" | "Whatsapp";
+            /**
+             * @description Indicates whether the org has data mapped to the channel's data model object (DMO) in the requested data space (`true`) or not (`false`).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            isMapped?: boolean;
+            /**
+             * @description Display label for the channel's underlying data model object (DMO).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            label?: string;
+        };
+        /**
+         * Channels Collection Output
+         * @description Represents a collection of contact-point delivery channels.
+         */
+        ChannelsCollectionRepresentation: {
+            /**
+             * @description Channels available for activation.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            channels?: components["schemas"]["ChannelRepresentation"][];
+            /**
+             * Format: url
+             * @description URL of the current page request, suitable for re-fetching the same page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            currentPageUrl?: string;
+            /**
+             * Format: url
+             * @description URL of the next page when more records are available; absent on the last page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            nextPageUrl?: string;
+            /**
+             * @description Total number of records matching the query across all pages.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            totalSize?: number;
+        };
+        /**
          * Chunking Config Input
          * @description Represents the input for chunking structured/unstructured configurations.
          */
@@ -22543,6 +38014,568 @@ export type components = {
              *     **Available Version:** 60.0
              */
             value?: string;
+        };
+        /**
+         * Classification Assignment Bulk Create Input
+         * @description Represents the input for bulk creating classification assignments.
+         */
+        ClassificationAssignmentBulkCreateInputRepresentation: {
+            /**
+             * @description List of classification assignment bulk items, each containing a classification and its target tags.
+             *
+             *     **Available Version:** 67.0
+             */
+            assignments: components["schemas"]["ClassificationAssignmentBulkItemInputRepresentation"][];
+        };
+        /**
+         * Classification Assignment Bulk Delete Input
+         * @description Represents the input for bulk deleting classification assignments by ID.
+         */
+        ClassificationAssignmentBulkDeleteInputRepresentation: {
+            /**
+             * @description List of classification assignment IDs to delete.
+             *
+             *     **Available Version:** 67.0
+             */
+            ids: string[];
+        };
+        /**
+         * Classification Assignment Bulk Item Input
+         * @description Represents a single classification with its list of target tags for bulk creation.
+         */
+        ClassificationAssignmentBulkItemInputRepresentation: {
+            /**
+             * @description Fully-qualified API name of the source classification.
+             *
+             *     **Available Version:** 67.0
+             */
+            classificationFullyQualifiedName: string;
+            /**
+             * @description Fully-qualified API names of the target tags. Maximum 50.
+             *
+             *     **Available Version:** 67.0
+             */
+            tagFullyQualifiedNames: string[];
+        };
+        /**
+         * Classification Assignment Collection Output
+         * @description Represents a collection of data governance classification assignments.
+         */
+        ClassificationAssignmentCollectionRepresentation: components["schemas"]["CdpPaginatedResponseBaseRepresentation"] & {
+            /**
+             * @description List of classification assignments.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            classificationAssignments?: components["schemas"]["ClassificationAssignmentRepresentation"][];
+            /**
+             * @description Number of records on the current page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            count?: number;
+            /**
+             * @description Page size used for the response.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            limit?: number;
+            /**
+             * @description Offset into the result set for the current page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            offset?: number;
+            /**
+             * Format: url
+             * @description URL for the previous page. Null if the current page is the first page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            previousPageUrl?: string;
+        };
+        /**
+         * Classification Assignment Create Item Input
+         * @description Represents the input for a single classification assignment creation item.
+         */
+        ClassificationAssignmentCreateItemInputRepresentation: {
+            /**
+             * @description Fully-qualified API name of the source classification.
+             *
+             *     **Available Version:** 67.0
+             */
+            classificationFullyQualifiedName: string;
+            /**
+             * @description Fully-qualified API name of the target tag.
+             *
+             *     **Available Version:** 67.0
+             */
+            tagFullyQualifiedName: string;
+        };
+        /**
+         * Classification Assignment Output
+         * @description Represents a data governance classification assignment to a tag.
+         */
+        ClassificationAssignmentRepresentation: {
+            /**
+             * @description Hierarchical display label of the classification (dotted path of ancestor labels).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            classificationFullyQualifiedLabel?: string;
+            /**
+             * @description Fully-qualified API name of the source classification.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            classificationFullyQualifiedName?: string;
+            /**
+             * @description ID of the source classification.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            classificationId?: string;
+            /**
+             * @description Leaf display label of the classification.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            classificationLabel?: string;
+            /**
+             * @description Leaf developer name of the source classification.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            classificationName?: string;
+            /**
+             * @description ID of the classification assignment.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            id?: string;
+            /**
+             * @description Hierarchical display label of the target tag (dotted path of ancestor labels).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            tagFullyQualifiedLabel?: string;
+            /**
+             * @description Fully-qualified API name of the target tag.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            tagFullyQualifiedName?: string;
+            /**
+             * @description ID of the target tag.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            tagId?: string;
+            /**
+             * @description Leaf display label of the target tag.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            tagLabel?: string;
+            /**
+             * @description Leaf developer name of the target tag.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            tagName?: string;
+        };
+        /**
+         * Classification Bulk Create Input
+         * @description Represents the input for bulk creating data governance classifications.
+         */
+        ClassificationBulkCreateInputRepresentation: {
+            /**
+             * @description List of classification create inputs.
+             *
+             *     **Available Version:** 67.0
+             */
+            classifications?: components["schemas"]["ClassificationCreateInputRepresentation"][];
+        };
+        /**
+         * Classification Bulk Delete Input
+         * @description Represents the input for bulk deleting data governance classifications.
+         */
+        ClassificationBulkDeleteInputRepresentation: {
+            /**
+             * @description Fully-qualified API names of classifications to delete. Maximum of 200 items.
+             *
+             *     **Available Version:** 67.0
+             */
+            fullyQualifiedNames?: string[];
+        };
+        /**
+         * Classification Bulk Update Input
+         * @description Represents the input for bulk updating data governance classifications.
+         */
+        ClassificationBulkUpdateInputRepresentation: {
+            /**
+             * @description List of classification update items.
+             *
+             *     **Available Version:** 67.0
+             */
+            items?: components["schemas"]["ClassificationBulkUpdateItemInputRepresentation"][];
+        };
+        /**
+         * Classification Bulk Update Item Input
+         * @description Represents the input for a single classification item in a bulk update operation.
+         */
+        ClassificationBulkUpdateItemInputRepresentation: {
+            /**
+             * @description Updated description.
+             *
+             *     **Available Version:** 67.0
+             */
+            description?: string;
+            /**
+             * @description Fully-qualified API name of the classification to update.
+             *
+             *     **Available Version:** 67.0
+             */
+            fullyQualifiedName?: string;
+            /**
+             * @description Updated display label.
+             *
+             *     **Available Version:** 67.0
+             */
+            label?: string;
+            /**
+             * @description Replaces all tag links. Maximum of 200 items. Provide an empty list to remove all links. Omit to leave unchanged.
+             *
+             *     **Available Version:** 67.0
+             */
+            tagFullyQualifiedNames?: string[];
+        };
+        /**
+         * Classification Collection Output
+         * @description Represents a collection of data governance classifications.
+         */
+        ClassificationCollectionRepresentation: components["schemas"]["CdpPaginatedResponseBaseRepresentation"] & {
+            /**
+             * @description List of data governance classifications.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            classifications?: components["schemas"]["ClassificationRepresentation"][];
+            /**
+             * @description Number of records in this page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            count?: number;
+            /**
+             * @description Page size used for this response.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            limit?: number;
+            /**
+             * @description Offset into the result set for this page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            offset?: number;
+            /**
+             * Format: url
+             * @description URL for the previous page. Returns `null` if this is the first page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            previousPageUrl?: string;
+        };
+        /**
+         * Classification Create Input
+         * @description Represents the input for creating a data governance classification.
+         */
+        ClassificationCreateInputRepresentation: {
+            /**
+             * @description Description of the classification.
+             *
+             *     **Available Version:** 67.0
+             */
+            description?: string;
+            /**
+             * @description Fully-qualified API name of the classification in dotted path format. Use 2-3 segments: `<TaxonomyName>.<Level1>[.<Level2>]`.
+             *
+             *     **Available Version:** 67.0
+             */
+            fullyQualifiedName?: string;
+            /**
+             * @description Display label of the classification.
+             *
+             *     **Available Version:** 67.0
+             */
+            label?: string;
+            /**
+             * @description Fully-qualified API names of tags to associate with the classification. Maximum of 200 items.
+             *
+             *     **Available Version:** 67.0
+             */
+            tagFullyQualifiedNames?: string[];
+        };
+        /**
+         * Classification Lookup Output
+         * @description Represents a lightweight reference to a data governance classification.
+         */
+        ClassificationLookupRepresentation: {
+            /**
+             * @description Hierarchical display label in dotted path format of ancestor labels.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            fullyQualifiedLabel?: string;
+            /**
+             * @description Fully-qualified API name of the classification in dotted path format.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            fullyQualifiedName?: string;
+            /**
+             * @description Unique identifier of the classification.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            id?: string;
+            /**
+             * @description Display label of the classification.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            label?: string;
+            /**
+             * @description Developer name of the classification. Terminal segment only.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            name?: string;
+            /**
+             * @description Type of classification.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            type?: "Custom" | "System";
+        };
+        /**
+         * Classification Patch Input
+         * @description Represents the input for updating a data governance classification.
+         */
+        ClassificationPatchInputRepresentation: {
+            /**
+             * @description Updated description.
+             *
+             *     **Available Version:** 67.0
+             */
+            description?: string;
+            /**
+             * @description Updated display label.
+             *
+             *     **Available Version:** 67.0
+             */
+            label?: string;
+            /**
+             * @description Replaces all tag links. Maximum of 200 items. Provide an empty list to remove all links. Omit to leave unchanged.
+             *
+             *     **Available Version:** 67.0
+             */
+            tagFullyQualifiedNames?: string[];
+        };
+        /**
+         * Classification Output
+         * @description Represents a data governance classification.
+         */
+        ClassificationRepresentation: {
+            /**
+             * @description User who created the classification.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            createdBy?: components["schemas"]["CdpUserRepresentation"];
+            /**
+             * Format: date-time
+             * @description Date the classification was created.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            createdDate?: string;
+            /**
+             * @description Description of the classification.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            description?: string;
+            /**
+             * @description Hierarchical display label in dotted path format of ancestor labels.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            fullyQualifiedLabel?: string;
+            /**
+             * @description Fully-qualified API name of the classification in dotted path format.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            fullyQualifiedName?: string;
+            /**
+             * @description Unique identifier of the classification.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            id?: string;
+            /**
+             * @description Display label of the classification.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            label?: string;
+            /**
+             * @description User who last modified the classification.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            lastModifiedBy?: components["schemas"]["CdpUserRepresentation"];
+            /**
+             * Format: date-time
+             * @description Date the classification was last modified.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            lastModifiedDate?: string;
+            /**
+             * @description Developer name of the classification. Terminal segment only.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            name?: string;
+            /**
+             * @description Parent classification reference.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            parentClassification?: components["schemas"]["ClassificationLookupRepresentation"];
+            /**
+             * @description State of the classification.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            state?: "Active" | "Deleting" | "Inactive";
+            /**
+             * @description Tags associated with the classification.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            tags?: components["schemas"]["TagLookupRepresentation"][];
+            /**
+             * @description Taxonomy reference.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            taxonomy?: components["schemas"]["TaxonomyLookupRepresentation"];
+            /**
+             * @description Type of classification.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            type?: "Custom" | "System";
+            /**
+             * Format: url
+             * @description URL of the classification resource.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            url?: string;
         };
         /**
          * Cleanroom Test Connection Input
@@ -22630,6 +38663,14 @@ export type components = {
          */
         CloudProviderDetailsRepresentation: {
             /**
+             * @description Azure resource ID.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            azureResourceId?: unknown;
+            /**
              * @description Domain Name System (DNS) name of Data 360.
              *
              *     **Filter Group:** Small
@@ -22663,6 +38704,68 @@ export type components = {
              * @enum {string}
              */
             type?: "AmazonWebServices";
+        };
+        /**
+         * Communication Capping Data Space Output
+         * @description Represents a data space linked to a communication-capping definition.
+         */
+        CommunicationCappingDataSpaceRepresentation: {
+            /**
+             * @description Record ID (18-character) of the DataCommunicationCapDefinition record.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            dataCommunicationCapDefId?: string;
+            /**
+             * @description Name of the data space that the communication-capping definition belongs to.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            dataSpace?: string;
+        };
+        /**
+         * Communication Capping Data Spaces Collection Output
+         * @description Represents a collection of communication-capping data spaces.
+         */
+        CommunicationCappingDataSpacesCollectionRepresentation: {
+            /**
+             * Format: url
+             * @description URL of the current page request, suitable for re-fetching the same page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            currentPageUrl?: string;
+            /**
+             * @description Data spaces linked to communication-capping definitions.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            dataSpaces?: components["schemas"]["CommunicationCappingDataSpaceRepresentation"][];
+            /**
+             * Format: url
+             * @description URL of the next page when more records are available; absent on the last page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            nextPageUrl?: string;
+            /**
+             * @description Total number of records matching the query across all pages.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            totalSize?: number;
         };
         /**
          * Compute Relative Node Input
@@ -22801,6 +38904,265 @@ export type components = {
              *     **Available Version:** 60.0
              */
             fieldName?: string;
+        };
+        /**
+         * Condition Group Input
+         * @description Recursive group of conditions joined by AND or OR.
+         */
+        ConditionGroupInputRepresentation: {
+            /**
+             * @description Operands joined by the operator. Each operand is either a nested group or a leaf condition. Required.
+             *
+             *     **Available Version:** 67.0
+             */
+            operands?: components["schemas"]["ConditionNodeInputRepresentation"][];
+            /**
+             * @description Logical operator joining the operands (AND or OR). Required.
+             *
+             *     **Available Version:** 67.0
+             */
+            operator?: string;
+        };
+        /**
+         * Condition Group Output
+         * @description Represents a recursive group of conditions joined by AND or OR.
+         */
+        ConditionGroupRepresentation: {
+            /**
+             * @description Operands joined by the operator. Each operand is either a nested group or a leaf condition.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            operands?: components["schemas"]["ConditionNodeRepresentation"][];
+            /**
+             * @description Logical operator joining the operands (AND or OR).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            operator?: string;
+        };
+        /**
+         * Condition Leaf Input
+         * @description Leaf condition within an AccessPolicy clause tree.
+         */
+        ConditionLeafInputRepresentation: {
+            /**
+             * @description Which clause of the rule this condition belongs to.
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            clause?: "WHEN" | "UNLESS";
+            /**
+             * @description Context-side path the condition tests. Mutually exclusive with principalPath / resourcePath.
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            contextPath?: "SESSION_DATASPACE" | "SESSION_CONSUMER_ID" | "CONTEXT_AGENT_ID" | "CONTEXT_AGENT_VERSION_ID";
+            /**
+             * @description 18-character record ID of the underlying PolicyRuleDefinitionCond. Optional on create; required on update.
+             *     **Available Version:** 67.0
+             */
+            id?: string;
+            /**
+             * @description Comparison operator applied to the selected condition path. Valid operators depend on the selected path and value type. Required.
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            operator?: "EQUALS" | "NOT_EQUALS" | "GREATER_THAN" | "LESS_THAN" | "GREATER_THAN_OR_EQUAL" | "LESS_THAN_OR_EQUALS" | "IN" | "LIKE" | "CONTAINS_ANY" | "CONTAINS_NONE" | "CONTAINS_ALL" | "IS" | "EXISTS" | "HIERARCHICALLY_ABOVE" | "HIERARCHICALLY_BELOW" | "CONTAINS" | "STARTS_WITH" | "ENDS_WITH";
+            /**
+             * @description Principal-side path the condition tests. Mutually exclusive with resourcePath / contextPath.
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            principalPath?: "IS_AUTHENTICATED" | "ASSIGNED_PERMISSIONS_PATH" | "USER_ID" | "ORGANIZATION_ID" | "USER_ROLE_ID" | "RBAC_TAGS" | "SCALAR_ATTRIBUTE" | "PLURAL_ATTRIBUTE" | "PLACEHOLDER" | "IS_INTERNAL" | "CONTACT_ID";
+            /**
+             * @description Projection or join expression that relates the resource-side row to another object. Mutually exclusive with values and valuePrincipalPath.
+             *     **Available Version:** 67.0
+             */
+            resourceExpression?: components["schemas"]["ResourceExpressionInputRepresentation"];
+            /**
+             * @description Resource-side path the condition tests. Mutually exclusive with principalPath / contextPath.
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            resourcePath?: "NAMESPACE" | "ENTITY" | "RESOURCE" | "FIELD" | "ENTITYTYPE" | "ENTITYKIND" | "FIELDKIND" | "DATASPACE" | "TAG" | "SYSTEMTAG" | "OBJECT_TAG" | "CLASSIFICATION" | "IMPLICITTAG" | "OBJECT_SYSTEMTAG" | "RECORDFIELD" | "OBJECT_CLASSIFICATION" | "EXPRESSION" | "OBJECT_DATASPACE" | "RECORDFIELDTYPE" | "METADATAKIND" | "OBJECT";
+            /**
+             * @description Optional value-domain qualifier scoping the comparison.
+             *     **Available Version:** 67.0
+             */
+            valueDomain?: string;
+            /**
+             * @description Right-side dynamic value pulled from the current principal. Mutually exclusive with values and resourceExpression.
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            valuePrincipalPath?: "IS_AUTHENTICATED" | "ASSIGNED_PERMISSIONS_PATH" | "USER_ID" | "ORGANIZATION_ID" | "USER_ROLE_ID" | "RBAC_TAGS" | "SCALAR_ATTRIBUTE" | "PLURAL_ATTRIBUTE" | "PLACEHOLDER" | "IS_INTERNAL" | "CONTACT_ID";
+            /**
+             * @description Typed values the operator compares against. Mutually exclusive with valuePrincipalPath and resourceExpression.
+             *
+             *     **Available Version:** 67.0
+             */
+            values?: components["schemas"]["PolicyValueInputRepresentation"][];
+        };
+        /**
+         * Condition Leaf Output
+         * @description Represents a leaf condition within an AccessPolicy clause tree.
+         */
+        ConditionLeafRepresentation: {
+            /**
+             * @description Clause of the rule that the condition belongs to (WHEN or UNLESS).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            clause?: string;
+            /**
+             * @description Context-side path that the condition tests, such as SESSION_DATASPACE. Mutually exclusive with `principalPath` and `resourcePath`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            contextPath?: string;
+            /**
+             * @description 18-character record ID of the condition.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            id?: string;
+            /**
+             * @description Comparison operator (e.g., EQUALS, IS, CONTAINS_ANY, CONTAINS_NONE).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            operator?: string;
+            /**
+             * @description Principal-side path that the condition tests, such as IS_AUTHENTICATED or ASSIGNED_PERMISSIONS_PATH. Mutually exclusive with `resourcePath` and `contextPath`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            principalPath?: string;
+            /**
+             * @description Projection or join expression evaluated for row-level security (RLS) conditions. Mutually exclusive with `values` and `valuePrincipalPath`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            resourceExpression?: components["schemas"]["ResourceExpressionRepresentation"];
+            /**
+             * @description Resource-side path that the condition tests, such as ENTITYTYPE, TAG, CLASSIFICATION, or RECORDFIELD. Mutually exclusive with `principalPath` and `contextPath`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            resourcePath?: string;
+            /**
+             * @description Value-domain qualifier that scopes the comparison, such as Case:IsSensitive__c.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            valueDomain?: string;
+            /**
+             * @description Right-side dynamic value pulled from the current principal, such as USER_ID. Mutually exclusive with `values` and `resourceExpression`. Used for "owner equals current user" RLS patterns.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            valuePrincipalPath?: string;
+            /**
+             * @description Typed values that the operator compares against. The CONTAINS_ANY and CONTAINS_NONE operators carry multiple values; most operators carry one. Mutually exclusive with `valuePrincipalPath` and `resourceExpression`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            values?: components["schemas"]["PolicyValueRepresentation"][];
+        };
+        /**
+         * Condition Node Input
+         * @description Node in a recursive AccessPolicy condition tree (group or condition). Exactly one of group or condition must be provided.
+         */
+        ConditionNodeInputRepresentation: {
+            /**
+             * @description Leaf condition at this node. Provide either condition or group, but not both.
+             *
+             *     **Available Version:** 67.0
+             */
+            condition?: components["schemas"]["ConditionLeafInputRepresentation"];
+            /**
+             * @description Nested condition group at this node. Provide either group or condition, but not both.
+             *
+             *     **Available Version:** 67.0
+             */
+            group?: components["schemas"]["ConditionGroupInputRepresentation"];
+        };
+        /**
+         * Condition Node Output
+         * @description Represents a node in a recursive AccessPolicy condition tree (group or condition). Exactly one of group or condition is present.
+         */
+        ConditionNodeRepresentation: {
+            /**
+             * @description Leaf condition at this node.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            condition?: components["schemas"]["ConditionLeafRepresentation"];
+            /**
+             * @description Nested condition group at this node.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            group?: components["schemas"]["ConditionGroupRepresentation"];
+        };
+        /**
+         * Condition Output
+         * @description Condition Representation for Priority Rules
+         */
+        ConditionRepresentation: {
+            /**
+             * @description The field name to evaluate in the condition (for example, ContentType__c, FilePath__c)
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            fieldName?: string;
+            /**
+             * @description The operator to apply between the field and value (for example, equals, contains, startsWith)
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            operator?: string;
+            /**
+             * @description The value to compare against
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            value?: string;
         };
         /**
          * Config Input
@@ -23113,7 +39475,7 @@ export type components = {
          */
         ConnectionObjectCollectionInputRepresentation: {
             /**
-             * @description Comma-separated list of additional parameters to fetch the objects for a connector. Specify additional parameters in the form `"key": "value"`, where the key, for example, is `databaseName` or `schemaName`. The list of parameter keys varies by connector. Use the [get connector metadata](https://developer.salesforce.com/docs/data/connectapi/references/spec?meta=getConnectorMetadata) endpoint to discover the supported keys. Specify an empty object if no additional parameters are needed.
+             * @description Additional parameters used to retrieve the source objects for a connector. Specify each parameter in the form `"key": "value"`. The supported keys vary by connector. To discover the supported keys, use the [Get connector metadata](https://developer.salesforce.com/docs/data/connectapi/references/spec?meta=getConnectorMetadata) endpoint. If no additional parameters are needed, specify an empty object. Example keys include `databaseName`, `schemaName`, and `includeDataExtensionSize` (for the `SalesforceMarketingCloudDataExtension` subtype).
              *
              *     **Available Version:** 62.0
              */
@@ -23786,6 +40148,20 @@ export type components = {
              *     **Available Version:** 64.0
              */
             fields?: components["schemas"]["ConnectorsFrameworkConnectionSchemaFieldRepresentation"][];
+        };
+        /**
+         * Consent Data Model Objects Output
+         * @description Represents the standard consent data model objects (DMOs) associated with a data space.
+         */
+        ConsentDataModelObjectsRepresentation: {
+            /**
+             * @description Consent data model object (DMO) developer names. Currently always two entries: `contactPointConsent` and `communicationSubscriptionConsent`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            dataModelObjects?: string[];
         };
         /**
          * Contact Point Attribute Input
@@ -24788,6 +41164,114 @@ export type components = {
              *     **Available Version:** 62.0
              */
             subscriptionModes?: ("Create" | "Delete" | "Update")[];
+        };
+        /**
+         * Data Source Output
+         * @description Represents a data source available for an activation channel and data model object (DMO) pair.
+         */
+        DataSourceRepresentation: {
+            /**
+             * @description API names of the data-source objects backing the data source.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            dataSourceObjects?: string[];
+            /**
+             * @description Record ID (18-character) of the data source.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            id?: string;
+            /**
+             * @description Display name of the data source.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            name?: string;
+        };
+        /**
+         * Data Sources Collection Output
+         * @description Represents a collection of data sources.
+         */
+        DataSourcesCollectionRepresentation: {
+            /**
+             * Format: url
+             * @description URL of the current page request, suitable for re-fetching the same page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            currentPageUrl?: string;
+            /**
+             * @description Data sources in this page of results.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            dataSources?: components["schemas"]["DataSourceRepresentation"][];
+            /**
+             * Format: url
+             * @description URL of the next page when more records are available; absent on the last page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            nextPageUrl?: string;
+            /**
+             * @description Total number of records matching the query across all pages.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            totalSize?: number;
+        };
+        /**
+         * Databricks Route Details Input
+         * @description Input representation of route details for the cloud service used by the Private Network Route: Databricks.
+         */
+        DatabricksRouteDetailsInputRepresentation: Omit<components["schemas"]["RouteDetailsInputRepresentation"], "type"> & {
+            /**
+             * @description URL of the Databricks workspace.
+             *
+             *     **Available Version:** 66.0
+             */
+            accountUrl: string;
+        } & {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            type: "Databricks";
+        };
+        /**
+         * Databricks Route Details Output
+         * @description Represents route details for the cloud service used by the Private Network Route: Databricks.
+         */
+        DatabricksRouteDetailsRepresentation: Omit<components["schemas"]["RouteDetailsRepresentation"], "type"> & {
+            /**
+             * @description URL of the Databricks workspace.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            accountUrl?: string;
+        } & {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            type: "Databricks";
         };
         /**
          * Data Clean Room Accept Invitation Input
@@ -26591,6 +43075,56 @@ export type components = {
             useCaseTypes?: ("Custom" | "Overlap")[];
         };
         /**
+         * Data Cloud Data Share Target Input
+         * @description Represents the input for creating a Data Cloud data share target.
+         */
+        DataCloudDataShareTargetInputRepresentation: components["schemas"]["DataShareTargetInputRepresentation"] & {
+            /**
+             * @description Subtype of Data Cloud data share target.
+             *
+             *     **Available Version:** 63.0
+             * @enum {string}
+             */
+            subType?: "CleanRoom" | "DatacloudToDatacloud";
+            /**
+             * Format: Id
+             * @description Data Cloud org ID for the target.
+             *
+             *     **Available Version:** 63.0
+             */
+            targetOrgId?: string;
+            /**
+             * @description Data Cloud URL for the target.
+             *
+             *     **Available Version:** 63.0
+             */
+            targetUrl?: string;
+        };
+        /**
+         * Data Cloud Data Share Target Output
+         * @description Represents a Data Cloud data share target.
+         */
+        DataCloudDataShareTargetRepresentation: components["schemas"]["DataShareTargetRepresentation"] & {
+            /**
+             * @description Subtype of Data Cloud data share target.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             * @enum {string}
+             */
+            subType?: "CleanRoom" | "DatacloudToDatacloud";
+            /**
+             * Format: Id
+             * @description Data Cloud org ID for the target.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             */
+            targetOrgId?: string;
+        };
+        /**
          * Data Connection Input
          * @description Input representation for a data connector.
          */
@@ -26814,6 +43348,229 @@ export type components = {
             templateDevName?: string;
         };
         /**
+         * Databricks Data Share Target Input
+         * @description Represents the input for creating a Databricks data share target.
+         */
+        DatabricksDataShareTargetInputRepresentation: components["schemas"]["DataShareTargetInputRepresentation"] & {
+            /**
+             * @description Service account URL for the connection created in Databricks.
+             *
+             *     **Available Version:** 63.0
+             */
+            accountUrl?: string;
+            /**
+             * @description Service account ID for the connection created in Databricks.
+             *
+             *     **Available Version:** 63.0
+             */
+            serviceAccountId?: string;
+        };
+        /**
+         * Databricks Data Share Target Output
+         * @description Represents a Databricks data share target.
+         */
+        DatabricksDataShareTargetRepresentation: components["schemas"]["DataShareTargetRepresentation"] & {
+            /**
+             * @description Service account URL for the connection created in Databricks.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             */
+            accountUrl?: string;
+            /**
+             * @description Service account ID for the connection created in Databricks.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             */
+            serviceAccountId?: string;
+        };
+        /**
+         * Data Governance Object Access Grant Bulk Create Result Output
+         * @description Represents the result of a bulk create object access grants operation.
+         */
+        DataGovernanceObjectAccessGrantBulkCreateResultRepresentation: {
+            /**
+             * @description Indicates whether any item failed (`true`) or all items succeeded (`false`).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            hasErrors?: boolean;
+            /**
+             * @description Per-item results, in the same order as the input list.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            results?: components["schemas"]["DataGovernanceObjectAccessGrantBulkResultItemRepresentation"][];
+        };
+        /**
+         * Data Governance Object Access Grant Bulk Delete Result Output
+         * @description Represents the result of a bulk delete object access grants operation.
+         */
+        DataGovernanceObjectAccessGrantBulkDeleteResultRepresentation: {
+            /**
+             * @description Indicates whether any item failed (`true`) or all items succeeded (`false`).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            hasErrors?: boolean;
+            /**
+             * @description Per-item results, in the same order as the input list.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            results?: components["schemas"]["DataGovernanceObjectAccessGrantBulkResultItemRepresentation"][];
+        };
+        /**
+         * Data Governance Object Access Grant Bulk Result Item Output
+         * @description Represents a single item result in a bulk operation response.
+         */
+        DataGovernanceObjectAccessGrantBulkResultItemRepresentation: {
+            /**
+             * @description On success, the created grant for a create operation or null for a delete operation. On failure, a list of error objects.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            result?: unknown;
+            /**
+             * @description HTTP status code for the item, such as `200`, `201`, `204`, `400`, or `404`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            statusCode?: number;
+        };
+        /**
+         * Data Governance Object Access Grant Collection Output
+         * @description Represents a paginated list of object access grants.
+         */
+        DataGovernanceObjectAccessGrantCollectionRepresentation: {
+            /**
+             * @description Number of grants on the current page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            count?: number;
+            /**
+             * @description URL for the current page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            currentPageUrl?: string;
+            /**
+             * @description Grants on the current page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            grants?: components["schemas"]["DataGovernanceObjectAccessGrantRepresentation"][];
+            /**
+             * @description Maximum number of grants returned per page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            limit?: number;
+            /**
+             * @description URL for the next page, or null if there are no more pages.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            nextPageUrl?: string;
+            /**
+             * @description Number of rows skipped before returning results.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            offset?: number;
+            /**
+             * @description URL for the previous page, or null if the current page is the first page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            previousPageUrl?: string;
+            /**
+             * @description Total number of grants matching the query, across all pages.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            totalSize?: number;
+        };
+        /**
+         * Data Governance Object Access Grant Output
+         * @description Represents a single object access grant.
+         */
+        DataGovernanceObjectAccessGrantRepresentation: {
+            /**
+             * @description User who created the grant.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            createdBy?: components["schemas"]["CdpUserRepresentation"];
+            /**
+             * Format: date-time
+             * @description Timestamp when the grant was created.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            createdDate?: string;
+            /**
+             * @description Name of the data space that the grant belongs to.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            dataSpaceName?: string;
+            /**
+             * @description API name of the granted Data Cloud object.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            objectApiName?: string;
+            /**
+             * @description Developer name of the permission set.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            permissionSetName?: string;
+        };
+        /**
          * Data Graph Field Output
          * @description Represents a field of a data graph.
          */
@@ -26966,6 +43723,18 @@ export type components = {
             fields?: components["schemas"]["DataGraphIdsDmoFieldRepresentation"][];
         };
         /**
+         * Data Graph Input
+         * @description Represents the input for a data graph.
+         */
+        DataGraphInputRepresentation: {
+            /**
+             * @description Name of the data graph.
+             *
+             *     **Available Version:** 66.0
+             */
+            name?: string;
+        };
+        /**
          * Data Graph Object Data Output
          * @description Represents object data for a data graph.
          */
@@ -27074,6 +43843,20 @@ export type components = {
              *     **Available Version:** 59.0
              */
             parentFieldName?: string;
+        };
+        /**
+         * Data Graph Output
+         * @description Represents a data graph.
+         */
+        DataGraphRepresentation: {
+            /**
+             * @description Name of the data graph.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            name?: string;
         };
         /**
          * Data Graph Schedule Input
@@ -28524,6 +45307,168 @@ export type components = {
             type?: "DataLakeObject" | "DataModelObject";
         };
         /**
+         * Data Share Collection Output
+         * @description Represents a collection of data shares.
+         */
+        DataShareCollectionRepresentation: components["schemas"]["CdpPaginatedResponseBaseRepresentation"] & {
+            /**
+             * @description List of data shares in the org.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             */
+            dataShares?: components["schemas"]["DataShareRepresentation"][];
+        };
+        /**
+         * Data Share Input
+         * @description Represents the input for creating a data share.
+         */
+        DataShareInputRepresentation: components["schemas"]["CdpObjectBaseInputRepresentation"] & {
+            /**
+             * @description List of data share object names to include in the data share.
+             *
+             *     **Available Version:** 63.0
+             */
+            dataShareObjects?: string[];
+        };
+        /**
+         * Data Share Link Action Input
+         * @description Represents the input for linking a data share with targets.
+         */
+        DataShareLinkActionInputRepresentation: {
+            /**
+             * @description List of developer names for the data share targets to link.
+             *
+             *     **Available Version:** 63.0
+             */
+            dataShareTargetNames?: string[];
+        };
+        /**
+         * Data Share Object Output
+         * @description Represents a data share object.
+         */
+        DataShareObjectRepresentation: components["schemas"]["CdpAssetBaseRepresentation"] & {
+            /**
+             * @description List of developer names for the data share objects. Can include data lake objects (DLOs), data model objects (DMOs), and calculated insight objects (CIOs).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             */
+            names?: string[];
+        };
+        /**
+         * Data Share Patch Input
+         * @description Represents the input for updating a data share.
+         */
+        DataSharePatchInputRepresentation: components["schemas"]["CdpObjectBaseInputRepresentation"] & {
+            /**
+             * @description List of data share object names to include in the data share.
+             *
+             *     **Available Version:** 63.0
+             */
+            dataShareObjects?: string[];
+        };
+        /**
+         * Data Share Output
+         * @description Represents a data share.
+         */
+        DataShareRepresentation: components["schemas"]["CdpAssetBaseRepresentation"] & {
+            /**
+             * @description Data share objects included in the data share.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             */
+            dataShareObjects?: components["schemas"]["DataShareObjectRepresentation"];
+            /**
+             * @description Name of the data space that the data share belongs to.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             */
+            dataspaceName?: string;
+            /**
+             * @description Status of the data share.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             * @enum {string}
+             */
+            status?: "Active" | "Deleting" | "Error" | "InActive" | "Processing";
+        };
+        /**
+         * Data Share Target Collection Output
+         * @description Represents a collection of data share targets.
+         */
+        DataShareTargetCollectionRepresentation: components["schemas"]["CdpPaginatedResponseBaseRepresentation"] & {
+            /**
+             * @description List of data share targets.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             */
+            dataShareTargets?: components["schemas"]["DataShareTargetRepresentation"][];
+        };
+        /**
+         * Data Share Target Input
+         * @description Represents the input for creating a data share target.
+         */
+        DataShareTargetInputRepresentation: components["schemas"]["CdpObjectBaseInputRepresentation"] & Record<string, never> & ({
+            /**
+             * @description Type of data share target. Use the input object that correspongs to the target type.
+             *
+             *     For example, use the AWS Data Share Target Input for the `Aws` target type.
+             *
+             *     **Available Version:** 63.0
+             * @enum {string}
+             */
+            targetType?: "Aws" | "BigQuery" | "Databricks" | "Datacloud" | "Ibm" | "Other" | "Snowflake" | "SnowflakeOpenFlow";
+        } & (components["schemas"]["AwsDataShareTargetInputRepresentation"] | components["schemas"]["BigQueryDataShareTargetInputRepresentation"] | components["schemas"]["DataCloudDataShareTargetInputRepresentation"] | components["schemas"]["DatabricksDataShareTargetInputRepresentation"] | components["schemas"]["IBMDataShareTargetInputRepresentation"] | components["schemas"]["OtherDataShareTargetInputRepresentation"] | components["schemas"]["SnowflakeDataShareTargetInputRepresentation"] | components["schemas"]["SnowflakeOpenFlowDataShareTargetInputRepresentation"]));
+        /**
+         * Data Share Target Output
+         * @description Represents a data share target.
+         */
+        DataShareTargetRepresentation: components["schemas"]["CdpAssetBaseRepresentation"] & Record<string, never> & ({
+            /**
+             * @description Status of the data share target.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             * @enum {string}
+             */
+            status?: "Active" | "Deleting" | "Error" | "GrantRevokeAccess" | "InActive" | "Processing";
+            /**
+             * @description Type of data share target. The endpoint returns the output object that corresponds to the target type.
+             *
+             *     For example, the Aws Data Share Target Output is returned for the `Aws` target type.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             * @enum {string}
+             */
+            targetType?: "Aws" | "BigQuery" | "Databricks" | "Datacloud" | "Ibm" | "Other" | "Snowflake" | "SnowflakeOpenFlow";
+        } & (components["schemas"]["AwsDataShareTargetRepresentation"] | components["schemas"]["BigQueryDataShareTargetRepresentation"] | components["schemas"]["DataCloudDataShareTargetRepresentation"] | components["schemas"]["DatabricksDataShareTargetRepresentation"] | components["schemas"]["IBMDataShareTargetRepresentation"] | components["schemas"]["OtherDataShareTargetRepresentation"] | components["schemas"]["SnowflakeDataShareTargetRepresentation"] | components["schemas"]["SnowflakeOpenFlowDataShareTargetRepresentation"]));
+        /**
+         * Data Share Unlink Action Input
+         * @description Represents the input for unlinking a data share from targets.
+         */
+        DataShareUnlinkActionInputRepresentation: {
+            /**
+             * @description List of developer names for the data share targets to unlink.
+             *
+             *     **Available Version:** 63.0
+             */
+            dataShareTargetNames?: string[];
+        };
+        /**
          * Data Source Name Config Input
          * @description Represents the data source name configuration input.
          */
@@ -28675,6 +45620,12 @@ export type components = {
          */
         DataSpaceFilterInputRepresentation: {
             /**
+             * @description List of filter groups.
+             *
+             *     **Available Version:** 67.0
+             */
+            conditionGroups?: components["schemas"]["DataSpaceFilterInputRepresentation"][];
+            /**
              * @description Conditions for the filter.
              *
              *     **Available Version:** 62.0
@@ -28687,12 +45638,26 @@ export type components = {
              * @enum {string}
              */
             conjunctiveOperator: "AndOperator" | "NoneOperator" | "OrOperator";
+            /**
+             * @description Type of filter creation type, such as `CUSTOM` or `SYSTEM`.
+             *
+             *     **Available Version:** 66.0
+             */
+            filterCreationType?: string;
         };
         /**
          * Data Space Filter Output
          * @description Represents the data space filter on an object.
          */
         DataSpaceFilterRepresentation: {
+            /**
+             * @description List of children condition groups in the filter.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            conditionGroups?: components["schemas"]["DataSpaceFilterRepresentation"][];
             /**
              * @description List of conditions in the filter.
              *
@@ -28752,7 +45717,7 @@ export type components = {
              *
              *     **Available Version:** 60.0
              */
-            filter?: components["schemas"]["FilterExpressionDatSpaceInputRepresentation"];
+            filter?: components["schemas"]["DataSpaceFilterInputRepresentation"];
             /**
              * @description Name of the data space.
              *
@@ -28777,6 +45742,14 @@ export type components = {
          * @description Represents a collection of data space members.
          */
         DataSpaceMemberCollectionRepresentation: components["schemas"]["CdpPaginatedResponseBaseRepresentation"] & {
+            /**
+             * @description Token used to retrieve the next page of data space members. Returned in the response whenever more results remain.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            continuationToken?: string;
             /**
              * @description List of all data space members and filters.
              *
@@ -29538,11 +46511,29 @@ export type components = {
         /** Data Transform Definition Input */
         DataTransformDefinitionInputRepresentation: {
             /**
+             * @description Label of the transform definition.
+             *
+             *     **Available Version:** 63.0
+             */
+            label?: string;
+            /**
+             * @description Name of the transform definition.
+             *
+             *     **Available Version:** 63.0
+             */
+            name?: string;
+            /**
              * @description Information about the objects into which the data transform writes the transformed data.
              *
              *     **Available Version:** 60.0
              */
             outputDataObjects?: components["schemas"]["DataObjectInputRepresentation"][];
+            /**
+             * @description Schedule for running the transform. Applies to transforms that use the definitions array structure (which can contain one or more definitions). Does not apply to legacy transforms with a single definition field.
+             *
+             *     **Available Version:** 67.0
+             */
+            schedule?: components["schemas"]["CdpScheduleInputRepresentation"];
             /**
              * @description Type of definition.
              *
@@ -29610,6 +46601,14 @@ export type components = {
              *     **Available Version:** 60.0
              */
             outputDataObjects?: components["schemas"]["DataObjectRepresentation"][];
+            /**
+             * @description Schedule for running the transform. Applies to transforms that use the definitions array structure (which can contain one or more definitions). Does not apply to legacy transforms with a single definition field.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            schedule?: components["schemas"]["CdpScheduleRepresentation"];
             /**
              * @description Type of the data transform definition.
              *
@@ -29889,73 +46888,13 @@ export type components = {
          */
         DataTransformRunHistoryBaseRepresentation: {
             /**
-             * @description For a batch data transform, contains information about the output node that the transformed data is written to.
-             *
-             *     **Available Version:** 62.0
-             */
-            outputStatus?: components["schemas"]["RunHistoryOutputProgressRepresentation"][];
-            /**
-             * @description For a batch data transform, indicates whether the data transform ran in [incremental or full mode](https://help.salesforce.com/s/articleView?id=data.c360_a_batch_transform_run_types.htm&type=5).
+             * @description Name of the data transform definition.
              *
              *     **Filter Group:** Small
              *
-             *     **Available Version:** 62.0
-             * @enum {string}
+             *     **Available Version:** 63.0
              */
-            runMode?: "Full" | "Incremental";
-            /**
-             * @description For a batch data transform, contains more information about the run mode.
-             *
-             *     **Filter Group:** Small
-             *
-             *     **Available Version:** 62.0
-             */
-            runModeParameters?: string[];
-            /**
-             * @description For a batch data transform, indicates the why the data transform is in the current run mode.
-             *
-             *     **Filter Group:** Small
-             *
-             *     **Available Version:** 62.0
-             * @enum {string}
-             */
-            runModeReason?: "BtDefinitionChanged" | "DmoMappingsChanged" | "EvaluationError" | "FullSyncInSrcObject" | "FunctionsRequireFullRun" | "IncrementalModeDisabled" | "IrregularDmoPk" | "MaxRetriesFailed" | "NoRecentFullRun" | "NodesRequireFullRun" | "NotAScheduledRun" | "RetryAfterPartialFailure" | "RunAfterPartialResult" | "TooManyChangesInSrcObject" | "UnsupportedObjectType";
-            /**
-             * Format: int64
-             * @description For a streaming data transfer, indicates the number of rows that the data transform added.
-             *
-             *     **Filter Group:** Small
-             *
-             *     **Available Version:** 62.0
-             */
-            addedRows?: number;
-            /**
-             * Format: int64
-             * @description For a streaming data transform, indicates the number of rows that the data transform deleted.
-             *
-             *     **Filter Group:** Small
-             *
-             *     **Available Version:** 62.0
-             */
-            deletedRows?: number;
-            /**
-             * Format: int64
-             * @description For a streaming data transform, indicates the number of rows that failed during the transform.
-             *
-             *     **Filter Group:** Small
-             *
-             *     **Available Version:** 62.0
-             */
-            failedRows?: number;
-            /**
-             * Format: int64
-             * @description For a streaming data transform, indicates the number of rows that the data transform updated.
-             *
-             *     **Filter Group:** Small
-             *
-             *     **Available Version:** 62.0
-             */
-            updatedRows?: number;
+            definitionName?: string;
             /**
              * Format: int64
              * @description Duration of the data transform run in seconds.
@@ -29999,6 +46938,14 @@ export type components = {
              */
             processedRows?: number;
             /**
+             * @description Request ID correlating this data transform run with upstream services.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            requestId?: string;
+            /**
              * @description Start time of the data transform job.
              *
              *     **Filter Group:** Small
@@ -30014,7 +46961,16 @@ export type components = {
              *     **Available Version:** 62.0
              * @enum {string}
              */
-            status?: "Canceled" | "Failure" | "InProgress" | "None" | "PartialFailure" | "PartiallyCanceled" | "Pending" | "RebuildFailure" | "RebuildPending" | "RebuildSuccess" | "Rebuilding" | "Success";
+            status?: "Canceled" | "Failure" | "InProgress" | "None" | "PartialFailure" | "PartiallyCanceled" | "Pending" | "RebuildFailure" | "RebuildPending" | "RebuildSuccess" | "Rebuilding" | "SkippedNoChanges" | "Success";
+            /**
+             * @description Type of data transform.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 64.0
+             * @enum {string}
+             */
+            type: "Batch" | "Streaming";
         };
         /**
          * Data Transform Run History Collection Output
@@ -30022,13 +46978,15 @@ export type components = {
          */
         DataTransformRunHistoryCollectionRepresentation: components["schemas"]["CdpPaginatedResponseBaseRepresentation"] & {
             /**
-             * @description List of information about the jobs that the data transform has run. Each data transform run is one entry in the array.
+             * @description List of information about the jobs that the data transform has run. Each data transform run is one entry in the array. The endpoint returns the run history output object that corresponds to the type of data transform.
+             *
+             *     For example, the Batch Data Transform Run History Output is returned for the `Batch` data transform type.
              *
              *     **Filter Group:** Small
              *
              *     **Available Version:** 62.0
              */
-            histories: components["schemas"]["DataTransformRunHistoryBaseRepresentation"][];
+            histories: (components["schemas"]["BatchDataTransformRunHistoryRepresentation"] | components["schemas"]["StreamingDataTransformRunHistoryRepresentation"])[];
         };
         /**
          * Data Transform Validation Output
@@ -30051,6 +47009,20 @@ export type components = {
              *     **Available Version:** 62.0
              */
             outputDataObjects?: components["schemas"]["DataObjectRepresentation"][];
+        };
+        /**
+         * Dataspace Account Validation Output
+         * @description Represents the result of checking whether an ad account is available in a data space.
+         */
+        DataspaceAccountValidationRepresentation: {
+            /**
+             * @description Indicates whether the ad account is available, meaning not already assigned (`true`) or not (`false`).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            available?: boolean;
         };
         /**
          * Dc Sql Data Transform Definition Input
@@ -30721,6 +47693,34 @@ export type components = {
              * @enum {string}
              */
             predeterminedFilename?: "Activation" | "Segment" | "SegmentActivation";
+        };
+        /**
+         * Event Collection Output
+         * @description Represents a paginated collection of events available for a streaming activation platform.
+         */
+        EventCollectionRepresentation: {
+            /**
+             * @description List of events.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            events?: components["schemas"]["EventRepresentation"][];
+        } & components["schemas"]["CdpActivationPaginatedResponseBaseRepresentation"];
+        /**
+         * Event Output
+         * @description Represents a standard event configured on a streaming activation platform.
+         */
+        EventRepresentation: {
+            /**
+             * @description Name of the event, such as Purchase or AddToCart.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            name?: string;
         };
         /**
          * Existing Data Lake Object Input
@@ -32343,6 +49343,46 @@ export type components = {
             expressionType?: "Dcsql" | "Sql";
         };
         /**
+         * IBM Data Share Target Input
+         * @description Represents the input for creating an IBM data share target.
+         */
+        IBMDataShareTargetInputRepresentation: components["schemas"]["DataShareTargetInputRepresentation"] & {
+            /**
+             * @description IBM account URL.
+             *
+             *     **Available Version:** 63.0
+             */
+            accountUrl?: string;
+            /**
+             * @description IBM service account ID created as part of connection creation in IBM.
+             *
+             *     **Available Version:** 63.0
+             */
+            serviceAccountId?: string;
+        };
+        /**
+         * IBM Data Share Target Output
+         * @description Represents an IBM data share target.
+         */
+        IBMDataShareTargetRepresentation: components["schemas"]["DataShareTargetRepresentation"] & {
+            /**
+             * @description IBM account URL.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             */
+            accountUrl?: string;
+            /**
+             * @description IBM service account ID.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             */
+            serviceAccountId?: string;
+        };
+        /**
          * Document AI Config Extracted DLO Field Input
          * @description This type contains the fields required to configure an extracted field.
          */
@@ -32726,7 +49766,7 @@ export type components = {
          */
         IdpExtractDataInputRepresentation: {
             /**
-             * @description The list of unstructured data source files to extract the schema from.
+             * @description The list of unstructured data source files to extract data from. Supported file types: PDF, image (PNG, JPG, JPEG), Microsoft Word (.docx), PowerPoint (.pptx), and Excel (.xlsx).
              *
              *     **Available Version:** 63.0
              */
@@ -32738,7 +49778,7 @@ export type components = {
              */
             idpConfigurationIdOrName?: string;
             /**
-             * @description The ID of the ML model to use for schema extraction. Use the [get Document AI global configuration](https://sfdocs-data-clocloud-pr-358.herokuapp.com/docs/data/connectapi/references/spec?meta=getDocumentAIGlobalConfig) endpoint to retrieve the list of acceptable values.
+             * @description The ID of the ML model to use for schema extraction. Use the [get Document AI global configuration](https://developer.salesforce.com/docs/data/connectapi/references/spec#tag/Document-AI/paths/~1ssot~1document-processing~1global-config/get) endpoint to retrieve the list of acceptable values.
              *
              *     **Available Version:** 63.0
              */
@@ -32887,7 +49927,7 @@ export type components = {
              */
             files: components["schemas"]["IdpGenerateSchemaFileInputRepresentation"][];
             /**
-             * @description The ID of the ML model to use for schema extraction. Use the [get Document AI global configuration](https://sfdocs-data-clocloud-pr-358.herokuapp.com/docs/data/connectapi/references/spec?meta=getDocumentAIGlobalConfig) endpoint to retrieve the list of acceptable values.
+             * @description The ID of the ML model to use for schema extraction. Use the [get Document AI global configuration](https://developer.salesforce.com/docs/data/connectapi/references/spec#tag/Document-AI/paths/~1ssot~1document-processing~1global-config/get) endpoint to retrieve the list of acceptable values.
              *
              *     **Available Version:** 63.0
              */
@@ -33598,6 +50638,1473 @@ export type components = {
          */
         JsonStringInputRepresentation: components["schemas"]["JsonSchemaInputRepresentation"] & Record<string, never>;
         /**
+         * Knowledge Select Input
+         * @description The input representation for knowledge select input.
+         */
+        KnowledgeSelectInputRepresentation: components["schemas"]["CdpAssetBaseInputRepresentation"] & {
+            /**
+             * @description List of knowledge IDs.
+             *
+             *     **Available Version:** 65.0
+             */
+            knowledgeIds?: string[];
+            /**
+             * @description List of search indexes.
+             *
+             *     **Available Version:** 65.0
+             */
+            searchIndexes?: string[];
+        };
+        /**
+         * Knowledge Source File Input
+         * @description Represents the input for a knowledge source file.
+         */
+        KnowledgeSourceFileInputRepresentation: components["schemas"]["CdpAssetBaseInputRepresentation"] & {
+            /**
+             * @description Index status of the file.
+             *
+             *     **Available Version:** 65.0
+             */
+            fileIndexStatus?: string;
+            /**
+             * @description Name of the file.
+             *
+             *     **Available Version:** 65.0
+             */
+            fileName?: string;
+            /**
+             * @description Path of the file.
+             *
+             *     **Available Version:** 65.0
+             */
+            filePath?: string;
+            /**
+             * @description File type.
+             *
+             *     **Available Version:** 65.0
+             */
+            fileType?: string;
+        };
+        /**
+         * Knowledge Source File Output
+         * @description Represents a knowledge source file.
+         */
+        KnowledgeSourceFileOutputRepresentation: {
+            /**
+             * @description Name of the file.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            fileName?: string;
+            /**
+             * @description Path of the file.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            filePath?: string;
+            /**
+             * @description Record ID of the file.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            fileRecordId?: string;
+            /**
+             * @description Status of the file.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            fileStatus?: string;
+            /**
+             * @description Type of the file.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            fileType?: string;
+            /**
+             * @description Job ID.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            jobId?: string;
+            /**
+             * @description Off-core job ID from the search index API call.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            offCoreJobId?: string;
+        };
+        /**
+         * Knowledge Source Output
+         * @description Represents a knowledge source.
+         */
+        KnowledgeSourceOutputRepresentation: {
+            /**
+             * @description List of files in the knowledge source.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            files?: components["schemas"]["KnowledgeSourceFileOutputRepresentation"][];
+            /**
+             * @description ID of the knowledge source.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            id?: string;
+            /**
+             * @description Label of the knowledge source.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            label?: string;
+            /**
+             * @description Search index of the knowledge source.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            searchIndex?: string;
+            /**
+             * @description Developer name of the search index.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            searchIndexDeveloperName?: string;
+            /**
+             * @description Type of the search index.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            searchType?: string;
+            /**
+             * @description Type of the knowledge source.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            sourceType?: string;
+        };
+        /**
+         * All Knowledge Space Output
+         * @description Represents a collection of knowledge spaces.
+         */
+        AllKnowledgeSpaceOutputRepresentation: {
+            /**
+             * @description List of knowledge spaces.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            knowledgeSpaces?: components["schemas"]["KnowledgeSpaceOutputRepresentation"][];
+        };
+        /**
+         * All Knowledge Space Config Output
+         * @description Represents a collection of knowledge space configurations.
+         */
+        AllKnowledgeSpaceConfigOutputRepresentation: {
+            /**
+             * @description List of knowledge space configurations.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            knowledgeSpaceConfigs?: components["schemas"]["KnowledgeSpaceConfigOutputRepresentation"][];
+        };
+        /**
+         * All Knowledge Space Library Output
+         * @description Represents a collection of knowledge libraries across all knowledge spaces.
+         */
+        AllKnowledgeSpaceLibraryOutputRepresentation: {
+            /**
+             * @description List of knowledge libraries across all knowledge spaces.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            knowledgeSpaceLibraries?: components["schemas"]["KnowledgeSpaceLibraryOutputRepresentation"][];
+        };
+        /**
+         * All Knowledge Space Session Output
+         * @description Represents a collection of active conversational sessions.
+         */
+        AllKnowledgeSpaceSessionOutputRepresentation: {
+            /**
+             * @description List of active conversational sessions.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            knowledgeSpaceSessions?: components["schemas"]["KnowledgeSpaceSessionOutputRepresentation"][];
+        };
+        /**
+         * Knowledge Modal Input
+         * @description Represents the input for a knowledge modal.
+         */
+        KnowledgeModalInputRepresentation: components["schemas"]["CdpAssetBaseInputRepresentation"] & {
+            /**
+             * @description Name of the data space that the knowledge modal belongs to.
+             *
+             *     **Available Version:** 65.0
+             */
+            dataSpace?: string;
+            /**
+             * @description Knowledge select filters.
+             *
+             *     **Available Version:** 65.0
+             */
+            filterList?: Record<string, never>;
+            /**
+             * @description Knowledge space ID.
+             *
+             *     **Available Version:** 65.0
+             */
+            knowledgeSpaceId?: string;
+            /**
+             * @description List of knowledge select options.
+             *
+             *     **Available Version:** 65.0
+             */
+            selectedList?: Record<string, never>;
+            /**
+             * @description Type of knowledge source.
+             *
+             *     **Available Version:** 65.0
+             */
+            type?: string;
+        };
+        /**
+         * Knowledge Modal Output
+         * @description Represents a knowledge modal.
+         */
+        KnowledgeModalOutputRepresentation: {
+            /**
+             * @description List of knowledge space libraries.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            knowledgeList?: components["schemas"]["KnowledgeSpaceLibraryOutputRepresentation"][];
+            /**
+             * @description List of semantic search summaries.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            searchIndexes?: components["schemas"]["SemanticSearchDefDetailRepresentation"][];
+        };
+        /**
+         * Knowledge Space Config Input
+         * @description Represents the input for creating a knowledge space configuration.
+         */
+        KnowledgeSpaceConfigInputRepresentation: components["schemas"]["CdpAssetBaseInputRepresentation"] & {
+            /**
+             * @description Name of the data space that the knowledge space configuration belongs to.
+             *
+             *     **Available Version:** 65.0
+             */
+            dataspace?: string;
+            /**
+             * @description Developer name of the configuration.
+             *
+             *     **Available Version:** 65.0
+             */
+            developerName?: string;
+            /**
+             * @description Data lake object (DLO) identifier for the knowledge file source.
+             *
+             *     **Available Version:** 65.0
+             */
+            knowledgeFileDlo?: string;
+            /**
+             * @description Data model object (DMO) identifier for the knowledge file source.
+             *
+             *     **Available Version:** 65.0
+             */
+            knowledgeFileDmo?: string;
+            /**
+             * @description DMO reference for the knowledge file stream.
+             *
+             *     **Available Version:** 65.0
+             */
+            knowledgeFileRefDmo?: string;
+            /**
+             * @description Knowledge space agent ID.
+             *
+             *     **Available Version:** 65.0
+             */
+            knowledgeSpaceAgent?: string;
+            /**
+             * @description File-based agent identifier for NotebookAI.
+             *
+             *     **Available Version:** 65.0
+             */
+            knowledgeSpaceFileBasedAgent?: string;
+            /**
+             * @description Knowledge space search index.
+             *
+             *     **Available Version:** 65.0
+             */
+            knowledgeSpaceIndex?: string;
+            /**
+             * @description Label of the configuration.
+             *
+             *     **Available Version:** 65.0
+             */
+            label?: string;
+            /**
+             * @description Provisioning status of the knowledge space.
+             *
+             *     **Available Version:** 65.0
+             */
+            provisioningStatus?: string;
+        };
+        /**
+         * Knowledge Space Config Output
+         * @description Represents a knowledge space configuration.
+         */
+        KnowledgeSpaceConfigOutputRepresentation: {
+            /**
+             * @description Name of the data space that the knowledge space configuration belongs to.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            dataspace?: string;
+            /**
+             * @description Developer name of the configuration.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            developerName?: string;
+            /**
+             * @description Instance URL of the org.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            instanceUrl?: string;
+            /**
+             * @description Data lake object (DLO) identifier for the knowledge file source.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            knowledgeFileDlo?: string;
+            /**
+             * @description Data model object (DMO) identifier for the knowledge file source.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            knowledgeFileDmo?: string;
+            /**
+             * @description DMO reference for the knowledge file stream.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            knowledgeFileRefDmo?: string;
+            /**
+             * @description Active version of the knowledge space agent.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            knowledgeSpaceAgentActiveVersion?: string;
+            /**
+             * @description Knowledge space agent ID.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            knowledgeSpaceAgentId?: string;
+            /**
+             * @description ID of the knowledge space configuration.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            knowledgeSpaceConfigId?: string;
+            /**
+             * @description File-based agent identifier for NotebookAI.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            knowledgeSpaceFileBasedAgent?: string;
+            /**
+             * @description Knowledge space search index.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            knowledgeSpaceIndex?: string;
+            /**
+             * @description ID of the knowledge space search index.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            knowledgeSpaceIndexId?: string;
+            /**
+             * @description Label of the configuration.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            label?: string;
+            /**
+             * @description Provisioning status of the configuration.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            provisioningStatus?: string;
+        };
+        /**
+         * Knowledge Space File Chunks Input
+         * @description Represents the input for retrieving knowledge space file chunks.
+         */
+        KnowledgeSpaceFileChunksInputRepresentation: components["schemas"]["CdpAssetBaseInputRepresentation"] & {
+            /**
+             * @description Additional filter parameters.
+             *
+             *     **Available Version:** 65.0
+             */
+            additionalFilter?: {
+                [key: string]: Record<string, never>;
+            };
+            /**
+             * @description List of container IDs.
+             *
+             *     **Available Version:** 65.0
+             */
+            containerId?: string[];
+            /**
+             * @description Name of the search index.
+             *
+             *     **Available Version:** 65.0
+             */
+            searchIndexName?: string;
+        };
+        /**
+         * Knowledge Space File Chunks Output
+         * @description Represents the file chunks for a knowledge space.
+         */
+        KnowledgeSpaceFileChunksOutputRepresentation: {
+            /**
+             * @description Content of all chunks.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            allChunks?: string;
+            /**
+             * @description File path.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            filepath?: string;
+        };
+        /**
+         * Knowledge Space File Status Input
+         * @description Represents the input for retrieving knowledge space file status.
+         */
+        KnowledgeSpaceFileStatusInputRepresentation: components["schemas"]["CdpAssetBaseInputRepresentation"] & {
+            /**
+             * @description List of file IDs to retrieve status for.
+             *
+             *     **Available Version:** 65.0
+             */
+            fileIds?: string[];
+            /**
+             * @description Knowledge space ID.
+             *
+             *     **Available Version:** 65.0
+             */
+            knowledgeSpaceId?: string;
+        };
+        /**
+         * Knowledge Space Files Status Output
+         * @description Represents the status of knowledge space files.
+         */
+        KnowledgeSpaceFilesStatusOutputRepresentation: {
+            /**
+             * @description List of knowledge source file statuses.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            files?: components["schemas"]["KnowledgeSourceFileOutputRepresentation"][];
+        };
+        /**
+         * Knowledge Space Index Files Input
+         * @description Represents the input for indexing knowledge space files.
+         */
+        KnowledgeSpaceIndexFilesInputRepresentation: components["schemas"]["CdpAssetBaseInputRepresentation"] & {
+            /**
+             * @description Unique identifier of the knowledge artifact.
+             *
+             *     **Available Version:** 65.0
+             */
+            knowledgeArtifactId?: string;
+            /**
+             * @description Source system or origin of the knowledge artifact.
+             *
+             *     **Available Version:** 65.0
+             */
+            knowledgeArtifactSource?: string;
+            /**
+             * @description List of knowledge source files to index.
+             *
+             *     **Available Version:** 65.0
+             */
+            knowledgeSourceFilesList?: Record<string, never>[];
+            /**
+             * @description Unique identifier of the knowledge source. Applies only to URL sources.
+             *
+             *     **Available Version:** 65.0
+             */
+            knowledgeSourceId?: string;
+            /**
+             * @description API name of the search index to use for knowledge indexing.
+             *
+             *     **Available Version:** 65.0
+             */
+            searchIndexApiName?: string;
+            /**
+             * @description Website URL.
+             *
+             *     **Available Version:** 65.0
+             */
+            websiteUrl?: string;
+        };
+        /**
+         * Knowledge Space Index Files Output
+         * @description Represents the result of indexing knowledge space files.
+         */
+        KnowledgeSpaceIndexFilesOutputRepresentation: {
+            /**
+             * @description Unique identifier of the knowledge artifact.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            knowledgeArtifactId?: string;
+            /**
+             * @description Source system or origin of the knowledge artifact.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            knowledgeArtifactSource?: string;
+            /**
+             * @description List of indexed knowledge source files.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            knowledgeSourceFilesList?: components["schemas"]["KnowledgeSourceFileOutputRepresentation"][];
+            /**
+             * @description Unique identifier of the knowledge source.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            knowledgeSourceId?: string;
+            /**
+             * @description Off-core job ID from the search index API call.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            offCoreJobId?: string;
+            /**
+             * @description API name of the search index.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            searchIndexApiName?: string;
+            /**
+             * @description Website URL.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            websiteUrl?: string;
+        };
+        /**
+         * Knowledge Space Input
+         * @description Represents the input for creating a knowledge space.
+         */
+        KnowledgeSpaceInputRepresentation: components["schemas"]["CdpAssetBaseInputRepresentation"] & {
+            /**
+             * @description Indicates whether to create a default library for the knowledge space (`true`) or not (`false`). If unspecified, the default value is `true`.
+             *
+             *     **Available Version:** 65.0
+             */
+            createDefaultLibrary?: boolean;
+            /**
+             * @description Name of the data space that the knowledge space belongs to.
+             *
+             *     **Available Version:** 65.0
+             */
+            dataSpace?: string;
+            /**
+             * @description Description of the knowledge space.
+             *
+             *     **Available Version:** 65.0
+             */
+            description?: string;
+            /**
+             * @description Developer name of the knowledge space.
+             *
+             *     **Available Version:** 65.0
+             */
+            developerName?: string;
+            /**
+             * @description Label of the knowledge space.
+             *
+             *     **Available Version:** 65.0
+             */
+            label?: string;
+        };
+        /**
+         * Knowledge Space Library Input
+         * @description Represents the input for creating a knowledge space library.
+         */
+        KnowledgeSpaceLibraryInputRepresentation: components["schemas"]["CdpAssetBaseInputRepresentation"] & {
+            /**
+             * @description Description of the library.
+             *
+             *     **Available Version:** 65.0
+             */
+            description?: string;
+            /**
+             * @description Developer name of the library.
+             *
+             *     **Available Version:** 65.0
+             */
+            developerName?: string;
+            /**
+             * @description Knowledge library ID.
+             *
+             *     **Available Version:** 65.0
+             */
+            knowledgeLibraryId?: string;
+            /**
+             * @description ID of the knowledge space associated with the library.
+             *
+             *     **Available Version:** 65.0
+             */
+            knowledgeSpaceId?: string;
+            /**
+             * @description Label of the library.
+             *
+             *     **Available Version:** 65.0
+             */
+            label?: string;
+        };
+        /**
+         * Knowledge Space Library Output
+         * @description Represents a knowledge space library.
+         */
+        KnowledgeSpaceLibraryOutputRepresentation: {
+            /**
+             * @description Developer name of the library.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            developerName?: string;
+            /**
+             * @description Knowledge category.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            knowledgeCategory?: string;
+            /**
+             * @description ID of the library.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            knowledgeLibraryId?: string;
+            /**
+             * @description ID of the parent knowledge space.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            knowledgeSpaceId?: string;
+            /**
+             * @description Name of the parent knowledge space.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            knowledgeSpaceName?: string;
+            /**
+             * @description Label of the library.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            label?: string;
+            /**
+             * @description List of knowledge sources in the library.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            sources?: components["schemas"]["KnowledgeSourceOutputRepresentation"][];
+        };
+        /**
+         * Knowledge Space Output
+         * @description Represents a knowledge space.
+         */
+        KnowledgeSpaceOutputRepresentation: {
+            /**
+             * @description Client context of the knowledge space.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            clientContext?: string;
+            /**
+             * @description Name of the data space that the knowledge space belongs to.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            dataSpace?: string;
+            /**
+             * @description Description of the knowledge space.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            description?: string;
+            /**
+             * @description Developer name of the knowledge space.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            developerName?: string;
+            /**
+             * @description ID of the knowledge space configuration.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            knowledgeSpaceConfigId?: string;
+            /**
+             * @description Definition ID of the knowledge space.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            knowledgeSpaceDefId?: string;
+            /**
+             * @description ID of the knowledge space.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            knowledgeSpaceId?: string;
+            /**
+             * @description Label of the knowledge space.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            label?: string;
+            /**
+             * @description List of libraries in the knowledge space.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            libraries?: components["schemas"]["KnowledgeSpaceLibraryOutputRepresentation"][];
+        };
+        /**
+         * Knowledge Space Provision Input
+         * @description Represents the input for provisioning a knowledge space.
+         */
+        KnowledgeSpaceProvisionInputRepresentation: components["schemas"]["CdpAssetBaseInputRepresentation"] & {
+            /**
+             * @description List of data space names to provision.
+             *
+             *     **Available Version:** 65.0
+             */
+            dataSpaces?: string[];
+        };
+        /**
+         * Knowledge Space Provision Output
+         * @description Represents the result of provisioning a knowledge space.
+         */
+        KnowledgeSpaceProvisionOutputRepresentation: {
+            /**
+             * @description Indicates whether the provisioning request succeeded (`true`) or not (`false`).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            success?: boolean;
+        };
+        /**
+         * Knowledge Space Conversation Msg Output
+         * @description Represents a message in a knowledge space conversation.
+         */
+        KnowledgeSpaceConversationMsgOutputRepresentation: {
+            /**
+             * @description List of cited references.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            citedReferences?: string[];
+            /**
+             * @description Feedback ID for the message.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            feedbackId?: string;
+            /**
+             * @description Unique identifier of the message.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            id?: string;
+            /**
+             * @description Indicates whether the content is safe (`true`) or not (`false`).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            isContentSafe?: boolean;
+            /**
+             * @description Message content for the InformResponseMessage type.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            message?: string;
+            /**
+             * @description Type of the message.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            messageType?: string;
+            /**
+             * @description Sequence ID of the message.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            sequenceId?: number;
+            /**
+             * @description Text content of the message.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            text?: string;
+            /**
+             * Format: int64
+             * @description Timestamp of the message.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            timestamp?: number;
+        };
+        /**
+         * Knowledge Space Session Conversation Output
+         * @description Represents the conversation for a knowledge space session.
+         */
+        KnowledgeSpaceSessionConversationOutputRepresentation: {
+            /**
+             * @description List of conversation messages.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            messages?: components["schemas"]["KnowledgeSpaceConversationMsgOutputRepresentation"][];
+        };
+        /**
+         * Knowledge Space Session Input
+         * @description Represents the input for creating a knowledge space session.
+         */
+        KnowledgeSpaceSessionInputRepresentation: components["schemas"]["CdpAssetBaseInputRepresentation"] & {
+            /**
+             * @description Knowledge space ID.
+             *
+             *     **Available Version:** 65.0
+             */
+            knowledgeSpaceId?: string;
+            /**
+             * @description Last active time of the session.
+             *
+             *     **Available Version:** 65.0
+             */
+            lastActiveTime?: string;
+            /**
+             * @description Session ID.
+             *
+             *     **Available Version:** 65.0
+             */
+            sessionId?: string;
+        };
+        /**
+         * Knowledge Space Session Output
+         * @description Represents a knowledge space session.
+         */
+        KnowledgeSpaceSessionOutputRepresentation: {
+            /**
+             * @description Agent type used when the session was created.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            agentType?: string;
+            /**
+             * @description Definition ID of the knowledge space.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            knowledgeSpaceDefId?: string;
+            /**
+             * @description ID of the knowledge space.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            knowledgeSpaceId?: string;
+            /**
+             * @description Entity ID of the knowledge space session.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            knowledgeSpaceSessionEntityId?: string;
+            /**
+             * @description Last active time of the session.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            lastActiveTime?: string;
+            /**
+             * @description ID of the knowledge space session.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            sessionId?: string;
+        };
+        /**
+         * Knowledge Space Upload Presigned Url Input
+         * @description Represents the input for requesting a presigned URL to upload files to a knowledge space.
+         */
+        KnowledgeSpaceUploadPresignedUrlInputRepresentation: {
+            /**
+             * @description List of file names to upload.
+             *
+             *     **Available Version:** 65.0
+             */
+            fileNames?: string[];
+            /**
+             * @description ID of the knowledge space library.
+             *
+             *     **Available Version:** 65.0
+             */
+            libraryId?: string;
+        };
+        /**
+         * Knowledge Space Upload Presigned U R L Output
+         * @description Represents the presigned URLs for uploading files to a knowledge space.
+         */
+        KnowledgeSpaceUploadPresignedURLOutputRepresentation: {
+            /**
+             * @description List of presigned URLs for uploading to a knowledge library.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 65.0
+             */
+            presignedUrls?: string[];
+        };
+        /**
+         * Knowledge Space Deep Research Report Input
+         * @description Represents the input for requesting a deep research report.
+         */
+        KnowledgeSpaceDeepResReportInputRepresentation: components["schemas"]["CdpAssetBaseInputRepresentation"] & {
+            /**
+             * @description Output format of the deep research report.
+             *
+             *     **Available Version:** 67.0
+             */
+            outputFormat?: string;
+        };
+        /**
+         * Knowledge Space Deep Research Report Output
+         * @description Represents a deep research report.
+         */
+        KnowledgeSpaceDeepResReportOutputRepresentation: {
+            /**
+             * @description Content of the deep research report.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            report?: string;
+            /**
+             * @description Deep research job identifier.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            researchId?: string;
+        };
+        /**
+         * Knowledge Space Deep Research Run Output
+         * @description Represents the result of starting a deep research job.
+         */
+        KnowledgeSpaceDeepResRunResearchOutputRepresentation: {
+            /**
+             * @description Deep research job identifier.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            researchId?: string;
+        };
+        /**
+         * Knowledge Space Deep Research Add Source Input
+         * @description Represents the input for adding deep research as a knowledge source.
+         */
+        KnowledgeSpaceDeepResearchAddSourceInputRepresentation: components["schemas"]["CdpAssetBaseInputRepresentation"] & {
+            /**
+             * @description File name that overrides the default. If unspecified, the default value is the base name of `reportFilePath`.
+             *
+             *     **Available Version:** 67.0
+             */
+            fileName?: string;
+            /**
+             * @description Short-lived sfdrive path where the report is stored.
+             *
+             *     **Available Version:** 67.0
+             */
+            reportFilePath?: string;
+            /**
+             * @description Deep research job identifier, used for logging.
+             *
+             *     **Available Version:** 67.0
+             */
+            researchId?: string;
+        };
+        /**
+         * Knowledge Space Deep Research Add Source Output
+         * @description Represents the result of adding deep research as a knowledge source.
+         */
+        KnowledgeSpaceDeepResearchAddSourceOutputRepresentation: {
+            /**
+             * @description ID of the GENERATED_RESOURCES knowledge source in the library.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            knowledgeSourceId?: string;
+            /**
+             * @description ID of the knowledge source file reference record.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            knowledgeSrcFileRefId?: string;
+            /**
+             * @description Persistent sfdrive path of the copied report.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            persistedFilePath?: string;
+        };
+        /**
+         * Knowledge Space Deep Research Cancel Input
+         * @description Represents the input for canceling a deep research job.
+         */
+        KnowledgeSpaceDeepResearchCancelInputRepresentation: components["schemas"]["CdpAssetBaseInputRepresentation"] & {
+            /**
+             * @description Indicates whether to request a partial report from completed steps (`true`) or not (`false`).
+             *
+             *     **Available Version:** 67.0
+             */
+            partialReport?: boolean;
+        };
+        /**
+         * Knowledge Space Deep Research Output
+         * @description Represents the status and details of a deep research job.
+         */
+        KnowledgeSpaceDeepResearchOutputRepresentation: {
+            /**
+             * @description Deep research configuration.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            config?: Record<string, never>;
+            /**
+             * @description Error details if the job failed.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            error?: Record<string, never>;
+            /**
+             * @description Execution plan with steps.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            plan?: components["schemas"]["KnowledgeSpaceDeepResearchPlanOutputRepresentation"];
+            /**
+             * @description Query text.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            query?: string;
+            /**
+             * @description Report content.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            report?: Record<string, never>;
+            /**
+             * @description Deep research job identifier.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            researchId?: string;
+            /**
+             * @description Execution details.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            runDetails?: Record<string, never>;
+            /**
+             * @description Job status. Valid values are PENDING, RUNNING, COMPLETED, FAILED, and CANCELLED.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            status?: string;
+        };
+        /**
+         * Knowledge Space Deep Research Plan Output
+         * @description Represents a deep research execution plan.
+         */
+        KnowledgeSpaceDeepResearchPlanOutputRepresentation: {
+            /**
+             * @description Estimated duration of the research job, in minutes.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            estimatedDurationMinutes?: number;
+            /**
+             * @description List of research plan steps.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            steps?: components["schemas"]["KnowledgeSpaceDeepResearchPlanStepOutputRepresentation"][];
+            /**
+             * @description Plan title describing the research approach.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            title?: string;
+        };
+        /**
+         * Knowledge Space Deep Research Plan Patch Input
+         * @description Represents the input for updating a deep research plan before execution.
+         */
+        KnowledgeSpaceDeepResearchPlanPatchInputRepresentation: components["schemas"]["CdpAssetBaseInputRepresentation"] & {
+            /**
+             * @description Natural-language instructions for modifying the research plan.
+             *
+             *     **Available Version:** 67.0
+             */
+            editInstructions?: string;
+            /**
+             * @description Direct plan update with explicit steps.
+             *
+             *     **Available Version:** 67.0
+             */
+            plan?: components["schemas"]["KnowledgeSpaceDeepResearchPlanPatchPlanInputRepresentation"];
+            /**
+             * @description ID of the research template to use for the research job.
+             *
+             *     **Available Version:** 67.0
+             */
+            researchTemplateId?: string;
+        };
+        /**
+         * Knowledge Space Deep Research Plan Patch Plan Input
+         * @description Represents the plan payload for deep research plan updates.
+         */
+        KnowledgeSpaceDeepResearchPlanPatchPlanInputRepresentation: components["schemas"]["CdpAssetBaseInputRepresentation"] & {
+            /**
+             * @description List of research plan steps to execute.
+             *
+             *     **Available Version:** 67.0
+             */
+            steps?: components["schemas"]["KnowledgeSpaceDeepResearchPlanStepInputRepresentation"][];
+        };
+        /**
+         * Knowledge Space Deep Research Plan Step Input
+         * @description Represents a step in a deep research plan.
+         */
+        KnowledgeSpaceDeepResearchPlanStepInputRepresentation: components["schemas"]["CdpAssetBaseInputRepresentation"] & {
+            /**
+             * @description Description of what the step does.
+             *
+             *     **Available Version:** 67.0
+             */
+            description?: string;
+            /**
+             * @description Title or name of the step.
+             *
+             *     **Available Version:** 67.0
+             */
+            title?: string;
+        };
+        /**
+         * Knowledge Space Deep Research Plan Step Output
+         * @description Represents a step in a deep research plan.
+         */
+        KnowledgeSpaceDeepResearchPlanStepOutputRepresentation: {
+            /**
+             * @description Description of what the step does.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            description?: string;
+            /**
+             * @description Title or name of the step.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            title?: string;
+        };
+        /**
+         * Knowledge Space Run Research Input
+         * @description Represents the input for running a deep research job.
+         */
+        KnowledgeSpaceRunResearchInputRepresentation: components["schemas"]["CdpAssetBaseInputRepresentation"] & {
+            /**
+             * @description Deep research job identifier.
+             *
+             *     **Available Version:** 67.0
+             */
+            researchId?: string;
+        };
+        /**
+         * Knowledge Space Run Research Output
+         * @description Represents the status and results of a deep research job.
+         */
+        KnowledgeSpaceRunResearchOutputRepresentation: {
+            /**
+             * @description Deep research configuration.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            config?: Record<string, never>;
+            /**
+             * @description Error details if the job failed.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            error?: Record<string, never>;
+            /**
+             * @description Execution plan with steps.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            plan?: components["schemas"]["KnowledgeSpaceDeepResearchPlanOutputRepresentation"];
+            /**
+             * @description Query text.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            query?: string;
+            /**
+             * @description Report content.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            report?: Record<string, never>;
+            /**
+             * @description Deep research job identifier.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            researchId?: string;
+            /**
+             * @description Execution details.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            runDetails?: Record<string, never>;
+            /**
+             * @description Job status. Valid values are PENDING, RUNNING, COMPLETED, FAILED, and CANCELLED.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            status?: string;
+        };
+        /**
          * Load Data Input
          * @description Represents the data to load.
          */
@@ -33919,6 +52426,50 @@ export type components = {
             outputObjectConfigs?: components["schemas"]["MatchBoostOutputObjectConfigRepresentation"][];
         };
         /**
+         * Match Boost Provider Output
+         * @description Represents an identity provider eligible for match-boost.
+         */
+        MatchBoostProviderRepresentation: {
+            /**
+             * @description Partner-issued provider ID.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            providerId?: string;
+            /**
+             * @description Display name of the identity provider.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            providerName?: string;
+            /**
+             * @description Contact-point types that the provider can augment.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            supportedContactPoints?: string[];
+        };
+        /**
+         * Match Boost Providers Output
+         * @description Represents identity-provider metadata for the activation builder.
+         */
+        MatchBoostProvidersRepresentation: {
+            /**
+             * @description Identity providers available for match-boost.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            providers?: components["schemas"]["MatchBoostProviderRepresentation"][];
+        };
+        /**
          * Match Boost Usecase Config Input
          * @description Represents the input for match boost use case template types.
          */
@@ -34015,6 +52566,106 @@ export type components = {
              *     **Available Version:** 62.0
              */
             name?: string;
+        };
+        /**
+         * Mc Business Unit Output
+         * @description Represents a Marketing Cloud business unit within an enterprise.
+         */
+        McBusinessUnitRepresentation: {
+            /**
+             * @description Business unit ID (MID).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            id?: string;
+            /**
+             * @description Display name of the business unit.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            name?: string;
+        };
+        /**
+         * Mc Enterprise Output
+         * @description Represents a Marketing Cloud enterprise with its enterprise ID and associated business units.
+         */
+        McEnterpriseRepresentation: {
+            /**
+             * @description Business units belonging to the enterprise.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            businessUnits?: components["schemas"]["McBusinessUnitRepresentation"][];
+            /**
+             * @description Connector ID linking the enterprise to Data Cloud.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            connectorId?: string;
+            /**
+             * @description Marketing Cloud enterprise ID (EID).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            enterpriseId?: string;
+            /**
+             * @description Display name of the enterprise.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            enterpriseName?: string;
+        };
+        /**
+         * Mc Enterprises Collection Output
+         * @description Represents a collection of Marketing Cloud enterprises.
+         */
+        McEnterprisesCollectionRepresentation: {
+            /**
+             * Format: url
+             * @description URL of the current page request, suitable for re-fetching the same page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            currentPageUrl?: string;
+            /**
+             * @description Marketing Cloud enterprises with their business units.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            enterprises?: components["schemas"]["McEnterpriseRepresentation"][];
+            /**
+             * Format: url
+             * @description URL of the next page when more records are available; absent on the last page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            nextPageUrl?: string;
+            /**
+             * @description Total number of records matching the query across all pages.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            totalSize?: number;
         };
         /**
          * Ml Binary Classification Job Def Input
@@ -34717,6 +53368,118 @@ export type components = {
             url?: string;
         };
         /**
+         * Ml Dmo Field Source Target Relationship Input
+         * @description Represents the input for a foreign-key relationship between two data model objects (DMOs). Contains developer names for source DMO, source field, target DMO, and target field.
+         */
+        MlDmoFieldSourceTargetRelationshipInputRepresentation: {
+            /**
+             * @description Developer name of the source DMO field.
+             *
+             *     **Available Version:** 67.0
+             */
+            relationSourceDmoFieldName: string;
+            /**
+             * @description Developer name of the source DMO.
+             *
+             *     **Available Version:** 67.0
+             */
+            relationSourceDmoName: string;
+            /**
+             * @description Developer name of the target DMO field.
+             *
+             *     **Available Version:** 67.0
+             */
+            relationTargetDmoFieldName: string;
+            /**
+             * @description Developer name of the target DMO.
+             *
+             *     **Available Version:** 67.0
+             */
+            relationTargetDmoName: string;
+        };
+        /**
+         * Ml Dmo Field Source Target Relationship Output
+         * @description Represents a relationship between two data model objects (DMOs).
+         */
+        MlDmoFieldSourceTargetRelationshipRepresentation: components["schemas"]["CdpAssetBaseRepresentation"] & {
+            /**
+             * @description ID of the parent relationship.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            parentRelationshipId?: string;
+            /**
+             * @description Source DMO reference.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            relationSourceDmo?: components["schemas"]["CdpAssetReferenceRepresentation"];
+            /**
+             * @description Source DMO field reference.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            relationSourceDmoField?: components["schemas"]["CdpAssetReferenceRepresentation"];
+            /**
+             * @description Target DMO reference.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            relationTargetDmo?: components["schemas"]["CdpAssetReferenceRepresentation"];
+            /**
+             * @description Target DMO field reference.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            relationTargetDmoField?: components["schemas"]["CdpAssetReferenceRepresentation"];
+        };
+        /**
+         * Ml Field Placeholder Output
+         * @description Represents a field placeholder for providing dynamic values at runtime.
+         */
+        MlFieldPlaceholderRepresentation: {
+            /**
+             * @description Field reference.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            field?: components["schemas"]["CdpAssetReferenceRepresentation"];
+            /**
+             * @description Data type of the field.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             * @enum {string}
+             */
+            fieldDataType?: "ArrayOfText" | "Boolean" | "Currency" | "Date" | "DateTime" | "Email" | "Number" | "Percent" | "Phone" | "Text" | "Url";
+            /**
+             * @description Name of the placeholder in the format "{!$parameter}".
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            placeholderName?: string;
+        };
+        /**
+         * Ml Filter Field Asset Input
+         * @description Represents the input for a filter field asset.
+         */
+        MlFilterFieldAssetInputRepresentation: components["schemas"]["CdpAssetBaseInputRepresentation"] & Record<string, never>;
+        /**
          * ML Improvement Directive Output
          * @description Represents recommended actions and insights for improving an ML model.
          */
@@ -35110,6 +53873,37 @@ export type components = {
              *     **Available Version:** 59.0
              */
             url?: string;
+        };
+        /**
+         * Ml Retriever Source Input
+         * @description Represents the input for a search index reference.
+         */
+        MlRetrieverSourceInputRepresentation: components["schemas"]["CdpAssetBaseInputRepresentation"] & {
+            /**
+             * @description Type of search index source.
+             *
+             *     **Available Version:** 61.0
+             * @enum {string}
+             */
+            type?: "SearchIndex" | "SearchIndexConfiguration";
+        };
+        /**
+         * Ml Retriever Update Input
+         * @description Represents the input for updating a retriever. All fields are optional.
+         */
+        MlRetrieverUpdateInputRepresentation: {
+            /**
+             * @description Description of the retriever.
+             *
+             *     **Available Version:** 67.0
+             */
+            description?: string;
+            /**
+             * @description Label of the retriever.
+             *
+             *     **Available Version:** 67.0
+             */
+            label?: string;
         };
         /**
          * Ml Prediction Job Def Data Field Input
@@ -35572,6 +54366,1288 @@ export type components = {
             prescriptionThreshold?: number;
         };
         /**
+         * Ml Retriever Citation Configuration Input
+         * @description Represents the input for configuring citation fields.
+         */
+        MlRetrieverCitationConfigurationInputRepresentation: {
+            /**
+             * @description Base URL that the `mappedUrlField` value is appended to. For example, if `baseUrl` is "https://example.com" and the data model object (DMO) field contains "/docs/article-123", the resulting URL is "https://example.com/docs/article-123".
+             *
+             *     **Available Version:** 61.0
+             */
+            baseUrl?: string;
+            /**
+             * @description Name of the mapped DMO field containing the citation label.
+             *
+             *     **Available Version:** 61.0
+             */
+            mappedLabelField?: components["schemas"]["MlRetrieverCitationFieldInputRepresentation"];
+            /**
+             * @description Name of the mapped data model object (DMO) field containing the URL or URL path. When `baseUrl` is provided, this field's value is appended to it to construct the complete URL.
+             *
+             *     **Available Version:** 61.0
+             */
+            mappedUrlField?: components["schemas"]["MlRetrieverCitationFieldInputRepresentation"];
+            /**
+             * @description Type of citation.
+             *
+             *     **Available Version:** 61.0
+             * @enum {string}
+             */
+            type: "Custom" | "Default";
+        };
+        /**
+         * Ml Retriever Citation Configuration Output
+         * @description Represents citation configuration.
+         */
+        MlRetrieverCitationConfigurationRepresentation: {
+            /**
+             * @description Base URL that the `mappedUrlField` value is appended to. For example, if `baseUrl` is "https://example.com" and the data model object (DMO) field contains "/docs/article-123", the resulting URL is "https://example.com/docs/article-123".
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            baseUrl?: string;
+            /**
+             * @description Mapped label field reference.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            mappedLabelField?: components["schemas"]["MlRetrieverCitationFieldRepresentation"];
+            /**
+             * @description Mapped URL field reference.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            mappedUrlField?: components["schemas"]["MlRetrieverCitationFieldRepresentation"];
+            /**
+             * @description Type of citation.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             * @enum {string}
+             */
+            type?: "Custom" | "Default";
+        };
+        /**
+         * Ml Retriever Citation Field Input
+         * @description Represents the input for a citation field reference.
+         */
+        MlRetrieverCitationFieldInputRepresentation: components["schemas"]["MlRetrieverFieldBaseInputRepresentation"] & Record<string, never>;
+        /**
+         * Ml Retriever Citation Field Output
+         * @description Represents a citation field reference.
+         */
+        MlRetrieverCitationFieldRepresentation: components["schemas"]["MlRetrieverFieldBaseRepresentation"] & Record<string, never>;
+        /**
+         * Ml Retriever Collection Output
+         * @description Represents a paginated list of retrievers.
+         */
+        MlRetrieverCollectionRepresentation: components["schemas"]["CdpPaginatedResponseBaseRepresentation"] & {
+            /**
+             * @description List of retrievers.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            retrievers?: components["schemas"]["MlRetrieverRepresentation"][];
+        };
+        /**
+         * Ml Retriever Configuration Base Input
+         * @description Represents the input for creating a retriever configuration.
+         */
+        MlRetrieverConfigurationBaseInputRepresentation: Record<string, never> & ({
+            /**
+             * @description Indicates whether to activate the configuration on creation (`true`) or not (`false`).
+             *
+             *     **Available Version:** 61.0
+             */
+            isActive?: boolean;
+            /**
+             * @description Indicates whether to include citation fields (source record ID, label, URL) in results (`true`) or not (`false`). For CustomSql, `isCitationSupported` must be `true`.
+             *
+             *     **Available Version:** 61.0
+             */
+            isCitationEnabled?: boolean;
+            /**
+             * @description Maximum number of results to return. Must be a positive integer. If unspecified, the default value is `10`.
+             *
+             *     **Available Version:** 61.0
+             */
+            numberOfResults?: number;
+            /**
+             * @description Type of query.
+             *
+             *     **Available Version:** 61.0
+             * @enum {string}
+             */
+            queryType: "CustomSql" | "Ensemble" | "NoCode";
+            /**
+             * @description Retrieval mode.
+             *
+             *     **Available Version:** 61.0
+             * @enum {string}
+             */
+            retrievalMode?: "Advanced" | "Basic";
+        } & (components["schemas"]["MlRetrieverConfigurationCustomSqlInputRepresentation"] | components["schemas"]["MlRetrieverConfigurationEnsembleInputRepresentation"] | components["schemas"]["MlRetrieverConfigurationNoCodeInputRepresentation"]));
+        /**
+         * Ml Retriever Configuration Base Output
+         * @description Represents a retriever configuration.
+         */
+        MlRetrieverConfigurationBaseRepresentation: components["schemas"]["CdpAssetBaseRepresentation"] & {
+            /**
+             * @description Search index reference. Applies only to `NoCode`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            input?: components["schemas"]["CdpAssetReferenceRepresentation"];
+            /**
+             * @description Indicates whether the configuration is active (`true`) or not (`false`). At most one configuration can be active per retriever.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            isActive?: boolean;
+            /**
+             * @description Indicates whether citation is enabled (`true`) or not (`false`).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            isCitationEnabled?: boolean;
+            /**
+             * @description Maximum number of results to return. Must be a positive integer.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            numberOfResults?: number;
+            /**
+             * @description Retrieval mode.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             * @enum {string}
+             */
+            retrievalMode?: "Advanced" | "Basic";
+            /**
+             * @description Search index configuration reference. Applies only to `NoCode`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            searchIndexConfiguration?: components["schemas"]["CdpAssetReferenceRepresentation"];
+            /**
+             * @description Type of semantic search. Applies only to `NoCode`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             * @enum {string}
+             */
+            semanticSearchType?: "Enriched" | "Hybrid" | "Vector";
+            /**
+             * @description Source data model object (DMO) to query. Applies only to `NoCode`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            sourceDmo?: components["schemas"]["CdpAssetReferenceRepresentation"];
+            /**
+             * @description Vector data model object (DMO) containing embeddings for semantic search. Applies only to `NoCode`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            vectorDmo?: components["schemas"]["CdpAssetReferenceRepresentation"];
+            /**
+             * @description Version number of the configuration. Must be non-negative.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            version?: number;
+        };
+        /**
+         * Ml Retriever Configuration Collection Output
+         * @description Represents a paginated list of configurations.
+         */
+        MlRetrieverConfigurationCollectionRepresentation: components["schemas"]["CdpPaginatedResponseBaseRepresentation"] & {
+            /**
+             * @description List of configurations.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            configurations?: components["schemas"]["MlRetrieverConfigurationRepresentation"][];
+        };
+        /**
+         * Ml Retriever Configuration Custom Sql Input
+         * @description Represents the input for a CustomSql retriever configuration that retrieves data from an arbitrary Data 360 SQL query. Supports queries from data model object (DMO), data lake object (DLO), CalculatedInsight, or vector_search/hybrid_search SQL functions. Call POST /retrievers/actions/review before creation.
+         */
+        MlRetrieverConfigurationCustomSqlInputRepresentation: components["schemas"]["MlRetrieverConfigurationBaseInputRepresentation"] & {
+            /**
+             * @description Indicates whether advanced retrieval mode is supported (`true`) or not (`false`). If unspecified, the default value is `false`.
+             *
+             *     **Available Version:** 67.0
+             */
+            isAdvancedModeSupported?: boolean;
+            /**
+             * @description Indicates whether citation is supported (`true`) or not (`false`). If unspecified, the default value is `false`. When `true`, `queryCitationDefinition` is required.
+             *
+             *     **Available Version:** 67.0
+             */
+            isCitationSupported?: boolean;
+            /**
+             * @description Indicates whether enriched index chunk resolution is supported (`true`) or not (`false`). If unspecified, the default value is `false`. When `true`, `enrichedSearchIndexDefinition` is required.
+             *
+             *     **Available Version:** 67.0
+             */
+            isEnrichedIndexSupported?: boolean;
+            /**
+             * @description SQL query template definition including query template, parameters, citation definition, and enriched index definition.
+             *
+             *     **Available Version:** 67.0
+             */
+            retrieverQueryTemplateDefinition: components["schemas"]["MlRetrieverQueryTemplateDefinitionInputRepresentation"];
+        };
+        /**
+         * Ml Retriever Configuration Detail Output
+         * @description Represents a configuration with full details.
+         */
+        MlRetrieverConfigurationDetailRepresentation: components["schemas"]["MlRetrieverConfigurationBaseRepresentation"] & {
+            /**
+             * @description Citation configuration. Applies only to `NoCode`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            citationConfiguration?: components["schemas"]["MlRetrieverCitationConfigurationRepresentation"];
+            /**
+             * @description List of field placeholders with parameter values specified at runtime. Applies only to `NoCode`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            fieldPlaceholders?: components["schemas"]["MlFieldPlaceholderRepresentation"][];
+            /**
+             * @description Indicates whether advanced mode is supported (`true`) or not (`false`). Applies only to `CustomSql`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            isAdvancedModeSupported?: boolean;
+            /**
+             * @description Indicates whether citation output is supported (`true`) or not (`false`). Applies only to `CustomSql`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            isCitationSupported?: boolean;
+            /**
+             * @description Indicates whether enriched search index chunk resolution is supported (`true`) or not (`false`). Applies only to `CustomSql`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            isEnrichedIndexSupported?: boolean;
+            /**
+             * @description List of output fields. Include the name and label for `CustomSql` and `Ensemble`. Include the name and field for `NoCode`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            outputFields?: components["schemas"]["MlRetrieverOutputFieldRepresentation"][];
+            /**
+             * @description Query filter. Applies only to `NoCode`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            queryFilter?: components["schemas"]["CdpMlFilterRepresentation"];
+            /**
+             * @description List of sub-retrievers. Applies only to `Ensemble`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            referencedRetrievers?: components["schemas"]["MlRetrieverRepresentation"][];
+            /**
+             * @description Query template definition. Applies only to `CustomSql` and `Ensemble`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            retrieverQueryTemplateDefinition?: components["schemas"]["MlRetrieverQueryTemplateDefinitionRepresentation"];
+        };
+        /**
+         * Ml Retriever Configuration Ensemble Input
+         * @description Represents the input for an Ensemble retriever configuration that fans out to multiple sub-retrievers and combines the results after reranking.
+         */
+        MlRetrieverConfigurationEnsembleInputRepresentation: components["schemas"]["MlRetrieverConfigurationBaseInputRepresentation"] & {
+            /**
+             * @description List of output field labels (display names) to project from the ensemble results. These must match field labels defined in the active configuration of the referenced sub-retrievers. If unspecified, the default value is the union of output field labels from the referenced retrievers' active configurations.
+             *
+             *     **Available Version:** 67.0
+             */
+            outputFields?: string[];
+            /**
+             * @description List of sub-retrievers to fan out to. Each entry is a reference (ID or API name) pointing to an existing NoCode retriever.
+             *
+             *     **Available Version:** 67.0
+             */
+            referencedRetrievers: components["schemas"]["CdpAssetReferenceInputRepresentation"][];
+        };
+        /**
+         * Ml Retriever Configuration No Code Input
+         * @description Represents the input for a NoCode retriever configuration that retrieves data from a search index. The SQL query template is internally generated.
+         */
+        MlRetrieverConfigurationNoCodeInputRepresentation: components["schemas"]["MlRetrieverConfigurationBaseInputRepresentation"] & {
+            /**
+             * @description Citation configuration. Applies only to `NoCode`.
+             *
+             *     **Available Version:** 67.0
+             */
+            citationConfiguration?: components["schemas"]["MlRetrieverCitationConfigurationInputRepresentation"];
+            /**
+             * @description ID or API name of the search index that the retriever is associated with. Applies only to `NoCode`.
+             *
+             *     **Available Version:** 67.0
+             */
+            input: components["schemas"]["MlRetrieverSourceInputRepresentation"];
+            /**
+             * @description List of data model object (DMO) fields to include in retriever results.
+             *
+             *     **Available Version:** 67.0
+             */
+            outputFields: components["schemas"]["MlRetrieverOutputFieldInputRepresentation"][];
+            /**
+             * @description Pre-filter applied to available prefilter fields on the search index.
+             *
+             *     **Available Version:** 67.0
+             */
+            queryFilter?: components["schemas"]["CdpMlFilterInputRepresentation"];
+        };
+        /**
+         * Ml Retriever Configuration Output
+         * @description Represents a configuration.
+         */
+        MlRetrieverConfigurationRepresentation: components["schemas"]["MlRetrieverConfigurationBaseRepresentation"] & Record<string, never>;
+        /**
+         * Ml Retriever Configuration Update Input
+         * @description Represents the input for updating a configuration.
+         */
+        MlRetrieverConfigurationUpdateInputRepresentation: {
+            /**
+             * @description Indicates whether to activate the configuration (`true`) or not (`false`). At most one configuration can be active per retriever.
+             *
+             *     **Available Version:** 61.0
+             */
+            isActive: boolean;
+        };
+        /**
+         * Ml Retriever Field Base Input
+         * @description Represents the input for a field reference.
+         */
+        MlRetrieverFieldBaseInputRepresentation: {
+            /**
+             * @description Name of the related data model object (DMO) field.
+             *
+             *     **Available Version:** 61.0
+             */
+            relatedDmoFieldName?: string;
+            /**
+             * @description Name of the related DMO.
+             *
+             *     **Available Version:** 61.0
+             */
+            relatedDmoName?: string;
+        };
+        /**
+         * Ml Retriever Field Base Output
+         * @description Represents a field reference.
+         */
+        MlRetrieverFieldBaseRepresentation: components["schemas"]["CdpAssetBaseRepresentation"] & {
+            /**
+             * @description Related data model object (DMO) reference.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            relatedDmo?: components["schemas"]["CdpAssetReferenceRepresentation"];
+            /**
+             * @description Related DMO field reference.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            relatedDmoField?: components["schemas"]["CdpAssetReferenceRepresentation"];
+        };
+        /**
+         * Ml Retriever Input
+         * @description Represents the input for creating a retriever.
+         */
+        MlRetrieverInputRepresentation: {
+            /**
+             * @description Initial configuration. Use the configuration input object that corresponds to the type of query.
+             *
+             *     For example, use the Ml Retriever Configuration Custom Sql Input for the `CustomSql` type.
+             *
+             *     **Available Version:** 61.0
+             */
+            configuration: components["schemas"]["MlRetrieverConfigurationBaseInputRepresentation"];
+            /**
+             * @description List of data space names. Required for `CustomSql` and `NoCode` retrievers. Derive the data space from the referenced retrievers for `Ensemble` retrievers.
+             *
+             *     **Available Version:** 61.0
+             */
+            dataSpaces?: string[];
+            /**
+             * @description Description of the retriever.
+             *
+             *     **Available Version:** 61.0
+             */
+            description?: string;
+            /**
+             * @description Label of the retriever.
+             *
+             *     **Available Version:** 61.0
+             */
+            label: string;
+            /**
+             * @description Type of owner.
+             *
+             *     **Available Version:** 61.0
+             * @enum {string}
+             */
+            ownerType: "AiAgent" | "Api";
+        };
+        /**
+         * Ml Retriever Output Field Input
+         * @description Represents the input for an output field for NoCode retrievers. Extends the base data model object (DMO) field reference with a display label, data source type, and optional join relationships.
+         */
+        MlRetrieverOutputFieldInputRepresentation: components["schemas"]["MlRetrieverFieldBaseInputRepresentation"] & {
+            /**
+             * @description Type of data source.
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            dataSourceType?: "DataModelObject" | "SearchFunction";
+            /**
+             * @description Display label for the output field. Must be unique within the retriever.
+             *
+             *     **Available Version:** 67.0
+             */
+            label: string;
+            /**
+             * @description List of relationships forming a path from the DMO of this output field to the source DMO of the search index. The cardinality must be 1-to-1 or 1-to-many from this DMO to the source DMO. Maximum path length is 2. Empty when the field is on the source DMO itself. Applies only to `NoCode`.
+             *
+             *     **Available Version:** 67.0
+             */
+            relationships?: components["schemas"]["MlDmoFieldSourceTargetRelationshipInputRepresentation"][];
+        };
+        /**
+         * Ml Retriever Output Field
+         * @description Represents an output field.
+         */
+        MlRetrieverOutputFieldRepresentation: components["schemas"]["MlRetrieverFieldBaseRepresentation"] & {
+            /**
+             * @description Record ID of the head relationship. Applies only to `NoCode`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            relationshipPathId?: string;
+            /**
+             * @description List of relationships from the output field DMO to the source DMO. The cardinality must be 1 to 1 or 1 to many from this DMO to the source DMO. Maximum amount is `2`. Applies only to `NoCode`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            relationships?: components["schemas"]["MlDmoFieldSourceTargetRelationshipRepresentation"][];
+        };
+        /**
+         * Ml Retriever Query Enriched Search Index Definition Input
+         * @description Represents the input for an enriched search index definition to resolve enriched chunks to plain chunks. Required when `isEnrichedIndexSupported` is `true`. CustomSql only.
+         */
+        MlRetrieverQueryEnrichedSearchIndexDefinitionInputRepresentation: {
+            /**
+             * @description Name or alias of the SELECT column containing the chunk content.
+             *
+             *     **Available Version:** 67.0
+             */
+            chunkColumnName: string;
+            /**
+             * @description Name or alias of the SELECT column containing the chunk record ID.
+             *
+             *     **Available Version:** 67.0
+             */
+            chunkRecordIdColumnName: string;
+            /**
+             * @description API name of the enriched search index.
+             *
+             *     **Available Version:** 67.0
+             */
+            searchIndexApiName: string;
+        };
+        /**
+         * Ml Retriever Query Enriched Search Index Definition Output
+         * @description Represents an enriched search index definition.
+         */
+        MlRetrieverQueryEnrichedSearchIndexDefinitionRepresentation: {
+            /**
+             * @description Name or alias of the SELECT column containing chunk content.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            chunkColumnName?: string;
+            /**
+             * @description Name or alias of the SELECT column containing the chunk record ID.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            chunkRecordIdColumnName?: string;
+            /**
+             * @description API name of the enriched search index.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            searchIndexApiName?: string;
+        };
+        /**
+         * Ml Retriever Query Template Citation Definition Base Input
+         * @description Represents the input for a query template citation definition. Discriminated by `citationType` (Default or Custom). Required when `isCitationSupported` is `true`. CustomSql only.
+         */
+        MlRetrieverQueryTemplateCitationDefinitionBaseInputRepresentation: {
+            /**
+             * @description Type of citation.
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            citationType: "Custom" | "Default";
+            /**
+             * @description Name or alias of the SELECT column used as the citation label. Required when `citationType` is `Custom`.
+             *
+             *     **Available Version:** 67.0
+             */
+            customLabelColumnName?: string;
+        };
+        /**
+         * Ml Retriever Query Template Citation Definition Base Output
+         * @description Represents a citation definition.
+         */
+        MlRetrieverQueryTemplateCitationDefinitionBaseRepresentation: {
+            /**
+             * @description Type of citation.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             * @enum {string}
+             */
+            citationType?: "Custom" | "Default";
+            /**
+             * @description Name or alias of the SELECT column used as citation label.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            customLabelColumnName?: string;
+        };
+        /**
+         * Ml Retriever Query Template Citation Definition Custom Input
+         * @description Represents the input for a custom citation definition where label and link are defined by user-specified SQL columns. CustomSql only.
+         */
+        MlRetrieverQueryTemplateCitationDefinitionCustomInputRepresentation: components["schemas"]["MlRetrieverQueryTemplateCitationDefinitionBaseInputRepresentation"] & {
+            /**
+             * @description Base URL that the `customLinkColumnName` value is appended to. For example, if `customBaseUrl` is "https://example.com" and the column contains "/docs/article-123", the resulting URL is "https://example.com/docs/article-123".
+             *
+             *     **Available Version:** 67.0
+             */
+            customBaseUrl?: string;
+            /**
+             * @description Name or alias of the SELECT column used as the citation link. When `customBaseUrl` is provided, this field's value is appended to it to construct the complete URL.
+             *
+             *     **Available Version:** 67.0
+             */
+            customLinkColumnName: string;
+        };
+        /**
+         * Ml Retriever Query Template Citation Definition Custom Output
+         * @description Represents a custom citation definition where label and link are defined by user-specified columns. CustomSql only.
+         */
+        MlRetrieverQueryTemplateCitationDefinitionCustomRepresentation: {
+            citationType: "MlRetrieverQueryTemplateCitationDefinitionCustomRepresentation";
+        } & (Omit<components["schemas"]["MlRetrieverQueryTemplateCitationDefinitionBaseRepresentation"], "citationType"> & {
+            /**
+             * @description Base URL that the `customLinkColumnName` value is appended to. For example, if `customBaseUrl` is "https://example.com" and the column contains "/docs/article-123", the resulting URL is "https://example.com/docs/article-123".
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            customBaseUrl?: string;
+            /**
+             * @description Name or alias of the SELECT column used as the citation link. When `customBaseUrl` is provided, this field's value is appended to it to construct the complete URL.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            customLinkColumnName?: string;
+        });
+        /**
+         * Ml Retriever Query Template Citation Definition Default Input
+         * @description Represents the input for a Default citation definition where citation links are generated from source and chunk record IDs in SQL columns. CustomSql only.
+         */
+        MlRetrieverQueryTemplateCitationDefinitionDefaultInputRepresentation: components["schemas"]["MlRetrieverQueryTemplateCitationDefinitionBaseInputRepresentation"] & {
+            /**
+             * @description API name of the chunk data model object (DMO) from a search index whose source DMO matches `sourceObjectApiName`. Applies only when the search index is not real time; ignored otherwise. When set, enables harmonized viewer and multimodal citations.
+             *
+             *     **Available Version:** 67.0
+             */
+            chunkObjectApiName?: string;
+            /**
+             * @description Name or alias of the SELECT column used as the chunk record ID. Required when the search index for `chunkObjectApiName` is not real-time; must NOT be set when that index is real-time (JIT).
+             *
+             *     **Available Version:** 67.0
+             */
+            chunkRecordIdColumnName?: string;
+            /**
+             * @description API name of the source DMO whose records are cited. Must be a DMO (DLOs and calculated insights must use custom citation).
+             *
+             *     **Available Version:** 67.0
+             */
+            sourceObjectApiName: string;
+            /**
+             * @description Name or alias of the SELECT column used as the source record ID.
+             *
+             *     **Available Version:** 67.0
+             */
+            sourceRecordIdColumnName: string;
+        };
+        /**
+         * Ml Retriever Query Template Citation Definition Default Output
+         * @description Retriever query template citation definition for Default citation type. CustomSql only.
+         */
+        MlRetrieverQueryTemplateCitationDefinitionDefaultRepresentation: {
+            citationType: "MlRetrieverQueryTemplateCitationDefinitionDefaultRepresentation";
+        } & (Omit<components["schemas"]["MlRetrieverQueryTemplateCitationDefinitionBaseRepresentation"], "citationType"> & {
+            /**
+             * @description API name of the chunk data model object (DMO) from a search index whose source DMO matches the `sourceObjectApiName`. Applies only when `sourceObjectApiName` is an unstructured (UDMO/HUDMO) DMO; ignored otherwise. When set, enables harmonized viewer and multimodal citations.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            chunkObjectApiName?: string;
+            /**
+             * @description Name or alias of the SELECT column used as the chunk record ID. Required when the `chunkObjectApiName` search index is not real-time; must NOT be set when that index is real-time (JIT).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            chunkRecordIdColumnName?: string;
+            /**
+             * @description API name of the source DMO whose records are cited. Required when citationType is `Default`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            sourceObjectApiName?: string;
+            /**
+             * @description Name or alias of the SELECT column used as the source record ID. Required when citationType is `Default`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            sourceRecordIdColumnName?: string;
+        });
+        /**
+         * Ml Retriever Query Template Data Cloud Asset Output
+         * @description Represents a Data Cloud asset referenced in the query template.
+         */
+        MlRetrieverQueryTemplateDataCloudAssetRepresentation: {
+            /**
+             * @description API name of the asset.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            assetApiName?: string;
+            /**
+             * @description Type of asset.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             * @enum {string}
+             */
+            assetType?: "CalculatedInsight" | "DataLakeObject" | "DataModelObject" | "SearchIndex";
+        };
+        /**
+         * Ml Retriever Query Template Definition Input
+         * @description Represents the input for a SQL query template definition. CustomSql only.
+         */
+        MlRetrieverQueryTemplateDefinitionInputRepresentation: {
+            /**
+             * @description Enriched search index definition to resolve enriched chunks to plain chunks. Required when `isEnrichedIndexSupported` is `true`.
+             *
+             *     **Available Version:** 67.0
+             */
+            enrichedSearchIndexDefinition?: components["schemas"]["MlRetrieverQueryEnrichedSearchIndexDefinitionInputRepresentation"];
+            /**
+             * @description Name of the parameter carrying the user query text in the format `":\"parameter\""`. Must match a parameter in `queryTemplatePlaceholders`. Recommended to help monitor the quality of search results from `vector_search()` or `hybrid_search()` functions. Required when `isAdvancedModeSupported` or `isEnrichedIndexSupported` is `true`.
+             *
+             *     **Available Version:** 67.0
+             */
+            mainUserQueryParameterName?: string;
+            /**
+             * @description Citation definition (Default or Custom). Required when `isCitationSupported` is `true`. Use the citation definition input object that corresponds to the type of citation.
+             *
+             *     For example, use the Ml Retriever Query Template Citation Definition Custom Input for custom citation types.
+             *
+             *     **Available Version:** 67.0
+             */
+            queryCitationDefinition?: components["schemas"]["MlRetrieverQueryTemplateCitationDefinitionCustomInputRepresentation"] | components["schemas"]["MlRetrieverQueryTemplateCitationDefinitionDefaultInputRepresentation"];
+            /**
+             * @description List of parameters used in the SQL query template. Each parameter specifies name, data type, placeholder type, optional default value, label, and description.
+             *
+             *     **Available Version:** 67.0
+             */
+            queryTemplatePlaceholders?: components["schemas"]["MlRetrieverQueryTemplatePlaceholderInputRepresentation"][];
+            /**
+             * @description Data 360 SQL query template. Can contain parameters in the format `:"parameter"`.
+             *
+             *     **Available Version:** 67.0
+             */
+            retrieverQueryTemplate: string;
+            /**
+             * @description Name or alias of the SELECT column containing the overall search relevance score from `vector_search()` or `hybrid_search()` functions. Recommended to help monitor the quality of search results.
+             *
+             *     **Available Version:** 67.0
+             */
+            searchOverallScoreColumnName?: string;
+        };
+        /**
+         * Ml Retriever Query Template Definition Output
+         * @description Represents a query template definition.
+         */
+        MlRetrieverQueryTemplateDefinitionRepresentation: {
+            /**
+             * @description List of Data 360 assets referenced in the SQL query template. Applies only to `CustomSql`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            dataCloudAssets?: components["schemas"]["MlRetrieverQueryTemplateDataCloudAssetRepresentation"][];
+            /**
+             * @description Enriched search index definition. Applies only to `CustomSql`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            enrichedSearchIndexDefinition?: components["schemas"]["MlRetrieverQueryEnrichedSearchIndexDefinitionRepresentation"];
+            /**
+             * @description Name of the parameter containing the user query text in the format `":\"parameter\""`. Applies only to `CustomSql`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            mainUserQueryParameterName?: string;
+            /**
+             * @description Citation definition for the query. The endpoint returns the citation definition output object that corresponds to the type of citation. Required when `isCitationSupported` is set to `true`. Applies only to `CustomSql`.
+             *
+             *     For example, the Ml Retriever Query Template Citation Definition Custom Output is returned for the `Custom` type.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            queryCitationDefinition?: components["schemas"]["MlRetrieverQueryTemplateCitationDefinitionCustomRepresentation"] | components["schemas"]["MlRetrieverQueryTemplateCitationDefinitionDefaultRepresentation"];
+            /**
+             * @description SQL query template. Can contain parameters in the format ":parameter".
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            queryTemplate?: string;
+            /**
+             * @description Query template metadata.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            queryTemplateMetadata?: components["schemas"]["MlRetrieverQueryTemplateMetadataRepresentation"];
+            /**
+             * @description List of parameters used in the SQL query template.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            queryTemplatePlaceholders?: components["schemas"]["MlRetrieverQueryTemplatePlaceholderRepresentation"][];
+            /**
+             * @description Version number of the query template.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             * @enum {string}
+             */
+            queryTemplateVersionNumber?: "V3PARAM";
+            /**
+             * @description Name of the column containing the overall search relevance score. Applies only to `CustomSql`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            searchOverallScoreColumnName?: string;
+        };
+        /**
+         * Ml Retriever Query Template Metadata Output
+         * @description Represents query template metadata.
+         */
+        MlRetrieverQueryTemplateMetadataRepresentation: {
+            /**
+             * @description List of SELECT columns in the SQL query.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            selectColumns?: components["schemas"]["MlRetrieverQueryTemplateMetadataSelectColumnRepresentation"][];
+        };
+        /**
+         * Ml Retriever Query Template Metadata Select Column Output
+         * @description Represents a SELECT column in the query template.
+         */
+        MlRetrieverQueryTemplateMetadataSelectColumnRepresentation: {
+            /**
+             * @description Alias of the SELECT column.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            fieldAlias?: string;
+            /**
+             * @description Name of the column.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            fieldName?: string;
+            /**
+             * @description Alias of the table.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            tableAlias?: string;
+            /**
+             * @description Name of the table.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            tableName?: string;
+        };
+        /**
+         * Ml Retriever Query Template Placeholder Input
+         * @description Represents the input for a query template parameter or placeholder in the format `":\"parameter\""`. CustomSql only.
+         */
+        MlRetrieverQueryTemplatePlaceholderInputRepresentation: {
+            /**
+             * @description Data type of the parameter value.
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            placeholderDataType: "ArrayOfText" | "Boolean" | "Date" | "DateTime" | "Number" | "Text";
+            /**
+             * @description Description of the parameter purpose. Required for `CustomSql`. Not applicable to `NoCode`.
+             *
+             *     **Available Version:** 67.0
+             */
+            placeholderDescription?: string;
+            /**
+             * @description Display label for the parameter.
+             *
+             *     **Available Version:** 67.0
+             */
+            placeholderLabel?: string;
+            /**
+             * @description Name of the parameter in the format `":\"parameter\""`. Must be unique in the SQL query template. Must be a valid developer name (begin with a letter, contain only alphanumeric characters and underscores, no spaces, and cannot end with or contain consecutive underscores).
+             *
+             *     **Available Version:** 67.0
+             */
+            placeholderName: string;
+            /**
+             * @description Default value for the parameter.
+             *
+             *     **Available Version:** 67.0
+             */
+            placeholderValue?: string;
+        };
+        /**
+         * Ml Retriever Query Template Placeholder Output
+         * @description Represents a parameter in the SQL query template.
+         */
+        MlRetrieverQueryTemplatePlaceholderRepresentation: {
+            /**
+             * @description Data type of the parameter.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             * @enum {string}
+             */
+            placeholderDataType?: "ArrayOfText" | "Boolean" | "Date" | "DateTime" | "Number" | "Text";
+            /**
+             * @description Description of the parameter.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            placeholderDescription?: string;
+            /**
+             * @description Label of the parameter.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            placeholderLabel?: string;
+            /**
+             * @description Name of the parameter. For `CustomSql` with `placeholderType: NamedParameter`, the format is `":\"parameter\""`. For `NoCode` with `placeholderType: Placeholder`, the format is `"{!$parameter}"`. Must be unique in the SQL query template.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            placeholderName?: string;
+            /**
+             * @description Type of parameter.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             * @enum {string}
+             */
+            placeholderType?: "NamedParameter" | "Placeholder";
+            /**
+             * @description Default value of the parameter.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            placeholderValue?: string;
+        };
+        /**
+         * Ml Retriever Output
+         * @description Represents a retriever with its latest and active configurations.
+         */
+        MlRetrieverRepresentation: components["schemas"]["CdpAssetBaseRepresentation"] & {
+            /**
+             * @description Currently active configuration.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            activeConfiguration?: components["schemas"]["MlRetrieverConfigurationBaseRepresentation"];
+            /**
+             * @description URL of the configurations sub-resource.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            configurationsUrl?: string;
+            /**
+             * @description Connection reference.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            connection?: components["schemas"]["CdpAssetReferenceRepresentation"];
+            /**
+             * @description Type of data source. Use `RealTimeSearchIndex` or `SearchIndex` for `NoCode` retrievers, and `DataCloudAsset` for `CustomSql` retrievers.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             * @enum {string}
+             */
+            dataSourceType?: "DataCloudAsset" | "RealTimeSearchIndex" | "SearchIndex";
+            /**
+             * @description List of data spaces.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            dataSpaces?: components["schemas"]["CdpAssetReferenceRepresentation"][];
+            /**
+             * @description Description of the retriever.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            description?: string;
+            /**
+             * @description Indicates whether the retriever is the default for its search index (`true`) or not (`false`).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            isDefault?: boolean;
+            /**
+             * @description Indicates whether the retriever is global (`true`) or not (`false`).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            isGlobal?: boolean;
+            /**
+             * @description Indicates whether the retriever is virtual (`true`) or not (`false`).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            isVirtual?: boolean;
+            /**
+             * @description Most recent configuration version.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            latestConfiguration?: components["schemas"]["MlRetrieverConfigurationBaseRepresentation"];
+            /**
+             * @description Type of owner.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             * @enum {string}
+             */
+            ownerType?: "Adl" | "AiAgent" | "Api" | "Customer" | "IntelligentContext" | "Internal" | "Ui";
+            /**
+             * @description Owner reference.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            ownership?: components["schemas"]["CdpAssetReferenceRepresentation"];
+            /**
+             * @description Type of query.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             * @enum {string}
+             */
+            queryType?: "CustomSql" | "Ensemble" | "NoCode";
+            /**
+             * @description Lifetime of the retriever.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             * @enum {string}
+             */
+            retrieverLifetime?: "Persistent" | "Transient";
+        };
+        /**
+         * Ml Retriever Review Input
+         * @description Represents the input for reviewing a CustomSql retriever.
+         */
+        MlRetrieverReviewInputRepresentation: {
+            /**
+             * @description Reference to an existing retriever when reviewing a new configuration.
+             *
+             *     **Available Version:** 67.0
+             */
+            existingRetrieverAsset?: components["schemas"]["CdpAssetReferenceInputRepresentation"];
+            /**
+             * @description Retriever input to review.
+             *
+             *     **Available Version:** 67.0
+             */
+            retrieverInput: components["schemas"]["MlRetrieverInputRepresentation"];
+        };
+        /**
+         * Ml Retriever Review Item Output
+         * @description Represents a single review finding for a CustomSql retriever.
+         */
+        MlRetrieverReviewItemRepresentation: {
+            /**
+             * @description Finding code.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             * @enum {string}
+             */
+            code?: "AdvancedModeSuggested" | "AssetValidationError" | "CitationDefinitionMissing" | "CitationSuggested" | "CustomCitationLabelMissing" | "CustomCitationLabelNotFound" | "CustomCitationLinkMissing" | "CustomCitationLinkNotFound" | "DataSpaceNameBlank" | "DefaultCitationChunkIdMissing" | "DefaultCitationChunkIdNotAllowedForJit" | "DefaultCitationChunkIdNotFound" | "DefaultCitationChunkIndexNotFound" | "DefaultCitationChunkObjectDataSpaceMismatch" | "DefaultCitationChunkObjectMissing" | "DefaultCitationChunkObjectNotDmo" | "DefaultCitationChunkObjectSuggested" | "DefaultCitationChunkSourceMismatch" | "DefaultCitationLabelNotFound" | "DefaultCitationRecordIdMissing" | "DefaultCitationRecordIdNotFound" | "DefaultCitationSourceObjectDataSpaceMismatch" | "DefaultCitationSourceObjectMissing" | "DefaultCitationSourceObjectNotDmo" | "EnrichedIndexChunkColMissing" | "EnrichedIndexChunkColNotFound" | "EnrichedIndexChunkIdMissing" | "EnrichedIndexChunkIdNotFound" | "EnrichedIndexDataSpaceMismatch" | "EnrichedIndexDefinitionMissing" | "EnrichedIndexNameMissing" | "EnrichedIndexSuggested" | "InputNull" | "InvalidParameterValue" | "InvalidParameter" | "InvalidQueryPreparation" | "MainUserQueryParamFormat" | "MainUserQueryParamMissing" | "MainUserQueryParamNotInTemplate" | "MaxRowsOutOfRange" | "ParameterNameBlank" | "ParameterNameBlankAfterStrip" | "ParameterNameFormat" | "ParameterNameInvalid" | "ParameterNameTooLong" | "ParameterValueRequired" | "PlaceholderTypeInvalid" | "QueryExecutionFailed" | "QueryTemplateMissing" | "ScoreColumnNotFound" | "ScoreColumnSuggestedForMonitoring" | "ScoreColumnSuggestedForReranking" | "UnknownCitationType";
+            /**
+             * @description Path to the field in the request.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            fieldPath?: string;
+            /**
+             * @description Localized message.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            message?: string;
+            /**
+             * @description Message key for localization.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            messageKey?: string;
+            /**
+             * @description List of parameters for the message template.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            messageParams?: string[];
+            /**
+             * @description Severity of the finding. `Error` blocks the creation and `Info` is a suggestion.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             * @enum {string}
+             */
+            severity?: "Error" | "Info";
+        };
+        /**
+         * Ml Retriever Review Output
+         * @description Represents the review result for a CustomSql retriever input.
+         */
+        MlRetrieverReviewRepresentation: {
+            /**
+             * @description List of SELECT columns extracted from the SQL query.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            extractedSelectColumns?: components["schemas"]["MlRetrieverReviewSelectColumnRepresentation"][];
+            /**
+             * @description List of review findings, such as errors and suggestions.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            findings?: components["schemas"]["MlRetrieverReviewItemRepresentation"][];
+            /**
+             * @description Indicates whether the input has errors that prevent creation (`true`) or not (`false`).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            hasErrors?: boolean;
+        };
+        /**
+         * Ml Retriever Review Select Column Output
+         * @description Represents a SELECT column extracted from a CustomSql query.
+         */
+        MlRetrieverReviewSelectColumnRepresentation: {
+            /**
+             * @description Name or alias of the column.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            fieldName?: string;
+            /**
+             * @description Data type of the column.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 61.0
+             */
+            type?: string;
+        };
+        /**
          * Ml Sentiment Detection Job Def Input
          * @description Represents the input for creating a sentiment detection prediction job definition.
          */
@@ -35776,7 +55852,7 @@ export type components = {
          */
         MonthlySpecificScheduleInputRepresentation: Omit<components["schemas"]["ScheduleInputRepresentation"], "frequency"> & {
             /**
-             * @description Days of the month on which the schedule is to run, specified as a list of numbers from `1` through `31`. Use `-1` to select the last day of the month; you can't combine `-1` with other days.
+             * @description Days of the month on which the schedule is to run, specified as a list of numbers from `1` through `31`. Use `-1` to indicate the last day of the month; you can't combine `-1` with other days.
              *
              *     **Available Version:** 58.0
              */
@@ -35794,7 +55870,7 @@ export type components = {
          */
         MonthlySpecificScheduleRepresentation: Omit<components["schemas"]["ScheduleOutputRepresentation"], "frequency"> & {
             /**
-             * @description Days of the month on which the schedule is to run, specified as a list of numbers from `1` through `31`. Use `-1` to select the last day of the month; you can't combine `-1` with other days. Jobs are skipped in months missing a specified day.
+             * @description Days of the month on which the schedule is to run, specified as a list of numbers from `1` through `31`. Use `-1` to indicate the last day of the month; you can't combine `-1` with other days. Jobs are skipped in months missing a specified day.
              *
              *     **Filter Group:** Small
              *
@@ -35855,6 +55931,146 @@ export type components = {
              *     **Available Version:** 60.0
              */
             name?: string;
+        };
+        /**
+         * Object Access Grant Bulk Create Input
+         * @description Represents the input for bulk creating object access grants.
+         */
+        ObjectAccessGrantBulkCreateInputRepresentation: {
+            /**
+             * @description Name of the data space that the grants belong to.
+             *
+             *     **Available Version:** 67.0
+             */
+            dataSpaceName?: string;
+            /**
+             * @description List of Data Cloud object API names to grant access to. Maximum of 200.
+             *
+             *     **Available Version:** 67.0
+             */
+            objectApiNames: string[];
+            /**
+             * @description Developer name of the permission set.
+             *
+             *     **Available Version:** 67.0
+             */
+            permissionSetName: string;
+        };
+        /**
+         * Object Access Grant Bulk Delete Input
+         * @description Represents the input for bulk deleting object access grants.
+         */
+        ObjectAccessGrantBulkDeleteInputRepresentation: {
+            /**
+             * @description Name of the data space that the grants belong to.
+             *
+             *     **Available Version:** 67.0
+             */
+            dataSpaceName?: string;
+            /**
+             * @description List of Data Cloud object API names to remove grants for. Maximum of 200.
+             *
+             *     **Available Version:** 67.0
+             */
+            objectApiNames: string[];
+            /**
+             * @description Developer name of the permission set.
+             *
+             *     **Available Version:** 67.0
+             */
+            permissionSetName: string;
+        };
+        /**
+         * Object Access Grant Create Input
+         * @description Represents the input for creating a single object access grant.
+         */
+        ObjectAccessGrantCreateInputRepresentation: {
+            /**
+             * @description Name of the data space that the grant belongs to.
+             *
+             *     **Available Version:** 67.0
+             */
+            dataSpaceName?: string;
+            /**
+             * @description API name of the Data Cloud object to grant access to.
+             *
+             *     **Available Version:** 67.0
+             */
+            objectApiName: string;
+            /**
+             * @description Developer name of the permission set.
+             *
+             *     **Available Version:** 67.0
+             */
+            permissionSetName: string;
+        };
+        /**
+         * Other Data Share Target Input
+         * @description Represents the input for creating a data share target for external systems.
+         */
+        OtherDataShareTargetInputRepresentation: components["schemas"]["DataShareTargetInputRepresentation"] & {
+            /**
+             * @description Indicates whether the public key is provided directly (`true`) or not (`false`). If `true`, the `publicKey` field is used for authentication. If `false`, the issuer URL hosts the public key.
+             *
+             *     **Available Version:** 63.0
+             */
+            isPublicKeyProvided?: boolean;
+            /**
+             * @description External system issuer URL.
+             *
+             *     **Available Version:** 63.0
+             */
+            issuer?: string;
+            /**
+             * @description Public key value. Required when `isPublicKeyProvided` is `true`.
+             *
+             *     **Available Version:** 63.0
+             */
+            publicKey?: string;
+            /**
+             * @description Service account ID created as part of connection creation in the external system.
+             *
+             *     **Available Version:** 63.0
+             */
+            serviceAccountId?: string;
+        };
+        /**
+         * Other Data Share Target Output
+         * @description Represents a data share target for external systems.
+         */
+        OtherDataShareTargetRepresentation: components["schemas"]["DataShareTargetRepresentation"] & {
+            /**
+             * @description Indicates whether the public key is provided directly (`true`) or not (`false`). If `true`, the `publicKey` field is used for authentication. If `false`, the issuer URL hosts the public key.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             */
+            isPublicKeyProvided?: boolean;
+            /**
+             * @description External system issuer URL.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             */
+            issuer?: string;
+            /**
+             * @description Public key value. Required when `isPublicKeyProvided` is `true`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             */
+            publicKey?: string;
+            /**
+             * @description Service account ID for the external system.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             */
+            serviceAccountId?: string;
         };
         /**
          * Output D360 Fields Mapping Input
@@ -36034,12 +56250,171 @@ export type components = {
             type?: string;
         };
         /**
+         * Partner Object Output
+         * @description Represents a partner-platform object associated with an activation target.
+         */
+        PartnerObjectRepresentation: {
+            /**
+             * @description Display name on the external platform.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            name?: string;
+            /**
+             * @description Identifier on the external platform.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            partnerObjectId?: string;
+            /**
+             * @description Status of the partner object.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            status?: "Active" | "NotActive";
+            /**
+             * @description Partner-object type identifier.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            type?: string;
+        };
+        /**
+         * Partner Object Type Collection Output
+         * @description Represents a paginated collection of partner-object types available for a streaming activation platform.
+         */
+        PartnerObjectTypeCollectionRepresentation: {
+            /**
+             * @description List of partner-object types available for the platform.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            partnerObjectTypes?: components["schemas"]["PartnerObjectTypeRepresentation"][];
+        } & components["schemas"]["CdpActivationPaginatedResponseBaseRepresentation"];
+        /**
+         * Partner Object Type Output
+         * @description Represents a partner-object type supported by a streaming activation platform.
+         */
+        PartnerObjectTypeRepresentation: {
+            /**
+             * @description Display label for the partner-object type.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            label?: string;
+            /**
+             * @description Partner-object type identifier, such as Pixel, App, or ConversionRule. Values are partner-defined.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            type?: string;
+        };
+        /**
+         * Partner Objects Collection Output
+         * @description Represents a cursor-paginated collection of partner objects.
+         */
+        PartnerObjectsCollectionRepresentation: {
+            /**
+             * Format: url
+             * @description URL of the current page request, suitable for re-fetching the same page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            currentPageUrl?: string;
+            /**
+             * Format: url
+             * @description URL of the next page when more records are available; absent on the last page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            nextPageUrl?: string;
+            /**
+             * @description Partner objects in this page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            partnerObjects?: components["schemas"]["PartnerObjectRepresentation"][];
+            /**
+             * @description Total number of records matching the query across all pages.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            totalSize?: number;
+        };
+        /**
+         * Partner Validation Error Count Output
+         * @description Represents the count of publish errors of a single validation-error type.
+         */
+        PartnerValidationErrorCountRepresentation: {
+            /**
+             * @description Number of errors of the type encountered during publish.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            errorsCount?: number;
+            /**
+             * @description Partner-specific error code identifier.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            validationErrorCodeId?: number;
+            /**
+             * @description Type of validation error reported by the partner platform.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            validationErrorType?: string;
+        };
+        /**
+         * Partner Validation Summary Output
+         * @description Represents aggregated partner-side validation results for a publish run.
+         */
+        PartnerValidationSummaryRepresentation: {
+            /**
+             * @description Validation error counts by type.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            validationSummaryErrorCount?: components["schemas"]["PartnerValidationErrorCountRepresentation"][];
+        };
+        /**
          * Per File Extension Output
          * @description Represents the per-file extension details.
          */
         PerFileExtensionRepresentation: {
             /**
-             * @description The configuration.
+             * @description Configuration of the file details.
              *
              *     **Filter Group:** Small
              *
@@ -36108,6 +56483,142 @@ export type components = {
              *     **Available Version:** 60.0
              */
             valueCombinations?: string[][];
+        };
+        /**
+         * Policy Value Input
+         * @description A single typed value within an AccessPolicy condition's value set. Exactly one of the typed value fields (or the reference pair) must be provided.
+         */
+        PolicyValueInputRepresentation: {
+            /**
+             * @description Boolean-typed value (mutually exclusive with the other typed value fields).
+             *
+             *     **Available Version:** 67.0
+             */
+            booleanValue?: boolean;
+            /**
+             * Format: date-time
+             * @description DateTime-typed value (UTC instant, mutually exclusive with the other typed value fields).
+             *
+             *     **Available Version:** 67.0
+             */
+            dateTimeValue?: string;
+            /**
+             * Format: date-time
+             * @description Date-typed value (UTC calendar day, mutually exclusive with the other typed value fields).
+             *
+             *     **Available Version:** 67.0
+             */
+            dateValue?: string;
+            /**
+             * @description Number-typed value, string-encoded to preserve BigDecimal precision. Mutually exclusive with the other typed value fields.
+             *
+             *     **Available Version:** 67.0
+             */
+            numberValue?: string;
+            /**
+             * @description Percent-typed value, string-encoded to preserve BigDecimal precision. Mutually exclusive with the other typed value fields.
+             *
+             *     **Available Version:** 67.0
+             */
+            percentValue?: string;
+            /**
+             * @description Reference value (for example, a tag, classification, or custom permission API name). Paired with referenceType. Orthogonal to the typed value fields.
+             *
+             *     **Available Version:** 67.0
+             */
+            reference?: string;
+            /**
+             * @description Type discriminator for the reference field (for example, STANDARD_TAG, CUSTOM_TAG, STANDARD_CLASSIFICATION, CUSTOM_PERMISSION).
+             *
+             *     **Available Version:** 67.0
+             */
+            referenceType?: string;
+            /**
+             * @description Plain-text value. Mutually exclusive with the other typed value fields.
+             *
+             *     **Available Version:** 67.0
+             */
+            textValue?: string;
+        };
+        /**
+         * Policy Value Output
+         * @description Represents a single typed value within an AccessPolicy condition's value set.
+         */
+        PolicyValueRepresentation: {
+            /**
+             * @description Boolean-typed value. Mutually exclusive with the other typed value fields.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            booleanValue?: boolean;
+            /**
+             * Format: date-time
+             * @description DateTime-typed value as a UTC instant. Mutually exclusive with the other typed value fields.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            dateTimeValue?: string;
+            /**
+             * Format: date-time
+             * @description Date-typed value as a UTC calendar day. Mutually exclusive with the other typed value fields.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            dateValue?: string;
+            /**
+             * @description 18-character record ID of the value.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            id?: string;
+            /**
+             * @description Number-typed value. Mutually exclusive with the other typed value fields. Encoded as a string to preserve BigDecimal precision through JSON.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            numberValue?: string;
+            /**
+             * @description Percent-typed value. Mutually exclusive with the other typed value fields. Encoded as a string to preserve BigDecimal precision through JSON.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            percentValue?: string;
+            /**
+             * @description Reference value, such as a tag, classification, or custom permission API name. Paired with `referenceType` to disambiguate the resolution path. Orthogonal to the other typed value fields.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            reference?: string;
+            /**
+             * @description Type discriminator for the reference field, such as STANDARD_TAG, CUSTOM_TAG, STANDARD_CLASSIFICATION, or CUSTOM_PERMISSION.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            referenceType?: string;
+            /**
+             * @description Plain-text value. Mutually exclusive with the other typed value fields. Carries arbitrary strings, including JSON-shaped text, without ambiguity.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            textValue?: string;
         };
         /**
          * Prediction Contributor Input
@@ -36266,7 +56777,7 @@ export type components = {
              */
             name?: string;
             /**
-             * @description Type of source.
+             * @description Type of the source.
              *
              *     **Filter Group:** Small
              *
@@ -36325,7 +56836,13 @@ export type components = {
              *
              *     **Available Version:** 65.0
              */
-            route: components["schemas"]["AmazonMSKRouteDetailsInputRepresentation"] | components["schemas"]["RedshiftRouteDetailsInputRepresentation"] | components["schemas"]["SnowflakeRouteDetailsInputRepresentation"];
+            route: components["schemas"]["DatabricksRouteDetailsInputRepresentation"] | components["schemas"]["AmazonMSKRouteDetailsInputRepresentation"] | components["schemas"]["RedshiftRouteDetailsInputRepresentation"] | components["schemas"]["SnowflakeRouteDetailsInputRepresentation"];
+            /**
+             * @description Storage details for a route, for example, the URL and service name, for a storage/internal stage in the case of customer-managed and Salesforce-managed solutions.
+             *
+             *     **Available Version:** 66.0
+             */
+            storageRoute?: Omit<components["schemas"]["RouteDetailsInputRepresentation"], "type">;
         };
         /**
          * Private Network Route Output
@@ -36349,8 +56866,33 @@ export type components = {
              *
              *     **Available Version:** 65.0
              */
-            route?: components["schemas"]["AmazonMSKRouteDetailsRepresentation"] | components["schemas"]["RedshiftRouteDetailsRepresentation"] | components["schemas"]["SnowflakeRouteDetailsRepresentation"];
+            route?: components["schemas"]["DatabricksRouteDetailsRepresentation"] | components["schemas"]["AmazonMSKRouteDetailsRepresentation"] | components["schemas"]["RedshiftRouteDetailsRepresentation"] | components["schemas"]["SnowflakeRouteDetailsRepresentation"];
+            /**
+             * @description Storage details for a route, for example, the URL and service name, for a storage/internal stage in the case of customer-managed and Salesforce-managed solutions.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 66.0
+             */
+            storageRoute?: Omit<components["schemas"]["RouteDetailsRepresentation"], "type">;
         };
+        /**
+         * Profile Dmo Input
+         * @description Represents the input for a profile data model object (DMO).
+         */
+        ProfileDmoInputRepresentation: {
+            /**
+             * @description Name of the profile data model object (DMO).
+             *
+             *     **Available Version:** 66.0
+             */
+            name?: string;
+        };
+        /**
+         * Profile Dmo Output
+         * @description Represents a profile data model object (DMO) configuration.
+         */
+        ProfileDmoRepresentation: components["schemas"]["CdpAssetBaseRepresentation"] & Record<string, never>;
         /**
          * Query Path Config Input
          * @description Represents the query path configuration input.
@@ -36482,7 +57024,7 @@ export type components = {
              */
             returnedRows?: number;
             /**
-             * @description Data associated with the SQL.
+             * @description Data associated with the SQL query.
              *
              *     **Filter Group:** Small
              *
@@ -36490,7 +57032,7 @@ export type components = {
              */
             data?: components["schemas"]["QuerySqlRowRepresentation"][];
             /**
-             * @description Metadata associated with the SQL.
+             * @description Metadata associated with the SQL query.
              *
              *     **Filter Group:** Small
              *
@@ -36505,9 +57047,9 @@ export type components = {
         QuerySqlInputRepresentation: {
             /**
              * @description Settings to adjust the query execution behavior:
-             *     - **date_style**: Order of Year, Month, and Day for parsing date strings, for example `MDY` and `DMY`.
-             *     - **lc_time**: Locale for date literals using ISO language and country code, for example `en_US` and `de_AT`.
-             *     - **query_timeout**: Execution limit in milliseconds before the query is terminated, for example `1800000ms`.
+             *     - **date_style**: Order of Year, Month, and Day for parsing date strings, for example `MDY` or `DMY`.
+             *     - **lc_time**: Locale for date literals using ISO language and country code, for example `en_US` or `de_AT`.
+             *     - **query_timeout**: Execution limit in milliseconds before the query is terminated, for example, `1800000ms`.
              *
              *     **Available Version:** 62.0
              */
@@ -36516,7 +57058,7 @@ export type components = {
             };
             /**
              * Format: int64
-             * @description Maximum number of rows to include in the response. The actual number of rows returned may be lower than the requested value if fewer are available or if the result set exceeds internal system size limits. Value must be greater than `0`.
+             * @description Maximum number of rows to include in the response. The actual number of rows returned can be lower than the requested value if fewer are available or if the result set exceeds internal system size limits. Value must be greater than `0`.
              *
              *     **Available Version:** 63.0
              */
@@ -36572,7 +57114,7 @@ export type components = {
              */
             precision?: number;
             /**
-             * @description The scale for numeric fields.
+             * @description Scale for numeric fields.
              *
              *     **Filter Group:** Small
              *
@@ -36625,7 +57167,7 @@ export type components = {
          */
         QuerySqlRepresentation: components["schemas"]["QuerySqlBaseRepresentation"] & {
             /**
-             * @description Stores metadata related to status of query.
+             * @description Stores metadata related to the status of query.
              *
              *     **Filter Group:** Small
              *
@@ -36674,9 +57216,9 @@ export type components = {
             expirationTime?: string;
             /**
              * Format: double
-             * @description A number between 0 and 1 that indicates the current progress of query.
+             * @description A number between 0 and 1 that indicates the current progress of the query.
              *     - `0` not started
-             *     - `1` the query execution is completed, and the query results are available for you to retrieve
+             *     - `1` the query execution is complete, and the query results are available for you to retrieve
              *
              *     **Filter Group:** Small
              *
@@ -36747,7 +57289,7 @@ export type components = {
              */
             rankType?: string;
             /**
-             * @description Related DMO developer name.
+             * @description Related data model object (DMO) developer name.
              *
              *     **Filter Group:** Small
              *
@@ -36802,6 +57344,18 @@ export type components = {
              *     **Available Version:** 60.0
              */
             relationships?: components["schemas"]["FieldRelationshipsPathRepresentation"][];
+        };
+        /**
+         * Rebuild Action Input
+         * @description Represents the input for rebuilding a data transform.
+         */
+        RebuildActionInputRepresentation: {
+            /**
+             * @description List of data transform API names or record IDs to rebuild.
+             *
+             *     **Available Version:** 61.0
+             */
+            transforms?: string[];
         };
         /**
          * Recency Criteria Output
@@ -36946,7 +57500,7 @@ export type components = {
              */
             hasHeaders?: boolean;
             /**
-             * @description Indicates whether acceleration is enabled for the corresponding DLO (`true`) or not (`false`).
+             * @description Indicates whether acceleration is enabled for the corresponding data lake object (DLO) (`true`) or not (`false`).
              *
              *     **Filter Group:** Small
              *
@@ -36978,6 +57532,150 @@ export type components = {
              *     **Available Version:** 60.0
              */
             shouldTreatMissingFilesAsFailures?: boolean;
+        };
+        /**
+         * Refresh Settings Input
+         * @description Represents the refresh configuration input for creating or updating an activation platform.
+         */
+        RefreshSettingsInputRepresentation: {
+            /**
+             * @description How often the activation platform refreshes.
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            frequency?: "FourHours" | "TwelveHours" | "TwentyFourHours";
+            /**
+             * @description Refresh mode for the activation platform.
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            mode?: "Full" | "Incremental";
+            /**
+             * @description How often a periodic full refresh runs.
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            periodicFullRefresh?: "Every30Days" | "Every60Days";
+        };
+        /**
+         * Refresh Settings Output
+         * @description Represents the refresh configuration settings for an activation platform.
+         */
+        RefreshSettingsRepresentation: {
+            /**
+             * @description How often the activation platform refreshes.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            frequency?: "FourHours" | "TwelveHours" | "TwentyFourHours";
+            /**
+             * @description Refresh mode for the activation platform.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            mode?: "Full" | "Incremental";
+            /**
+             * @description How often a periodic full refresh runs.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            periodicFullRefresh?: "Every30Days" | "Every60Days";
+        };
+        /**
+         * Related Attribute Activation Quota Output
+         * @description Represents the org-wide usage and limit for related-attribute activations.
+         */
+        RelatedAttributeActivationQuotaRepresentation: {
+            /**
+             * @description Number of related-attribute activations currently in use.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            currentActivations?: number;
+            /**
+             * @description Indicates whether `currentActivations` has reached `maxActivations` (`true`) or not (`false`).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            hasMetLimit?: boolean;
+            /**
+             * @description Maximum number of related-attribute activations allowed for the org.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            maxActivations?: number;
+        };
+        /**
+         * Related Attribute Configuration Limits Output
+         * @description Represents the structural and per-activation configuration limits for related-attribute activations.
+         */
+        RelatedAttributeConfigurationLimitsRepresentation: {
+            /**
+             * @description Maximum number of related attributes allowed per activation.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            attributesPerActivation?: number;
+            /**
+             * @description Maximum number of data model objects (DMOs) referenced by a single activation.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            dataModelObjectsPerActivation?: number;
+            /**
+             * @description Maximum number of data model objects (DMOs) that can be joined through per relationship hop.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            dataModelObjectsPerHop?: number;
+            /**
+             * @description Maximum number of relationship hops allowed in a single related-attribute path.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            maxHops?: number;
+            /**
+             * @description Maximum allowed segment size.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            maxSegmentSize?: number;
+            /**
+             * @description Maximum number of distinct values allowed per attribute.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            valuesPerAttribute?: number;
         };
         /**
          * Relationship Field Output
@@ -37041,6 +57739,186 @@ export type components = {
             name?: string;
         };
         /**
+         * Resource Expression Input
+         * @description Projection/join expression for an RLS-with-joins condition (EXISTS operator).
+         */
+        ResourceExpressionInputRepresentation: {
+            /**
+             * @description Join definition of the projection, specifying the joined object, its alias, and the join predicate.
+             *
+             *     **Available Version:** 67.0
+             */
+            projection?: components["schemas"]["ResourceExpressionJoinInputRepresentation"];
+            /**
+             * @description Expression type — always PROJECTION for join-based RLS. Required.
+             *
+             *     **Available Version:** 67.0
+             */
+            type?: string;
+            /**
+             * @description Schema version of the expression body.
+             *
+             *     **Available Version:** 67.0
+             */
+            version?: number;
+        };
+        /**
+         * Resource Expression Join Input
+         * @description A single join within an AccessPolicy resource-expression projection.
+         */
+        ResourceExpressionJoinInputRepresentation: {
+            /**
+             * @description Alias used to qualify the joined relation in the predicate, for example `individual`. Required.
+             *
+             *     **Available Version:** 67.0
+             */
+            alias?: string;
+            /**
+             * @description Join predicate that specifies how a row in the joined object relates to the resource-side row.
+             *
+             *     **Available Version:** 67.0
+             */
+            predicate?: components["schemas"]["ResourceExpressionPredicateInputRepresentation"];
+            /**
+             * @description Joined Data Model Object or object API name, for example `Individual__dlm`. This is a name, not a record ID. Required.
+             *
+             *     **Available Version:** 67.0
+             */
+            schema?: string;
+        };
+        /**
+         * Resource Expression Join Output
+         * @description Represents a single join within an AccessPolicy resource-expression projection.
+         */
+        ResourceExpressionJoinRepresentation: {
+            /**
+             * @description Alias for the joined relation in the predicate.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            alias?: string;
+            /**
+             * @description Predicate that relates the joined relation to the resource-side row.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            predicate?: components["schemas"]["ResourceExpressionPredicateRepresentation"];
+            /**
+             * @description Name of the joined data model object (DMO).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            schema?: string;
+        };
+        /**
+         * Resource Expression On Output
+         * @description Represents the resource-side reference of an AccessPolicy resource-expression join.
+         */
+        ResourceExpressionOnRepresentation: {
+            /**
+             * @description Resource-side field.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            field?: string;
+            /**
+             * @description Alias for the resource side; conventionally "resource"
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            resourceAlias?: string;
+            /**
+             * @description Name of the resource-side data model object (DMO).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            schema?: string;
+        };
+        /**
+         * Resource Expression Predicate Input
+         * @description Represents the join predicate of an AccessPolicy resource-expression projection.
+         */
+        ResourceExpressionPredicateInputRepresentation: {
+            /**
+             * @description Join predicate definition, as a JSON expression that relates a row in the joined object to the resource-side row.
+             *
+             *     **Available Version:** 67.0
+             */
+            predicate: string;
+        };
+        /**
+         * Resource Expression Predicate Output
+         * @description Represents the predicate of an AccessPolicy resource-expression join.
+         */
+        ResourceExpressionPredicateRepresentation: {
+            /**
+             * @description Field on the joined schema.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            attribute?: string;
+            /**
+             * @description Comparator that relates the attribute to the resource-side field. Values are EQUALS and NOT_EQUALS.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            comparator?: string;
+            /**
+             * @description Resource-side reference that the predicate compares against.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            on?: components["schemas"]["ResourceExpressionOnRepresentation"];
+        };
+        /**
+         * Resource Expression Output
+         * @description Represents a projection or join expression for a row-level security (RLS) condition that uses joins.
+         */
+        ResourceExpressionRepresentation: {
+            /**
+             * @description Join that defines the projection for the expression.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            projection?: components["schemas"]["ResourceExpressionJoinRepresentation"];
+            /**
+             * @description Type of expression. Always PROJECTION for join-based RLS.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            type?: string;
+            /**
+             * @description Schema version of the expression body.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            version?: number;
+        };
+        /**
          * Resource Filter By Property Input
          * @description Input representation to filter fields and objects for a connection by property.
          */
@@ -37078,6 +57956,46 @@ export type components = {
             filtersByProperty: components["schemas"]["ResourceFilterByPropertyInputRepresentation"][];
         };
         /**
+         * Resource Transform Argument Input
+         * @description A static argument to an AccessPolicy rule's resource transform. Value is always string-encoded regardless of type.
+         */
+        ResourceTransformArgumentInputRepresentation: {
+            /**
+             * @description Argument type discriminator (STRING, NUMBER, BOOLEAN). Required.
+             *
+             *     **Available Version:** 67.0
+             */
+            type?: string;
+            /**
+             * @description Argument value, string-encoded regardless of type. Required.
+             *
+             *     **Available Version:** 67.0
+             */
+            value?: string;
+        };
+        /**
+         * Resource Transform Argument Output
+         * @description Represents a static argument to an access policy rule's resource transform. The value is always string-encoded regardless of type.
+         */
+        ResourceTransformArgumentRepresentation: {
+            /**
+             * @description Argument type discriminator, such as `STRING`, `NUMBER`, or `BOOLEAN`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            type?: string;
+            /**
+             * @description Argument value, string-encoded regardless of type.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            value?: string;
+        };
+        /**
          * Route Details Input
          * @description Abstract superclass for all route details input types for a Private Network Route.
          */
@@ -37094,7 +58012,7 @@ export type components = {
              *     **Available Version:** 65.0
              * @enum {string}
              */
-            type: "AmazonMsk" | "Redshift" | "Snowflake";
+            type: "Databricks" | "DatabricksInternalStage" | "AmazonMsk" | "Redshift" | "Snowflake" | "SnowflakeInternalStage";
         };
         /**
          * Route Details Output
@@ -37117,7 +58035,7 @@ export type components = {
              *     **Available Version:** 65.0
              * @enum {string}
              */
-            type?: "AmazonMsk" | "Redshift" | "Snowflake";
+            type?: "Databricks" | "DatabricksInternalStage" | "AmazonMsk" | "Redshift" | "Snowflake" | "SnowflakeInternalStage";
         };
         /**
          * Run History Output Progress Output
@@ -37235,7 +58153,7 @@ export type components = {
          */
         SalesforceMarketingCloudDataExtensionConnectionObjectRepresentation: components["schemas"]["BaseConnectionObjectRepresentation"] & {
             /**
-             * @description Custom object ID of the data extension source object.
+             * @description Custom object ID of the source object.
              *
              *     **Filter Group:** Small
              *
@@ -37243,13 +58161,54 @@ export type components = {
              */
             customObjectId: string;
             /**
-             * @description Description of the data extension source object.
+             * @description Human-readable storage size of the data extension (for example, "768.81 MB"). Populated only when `includeDataExtensionSize` is passed in the advanced attributes. Otherwise, the value is null.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 68.0
+             */
+            dataExtensionStorageSize?: string;
+            /**
+             * @description Description of the source object.
              *
              *     **Filter Group:** Small
              *
              *     **Available Version:** 63.0
              */
             description?: string;
+            /**
+             * @description Source-side external key (`customerKey`) of the data extension. Null when the connector doesn't report it.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 68.0
+             */
+            externalKey?: string;
+            /**
+             * @description Last modified date of the data extension, in ISO-8601 format. Null when the connector doesn't report it.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 68.0
+             */
+            modifiedDate?: string;
+            /**
+             * @description Owner ID of the data extension. Null when the connector doesn't report it.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 68.0
+             */
+            ownerId?: string;
+            /**
+             * Format: int64
+             * @description Number of rows in the data extension. Null when the connector doesn't report a row count.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 68.0
+             */
+            rowCount?: number;
         };
         /**
          * Salesforce Marketing Cloud Standard Connection Object Output
@@ -37267,7 +58226,7 @@ export type components = {
         };
         /**
          * Sample Parameters Input
-         * @description Represents sample parameters for load node.
+         * @description Represents sample parameters for a load node.
          */
         SampleParametersInputRepresentation: {
             /**
@@ -37277,7 +58236,7 @@ export type components = {
              */
             filters: components["schemas"]["FilterParametersInputRepresentation"];
             /**
-             * @description Fields to sort sample.
+             * @description Fields to sort sample on.
              *
              *     **Available Version:** 60.0
              */
@@ -37317,7 +58276,7 @@ export type components = {
              */
             filters?: components["schemas"]["FilterParametersRepresentation"];
             /**
-             * @description Fields to sort sample.
+             * @description Fields to sort sample on.
              *
              *     **Filter Group:** Small
              *
@@ -37421,7 +58380,7 @@ export type components = {
              */
             schedule?: string;
             /**
-             * @description URL to the data transform schedule.
+             * @description URL of the data transform schedule.
              *
              *     **Filter Group:** Small
              *
@@ -37491,7 +58450,7 @@ export type components = {
         };
         /**
          * Schema Field Parameters Input
-         * @description Represents schema node field.
+         * @description Represents a schema node field.
          */
         SchemaFieldParametersInputRepresentation: {
             /**
@@ -37624,7 +58583,7 @@ export type components = {
         };
         /**
          * Schema Format Symbols Input
-         * @description Represents format for symbols.
+         * @description Represents the format for symbols.
          */
         SchemaFormatSymbolsInputRepresentation: {
             /**
@@ -37648,7 +58607,7 @@ export type components = {
         };
         /**
          * Schema Node Input
-         * @description Represents schema node in Batch Data Transforms.
+         * @description Represents a schema node in Batch Data Transforms.
          */
         SchemaNodeInputRepresentation: components["schemas"]["DataTransformNodeInputRepresentation"] & {
             /**
@@ -37674,7 +58633,7 @@ export type components = {
         };
         /**
          * Schema Parameters Input
-         * @description Represents schema node in Batch Data Transforms.
+         * @description Represents a schema node in Batch Data Transforms.
          */
         SchemaParametersInputRepresentation: {
             /**
@@ -37704,7 +58663,7 @@ export type components = {
              */
             fields?: components["schemas"]["SchemaFieldRepresentation"][];
             /**
-             * @description Which fields to keep or drop
+             * @description Which fields to keep or drop.
              *
              *     **Filter Group:** Small
              *
@@ -37769,7 +58728,7 @@ export type components = {
         };
         /**
          * Schema Type Properties Cast Input
-         * @description Represents cast for types.
+         * @description Represents casting for types.
          */
         SchemaTypePropertiesCastInputRepresentation: {
             /**
@@ -37826,13 +58785,13 @@ export type components = {
              */
             developerName?: string;
             /**
-             * @description Ranking factor used to influence the ranking of search result field types, (`POPULARITY` or `RECENCY`), for hybrid search.
+             * @description Ranking factor used to influence the ranking of search result field types, `POPULARITY` or `RECENCY`, for hybrid search.
              *
              *     **Available Version:** 61.0
              */
             rankType?: string;
             /**
-             * @description API name of the related DMO.
+             * @description API name of the related data model object (DMO).
              *
              *     **Available Version:** 61.0
              */
@@ -37913,7 +58872,7 @@ export type components = {
          */
         SemanticSearchDefDetailRepresentation: {
             /**
-             * @description Attachment DMO's ID.
+             * @description Attachment data model object's (DMO's) ID.
              *
              *     **Filter Group:** Small
              *
@@ -37961,7 +58920,7 @@ export type components = {
              */
             chunkingConfiguration?: components["schemas"]["ChunkingConfigurationRepresentation"];
             /**
-             * @description The data space.
+             * @description Name of the data space.
              *
              *     **Filter Group:** Small
              *
@@ -37969,7 +58928,7 @@ export type components = {
              */
             dataspace?: string;
             /**
-             * @description The description.
+             * @description Description.
              *
              *     **Filter Group:** Small
              *
@@ -38009,7 +58968,7 @@ export type components = {
              */
             indexRefreshedOn?: string;
             /**
-             * @description The label.
+             * @description Label.
              *
              *     **Filter Group:** Small
              *
@@ -38041,7 +59000,7 @@ export type components = {
              */
             sourceDmoDeveloperName?: string;
             /**
-             * @description Source DMO.
+             * @description Source DMO's ID.
              *
              *     **Filter Group:** Small
              *
@@ -38073,7 +59032,7 @@ export type components = {
              */
             transformConfigurations?: components["schemas"]["TransformConfigurationRepresentation"][];
             /**
-             * @description Vector DMO developer name.
+             * @description Vector DMO's developer name.
              *
              *     **Filter Group:** Small
              *
@@ -38081,7 +59040,7 @@ export type components = {
              */
             vectorDmoDeveloperName?: string;
             /**
-             * @description Vector DMO.
+             * @description Vector DMO's ID.
              *
              *     **Filter Group:** Small
              *
@@ -38089,7 +59048,7 @@ export type components = {
              */
             vectorDmoId?: string;
             /**
-             * @description Vector DMO label.
+             * @description Vector DMO's label.
              *
              *     **Filter Group:** Small
              *
@@ -38153,7 +59112,7 @@ export type components = {
              */
             attachmentDmoDeveloperName?: string;
             /**
-             * @description Developer name of the DMO used for chunking, excluding the `__dlm` suffix.
+             * @description Developer name of the data model object (DMO) used for chunking, excluding the `__dlm` suffix.
              *
              *     **Available Version:** 60.0
              */
@@ -38269,7 +59228,7 @@ export type components = {
         };
         /**
          * Semantic Search Output
-         * @description Semantic Search Output Representation
+         * @description Represents the output for a semantic search record.
          */
         SemanticSearchRepresentation: components["schemas"]["CdpPaginatedResponseBaseRepresentation"] & {
             /**
@@ -38314,6 +59273,115 @@ export type components = {
             vectorEmbedding?: components["schemas"]["VectorEmbeddingRepresentation"];
         };
         /**
+         * Set Privacy Type Input
+         * @description Represents the input for setting the privacy type of an activation platform.
+         */
+        SetPrivacyTypeInputRepresentation: {
+            /**
+             * @description Privacy type classification for the platform.
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            privacyType: "ThirdParty" | "ServiceProvider" | "UpdateFailed" | "NotApplicable";
+        };
+        /**
+         * Snowflake Data Share Target Input
+         * @description Represents the input for creating a Snowflake data share target.
+         */
+        SnowflakeDataShareTargetInputRepresentation: components["schemas"]["DataShareTargetInputRepresentation"] & {
+            /**
+             * @description Snowflake account URL.
+             *
+             *     **Available Version:** 63.0
+             */
+            accountUrl?: string;
+            /**
+             * @description Subtype of Snowflake data share target.
+             *
+             *     **Available Version:** 63.0
+             * @enum {string}
+             */
+            subType?: "CleanRoom";
+        };
+        /**
+         * Snowflake Data Share Target Output
+         * @description Represents a Snowflake data share target.
+         */
+        SnowflakeDataShareTargetRepresentation: components["schemas"]["DataShareTargetRepresentation"] & {
+            /**
+             * @description Snowflake account URL.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             */
+            accountUrl?: string;
+            /**
+             * @description Subtype of Snowflake data share target.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             * @enum {string}
+             */
+            subType?: "CleanRoom";
+        };
+        /**
+         * Snowflake Open Flow Data Share Target Input
+         * @description Represents the input for creating a Snowflake Open Flow data share target.
+         */
+        SnowflakeOpenFlowDataShareTargetInputRepresentation: components["schemas"]["DataShareTargetInputRepresentation"] & {
+            /**
+             * @description Snowflake account URL.
+             *
+             *     **Available Version:** 63.0
+             */
+            accountUrl?: string;
+            /**
+             * @description Public certificate created as part of connection creation in Snowflake.
+             *
+             *     **Available Version:** 63.0
+             */
+            publicCert?: string;
+            /**
+             * @description Snowflake service account ID created as part of connection creation in Snowflake.
+             *
+             *     **Available Version:** 63.0
+             */
+            serviceAccountId?: string;
+        };
+        /**
+         * Snowflake Open Flow Data Share Target Output
+         * @description Represents a Snowflake Open Flow data share target.
+         */
+        SnowflakeOpenFlowDataShareTargetRepresentation: components["schemas"]["DataShareTargetRepresentation"] & {
+            /**
+             * @description Snowflake account URL.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             */
+            accountUrl?: string;
+            /**
+             * @description Public certificate for the data share target.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             */
+            publicCert?: string;
+            /**
+             * @description Snowflake service account ID.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 63.0
+             */
+            serviceAccountId?: string;
+        };
+        /**
          * Snowflake Route Details Input
          * @description Input representation of route details for the cloud service used by the Private Network Route: Amazon Snowflake.
          */
@@ -38323,7 +59391,7 @@ export type components = {
              *
              *     **Available Version:** 65.0
              */
-            accountUrl?: string;
+            accountUrl: string;
         } & {
             /**
              * @description discriminator enum property added by openapi-typescript
@@ -38353,7 +59421,7 @@ export type components = {
         };
         /**
          * Sort Specification Output
-         * @description Represents parameter sort specification.
+         * @description Represents a parameter sort specification.
          */
         SortSpecificationRepresentation: {
             /**
@@ -38376,7 +59444,7 @@ export type components = {
         };
         /**
          * Source Target Relationship Input
-         * @description Represents the input for the relationship to a source search index DMO.
+         * @description Represents the input for the relationship to a source search index data model object (DMO).
          */
         SourceTargetRelationshipInputRepresentation: components["schemas"]["CdpAssetBaseInputRepresentation"] & {
             /**
@@ -38430,7 +59498,7 @@ export type components = {
         };
         /**
          * Split Node Input
-         * @description Represents split node in Batch Data Transforms.
+         * @description Represents a split node in Batch Data Transforms.
          */
         SplitNodeInputRepresentation: components["schemas"]["DataTransformNodeInputRepresentation"] & {
             /**
@@ -38456,11 +59524,11 @@ export type components = {
         };
         /**
          * Split Parameters Input
-         * @description Represents split node.
+         * @description Represents a split node.
          */
         SplitParametersInputRepresentation: {
             /**
-             * @description Delimiter.
+             * @description Field delimiter.
              *
              *     **Available Version:** 60.0
              */
@@ -38560,7 +59628,7 @@ export type components = {
         };
         /**
          * SQL Filter Node Input
-         * @description Represents SQL filter node in batch data transforms.
+         * @description Represents a SQL filter node in batch data transforms.
          */
         SqlFilterNodeInputRepresentation: components["schemas"]["DataTransformNodeInputRepresentation"] & {
             /**
@@ -38572,7 +59640,7 @@ export type components = {
         };
         /**
          * Sql Filter Node Output
-         * @description Represents an SQL filter node.
+         * @description Represents a SQL filter node.
          */
         SqlFilterNodeRepresentation: components["schemas"]["DataTransformNodeRepresentation"] & {
             /**
@@ -38586,7 +59654,7 @@ export type components = {
         };
         /**
          * SQL Filter Parameters Input
-         * @description Represents SQL filter expression.
+         * @description Represents a SQL filter expression.
          */
         SqlFilterParametersInputRepresentation: {
             /**
@@ -38628,7 +59696,7 @@ export type components = {
         };
         /**
          * SQL Formula Field Input
-         * @description Represents SQL formula field.
+         * @description Represents a SQL formula field.
          */
         SqlFormulaFieldInputRepresentation: {
             /**
@@ -38710,7 +59778,7 @@ export type components = {
          */
         StaticDataConfigInputRepresentation: {
             /**
-             * @description List of static data.
+             * @description List of standard attributes.
              *
              *     **Available Version:** 60.0
              */
@@ -38722,7 +59790,7 @@ export type components = {
          */
         StaticDataConfigRepresentation: {
             /**
-             * @description List of activation static attributes.
+             * @description List of campaign data attributes configured for an activation, including standard and custom attributes.
              *
              *     **Filter Group:** Small
              *
@@ -38736,13 +59804,19 @@ export type components = {
          */
         StaticDataInputRepresentation: {
             /**
-             * @description Name of the static attribute.
+             * @description Name of the campaign data attribute. For custom attributes, provide any user-defined name-value pair. For standard attributes, use one of these name-value pairs:
+             *     - Activation Name: `ACTIVATION_NAME`
+             *     - Activation ID: `ACTIVATION_ID`
+             *     - Segment Name: `SEGMENT_NAME`
+             *     - Segment ID: `SEGMENT_ID`
+             *     - Activation Publish Start Time: `PUBLISH_TIMESTAMP`
+             *     - Activation Run ID: `ACTIVATION_RUN_ID`
              *
              *     **Available Version:** 60.0
              */
             name: string;
             /**
-             * @description Value of the static attribute.
+             * @description Value of the campaign data attribute. For custom attributes, provide the constant value to include in the activation output. For standard attributes, provide the exact value associated with the selected standard attribute name. The system replaces this value with the actual metadata value at activation run time.
              *
              *     **Available Version:** 60.0
              */
@@ -38754,7 +59828,7 @@ export type components = {
          */
         StaticDataRepresentation: {
             /**
-             * @description Column name of the static data.
+             * @description Column name of the campaign data attribute in output. For standard attributes, this is the selected standard attribute name. For custom attributes, this is the user-defined attribute name.
              *
              *     **Filter Group:** Small
              *
@@ -38762,7 +59836,7 @@ export type components = {
              */
             name?: string;
             /**
-             * @description Column value of the static data.
+             * @description Column value of the campaign data attribute in the output. For custom attributes, this is the constant value you provided. For standard attributes, this is the actual metadata value populated by the system at activation run time from the value you selected (such as `ACTIVATION_NAME`, `ACTIVATION_ID`, `SEGMENT_NAME`, `SEGMENT_ID`, `PUBLISH_TIMESTAMP`, or `ACTIVATION_RUN_ID`).
              *
              *     **Filter Group:** Small
              *
@@ -38905,7 +59979,7 @@ export type components = {
         };
         /**
          * Streaming App Connection Schema Field Input
-         * @description Represents the input for streaming app field types.
+         * @description Represents the input for Streaming App field types.
          */
         StreamingAppConnectionSchemaFieldInputRepresentation: components["schemas"]["ConnectionSchemaFieldInputRepresentation"] & {
             /**
@@ -38930,7 +60004,7 @@ export type components = {
         };
         /**
          * Streaming App Connection Schema Field Output
-         * @description Represents a streaming app connection schema field.
+         * @description Represents a Streaming App connection schema field.
          */
         StreamingAppConnectionSchemaFieldRepresentation: components["schemas"]["ConnectionSchemaFieldRepresentation"] & {
             /**
@@ -38961,7 +60035,7 @@ export type components = {
         };
         /**
          * Streaming App Connection Schema Input
-         * @description Represents the input for a streaming app schema.
+         * @description Represents the input for a Streaming App schema.
          */
         StreamingAppConnectionSchemaInputRepresentation: components["schemas"]["ConnectionSchemaInputRepresentation"] & {
             /**
@@ -38987,7 +60061,7 @@ export type components = {
         };
         /**
          * Streaming App Connection Schema Output
-         * @description Represents a streaming app connection schema.
+         * @description Represents a Streaming App connection schema.
          */
         StreamingAppConnectionSchemaRepresentation: components["schemas"]["ConnectionSchemaRepresentation"] & {
             /**
@@ -39075,6 +60149,70 @@ export type components = {
             streamingAppType?: string;
         };
         /**
+         * Streaming Data Transform Run History Output
+         * @description Represents the run history of a streaming data transform.
+         */
+        StreamingDataTransformRunHistoryRepresentation: components["schemas"]["DataTransformRunHistoryBaseRepresentation"] & {
+            /**
+             * Format: int64
+             * @description Number of rows added during the data transform run.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 62.0
+             */
+            addedRows?: number;
+            /**
+             * Format: int64
+             * @description Number of rows deleted during the data transform run.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 62.0
+             */
+            deletedRows?: number;
+            /**
+             * Format: int64
+             * @description Number of rows that failed processing during the data transform run.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 62.0
+             */
+            failedRows?: number;
+            /**
+             * Format: int64
+             * @description Number of rows updated during the data transform run.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 62.0
+             */
+            updatedRows?: number;
+        };
+        /**
+         * Streaming Eligibility Output
+         * @description Represents whether streaming activation is allowed for a given data model object (DMO) and, if not, the reason.
+         */
+        StreamingEligibilityRepresentation: {
+            /**
+             * @description Indicates whether streaming activation is allowed for the requested data model object (DMO) (`true`) or not (`false`).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            allowed?: boolean;
+            /**
+             * @description Human-readable explanation when `allowed` is `false`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            reason?: string;
+        };
+        /**
          * Streaming Parameters Output
          * @description Represents an output node's streaming parameters.
          */
@@ -39105,6 +60243,1318 @@ export type components = {
              * @enum {string}
              */
             triggerType?: "Fixed";
+        };
+        /**
+         * Suggest Tags Input
+         * @description Represents the input for generating tag suggestions for one or more objects.
+         */
+        SuggestTagsInputRepresentation: {
+            /**
+             * @description Data object API names to generate tag suggestions for. Maximum 20.
+             *
+             *     **Available Version:** 67.0
+             */
+            objectNames: string[];
+            /**
+             * @description Flat developer names of the tag taxonomies to source suggestions from. Maximum 20.
+             *
+             *     **Available Version:** 67.0
+             */
+            taxonomyNames: string[];
+        };
+        /**
+         * Suggest Tags Job Output
+         * @description Represents a per-object auto-tagging job initiated by the generate action.
+         */
+        SuggestTagsJobRepresentation: {
+            /**
+             * @description ID of the auto-tagging job (references DataObjectAutoTaggingJob).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            jobId?: string;
+            /**
+             * @description Target object API name, echoed back from the request for client correlation.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            objectName?: string;
+        };
+        /**
+         * Suggest Tags Result Output
+         * @description Represents the result of the generate tag suggestions action, containing per-object job IDs for polling.
+         */
+        SuggestTagsResultRepresentation: {
+            /**
+             * @description Per-object job information. Contains one entry per object in the request.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            jobs?: components["schemas"]["SuggestTagsJobRepresentation"][];
+        };
+        /**
+         * Tag Assignment Bulk Create Input
+         * @description Represents the input for bulk creating tag assignments.
+         */
+        TagAssignmentBulkCreateInputRepresentation: {
+            /**
+             * @description List of tag assignment bulk items, each containing a tag and its targets.
+             *
+             *     **Available Version:** 67.0
+             */
+            assignments: components["schemas"]["TagAssignmentTargetInputRepresentation"][][];
+        };
+        /**
+         * Tag Assignment Bulk Delete Input
+         * @description Represents the input for bulk deleting tag assignments by ID.
+         */
+        TagAssignmentBulkDeleteInputRepresentation: {
+            /**
+             * @description List of tag assignment IDs to delete.
+             *
+             *     **Available Version:** 67.0
+             */
+            ids: string[];
+        };
+        /**
+         * Tag Assignment Collection Output
+         * @description Represents a collection of data governance tag assignments.
+         */
+        TagAssignmentCollectionRepresentation: components["schemas"]["CdpPaginatedResponseBaseRepresentation"] & {
+            /**
+             * @description Number of records on the current page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            count?: number;
+            /**
+             * @description Page size used for the response.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            limit?: number;
+            /**
+             * @description Offset into the result set for the current page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            offset?: number;
+            /**
+             * Format: url
+             * @description URL for the previous page. Null if the current page is the first page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            previousPageUrl?: string;
+            /**
+             * @description List of data governance tag assignments.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            tagAssignments?: components["schemas"]["TagAssignmentRepresentation"][];
+        };
+        /**
+         * Tag Assignment Create Item Input
+         * @description Represents the input for a single tag assignment creation item.
+         */
+        TagAssignmentCreateItemInputRepresentation: {
+            /**
+             * @description API name of the field. Requires `objectName`.
+             *
+             *     **Available Version:** 67.0
+             */
+            fieldName?: string;
+            /**
+             * @description API name of the data object.
+             *
+             *     **Available Version:** 67.0
+             */
+            objectName?: string;
+            /**
+             * @description Fully-qualified API name of the tag to assign.
+             *
+             *     **Available Version:** 67.0
+             */
+            tagFullyQualifiedName: string;
+        };
+        /**
+         * Tag Assignment Output
+         * @description Represents a data governance tag assignment to an object or field.
+         */
+        TagAssignmentRepresentation: {
+            /**
+             * @description Label of the field the tag is assigned to.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            fieldLabel?: string;
+            /**
+             * @description Name of the field the tag is assigned to.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            fieldName?: string;
+            /**
+             * @description ID of the tag assignment.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            id?: string;
+            /**
+             * @description Label of the object the tag is assigned to.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            objectLabel?: string;
+            /**
+             * @description Name of the object the tag is assigned to.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            objectName?: string;
+            /**
+             * @description Hierarchical display label of the assigned tag (dotted path of ancestor labels).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            tagFullyQualifiedLabel?: string;
+            /**
+             * @description Fully-qualified API name of the assigned tag (dotted path).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            tagFullyQualifiedName?: string;
+            /**
+             * @description ID of the assigned tag.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            tagId?: string;
+            /**
+             * @description Leaf display label of the assigned tag.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            tagLabel?: string;
+            /**
+             * @description Leaf developer name of the assigned tag (terminal segment only).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            tagName?: string;
+        };
+        /**
+         * Tag Assignment Target Input
+         * @description Represents a target object and optional field for a tag assignment.
+         */
+        TagAssignmentTargetInputRepresentation: {
+            /**
+             * @description API name of the field. Requires `objectName`.
+             *
+             *     **Available Version:** 67.0
+             */
+            fieldName?: string;
+            /**
+             * @description API name of the data object.
+             *
+             *     **Available Version:** 67.0
+             */
+            objectName?: string;
+        };
+        /**
+         * Tag Bulk Create Input
+         * @description Represents the input for bulk creating data governance tags.
+         */
+        TagBulkCreateInputRepresentation: {
+            /**
+             * @description List of tag create inputs.
+             *
+             *     **Available Version:** 67.0
+             */
+            tags?: components["schemas"]["TagCreateInputRepresentation"][];
+        };
+        /**
+         * Tag Bulk Delete Input
+         * @description Represents the input for bulk deleting data governance tags.
+         */
+        TagBulkDeleteInputRepresentation: {
+            /**
+             * @description Fully-qualified API names of tags to delete. Maximum of 200 items.
+             *
+             *     **Available Version:** 67.0
+             */
+            fullyQualifiedNames?: string[];
+        };
+        /**
+         * Tag Bulk Update Input
+         * @description Represents the input for bulk updating data governance tags.
+         */
+        TagBulkUpdateInputRepresentation: {
+            /**
+             * @description List of tag update items.
+             *
+             *     **Available Version:** 67.0
+             */
+            items?: components["schemas"]["TagBulkUpdateItemInputRepresentation"][];
+        };
+        /**
+         * Tag Bulk Update Item Input
+         * @description Represents the input for a single tag item in a bulk update operation.
+         */
+        TagBulkUpdateItemInputRepresentation: {
+            /**
+             * @description Replaces all classification links. Maximum of 200 items. Provide an empty list to remove all links. Omit to leave unchanged.
+             *
+             *     **Available Version:** 67.0
+             */
+            classificationFullyQualifiedNames?: string[];
+            /**
+             * @description Updated description.
+             *
+             *     **Available Version:** 67.0
+             */
+            description?: string;
+            /**
+             * @description Fully-qualified API name of the tag to update.
+             *
+             *     **Available Version:** 67.0
+             */
+            fullyQualifiedName?: string;
+            /**
+             * @description Updated display label.
+             *
+             *     **Available Version:** 67.0
+             */
+            label?: string;
+            /**
+             * @description Fully-qualified API name of the new parent tag. Provide `null` to move the tag to the root level. Must be in the same taxonomy.
+             *
+             *     **Available Version:** 67.0
+             */
+            parentTagFullyQualifiedName?: string;
+        };
+        /**
+         * Tag Collection Output
+         * @description Represents a collection of data governance tags.
+         */
+        TagCollectionRepresentation: components["schemas"]["CdpPaginatedResponseBaseRepresentation"] & {
+            /**
+             * @description Number of records in this page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            count?: number;
+            /**
+             * @description Page size used for this response.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            limit?: number;
+            /**
+             * @description Offset into the result set for this page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            offset?: number;
+            /**
+             * Format: url
+             * @description URL for the previous page. Returns `null` if this is the first page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            previousPageUrl?: string;
+            /**
+             * @description List of data governance tags.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            tags?: components["schemas"]["TagRepresentation"][];
+        };
+        /**
+         * Tag Create Input
+         * @description Represents the input for creating a data governance tag.
+         */
+        TagCreateInputRepresentation: {
+            /**
+             * @description Fully-qualified API names of classifications to associate with the tag. Maximum of 200 items.
+             *
+             *     **Available Version:** 67.0
+             */
+            classificationFullyQualifiedNames?: string[];
+            /**
+             * @description Description of the tag.
+             *
+             *     **Available Version:** 67.0
+             */
+            description?: string;
+            /**
+             * @description Fully-qualified API name of the tag in dotted path format. Use 2-3 segments: `<TaxonomyName>.<Level1>[.<Level2>]`.
+             *
+             *     **Available Version:** 67.0
+             */
+            fullyQualifiedName?: string;
+            /**
+             * @description Display label of the tag.
+             *
+             *     **Available Version:** 67.0
+             */
+            label?: string;
+        };
+        /**
+         * Tag Detection Instruction Bulk Create Input
+         * @description Represents the input for bulk creating tag detection instructions.
+         */
+        TagDetectionInstructionBulkCreateInputRepresentation: {
+            /**
+             * @description List of per-tag detection instruction create items. Maximum 200.
+             *
+             *     **Available Version:** 67.0
+             */
+            detectionInstructions: components["schemas"]["TagDetectionInstructionBulkCreateItemRepresentation"][];
+        };
+        /**
+         * Tag Detection Instruction Bulk Create Item Input
+         * @description Represents a single tag's detection instruction in a bulk create request.
+         */
+        TagDetectionInstructionBulkCreateItemRepresentation: {
+            /**
+             * @description LLM detection-instruction (prompt) body that defines how the tag is auto-detected. Maximum 100 characters.
+             *
+             *     **Available Version:** 67.0
+             */
+            instructionTxt: string;
+            /**
+             * @description Fully-qualified API name of the tag the instruction applies to (dotted path).
+             *
+             *     **Available Version:** 67.0
+             */
+            tagFullyQualifiedName: string;
+        };
+        /**
+         * Tag Detection Instruction Create Input
+         * @description Represents the input for creating a tag detection instruction.
+         */
+        TagDetectionInstructionCreateInputRepresentation: {
+            /**
+             * @description LLM detection-instruction (prompt) body. Maximum 100 characters. Posting replaces the currently active instruction with a new version.
+             *
+             *     **Available Version:** 67.0
+             */
+            instructionTxt: string;
+        };
+        /**
+         * Tag Detection Instruction Output
+         * @description Represents an LLM detection instruction (prompt) bound to a data governance tag.
+         */
+        TagDetectionInstructionRepresentation: {
+            /**
+             * Format: date-time
+             * @description Date the detection instruction was created.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            createdDate?: string;
+            /**
+             * @description Unique identifier of the detection instruction.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            id?: string;
+            /**
+             * @description LLM detection-instruction (prompt) body.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            instructionTxt?: string;
+            /**
+             * @description Indicates whether the version is the currently active instruction for the tag (`true`) or not (`false`).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            isActive?: boolean;
+            /**
+             * Format: date-time
+             * @description Timestamp of the last successful off-core sync. Null until the first sync.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            lastSyncedDate?: string;
+            /**
+             * @description Off-core sync state. Values are `NotSynced`, `Syncing`, `Synced`, or `Error`.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            offCoreSyncState?: string;
+            /**
+             * @description Fully-qualified API name of the tag the instruction is bound to.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            tagFullyQualifiedName?: string;
+            /**
+             * Format: url
+             * @description URL of the detection instruction resource.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            url?: string;
+            /**
+             * @description Monotonically increasing version of the instruction within the tag.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            version?: number;
+        };
+        /**
+         * Tag Lookup Output
+         * @description Represents a lightweight reference to a data governance tag.
+         */
+        TagLookupRepresentation: {
+            /**
+             * @description Hierarchical display label in dotted path format of ancestor labels.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            fullyQualifiedLabel?: string;
+            /**
+             * @description Fully-qualified API name of the tag in dotted path format.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            fullyQualifiedName?: string;
+            /**
+             * @description Unique identifier of the tag.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            id?: string;
+            /**
+             * @description Display label of the tag.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            label?: string;
+            /**
+             * @description Developer name of the tag. Terminal segment only.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            name?: string;
+            /**
+             * @description Type of tag.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            type?: "Custom" | "System";
+        };
+        /**
+         * Tag Patch Input
+         * @description Represents the input for updating a data governance tag.
+         */
+        TagPatchInputRepresentation: {
+            /**
+             * @description Replaces all classification links. Maximum of 200 items. Provide an empty list to remove all links. Omit to leave unchanged.
+             *
+             *     **Available Version:** 67.0
+             */
+            classificationFullyQualifiedNames?: string[];
+            /**
+             * @description Updated description.
+             *
+             *     **Available Version:** 67.0
+             */
+            description?: string;
+            /**
+             * @description Updated display label.
+             *
+             *     **Available Version:** 67.0
+             */
+            label?: string;
+            /**
+             * @description Fully-qualified API name of the new parent tag. Provide `null` to move the tag to the root level. Must be in the same taxonomy.
+             *
+             *     **Available Version:** 67.0
+             */
+            parentTagFullyQualifiedName?: string;
+        };
+        /**
+         * Tag Propagate Input
+         * @description Represents the input for propagating a data governance tag to objects.
+         */
+        TagPropagateInputRepresentation: {
+            /**
+             * @description List of object developer names to propagate the tag to.
+             *
+             *     **Available Version:** 67.0
+             */
+            objectNames: string[];
+        };
+        /**
+         * Tag Output
+         * @description Represents a data governance tag.
+         */
+        TagRepresentation: {
+            /**
+             * @description Classifications associated with the tag.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            classifications?: components["schemas"]["ClassificationLookupRepresentation"][];
+            /**
+             * @description User who created the tag.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            createdBy?: components["schemas"]["CdpUserRepresentation"];
+            /**
+             * Format: date-time
+             * @description Date the tag was created.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            createdDate?: string;
+            /**
+             * @description Description of the tag.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            description?: string;
+            /**
+             * @description Hierarchical display label in dotted path format of ancestor labels.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            fullyQualifiedLabel?: string;
+            /**
+             * @description Fully-qualified API name of the tag in dotted path format.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            fullyQualifiedName?: string;
+            /**
+             * @description Unique identifier of the tag.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            id?: string;
+            /**
+             * @description Display label of the tag.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            label?: string;
+            /**
+             * @description User who last modified the tag.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            lastModifiedBy?: components["schemas"]["CdpUserRepresentation"];
+            /**
+             * Format: date-time
+             * @description Date the tag was last modified.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            lastModifiedDate?: string;
+            /**
+             * @description Developer name of the tag. Terminal segment only.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            name?: string;
+            /**
+             * @description Parent tag reference.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            parentTag?: components["schemas"]["TagLookupRepresentation"];
+            /**
+             * @description State of the tag.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            state?: "Active" | "Deleting" | "Inactive";
+            /**
+             * @description Taxonomy reference.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            taxonomy?: components["schemas"]["TaxonomyLookupRepresentation"];
+            /**
+             * @description Type of tag.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            type?: "Custom" | "System";
+            /**
+             * Format: url
+             * @description URL of the tag resource.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            url?: string;
+        };
+        /**
+         * Tag Suggestion Collection Output
+         * @description Represents a paginated collection of AI-generated data governance tag suggestions.
+         */
+        TagSuggestionCollectionRepresentation: components["schemas"]["CdpPaginatedResponseBaseRepresentation"] & {
+            /**
+             * @description Number of records on the current page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            count?: number;
+            /**
+             * @description Page size used for the response.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            limit?: number;
+            /**
+             * @description Offset into the result set for the current page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            offset?: number;
+            /**
+             * Format: url
+             * @description URL for the previous page. Null if the current page is the first page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            previousPageUrl?: string;
+            /**
+             * @description List of AI-generated tag suggestions.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            suggestions?: components["schemas"]["TagSuggestionRepresentation"][];
+        };
+        /**
+         * Tag Suggestion Output
+         * @description Represents an AI-generated data governance tag suggestion.
+         */
+        TagSuggestionRepresentation: {
+            /**
+             * @description ID of the tag assignment created when the suggestion was approved. Null if not yet approved.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            assignmentId?: string;
+            /**
+             * Format: date-time
+             * @description Date the suggestion was generated.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            createdDate?: string;
+            /**
+             * @description Target field API name. Null if the suggestion targets the object rather than a specific field.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            fieldName?: string;
+            /**
+             * @description ID of the suggestion.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            id?: string;
+            /**
+             * @description Target object API name.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            objectName?: string;
+            /**
+             * @description User who approved or rejected the suggestion. Null if not yet processed.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            processedBy?: components["schemas"]["CdpUserRepresentation"];
+            /**
+             * Format: date-time
+             * @description Date the suggestion was approved or rejected. Null if the suggestion is new.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            processedDate?: string;
+            /**
+             * Format: double
+             * @description LLM confidence score.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            score?: number;
+            /**
+             * @description Status of the suggestion.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            status?: "Approved" | "AutoRejected" | "New" | "Rejected";
+            /**
+             * @description Hierarchical display label of the suggested tag (dotted path of ancestor labels).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            tagFullyQualifiedLabel?: string;
+            /**
+             * @description Fully-qualified API name of the suggested tag (dotted path).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            tagFullyQualifiedName?: string;
+            /**
+             * @description ID of the suggested tag.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            tagId?: string;
+            /**
+             * @description Leaf display label of the suggested tag.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            tagLabel?: string;
+            /**
+             * @description Leaf developer name of the suggested tag (terminal segment only).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            tagName?: string;
+        };
+        /**
+         * Tag With Active Detection Instruction Collection Output
+         * @description Represents a paginated collection of tags with their active detection instructions for a taxonomy.
+         */
+        TagWithActiveDetectionInstructionCollectionRepresentation: components["schemas"]["CdpPaginatedResponseBaseRepresentation"] & {
+            /**
+             * @description Number of records on the current page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            count?: number;
+            /**
+             * @description Page size used for the response.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            limit?: number;
+            /**
+             * @description Offset into the result set for the current page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            offset?: number;
+            /**
+             * Format: url
+             * @description URL for the previous page. Null if the current page is the first page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            previousPageUrl?: string;
+            /**
+             * @description List of tags paired with their active detection instructions.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            tagsWithActiveDetectionInstructions?: components["schemas"]["TagWithActiveDetectionInstructionRepresentation"][];
+        };
+        /**
+         * Tag With Active Detection Instruction Output
+         * @description Represents a tag paired with its currently active detection instruction.
+         */
+        TagWithActiveDetectionInstructionRepresentation: {
+            /**
+             * @description Currently active detection instruction for the tag. Null if the tag has no active instruction.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            activeDetectionInstruction?: components["schemas"]["TagDetectionInstructionRepresentation"];
+            /**
+             * @description Tag the detection instruction applies to.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            tag?: components["schemas"]["TagLookupRepresentation"];
+        };
+        /**
+         * Taxonomy Bulk Create Input
+         * @description Represents the input for bulk creating tag taxonomies.
+         */
+        TaxonomyBulkCreateInputRepresentation: {
+            /**
+             * @description List of tag taxonomies to create.
+             *
+             *     **Available Version:** 67.0
+             */
+            taxonomies?: components["schemas"]["TaxonomyCreateInputRepresentation"][];
+        };
+        /**
+         * Taxonomy Bulk Delete Input
+         * @description Represents the input for bulk deleting tag taxonomies.
+         */
+        TaxonomyBulkDeleteInputRepresentation: {
+            /**
+             * @description List tag taxonomies to delete.
+             *
+             *     **Available Version:** 67.0
+             */
+            names?: string[];
+        };
+        /**
+         * Taxonomy Bulk Update Input
+         * @description Represents the input for bulk updating tag taxonomies.
+         */
+        TaxonomyBulkUpdateInputRepresentation: {
+            /**
+             * @description List of tag taxonomies to update.
+             *
+             *     **Available Version:** 67.0
+             */
+            items?: components["schemas"]["TaxonomyBulkUpdateItemInputRepresentation"][];
+        };
+        /**
+         * Taxonomy Bulk Update Item Input
+         * @description Represents the input for a single tag taxonomy update in a bulk update.
+         */
+        TaxonomyBulkUpdateItemInputRepresentation: {
+            /**
+             * @description Description of the tag taxonomy.
+             *
+             *     **Available Version:** 67.0
+             */
+            description?: string;
+            /**
+             * @description Label of the tag taxonomy.
+             *
+             *     **Available Version:** 67.0
+             */
+            label?: string;
+            /**
+             * @description Developer name of the tag taxonomy.
+             *
+             *     **Available Version:** 67.0
+             */
+            name?: string;
+        };
+        /**
+         * Taxonomy Collection Output
+         * @description Represents a paginated collection of tag taxonomies.
+         */
+        TaxonomyCollectionRepresentation: components["schemas"]["CdpPaginatedResponseBaseRepresentation"] & {
+            /**
+             * @description Number of tag taxonomies in the current page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            count?: number;
+            /**
+             * @description Maximum number of tag taxonomies returned per page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            limit?: number;
+            /**
+             * @description Number of rows skipped before the current page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            offset?: number;
+            /**
+             * Format: url
+             * @description URL for the previous page. Returns `null` if the current page is the first page.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            previousPageUrl?: string;
+            /**
+             * @description List of tag taxonomies.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            taxonomies?: components["schemas"]["TaxonomyRepresentation"][];
+        };
+        /**
+         * Taxonomy Create Input
+         * @description Represents the input for creating a tag taxonomy.
+         */
+        TaxonomyCreateInputRepresentation: {
+            /**
+             * @description Description of the tag taxonomy.
+             *
+             *     **Available Version:** 67.0
+             */
+            description?: string;
+            /**
+             * @description Label of the tag taxonomy.
+             *
+             *     **Available Version:** 67.0
+             */
+            label?: string;
+            /**
+             * @description Developer name of the tag taxonomy.
+             *
+             *     **Available Version:** 67.0
+             */
+            name?: string;
+        };
+        /**
+         * Taxonomy Lookup Output
+         * @description Represents a lightweight reference to a data governance taxonomy.
+         */
+        TaxonomyLookupRepresentation: {
+            /**
+             * @description Unique identifier of the taxonomy.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            id?: string;
+            /**
+             * @description Display label of the taxonomy.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            label?: string;
+            /**
+             * @description Developer name of the taxonomy. Single segment, no hierarchy.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            name?: string;
+            /**
+             * @description Kind of taxonomy.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            taxonomyKind?: "Classification" | "Tag";
+            /**
+             * @description Type of taxonomy.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            type?: "Custom" | "System";
+        };
+        /**
+         * Taxonomy Patch Input
+         * @description Represents the input for updating a tag taxonomy.
+         */
+        TaxonomyPatchInputRepresentation: {
+            /**
+             * @description Description of the tag taxonomy.
+             *
+             *     **Available Version:** 67.0
+             */
+            description?: string;
+            /**
+             * @description Label of the tag taxonomy.
+             *
+             *     **Available Version:** 67.0
+             */
+            label?: string;
+        };
+        /**
+         * Taxonomy Output
+         * @description Represents a tag taxonomy.
+         */
+        TaxonomyRepresentation: {
+            /**
+             * @description Number of direct child tags.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            childCount?: number;
+            /**
+             * @description User who created the tag taxonomy.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            createdBy?: components["schemas"]["CdpUserRepresentation"];
+            /**
+             * Format: date-time
+             * @description Date and time when the tag taxonomy was created.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            createdDate?: string;
+            /**
+             * @description Description of the tag taxonomy.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            description?: string;
+            /**
+             * @description Unique identifier of the tag taxonomy.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            id?: string;
+            /**
+             * @description Label of the tag taxonomy.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            label?: string;
+            /**
+             * @description User who last modified the tag taxonomy.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            lastModifiedBy?: components["schemas"]["CdpUserRepresentation"];
+            /**
+             * Format: date-time
+             * @description Date and time when the tag taxonomy was last modified.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            lastModifiedDate?: string;
+            /**
+             * @description Developer name of the tag taxonomy.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            name?: string;
+            /**
+             * @description Current state of the tag taxonomy.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            state?: "Active" | "Deleting" | "Inactive";
+            /**
+             * @description Kind of tag taxonomy.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            taxonomyKind?: "Classification" | "Tag";
+            /**
+             * @description Type of tag taxonomy.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             * @enum {string}
+             */
+            type?: "Custom" | "System";
+            /**
+             * Format: url
+             * @description URL of the taxonomy resource.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            url?: string;
         };
         /**
          * Time Output
@@ -39168,7 +61618,7 @@ export type components = {
          */
         TransformConfigInputRepresentation: {
             /**
-             * @description File level configurations used in the transform.
+             * @description File-level configurations used in the transform.
              *
              *     **Available Version:** 61.0
              */
@@ -39186,7 +61636,7 @@ export type components = {
          */
         TransformConfigurationRepresentation: {
             /**
-             * @description List of file level configuration for transform.
+             * @description List of file-level configurations for transform.
              *
              *     **Filter Group:** Small
              *
@@ -39216,7 +61666,7 @@ export type components = {
              */
             config?: components["schemas"]["ConfigRepresentation"];
             /**
-             * @description The list of file extensions, for example `<mp4, mp3>`.
+             * @description The list of file extensions, for example, `<mp4, mp3>`.
              *
              *     **Filter Group:** Small
              *
@@ -39236,7 +61686,7 @@ export type components = {
              */
             config?: components["schemas"]["ConfigInputRepresentation"];
             /**
-             * @description File extensions list, for example `<mp4, mp3>`.
+             * @description File extensions list, for example, `<mp4, mp3>`.
              *
              *     **Available Version:** 61.0
              */
@@ -39293,7 +61743,7 @@ export type components = {
         };
         /**
          * Type and Filter Input
-         * @description Wrapper for logical comparison filters.
+         * @description Represents a wrapper for logical comparison filters.
          */
         TypeAndFilterInputRepresentation: {
             /**
@@ -39311,7 +61761,7 @@ export type components = {
         };
         /**
          * Type And Filter Input Config
-         * @description Represents a logical comparison input for a filter configuration.
+         * @description Represents logical comparison input for a filter configuration.
          */
         TypeAndFilterInputRepresentationConfig: {
             /**
@@ -39345,7 +61795,7 @@ export type components = {
         };
         /**
          * Typecast Node Input
-         * @description Represents typecast node in Batch Data Transforms.
+         * @description Represents a typecast node in Batch Data Transforms.
          */
         TypecastNodeInputRepresentation: components["schemas"]["DataTransformNodeInputRepresentation"] & {
             /**
@@ -39371,7 +61821,7 @@ export type components = {
         };
         /**
          * Typecast Parameters Input
-         * @description Represents typecast node.
+         * @description Represents a typecast node.
          */
         TypecastParametersInputRepresentation: {
             /**
@@ -39413,7 +61863,7 @@ export type components = {
          */
         UpdateNodeRepresentation: components["schemas"]["DataTransformNodeRepresentation"] & {
             /**
-             * @description Node specific parameters.
+             * @description Node-specific parameters.
              *
              *     **Filter Group:** Small
              *
@@ -39423,7 +61873,7 @@ export type components = {
         };
         /**
          * Update Parameters Input
-         * @description Update node.
+         * @description Represents input for an update node.
          */
         UpdateParametersInputRepresentation: {
             /**
@@ -39447,7 +61897,7 @@ export type components = {
         };
         /**
          * Update Parameters Output
-         * @description Update node.
+         * @description Represents update node output.
          */
         UpdateParametersRepresentation: {
             /**
@@ -39820,7 +62270,7 @@ export type components = {
         };
         /**
          * User Values Output
-         * @description User Values Detail Representation
+         * @description Represents user values.
          */
         UserValuesRepresentation: {
             /**
@@ -39842,7 +62292,7 @@ export type components = {
         };
         /**
          * Vector Config Element Output
-         * @description The represents details of a part of vector embedding config representation.
+         * @description Represents details of part of a vector embedding config representation.
          */
         VectorConfigElementRepresentation: {
             /** @description ID, for example `HNSW`. */
@@ -39858,7 +62308,7 @@ export type components = {
         };
         /**
          * Vector Configuration Output
-         * @description Vector Embedding Configuration Detail Representation
+         * @description Represents vector-embedding configuration details.
          */
         VectorConfigurationRepresentation: {
             /**
@@ -39870,7 +62320,7 @@ export type components = {
              */
             embeddingModel?: components["schemas"]["VectorConfigElementRepresentation"];
             /**
-             * @description The indexes.
+             * @description Indexes.
              *
              *     **Filter Group:** Small
              *
@@ -39888,11 +62338,11 @@ export type components = {
         };
         /**
          * Vector Embedding Config Input
-         * @description Represents the input for a vector embedding configuration.
+         * @description Represents the input for a vector-embedding configuration.
          */
         VectorEmbeddingConfigInputRepresentation: {
             /**
-             * @description Deployed ML model that creates embeddings, for example `e5-large`.
+             * @description Deployed ML model that creates embeddings, for example, `e5-large`.
              *
              *     **Available Version:** 60.0
              */
@@ -39904,7 +62354,7 @@ export type components = {
              */
             index?: components["schemas"]["ConfigInputRepresentation"];
             /**
-             * @description Similarity metric used to calculate distance between vectors, for example `COSINE`.
+             * @description Similarity metric used to calculate distance between vectors, for example, `COSINE`.
              *
              *     **Available Version:** 60.0
              */
@@ -39918,11 +62368,11 @@ export type components = {
         };
         /**
          * Vector Embedding Details Output
-         * @description Vector embedding details representation.
+         * @description Represents vector-embedding details.
          */
         VectorEmbeddingDetailsRepresentation: {
             /**
-             * @description Developer's name.
+             * @description Developer name.
              *
              *     **Filter Group:** Small
              *
@@ -39930,7 +62380,7 @@ export type components = {
              */
             developerName?: string;
             /**
-             * @description Record's ID.
+             * @description Record ID.
              *
              *     **Filter Group:** Small
              *
@@ -39938,7 +62388,7 @@ export type components = {
              */
             id?: string;
             /**
-             * @description Source DMO developer name.
+             * @description Source data model object (DMO) developer name.
              *
              *     **Filter Group:** Small
              *
@@ -40002,7 +62452,7 @@ export type components = {
              */
             vectorDmoId?: string;
             /**
-             * @description Vector embedding related fields.
+             * @description Vector-embedding related fields.
              *
              *     **Filter Group:** Small
              *
@@ -40016,7 +62466,7 @@ export type components = {
          */
         VectorEmbeddingInputRepresentation: components["schemas"]["CdpAssetBaseInputRepresentation"] & {
             /**
-             * @description The Einstein Studio AI model ID.
+             * @description Einstein Studio AI model ID.
              *
              *     **Available Version:** 60.0
              */
@@ -40030,7 +62480,7 @@ export type components = {
         };
         /**
          * Vector Embedding Related Fields Details Output
-         * @description Vector Embedding Related Fields Details Representation
+         * @description Represents vector-embedding related fields details.
          */
         VectorEmbeddingRelatedFieldsDetailsRepresentation: {
             /**
@@ -40042,7 +62492,7 @@ export type components = {
              */
             fieldRelationshipPathId?: string;
             /**
-             * @description The record's ID.
+             * @description Record ID.
              *
              *     **Filter Group:** Small
              *
@@ -40050,7 +62500,7 @@ export type components = {
              */
             id?: string;
             /**
-             * @description Related DMO's developer name.
+             * @description Related data model object's (DMO's) developer name.
              *
              *     **Filter Group:** Small
              *
@@ -40108,11 +62558,11 @@ export type components = {
         };
         /**
          * Vector Embedding Related Fields Input
-         * @description Represents the input for vector embedding extra fields.
+         * @description Represents the input for vector-embedding extra fields.
          */
         VectorEmbeddingRelatedFieldsInputRepresentation: components["schemas"]["CdpAssetBaseInputRepresentation"] & {
             /**
-             * @description Related DMO developer name.
+             * @description Related data model object (DMO) developer name.
              *
              *     **Available Version:** 60.0
              */
@@ -40150,7 +62600,7 @@ export type components = {
         };
         /**
          * Vector Embedding Output
-         * @description Vector embedding output representation.
+         * @description Represents the output for vector-embedding.
          */
         VectorEmbeddingRepresentation: {
             /**
@@ -40162,7 +62612,7 @@ export type components = {
              */
             id?: string;
             /**
-             * @description The list of IDs of created vector embedding related fields.
+             * @description List of IDs of created vector embedding related fields.
              *
              *     **Filter Group:** Small
              *
@@ -40171,12 +62621,78 @@ export type components = {
             relatedFields?: string[];
         };
         /**
+         * Waterfall Child Segment Names Output
+         * @description Represents a list of child segments for a Waterfall activation.
+         */
+        WaterfallChildSegmentNamesRepresentation: {
+            /**
+             * @description List of child segment developer names.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            childSegments?: string[];
+        };
+        /**
+         * Waterfall Selected Child Segments Config Input
+         * @description Represents the input configuration of the selected child segments for a Waterfall activation.
+         */
+        WaterfallSelectedChildSegmentsConfigInputRepresentation: {
+            /**
+             * @description List of child segment developer names selected for the Waterfall activation.
+             *
+             *     **Available Version:** 67.0
+             */
+            childSegmentsConfig?: components["schemas"]["WaterfallChildSegmentNamesInputRepresentation"];
+            /**
+             * @description Indicates whether all child segments of the Waterfall segment are selected (`true`) or not (`false`).
+             *
+             *     **Available Version:** 67.0
+             */
+            selectedAllSegments?: boolean;
+        };
+        /**
+         * Waterfall Selected Child Segments Config Output
+         * @description Represents the configuration of the selected child segments for a Waterfall activation.
+         */
+        WaterfallSelectedChildSegmentsConfigRepresentation: {
+            /**
+             * @description List of child segments selected for the Waterfall activation.
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            childSegmentsConfig?: components["schemas"]["WaterfallChildSegmentNamesRepresentation"];
+            /**
+             * @description Indicates whether all child segments of the Waterfall segment are selected (`true`) or not (`false`).
+             *
+             *     **Filter Group:** Small
+             *
+             *     **Available Version:** 67.0
+             */
+            selectedAllSegments?: boolean;
+        };
+        /**
+         * Waterfall Child Segment Names Input
+         * @description Represents a list of child segments input for a Waterfall activation.
+         */
+        WaterfallChildSegmentNamesInputRepresentation: {
+            /**
+             * @description List of child segment developer names.
+             *
+             *     **Available Version:** 67.0
+             */
+            childSegments?: string[];
+        };
+        /**
          * Weekly Schedule Input
          * @description Represents the input for creating a weekly schedule.
          */
         WeeklyScheduleInputRepresentation: Omit<components["schemas"]["ScheduleInputRepresentation"], "frequency"> & {
             /**
-             * @description Days of the week on which the schedule will run. You can specify one day.
+             * @description Days of the week on which the schedule is to run. You can specify one day.
              *
              *     **Available Version:** 58.0
              */

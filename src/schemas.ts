@@ -1,5 +1,5 @@
 /**
- * Named type exports for all 852 OpenAPI schemas, 280 enum types,
+ * Named type exports for all 1176 OpenAPI schemas, 381 enum types,
  * and 3 discriminated union types.
  * Auto-generated — DO NOT EDIT. Run `npm run generate` to regenerate.
  *
@@ -14,14 +14,53 @@ type Schemas = components["schemas"];
 /** Flatten intersections into a single object type for readable IntelliSense hovers. */
 type Simplify<T> = { [K in keyof T]: T[K] } & {};
 
-// ── Schema types (852) ──
+// ── Schema types (1176) ──
 
 export type AbstractBucketAlgorithmRepresentation = Schemas["AbstractBucketAlgorithmRepresentation"];
+export type AccessPolicyCollectionRepresentation = {
+  currentPageUrl?: string;
+  nextPageUrl?: string;
+  totalSize?: number;
+  records?: Schemas["AccessPolicyRepresentation"][];
+}
+export type AccessPolicyInputRepresentation = {
+  dataSpaceName?: string;
+  description?: string;
+  label?: string;
+  name?: string;
+  rules?: Schemas["AccessPolicyRuleInputRepresentation"][];
+}
+export type AccessPolicyPatchInputRepresentation = Schemas["AccessPolicyPatchInputRepresentation"];
+export type AccessPolicyRepresentation = {
+  createdBy?: Schemas["CdpUserRepresentation"];
+  createdDate?: string;
+  id?: string;
+  label?: string;
+  lastModifiedBy?: Schemas["CdpUserRepresentation"];
+  lastModifiedDate?: string;
+  name?: string;
+  namespace?: string;
+  url?: string;
+  builderCompatible?: boolean;
+  builderValidated?: boolean;
+  description?: string;
+  rules?: Schemas["AccessPolicyRuleRepresentation"][];
+}
+export type AccessPolicyRuleInputRepresentation = Schemas["AccessPolicyRuleInputRepresentation"];
+export type AccessPolicyRuleRepresentation = Schemas["AccessPolicyRuleRepresentation"];
 export type AccountEngagementConnectionRepresentation = {
   modules?: Schemas["ConnectionModuleConfigRepresentation"][];
   sourceId?: string;
   tenantSpecificEndpoint?: string;
 }
+export type ActionResultRepresentation = Schemas["ActionResultRepresentation"];
+export type ActionSourceCollectionRepresentation = {
+  currentPageUrl?: string;
+  nextPageUrl?: string;
+  totalSize?: number;
+}
+export type ActionSourceRepresentation = Schemas["ActionSourceRepresentation"];
+export type ActivatableDataObjectCategoriesRepresentation = Schemas["ActivatableDataObjectCategoriesRepresentation"];
 export type ActivationAdditionalAttributesConfigInputRepresentation = Schemas["ActivationAdditionalAttributesConfigInputRepresentation"];
 export type ActivationAttributeRepresentation = {
   createdBy?: Schemas["CdpUserRepresentation"];
@@ -152,7 +191,7 @@ export type ActivationDefinitionInputRepresentation = {
   activationMappingSchema?: string;
   activationTargetName?: string;
   activationTargetSubjectConfig?: Schemas["ActivationTargetSubjectConfigInputRepresentation"];
-  activationType?: "ApiTriggered" | "Segment";
+  activationType?: "ApiTriggered" | "Dmo" | "Segment";
   attributeLimitingExpressionConfig?: Schemas["AttributeLimitingExpressionInputConfigRepresentation"];
   attributesConfig?: Schemas["AttributesConfigInputRepresentation"][];
   contactPointsConfig?: Schemas["ContactPointConfigInputRepresentation"][];
@@ -162,9 +201,11 @@ export type ActivationDefinitionInputRepresentation = {
   dataSourcesConfig?: Schemas["ActivationDataSourceConfigInputRepresentation"][];
   dataSpaceName?: string;
   description?: string;
+  developerName?: string;
   directDmoFiltersConfig?: Schemas["DMOFilterConfigInputRepresentation"][];
   limitValue?: number;
   marketSegmentId?: string;
+  processingType?: "Batch";
   refreshType: string;
   relatedDmoFiltersConfig?: Schemas["DMOFilterConfigInputRepresentation"][];
   segmentApiName?: string;
@@ -172,7 +213,16 @@ export type ActivationDefinitionInputRepresentation = {
   shouldExcludeUpdates?: boolean;
   sourceDmoName?: string;
   staticDataConfig?: Schemas["StaticDataConfigInputRepresentation"][];
+  waterfallSelectedChildSegmentsConfig?: Schemas["WaterfallSelectedChildSegmentsConfigInputRepresentation"];
 }
+export type ActivationEventParameterHierarchyCombinationInputRepresentation = Schemas["ActivationEventParameterHierarchyCombinationInputRepresentation"];
+export type ActivationEventParameterHierarchyCombinationRepresentation = Schemas["ActivationEventParameterHierarchyCombinationRepresentation"];
+export type ActivationEventParameterHierarchyInputRepresentation = Schemas["ActivationEventParameterHierarchyInputRepresentation"];
+export type ActivationEventParameterHierarchyRepresentation = Schemas["ActivationEventParameterHierarchyRepresentation"];
+export type ActivationEventParameterInputRepresentation = Schemas["ActivationEventParameterInputRepresentation"];
+export type ActivationEventParameterRepresentation = Schemas["ActivationEventParameterRepresentation"];
+export type ActivationEventParameterValuesInputRepresentation = Schemas["ActivationEventParameterValuesInputRepresentation"];
+export type ActivationEventParameterValuesRepresentation = Schemas["ActivationEventParameterValuesRepresentation"];
 export type ActivationExternalPlatformAttributeConfigRepresentation = Schemas["ActivationExternalPlatformAttributeConfigRepresentation"];
 export type ActivationExternalPlatformAttributeRepresentation = Schemas["ActivationExternalPlatformAttributeRepresentation"];
 export type ActivationExternalPlatformCollectionRepresentation = {
@@ -198,6 +248,49 @@ export type ActivationExternalPlatformRepresentation = {
   status?: "Active" | "Error" | "Inactive" | "Processing";
   type?: "Advertising" | "Analytics" | "Marketing" | "Publishing" | "Technology";
 }
+export type ActivationHistoryCollectionRepresentation = Schemas["ActivationHistoryCollectionRepresentation"];
+export type ActivationHistoryRecordRepresentation = Schemas["ActivationHistoryRecordRepresentation"];
+export type ActivationMappingSchemaInputRepresentation = Schemas["ActivationMappingSchemaInputRepresentation"];
+export type ActivationMappingSchemaRepresentation = Schemas["ActivationMappingSchemaRepresentation"];
+export type ActivationPlatformAdditionalMetadataInputRepresentation = Schemas["ActivationPlatformAdditionalMetadataInputRepresentation"];
+export type ActivationPlatformAdditionalMetadataRepresentation = Schemas["ActivationPlatformAdditionalMetadataRepresentation"];
+export type ActivationPlatformAttributeInputRepresentation = Schemas["ActivationPlatformAttributeInputRepresentation"];
+export type ActivationPlatformAttributeRepresentation = Schemas["ActivationPlatformAttributeRepresentation"];
+export type ActivationPlatformAttributeSystemMapCriteriaInputRepresentation = Schemas["ActivationPlatformAttributeSystemMapCriteriaInputRepresentation"];
+export type ActivationPlatformAttributeSystemMapCriteriaRepresentation = Schemas["ActivationPlatformAttributeSystemMapCriteriaRepresentation"];
+export type ActivationPlatformCreateInputRepresentation = Schemas["ActivationPlatformCreateInputRepresentation"];
+export type ActivationPlatformCustomEventInputRepresentation = Schemas["ActivationPlatformCustomEventInputRepresentation"];
+export type ActivationPlatformCustomEventRepresentation = Schemas["ActivationPlatformCustomEventRepresentation"];
+export type ActivationPlatformCustomMetadataInputRepresentation = Schemas["ActivationPlatformCustomMetadataInputRepresentation"];
+export type ActivationPlatformCustomerIdTypeMappingRepresentation = Schemas["ActivationPlatformCustomerIdTypeMappingRepresentation"];
+export type ActivationPlatformCustomerIdTypeRepresentation = Schemas["ActivationPlatformCustomerIdTypeRepresentation"];
+export type ActivationPlatformEventAttributeInputRepresentation = Schemas["ActivationPlatformEventAttributeInputRepresentation"];
+export type ActivationPlatformEventAttributeMappingInputRepresentation = Schemas["ActivationPlatformEventAttributeMappingInputRepresentation"];
+export type ActivationPlatformEventAttributeMappingRepresentation = Schemas["ActivationPlatformEventAttributeMappingRepresentation"];
+export type ActivationPlatformEventAttributeOverrideInputRepresentation = Schemas["ActivationPlatformEventAttributeOverrideInputRepresentation"];
+export type ActivationPlatformEventAttributeOverrideRepresentation = Schemas["ActivationPlatformEventAttributeOverrideRepresentation"];
+export type ActivationPlatformEventAttributeRepresentation = Schemas["ActivationPlatformEventAttributeRepresentation"];
+export type ActivationPlatformEventMetadataInputRepresentation = Schemas["ActivationPlatformEventMetadataInputRepresentation"];
+export type ActivationPlatformEventMetadataRepresentation = Schemas["ActivationPlatformEventMetadataRepresentation"];
+export type ActivationPlatformFieldInputRepresentation = Schemas["ActivationPlatformFieldInputRepresentation"];
+export type ActivationPlatformFieldRepresentation = Schemas["ActivationPlatformFieldRepresentation"];
+export type ActivationPlatformFieldValueInputRepresentation = Schemas["ActivationPlatformFieldValueInputRepresentation"];
+export type ActivationPlatformFieldValueRepresentation = Schemas["ActivationPlatformFieldValueRepresentation"];
+export type ActivationPlatformFieldsRepresentation = Schemas["ActivationPlatformFieldsRepresentation"];
+export type ActivationPlatformIdentifierInputRepresentation = Schemas["ActivationPlatformIdentifierInputRepresentation"];
+export type ActivationPlatformIdentifierRepresentation = Schemas["ActivationPlatformIdentifierRepresentation"];
+export type ActivationPlatformInputRepresentation = Schemas["ActivationPlatformInputRepresentation"];
+export type ActivationPlatformOutputPropertiesInputRepresentation = Schemas["ActivationPlatformOutputPropertiesInputRepresentation"];
+export type ActivationPlatformOutputPropertiesRepresentation = Schemas["ActivationPlatformOutputPropertiesRepresentation"];
+export type ActivationPlatformPartnerSupportedIdInputRepresentation = Schemas["ActivationPlatformPartnerSupportedIdInputRepresentation"];
+export type ActivationPlatformPartnerSupportedIdRepresentation = Schemas["ActivationPlatformPartnerSupportedIdRepresentation"];
+export type ActivationPlatformRepresentation = Schemas["ActivationPlatformRepresentation"];
+export type ActivationPlatformStandardEventInputRepresentation = Schemas["ActivationPlatformStandardEventInputRepresentation"];
+export type ActivationPlatformStandardEventRepresentation = Schemas["ActivationPlatformStandardEventRepresentation"];
+export type ActivationPlatformSummaryRepresentation = Schemas["ActivationPlatformSummaryRepresentation"];
+export type ActivationPlatformSupportedEventTypeRepresentation = Schemas["ActivationPlatformSupportedEventTypeRepresentation"];
+export type ActivationPlatformUserRepresentation = Schemas["ActivationPlatformUserRepresentation"];
+export type ActivationPlatformsCollectionRepresentation = Schemas["ActivationPlatformsCollectionRepresentation"];
 export type ActivationPublishActionInputRepresentation = Schemas["ActivationPublishActionInputRepresentation"];
 export type ActivationPublishActionRepresentation = {
   errors?: Schemas["CdpErrorRepresentation"][];
@@ -219,7 +312,7 @@ export type ActivationRepresentation = {
   activationRecordSchema?: string;
   activationTarget: Schemas["ActivationTargetRepresentation"];
   activationTargetSubjectConfig: Schemas["ActivationTargetSubjectRepresentation"];
-  activationType?: "ApiTriggered" | "Segment";
+  activationType?: "ApiTriggered" | "Dmo" | "Segment";
   attributeLimitingExpressionConfig?: Schemas["AttributeLimitingExpressionConfigRepresentation"];
   attributesConfig: Schemas["ActivationAttributesConfigRepresentation"];
   contactPointsConfig: Schemas["ContactPointsConfigRepresentation"];
@@ -243,6 +336,7 @@ export type ActivationRepresentation = {
   limitValue?: number;
   marketSegmentId?: string;
   membershipName?: string;
+  processingType?: "Batch";
   queryPathConfig: Schemas["QueryPathConfigListRepresentation"];
   refreshType: "Full_Refresh" | "Incremental";
   relatedDmoFiltersConfig?: Schemas["DmoFiltersConfigRepresentation"];
@@ -253,9 +347,12 @@ export type ActivationRepresentation = {
   sourceDmoName?: string;
   staticDataConfig?: Schemas["StaticDataConfigRepresentation"];
   status?: "Active" | "Processing" | "Error" | "Inactive";
+  waterfallSelectedChildSegmentsConfig?: Schemas["WaterfallSelectedChildSegmentsConfigRepresentation"];
 }
 export type ActivationTargetCollectionRepresentation = Schemas["ActivationTargetCollectionRepresentation"];
 export type ActivationTargetInputRepresentation = Schemas["ActivationTargetInputRepresentation"];
+export type ActivationTargetPlatformRepresentation = Schemas["ActivationTargetPlatformRepresentation"];
+export type ActivationTargetPlatformsCollectionRepresentation = Schemas["ActivationTargetPlatformsCollectionRepresentation"];
 export type ActivationTargetRepresentation = {
   createdBy?: Schemas["CdpUserRepresentation"];
   createdDate?: string;
@@ -303,6 +400,78 @@ export type ActivationTargetSubjectRepresentation = {
   masterLabel?: string;
   queryPathConfig?: Schemas["QueryPathConfigListRepresentation"];
 }
+export type AdAccountRepresentation = Schemas["AdAccountRepresentation"];
+export type AdAccountsRepresentation = Schemas["AdAccountsRepresentation"];
+export type AgentCollectionRepresentation = {
+  currentPageUrl?: string;
+  nextPageUrl?: string;
+  totalSize?: number;
+  agents?: Schemas["AgentRepresentation"][];
+  limit?: number;
+  offset?: number;
+}
+export type AgentConfigurationInputRepresentation = Schemas["AgentConfigurationInputRepresentation"];
+export type AgentConfigurationRepresentation = Schemas["AgentConfigurationRepresentation"];
+export type AgentContextDataSourcesInputRepresentation = Schemas["AgentContextDataSourcesInputRepresentation"];
+export type AgentContextDataSourcesRepresentation = Schemas["AgentContextDataSourcesRepresentation"];
+export type AgentInputRepresentation = {
+  dataSpaceName?: string;
+  description?: string;
+  label?: string;
+  name?: string;
+  configuration?: Schemas["AgentConfigurationInputRepresentation"];
+}
+export type AgentRepresentation = {
+  createdBy?: Schemas["CdpUserRepresentation"];
+  createdDate?: string;
+  id?: string;
+  label?: string;
+  lastModifiedBy?: Schemas["CdpUserRepresentation"];
+  lastModifiedDate?: string;
+  name?: string;
+  namespace?: string;
+  url?: string;
+  configuration?: Schemas["AgentConfigurationRepresentation"];
+  dataspaceName?: string;
+  setupName?: Schemas["CdpAssetReferenceRepresentation"];
+  status?: "Active" | "Error" | "Processing";
+}
+export type AgentSetupCollectionRepresentation = {
+  currentPageUrl?: string;
+  nextPageUrl?: string;
+  totalSize?: number;
+  limit?: number;
+  offset?: number;
+  setupConfigs?: Schemas["AgentSetupConfigRepresentation"][];
+}
+export type AgentSetupConfigRepresentation = {
+  createdBy?: Schemas["CdpUserRepresentation"];
+  createdDate?: string;
+  id?: string;
+  label?: string;
+  lastModifiedBy?: Schemas["CdpUserRepresentation"];
+  lastModifiedDate?: string;
+  name?: string;
+  namespace?: string;
+  url?: string;
+  dataspaceName?: string;
+  enabled?: boolean;
+  status?: "Active" | "Error" | "Processing";
+}
+export type AgentSetupInputRepresentation = {
+  dataSpaceName?: string;
+  description?: string;
+  label?: string;
+  name?: string;
+  enabled?: boolean;
+}
+export type AgentSetupUpdateInputRepresentation = {
+  dataSpaceName?: string;
+  description?: string;
+  label?: string;
+  name?: string;
+  enabled?: boolean;
+}
 export type AggregateInputRepresentation = Schemas["AggregateInputRepresentation"];
 export type AggregateNodeInputRepresentation = {
   parameters: Schemas["AggregateParametersInputRepresentation"];
@@ -313,6 +482,10 @@ export type AggregateNodeRepresentation = {
 export type AggregateParametersInputRepresentation = Schemas["AggregateParametersInputRepresentation"];
 export type AggregateParametersRepresentation = Schemas["AggregateParametersRepresentation"];
 export type AggregateRepresentation = Schemas["AggregateRepresentation"];
+export type AllKnowledgeSpaceConfigOutputRepresentation = Schemas["AllKnowledgeSpaceConfigOutputRepresentation"];
+export type AllKnowledgeSpaceLibraryOutputRepresentation = Schemas["AllKnowledgeSpaceLibraryOutputRepresentation"];
+export type AllKnowledgeSpaceOutputRepresentation = Schemas["AllKnowledgeSpaceOutputRepresentation"];
+export type AllKnowledgeSpaceSessionOutputRepresentation = Schemas["AllKnowledgeSpaceSessionOutputRepresentation"];
 export type AmazonMSKRouteDetailsInputRepresentation = {
   serviceName: string;
   type: "AmazonMsk";
@@ -321,7 +494,7 @@ export type AmazonMSKRouteDetailsInputRepresentation = {
 export type AmazonMSKRouteDetailsRepresentation = {
   serviceName?: string;
   type: "AmazonMsk";
-  brokerEndpoints: string[];
+  brokerEndpoints?: string[];
 }
 export type AppendMappingInputRepresentation = Schemas["AppendMappingInputRepresentation"];
 export type AppendMappingRepresentation = Schemas["AppendMappingRepresentation"];
@@ -333,6 +506,7 @@ export type AppendV2NodeInputRepresentation = {
 export type AppendV2NodeRepresentation = {
   parameters?: Schemas["AppendParametersRepresentation"];
 }
+export type AssignAdAccountInputRepresentation = Schemas["AssignAdAccountInputRepresentation"];
 export type AttributeFilterExpressionInputRepresentation = {
   id?: string;
   name?: string;
@@ -413,6 +587,27 @@ export type AttributeLimitingExpressionRepresentation = {
 }
 export type AttributesConfigInputRepresentation = Schemas["AttributesConfigInputRepresentation"];
 export type AudienceDMOCollectionRepresentation = Schemas["AudienceDMOCollectionRepresentation"];
+export type AutoTaggingJobCollectionRepresentation = {
+  currentPageUrl?: string;
+  nextPageUrl?: string;
+  totalSize?: number;
+  count?: number;
+  jobs?: Schemas["AutoTaggingJobRepresentation"][];
+  limit?: number;
+  offset?: number;
+  previousPageUrl?: string;
+}
+export type AutoTaggingJobRepresentation = Schemas["AutoTaggingJobRepresentation"];
+export type AwsDataShareTargetInputRepresentation = {
+  accountId?: string;
+  awsRoleArn?: string;
+  subType?: "Aws" | "CleanRoom";
+}
+export type AwsDataShareTargetRepresentation = {
+  accountId?: string;
+  awsRoleArn?: string;
+  subType?: "Aws" | "CleanRoom";
+}
 export type BaseComparisonInputRepresentation = Schemas["BaseComparisonInputRepresentation"];
 export type BaseComparisonRepresentation = {
   createdBy?: Schemas["CdpUserRepresentation"];
@@ -430,6 +625,33 @@ export type BaseComparisonRepresentation = {
 export type BaseConnectionFieldRepresentation = Schemas["BaseConnectionFieldRepresentation"];
 export type BaseConnectionObjectRepresentation = Schemas["BaseConnectionObjectRepresentation"];
 export type BatchActionRepresentation = Schemas["BatchActionRepresentation"];
+export type BatchDataTransformRunHistoryRepresentation = {
+  definitionName?: string;
+  duration?: number;
+  endTime?: string;
+  errorMessage?: string;
+  isVersionChanged?: boolean;
+  processedRows?: number;
+  requestId?: string;
+  startTime?: string;
+  status?: "Canceled" | "Failure" | "InProgress" | "None" | "PartialFailure" | "PartiallyCanceled" | "Pending" | "RebuildFailure" | "RebuildPending" | "RebuildSuccess" | "Rebuilding" | "SkippedNoChanges" | "Success";
+  type: "Batch" | "Streaming";
+  outputStatus?: Schemas["RunHistoryOutputProgressRepresentation"][];
+  runMode?: "Full" | "Incremental";
+  runModeParameters?: string[];
+  runModeReason?: "BtDefinitionChanged" | "DmoMappingsChanged" | "EvaluationError" | "FullSyncInSrcObject" | "FunctionsRequireFullRun" | "IncrementalModeDisabled" | "IrregularDmoPk" | "JoinManyIncrSources" | "MaxRetriesFailed" | "NoRecentFullRun" | "NodesRequireFullRun" | "NotAScheduledRun" | "RetryAfterPartialFailure" | "RunAfterPartialResult" | "TooManyChangesInSrcObject" | "UnsupportedObjectType" | "UnsupportedWriteModes";
+}
+export type BatchErrorItemRepresentation = Schemas["BatchErrorItemRepresentation"];
+export type BatchRepresentation = Schemas["BatchRepresentation"];
+export type BatchResultItemRepresentation = Schemas["BatchResultItemRepresentation"];
+export type BigQueryDataShareTargetInputRepresentation = {
+  targetEmailId?: string;
+  targetEmailType?: "Group" | "ServiceAccount" | "User";
+}
+export type BigQueryDataShareTargetRepresentation = {
+  targetEmailId?: string;
+  targetEmailType?: "Group" | "ServiceAccount" | "User";
+}
 export type BucketFieldInputRepresentation = Schemas["BucketFieldInputRepresentation"];
 export type BucketFieldRepresentation = Schemas["BucketFieldRepresentation"];
 export type BucketNodeInputRepresentation = {
@@ -443,7 +665,9 @@ export type BucketParametersRepresentation = Schemas["BucketParametersRepresenta
 export type BucketRepresentation = Schemas["BucketRepresentation"];
 export type BucketSetupRepresentation = Schemas["BucketSetupRepresentation"];
 export type BucketSourceFieldRepresentation = Schemas["BucketSourceFieldRepresentation"];
+export type BulkIdInputRepresentation = Schemas["BulkIdInputRepresentation"];
 export type CdpActionResponseBaseRepresentation = Schemas["CdpActionResponseBaseRepresentation"];
+export type CdpActivationPaginatedResponseBaseRepresentation = Schemas["CdpActivationPaginatedResponseBaseRepresentation"];
 export type CdpAssetBaseInputRepresentation = Schemas["CdpAssetBaseInputRepresentation"];
 export type CdpAssetBaseRepresentation = Schemas["CdpAssetBaseRepresentation"];
 export type CdpAssetReferenceInputRepresentation = {
@@ -735,6 +959,7 @@ export type CdpDataKitStream = Schemas["CdpDataKitStream"];
 export type CdpDataTransformActionResponseRepresentation = {
   errors?: Schemas["CdpErrorRepresentation"][];
   success?: boolean;
+  requestId?: string;
   shouldForceFullRun?: boolean;
 }
 export type CdpDgMetadataRepresentation = Schemas["CdpDgMetadataRepresentation"];
@@ -841,6 +1066,12 @@ export type CdpMlAggregatePredictConditionRepresentation = {
 export type CdpMlAggregatePredictionRepresentation = Schemas["CdpMlAggregatePredictionRepresentation"];
 export type CdpMlCustomizableFieldRepresentation = Schemas["CdpMlCustomizableFieldRepresentation"];
 export type CdpMlFieldRepresentation = Schemas["CdpMlFieldRepresentation"];
+export type CdpMlFilterCriterionBaseRepresentation = Schemas["CdpMlFilterCriterionBaseRepresentation"];
+export type CdpMlFilterCriterionInputRepresentation = Schemas["CdpMlFilterCriterionInputRepresentation"];
+export type CdpMlFilterInputRepresentation = Schemas["CdpMlFilterInputRepresentation"];
+export type CdpMlFilterRepresentation = Schemas["CdpMlFilterRepresentation"];
+export type CdpMlFilterValueInputRepresentation = Schemas["CdpMlFilterValueInputRepresentation"];
+export type CdpMlFilterValueRepresentation = Schemas["CdpMlFilterValueRepresentation"];
 export type CdpMlFoundationalModelRepresentation = Schemas["CdpMlFoundationalModelRepresentation"];
 export type CdpMlJobBaseRepresentation = {
   createdBy?: Schemas["CdpUserRepresentation"];
@@ -1131,13 +1362,52 @@ export type CdpTimeInputRepresentation = Schemas["CdpTimeInputRepresentation"];
 export type CdpTimeRepresentation = Schemas["CdpTimeRepresentation"];
 export type CdpTimeZoneRepresentation = Schemas["CdpTimeZoneRepresentation"];
 export type CdpUserRepresentation = Schemas["CdpUserRepresentation"];
+export type ChannelPreferenceRepresentation = Schemas["ChannelPreferenceRepresentation"];
+export type ChannelPreferencesRepresentation = Schemas["ChannelPreferencesRepresentation"];
+export type ChannelRepresentation = Schemas["ChannelRepresentation"];
+export type ChannelsCollectionRepresentation = Schemas["ChannelsCollectionRepresentation"];
 export type ChunkingConfigInputRepresentation = Schemas["ChunkingConfigInputRepresentation"];
 export type ChunkingConfigUserValuesRepresentation = Schemas["ChunkingConfigUserValuesRepresentation"];
 export type ChunkingConfigurationRepresentation = Schemas["ChunkingConfigurationRepresentation"];
+export type ClassificationAssignmentBulkCreateInputRepresentation = Schemas["ClassificationAssignmentBulkCreateInputRepresentation"];
+export type ClassificationAssignmentBulkDeleteInputRepresentation = Schemas["ClassificationAssignmentBulkDeleteInputRepresentation"];
+export type ClassificationAssignmentBulkItemInputRepresentation = Schemas["ClassificationAssignmentBulkItemInputRepresentation"];
+export type ClassificationAssignmentCollectionRepresentation = {
+  currentPageUrl?: string;
+  nextPageUrl?: string;
+  totalSize?: number;
+  classificationAssignments?: Schemas["ClassificationAssignmentRepresentation"][];
+  count?: number;
+  limit?: number;
+  offset?: number;
+  previousPageUrl?: string;
+}
+export type ClassificationAssignmentCreateItemInputRepresentation = Schemas["ClassificationAssignmentCreateItemInputRepresentation"];
+export type ClassificationAssignmentRepresentation = Schemas["ClassificationAssignmentRepresentation"];
+export type ClassificationBulkCreateInputRepresentation = Schemas["ClassificationBulkCreateInputRepresentation"];
+export type ClassificationBulkDeleteInputRepresentation = Schemas["ClassificationBulkDeleteInputRepresentation"];
+export type ClassificationBulkUpdateInputRepresentation = Schemas["ClassificationBulkUpdateInputRepresentation"];
+export type ClassificationBulkUpdateItemInputRepresentation = Schemas["ClassificationBulkUpdateItemInputRepresentation"];
+export type ClassificationCollectionRepresentation = {
+  currentPageUrl?: string;
+  nextPageUrl?: string;
+  totalSize?: number;
+  classifications?: Schemas["ClassificationRepresentation"][];
+  count?: number;
+  limit?: number;
+  offset?: number;
+  previousPageUrl?: string;
+}
+export type ClassificationCreateInputRepresentation = Schemas["ClassificationCreateInputRepresentation"];
+export type ClassificationLookupRepresentation = Schemas["ClassificationLookupRepresentation"];
+export type ClassificationPatchInputRepresentation = Schemas["ClassificationPatchInputRepresentation"];
+export type ClassificationRepresentation = Schemas["ClassificationRepresentation"];
 export type CleanRoomTestConnectionRepresentation = Schemas["CleanRoomTestConnectionRepresentation"];
 export type CleanroomTestConnectionInputRepresentation = Schemas["CleanroomTestConnectionInputRepresentation"];
 export type CloudProviderDetailsInputRepresentation = Schemas["CloudProviderDetailsInputRepresentation"];
 export type CloudProviderDetailsRepresentation = Schemas["CloudProviderDetailsRepresentation"];
+export type CommunicationCappingDataSpaceRepresentation = Schemas["CommunicationCappingDataSpaceRepresentation"];
+export type CommunicationCappingDataSpacesCollectionRepresentation = Schemas["CommunicationCappingDataSpacesCollectionRepresentation"];
 export type ComputeRelativeNodeInputRepresentation = {
   parameters: Schemas["ComputeRelativeParametersInputRepresentation"];
 }
@@ -1148,6 +1418,13 @@ export type ComputeRelativeParametersInputRepresentation = Schemas["ComputeRelat
 export type ComputeRelativeParametersRepresentation = Schemas["ComputeRelativeParametersRepresentation"];
 export type ComputeRelativeSortParametersInputRepresentation = Schemas["ComputeRelativeSortParametersInputRepresentation"];
 export type ComputeRelativeSortParametersRepresentation = Schemas["ComputeRelativeSortParametersRepresentation"];
+export type ConditionGroupInputRepresentation = Schemas["ConditionGroupInputRepresentation"];
+export type ConditionGroupRepresentation = Schemas["ConditionGroupRepresentation"];
+export type ConditionLeafInputRepresentation = Schemas["ConditionLeafInputRepresentation"];
+export type ConditionLeafRepresentation = Schemas["ConditionLeafRepresentation"];
+export type ConditionNodeInputRepresentation = Schemas["ConditionNodeInputRepresentation"];
+export type ConditionNodeRepresentation = Schemas["ConditionNodeRepresentation"];
+export type ConditionRepresentation = Schemas["ConditionRepresentation"];
 export type ConfigInputRepresentation = Schemas["ConfigInputRepresentation"];
 export type ConfigRepresentation = Schemas["ConfigRepresentation"];
 export type ConnectionCollectionRepresentation = {
@@ -1237,6 +1514,7 @@ export type ConnectorsFrameworkConnectionSchemaRepresentation = {
   availabilityStatus?: "Available" | "InUse";
   fields?: Schemas["ConnectorsFrameworkConnectionSchemaFieldRepresentation"][];
 }
+export type ConsentDataModelObjectsRepresentation = Schemas["ConsentDataModelObjectsRepresentation"];
 export type ContactPointAttributeInputRepresentation = Schemas["ContactPointAttributeInputRepresentation"];
 export type ContactPointAttributesConfigInputRepresentation = Schemas["ContactPointAttributesConfigInputRepresentation"];
 export type ContactPointConfigInputRepresentation = {
@@ -1730,6 +2008,15 @@ export type DataCleanRoomUseCaseTypeRepresentation = {
 }
 export type DataCleanRoomUsecaseConfigInputRepresentation = Schemas["DataCleanRoomUsecaseConfigInputRepresentation"];
 export type DataCleanRoomUsecaseConfigRepresentation = Schemas["DataCleanRoomUsecaseConfigRepresentation"];
+export type DataCloudDataShareTargetInputRepresentation = {
+  subType?: "CleanRoom" | "DatacloudToDatacloud";
+  targetOrgId?: string;
+  targetUrl?: string;
+}
+export type DataCloudDataShareTargetRepresentation = {
+  subType?: "CleanRoom" | "DatacloudToDatacloud";
+  targetOrgId?: string;
+}
 /** @override `connectorType` casing is per-connector, NOT uniformly uppercase. Most connectors use a TitleCase token (e.g. "Snowflake", "AmazonS3"); some use an uppercase token (e.g. "BIGQUERY"). The authoritative accepted token for any connector is the descriptor name returned by GET `/ssot/connector-descriptors/{TYPE}`. Treat `connectorType` as a string and source the exact token from the connector descriptor rather than assuming a casing convention. Per-connector credential/parameter shapes are NOT documented in the spec; the connector descriptor at GET `/ssot/connector-descriptors/{TYPE}` is the authoritative source. BigQuery specifically needs: credentials = [{paramName: "authenticationOption", value: "KeyPair"}, {paramName: "serviceAccountEmail", value: <SA email>}, {paramName: "privateKey", value: <full SA JSON key file content>}]; parameters = [{paramName: "projectId", value: <GCP project>}]. Sending just the PEM body (or just the bare PEM) for `privateKey` fails the connection; the connector parses the JSON internally to extract project_id + private_key + client_email. */
 export type DataConnectionInputRepresentation = {
   credentials: Schemas["DataConnectionParameterInputRepresentation"][];
@@ -1777,12 +2064,19 @@ export type DataConnectorRepresentation = {
 export type DataCustomCodeInputRep = {
   templateDevName?: string;
 }
+export type DataGovernanceObjectAccessGrantBulkCreateResultRepresentation = Schemas["DataGovernanceObjectAccessGrantBulkCreateResultRepresentation"];
+export type DataGovernanceObjectAccessGrantBulkDeleteResultRepresentation = Schemas["DataGovernanceObjectAccessGrantBulkDeleteResultRepresentation"];
+export type DataGovernanceObjectAccessGrantBulkResultItemRepresentation = Schemas["DataGovernanceObjectAccessGrantBulkResultItemRepresentation"];
+export type DataGovernanceObjectAccessGrantCollectionRepresentation = Schemas["DataGovernanceObjectAccessGrantCollectionRepresentation"];
+export type DataGovernanceObjectAccessGrantRepresentation = Schemas["DataGovernanceObjectAccessGrantRepresentation"];
 export type DataGraphFieldRepresentation = Schemas["DataGraphFieldRepresentation"];
 export type DataGraphFullRefreshConfigInputRepresentation = Schemas["DataGraphFullRefreshConfigInputRepresentation"];
 export type DataGraphIdsDmoFieldRepresentation = Schemas["DataGraphIdsDmoFieldRepresentation"];
 export type DataGraphIdsDmoRepresentation = Schemas["DataGraphIdsDmoRepresentation"];
+export type DataGraphInputRepresentation = Schemas["DataGraphInputRepresentation"];
 export type DataGraphObjectDataRepresentation = Schemas["DataGraphObjectDataRepresentation"];
 export type DataGraphRelationshipRepresentation = Schemas["DataGraphRelationshipRepresentation"];
+export type DataGraphRepresentation = Schemas["DataGraphRepresentation"];
 export type DataGraphScheduleInputRepresentation = Schemas["DataGraphScheduleInputRepresentation"];
 export type DataGraphValuesDmoFieldRepresentation = Schemas["DataGraphValuesDmoFieldRepresentation"];
 export type DataGraphValuesDmoRepresentation = Schemas["DataGraphValuesDmoRepresentation"];
@@ -2042,12 +2336,70 @@ export type DataObjectRepresentation = {
   recordModifiedFieldName?: string;
   type?: "DataLakeObject" | "DataModelObject";
 }
+export type DataShareCollectionRepresentation = {
+  currentPageUrl?: string;
+  nextPageUrl?: string;
+  totalSize?: number;
+  dataShares?: Schemas["DataShareRepresentation"][];
+}
+export type DataShareInputRepresentation = {
+  dataSpaceName?: string;
+  description?: string;
+  label?: string;
+  name?: string;
+  dataShareObjects?: string[];
+}
+export type DataShareLinkActionInputRepresentation = Schemas["DataShareLinkActionInputRepresentation"];
+export type DataShareObjectRepresentation = {
+  createdBy?: Schemas["CdpUserRepresentation"];
+  createdDate?: string;
+  id?: string;
+  label?: string;
+  lastModifiedBy?: Schemas["CdpUserRepresentation"];
+  lastModifiedDate?: string;
+  name?: string;
+  namespace?: string;
+  url?: string;
+  names?: string[];
+}
+export type DataSharePatchInputRepresentation = {
+  dataSpaceName?: string;
+  description?: string;
+  label?: string;
+  name?: string;
+  dataShareObjects?: string[];
+}
+export type DataShareRepresentation = {
+  createdBy?: Schemas["CdpUserRepresentation"];
+  createdDate?: string;
+  id?: string;
+  label?: string;
+  lastModifiedBy?: Schemas["CdpUserRepresentation"];
+  lastModifiedDate?: string;
+  name?: string;
+  namespace?: string;
+  url?: string;
+  dataShareObjects?: Schemas["DataShareObjectRepresentation"];
+  dataspaceName?: string;
+  status?: "Active" | "Deleting" | "Error" | "InActive" | "Processing";
+}
+export type DataShareTargetCollectionRepresentation = {
+  currentPageUrl?: string;
+  nextPageUrl?: string;
+  totalSize?: number;
+  dataShareTargets?: Schemas["DataShareTargetRepresentation"][];
+}
+export type DataShareTargetInputRepresentation = Schemas["DataShareTargetInputRepresentation"];
+export type DataShareTargetRepresentation = Schemas["DataShareTargetRepresentation"];
+export type DataShareUnlinkActionInputRepresentation = Schemas["DataShareUnlinkActionInputRepresentation"];
 export type DataSourceNameConfigInputRepresentation = {
   id?: string;
   name?: string;
   namespace?: string;
   dataSourceName: string;
 }
+export type DataSourceRepresentation = Schemas["DataSourceRepresentation"];
+export type DataSourcesCollectionRepresentation = Schemas["DataSourcesCollectionRepresentation"];
 export type DataSpaceCollectionRepresentation = {
   currentPageUrl?: string;
   nextPageUrl?: string;
@@ -2078,13 +2430,14 @@ export type DataSpaceInputRepresentation = {
   id?: string;
   name?: string;
   namespace?: string;
-  filter?: Schemas["FilterExpressionDatSpaceInputRepresentation"];
+  filter?: Schemas["DataSpaceFilterInputRepresentation"];
 }
 export type DataSpaceMemberCollectionInputRepresentation = Schemas["DataSpaceMemberCollectionInputRepresentation"];
 export type DataSpaceMemberCollectionRepresentation = {
   currentPageUrl?: string;
   nextPageUrl?: string;
   totalSize?: number;
+  continuationToken?: string;
   members: Schemas["DataSpaceMemberRepresentation"][];
 }
 export type DataSpaceMemberErrorRepresentation = Schemas["DataSpaceMemberErrorRepresentation"];
@@ -2270,17 +2623,50 @@ export type DataTransformRepresentation = {
   type?: "BATCH" | "STREAMING";
   version?: number;
 }
-export type DataTransformRunHistoryBaseRepresentation = Schemas["DataTransformRunHistoryBaseRepresentation"];
+export type DataTransformRunHistoryBaseRepresentation = {
+  definitionName?: string;
+  duration?: number;
+  endTime?: string;
+  errorMessage?: string;
+  isVersionChanged?: boolean;
+  processedRows?: number;
+  requestId?: string;
+  startTime?: string;
+  status?: "Canceled" | "Failure" | "InProgress" | "None" | "PartialFailure" | "PartiallyCanceled" | "Pending" | "RebuildFailure" | "RebuildPending" | "RebuildSuccess" | "Rebuilding" | "SkippedNoChanges" | "Success";
+  type: "Batch" | "Streaming";
+}
 export type DataTransformRunHistoryCollectionRepresentation = {
   currentPageUrl?: string;
   nextPageUrl?: string;
   totalSize?: number;
-  histories: Schemas["DataTransformRunHistoryBaseRepresentation"][];
+  histories: unknown[];
 }
 export type DataTransformValidationRepresentation = Schemas["DataTransformValidationRepresentation"];
+export type DatabricksDataShareTargetInputRepresentation = {
+  accountUrl?: string;
+  serviceAccountId?: string;
+}
+export type DatabricksDataShareTargetRepresentation = {
+  accountUrl?: string;
+  serviceAccountId?: string;
+}
+export type DatabricksRouteDetailsInputRepresentation = {
+  serviceName: string;
+  type: "Databricks";
+  accountUrl: string;
+}
+export type DatabricksRouteDetailsRepresentation = {
+  serviceName?: string;
+  type: "Databricks";
+  accountUrl?: string;
+}
 export type DatakitComponentDetails = Schemas["DatakitComponentDetails"];
+export type DataspaceAccountValidationRepresentation = Schemas["DataspaceAccountValidationRepresentation"];
 export type DcSqlDataTransformDefinitionInputRepresentation = {
+  label?: string;
+  name?: string;
   outputDataObjects?: Schemas["DataObjectInputRepresentation"][];
+  schedule?: Schemas["CdpScheduleInputRepresentation"];
   type: "DbtHidden" | "DcSql" | "Sql" | "SqlHidden" | "Stl" | "StlHidden";
   version: string;
   manifest?: Schemas["DcSqlDataTransformManifestInputRepresentation"];
@@ -2289,6 +2675,7 @@ export type DcSqlDataTransformDefinitionRepresentation = {
   label?: string;
   name?: string;
   outputDataObjects?: Schemas["DataObjectRepresentation"][];
+  schedule?: Schemas["CdpScheduleRepresentation"];
   type?: "DbtHidden" | "DcSql" | "Sql" | "SqlHidden" | "Stl" | "StlHidden";
   version?: string;
   manifest?: Schemas["DcSqlDataTransformManifestRepresentation"];
@@ -2375,6 +2762,12 @@ export type EgressPropertiesRepresentation = {
   outputMaxRecordsPerFile?: number;
   predeterminedFilename?: "Activation" | "Segment" | "SegmentActivation";
 }
+export type EventCollectionRepresentation = {
+  currentPageUrl?: string;
+  nextPageUrl?: string;
+  totalSize?: number;
+}
+export type EventRepresentation = Schemas["EventRepresentation"];
 export type ExistingDataLakeObjectInputRepresentation = Schemas["ExistingDataLakeObjectInputRepresentation"];
 export type ExtensionFunctionNodeInputRepresentation = {
   parameters: Schemas["ExtensionFunctionParametersInputRepresentation"];
@@ -2477,6 +2870,14 @@ export type FormulaNodeRepresentation = {
 }
 export type FormulaParametersInputRepresentation = Schemas["FormulaParametersInputRepresentation"];
 export type FormulaParametersRepresentation = Schemas["FormulaParametersRepresentation"];
+export type IBMDataShareTargetInputRepresentation = {
+  accountUrl?: string;
+  serviceAccountId?: string;
+}
+export type IBMDataShareTargetRepresentation = {
+  accountUrl?: string;
+  serviceAccountId?: string;
+}
 export type IdpConfigExtractedDloFieldInputRepresentation = Schemas["IdpConfigExtractedDloFieldInputRepresentation"];
 export type IdpConfigExtractedDloFieldRepresentation = Schemas["IdpConfigExtractedDloFieldRepresentation"];
 export type IdpConfigExtractedDloInputRepresentation = Schemas["IdpConfigExtractedDloInputRepresentation"];
@@ -2645,6 +3046,176 @@ export type JsonSchemaRepresentation = Schemas["JsonSchemaRepresentation"];
 export type JsonStringInputRepresentation = {
   type?: "Array" | "Boolean" | "Integer" | "Null" | "Number" | "Object" | "String";
 }
+export type KnowledgeModalInputRepresentation = {
+  id?: string;
+  name?: string;
+  namespace?: string;
+  dataSpace?: string;
+  filterList?: Record<string, never>;
+  knowledgeSpaceId?: string;
+  selectedList?: Record<string, never>;
+  type?: string;
+}
+export type KnowledgeModalOutputRepresentation = Schemas["KnowledgeModalOutputRepresentation"];
+export type KnowledgeSelectInputRepresentation = {
+  id?: string;
+  name?: string;
+  namespace?: string;
+  knowledgeIds?: string[];
+  searchIndexes?: string[];
+}
+export type KnowledgeSourceFileInputRepresentation = {
+  id?: string;
+  name?: string;
+  namespace?: string;
+  fileIndexStatus?: string;
+  fileName?: string;
+  filePath?: string;
+  fileType?: string;
+}
+export type KnowledgeSourceFileOutputRepresentation = Schemas["KnowledgeSourceFileOutputRepresentation"];
+export type KnowledgeSourceOutputRepresentation = Schemas["KnowledgeSourceOutputRepresentation"];
+export type KnowledgeSpaceConfigInputRepresentation = {
+  id?: string;
+  name?: string;
+  namespace?: string;
+  dataspace?: string;
+  developerName?: string;
+  knowledgeFileDlo?: string;
+  knowledgeFileDmo?: string;
+  knowledgeFileRefDmo?: string;
+  knowledgeSpaceAgent?: string;
+  knowledgeSpaceFileBasedAgent?: string;
+  knowledgeSpaceIndex?: string;
+  label?: string;
+  provisioningStatus?: string;
+}
+export type KnowledgeSpaceConfigOutputRepresentation = Schemas["KnowledgeSpaceConfigOutputRepresentation"];
+export type KnowledgeSpaceConversationMsgOutputRepresentation = Schemas["KnowledgeSpaceConversationMsgOutputRepresentation"];
+export type KnowledgeSpaceDeepResReportInputRepresentation = {
+  id?: string;
+  name?: string;
+  namespace?: string;
+  outputFormat?: string;
+}
+export type KnowledgeSpaceDeepResReportOutputRepresentation = Schemas["KnowledgeSpaceDeepResReportOutputRepresentation"];
+export type KnowledgeSpaceDeepResRunResearchOutputRepresentation = Schemas["KnowledgeSpaceDeepResRunResearchOutputRepresentation"];
+export type KnowledgeSpaceDeepResearchAddSourceInputRepresentation = {
+  id?: string;
+  name?: string;
+  namespace?: string;
+  fileName?: string;
+  reportFilePath?: string;
+  researchId?: string;
+}
+export type KnowledgeSpaceDeepResearchAddSourceOutputRepresentation = Schemas["KnowledgeSpaceDeepResearchAddSourceOutputRepresentation"];
+export type KnowledgeSpaceDeepResearchCancelInputRepresentation = {
+  id?: string;
+  name?: string;
+  namespace?: string;
+  partialReport?: boolean;
+}
+export type KnowledgeSpaceDeepResearchOutputRepresentation = Schemas["KnowledgeSpaceDeepResearchOutputRepresentation"];
+export type KnowledgeSpaceDeepResearchPlanOutputRepresentation = Schemas["KnowledgeSpaceDeepResearchPlanOutputRepresentation"];
+export type KnowledgeSpaceDeepResearchPlanPatchInputRepresentation = {
+  id?: string;
+  name?: string;
+  namespace?: string;
+  editInstructions?: string;
+  plan?: Schemas["KnowledgeSpaceDeepResearchPlanPatchPlanInputRepresentation"];
+  researchTemplateId?: string;
+}
+export type KnowledgeSpaceDeepResearchPlanPatchPlanInputRepresentation = {
+  id?: string;
+  name?: string;
+  namespace?: string;
+  steps?: Schemas["KnowledgeSpaceDeepResearchPlanStepInputRepresentation"][];
+}
+export type KnowledgeSpaceDeepResearchPlanStepInputRepresentation = {
+  id?: string;
+  name?: string;
+  namespace?: string;
+  description?: string;
+  title?: string;
+}
+export type KnowledgeSpaceDeepResearchPlanStepOutputRepresentation = Schemas["KnowledgeSpaceDeepResearchPlanStepOutputRepresentation"];
+export type KnowledgeSpaceFileChunksInputRepresentation = {
+  id?: string;
+  name?: string;
+  namespace?: string;
+  additionalFilter?: { [key: string]: Record<string, never> };
+  containerId?: string[];
+  searchIndexName?: string;
+}
+export type KnowledgeSpaceFileChunksOutputRepresentation = Schemas["KnowledgeSpaceFileChunksOutputRepresentation"];
+export type KnowledgeSpaceFileStatusInputRepresentation = {
+  id?: string;
+  name?: string;
+  namespace?: string;
+  fileIds?: string[];
+  knowledgeSpaceId?: string;
+}
+export type KnowledgeSpaceFilesStatusOutputRepresentation = Schemas["KnowledgeSpaceFilesStatusOutputRepresentation"];
+export type KnowledgeSpaceIndexFilesInputRepresentation = {
+  id?: string;
+  name?: string;
+  namespace?: string;
+  knowledgeArtifactId?: string;
+  knowledgeArtifactSource?: string;
+  knowledgeSourceFilesList?: unknown[];
+  knowledgeSourceId?: string;
+  searchIndexApiName?: string;
+  websiteUrl?: string;
+}
+export type KnowledgeSpaceIndexFilesOutputRepresentation = Schemas["KnowledgeSpaceIndexFilesOutputRepresentation"];
+export type KnowledgeSpaceInputRepresentation = {
+  id?: string;
+  name?: string;
+  namespace?: string;
+  createDefaultLibrary?: boolean;
+  dataSpace?: string;
+  description?: string;
+  developerName?: string;
+  label?: string;
+}
+export type KnowledgeSpaceLibraryInputRepresentation = {
+  id?: string;
+  name?: string;
+  namespace?: string;
+  description?: string;
+  developerName?: string;
+  knowledgeLibraryId?: string;
+  knowledgeSpaceId?: string;
+  label?: string;
+}
+export type KnowledgeSpaceLibraryOutputRepresentation = Schemas["KnowledgeSpaceLibraryOutputRepresentation"];
+export type KnowledgeSpaceOutputRepresentation = Schemas["KnowledgeSpaceOutputRepresentation"];
+export type KnowledgeSpaceProvisionInputRepresentation = {
+  id?: string;
+  name?: string;
+  namespace?: string;
+  dataSpaces?: string[];
+}
+export type KnowledgeSpaceProvisionOutputRepresentation = Schemas["KnowledgeSpaceProvisionOutputRepresentation"];
+export type KnowledgeSpaceRunResearchInputRepresentation = {
+  id?: string;
+  name?: string;
+  namespace?: string;
+  researchId?: string;
+}
+export type KnowledgeSpaceRunResearchOutputRepresentation = Schemas["KnowledgeSpaceRunResearchOutputRepresentation"];
+export type KnowledgeSpaceSessionConversationOutputRepresentation = Schemas["KnowledgeSpaceSessionConversationOutputRepresentation"];
+export type KnowledgeSpaceSessionInputRepresentation = {
+  id?: string;
+  name?: string;
+  namespace?: string;
+  knowledgeSpaceId?: string;
+  lastActiveTime?: string;
+  sessionId?: string;
+}
+export type KnowledgeSpaceSessionOutputRepresentation = Schemas["KnowledgeSpaceSessionOutputRepresentation"];
+export type KnowledgeSpaceUploadPresignedURLOutputRepresentation = Schemas["KnowledgeSpaceUploadPresignedURLOutputRepresentation"];
+export type KnowledgeSpaceUploadPresignedUrlInputRepresentation = Schemas["KnowledgeSpaceUploadPresignedUrlInputRepresentation"];
 export type LoadDatasetInputRepresentation = Schemas["LoadDatasetInputRepresentation"];
 export type LoadDatasetRepresentation = Schemas["LoadDatasetRepresentation"];
 export type LoadNodeInputRepresentation = {
@@ -2676,6 +3247,8 @@ export type MarketingCloudConnectionRepresentation = {
 export type MatchBoostOutputBridgeTableInputRepresentation = Schemas["MatchBoostOutputBridgeTableInputRepresentation"];
 export type MatchBoostOutputObjectConfigRepresentation = Schemas["MatchBoostOutputObjectConfigRepresentation"];
 export type MatchBoostOutputObjectInputRepresentation = Schemas["MatchBoostOutputObjectInputRepresentation"];
+export type MatchBoostProviderRepresentation = Schemas["MatchBoostProviderRepresentation"];
+export type MatchBoostProvidersRepresentation = Schemas["MatchBoostProvidersRepresentation"];
 export type MatchBoostUsecaseConfigInputRepresentation = {
   useCaseType?: "Activation" | "Custom" | "MatchBoost" | "Overlap";
   outputObjects?: Schemas["MatchBoostOutputObjectInputRepresentation"][];
@@ -2689,6 +3262,9 @@ export type McBuToDataSpaceInputRepresentation = {
   mid: string;
 }
 export type McBuToDataSpaceRepresentation = Schemas["McBuToDataSpaceRepresentation"];
+export type McBusinessUnitRepresentation = Schemas["McBusinessUnitRepresentation"];
+export type McEnterpriseRepresentation = Schemas["McEnterpriseRepresentation"];
+export type McEnterprisesCollectionRepresentation = Schemas["McEnterprisesCollectionRepresentation"];
 export type MlBinaryClassificationJobDefInputRepresentation = {
   inputConfig?: Schemas["MlPredictionJobDefFeaturesConfigInputRepresentation"];
   binaryClassificationSettings?: Schemas["MlBinaryClassificationJobDefSettingsInputRepresentation"];
@@ -2763,6 +3339,29 @@ export type MlDataAlertDataBaseRepresentation = Schemas["MlDataAlertDataBaseRepr
 export type MlDataAlertInputRepresentation = Schemas["MlDataAlertInputRepresentation"];
 export type MlDataAlertQueryInputRepresentation = Schemas["MlDataAlertQueryInputRepresentation"];
 export type MlDataAlertRepresentation = Schemas["MlDataAlertRepresentation"];
+export type MlDmoFieldSourceTargetRelationshipInputRepresentation = Schemas["MlDmoFieldSourceTargetRelationshipInputRepresentation"];
+export type MlDmoFieldSourceTargetRelationshipRepresentation = {
+  createdBy?: Schemas["CdpUserRepresentation"];
+  createdDate?: string;
+  id?: string;
+  label?: string;
+  lastModifiedBy?: Schemas["CdpUserRepresentation"];
+  lastModifiedDate?: string;
+  name?: string;
+  namespace?: string;
+  url?: string;
+  parentRelationshipId?: string;
+  relationSourceDmo?: Schemas["CdpAssetReferenceRepresentation"];
+  relationSourceDmoField?: Schemas["CdpAssetReferenceRepresentation"];
+  relationTargetDmo?: Schemas["CdpAssetReferenceRepresentation"];
+  relationTargetDmoField?: Schemas["CdpAssetReferenceRepresentation"];
+}
+export type MlFieldPlaceholderRepresentation = Schemas["MlFieldPlaceholderRepresentation"];
+export type MlFilterFieldAssetInputRepresentation = {
+  id?: string;
+  name?: string;
+  namespace?: string;
+}
 export type MlImprovementDirectiveRepresentation = Schemas["MlImprovementDirectiveRepresentation"];
 export type MlModelInputTypeRepresentation = Schemas["MlModelInputTypeRepresentation"];
 export type MlModelOutputTypeRepresentation = Schemas["MlModelOutputTypeRepresentation"];
@@ -2846,6 +3445,239 @@ export type MlRegressionJobDefRepresentation = {
 }
 export type MlRegressionJobDefSettingsInputRepresentation = Schemas["MlRegressionJobDefSettingsInputRepresentation"];
 export type MlRegressionJobDefSettingsRepresentation = Schemas["MlRegressionJobDefSettingsRepresentation"];
+export type MlRetrieverCitationConfigurationInputRepresentation = Schemas["MlRetrieverCitationConfigurationInputRepresentation"];
+export type MlRetrieverCitationConfigurationRepresentation = Schemas["MlRetrieverCitationConfigurationRepresentation"];
+export type MlRetrieverCitationFieldInputRepresentation = {
+  relatedDmoFieldName?: string;
+  relatedDmoName?: string;
+}
+export type MlRetrieverCitationFieldRepresentation = {
+  createdBy?: Schemas["CdpUserRepresentation"];
+  createdDate?: string;
+  id?: string;
+  label?: string;
+  lastModifiedBy?: Schemas["CdpUserRepresentation"];
+  lastModifiedDate?: string;
+  name?: string;
+  namespace?: string;
+  url?: string;
+  relatedDmo?: Schemas["CdpAssetReferenceRepresentation"];
+  relatedDmoField?: Schemas["CdpAssetReferenceRepresentation"];
+}
+export type MlRetrieverCollectionRepresentation = {
+  currentPageUrl?: string;
+  nextPageUrl?: string;
+  totalSize?: number;
+  retrievers?: Schemas["MlRetrieverRepresentation"][];
+}
+export type MlRetrieverConfigurationBaseInputRepresentation = Schemas["MlRetrieverConfigurationBaseInputRepresentation"];
+export type MlRetrieverConfigurationBaseRepresentation = {
+  createdBy?: Schemas["CdpUserRepresentation"];
+  createdDate?: string;
+  id?: string;
+  label?: string;
+  lastModifiedBy?: Schemas["CdpUserRepresentation"];
+  lastModifiedDate?: string;
+  name?: string;
+  namespace?: string;
+  url?: string;
+  input?: Schemas["CdpAssetReferenceRepresentation"];
+  isActive?: boolean;
+  isCitationEnabled?: boolean;
+  numberOfResults?: number;
+  retrievalMode?: "Advanced" | "Basic";
+  searchIndexConfiguration?: Schemas["CdpAssetReferenceRepresentation"];
+  semanticSearchType?: "Enriched" | "Hybrid" | "Vector";
+  sourceDmo?: Schemas["CdpAssetReferenceRepresentation"];
+  vectorDmo?: Schemas["CdpAssetReferenceRepresentation"];
+  version?: number;
+}
+export type MlRetrieverConfigurationCollectionRepresentation = {
+  currentPageUrl?: string;
+  nextPageUrl?: string;
+  totalSize?: number;
+  configurations?: Schemas["MlRetrieverConfigurationRepresentation"][];
+}
+export type MlRetrieverConfigurationCustomSqlInputRepresentation = {
+  isAdvancedModeSupported?: boolean;
+  isCitationSupported?: boolean;
+  isEnrichedIndexSupported?: boolean;
+  retrieverQueryTemplateDefinition: Schemas["MlRetrieverQueryTemplateDefinitionInputRepresentation"];
+}
+export type MlRetrieverConfigurationDetailRepresentation = {
+  createdBy?: Schemas["CdpUserRepresentation"];
+  createdDate?: string;
+  id?: string;
+  label?: string;
+  lastModifiedBy?: Schemas["CdpUserRepresentation"];
+  lastModifiedDate?: string;
+  name?: string;
+  namespace?: string;
+  url?: string;
+  input?: Schemas["CdpAssetReferenceRepresentation"];
+  isActive?: boolean;
+  isCitationEnabled?: boolean;
+  numberOfResults?: number;
+  retrievalMode?: "Advanced" | "Basic";
+  searchIndexConfiguration?: Schemas["CdpAssetReferenceRepresentation"];
+  semanticSearchType?: "Enriched" | "Hybrid" | "Vector";
+  sourceDmo?: Schemas["CdpAssetReferenceRepresentation"];
+  vectorDmo?: Schemas["CdpAssetReferenceRepresentation"];
+  version?: number;
+  citationConfiguration?: Schemas["MlRetrieverCitationConfigurationRepresentation"];
+  fieldPlaceholders?: Schemas["MlFieldPlaceholderRepresentation"][];
+  isAdvancedModeSupported?: boolean;
+  isCitationSupported?: boolean;
+  isEnrichedIndexSupported?: boolean;
+  outputFields?: Schemas["MlRetrieverOutputFieldRepresentation"][];
+  queryFilter?: Schemas["CdpMlFilterRepresentation"];
+  referencedRetrievers?: Schemas["MlRetrieverRepresentation"][];
+  retrieverQueryTemplateDefinition?: Schemas["MlRetrieverQueryTemplateDefinitionRepresentation"];
+}
+export type MlRetrieverConfigurationEnsembleInputRepresentation = {
+  outputFields?: string[];
+  referencedRetrievers: Schemas["CdpAssetReferenceInputRepresentation"][];
+}
+export type MlRetrieverConfigurationNoCodeInputRepresentation = {
+  citationConfiguration?: Schemas["MlRetrieverCitationConfigurationInputRepresentation"];
+  input: Schemas["MlRetrieverSourceInputRepresentation"];
+  outputFields: Schemas["MlRetrieverOutputFieldInputRepresentation"][];
+  queryFilter?: Schemas["CdpMlFilterInputRepresentation"];
+}
+export type MlRetrieverConfigurationRepresentation = {
+  createdBy?: Schemas["CdpUserRepresentation"];
+  createdDate?: string;
+  id?: string;
+  label?: string;
+  lastModifiedBy?: Schemas["CdpUserRepresentation"];
+  lastModifiedDate?: string;
+  name?: string;
+  namespace?: string;
+  url?: string;
+  input?: Schemas["CdpAssetReferenceRepresentation"];
+  isActive?: boolean;
+  isCitationEnabled?: boolean;
+  numberOfResults?: number;
+  retrievalMode?: "Advanced" | "Basic";
+  searchIndexConfiguration?: Schemas["CdpAssetReferenceRepresentation"];
+  semanticSearchType?: "Enriched" | "Hybrid" | "Vector";
+  sourceDmo?: Schemas["CdpAssetReferenceRepresentation"];
+  vectorDmo?: Schemas["CdpAssetReferenceRepresentation"];
+  version?: number;
+}
+export type MlRetrieverConfigurationUpdateInputRepresentation = Schemas["MlRetrieverConfigurationUpdateInputRepresentation"];
+export type MlRetrieverFieldBaseInputRepresentation = Schemas["MlRetrieverFieldBaseInputRepresentation"];
+export type MlRetrieverFieldBaseRepresentation = {
+  createdBy?: Schemas["CdpUserRepresentation"];
+  createdDate?: string;
+  id?: string;
+  label?: string;
+  lastModifiedBy?: Schemas["CdpUserRepresentation"];
+  lastModifiedDate?: string;
+  name?: string;
+  namespace?: string;
+  url?: string;
+  relatedDmo?: Schemas["CdpAssetReferenceRepresentation"];
+  relatedDmoField?: Schemas["CdpAssetReferenceRepresentation"];
+}
+export type MlRetrieverInputRepresentation = Schemas["MlRetrieverInputRepresentation"];
+export type MlRetrieverOutputFieldInputRepresentation = {
+  relatedDmoFieldName?: string;
+  relatedDmoName?: string;
+  dataSourceType?: "DataModelObject" | "SearchFunction";
+  label: string;
+  relationships?: Schemas["MlDmoFieldSourceTargetRelationshipInputRepresentation"][];
+}
+export type MlRetrieverOutputFieldRepresentation = {
+  createdBy?: Schemas["CdpUserRepresentation"];
+  createdDate?: string;
+  id?: string;
+  label?: string;
+  lastModifiedBy?: Schemas["CdpUserRepresentation"];
+  lastModifiedDate?: string;
+  name?: string;
+  namespace?: string;
+  url?: string;
+  relatedDmo?: Schemas["CdpAssetReferenceRepresentation"];
+  relatedDmoField?: Schemas["CdpAssetReferenceRepresentation"];
+  relationshipPathId?: string;
+  relationships?: Schemas["MlDmoFieldSourceTargetRelationshipRepresentation"][];
+}
+export type MlRetrieverQueryEnrichedSearchIndexDefinitionInputRepresentation = Schemas["MlRetrieverQueryEnrichedSearchIndexDefinitionInputRepresentation"];
+export type MlRetrieverQueryEnrichedSearchIndexDefinitionRepresentation = Schemas["MlRetrieverQueryEnrichedSearchIndexDefinitionRepresentation"];
+export type MlRetrieverQueryTemplateCitationDefinitionBaseInputRepresentation = Schemas["MlRetrieverQueryTemplateCitationDefinitionBaseInputRepresentation"];
+export type MlRetrieverQueryTemplateCitationDefinitionBaseRepresentation = Schemas["MlRetrieverQueryTemplateCitationDefinitionBaseRepresentation"];
+export type MlRetrieverQueryTemplateCitationDefinitionCustomInputRepresentation = {
+  citationType: "Custom" | "Default";
+  customLabelColumnName?: string;
+  customBaseUrl?: string;
+  customLinkColumnName: string;
+}
+export type MlRetrieverQueryTemplateCitationDefinitionCustomRepresentation = {
+  citationType?: "Custom" | "Default";
+  customLabelColumnName?: string;
+  customBaseUrl?: string;
+  customLinkColumnName?: string;
+}
+export type MlRetrieverQueryTemplateCitationDefinitionDefaultInputRepresentation = {
+  citationType: "Custom" | "Default";
+  customLabelColumnName?: string;
+  chunkObjectApiName?: string;
+  chunkRecordIdColumnName?: string;
+  sourceObjectApiName: string;
+  sourceRecordIdColumnName: string;
+}
+export type MlRetrieverQueryTemplateCitationDefinitionDefaultRepresentation = {
+  citationType?: "Custom" | "Default";
+  customLabelColumnName?: string;
+  chunkObjectApiName?: string;
+  chunkRecordIdColumnName?: string;
+  sourceObjectApiName?: string;
+  sourceRecordIdColumnName?: string;
+}
+export type MlRetrieverQueryTemplateDataCloudAssetRepresentation = Schemas["MlRetrieverQueryTemplateDataCloudAssetRepresentation"];
+export type MlRetrieverQueryTemplateDefinitionInputRepresentation = Schemas["MlRetrieverQueryTemplateDefinitionInputRepresentation"];
+export type MlRetrieverQueryTemplateDefinitionRepresentation = Schemas["MlRetrieverQueryTemplateDefinitionRepresentation"];
+export type MlRetrieverQueryTemplateMetadataRepresentation = Schemas["MlRetrieverQueryTemplateMetadataRepresentation"];
+export type MlRetrieverQueryTemplateMetadataSelectColumnRepresentation = Schemas["MlRetrieverQueryTemplateMetadataSelectColumnRepresentation"];
+export type MlRetrieverQueryTemplatePlaceholderInputRepresentation = Schemas["MlRetrieverQueryTemplatePlaceholderInputRepresentation"];
+export type MlRetrieverQueryTemplatePlaceholderRepresentation = Schemas["MlRetrieverQueryTemplatePlaceholderRepresentation"];
+export type MlRetrieverRepresentation = {
+  createdBy?: Schemas["CdpUserRepresentation"];
+  createdDate?: string;
+  id?: string;
+  label?: string;
+  lastModifiedBy?: Schemas["CdpUserRepresentation"];
+  lastModifiedDate?: string;
+  name?: string;
+  namespace?: string;
+  url?: string;
+  activeConfiguration?: Schemas["MlRetrieverConfigurationBaseRepresentation"];
+  configurationsUrl?: string;
+  connection?: Schemas["CdpAssetReferenceRepresentation"];
+  dataSourceType?: "DataCloudAsset" | "RealTimeSearchIndex" | "SearchIndex";
+  dataSpaces?: Schemas["CdpAssetReferenceRepresentation"][];
+  description?: string;
+  isDefault?: boolean;
+  isGlobal?: boolean;
+  isVirtual?: boolean;
+  latestConfiguration?: Schemas["MlRetrieverConfigurationBaseRepresentation"];
+  ownerType?: "Adl" | "AiAgent" | "Api" | "Customer" | "IntelligentContext" | "Internal" | "Ui";
+  ownership?: Schemas["CdpAssetReferenceRepresentation"];
+  queryType?: "CustomSql" | "Ensemble" | "NoCode";
+  retrieverLifetime?: "Persistent" | "Transient";
+}
+export type MlRetrieverReviewInputRepresentation = Schemas["MlRetrieverReviewInputRepresentation"];
+export type MlRetrieverReviewItemRepresentation = Schemas["MlRetrieverReviewItemRepresentation"];
+export type MlRetrieverReviewRepresentation = Schemas["MlRetrieverReviewRepresentation"];
+export type MlRetrieverReviewSelectColumnRepresentation = Schemas["MlRetrieverReviewSelectColumnRepresentation"];
+export type MlRetrieverSourceInputRepresentation = {
+  id?: string;
+  name?: string;
+  namespace?: string;
+  type?: "SearchIndex" | "SearchIndexConfiguration";
+}
+export type MlRetrieverUpdateInputRepresentation = Schemas["MlRetrieverUpdateInputRepresentation"];
 export type MlSentimentDetectionInputConfigInputRepresentation = Schemas["MlSentimentDetectionInputConfigInputRepresentation"];
 export type MlSentimentDetectionInputConfigRepresentation = Schemas["MlSentimentDetectionInputConfigRepresentation"];
 export type MlSentimentDetectionJobDefInputRepresentation = {
@@ -2884,6 +3716,21 @@ export type MonthlySpecificScheduleRepresentation = {
 }
 export type NameLabelInputRepresentation = Schemas["NameLabelInputRepresentation"];
 export type NameLabelRepresentation = Schemas["NameLabelRepresentation"];
+export type ObjectAccessGrantBulkCreateInputRepresentation = Schemas["ObjectAccessGrantBulkCreateInputRepresentation"];
+export type ObjectAccessGrantBulkDeleteInputRepresentation = Schemas["ObjectAccessGrantBulkDeleteInputRepresentation"];
+export type ObjectAccessGrantCreateInputRepresentation = Schemas["ObjectAccessGrantCreateInputRepresentation"];
+export type OtherDataShareTargetInputRepresentation = {
+  isPublicKeyProvided?: boolean;
+  issuer?: string;
+  publicKey?: string;
+  serviceAccountId?: string;
+}
+export type OtherDataShareTargetRepresentation = {
+  isPublicKeyProvided?: boolean;
+  issuer?: string;
+  publicKey?: string;
+  serviceAccountId?: string;
+}
 export type OutputD360FieldsMappingInputRepresentation = Schemas["OutputD360FieldsMappingInputRepresentation"];
 export type OutputD360FieldsMappingRepresentation = Schemas["OutputD360FieldsMappingRepresentation"];
 export type OutputD360NodeInputRepresentation = {
@@ -2895,9 +3742,21 @@ export type OutputD360NodeRepresentation = {
 export type OutputD360ParametersInputRepresentation = Schemas["OutputD360ParametersInputRepresentation"];
 export type OutputD360ParametersRepresentation = Schemas["OutputD360ParametersRepresentation"];
 export type ParameterRepresentation = Schemas["ParameterRepresentation"];
+export type PartnerObjectRepresentation = Schemas["PartnerObjectRepresentation"];
+export type PartnerObjectTypeCollectionRepresentation = {
+  currentPageUrl?: string;
+  nextPageUrl?: string;
+  totalSize?: number;
+}
+export type PartnerObjectTypeRepresentation = Schemas["PartnerObjectTypeRepresentation"];
+export type PartnerObjectsCollectionRepresentation = Schemas["PartnerObjectsCollectionRepresentation"];
+export type PartnerValidationErrorCountRepresentation = Schemas["PartnerValidationErrorCountRepresentation"];
+export type PartnerValidationSummaryRepresentation = Schemas["PartnerValidationSummaryRepresentation"];
 export type PerFileExtensionRepresentation = Schemas["PerFileExtensionRepresentation"];
 export type PivotV2InputRepresentation = Schemas["PivotV2InputRepresentation"];
 export type PivotV2Representation = Schemas["PivotV2Representation"];
+export type PolicyValueInputRepresentation = Schemas["PolicyValueInputRepresentation"];
+export type PolicyValueRepresentation = Schemas["PolicyValueRepresentation"];
 export type PredictSourceInputRepresentation = Schemas["PredictSourceInputRepresentation"];
 export type PredictSourceRepresentation = Schemas["PredictSourceRepresentation"];
 export type PredictionContributorInputRepresentation = Schemas["PredictionContributorInputRepresentation"];
@@ -2923,6 +3782,19 @@ export type PrivateNetworkRouteRepresentation = {
   url?: string;
   cloudProvider?: Schemas["CloudProviderDetailsRepresentation"];
   route?: unknown;
+  storageRoute?: Schemas["RouteDetailsRepresentation"];
+}
+export type ProfileDmoInputRepresentation = Schemas["ProfileDmoInputRepresentation"];
+export type ProfileDmoRepresentation = {
+  createdBy?: Schemas["CdpUserRepresentation"];
+  createdDate?: string;
+  id?: string;
+  label?: string;
+  lastModifiedBy?: Schemas["CdpUserRepresentation"];
+  lastModifiedDate?: string;
+  name?: string;
+  namespace?: string;
+  url?: string;
 }
 export type QueryPathConfigInputRepresentation = {
   id?: string;
@@ -3023,6 +3895,7 @@ export type QuerySqlStatusRepresentation = {
   chunkCount?: number;
 }
 export type RankingFieldsDetailsRepresentation = Schemas["RankingFieldsDetailsRepresentation"];
+export type RebuildActionInputRepresentation = Schemas["RebuildActionInputRepresentation"];
 export type RecencyCriteriaRepresentation = Schemas["RecencyCriteriaRepresentation"];
 export type RecordFieldConfigurationInputRepresentation = {
   aliasName?: string;
@@ -3054,6 +3927,10 @@ export type RefreshConfigInputRepresentation = {
   refreshMode?: "TOTAL_REPLACE" | "UPSERT" | "INCREMENTAL" | "REPLACE" | "NEAR_REAL_TIME_INCREMENTAL" | "PARTIAL_UPDATE";
 }
 export type RefreshConfigRepresentation = Schemas["RefreshConfigRepresentation"];
+export type RefreshSettingsInputRepresentation = Schemas["RefreshSettingsInputRepresentation"];
+export type RefreshSettingsRepresentation = Schemas["RefreshSettingsRepresentation"];
+export type RelatedAttributeActivationQuotaRepresentation = Schemas["RelatedAttributeActivationQuotaRepresentation"];
+export type RelatedAttributeConfigurationLimitsRepresentation = Schemas["RelatedAttributeConfigurationLimitsRepresentation"];
 /** @override Spec copied the Java constant names for `type`; the wire serializes the Mkt-prefixed display names. Output-only. */
 export type RelationshipFieldRepresentation = {
   label?: string;
@@ -3061,8 +3938,17 @@ export type RelationshipFieldRepresentation = {
   type?: "MktDataModelField" | "MktCalculatedInsightField" | "SObjectField";
 }
 export type RelationshipObjectRepresentation = Schemas["RelationshipObjectRepresentation"];
+export type ResourceExpressionInputRepresentation = Schemas["ResourceExpressionInputRepresentation"];
+export type ResourceExpressionJoinInputRepresentation = Schemas["ResourceExpressionJoinInputRepresentation"];
+export type ResourceExpressionJoinRepresentation = Schemas["ResourceExpressionJoinRepresentation"];
+export type ResourceExpressionOnRepresentation = Schemas["ResourceExpressionOnRepresentation"];
+export type ResourceExpressionPredicateInputRepresentation = Schemas["ResourceExpressionPredicateInputRepresentation"];
+export type ResourceExpressionPredicateRepresentation = Schemas["ResourceExpressionPredicateRepresentation"];
+export type ResourceExpressionRepresentation = Schemas["ResourceExpressionRepresentation"];
 export type ResourceFilterByPropertyInputRepresentation = Schemas["ResourceFilterByPropertyInputRepresentation"];
 export type ResourceFiltersInputRepresentation = Schemas["ResourceFiltersInputRepresentation"];
+export type ResourceTransformArgumentInputRepresentation = Schemas["ResourceTransformArgumentInputRepresentation"];
+export type ResourceTransformArgumentRepresentation = Schemas["ResourceTransformArgumentRepresentation"];
 export type RouteDetailsInputRepresentation = Schemas["RouteDetailsInputRepresentation"];
 export type RouteDetailsRepresentation = Schemas["RouteDetailsRepresentation"];
 /** @override Spec enums use Java constant-name casing; the wire emits the JSON values. status is SCREAMING_SNAKE; dataObjectType is camelCase and includes calculatedInsightObject (omitted by the spec). */
@@ -3088,7 +3974,12 @@ export type SalesforceMarketingCloudConnectorDetailsRepresentation = {
 export type SalesforceMarketingCloudDataExtensionConnectionObjectRepresentation = {
   name?: string;
   customObjectId: string;
+  dataExtensionStorageSize?: string;
   description?: string;
+  externalKey?: string;
+  modifiedDate?: string;
+  ownerId?: string;
+  rowCount?: number;
 }
 export type SalesforceMarketingCloudStandardConnectionObjectRepresentation = {
   name?: string;
@@ -3176,10 +4067,29 @@ export type SemanticSearchRepresentation = {
   transformations?: string[];
   vectorEmbedding?: Schemas["VectorEmbeddingRepresentation"];
 }
+export type SetPrivacyTypeInputRepresentation = Schemas["SetPrivacyTypeInputRepresentation"];
+export type SnowflakeDataShareTargetInputRepresentation = {
+  accountUrl?: string;
+  subType?: "CleanRoom";
+}
+export type SnowflakeDataShareTargetRepresentation = {
+  accountUrl?: string;
+  subType?: "CleanRoom";
+}
+export type SnowflakeOpenFlowDataShareTargetInputRepresentation = {
+  accountUrl?: string;
+  publicCert?: string;
+  serviceAccountId?: string;
+}
+export type SnowflakeOpenFlowDataShareTargetRepresentation = {
+  accountUrl?: string;
+  publicCert?: string;
+  serviceAccountId?: string;
+}
 export type SnowflakeRouteDetailsInputRepresentation = {
   serviceName: string;
   type: "Snowflake";
-  accountUrl?: string;
+  accountUrl: string;
 }
 export type SnowflakeRouteDetailsRepresentation = {
   serviceName?: string;
@@ -3209,7 +4119,10 @@ export type SplitNodeRepresentation = {
 export type SplitParametersInputRepresentation = Schemas["SplitParametersInputRepresentation"];
 export type SplitParametersRepresentation = Schemas["SplitParametersRepresentation"];
 export type SqlDataTransformDefinitionInputRepresentation = {
+  label?: string;
+  name?: string;
   outputDataObjects?: Schemas["DataObjectInputRepresentation"][];
+  schedule?: Schemas["CdpScheduleInputRepresentation"];
   type: "DbtHidden" | "DcSql" | "Sql" | "SqlHidden" | "Stl" | "StlHidden";
   version: string;
   expression?: string;
@@ -3220,6 +4133,7 @@ export type SqlDataTransformDefinitionRepresentation = {
   label?: string;
   name?: string;
   outputDataObjects?: Schemas["DataObjectRepresentation"][];
+  schedule?: Schemas["CdpScheduleRepresentation"];
   type?: "DbtHidden" | "DcSql" | "Sql" | "SqlHidden" | "Stl" | "StlHidden";
   version?: string;
   expression?: string;
@@ -3240,7 +4154,10 @@ export type StaticDataConfigRepresentation = Schemas["StaticDataConfigRepresenta
 export type StaticDataInputRepresentation = Schemas["StaticDataInputRepresentation"];
 export type StaticDataRepresentation = Schemas["StaticDataRepresentation"];
 export type StlDataTransformDefinitionInputRepresentation = {
+  label?: string;
+  name?: string;
   outputDataObjects?: Schemas["DataObjectInputRepresentation"][];
+  schedule?: Schemas["CdpScheduleInputRepresentation"];
   type: "DbtHidden" | "DcSql" | "Sql" | "SqlHidden" | "Stl" | "StlHidden";
   version: string;
   nodes?: Schemas["DataTransformNodeInputRepresentation"];
@@ -3250,6 +4167,7 @@ export type StlDataTransformDefinitionRepresentation = {
   label?: string;
   name?: string;
   outputDataObjects?: Schemas["DataObjectRepresentation"][];
+  schedule?: Schemas["CdpScheduleRepresentation"];
   type?: "DbtHidden" | "DcSql" | "Sql" | "SqlHidden" | "Stl" | "StlHidden";
   version?: string;
   nodes?: Schemas["DataTransformNodeRepresentation"];
@@ -3306,7 +4224,105 @@ export type StreamingConnectorDetailsRepresentation = {
   events?: string[];
   streamingAppType?: string;
 }
+export type StreamingDataTransformRunHistoryRepresentation = {
+  definitionName?: string;
+  duration?: number;
+  endTime?: string;
+  errorMessage?: string;
+  isVersionChanged?: boolean;
+  processedRows?: number;
+  requestId?: string;
+  startTime?: string;
+  status?: "Canceled" | "Failure" | "InProgress" | "None" | "PartialFailure" | "PartiallyCanceled" | "Pending" | "RebuildFailure" | "RebuildPending" | "RebuildSuccess" | "Rebuilding" | "SkippedNoChanges" | "Success";
+  type: "Batch" | "Streaming";
+  addedRows?: number;
+  deletedRows?: number;
+  failedRows?: number;
+  updatedRows?: number;
+}
+export type StreamingEligibilityRepresentation = Schemas["StreamingEligibilityRepresentation"];
 export type StreamingParametersRepresentation = Schemas["StreamingParametersRepresentation"];
+export type SuggestTagsInputRepresentation = Schemas["SuggestTagsInputRepresentation"];
+export type SuggestTagsJobRepresentation = Schemas["SuggestTagsJobRepresentation"];
+export type SuggestTagsResultRepresentation = Schemas["SuggestTagsResultRepresentation"];
+export type TagAssignmentBulkCreateInputRepresentation = Schemas["TagAssignmentBulkCreateInputRepresentation"];
+export type TagAssignmentBulkDeleteInputRepresentation = Schemas["TagAssignmentBulkDeleteInputRepresentation"];
+export type TagAssignmentCollectionRepresentation = {
+  currentPageUrl?: string;
+  nextPageUrl?: string;
+  totalSize?: number;
+  count?: number;
+  limit?: number;
+  offset?: number;
+  previousPageUrl?: string;
+  tagAssignments?: Schemas["TagAssignmentRepresentation"][];
+}
+export type TagAssignmentCreateItemInputRepresentation = Schemas["TagAssignmentCreateItemInputRepresentation"];
+export type TagAssignmentRepresentation = Schemas["TagAssignmentRepresentation"];
+export type TagAssignmentTargetInputRepresentation = Schemas["TagAssignmentTargetInputRepresentation"];
+export type TagBulkCreateInputRepresentation = Schemas["TagBulkCreateInputRepresentation"];
+export type TagBulkDeleteInputRepresentation = Schemas["TagBulkDeleteInputRepresentation"];
+export type TagBulkUpdateInputRepresentation = Schemas["TagBulkUpdateInputRepresentation"];
+export type TagBulkUpdateItemInputRepresentation = Schemas["TagBulkUpdateItemInputRepresentation"];
+export type TagCollectionRepresentation = {
+  currentPageUrl?: string;
+  nextPageUrl?: string;
+  totalSize?: number;
+  count?: number;
+  limit?: number;
+  offset?: number;
+  previousPageUrl?: string;
+  tags?: Schemas["TagRepresentation"][];
+}
+export type TagCreateInputRepresentation = Schemas["TagCreateInputRepresentation"];
+export type TagDetectionInstructionBulkCreateInputRepresentation = Schemas["TagDetectionInstructionBulkCreateInputRepresentation"];
+export type TagDetectionInstructionBulkCreateItemRepresentation = Schemas["TagDetectionInstructionBulkCreateItemRepresentation"];
+export type TagDetectionInstructionCreateInputRepresentation = Schemas["TagDetectionInstructionCreateInputRepresentation"];
+export type TagDetectionInstructionRepresentation = Schemas["TagDetectionInstructionRepresentation"];
+export type TagLookupRepresentation = Schemas["TagLookupRepresentation"];
+export type TagPatchInputRepresentation = Schemas["TagPatchInputRepresentation"];
+export type TagPropagateInputRepresentation = Schemas["TagPropagateInputRepresentation"];
+export type TagRepresentation = Schemas["TagRepresentation"];
+export type TagSuggestionCollectionRepresentation = {
+  currentPageUrl?: string;
+  nextPageUrl?: string;
+  totalSize?: number;
+  count?: number;
+  limit?: number;
+  offset?: number;
+  previousPageUrl?: string;
+  suggestions?: Schemas["TagSuggestionRepresentation"][];
+}
+export type TagSuggestionRepresentation = Schemas["TagSuggestionRepresentation"];
+export type TagWithActiveDetectionInstructionCollectionRepresentation = {
+  currentPageUrl?: string;
+  nextPageUrl?: string;
+  totalSize?: number;
+  count?: number;
+  limit?: number;
+  offset?: number;
+  previousPageUrl?: string;
+  tagsWithActiveDetectionInstructions?: Schemas["TagWithActiveDetectionInstructionRepresentation"][];
+}
+export type TagWithActiveDetectionInstructionRepresentation = Schemas["TagWithActiveDetectionInstructionRepresentation"];
+export type TaxonomyBulkCreateInputRepresentation = Schemas["TaxonomyBulkCreateInputRepresentation"];
+export type TaxonomyBulkDeleteInputRepresentation = Schemas["TaxonomyBulkDeleteInputRepresentation"];
+export type TaxonomyBulkUpdateInputRepresentation = Schemas["TaxonomyBulkUpdateInputRepresentation"];
+export type TaxonomyBulkUpdateItemInputRepresentation = Schemas["TaxonomyBulkUpdateItemInputRepresentation"];
+export type TaxonomyCollectionRepresentation = {
+  currentPageUrl?: string;
+  nextPageUrl?: string;
+  totalSize?: number;
+  count?: number;
+  limit?: number;
+  offset?: number;
+  previousPageUrl?: string;
+  taxonomies?: Schemas["TaxonomyRepresentation"][];
+}
+export type TaxonomyCreateInputRepresentation = Schemas["TaxonomyCreateInputRepresentation"];
+export type TaxonomyLookupRepresentation = Schemas["TaxonomyLookupRepresentation"];
+export type TaxonomyPatchInputRepresentation = Schemas["TaxonomyPatchInputRepresentation"];
+export type TaxonomyRepresentation = Schemas["TaxonomyRepresentation"];
 export type TimeOutputRepresentation = Schemas["TimeOutputRepresentation"];
 export type TokenizationInputRepresentation = Schemas["TokenizationInputRepresentation"];
 export type TokenizationRepresentation = Schemas["TokenizationRepresentation"];
@@ -3485,6 +4501,10 @@ export type VectorEmbeddingRelatedFieldsInputRepresentation = {
   relationships?: Schemas["SourceTargetRelationshipInputRepresentation"][];
 }
 export type VectorEmbeddingRepresentation = Schemas["VectorEmbeddingRepresentation"];
+export type WaterfallChildSegmentNamesInputRepresentation = Schemas["WaterfallChildSegmentNamesInputRepresentation"];
+export type WaterfallChildSegmentNamesRepresentation = Schemas["WaterfallChildSegmentNamesRepresentation"];
+export type WaterfallSelectedChildSegmentsConfigInputRepresentation = Schemas["WaterfallSelectedChildSegmentsConfigInputRepresentation"];
+export type WaterfallSelectedChildSegmentsConfigRepresentation = Schemas["WaterfallSelectedChildSegmentsConfigRepresentation"];
 export type WeeklyScheduleInputRepresentation = {
   definitionName?: string;
   frequency: "Weekly";
@@ -3499,10 +4519,17 @@ export type WeeklyScheduleRepresentation = {
   interval?: number;
 }
 
-// ── Enum types (280) ──
+// ── Enum types (381) ──
 
 export type AbstractBucketAlgorithmType = "TypographicClustering";
-export type ActivationActivationType = "ApiTriggered" | "Segment";
+export type AccessPolicyRuleCategory = "ACCESS_POLICY_RULE_DEFINITION" | "GOVERNANCE_POLICY_RULE_DEFINITION" | "TRANSFORM_POLICY_RULE_DEFINITION" | "RECORD_POLICY_RULE_DEFINITION" | "IDENTIFIED_RECORD_POLICY_RULE_DEFINITION";
+export type AccessPolicyRuleEffect = "Permit" | "Forbid" | "Transform";
+export type AccessPolicyRulePrincipalAuthenticationLevel = "UNIDENTIFIED" | "IDENTIFIED" | "AUTHENTICATED" | "INTERNAL";
+export type AccessPolicyRulePrincipalScopeType = "ANY";
+export type AccessPolicyRuleResourceScopeType = "ANY" | "FIELD" | "RECORD";
+export type AccessPolicyRuleResourceTransform = "LAST_N_CHARS_RESOURCE_TRANSFORM" | "FIRST_N_CHARS_RESOURCE_TRANSFORM" | "ALL_BUT_LAST_N_CHARS_RESOURCE_TRANSFORM" | "ALL_BUT_FIRST_N_CHARS_RESOURCE_TRANSFORM" | "CLOSEST_ORDER_OF_MAGNITUDE_RESOURCE_TRANSFORM" | "NULL_RESOURCE_TRANSFORM" | "EMPTY_STRING_RESOURCE_TRANSFORM" | "TRUNCATE_DATE_RESOURCE_TRANSFORM" | "ROUND_RESOURCE_TRANSFORM" | "REPLACE_ALL_CHARS_RESOURCE_TRANSFORM";
+export type AccessPolicyRuleRuleConsumer = "ALL" | "DATACLOUD" | "MULESOFT" | "TABLEAU" | "CORE";
+export type ActivationActivationType = "ApiTriggered" | "Dmo" | "Segment";
 export type ActivationAdditionalAttributesConfigSource = "Direct" | "Related";
 export type ActivationAdditionalAttributesConfigType = "Computed_Dimension" | "Computed_Measure" | "Model" | "Model_Related" | "Non_Aggregatable_Computed_Measure";
 export type ActivationAttributeSource = "Direct" | "Related";
@@ -3511,18 +4538,55 @@ export type ActivationContactPointSourceConfigDataSourcePreference = "ContactPoi
 export type ActivationContactPointType = "Email" | "Maid" | "Ott" | "Phone" | "Push" | "SubscriberKeyEmail" | "SubscriberKeyPhone" | "WhatsApp";
 export type ActivationCustomerFileSource = "First_And_Third_Party" | "First_Party" | "Third_Party";
 export type ActivationDataDeltaType = "[object Object]" | "[object Object]" | "[object Object]" | "[object Object]";
-export type ActivationDefinitionActivationType = "ApiTriggered" | "Segment";
+export type ActivationDefinitionActivationType = "ApiTriggered" | "Dmo" | "Segment";
 export type ActivationDefinitionCustomerFileSource = "FirstAndThirdParty" | "FirstParty" | "ThirdParty";
+export type ActivationDefinitionProcessingType = "Batch";
+export type ActivationEventParameterType = "ActionSource" | "Event";
+export type ActivationEventParameterValuesType = "ActionSource" | "Event";
 export type ActivationExternalPlatformCreationType = "Json" | "Manual";
 export type ActivationExternalPlatformPrivacyType = "NotApplicable" | "ServiceProvider" | "ThirdParty" | "UpdateFailed";
 export type ActivationExternalPlatformStatus = "Active" | "Error" | "Inactive" | "Processing";
 export type ActivationExternalPlatformType = "Advertising" | "Analytics" | "Marketing" | "Publishing" | "Technology";
+export type ActivationHistoryRecordPublishStatus = "Completed" | "Created" | "Error" | "PartnerError" | "PartnerProcessing" | "Pending" | "Queued" | "Restarting" | "Running" | "SegmentError" | "Skipped" | "Started";
+export type ActivationHistoryRecordPublishType = "Manual" | "Scheduled";
 export type ActivationLastPublishStatus = "Error" | "Partner_Error" | "Partner_Processing" | "Publishing" | "Queued" | "Segment_Error" | "Skipped" | "Success";
+export type ActivationPlatformActivationFlowType = "Dmo" | "Segment";
+export type ActivationPlatformActivationPlatformCreationType = "Json" | "Manual";
+export type ActivationPlatformConnectorType = "Oauth" | "S3";
+export type ActivationPlatformCreateActivationFlowType = "Dmo" | "Segment";
+export type ActivationPlatformCreateOutputFormat = "Csv" | "Json" | "Parquet";
+export type ActivationPlatformCreateOutputGrouping = "PerAccount" | "PerSegment";
+export type ActivationPlatformCreatePlatformType = "Advertising" | "Analytics" | "Marketing" | "Publishing" | "Technology";
+export type ActivationPlatformExternalProvider = "Amazon" | "Dv360" | "Facebook" | "Google" | "GoogleAdManager" | "LinkedIn" | "LinkedInCapi" | "MetaCapi" | "Pinterest" | "Snapchat" | "SnapchatCapi" | "TikTok" | "TikTokCapi";
+export type ActivationPlatformFieldType = "Date" | "Number" | "Text";
+export type ActivationPlatformIdentifierIdentifierHashMethod = "Md5" | "None" | "Sha1" | "Sha256";
+export type ActivationPlatformIdentifierIdentifierType = "Email" | "Maid" | "Ott" | "Phone";
+export type ActivationPlatformOutputFormat = "Csv" | "Json" | "Parquet";
+export type ActivationPlatformOutputGrouping = "PerAccount" | "PerSegment";
+export type ActivationPlatformOutputPropertiesCompression = "Bzip2" | "Gzip" | "None";
+export type ActivationPlatformOutputPropertiesDelimiter = "BrokenPipe" | "Caret" | "Colon" | "Comma" | "Hash" | "Pipe" | "Semicolon" | "Slash" | "Tab" | "Tilde" | "Underscore";
+export type ActivationPlatformOutputPropertiesOutputFormat = "Csv" | "Json" | "Parquet";
+export type ActivationPlatformPlatformProcessingType = "Batch" | "Streaming";
+export type ActivationPlatformPlatformType = "Advertising" | "Analytics" | "Marketing" | "Publishing" | "Technology";
+export type ActivationPlatformPrivacyType = "NotApplicable" | "ServiceProvider" | "ThirdParty" | "UpdateFailed";
+export type ActivationPlatformStatus = "Active" | "Error" | "Processing";
+export type ActivationPlatformSummaryActivationPlatformCreationType = "Json" | "Manual";
+export type ActivationPlatformSummaryPlatformProcessingType = "Batch" | "Streaming";
+export type ActivationPlatformSummaryPlatformType = "Advertising" | "Analytics" | "Marketing" | "Publishing" | "Technology";
+export type ActivationPlatformSummaryStatus = "Active" | "Error" | "Processing";
+export type ActivationPlatformSupportedEventTypeEventType = "Standard" | "Custom";
+export type ActivationProcessingType = "Batch";
 export type ActivationPublishActionPublishStatus = "Error" | "NotSupported" | "PartnerError" | "PartnerProcessing" | "Publishing" | "Queued" | "SegmentError" | "Skipped" | "Success";
 export type ActivationRefreshType = "Full_Refresh" | "Incremental";
 export type ActivationStatus = "Active" | "Processing" | "Error" | "Inactive";
+export type ActivationTargetPlatformCategory = "Advertising" | "Analytics" | "Marketing" | "Publishing" | "Technology";
+export type ActivationTargetPlatformExternalProvider = "Amazon" | "Dv360" | "Facebook" | "Google" | "GoogleAdManager" | "LinkedIn" | "LinkedInCapi" | "MetaCapi" | "Pinterest" | "Snapchat" | "SnapchatCapi" | "TikTok" | "TikTokCapi";
+export type ActivationTargetPlatformPlatformType = "AzureBlob" | "DataCloud" | "External" | "GoogleCloudStorage" | "InteractionStudio" | "S3" | "S3V2" | "SfApp" | "Sfcc" | "Sfmc" | "Sftp" | "Strategic" | "StreamingFlow";
+export type ActivationTargetPlatformProcessingType = "Batch" | "Streaming";
 export type ActivationTargetPlatformType = "AmazonS3" | "AzureBlob" | "DataCloud" | "ExternalPlatform" | "GoogleCloudStorage" | "SalesforceMarketingCloud" | "Sftp";
 export type ActivationTargetStatus = "Active" | "Processing" | "Error" | "Inactive";
+export type AgentSetupConfigStatus = "Active" | "Error" | "Processing";
+export type AgentStatus = "Active" | "Error" | "Processing";
 export type AggregateAction = "Avg" | "Count" | "Maximum" | "Median" | "Minimum" | "StdDev" | "StdDevP" | "Sum" | "Unique" | "Var" | "VarP";
 export type AggregateParametersNodeType = "Hierarchical" | "Standard";
 export type AmazonMSKRouteDetailsType = "AmazonMsk";
@@ -3530,8 +4594,13 @@ export type AttributeFilterDateUnits = "Days" | "Months" | "Years";
 export type AttributeFilterExpressionConjunction = "FilterConjunctionAnd" | "FilterConjunctionOr";
 export type AttributeFilterType = "FilterOperatorDataTypeBoolean" | "FilterOperatorDataTypeDate" | "FilterOperatorDataTypeDateOnly" | "FilterOperatorDataTypeExactlyRelativeDate" | "FilterOperatorDataTypeNumber" | "FilterOperatorDataTypeRelateToNowDate" | "FilterOperatorDataTypeText";
 export type AttributeLimitingExpressionOrder = "FilterSortOrderAsc" | "FilterSortOrderDesc";
+export type AutoTaggingJobStatus = "Fail" | "InProgress" | "Success";
+export type AwsDataShareTargetSubType = "Aws" | "CleanRoom";
 export type BaseConnectionFieldCreationType = "Custom" | "Standard";
 export type BaseConnectionFieldType = "Boolean" | "Currency" | "Date" | "DateTime" | "Email" | "Number" | "Percent" | "Phone" | "Text" | "Unsupported" | "Url";
+export type BatchDataTransformRunHistoryRunMode = "Full" | "Incremental";
+export type BatchDataTransformRunHistoryRunModeReason = "BtDefinitionChanged" | "DmoMappingsChanged" | "EvaluationError" | "FullSyncInSrcObject" | "FunctionsRequireFullRun" | "IncrementalModeDisabled" | "IrregularDmoPk" | "JoinManyIncrSources" | "MaxRetriesFailed" | "NoRecentFullRun" | "NodesRequireFullRun" | "NotAScheduledRun" | "RetryAfterPartialFailure" | "RunAfterPartialResult" | "TooManyChangesInSrcObject" | "UnsupportedObjectType" | "UnsupportedWriteModes";
+export type BigQueryDataShareTargetTargetEmailType = "Group" | "ServiceAccount" | "User";
 export type BucketFieldType = "Boolean" | "DateOnly" | "DateTime" | "Number" | "Text";
 export type BucketSourceFieldType = "Boolean" | "DateOnly" | "DateTime" | "Number" | "Text";
 export type CdpCalculatedInsightDefinitionType = "CALCULATED_METRIC" | "EXTERNAL_METRIC" | "STREAMING_METRIC";
@@ -3564,6 +4633,11 @@ export type CdpIdentityResolutionRunNowOutputResultCode = "ExceededMaximumNumber
 export type CdpMlAggregatePredictionStatus = "Error" | "Success";
 export type CdpMlAggregatePredictionType = "Average" | "Median" | "Sum";
 export type CdpMlCustomizableFieldType = "ActionableVariable" | "TopFactor";
+export type CdpMlFilterConjunctiveOperator = "And" | "Custom" | "Or";
+export type CdpMlFilterCriterionBaseOperator = "EqualTo" | "GreaterThan" | "GreaterThanOrEqualTo" | "In" | "LessThan" | "LessThanOrEqualTo" | "Like" | "NotEqualTo" | "NotIn";
+export type CdpMlFilterCriterionBaseType = "CalculatedInsightObjectField" | "DataModelObjectField" | "ModelInputField" | "SemanticSearchVectorEmbedRelatedField";
+export type CdpMlFilterCriterionOperator = "EqualTo" | "GreaterThan" | "GreaterThanOrEqualTo" | "In" | "LessThan" | "LessThanOrEqualTo" | "Like" | "NotEqualTo" | "NotIn";
+export type CdpMlFilterValueType = "Constant" | "Placeholder";
 export type CdpMlFoundationalModelMajorVersionName = "AnthropicClaudeInstant" | "AzureOpenAIGPT35Turbo" | "AzureOpenAIGPT35Turbo_16k" | "AzureOpenAIGPT41" | "AzureOpenAIGPT41Mini" | "AzureOpenAIGPT41Nano" | "AzureOpenAIGPT4Omni" | "AzureOpenAIGPT4OmniMini" | "AzureOpenAIGPT4Turbo" | "AzureOpenAITextEmbeddingAda_002" | "BedrockAnthropicClaude35Sonnet" | "BedrockAnthropicClaude35SonnetV2" | "BedrockAnthropicClaude37Sonnet" | "BedrockAnthropicClaude3Haiku" | "BedrockAnthropicClaude3Opus" | "BedrockAnthropicClaude3Sonnet" | "BedrockAnthropicClaude4Sonnet" | "BedrockCohereCommandLightTextV14" | "BedrockCohereCommandTextV14" | "BedrockLlama4Maverick" | "BedrockMistral7BInstructV0_2" | "BedrockMistral8x7BInstructV0_1" | "BedrockMistralLargeV1" | "EinsteinApexGuruMultiTasker" | "EinsteinDeepSeekR1" | "EinsteinFlashTopic" | "EinsteinLlama4Scout" | "EinsteinTableauGPT" | "EinsteinTextBaseV2" | "EinsteinTextEval" | "EinsteinTextSum" | "Einstein_AbstractiveSummarization_V1" | "Einstein_Clip_Vit_B_32_Multilingual_V1" | "Einstein_E5_Base" | "Einstein_E5_Large" | "Einstein_E5_Large_V2" | "Einstein_E5_Multilingual" | "Einstein_SFR_Embedding_Mistral" | "Einstein_Segmentation_V3" | "Einstein_Wespeaker_Voxceleb_Resnet34_Lm" | "Einstein_Whisper_Large_V3" | "Eleven_Turbo_V2" | "GenericGPT35Turbo" | "GenericGPT35TurboInstruct" | "GenericGPT35Turbo_16k" | "GenericGPT4" | "GenericGPT41" | "GenericGPT41Mini" | "GenericGPT4Omni" | "GenericGPT4OmniMini" | "GenericGPT4Turbo" | "GenericGPT4_32k" | "GenericTextDaVinci002" | "GenericTextDaVinci003" | "GenericTextEmbeddingAda_002" | "Nova_2_PhoneCall" | "OpenAIGPT35Turbo" | "OpenAIGPT35TurboInstruct" | "OpenAIGPT35Turbo_16k" | "OpenAIGPT4" | "OpenAIGPT41" | "OpenAIGPT41Mini" | "OpenAIGPT41Nano" | "OpenAIGPT4Omni" | "OpenAIGPT4OmniMini" | "OpenAIGPT4Turbo" | "OpenAIGPT4_32k" | "OpenAITextDaVinci002" | "OpenAITextDaVinci003" | "OpenAITextEmbedding3_Large" | "OpenAITextEmbedding3_Small" | "OpenAITextEmbeddingAda_002" | "OpenConnector" | "Salesforce_Embedding_2_R" | "VertexAIGemini20Flash001" | "VertexAIGemini20FlashLite001" | "VertexAIGemini25Flash001" | "VertexAIGeminiEmbed001" | "VertexAIGeminiPro10_002" | "VertexAIGeminiPro15" | "VertexAIGeminiPro25" | "WhisperBaseEn_4_27" | "WhisperBase_4_27";
 export type CdpMlFoundationalModelModelProviderName = "Anthropic" | "AzureOpenAI" | "Bedrock" | "Databricks" | "Generic" | "InternalEmbedding" | "OpenAI" | "OpenConnector" | "SageMaker" | "Salesforce" | "VertexAI";
 export type CdpMlJobBaseType = "Prediction" | "Training";
@@ -3591,11 +4665,21 @@ export type CdpScheduleFrequency = "Daily" | "Hourly" | "Minutely" | "Monthly" |
 export type CdpSegmentPublishSchedule = "NoRefresh" | "One" | "Two" | "Four" | "Six" | "Twelve" | "TwentyFour";
 export type CdpSegmentSegmentCreationFlow = "Datakit" | "EinsteinGpt" | "Visual";
 export type CdpSegmentSegmentType = "Dbt" | "Dynamic" | "EinsteinGptSegmentsUI" | "Lookalike" | "Realtimez" | "Waterfall";
+export type ChannelChannelType = "DigitalId" | "Email" | "Phone" | "Push" | "Whatsapp";
+export type ClassificationLookupType = "Custom" | "System";
+export type ClassificationState = "Active" | "Deleting" | "Inactive";
+export type ClassificationType = "Custom" | "System";
 export type CleanroomTestConnectionConnectorType = "CleanroomAwsS3" | "CleanroomSnowflake";
 export type CloudProviderDetailsStatus = "Allocating" | "DeletedRemotely" | "PendingAcceptance" | "PendingActivation" | "Ready" | "RejectedRemotely" | "TeardownInProgress" | "Unprovisioned";
 export type CloudProviderDetailsType = "AmazonWebServices";
 export type ComputeRelativeParametersExpressionType = "Dcsql" | "Sql";
 export type ComputeRelativeSortParametersDirection = "Ascending" | "Descending";
+export type ConditionLeafClause = "WHEN" | "UNLESS";
+export type ConditionLeafContextPath = "SESSION_DATASPACE" | "SESSION_CONSUMER_ID" | "CONTEXT_AGENT_ID" | "CONTEXT_AGENT_VERSION_ID";
+export type ConditionLeafOperator = "EQUALS" | "NOT_EQUALS" | "GREATER_THAN" | "LESS_THAN" | "GREATER_THAN_OR_EQUAL" | "LESS_THAN_OR_EQUALS" | "IN" | "LIKE" | "CONTAINS_ANY" | "CONTAINS_NONE" | "CONTAINS_ALL" | "IS" | "EXISTS" | "HIERARCHICALLY_ABOVE" | "HIERARCHICALLY_BELOW" | "CONTAINS" | "STARTS_WITH" | "ENDS_WITH";
+export type ConditionLeafPrincipalPath = "IS_AUTHENTICATED" | "ASSIGNED_PERMISSIONS_PATH" | "USER_ID" | "ORGANIZATION_ID" | "USER_ROLE_ID" | "RBAC_TAGS" | "SCALAR_ATTRIBUTE" | "PLURAL_ATTRIBUTE" | "PLACEHOLDER" | "IS_INTERNAL" | "CONTACT_ID";
+export type ConditionLeafResourcePath = "NAMESPACE" | "ENTITY" | "RESOURCE" | "FIELD" | "ENTITYTYPE" | "ENTITYKIND" | "FIELDKIND" | "DATASPACE" | "TAG" | "SYSTEMTAG" | "OBJECT_TAG" | "CLASSIFICATION" | "IMPLICITTAG" | "OBJECT_SYSTEMTAG" | "RECORDFIELD" | "OBJECT_CLASSIFICATION" | "EXPRESSION" | "OBJECT_DATASPACE" | "RECORDFIELDTYPE" | "METADATAKIND" | "OBJECT";
+export type ConditionLeafValuePrincipalPath = "IS_AUTHENTICATED" | "ASSIGNED_PERMISSIONS_PATH" | "USER_ID" | "ORGANIZATION_ID" | "USER_ROLE_ID" | "RBAC_TAGS" | "SCALAR_ATTRIBUTE" | "PLURAL_ATTRIBUTE" | "PLACEHOLDER" | "IS_INTERNAL" | "CONTACT_ID";
 export type ConnectionCommandActionMethod = "Egress" | "Ingress";
 export type ConnectionObjectObjectType = "Activity" | "Comment" | "Group" | "Permission" | "StructuredData" | "UnstructuredData" | "User";
 export type ConnectionSchemaSchemaType = "DataConnectionEvent" | "IngestApi" | "StreamingApp";
@@ -3608,6 +4692,7 @@ export type ContactPointSourceDataSourcePreference = "ContactPointPrefAny" | "Co
 export type CrmConnectionConnectionStatus = "Active" | "Deleting" | "Error" | "InActive" | "Processing" | "SchemaRequired";
 export type CrmConnectionObjectCreationType = "Custom" | "Standard";
 export type DailyScheduleFrequency = "Daily";
+export type DatabricksRouteDetailsType = "Databricks";
 export type DataCleanRoomCollaborationForUseCaseTypeStatus = "Active" | "Disabled" | "Error" | "Inactive";
 export type DataCleanRoomCollaborationResultDataObjectStatus = "Active" | "Error" | "Inactive" | "Processing";
 export type DataCleanRoomCollaborationStatus = "Active" | "Disabled" | "Error" | "Inactive";
@@ -3637,6 +4722,7 @@ export type DataCleanRoomQueryJobStatus = "Created" | "Failed" | "Running" | "Su
 export type DataCleanRoomTemplateTemplateType = "Custom" | "Salesforce";
 export type DataCleanRoomTemplateUseCaseType = "Custom" | "Overlap";
 export type DataCleanRoomUsecaseConfigUseCaseType = "Activation" | "Custom" | "MatchBoost" | "Overlap";
+export type DataCloudDataShareTargetSubType = "CleanRoom" | "DatacloudToDatacloud";
 export type DataConnectionMethod = "Egress" | "Ingress";
 export type DataConnectionStatus = "Connected" | "Disconnected" | "Failed" | "NeedsReAuth";
 export type DataConnectionSyncStatus = "Failure" | "InProgress" | "InvalidCredentials" | "None" | "Pending" | "Success";
@@ -3657,6 +4743,9 @@ export type DataModelObjectStatus = "Active" | "Error" | "Inactive" | "Processin
 export type DataObjectCategory = "Engagement" | "Other" | "Profile";
 export type DataObjectFieldType = "Boolean" | "Date" | "DateOnly" | "DateTime" | "Email" | "Number" | "Percent" | "Phone" | "Text" | "Url";
 export type DataObjectType = "DataLakeObject" | "DataModelObject";
+export type DataShareStatus = "Active" | "Deleting" | "Error" | "InActive" | "Processing";
+export type DataShareTargetStatus = "Active" | "Deleting" | "Error" | "GrantRevokeAccess" | "InActive" | "Processing";
+export type DataShareTargetTargetType = "Aws" | "BigQuery" | "Databricks" | "Datacloud" | "Ibm" | "Other" | "Snowflake" | "SnowflakeOpenFlow";
 export type DataSpaceFilterConditionOperator = "ContainsAnyOperator" | "EqualsOperator" | "GreaterThanOperator" | "InOperator" | "IsEmptyStringOperator" | "IsNotEmptyStringOperator" | "IsNotNullOperator" | "IsNullOperator" | "LastNumberOfDaysOperator" | "LessThanOperator" | "NotEqualsOperator" | "NotInOperator";
 export type DataSpaceFilterConjunctiveOperator = "AndOperator" | "NoneOperator" | "OrOperator";
 export type DataSpaceInfoStatus = "Active" | "Error" | "Processing";
@@ -3676,9 +4765,8 @@ export type DataTransformDefinitionType = "DbtHidden" | "DcSql" | "Sql" | "SqlHi
 export type DataTransformFullRunFrequency = "Daily" | "Monthly" | "Weekly";
 export type DataTransformLastRunStatus = "Canceled" | "Failure" | "InProgress" | "None" | "PartialFailure" | "PartiallyCanceled" | "Pending" | "Success";
 export type DataTransformNodeAction = "Aggregate" | "Append_V2" | "Bucket" | "ComputeRelative" | "DateFormatConversion" | "Extension" | "Extract" | "Filter" | "Formula" | "Join" | "Load" | "OutputD360" | "Recommendation" | "Save" | "Schema" | "Split" | "SqlFilter" | "TypeCast" | "Update";
-export type DataTransformRunHistoryBaseRunMode = "Full" | "Incremental";
-export type DataTransformRunHistoryBaseRunModeReason = "BtDefinitionChanged" | "DmoMappingsChanged" | "EvaluationError" | "FullSyncInSrcObject" | "FunctionsRequireFullRun" | "IncrementalModeDisabled" | "IrregularDmoPk" | "MaxRetriesFailed" | "NoRecentFullRun" | "NodesRequireFullRun" | "NotAScheduledRun" | "RetryAfterPartialFailure" | "RunAfterPartialResult" | "TooManyChangesInSrcObject" | "UnsupportedObjectType";
-export type DataTransformRunHistoryBaseStatus = "Canceled" | "Failure" | "InProgress" | "None" | "PartialFailure" | "PartiallyCanceled" | "Pending" | "RebuildFailure" | "RebuildPending" | "RebuildSuccess" | "Rebuilding" | "Success";
+export type DataTransformRunHistoryBaseStatus = "Canceled" | "Failure" | "InProgress" | "None" | "PartialFailure" | "PartiallyCanceled" | "Pending" | "RebuildFailure" | "RebuildPending" | "RebuildSuccess" | "Rebuilding" | "SkippedNoChanges" | "Success";
+export type DataTransformRunHistoryBaseType = "Batch" | "Streaming";
 export type DataTransformStatus = "Active" | "Deleting" | "Error" | "Processing";
 export type DataTransformType = "BATCH" | "STREAMING";
 export type DcSqlDataTransformMacroArgumentType = "BYOC_SCRIPT";
@@ -3729,17 +4817,36 @@ export type MlConnectorEndpointResponseFormat = "Csv" | "DataFrameRecords" | "Da
 export type MlDataAlertAlertType = "Auc" | "CollinearFields" | "CorrelateWithProtectedFields" | "CrossValidationFailed" | "DataLeakage" | "DisparateImpact" | "ExtremeValues" | "FalsePredictionRate" | "HighCardinality" | "MissingCategoricalValues" | "MissingNumericalValues" | "ObviousPredictor" | "RecommendedBuckets" | "Rsquared" | "SingleValue" | "SingleValueWithOther";
 export type MlDataAlertQueryAssetType = "ModelArtifact";
 export type MlDataAlertSourceType = "ModelTraining" | "Runtime";
+export type MlFieldPlaceholderFieldDataType = "ArrayOfText" | "Boolean" | "Currency" | "Date" | "DateTime" | "Email" | "Number" | "Percent" | "Phone" | "Text" | "Url";
 export type MlModelInputTypeName = "ApplicationPdf" | "Float" | "ImageJpeg" | "ImagePng" | "Json" | "Text";
 export type MlModelOutputTypeName = "ApplicationPdf" | "Float" | "ImageJpeg" | "ImagePng" | "Json" | "Text";
 export type MlPredictionJobDefBaseActivationStatus = "Active" | "Inactive";
 export type MlPredictionJobDefBaseLastRunStatus = "Aborted" | "Failed" | "InProgress" | "NotStarted" | "Pending" | "Submited" | "Success";
 export type MlPredictionJobDefBaseScoringMode = "Batch" | "Streaming";
 export type MlPredictionJobDefBaseType = "BinaryClassification" | "Clustering" | "MulticlassClassification" | "Regression" | "SentimentDetection" | "TopicClassification";
+export type MlRetrieverCitationConfigurationType = "Custom" | "Default";
+export type MlRetrieverConfigurationBaseQueryType = "CustomSql" | "Ensemble" | "NoCode";
+export type MlRetrieverConfigurationBaseRetrievalMode = "Advanced" | "Basic";
+export type MlRetrieverConfigurationBaseSemanticSearchType = "Enriched" | "Hybrid" | "Vector";
+export type MlRetrieverDataSourceType = "DataCloudAsset" | "RealTimeSearchIndex" | "SearchIndex";
+export type MlRetrieverOutputFieldDataSourceType = "DataModelObject" | "SearchFunction";
+export type MlRetrieverOwnerType = "Adl" | "AiAgent" | "Api" | "Customer" | "IntelligentContext" | "Internal" | "Ui";
+export type MlRetrieverQueryTemplateCitationDefinitionBaseCitationType = "Custom" | "Default";
+export type MlRetrieverQueryTemplateDataCloudAssetAssetType = "CalculatedInsight" | "DataLakeObject" | "DataModelObject" | "SearchIndex";
+export type MlRetrieverQueryTemplateDefinitionQueryTemplateVersionNumber = "V3PARAM";
+export type MlRetrieverQueryTemplatePlaceholderPlaceholderDataType = "ArrayOfText" | "Boolean" | "Date" | "DateTime" | "Number" | "Text";
+export type MlRetrieverQueryTemplatePlaceholderPlaceholderType = "NamedParameter" | "Placeholder";
+export type MlRetrieverQueryType = "CustomSql" | "Ensemble" | "NoCode";
+export type MlRetrieverRetrieverLifetime = "Persistent" | "Transient";
+export type MlRetrieverReviewItemCode = "AdvancedModeSuggested" | "AssetValidationError" | "CitationDefinitionMissing" | "CitationSuggested" | "CustomCitationLabelMissing" | "CustomCitationLabelNotFound" | "CustomCitationLinkMissing" | "CustomCitationLinkNotFound" | "DataSpaceNameBlank" | "DefaultCitationChunkIdMissing" | "DefaultCitationChunkIdNotAllowedForJit" | "DefaultCitationChunkIdNotFound" | "DefaultCitationChunkIndexNotFound" | "DefaultCitationChunkObjectDataSpaceMismatch" | "DefaultCitationChunkObjectMissing" | "DefaultCitationChunkObjectNotDmo" | "DefaultCitationChunkObjectSuggested" | "DefaultCitationChunkSourceMismatch" | "DefaultCitationLabelNotFound" | "DefaultCitationRecordIdMissing" | "DefaultCitationRecordIdNotFound" | "DefaultCitationSourceObjectDataSpaceMismatch" | "DefaultCitationSourceObjectMissing" | "DefaultCitationSourceObjectNotDmo" | "EnrichedIndexChunkColMissing" | "EnrichedIndexChunkColNotFound" | "EnrichedIndexChunkIdMissing" | "EnrichedIndexChunkIdNotFound" | "EnrichedIndexDataSpaceMismatch" | "EnrichedIndexDefinitionMissing" | "EnrichedIndexNameMissing" | "EnrichedIndexSuggested" | "InputNull" | "InvalidParameterValue" | "InvalidParameter" | "InvalidQueryPreparation" | "MainUserQueryParamFormat" | "MainUserQueryParamMissing" | "MainUserQueryParamNotInTemplate" | "MaxRowsOutOfRange" | "ParameterNameBlank" | "ParameterNameBlankAfterStrip" | "ParameterNameFormat" | "ParameterNameInvalid" | "ParameterNameTooLong" | "ParameterValueRequired" | "PlaceholderTypeInvalid" | "QueryExecutionFailed" | "QueryTemplateMissing" | "ScoreColumnNotFound" | "ScoreColumnSuggestedForMonitoring" | "ScoreColumnSuggestedForReranking" | "UnknownCitationType";
+export type MlRetrieverReviewItemSeverity = "Error" | "Info";
+export type MlRetrieverSourceType = "SearchIndex" | "SearchIndexConfiguration";
 export type MlSetupBaseUpdateType = "EdcNoCode" | "ModelConnector";
 export type MlTopicClassificationJobLabelsBaseType = "Dynamic" | "Static";
 export type MonthlySpecificScheduleFrequency = "Monthly";
 export type OutputD360ParametersType = "DataLakeObject" | "DataModelObject";
 export type OutputD360ParametersWriteMode = "Append" | "DeleteOnly" | "Merge" | "MergeUpsertDelete" | "Overwrite";
+export type PartnerObjectStatus = "Active" | "NotActive";
 export type PredictionFieldType = "Boolean" | "DateOnly" | "DateTime" | "Number" | "Text";
 export type PredictSourceType = "ConfiguredModel" | "MlModelGroup";
 export type QuerySqlMetadataItemType = "ArrayOfX" | "BigInt" | "Bool" | "Char" | "Date" | "Double" | "Float" | "Integer" | "Numeric" | "Oid" | "SmallInt" | "Time" | "Timestamp" | "TimestampTZ" | "Unspecified" | "Varchar";
@@ -3749,9 +4856,12 @@ export type RecencyCriteriaValueType = "Record" | "Time";
 export type RecencyCriteriaValueUnit = "Day" | "Hour";
 export type RedshiftRouteDetailsType = "Redshift";
 export type RefreshConfigRefreshMode = "TOTAL_REPLACE" | "UPSERT" | "INCREMENTAL" | "REPLACE" | "NEAR_REAL_TIME_INCREMENTAL" | "PARTIAL_UPDATE";
+export type RefreshSettingsFrequency = "FourHours" | "TwelveHours" | "TwentyFourHours";
+export type RefreshSettingsMode = "Full" | "Incremental";
+export type RefreshSettingsPeriodicFullRefresh = "Every30Days" | "Every60Days";
 export type RelationshipFieldType = "CalculatedInsightField" | "DatamodelField" | "Sobjectfield";
 export type ResourceFilterByPropertyFilterOperator = "EqualsOp" | "LikeOp" | "SubstrOp";
-export type RouteDetailsType = "AmazonMsk" | "Redshift" | "Snowflake";
+export type RouteDetailsType = "Databricks" | "DatabricksInternalStage" | "AmazonMsk" | "Redshift" | "Snowflake" | "SnowflakeInternalStage";
 export type RunHistoryOutputProgressDataObjectType = "DataLakeObject" | "DataModelObject";
 export type RunHistoryOutputProgressStatus = "Error" | "Pending" | "Running" | "Success";
 export type SampleParametersSortDirection = "Ascending" | "Descending";
@@ -3761,6 +4871,8 @@ export type ScheduleOutputFrequency = "Daily" | "Hourly" | "Minutely" | "Monthly
 export type SchemaFieldTypePropertiesType = "Boolean" | "DateOnly" | "DateTime" | "Number" | "Text";
 export type SchemaSliceMode = "Drop" | "Select";
 export type SchemaTypePropertiesCastType = "Boolean" | "DateOnly" | "DateTime" | "Number" | "Text";
+export type SetPrivacyTypePrivacyType = "ThirdParty" | "ServiceProvider" | "UpdateFailed" | "NotApplicable";
+export type SnowflakeDataShareTargetSubType = "CleanRoom";
 export type SnowflakeRouteDetailsType = "Snowflake";
 export type SortSpecificationDirection = "Ascending" | "Descending";
 export type SqlFilterParametersExpressionType = "Dcsql" | "Sql";
@@ -3776,6 +4888,15 @@ export type StreamingConnectorDetailsConfigCategory = "Directory_Table" | "Engag
 export type StreamingConnectorDetailsConfigStreamingAppType = "MobileApp" | "ServerApp" | "WebApp";
 export type StreamingParametersOutputMode = "Append" | "Complete" | "Update";
 export type StreamingParametersTriggerType = "Fixed";
+export type TagLookupType = "Custom" | "System";
+export type TagState = "Active" | "Deleting" | "Inactive";
+export type TagSuggestionStatus = "Approved" | "AutoRejected" | "New" | "Rejected";
+export type TagType = "Custom" | "System";
+export type TaxonomyLookupTaxonomyKind = "Classification" | "Tag";
+export type TaxonomyLookupType = "Custom" | "System";
+export type TaxonomyState = "Active" | "Deleting" | "Inactive";
+export type TaxonomyTaxonomyKind = "Classification" | "Tag";
+export type TaxonomyType = "Custom" | "System";
 export type TransformValidationIssueErrorCode = "DataTransformLimitExceeded" | "DloNameDoesNotExist" | "DmoOutputValidationError" | "InternalServiceError" | "InvalidDataTransform" | "InvalidDataTransformCapability" | "InvalidDataTransformDataObjects" | "InvalidDataTransformDefMapping" | "InvalidDataTransformDefinition" | "InvalidDataTransformRequest" | "InvalidDataTransformTag" | "InvalidInputPayload" | "InvalidTargetDLO" | "InvalidTargetDMO" | "NameValidationError" | "RestrictedDLO" | "SourceDloNotFound" | "SqlExpressionIsNull" | "StreamingTransformCreateForbidden" | "TagsValidationError" | "TargetDLOIsRebuilding" | "TargetDloNotFound" | "TargetDmoNotFound" | "TargetObjectNameNull" | "TypeValidationError";
 export type TransformValidationIssueErrorSeverity = "Error" | "Fatal" | "Warning";
 export type TransformValidationIssueType = "Definition" | "Transform";

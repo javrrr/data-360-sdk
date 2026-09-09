@@ -24,6 +24,12 @@ export interface DataSpacesDeleteMembersParams {
   [key: string]: string | number | boolean | undefined;
 }
 
+export interface DataSpacesListMembersParams {
+  /** Token used to retrieve the next set of data space members. Returned when more results are available than can be returned in a single request. */
+  continuationToken?: string;
+  [key: string]: string | number | boolean | undefined;
+}
+
 // ── Base service class ──
 
 export class DataSpacesServiceBase extends BaseResource {
@@ -58,10 +64,11 @@ export class DataSpacesServiceBase extends BaseResource {
   }
 
   /** GET /ssot/data-spaces/{idOrName}/members — Get data space members */
-  async listMembers(idOrName: string, params?: PaginationParams, options?: RequestOptions): Promise<DataSpaceMemberCollectionRepresentation> {
+  async listMembers(idOrName: string, params?: PaginationParams & DataSpacesListMembersParams, options?: RequestOptions): Promise<DataSpaceMemberCollectionRepresentation> {
+    const { batchSize, offset, orderBy, ...query } = params ?? {};
     return this.httpClient.get(`${this.basePath}/${encodeURIComponent(idOrName)}/members`, {
       ...options,
-      query: this.paginationQuery({ ...params, pageSizeParam: "limit" }),
+      query: { ...this.paginationQuery({ batchSize, offset, orderBy, pageSizeParam: "batchSize" }), ...query },
     });
   }
 
@@ -81,7 +88,8 @@ export class DataSpacesServiceBase extends BaseResource {
   }
 
   /** Async generator yielding all items from listMembers */
-  async *listAllMembers(idOrName: string, params?: PaginationParams, options?: RequestOptions): AsyncGenerator<DataSpaceMemberRepresentation, void, undefined> {
-    yield* this.paginate<DataSpaceMemberRepresentation>(`${this.basePath}/${encodeURIComponent(idOrName)}/members`, { ...params, pageSizeParam: "limit" }, options);
+  async *listAllMembers(idOrName: string, params?: PaginationParams & DataSpacesListMembersParams, options?: RequestOptions): AsyncGenerator<DataSpaceMemberRepresentation, void, undefined> {
+    const { batchSize, offset, orderBy, ...query } = params ?? {};
+    yield* this.paginate<DataSpaceMemberRepresentation>(`${this.basePath}/${encodeURIComponent(idOrName)}/members`, { batchSize, offset, orderBy, pageSizeParam: "batchSize", query }, options);
   }
 }
